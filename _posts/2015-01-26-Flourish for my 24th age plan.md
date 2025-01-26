@@ -12,7 +12,8 @@ Below is my detailed plan for achieving growth and success during this pivotal t
     <col width="35%" />
     <col width="10%" />
     <col width="20%" />
-    <col width="10%" />
+    <col width="5%" />
+    <col width="5%" />
   </colgroup>
   <thead>
     <tr class="header">
@@ -21,6 +22,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <th>Priority</th>
       <th>Resource</th>
       <th>Will-done year</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
@@ -30,6 +32,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@High</td>
       <td markdown="span">English Centre (maybe Dol), Kindle Book, Technical Docs</td>
       <td markdown="span">2025</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>Mental</b></td>
@@ -37,6 +40,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@High</td>
       <td markdown="span">The School Of Life, Love & Connection Books</td>
       <td markdown="span">2025</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>Physical</b></td>
@@ -44,6 +48,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@High</td>
       <td markdown="span">Apartment, Friends</td>
       <td markdown="span">2025</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>System Design</b></td>
@@ -51,6 +56,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@Medium</td>
       <td markdown="span">Algo Monster: [System Design Fundamentals](https://systemdesignschool.io/fundamentals/what-is-system-design-interview)</td>
       <td markdown="span">2025</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>Entertainment</b></td>
@@ -58,6 +64,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@High</td>
       <td markdown="span">Everyday, Everywhere</td>
       <td markdown="span">2025</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>Work</b></td>
@@ -65,6 +72,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@High</td>
       <td markdown="span">Company</td>
       <td markdown="span">2025</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>Learning guitar</b></td>
@@ -72,6 +80,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@Medium</td>
       <td markdown="span">Maybe in Musical Central (Ward 7)</td>
       <td markdown="span">2025</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>AWS</b></td>
@@ -79,6 +88,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@Medium</td>
       <td markdown="span">Slide AWS Certified Solutions Architect Associate: [Google Drive Link](https://drive.google.com/file/d/1eGeM_X1w8Ot2iyRNeCrMFaEqTi-v7Noa/view)</td>
       <td markdown="span">2025</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>DSA</b></td>
@@ -86,6 +96,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@Medium</td>
       <td markdown="span">Algo Monster: [Coding Patterns](https://algo.monster/problems/stats), Leetcode</td>
       <td markdown="span">2026</td>
+      <td markdown="span"></td>
     </tr>
     <tr>
       <td markdown="span"><b>AI Generative</b></td>
@@ -93,6 +104,7 @@ Below is my detailed plan for achieving growth and success during this pivotal t
       <td markdown="span">@Low</td>
       <td markdown="span">[Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners)</td>
       <td markdown="span">2026</td>
+      <td markdown="span"></td>
     </tr>
   </tbody>
 </table>
