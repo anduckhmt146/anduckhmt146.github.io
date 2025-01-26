@@ -283,28 +283,6 @@ footer {
   text-align: center;
 }
 
-.styled-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 25px 0;
-    font-size: 18px;
-    text-align: left;
-    border: 1px solid #dddddd;
-}
-
-.styled-table th, .styled-table td {
-    padding: 12px 15px;
-    border: 1px solid #dddddd;
-}
-
-.styled-table th {
-    background-color: #f4f4f4;
-}
-
-.styled-table tr:nth-of-type(even) {
-    background-color: #f9f9f9;
-}
-
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
