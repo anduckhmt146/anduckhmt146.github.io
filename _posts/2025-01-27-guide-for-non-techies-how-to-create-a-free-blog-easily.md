@@ -65,45 +65,45 @@ All you need to do is write simple Markdown files (similar to Notion’s syntax)
 
 **Step 2:** Fork the repo [https://github.com/barryclark/jekyll-now](https://github.com/barryclark/jekyll-now)
 
-![](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/Screenshot_2025-01-26_at_23.04.20.png)
+![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/Screenshot_2025-01-26_at_23.04.20.png)
 
 
 **Step 3:** Open the repo that you have been forked, rename the repo to <your_username>.github.io, for example my repo is anduckhmt146.github.io
 
-  ![](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image.png)
+  ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image.png)
 
 **Step 4:** Open network access in your domain in Namecheap for Github IP, similar to Go Daddy or other domain providers
 
 - Click to “Advanced DNS”, and set up data content as same as following rules
     
-   ![](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%201.png)
+   ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%201.png)
     
 - Reference: [https://dev.to/pauljwil/connect-github-pages-to-your-namecheap-domain-4gjj](https://dev.to/pauljwil/connect-github-pages-to-your-namecheap-domain-4gjj)
     
-     ![](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%202.png)
+     ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%202.png)
     
 
 **Step 5:** Click to Settings in Github page ⇒ Input your custom domain ⇒ Select Github Actions
 
- ![](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%203.png)
+ ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%203.png)
 
 **Step 6:** Go to _config.yml and change some information in Header (Name, Title, Image) and Footer (Social Media) to yourself, and [about.md](http://about.md) file for your “About Me” tab.
 
- ![](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%204.png)
+ ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%204.png)
 
 **Step 7:** When you update a new blog, create a markdown file (.md), you can write the blog in Notion and export to (Markdown & CSV files), xong upload to folder ***posts/,** with name of the file* is **YYYY-MM-DD-Title.md**
 
-![image.png](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%205.png)
+![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%205.png)
 
 Remember to update fields, such as field layout with value “post”, and field title with value “your displayed name title” in the top of the readme file, which is call front-master, references: [https://jekyllrb.com/docs/front-matter/](https://jekyllrb.com/docs/front-matter/)
 
-![image.png](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%206.png)
+![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%206.png)
 
 # 4.  Output 😂
 
 Link: [https://anduckhmt146.site/](https://anduckhmt146.site/)
 
-![image.png](https://github.com/anduckhmt146/anduckhmt146.github.io/blob/master/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%207.png)
+![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%207.png)
 
 # 5.  Contact
 
