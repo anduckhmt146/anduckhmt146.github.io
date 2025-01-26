@@ -91,11 +91,11 @@ All you need to do is write simple Markdown files (similar to Notion’s syntax)
 
  ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%204.png)
 
-**Step 7:** When you update a new blog, create a markdown file (.md), you can write the blog in Notion and export to (Markdown & CSV files), xong upload to folder ***posts/,** with name of the file* is **YYYY-MM-DD-Title.md**
+**Step 7:** When you update a new blog, create a markdown file (.md), you can write the blog in Notion and export to (Markdown & CSV files), then upload to folder **posts/,** with name of the file is **YYYY-MM-DD-Title.md**
 
 ![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%205.png)
 
-Remember to update fields, such as field layout with value “post”, and field title with value “your displayed name title” in the top of the readme file, which is call front-master, references: [https://jekyllrb.com/docs/front-matter/](https://jekyllrb.com/docs/front-matter/)
+Remember to update fields, such as field layout with value “post”, and field title with value “your displayed name title” in the top of the readme file, which is called front-master, references: [https://jekyllrb.com/docs/front-matter/](https://jekyllrb.com/docs/front-matter/)
 
 ![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%206.png)
 
