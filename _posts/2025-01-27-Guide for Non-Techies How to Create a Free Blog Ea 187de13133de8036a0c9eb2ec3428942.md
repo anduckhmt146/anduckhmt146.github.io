@@ -25,7 +25,7 @@ As a result, if your content becomes valuable or requires privacy, your data ess
 
 ### **Solution**
 
-We use the **FREE & AUTO CONFIGURED** open-source **Jekyll p**latform with GitHub to store your blog content directly in GitHub’s file system. This approach eliminates the need for a database or complicated HTML source code to host your blog. However, the blog might feel a bit simple and focus =))) It’s not the most colorful or visually flashy option, but it’s perfectly sufficient for delivering content quickly. This approach prioritizes knowledge-sharing and ensures your blog is clean, clear, and highly readable.
+We use the **FREE & AUTO CONFIGURED** open-source **Jekyll** platform with GitHub to store your blog content directly in GitHub’s file system. This approach eliminates the need for a database or complicated HTML source code to host your blog. However, the blog might feel a bit simple and focus =))) It’s not the most colorful or visually flashy option, but it’s perfectly sufficient for delivering content quickly. This approach prioritizes knowledge-sharing and ensures your blog is clean, clear, and highly readable.
 
 All you need to do is write simple Markdown files (similar to Notion’s syntax) and update to the folder, and it automatically publishes your post to the blog directly.
 
