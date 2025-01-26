@@ -36,7 +36,7 @@ We use the **FREE & AUTO CONFIGURED** open-source **Jekyll** platform with GitHu
 
 However, the blog might feel a bit simple and focus =))) It’s not the most colorful or visually flashy option, but it’s perfectly sufficient for delivering content quickly. This approach prioritizes knowledge-sharing and ensures your blog is clean, clear, and highly readable.
 
-All you need to do is write simple Markdown files (similar to Notion’s syntax) and update to the folder, and it automatically publishes your post to the blog directly.
+All you need to do is write simple Markdown files (similar to Notion’s syntax) and update to the folder posts/, and it automatically publishes your post to the blog directly.
 
 # 2.  Total Cost
 
