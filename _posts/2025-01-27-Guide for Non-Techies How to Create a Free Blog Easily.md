@@ -3,7 +3,9 @@ layout: post
 title: Guide for Non-Techies How to Create a Free Blog Easily
 ---
 
-# 1.  Context:
+Guide for Non-Techies How to Create a Free Blog Easily
+
+# 1. Context:
 
 If you're a reviewer, marketer, book reader, or someone with expertise to share, blogging is a fantastic way to write, share knowledge, and build your personal brand. However, choosing the right platform can be tricky, especially when you're looking for something simple and efficient.
 
