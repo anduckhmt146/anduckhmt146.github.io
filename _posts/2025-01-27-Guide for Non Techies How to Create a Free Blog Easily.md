@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Guide for Non-Techies How to Create a Free Blog Easily
+title: Guide for Non Techies How to Create a Free Blog Easily
 ---
 
 Guide for Non-Techies How to Create a Free Blog Easily
