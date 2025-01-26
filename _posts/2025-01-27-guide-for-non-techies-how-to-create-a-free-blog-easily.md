@@ -87,7 +87,7 @@ All you need to do is write simple Markdown files (similar to Notion’s syntax)
 
  ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%203.png)
 
-**Step 6:** Go to _config.yml and change some information in Header (Name, Title, Image) and Footer (Social Media) to yourself, and [about.md](http://about.md) file for your “About Me” tab.
+**Step 6:** Go to _config.yml and change some information in Header (Name, Title, Image) and Footer (Social Media) to yourself, and about.md file for your “About Me” tab.
 
  ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%204.png)
 
