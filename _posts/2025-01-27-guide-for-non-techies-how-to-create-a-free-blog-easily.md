@@ -74,7 +74,7 @@ All you need to do is write simple Markdown files (similar to Notion’s syntax)
 
 **Step 4:** Open network access in your domain in Namecheap for Github IP, similar to Go Daddy or other domain providers
 
-- Click to “Advanced DNS”, and set up data content as same as following rules
+- Click to “Advanced DNS”, and set up data configuration as same as following rules
     
    ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%201.png)
     
