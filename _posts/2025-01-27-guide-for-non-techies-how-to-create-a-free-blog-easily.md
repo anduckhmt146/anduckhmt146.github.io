@@ -1,7 +1,9 @@
 ---
 layout: post
-title: Guide for Non Techies How to Create a Free Blog Easily
+title: "Guide for Non-Techies: How to Create a Free Blog Easily"
+date: 2025-01-27
 ---
+
 
 Guide for Non-Techies How to Create a Free Blog Easily
 
