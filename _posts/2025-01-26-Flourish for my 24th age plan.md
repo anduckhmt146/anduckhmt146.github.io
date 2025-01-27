@@ -5,7 +5,7 @@ title: Flourish for my 24th Age Plan
 
 Below is my detailed plan for achieving growth and success during this pivotal time.
 
-<table class="table table-bordered">
+<table id="agePlanTable" class="display table table-bordered">
   <thead>
     <tr>
       <th><strong>Objective</strong></th>
