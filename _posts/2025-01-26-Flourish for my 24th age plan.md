@@ -5,6 +5,26 @@ title: Flourish for my 24th Age Plan
 
 Below is my detailed plan for achieving growth and success during this pivotal time.
 
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0; 
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 12px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    th {
+        font-weight: bold;
+    }   
+</style>
+
+
 <table id="agePlanTable" class="display table table-bordered">
   <thead>
     <tr>
