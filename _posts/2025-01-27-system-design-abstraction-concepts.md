@@ -13,7 +13,7 @@ Here are some abstract concepts to help you truly understand what System Design 
 
 - You can think of Software Architecture as the **blueprint** of a building, it describes the overall framework and structure but doesn't dictate the detailed construction. It is **pure abstraction without implementations**.
 
-- Patterns: The polymorphism of an abstraction, there are multiple ways to implement its blueprint. In the context of building architecture, these are called patterns—for example, apartments (shared multi-ternant housing) and grounded houses (single-family houses) represent different models of a building, each designed to serve a specific purpose. For example of software architecture patterns: Microservices, Monolithic, Event-Driven, Layer, Hexagon, Client-Server,...
+- **Software Architecture Patterns:** The polymorphism of an abstraction, there are multiple ways to implement its blueprint. In the context of building architecture, these are called patterns—for example, apartments (shared multi-ternant housing) and grounded houses (single-family houses) represent different models of a building, each designed to serve a specific purpose. For example of software architecture patterns: Microservices, Monolithic, Event-Driven, Layer, Hexagon, Client-Server,...
 
 > **Note:**  Software Architecture Patterns are still a **pure abstraction without implementations**. It is a high-level design.
 
