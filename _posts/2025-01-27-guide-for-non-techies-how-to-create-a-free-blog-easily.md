@@ -68,7 +68,7 @@ All you need to do is write simple Markdown files (similar to Notion’s syntax)
 ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/Screenshot_2025-01-26_at_23.04.20.png)
 
 
-**Step 3:** Open the repo that you have been forked, rename the repo to <your_username>.github.io, for example my repo is anduckhmt146.github.io
+**Step 3:** Open the repo that you have been forked, rename the repo to your-username.github.io, for example my username is anduckhmt146, so repo name is anduckhmt146.github.io.
 
   ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image.png)
 
