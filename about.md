@@ -8,7 +8,7 @@ Hello, reader. This blog offers a glimpse into who I am, after years of grapplin
 
 But now, I've decided to break free from the shadows of self-doubt. I'm embracing my imperfections, confronting the strange and beautiful complexity of my personality, and starting a journey toward self-acceptance. It's time to share this with the world and make authentically valuable connections.
 
-This blog might feel a bit heavy and overwhelming content. If it's too much, feel free to skip it or just click the link without absorbing any negative thoughts 🙂
+This blog might feel a bit heavy and overwhelming content. If it's too much, feel free to skip it or just click the link without absorbing any negative thoughts 🙂.
 
 ## 1. Why I am using English to write this blog?
 
