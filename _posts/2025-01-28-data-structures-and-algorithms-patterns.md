@@ -11,7 +11,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 
 ## 1.1. Array
 
-```python{linenos}
+```python
 nums = [0, 10, 20, 30, 40, 50]
 
 # Loop with index and value
