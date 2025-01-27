@@ -72,12 +72,13 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
     </details>
 
 
-    ## 1.3. Stack
+## 1.3. Stack
 
-    <details>
-    <summary>Code</summary>
+<details>
+<summary>Code</summary>
 
-    <pre style="background-color: black;color: white;">
+<pre style="background-color: black;color: white;">
+
     # Declaring a stack using a list
     stack = []
 
@@ -224,6 +225,6 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 
     positive_inf = math.inf
     negative_inf = -math.inf
-    
+
 </pre>
 </details>
