@@ -11,13 +11,18 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 
 ## 1.1. Array
 
-<pre>
+<details>
+<summary>Code</summary>
+
+```python
 nums = [0, 10, 20, 30, 40, 50]
 
 # Loop with index and value
 for i, num in enumerate(nums):
     print(i, num)
-</pre>
+```
+</details>
+
 
 ## 1.2. Linked List
 
