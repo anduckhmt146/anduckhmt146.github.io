@@ -55,7 +55,7 @@ Non-functional requirements is required for big-tech million users services, mos
 
 - **Performance (latency & throughput):** Latency refers to the time taken to respond to requests, while throughput is the amount of work or transactions the system can handle in a given time frame => It means how good the service performs with user requests.
 
-Besides these main non-functional requirements, there are also reliability (the service returns correct results), consistency (data is consistent between services), and efficiency (the service should have minimal redundant operations).
+Besides these main non-functional requirements, there are also **Reliability** (the service returns correct results), **Consistency** (data is consistent between services), and **Efficiency** (the service should have minimal redundant operations).
 
 # 2. What we need to focus in System Design
 
