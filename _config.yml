@@ -87,6 +87,3 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-
-```yaml
-highlighter: rouge
