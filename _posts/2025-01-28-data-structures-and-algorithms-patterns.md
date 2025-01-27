@@ -14,7 +14,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;color: white;">
+<pre style="background-color: lightgray; color: black;">
 
     nums = [0, 10, 20, 30, 40, 50]
 
@@ -31,7 +31,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;color: white;">
+<pre style="background-color: lightgray; color: black;">
 
     from llist import sllist, dllist
 
@@ -77,7 +77,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;color: white;">
+<pre style="background-color: lightgray; color: black;">
 
     # Declaring a stack using a list
     stack = []
@@ -105,7 +105,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;color: white;">
+<pre style="background-color: lightgray; color: black;">
 
     from queue import Queue
 
@@ -133,7 +133,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;color: white;">
+<pre style="background-color: lightgray; color: black;">
 
     from queue import PriorityQueue
 
@@ -157,7 +157,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;color: white;">
+<pre style="background-color: lightgray; color: black;">
 
     # Create a hash map
     hash_map = {}
@@ -192,7 +192,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;color: white;">
+<pre style="background-color: lightgray; color: black;">
 
     # Creating an empty set
     my_set = set()
@@ -219,7 +219,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;color: white;">
+<pre style="background-color: lightgray; color: black;">
     
     import math
 
