@@ -14,14 +14,14 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: lightgray; color: black;">
+<pre>
+<code class="language-python">
+nums = [0, 10, 20, 30, 40, 50]
 
-    nums = [0, 10, 20, 30, 40, 50]
-
-    # Loop with index and value
-    for i, num in enumerate(nums):
-        print(i, num)
-
+# Loop with index and value
+for i, num in enumerate(nums):
+    print(i, num)
+</code>
 </pre>
 </details>
 
