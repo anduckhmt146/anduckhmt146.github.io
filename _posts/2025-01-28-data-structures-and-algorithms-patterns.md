@@ -14,7 +14,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;">
+<pre style="background-color: black;color: white;">
 nums = [0, 10, 20, 30, 40, 50]
 
 # Loop with index and value
@@ -29,7 +29,7 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;">
+<pre style="background-color: black;color: white;">
 from llist import sllist, dllist
 
 # Create a singly linked list
@@ -74,7 +74,7 @@ print("After insertion:", doubly_list)   # Output: dllist([0, 1, 2, 3])
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;">
+<pre style="background-color: black;color: white;">
 # Declaring a stack using a list
 stack = []
 
@@ -100,7 +100,7 @@ is_empty = len(stack) == 0
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;">
+<pre style="background-color: black;color: white;">
 from queue import Queue
 
 # Create a FIFO queue
@@ -126,7 +126,7 @@ print(q.empty())  # Output: False
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;">
+<pre style="background-color: black;color: white;">
 from queue import PriorityQueue
 
 # Create a priority queue
@@ -148,7 +148,7 @@ print(q.get())  # Output: (2, 'Task B')
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;">
+<pre style="background-color: black;color: white;">
 # Create a hash map
 hash_map = {}
 
@@ -181,7 +181,7 @@ for key, value in hash_map.items():
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;">
+<pre style="background-color: black;color: white;">
 # Creating an empty set
 my_set = set()
 
@@ -206,7 +206,7 @@ print(my_set)  # Output: {2, 3}
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: black;">
+<pre style="background-color: black;color: white;">
 import math
 
 positive_inf = math.inf
