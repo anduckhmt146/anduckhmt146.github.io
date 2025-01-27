@@ -14,13 +14,13 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary>Code</summary>
 
-```python
+<pre>
 nums = [0, 10, 20, 30, 40, 50]
 
 # Loop with index and value
 for i, num in enumerate(nums):
     print(i, num)
-```
+</pre>
 </details>
 
 
@@ -29,7 +29,7 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-```python
+<pre>
 from llist import sllist, dllist
 
 # Create a singly linked list
@@ -65,7 +65,7 @@ print("Doubly Linked List:", doubly_list)  # Output: dllist([1, 2, 3])
 # Insert at a specific position
 doubly_list.insert(0, doubly_list.first)  # Insert 0 at the start
 print("After insertion:", doubly_list)   # Output: dllist([0, 1, 2, 3])
-```
+</pre>
 </details>
 
 
@@ -74,7 +74,7 @@ print("After insertion:", doubly_list)   # Output: dllist([0, 1, 2, 3])
 <details>
 <summary>Code</summary>
 
-```python
+<pre>
 # Declaring a stack using a list
 stack = []
 
@@ -91,7 +91,7 @@ top_element = stack[-1]  # 20
 
 # Checking if the stack is empty
 is_empty = len(stack) == 0
-```
+</pre>
 </details>
 
 
@@ -100,7 +100,7 @@ is_empty = len(stack) == 0
 <details>
 <summary>Code</summary>
 
-```python
+<pre>
 from queue import Queue
 
 # Create a FIFO queue
@@ -117,7 +117,7 @@ print(q.get())  # Output: 2
 
 # Check if the queue is empty
 print(q.empty())  # Output: False
-```
+</pre>
 </details>
 
 
@@ -126,7 +126,7 @@ print(q.empty())  # Output: False
 <details>
 <summary>Code</summary>
 
-```python
+<pre>
 from queue import PriorityQueue
 
 # Create a priority queue
@@ -140,7 +140,7 @@ q.put((2, "Task B"))
 # Remove elements based on priority
 print(q.get())  # Output: (1, 'Task A')
 print(q.get())  # Output: (2, 'Task B')
-```
+</pre>
 </details>
 
 ## 1.6. Hash Map
@@ -148,7 +148,7 @@ print(q.get())  # Output: (2, 'Task B')
 <details>
 <summary>Code</summary>
 
-```python
+<pre>
 # Create a hash map
 hash_map = {}
 
@@ -172,7 +172,7 @@ del hash_map["city"]
 # Iterate over keys and values
 for key, value in hash_map.items():
     print(f"{key}: {value}") # Output: (Alice: 26)
-```
+</pre>
 </details>
 
 
@@ -181,7 +181,7 @@ for key, value in hash_map.items():
 <details>
 <summary>Code</summary>
 
-```python
+<pre>
 # Creating an empty set
 my_set = set()
 
@@ -198,7 +198,7 @@ my_set.remove(1)
 
 # The set still contains only one instance of 2
 print(my_set)  # Output: {2, 3}
-```
+</pre>
 </details>
 
 ## 1.7. Infinity
@@ -206,10 +206,10 @@ print(my_set)  # Output: {2, 3}
 <details>
 <summary>Code</summary>
 
-```python
+<pre>
 import math
 
 positive_inf = math.inf
 negative_inf = -math.inf
-```
+</pre>
 </details>
