@@ -95,7 +95,7 @@ All you need to do is write simple Markdown files (similar to Notion’s syntax)
 
 ![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%205.png)
 
-Remember to update fields, such as field layout with value “post”, and field title with value “your displayed name title” in the top of the readme file, which is called front-master, references: [https://jekyllrb.com/docs/front-matter/](https://jekyllrb.com/docs/front-matter/)
+Remember to update fields, such as field layout with value “post”, and field title with value “your displayed name title” in the top of the markdown file, which is called front-master syntax, references: [https://jekyllrb.com/docs/front-matter/](https://jekyllrb.com/docs/front-matter/)
 
 ![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%206.png)
 
