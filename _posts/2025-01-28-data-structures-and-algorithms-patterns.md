@@ -15,7 +15,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <summary>Code</summary>
 
 <pre>
-<code class="language-python">
+<code class="python">
 nums = [0, 10, 20, 30, 40, 50]
 
 # Loop with index and value
@@ -31,45 +31,46 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: lightgray; color: black;">
+<pre>
+<code class="python">
+from llist import sllist, dllist
 
-    from llist import sllist, dllist
+# Create a singly linked list
+singly_list = sllist()
 
-    # Create a singly linked list
-    singly_list = sllist()
+# Add elements to the singly linked list
+singly_list.append(1)
+singly_list.append(2)
+singly_list.append(3)
 
-    # Add elements to the singly linked list
-    singly_list.append(1)
-    singly_list.append(2)
-    singly_list.append(3)
+# Display the singly linked list
+print("Singly Linked List:", singly_list)  # Output: sllist([1, 2, 3])
 
-    # Display the singly linked list
-    print("Singly Linked List:", singly_list)  # Output: sllist([1, 2, 3])
+# Access elements
+print("First element:", singly_list.first.value)  # Output: 1
+print("Last element:", singly_list.last.value)   # Output: 3
 
-    # Access elements
-    print("First element:", singly_list.first.value)  # Output: 1
-    print("Last element:", singly_list.last.value)   # Output: 3
+# Remove an element
+singly_list.remove(singly_list.first)  # Removes the first element
+print("After removal:", singly_list)  # Output: sllist([2, 3])
 
-    # Remove an element
-    singly_list.remove(singly_list.first)  # Removes the first element
-    print("After removal:", singly_list)  # Output: sllist([2, 3])
+# Create a doubly linked list
+doubly_list = dllist()
 
-    # Create a doubly linked list
-    doubly_list = dllist()
+# Add elements to the doubly linked list
+doubly_list.append(1)
+doubly_list.append(2)
+doubly_list.append(3)
 
-    # Add elements to the doubly linked list
-    doubly_list.append(1)
-    doubly_list.append(2)
-    doubly_list.append(3)
+# Display the doubly linked list
+print("Doubly Linked List:", doubly_list)  # Output: dllist([1, 2, 3])
 
-    # Display the doubly linked list
-    print("Doubly Linked List:", doubly_list)  # Output: dllist([1, 2, 3])
-
-    # Insert at a specific position
-    doubly_list.insert(0, doubly_list.first)  # Insert 0 at the start
-    print("After insertion:", doubly_list)   # Output: dllist([0, 1, 2, 3])
-    </pre>
-    </details>
+# Insert at a specific position
+doubly_list.insert(0, doubly_list.first)  # Insert 0 at the start
+print("After insertion:", doubly_list)   # Output: dllist([0, 1, 2, 3])
+</code>
+</pre>
+</details>
 
 
 ## 1.3. Stack
@@ -77,25 +78,25 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: lightgray; color: black;">
+<pre>
+<code class="python">
+# Declaring a stack using a list
+stack = []
 
-    # Declaring a stack using a list
-    stack = []
+# Push operation (adding elements to the stack)
+stack.append(10)
+stack.append(20)
+stack.append(30)
 
-    # Push operation (adding elements to the stack)
-    stack.append(10)
-    stack.append(20)
-    stack.append(30)
+# Pop operation (removing the top element of the stack)
+top_element = stack.pop()  # Removes and returns 30
 
-    # Pop operation (removing the top element of the stack)
-    top_element = stack.pop()  # Removes and returns 30
+# Checking the top element without removing it
+top_element = stack[-1]  # 20
 
-    # Checking the top element without removing it
-    top_element = stack[-1]  # 20
-
-    # Checking if the stack is empty
-    is_empty = len(stack) == 0
-
+# Checking if the stack is empty
+is_empty = len(stack) == 0
+</code>
 </pre>
 </details>
 
@@ -105,25 +106,25 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: lightgray; color: black;">
+<pre>
+<code class="python">
+from queue import Queue
 
-    from queue import Queue
+# Create a FIFO queue
+q = Queue()
 
-    # Create a FIFO queue
-    q = Queue()
+# Add elements to the queue
+q.put(1)
+q.put(2)
+q.put(3)
 
-    # Add elements to the queue
-    q.put(1)
-    q.put(2)
-    q.put(3)
+# Remove elements from the queue
+print(q.get())  # Output: 1
+print(q.get())  # Output: 2
 
-    # Remove elements from the queue
-    print(q.get())  # Output: 1
-    print(q.get())  # Output: 2
-
-    # Check if the queue is empty
-    print(q.empty())  # Output: False
-
+# Check if the queue is empty
+print(q.empty())  # Output: False
+</code>
 </pre>
 </details>
 
@@ -133,22 +134,22 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: lightgray; color: black;">
+<pre>
+<code class="python">
+from queue import PriorityQueue
 
-    from queue import PriorityQueue
+# Create a priority queue
+q = PriorityQueue()
 
-    # Create a priority queue
-    q = PriorityQueue()
+# Add elements with priorities (lower number = higher priority)
+q.put((1, "Task A"))
+q.put((3, "Task C"))
+q.put((2, "Task B"))
 
-    # Add elements with priorities (lower number = higher priority)
-    q.put((1, "Task A"))
-    q.put((3, "Task C"))
-    q.put((2, "Task B"))
-
-    # Remove elements based on priority
-    print(q.get())  # Output: (1, 'Task A')
-    print(q.get())  # Output: (2, 'Task B')
-
+# Remove elements based on priority
+print(q.get())  # Output: (1, 'Task A')
+print(q.get())  # Output: (2, 'Task B')
+</code>
 </pre>
 </details>
 
@@ -157,32 +158,32 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: lightgray; color: black;">
+<pre>
+<code class="python">
+# Create a hash map
+hash_map = {}
 
-    # Create a hash map
-    hash_map = {}
+# Add key-value pairs
+hash_map["name"] = "Alice"
+hash_map["age"] = 25
+hash_map["city"] = "New York"
 
-    # Add key-value pairs
-    hash_map["name"] = "Alice"
-    hash_map["age"] = 25
-    hash_map["city"] = "New York"
+# Access values by keys
+print(hash_map["name"])  # Output: Alice
 
-    # Access values by keys
-    print(hash_map["name"])  # Output: Alice
+# Update a value
+hash_map["age"] = 26
 
-    # Update a value
-    hash_map["age"] = 26
+# Check if a key exists
+print("city" in hash_map)  # Output: True
 
-    # Check if a key exists
-    print("city" in hash_map)  # Output: True
+# Delete a key-value pair
+del hash_map["city"]
 
-    # Delete a key-value pair
-    del hash_map["city"]
-
-    # Iterate over keys and values
-    for key, value in hash_map.items():
-        print(f"{key}: {value}") # Output: (Alice: 26)
-
+# Iterate over keys and values
+for key, value in hash_map.items():
+    print(f"{key}: {value}") # Output: (Alice: 26)
+</code>
 </pre>
 </details>
 
@@ -192,25 +193,25 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: lightgray; color: black;">
+<pre>
+<code class="python">
+# Creating an empty set
+my_set = set()
 
-    # Creating an empty set
-    my_set = set()
+# Adding elements to the set
+my_set.add(1)
+my_set.add(2)
+my_set.add(3)
 
-    # Adding elements to the set
-    my_set.add(1)
-    my_set.add(2)
-    my_set.add(3)
+# Adding 2 again (no effect)
+my_set.add(2)
 
-    # Adding 2 again (no effect)
-    my_set.add(2)
+# Removing an element
+my_set.remove(1)
 
-    # Removing an element
-    my_set.remove(1)
-
-    # The set still contains only one instance of 2
-    print(my_set)  # Output: {2, 3}
-
+# The set still contains only one instance of 2
+print(my_set)  # Output: {2, 3}
+</code>
 </pre>
 </details>
 
@@ -219,12 +220,12 @@ for i, num in enumerate(nums):
 <details>
 <summary>Code</summary>
 
-<pre style="background-color: lightgray; color: black;">
-    
-    import math
+<pre>
+<code class="python">
+import math
 
-    positive_inf = math.inf
-    negative_inf = -math.inf
-
+positive_inf = math.inf
+negative_inf = -math.inf
+</code>
 </pre>
 </details>
