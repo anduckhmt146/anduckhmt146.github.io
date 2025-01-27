@@ -27,7 +27,7 @@ Here are some abstract concepts to help you truly understand what System Design 
 
 - About what to do in System Design, it involves several key tasks, including: draw sequence diagrams, database design, resource estimates, tradeoffs,...
 
-> **Note:**  System Design is more focus to **implementation design of a specific product**. It is a high-level design.
+> **Note:**  System Design is an **implementation design of a specific product**. It is a high-level design.
 
 ## 1.3. OOP Design
 
