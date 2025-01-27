@@ -87,7 +87,3 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-
-markdown: kramdown
-highlighter: rouge
-    input: GFM
