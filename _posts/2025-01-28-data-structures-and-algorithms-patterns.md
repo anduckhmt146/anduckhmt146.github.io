@@ -339,6 +339,25 @@ negative_inf = -math.inf
       </td>
       <td><b>n <= 10^3</b></td>
     </tr>
+    <tr>
+    <td>O(2^N)</td>
+    <td>
+      <ol>
+          <li>Combinatorial Problems: Subset</li>
+          <li>Backtracking</li>
+      </ol>
+    </td>
+    <td><b>n <= 20</b></td>
+  </tr>
+  <tr>
+    <td>O(N!)</td>
+    <td>
+      <ol>
+          <li>Generating & Permutation Problems</li>
+      </ol>
+    </td>
+    <td><b>n <= 12</b></td>
+  </tr>
 </table>
 
 <b>Notes:</b> In happy case, we write algorithms to pass the following constraints:
