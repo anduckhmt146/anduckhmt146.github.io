@@ -17,6 +17,26 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
   });
 </script>
 
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0; 
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 12px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    th {
+        font-weight: bold;
+    }   
+</style>
+
+
 
 <details>
 <summary><h1>1. Basic Data Structure</h1></summary>
@@ -242,3 +262,86 @@ negative_inf = -math.inf
 </pre>
 </details>
 </details>
+
+# 2. Space & Time Complexity
+
+<h2>Time Complexity</h2>
+
+<table>
+    <tr>
+        <th>Runtime</th>
+        <th>Usecase</th>
+        <th>Constraint</th>
+    </tr>
+    <tr>
+        <td>O(1)</td>
+        <td>
+          <ol>
+              <li>Hashmap lookup</li>
+              <li>Array access and update</li>
+              <li>Push and pop from a stack/queue</li>
+              <li>Finding and applying math formula</li>
+          </ol>
+        </td>
+        <td><b>n > 10^9</b></td>
+    </tr>
+    <tr>
+        <td>O(logN)</td>
+        <td>
+          <ol>
+              <li>Binary Search</li>
+              <li><b>Look up</b> in Tree Data Structure</li>
+              <li><b>Look up</b> in Divide by N</li>
+          </ol>
+        </td>
+        <td><b>n > 10^8</b></td>
+    </tr>
+    <tr>
+       <td>O(N)</td>
+        <td>
+          <ol>
+              <li>Scan array size N</li>
+              <li>Two Pointers</li>
+              <li>Stack/Queue Traversal</li>
+              <li>Worst case of Tree/Graph</li>
+          </ol>
+        </td>
+        <td><b>n <= 10^6</b></td>
+    </tr>
+    <tr>
+        <td>O(Klog(N))</td>
+        <td>
+          <ol>
+              <li>Heap (Top K)</li>
+              <li>Binary search (Top K)</li>
+          </ol>
+        </td>
+        <td><b>n <= 10^6</b></td>
+    </tr>
+    <tr>
+      <td>O(Nlog(N))</td>
+      <td>
+        <ol>
+            <li><b>Sorting</b></li>
+            <li>Quick Sort</li>
+            <li>Merge Sort (Divide and conquer)</li>
+        </ol>
+      </td>
+      <td><b>n <= 10^6</b></td>
+    </tr>
+    <tr>
+      <td>O(N^2)</td>
+      <td>
+        <ol>
+            <li>Brute Force (Nested loops)</li>
+        </ol>
+      </td>
+      <td><b>n <= 10^3</b></td>
+    </tr>
+</table>
+
+**Notes:** In happy case, we write algorithms to pass the following constraints:
+
+- **Search:** O(logN)
+
+- **Sort:** O(Nlog(N))

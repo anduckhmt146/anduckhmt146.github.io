@@ -67,3 +67,4 @@ When we engage in system design, we focus on designing the following aspects:
 
 - **Storage:** The storage design encompasses databases, caches, and file systems required to store and manage data throughout the system. This includes selecting appropriate storage technologies, data modeling, and ensuring data consistency and durability.
 
+
