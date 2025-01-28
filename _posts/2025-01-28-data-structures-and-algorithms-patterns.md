@@ -375,3 +375,161 @@ negative_inf = -math.inf
 </ol>
 
 </details>
+
+<details>
+<summary><h1>3. DSA Patterns</h1></summary>
+
+<details>
+<summary><h2>3.1. Tree</h2></summary>
+
+When to use BFS or DFS ?
+
+<ul> 
+  <li><b>DFS</b> is better for: finding nodes far away from the root</li>
+   <li><b>BFS</b> is better for: finding nodes close/closest to the root</li>
+</ul>
+
+<h3>BFS</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+
+def is_goal(node):
+    # Define your goal condition here (e.g., find a specific value)
+    return node.value == "goal2"
+
+def FOUND(node):
+    # Handle the case when the goal is found (e.g., return the node or its value)
+    return f"Goal found: {node.value}"
+
+def NOT_FOUND():
+    # Handle the case when the goal is not found
+    return "Goal not found in tree"
+
+def bfs(root):
+    queue = deque([root])
+    while len(queue) > 0:
+        node = queue.popleft()
+        print(f"Visiting node: {node.value}")  
+        # Debug/trace the visited nodes
+        for child in node.children:
+            if is_goal(child):
+                return FOUND(child)
+            queue.append(child)
+    return NOT_FOUND()
+
+# Create a tree for testing
+root = Node("root") 
+child1 = Node("child1")
+child2 = Node("child2")
+child3 = Node("goal")
+child4 = Node("child4")
+
+# Build the tree structure
+root.children.extend([child1, child2])
+child1.children.append(child3)
+child2.children.append(child4)
+
+# Test the BFS function
+result = bfs(root)
+print(result) 
+
+# Output
+Visiting node: root
+Visiting node: child1
+Visiting node: child2
+Visiting node: goal
+Visiting node: child4
+Goal2 not found in tree
+</code>
+</pre>
+</details>
+
+<h3>DFS</h3>
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Node:
+    def __init__(self, value):
+        self.val = value
+        self.left = None
+        self.right = None
+
+# DFS function with traversal tracking
+def dfs(root, target, path):
+    if root is None:
+        return None
+    
+    # Add the current node to the traversal path
+    path.append(root.val)
+    
+    print(f"Node: {root.val}")
+    
+    # Check if the current node matches the target
+    if root.val == target:
+        print(f"Traversal path: {path}")
+        return root
+
+    # Search in the left subtree
+    left = dfs(root.left, target, path)
+    if left is not None:
+        return left
+    
+    # Search in the right subtree
+    right = dfs(root.right, target, path)
+    if right is not None:
+        return right
+    
+    # Backtrack: remove the node from the path if the target is not found in its subtree
+    path.pop()
+    return None
+
+# Create a binary tree
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+root.right.left = Node(6)
+root.right.right = Node(7)
+
+# Test the modified DFS function
+target = 5
+path = []  # List to track the traversal path
+result = dfs(root, target, path)
+
+if result:
+    print(f"Node with value {target} found: {result.val}")
+else:
+    print(f"Node with value {target} not found.")
+
+# Output
+Node: 1
+Node: 2
+Node: 4
+Node: 5
+Traversal path: [1, 2, 5]
+Node with value 5 found: 5
+</code>
+</pre>
+</details>
+</details>
+
+<h2>3.2. Graph</h2>
+
+<h2>3.3. Array</h2>
+
+<h2>3.4. Heap</h2>
+
+</details>
