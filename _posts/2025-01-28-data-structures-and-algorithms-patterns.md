@@ -341,16 +341,18 @@ negative_inf = -math.inf
     </tr>
 </table>
 
-**Notes:** In happy case, we write algorithms to pass the following constraints:
+<b>Notes:</b> In happy case, we write algorithms to pass the following constraints:
 
-- **Search:** O(logN)
-
-- **Sort:** O(Nlog(N))
+<ul>
+  <li><b>Search: </b>O(logN)</li>
+  <li><b>Sort: </b>O(Nlog(N))</li>
+</ul>
 
 <h2>Space Complexity</h2>
 
-- DFS uses less memory efficiency compared to BFS.
-
-- In graph, matrix uses more memory than an adjacency list.
+<ol>
+  <li>DFS uses less memory than BFS.</li>
+  <li>Adjacency list uses less memory than matrix.</li>
+</ol>
 
 </details>
