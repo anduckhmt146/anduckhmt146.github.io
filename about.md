@@ -33,9 +33,7 @@ I am a dreamer, an analytical over-thinker, and an over-achiever, who is constan
 
 ## 4. What is this blog about?
 
-This blog is my way of sharing pieces of my journey — what I've learned, felt, and explored. Here, I explore topics that fascinate me, including Software Technology, along with my personal insights and opinions on Philosophy and Psychology.
-
-It's a space where my knowledge and opinions come together, offering perspectives shaped by curiosity, reflection, and the lessons life has taught me.
+It's a space where my knowledge and opinions come together, offering perspectives shaped by curiosity, reflection, and the lessons life has taught me. Here, I explore topics including Technology, Philosophy and Psychology.
 
 Dive deeper into my thoughts and explore more posts here: [More Posts](https://anduckhmt146.site/). I hope you find some of these posts helpful and inspiring.
 
