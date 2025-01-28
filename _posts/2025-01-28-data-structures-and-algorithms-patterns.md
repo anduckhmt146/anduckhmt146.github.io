@@ -21,7 +21,7 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 <details>
 <summary><h1>1. Basic Data Structure</h1></summary>
 
-## 1.1. Array
+<h2>1.1. Array</h2>
 
 <details>
 <summary>Code</summary>
@@ -38,7 +38,7 @@ for i, num in enumerate(nums):
 </details>
 
 
-## 1.2. Linked List
+<h2>1.2. Linked List</h2>
 
 <details>
 <summary>Code</summary>
@@ -85,7 +85,7 @@ print("After insertion:", doubly_list)   # Output: dllist([0, 1, 2, 3])
 </details>
 
 
-## 1.3. Stack
+<h2>1.3. Stack</h2>
 
 <details>
 <summary>Code</summary>
@@ -113,7 +113,7 @@ is_empty = len(stack) == 0
 </details>
 
 
-## 1.4. Queue
+<h2>1.4. Queue</h2>
 
 <details>
 <summary>Code</summary>
@@ -141,7 +141,7 @@ print(q.empty())  # Output: False
 </details>
 
 
-## 1.5. Priority Queue
+<h2>1.5. Priority Queue</h2>
 
 <details>
 <summary>Code</summary>
@@ -165,7 +165,7 @@ print(q.get())  # Output: (2, 'Task B')
 </pre>
 </details>
 
-## 1.6. Hash Map
+<h2>1.6. Hash Map</h2>
 
 <details>
 <summary>Code</summary>
@@ -200,7 +200,7 @@ for key, value in hash_map.items():
 </details>
 
 
-## 1.6. Set
+<h2>1.7. Set</h2>
 
 <details>
 <summary>Code</summary>
@@ -227,7 +227,7 @@ print(my_set)  # Output: {2, 3}
 </pre>
 </details>
 
-## 1.7. Infinity
+<h2>1.8. Infinity</h2>
 
 <details>
 <summary>Code</summary>
@@ -241,5 +241,4 @@ negative_inf = -math.inf
 </code>
 </pre>
 </details>
-
 </details>
