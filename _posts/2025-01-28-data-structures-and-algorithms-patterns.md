@@ -18,7 +18,8 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
 </script>
 
 
-# 1. Basic Data Structure
+<details>
+<summary><h1>1. Basic Data Structure</h1></summary>
 
 ## 1.1. Array
 
@@ -239,4 +240,6 @@ positive_inf = math.inf
 negative_inf = -math.inf
 </code>
 </pre>
+</details>
+
 </details>
