@@ -263,7 +263,8 @@ negative_inf = -math.inf
 </details>
 </details>
 
-# 2. Space & Time Complexity
+<details>
+<summary><h1>2. Space & Time Complexity</h1></summary>
 
 <h2>Time Complexity</h2>
 
@@ -345,3 +346,11 @@ negative_inf = -math.inf
 - **Search:** O(logN)
 
 - **Sort:** O(Nlog(N))
+
+<h2>Space Complexity</h2>
+
+- DFS uses less memory efficiency compared to BFS.
+
+- In graph, matrix uses more memory than an adjacency list.
+
+</details>
