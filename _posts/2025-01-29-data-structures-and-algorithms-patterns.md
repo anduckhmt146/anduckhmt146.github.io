@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "DSA: Coding Interview Patterns"
-date: 2025-01-28
+date: 2025-01-29
 ---
 
 Here is boilerplate template code that helps you shortcut thinking, reuse repeatable code, save your time, let you focus more on problem-solving while implementing algorithms in coding interview.
@@ -537,7 +537,10 @@ Node with value 5 found: 5
 
 <br />
 <b>Notes:</b>
-A BFS or DFS function traverses all the nodes of a tree in scope function.
+<ul>
+    <li>A BFS or DFS function traverses all the nodes of a tree in scope function.</li>
+    <li>The only different between Tree and Graph is: <b>Graph can have cycle, but Tree does not.</b></li>
+</ul>
 
 </details>
 
@@ -846,6 +849,257 @@ else:
 # Output: Path to exit: [(0, 0), (0, 1), (1, 1), (2, 1), (2, 0), (2, 2), (2, 3), (1, 3), (0, 3), (0, 4)]
 </code>
 </pre>
+</details>
+
+<h3>Shortest Path - Undirected/Directed Graph - Unweighted Graph (BFS)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+from typing import List
+
+# Graph represented as an adjacency list
+graph = {
+    0: [1, 3],
+    1: [0, 2, 4],
+    2: [1],
+    3: [0],
+    4: [1, 5],
+    5: [4]
+}
+
+def get_neighbors(node: int):
+    return graph.get(node, [])
+
+# BFS to find the shortest path
+def shortest_path(graph: List[List[int]], a: int, b: int) -> int:
+    def bfs(root: int, target: int):
+        queue = deque([root])
+        visited = {root}
+        level = 0  # Represents distance
+
+        while queue:
+            n = len(queue)
+            for _ in range(n):
+                node = queue.popleft()
+                if node == target:
+                    return level  # Found the shortest path
+                for neighbor in get_neighbors(node):
+                    if neighbor not in visited:
+                        queue.append(neighbor)
+                        visited.add(neighbor)
+            level += 1  # Increase distance at each BFS level
+        
+        return -1  # No path found
+
+    return bfs(a, b)
+
+# Example usage
+start, end = 0, 5
+print(f"Shortest path from {start} to {end}:", shortest_path(graph, start, end))
+
+# Output: 0 → 1 → 4 → 5, Shortest path from 0 to 5: 3
+
+</code>
+</pre>
+
+<b>Notes:</b> 
+<ul>
+    <li><b>Time Complexity:</b> O(E + V) (Edges + Vertices)</li>
+    <li><b>Space Complexity:</b> O(V) (Vertices)</li>
+</ul>
+</details>
+
+<h3>Shortest Path - Undirected/Directed Graph -  Weighted Graph (Dijkstra's Algorithm)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from heapq import heappop, heappush
+from math import inf
+from typing import List, Tuple
+
+def shortest_path(graph: List[List[Tuple[int, int]]], a: int, b: int) -> int:
+    def get_neighbors(node: int):
+        return graph[node]
+
+    def dijkstra(root: int, target: int) -> int:
+        num_nodes = len(graph)
+        distances = [inf] * num_nodes
+        distances[root] = 0  # Distance to start node is 0
+        queue = [(0, root)]  # (distance, node) heap
+
+        while queue:
+            curr_dist, node = heappop(queue)
+
+            # If we reached the target node, return the shortest distance
+            if node == target:
+                return curr_dist
+
+            for neighbor, weight in get_neighbors(node):
+                new_dist = curr_dist + weight
+                if new_dist < distances[neighbor]:  # Found a shorter path
+                    distances[neighbor] = new_dist
+                    heappush(queue, (new_dist, neighbor))
+
+        return -1 if distances[target] == inf else distances[target]
+
+    return dijkstra(a, b)
+
+# Example usage
+if __name__ == "__main__":
+    # Example graph (Adjacency List)
+    graph = [
+        [(1, 4), (2, 1)],  # Node 0 -> (Node 1, Weight 4), (Node 2, Weight 1)
+        [(3, 1)],          # Node 1 -> (Node 3, Weight 1)
+        [(1, 2), (3, 5)],  # Node 2 -> (Node 1, Weight 2), (Node 3, Weight 5)
+        []                 # Node 3 (no outgoing edges)
+    ]
+
+    start, end = 0, 3
+    result = shortest_path(graph, start, end)
+    print(f"Shortest path from {start} to {end}: {result}")
+    
+    # Output:
+    # The shortest path is 0 → 2 → 1 → 3, with cost 1 + 2 + 1 = 4.
+    # Shortest path from 0 to 3: 4
+</code>
+</pre>
+
+<b>Notes:</b> 
+<ul>
+    <li><b>Time Complexity:</b> O((V + E) * log(V))</li>
+    <li><b>Space Complexity:</b> O(V)</li>
+</ul>
+
+</details>
+
+<h3>Topological Sort - Non-Cycle Graph - Task Scheduling</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+
+def find_indegree(graph):
+    indegree = { node: 0 for node in graph }  # dict
+    for node in graph:
+        for neighbor in graph[node]:
+            indegree[neighbor] += 1
+    return indegree
+
+def topo_sort(graph):
+    res = []
+    q = deque()
+    indegree = find_indegree(graph)
+    for node in indegree:
+        if indegree[node] == 0:
+            q.append(node)
+    while len(q) > 0:
+        node = q.popleft()
+        res.append(node)
+        for neighbor in graph[node]:
+            indegree[neighbor] -= 1
+            if indegree[neighbor] == 0:
+                q.append(neighbor)
+    return res if len(graph) == len(res) else None
+
+# Example Graph (DAG)
+graph = {
+    'A': ['C'],
+    'B': ['C', 'D'],
+    'C': ['E'],
+    'D': ['F'],
+    'E': ['H', 'F'],
+    'F': ['G'],
+    'G': [],
+    'H': []
+}
+
+# Perform topological sorting
+result = topo_sort(graph)
+
+# Output the result
+print("Topological Order:", result)
+
+# Output: Topological Order: ['A', 'B', 'C', 'D', 'E', 'H', 'F', 'G']
+</code>
+</pre>
+
+<b>Notes:</b> 
+<ul>
+    <li><b>Time Complexity:</b> O(V + E)</li>
+    <li><b>Space Complexity:</b> O(V + E)</li>
+</ul>
+
+</details>
+
+<h3>Minimum Spanning Tree - Shortest Resource To Connect Graph Components</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+
+def prim(graph, start):
+    # Priority queue (min-heap) for edges
+    pq = []
+    # To keep track of visited vertices
+    visited = set()
+    # Initialize MST edges and total weight
+    mst_edges = []
+    mst_weight = 0
+    
+    # Function to add edges to priority queue
+    def add_edges(vertex):
+        visited.add(vertex)
+        for neighbor, weight in graph[vertex]:
+            if neighbor not in visited:
+                heapq.heappush(pq, (weight, vertex, neighbor))
+    
+    # Start with the start vertex
+    add_edges(start)
+    
+    while pq:
+        weight, u, v = heapq.heappop(pq)
+        
+        if v not in visited:
+            mst_edges.append((u, v, weight))
+            mst_weight += weight
+            add_edges(v)
+    
+    return mst_edges, mst_weight
+
+# Example graph: adjacency list representation
+graph = {
+    'A': [('B', 1), ('C', 4), ('D', 3)],
+    'B': [('A', 1), ('D', 2), ('E', 5)],
+    'C': [('A', 4), ('D', 6)],
+    'D': [('B', 2), ('C', 6), ('E', 5)],
+    'E': [('B', 5), ('D', 5)]
+}
+
+# Starting from vertex 'A'
+mst_edges, mst_weight = prim(graph, 'A')
+
+# Output the result
+print("MST Edges:", mst_edges)
+print("Total MST Weight:", mst_weight)
+
+</code>
+</pre>
+
+<b>Notes:</b> 
+<ul>
+    <li><b>Time Complexity:</b> O(ElogV)</li>
+    <li><b>Space Complexity:</b> O(V + E)</li>
+</ul>
+
 </details>
 </details>
 
