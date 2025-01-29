@@ -384,6 +384,8 @@ negative_inf = -math.inf
 
 When to use BFS or DFS ?
 
+<br/>
+
 BFS is better at:
 
 <ul>
@@ -543,6 +545,8 @@ A BFS or DFS function traverses all the nodes of a tree in scope function.
 <summary><h2>3.2. Graph</h2></summary>
 
 When to use BFS or DFS ?
+
+<br/>
 
 BFS is better at:
 
@@ -739,6 +743,110 @@ print("Number of islands:", num_islands)
 
 </details>
 
+<h3>DFS (Graph)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Example graph represented as an adjacency list
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B'],
+    'F': ['C']
+}
+
+# Function to get neighbors of a node
+def get_neighbors(node):
+    return graph.get(node, [])
+
+# DFS function
+def dfs(root, visited):
+    print(root, end=" ")  # Process the node (print in this case)
+    for neighbor in get_neighbors(root):
+        if neighbor in visited:
+            continue
+        visited.add(neighbor)
+        dfs(neighbor, visited)
+
+# Run DFS starting from node 'A'
+visited_nodes = set(['A'])  # Initialize visited set with the root node
+dfs('A', visited_nodes)
+
+# Output: A B D E C F
+</code>
+</pre>
+</details>
+
+<h3>DFS (Maze)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+
+# Example maze grid (0 = wall, 1 = open path)
+maze = [
+    [1, 1, 0, 1, 1],
+    [0, 1, 0, 1, 0],
+    [1, 1, 1, 1, 1],
+    [0, 1, 0, 0, 1],
+    [1, 1, 1, 1, 1]
+]
+
+num_rows, num_cols = len(maze), len(maze[0])
+
+# Start and end positions
+start = (0, 0)  # S (Start)
+end = (0, 4)    # E (Exit)
+
+# Function to get valid 4-directional neighbors
+def get_neighbors(coord):
+    row, col = coord
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    neighbors = []
+    
+    for dr, dc in directions:
+        r, c = row + dr, col + dc
+        if 0 <= r < num_rows and 0 <= c < num_cols and maze[r][c] == 1:
+            neighbors.append((r, c))
+    
+    return neighbors
+
+# DFS function to find a path from start to exit
+def dfs(node, visited, path):
+    if node == end:  # Reached the exit
+        return True
+
+    visited.add(node)
+    path.append(node)
+
+    for neighbor in get_neighbors(node):
+        if neighbor not in visited:
+            if dfs(neighbor, visited, path):  # Recursive call
+                return True  # Stop DFS when exit is found
+
+    # Backtrack if no valid path found
+    path.pop()
+    return False
+
+# Run DFS to find a path
+visited_nodes = set()
+path = []
+
+if dfs(start, visited_nodes, path):
+    print("Path to exit:", path)
+else:
+    print("No path found!")
+
+# Output: Path to exit: [(0, 0), (0, 1), (1, 1), (2, 1), (2, 0), (2, 2), (2, 3), (1, 3), (0, 3), (0, 4)]
+</code>
+</pre>
+</details>
 </details>
 
 <h2>3.3. Array</h2>
