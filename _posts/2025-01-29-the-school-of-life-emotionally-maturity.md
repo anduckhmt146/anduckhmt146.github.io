@@ -21,13 +21,37 @@ Dẫu vậy, việc bắt đầu bằng một nhận thức rõ ràng về nhữ
 
 Dưới đây là những câu hỏi chủ chốt ta nên tự đặt ra cho bản thân khi tìm hiểu một người mới:
 
-Người ấy có thể chịu đựng nỗi sợ hãi khi mở lòng với tình yêu của người khác không? Họ có thể thừa nhận nhu cầu cần được yêu thương mà không quá sợ hãi không? Họ có thể để bạn chăm sóc họ và đồng thời chăm sóc bạn không? Họ có thể yêu mà không cố chấp bám víu vào sự độc lập thái quá không? Họ có thể cân bằng giữa việc yêu thương và tránh cảm giác bị hòa tan vào người kia không? Liệu họ có biết kiểm soát nỗi sợ hãi của mình mà không trở nên lạnh nhạt, nghi ngờ hay tức giận không?
+Người ấy có thể chịu đựng nỗi sợ hãi khi mở lòng với tình yêu của người khác không?
 
-Người ấy có hiểu được cảm xúc của chính mình không? Khi cảm xúc trở nên phức tạp, mâu thuẫn với hình ảnh bản thân họ mong muốn, liệu họ có nhận ra mình đang tức giận, buồn bã, bồn chồn hay ghen tị không? Liệu họ có thể đều đặn dành thời gian để tự hỏi bản thân: "Tôi đang cảm thấy gì?" Họ có khả năng lắng nghe những tiếng thì thầm trong vô thức của mình không? Liệu họ có thể viết một đoạn nhật ký thuyết phục về cảm xúc của chính họ không?
+Họ có thể thừa nhận nhu cầu cần được yêu thương mà không quá sợ hãi không? 
 
-Người ấy có đủ mạnh mẽ và tin tưởng vào đối thoại để nói về những điều khó khăn của bản thân không?Họ có thể tránh né sự sến súa, mơ hồ hay dối trá không? Họ có thể bình tĩnh, khéo léo chia sẻ về những phức tạp bên trong họ không? Liệu họ có đáng tin đến mức có thể giải thích rõ ràng nếu một ngày nào đó cần phải rời xa bạn không?
+Họ có thể để bạn chăm sóc họ và đồng thời chăm sóc bạn không? 
 
-Người ấy có thể tiếp nhận lời phê bình mà không xem đó là sự tấn công hay bằng chứng rằng họ bị ghét bỏ không? Họ có thể chấp nhận rằng họ – như mọi người khác – luôn cần học hỏi thêm không?
+Họ có thể yêu mà không cố chấp bám víu vào sự độc lập thái quá không? 
+
+Họ có thể cân bằng giữa việc yêu thương và tránh cảm giác bị hòa tan vào người kia không? 
+
+Liệu họ có biết kiểm soát nỗi sợ hãi của mình mà không trở nên lạnh nhạt, nghi ngờ hay tức giận không?
+
+Người ấy có hiểu được cảm xúc của chính mình không? 
+
+Khi cảm xúc trở nên phức tạp, mâu thuẫn với hình ảnh bản thân họ mong muốn, liệu họ có nhận ra mình đang tức giận, buồn bã, bồn chồn hay ghen tị không? 
+
+Liệu họ có thể đều đặn dành thời gian để tự hỏi bản thân: "Tôi đang cảm thấy gì?" Họ có khả năng lắng nghe những tiếng thì thầm trong vô thức của mình không? 
+
+Liệu họ có thể viết một đoạn nhật ký thuyết phục về cảm xúc của chính họ không?
+
+Người ấy có đủ mạnh mẽ và tin tưởng vào đối thoại để nói về những điều khó khăn của bản thân không?
+
+Họ có thể tránh né sự sến súa, mơ hồ hay dối trá không?
+
+Họ có thể bình tĩnh, khéo léo chia sẻ về những phức tạp bên trong họ không?
+
+Liệu họ có đáng tin đến mức có thể giải thích rõ ràng nếu một ngày nào đó cần phải rời xa bạn không?
+
+Người ấy có thể tiếp nhận lời phê bình mà không xem đó là sự tấn công hay bằng chứng rằng họ bị ghét bỏ không? 
+
+Họ có thể chấp nhận rằng họ – như mọi người khác – luôn cần học hỏi thêm không?
 
 Người ấy có hiểu đủ về quá khứ của mình để không áp đặt những cơn giận dữ, nghi ngờ hay khao khát vốn nên dành cho một người nào đó trong quá khứ – có thể là cha hoặc mẹ từng làm họ thất vọng – lên bạn không?
 
