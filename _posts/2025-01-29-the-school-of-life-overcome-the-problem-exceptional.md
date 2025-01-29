@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Overcoming the Need to Be Exceptional 🌻"
+title: "[The School Of Life] Overcoming the Need to Be Exceptional 🌻"
 date: 2025-01-29
 
 ---

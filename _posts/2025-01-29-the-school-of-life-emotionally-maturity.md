@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to Work Out the Level of Emotional Maturity of Prospective Partners 🤔"
+title: "[The School Of Life] How to Work Out the Level of Emotional Maturity of Prospective Partners 🤔"
 date: 2025-01-29
 
 ---

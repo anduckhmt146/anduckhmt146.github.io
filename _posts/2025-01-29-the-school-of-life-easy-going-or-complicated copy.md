@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "You are Straightforward or Complicated 🤔"
+title: "[The School Of Life] You are Straightforward or Complicated 🤔"
 date: 2025-01-29
 
 ---
