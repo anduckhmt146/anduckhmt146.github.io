@@ -9,7 +9,9 @@ Do you ever feel obsessed with overachieving to be exceptional ?
 
 English version: [Overcoming the Need to Be Exceptional - The School Of Life Blog](https://www.theschooloflife.com/article/overcoming-the-need-to-be-exceptional/)
 
-Source dịch (Vietnamese version): [VƯỢT QUA NỖI ÁM ẢNH PHẢI TRỞ NÊN PHI THƯỜNG  - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1C8chkkvLA/)
+Source dịch (Vietnamese version): [VƯỢT QUA NỖI ÁM ẢNH PHẢI TRỞ NÊN PHI THƯỜNG  - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1BP65a2xzK/)
+
+![Ảnh](https://scontent.fsgn6-2.fna.fbcdn.net/v/t39.30808-6/473752145_592448210086907_2797043692797874626_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFBukGp-IgA5imzXPdtFctUXZNThmR_7Rxdk1OGZH_tHI5fPBwyCArSH2vcA7S_DxqhPT-giCI_UUUDOw8iw06k&_nc_ohc=rFWRgqLAfKwQ7kNvgFMK3JY&_nc_oc=Adhy-g7s6g1j6tk3yudMeK6zNrL_vjFoIQrLJMIMTJxUGROWng7RITHxoaBvFkvhEDs&_nc_zt=23&_nc_ht=scontent.fsgn6-2.fna&_nc_gid=A0MPCl-e0sUYS8qDYvC8PK8&oh=00_AYCD2DrWxV4DYDfAHPCiQ7h6faPJ8g-TqPfLfVxroT6nng&oe=679FCBE5)
 
 ### 🌻 VƯỢT QUA NỖI ÁM ẢNH PHẢI TRỞ NÊN PHI THƯỜNG
 

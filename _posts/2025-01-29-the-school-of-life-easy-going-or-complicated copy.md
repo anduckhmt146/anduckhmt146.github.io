@@ -11,6 +11,8 @@ English version: [Straightforward vs. Complicated People - The School Of Life Bl
 
 Source dịch (Vietnamese version): [NGƯỜI ĐƠN GIẢN VÀ NGƯỜI PHỨC TẠP - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1GyhB2exTe)
 
+![Ảnh](https://scontent.fsgn6-1.fna.fbcdn.net/v/t39.30808-6/475540557_599982119333516_5268534182937602001_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHfahYvFx9rHdyJQWUuZFLaUDpVHoYV-epQOlUehhX56tKOY2ncbTZd7oxaEMz8wQZP8TalusesCNgLVheOkeEW&_nc_ohc=mz9iinnhFnkQ7kNvgHCD09d&_nc_oc=Adiw4ZdlHW1n2NnuKae9F6tdHcjPMO25etS4cdyygSbaKtRrNeH1Lm_V-keZXvyOjCE&_nc_zt=23&_nc_ht=scontent.fsgn6-1.fna&_nc_gid=A0HYnJ6zn6roz1Ia5QfB521&oh=00_AYDzGMwxRXgn1RBAxzeXfdRNh3B1dB6hSKfjpFdjeeM1_Q&oe=679FF225)
+
 ### 🌻 NGƯỜI ĐƠN GIẢN VÀ NGƯỜI PHỨC TẠP
 
 Một trong những cách phân loại con người dễ nhận thấy nhất chính là giữa những người đơn giản, thẳng thắn và những người – như ta thường nhận ra mỗi lần tiếp xúc – luôn khó đoán và phức tạp.

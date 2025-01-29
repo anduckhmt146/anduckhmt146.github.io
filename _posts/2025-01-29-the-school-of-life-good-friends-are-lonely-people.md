@@ -13,6 +13,8 @@ English version: [Why the Best Kind of Friends Are Lonely - The School Of Life B
 
 Source dịch (Vietnamese version): [VÌ SAO NHỮNG NGƯỜI BẠN TỐT NHẤT LẠI LÀ NHỮNG NGƯỜI CÔ ĐƠN  - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1E69k1dtCn/)
 
+![Ảnh](https://scontent.fsgn6-2.fna.fbcdn.net/v/t39.30808-6/470648539_573824905282571_3068707043757856059_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeGnpYEbj9U1DrBTksKLbmcAONCige5OjDw40KKB7k6MPFO6NiOUjbpDnee2V54HplGVcPHfH-tnvYSX8T1AwWjz&_nc_ohc=v-3_kJyBByUQ7kNvgGsR8h1&_nc_oc=Adir6Fpxw45d0W6xAYNoDJFAHhXG0wfr8nG443lmilYiGu6FZyKVomYpgBk_9DSvlPc&_nc_zt=23&_nc_ht=scontent.fsgn6-2.fna&_nc_gid=AJfZEoMSYKWomBtmHYUBTli&oh=00_AYDBzriccF_xOjaNDhbIBm3IINHh-KbUY5FxnjNlUk85KQ&oe=679FE125)
+
 ### 🌼 VÌ SAO NHỮNG NGƯỜI BẠN TỐT NHẤT LẠI LÀ NHỮNG NGƯỜI CÔ ĐƠN
 
 Có một nghịch lý lạ lùng trong các mối quan hệ của con người: những người trân trọng và có khả năng xây dựng tình bạn sâu sắc nhất lại thường là những người từng trải qua sự cô đơn và biệt lập. Những người phù hợp nhất để làm bạn lại thường là những người đã dành phần lớn thời gian sống trong thế giới riêng của chính mình.

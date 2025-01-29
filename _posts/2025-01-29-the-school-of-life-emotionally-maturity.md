@@ -11,6 +11,8 @@ English version: [How to Work Out the Level of Emotional Maturity of Prospective
 
 Source dịch (Vietnamese version): [LÀM SAO ĐỂ ĐÁNH GIÁ MỨC ĐỘ TRƯỞNG THÀNH CẢM XÚC CỦA NGƯỜI BẠN ĐỜI TIỀM NĂNG  - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1C8chkkvLA/)
 
+![Ảnh](https://scontent.fsgn6-2.fna.fbcdn.net/v/t39.30808-6/473715087_591820466816348_4126781170004015117_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeEqPzRzfuohb6ANIX6eNfFRKlbkgnOffE0qVuSCc598TVStUvRxSte_rYNJSihEv5nlGYrp9XA4G9Uyh6GfEWQa&_nc_ohc=zI9fuWMOrAsQ7kNvgFHs8gN&_nc_oc=Adh-thKzbnIeeZiAl0Znwbxy5H4RKfVnA-eWuBkm7cAexd3svEJ6tKWFmEMJKvl4Jyg&_nc_zt=23&_nc_ht=scontent.fsgn6-2.fna&_nc_gid=A3tHLOnJV9C82TrnH8U24zV&oh=00_AYCXhC7fdUDESnnJ87rD0m970Gdpb9OkarNT0W-scWxf2Q&oe=679FDA52)
+
 ### 🌹 LÀM SAO ĐỂ ĐÁNH GIÁ MỨC ĐỘ TRƯỞNG THÀNH CẢM XÚC CỦA NGƯỜI BẠN ĐỜI TIỀM NĂNG
 
 Một trong những khó khăn khi xây dựng mối quan hệ tốt đẹp là ta không dễ nhận ra mức độ trưởng thành cảm xúc của người mà mình gặp gỡ. Rất ít dấu hiệu bên ngoài có thể tiết lộ điều này. Một người có vẻ bề ngoài chững chạc nhưng bên trong có thể vẫn là đứa trẻ chưa lớn. Họ có thể sở hữu hàng loạt bằng cấp chứng tỏ sự "thông minh" nhưng vẫn vận hành tâm lý theo cách hết sức nguyên sơ. Họ có thể diễn giải lý thuyết về hành vi tâm lý một cách mạch lạc, nhưng khi thực hành lại trở nên vụng về và bất lực.
