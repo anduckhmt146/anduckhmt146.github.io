@@ -383,10 +383,17 @@ negative_inf = -math.inf
 <summary><h2>3.1. Tree</h2></summary>
 
 When to use BFS or DFS ?
+ 
+DFS is better at:
 
-<ul> 
-  <li><b>DFS</b> is better for: finding nodes far away from the root</li>
-   <li><b>BFS</b> is better for: finding nodes close/closest to the root</li>
+<ul>
+    <li>Finding nodes far away from the root</li>
+</ul>
+
+BFS is better at:
+
+<ul>
+    <li>Finding nodes close/closest to the root</li>
 </ul>
 
 <h3>BFS</h3>
@@ -524,9 +531,73 @@ Node with value 5 found: 5
 </code>
 </pre>
 </details>
+
+<br />
+<b>Notes:</b>
+A BFS or DFS function traverses all the nodes of a tree in scope function.
+
 </details>
 
 <h2>3.2. Graph</h2>
+
+When to use BFS or DFS ?
+
+BFS is better at:
+
+<ul>
+    <li>Finding the <b>shortest distance</b> between two vertices</li>
+    <li>Graph of unknown size</li>
+</ul>
+
+
+DFS is better at:
+
+<ul>
+    <li>Use less memory than BFS for wide graphs</li>
+    <li>Finding nodes far away from the root</li>
+</ul>
+
+<h3>BFS (Graph)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+
+# Example graph represented as an adjacency list
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B'],
+    'F': ['C']
+}
+
+# Function to get neighbors of a node
+def get_neighbors(node):
+    return graph.get(node, [])
+
+# BFS Implementation
+def bfs(root):
+    queue = deque([root])
+    visited = set([root])
+
+    while queue:
+        node = queue.popleft()
+        print(node, end=" ")  # Process the node (print in this case)
+
+        for neighbor in get_neighbors(node):
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor)
+
+# Run BFS starting from node 'A'
+bfs('A')
+</code>
+</pre>
+</details>
 
 <h2>3.3. Array</h2>
 
