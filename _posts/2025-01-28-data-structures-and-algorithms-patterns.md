@@ -597,7 +597,145 @@ def bfs(root):
 bfs('A')
 </code>
 </pre>
+
+<b>Notes:</b> Because you loop all the graph nodes, so time complexity is O(N).
 </details>
+
+<h3>BFS (Matrix)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+
+# Example grid
+grid = [
+    [1, 1, 0, 1, 1],
+    [0, 1, 0, 1, 0],
+    [1, 1, 1, 1, 1],
+    [0, 1, 0, 0, 1],
+    [1, 1, 1, 1, 1]
+]
+
+num_rows, num_cols = len(grid), len(grid[0])
+
+# Function to get valid 4-directional neighbors
+def get_neighbors(coord):
+    row, col = coord
+    delta_row = [-1, 0, 1, 0]
+    delta_col = [0, 1, 0, -1]
+    res = []
+    for i in range(4):
+        neighbor_row = row + delta_row[i]
+        neighbor_col = col + delta_col[i]
+        if 0 <= neighbor_row < num_rows and 0 <= neighbor_col < num_cols:
+            res.append((neighbor_row, neighbor_col))
+    return res
+
+# BFS function to traverse the grid
+def bfs(starting_node):
+    queue = deque([starting_node])
+    visited = set([starting_node])
+
+    while queue:
+        node = queue.popleft()
+        row, col = node
+
+        # Process the node (print its position)
+        print(f"Visited: ({row}, {col})")
+
+        for neighbor in get_neighbors(node):
+            if neighbor in visited:
+                continue
+            
+            # Do stuff with the node if required
+            r, c = neighbor
+            if grid[r][c] == 1:  # Only visit accessible cells (1s)
+                queue.append(neighbor)
+                visited.add(neighbor)
+
+# Start BFS from (0,0)
+bfs((0, 0))
+</code>
+</pre>
+
+<b>Notes:</b> Because you loop all the items of the matrix, so time complexity is O(R x C).
+
+</details>
+
+<h3>BFS (Island)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+
+# Example grid
+grid = [
+    [1, 1, 0, 1, 1],
+    [0, 1, 0, 1, 0],
+    [1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1]
+]
+
+num_rows, num_cols = len(grid), len(grid[0])
+
+# Function to get valid 4-directional neighbors
+def get_neighbors(coord):
+    row, col = coord
+    delta_row = [-1, 0, 1, 0]
+    delta_col = [0, 1, 0, -1]
+    res = []
+    for i in range(4):
+        neighbor_row = row + delta_row[i]
+        neighbor_col = col + delta_col[i]
+        if 0 <= neighbor_row < num_rows and 0 <= neighbor_col < num_cols:
+            res.append((neighbor_row, neighbor_col))
+    return res
+
+# BFS function to traverse an island and mark it visited
+def bfs(starting_node, visited):
+    queue = deque([starting_node])
+    visited.add(starting_node)
+
+    while queue:
+        node = queue.popleft()
+        row, col = node
+
+        for neighbor in get_neighbors(node):
+            r, c = neighbor
+            if neighbor not in visited and grid[r][c] == 1:  # Only visit land cells (1s)
+                queue.append(neighbor)
+                visited.add(neighbor)
+
+# Function to count islands
+def count_islands(grid):
+    visited = set()
+    island_count = 0
+
+    for r in range(num_rows):
+        for c in range(num_cols):
+            if grid[r][c] == 1 and (r, c) not in visited:
+                bfs((r, c), visited) # It break out when can not BFS anymore
+                island_count += 1
+
+    return island_count
+
+# Run the island count function
+num_islands = count_islands(grid)
+print("Number of islands:", num_islands)
+
+# Output: 
+# Number of islands: 2
+</code>
+</pre>
+
+<b>Notes:</b> Because you loop all the items of the matrix, so time complexity is O(R x C).
+
+</detail>
 
 <h2>3.3. Array</h2>
 
