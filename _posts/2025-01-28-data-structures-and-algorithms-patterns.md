@@ -383,17 +383,18 @@ negative_inf = -math.inf
 <summary><h2>3.1. Tree</h2></summary>
 
 When to use BFS or DFS ?
- 
-DFS is better at:
-
-<ul>
-    <li>Finding nodes far away from the root</li>
-</ul>
 
 BFS is better at:
 
 <ul>
     <li>Finding nodes close/closest to the root</li>
+</ul>
+
+ 
+DFS is better at:
+
+<ul>
+    <li>Finding nodes far away from the root</li>
 </ul>
 
 <h3>BFS</h3>
@@ -538,7 +539,8 @@ A BFS or DFS function traverses all the nodes of a tree in scope function.
 
 </details>
 
-<h2>3.2. Graph</h2>
+<details>
+<summary><h2>3.2. Graph</h2></summary>
 
 When to use BFS or DFS ?
 
@@ -664,7 +666,7 @@ bfs((0, 0))
 
 </details>
 
-<h3>BFS (Island)</h3>
+<h3>BFS (Island - Connected Component)</h3>
 <details>
 <summary>Code</summary>
 
@@ -735,7 +737,9 @@ print("Number of islands:", num_islands)
 
 <b>Notes:</b> Because you loop all the items of the matrix, so time complexity is O(R x C).
 
-</detail>
+</details>
+
+</details>
 
 <h2>3.3. Array</h2>
 
