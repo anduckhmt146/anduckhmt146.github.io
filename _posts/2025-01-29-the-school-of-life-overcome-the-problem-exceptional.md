@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[The School Of Life] Overcoming the Need to Be Exceptional 🌻"
+title: "[The School Of Life] Overcoming the Need to Be Exceptional"
 date: 2025-01-29
 
 ---
@@ -11,7 +11,7 @@ English version: [Overcoming the Need to Be Exceptional - The School Of Life Blo
 
 Source dịch (Vietnamese version): [VƯỢT QUA NỖI ÁM ẢNH PHẢI TRỞ NÊN PHI THƯỜNG  - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1C8chkkvLA/)
 
-## 🌻 VƯỢT QUA NỖI ÁM ẢNH PHẢI TRỞ NÊN PHI THƯỜNG
+### 🌻 VƯỢT QUA NỖI ÁM ẢNH PHẢI TRỞ NÊN PHI THƯỜNG
 
 Có một câu hỏi đơn giản, nhưng lại chạm sâu vào cốt lõi của cảm giác về giá trị bản thân và sự chính đáng trong cuộc đời mỗi người: Tuổi thơ của bạn có để lại cho bạn cảm giác rằng, về tổng thể, bạn ổn như chính con người mình không? Hay đâu đó trong hành trình lớn lên, bạn hình thành ấn tượng rằng mình phải thật đặc biệt mới xứng đáng với chỗ đứng trên cõi đời này? Và để nối tiếp câu hỏi ấy: Liệu bây giờ bạn có cảm thấy thư thái với vị trí của mình trong cuộc sống, hay bạn đang bị cuốn vào vòng xoáy của việc phải trở thành kẻ đạt được mọi thứ vượt trội, hoặc chìm đắm trong cảm giác xấu hổ vì cái gọi là “sự tầm thường” của chính mình?
 

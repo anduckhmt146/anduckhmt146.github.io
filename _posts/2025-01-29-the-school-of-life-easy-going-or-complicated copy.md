@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "[The School Of Life] You are Straightforward or Complicated 🤔"
+title: "[The School Of Life] You are Straightforward or Complicated ? 🤔"
 date: 2025-01-29
 
 ---
 
-Let's see whether you are straightforward or complicated 🤔
+Let's see whether you are straightforward or complicated.
 
 English version: [Straightforward vs. Complicated People - The School Of Life Blog](https://www.theschooloflife.com/article/straightforward-vs-complicated-people/)
 
 Source dịch (Vietnamese version): [NGƯỜI ĐƠN GIẢN VÀ NGƯỜI PHỨC TẠP - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1GyhB2exTe)
 
-## 🌻 NGƯỜI ĐƠN GIẢN VÀ NGƯỜI PHỨC TẠP
+### 🌻 NGƯỜI ĐƠN GIẢN VÀ NGƯỜI PHỨC TẠP
 
 Một trong những cách phân loại con người dễ nhận thấy nhất chính là giữa những người đơn giản, thẳng thắn và những người – như ta thường nhận ra mỗi lần tiếp xúc – luôn khó đoán và phức tạp.
 

@@ -5,13 +5,13 @@ date: 2025-01-29
 
 ---
 
-HOW BADLY ADAPTED WE ARE TO LIFE ON EARTH ?
+How badly adapted we are life on Earth ?
 
 English version: [HOW BADLY ADAPTED WE ARE TO LIFE ON EARTH - The School Of Life Blog](https://www.theschooloflife.com/article/how-badly-adapted-we-are-to-life-on-earth/)
 
 Source dịch (Vietnamese version): [CHÚNG TA ĐÃ TỒN TẠI MỘT CÁCH KHÔNG HOÀN HẢO TRÊN TRÁI ĐẤT NHƯ THẾ NÀO  - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1VRcbQxdc6/)
 
-## 🌼 CHÚNG TA ĐÃ TỒN TẠI MỘT CÁCH KHÔNG HOÀN HẢO TRÊN TRÁI ĐẤT NHƯ THẾ NÀO
+### 🌼 CHÚNG TA ĐÃ TỒN TẠI MỘT CÁCH KHÔNG HOÀN HẢO TRÊN TRÁI ĐẤT NHƯ THẾ NÀO
 
 Chúng ta thường ca ngợi trí óc và cơ thể con người: từ nhiều góc độ, chúng thực sự là những kiệt tác của kỹ thuật. Bộ não của chúng ta có thể giải những phương trình fractal, dịch từ tiếng Phần Lan sang tiếng Bengal, hoặc biểu diễn La Traviata – trong khi cơ thể có thể chinh phục đỉnh Matterhorn, đánh quả bóng bay qua lưới với vận tốc 263 km/h, và tạo ra sự sống mới kéo dài cả một thế kỷ.
 
