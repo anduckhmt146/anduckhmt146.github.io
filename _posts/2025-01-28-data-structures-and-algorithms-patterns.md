@@ -745,4 +745,6 @@ print("Number of islands:", num_islands)
 
 <h2>3.4. Heap</h2>
 
+<h2>3.5. Backtracking</h2>
+
 </details>
