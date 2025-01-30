@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[The School Of Life] The stage of development ? 🤔'
+title: '[The School Of Life] The stage of development'
 date: 2025-01-30
 categories: psychology
 ---
