@@ -2,6 +2,7 @@
 layout: post
 title: "[The School Of Life] Do you ever think you are perfect ? 🤔" 
 date: 2025-01-29
+categories: psychology
 
 ---
 

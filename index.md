@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-permalink: /about
+permalink: /
 ---
 
 Hello, reader. This blog offers a glimpse into who I am, after years of grappling with a deep, overwhelming sense of confusion. While others my age seemed to flow easily through life, I found myself constantly lost in thought, overanalyzing every detail, struggling to connect on a deeper emotional level. I became consumed by this internal complexity and chose to retreat from the world.
@@ -12,7 +12,7 @@ But now, I've decided to break free from the shadows of self-doubt. I'm embracin
 
 I am a Software Engineer, Junior + or Middle Level with more than 1 year of experience working in industry, ability to work as a Fullstack Developer, specializing in Backend Engineering with Golang in Zalopay, one of the leading Vietnam's big-tech companies in the digital wallet sector, within the Fintech domain.
 
-- **Education**: Bachelor's Degree of Honors Program (Advanced Program for the top 40 students) in Computer Science at Bach Khoa University, Ho Chi Minh City. Ranked among the top 10 highest GPAs in the Computer Science faculty during my graduation year, with an approximate GPA of 3.8/4.0.
+- **Education**: Bachelor's Degree of Honors Program in Computer Science, which is an Advanced Program for the top 40 students in each major at Bach Khoa University, Ho Chi Minh City. Ranked among the top 10 highest GPAs in the Computer Science faculty during my graduation year, with an approximate GPA of 3.8/4.0.
 
 - **Main Languages:** Experienced and familiar with Golang and JavaScript, have deep understanding about those languages.
 

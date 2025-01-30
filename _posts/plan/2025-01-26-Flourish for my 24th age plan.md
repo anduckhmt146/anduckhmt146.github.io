@@ -1,9 +1,10 @@
 ---
 layout: post
 title: Flourish for my 24th Age Plan
+categories: plan
 ---
 
-Below is my detailed plan for achieving growth and success during this pivotal time.
+In the beginning days of 2025, I am writing a planning list to set goals and prepare for growth, flourishing and thriving over the next 2 years when I reach my 24th year milestone.
 
 <style>
     table {
@@ -24,6 +25,9 @@ Below is my detailed plan for achieving growth and success during this pivotal t
     }   
 </style>
 
+This planning list is not meant to declare my ambitions to the world or showcase my work. It is just a set of targets to remind me to be more patient, more commitment, focus on **what-is-important**, and prioritize what adds value and productivity to my life in 2025 and 2026.
+
+And of course, things take time. We can't expect to fully grasp big topics all at once, but that's okay. It's about cherishing the process, embracing each small step, and steadily applying what we learn to practice. Each effort shows that our understanding is growing and shaping us to be better than we were yesterday. For me, doing my best to overcome procrastination and building just a little more confidence each day feels like a win worth celebrating.
 
 <table id="agePlanTable" class="display table table-bordered">
   <thead>

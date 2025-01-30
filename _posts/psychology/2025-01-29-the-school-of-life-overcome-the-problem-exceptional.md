@@ -2,6 +2,7 @@
 layout: post
 title: "[The School Of Life] Overcoming the Need to Be Exceptional"
 date: 2025-01-29
+categories: psychology
 
 ---
 

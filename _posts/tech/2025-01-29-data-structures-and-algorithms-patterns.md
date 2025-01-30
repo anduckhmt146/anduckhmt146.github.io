@@ -2,6 +2,8 @@
 layout: post
 title: "DSA: Coding Interview Patterns"
 date: 2025-01-29
+categories: tech
+
 ---
 
 Here is boilerplate template code that helps you shortcut thinking, reuse repeatable code, save your time, let you focus more on problem-solving while implementing algorithms in coding interview.

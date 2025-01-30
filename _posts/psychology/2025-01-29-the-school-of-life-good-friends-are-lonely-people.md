@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "[The School Of Life] Why the best kind of friends are lonely ?"
+title: "[The School of Life] Why are many kind friends lonely?"
 date: 2025-01-29
+categories: psychology
 
 ---
 

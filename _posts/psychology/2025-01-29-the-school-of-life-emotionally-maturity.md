@@ -2,6 +2,7 @@
 layout: post
 title: "[The School Of Life] What do you think about Emotional Maturity ?"
 date: 2025-01-29
+categories: psychology
 
 ---
 

@@ -19,17 +19,26 @@
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
-
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <a href="{{ site.baseurl }}/about">
+                  <img src="{{ site.avatar }}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; margin-right: 15px;" />
+                </a>
+              <div class="site-info" style="display: flex; flex-direction: column; justify-content: center;">
+                <h1 class="site-name"><a href="{{ site.baseurl }}/about">{{ site.name }}</a></h1>
+                <p class="site-description">{{ site.description }}</p>
+              </div>
+            </div>
+            <div></div>
           </div>
+      
 
           <nav>
-            <a href="{{ site.baseurl }}/">Blog</a>
             <a href="{{ site.baseurl }}/about">About me</a>
-          </nav>
+            <a href="{{ site.baseurl }}/categories/tech">Technology</a>
+            <a href="{{ site.baseurl }}/categories/book">Book</a>
+            <a href="{{ site.baseurl }}/categories/psychology">Psychology</a>
+            <a href="{{ site.baseurl }}/categories/plan">Plan</a>
         </header>
       </div>
     </div>
