@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+    <title>
+      {% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{
+      site.description }}
+    </title>
 
     {% include meta.html %}
 
@@ -9,8 +12,15 @@
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ site.baseurl }}/style.css" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="{{ site.name }} - {{ site.description }}"
+      href="{{ site.baseurl }}/feed.xml" />
 
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
@@ -30,45 +40,94 @@
         height: 80px;
       }
     }
-</style>
+
+    .active {
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      text-decoration: none;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.nav-link').forEach((link) => {
+        const currentPath = window.location.pathname;
+
+        const linkPath = link
+          .getAttribute('href')
+          .replace('{{ site.baseurl }}', '');
+
+        if (currentPath === linkPath + '/') {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+  </script>
 
   <body>
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-               <a href="{{ site.baseurl }}">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            ">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              ">
+              <a href="{{ site.baseurl }}">
                 <img src="{{ site.avatar }}" class="avatar" />
               </a>
-              <div class="site-info" style="display: flex; flex-direction: column; justify-content: center;">
-                <h1 class="site-name"><a href="{{ site.baseurl }}">{{ site.name }}</a></h1>
+              <div
+                class="site-info"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                ">
+                <h1 class="site-name">
+                  <a href="{{ site.baseurl }}">{{ site.name }}</a>
+                </h1>
                 <p class="site-description">{{ site.description }}</p>
               </div>
             </div>
             <div></div>
           </div>
-      
 
           <nav>
-            <a href="{{ site.baseurl }}/about">About me</a>
-            <a href="{{ site.baseurl }}/categories/tech">Technology</a>
-            <a href="{{ site.baseurl }}/categories/book">Book</a>
-            <a href="{{ site.baseurl }}/categories/psychology">Psychology</a>
-            <a href="{{ site.baseurl }}/categories/plan">Plan</a>
+            <a href="{{ site.baseurl }}/about" class="nav-link">About me</a>
+            <a href="{{ site.baseurl }}/categories/tech" class="nav-link"
+              >Technology</a
+            >
+            <a href="{{ site.baseurl }}/categories/book" class="nav-link"
+              >Book</a
+            >
+            <a href="{{ site.baseurl }}/categories/psychology" class="nav-link"
+              >Psychology</a
+            >
+            <a href="{{ site.baseurl }}/categories/plan" class="nav-link"
+              >Plan</a
+            >
+          </nav>
         </header>
       </div>
     </div>
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
+    <div id="main" role="main" class="container">{{ content }}</div>
 
     <div class="wrapper-footer">
       <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
+        <footer class="footer">{% include svg-icons.html %}</footer>
       </div>
     </div>
 
