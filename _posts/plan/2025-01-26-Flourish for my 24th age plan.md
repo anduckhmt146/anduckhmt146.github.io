@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Flourish for my 24th Age Plan
+date: 2025-01-26
 categories: plan
 ---
 
