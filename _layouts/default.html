@@ -60,6 +60,8 @@
           .getAttribute('href')
           .replace('{{ site.baseurl }}', '');
 
+        console.log(currentPath, linkPath);
+
         if (currentPath === linkPath + '/') {
           link.classList.add('active');
         } else {
