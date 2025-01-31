@@ -86,17 +86,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.nav-link').forEach((link) => {
-        const currentPath = window.location.pathname;
+      const currentPath = window.location.pathname;
 
+      document.querySelectorAll('.nav-link').forEach((link) => {
         const linkPath = link
           .getAttribute('href')
           .replace('{{ site.baseurl }}', '');
 
-        if (currentPath.includes(linkPath)) {
+        // If path is "/" or empty, activate "About me"
+        if (currentPath === '/' || currentPath === '') {
+          if (linkPath === '/about') {
+            link.classList.add('active');
+          }
+        } else if (currentPath.includes(linkPath) && linkPath !== '/') {
           link.classList.add('active');
-        } else {
-          link.classList.remove('active');
         }
       });
     });
