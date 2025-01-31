@@ -38,6 +38,25 @@
       width: 500px;
     }
 
+    .active {
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      text-decoration: none;
+    }
+
+    .quote-box {
+      background-color: #f0f0f0;
+      color: black;
+      padding: 10px;
+      border-radius: 5px;
+      font-style: italic;
+      width: 50%;
+      margin: 10px auto;
+    }
+
     @media (max-width: 768px) {
       .avatar {
         width: 80px;
@@ -54,15 +73,14 @@
       .site-description {
         font-size: 0.8rem;
       }
+      .quote-box {
+        width: 95%;
+        font-size: 1rem;
+      }
     }
 
-    .active {
-      color: #007bff;
-      font-weight: bold;
-    }
-
-    .nav-link {
-      text-decoration: none;
+    .wrapper-masthead {
+      margin-bottom: 0px;
     }
   </style>
 
@@ -136,6 +154,13 @@
           </nav>
         </header>
       </div>
+    </div>
+
+    <div class="quote-box">
+      Keep in mind that we have time — quality is over quantity. Things take
+      time. We can't expect to fully grasp big topics all at once, but that's
+      okay. It's about cherishing the process, embracing each small step, and
+      steadily applying what we learn to practice.
     </div>
 
     <div id="main" role="main" class="container">{{ content }}</div>

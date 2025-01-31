@@ -34,7 +34,7 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development. I seek to better understand myself and others, aiming to improve not just my life but also the mental well-being of those around me. Here is some strengths and weaknesses that I aware about myself in the beginning days of 2025.
 
 - **Strengths:** I'm intellectual, philosophical, and enthusiastic who can brings you rich positive energy and inspirations, authentic with my core value 🙂 About knowledge, with a broad, horizontal understanding of everything in the world, my curiosity about new experiences helps me keep an open mindset, allowing me to share knowledge in various topics and engage in deep conversations with you — about psychology, science, art, music, hobbies, personal growth developments and emotional problems that you willing share to me too. I've been through a lot refections & instropections to deal with my negative feelings in life, which has given me the ability to understand and empathize with you. I'm here to support your growth and accept you as you are, just I want to make you feel comfortable and authentic beside me.
-- **Weaknesses:** I struggle with procrastination, overthinking too much about perfection and completeness, lack of action-oriented motivations, occasional over-sensitivity, and sometimes over-abstractions but lack of practicality 🙂. Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repetitive, boring tasks. There are moments when I battle feelings of inadequacy, caught in the grip of self-doubt. These are the challenges I'm actively working through as I continue to grow.
+- **Weaknesses:** I struggle with procrastination, overthinking too much about perfection and completeness, lack of action-oriented motivations, occasional over-sensitivity, and sometimes over-abstractions but lack of practicality 🙂. Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repeatable, boring tasks. There are moments when I battle feelings of inadequacy, caught in the grip of self-doubt. These are the challenges I'm actively working through as I continue to grow.
 
 ## 4. What is this blog about?
 
@@ -42,15 +42,7 @@ It's a space where my knowledge and opinions come together, offering perspective
 
 Dive deeper into my thoughts and explore more posts here: [More Posts](https://anduckhmt146.site/). I hope you find some of these posts helpful and inspiring.
 
-## 5. Plan for my flourish 24th age
-
-In the beginning days of 2025, I am writing a planning list to set goals and prepare for growth, flourishing and thriving over the next 2 years when I reach my 24th year milestone: [Flourish for My 24th Age Plan](https://anduckhmt146.site/Flourish-for-my-24th-age-plan/)
-
-This planning list is not meant to declare my ambitions to the world or showcase my work. It is just a set of targets to remind me to be more patient, more commitment, focus on **what-is-important**, and prioritize what adds value and productivity to my life in 2025 and 2026.
-
-And of course, things take time. We can't expect to fully grasp big topics all at once, but that's okay. It's about cherishing the process, embracing each small step, and steadily applying what we learn to practice. Each effort shows that our understanding is growing and shaping us to be better than we were yesterday. For me, doing my best to overcome procrastination and building just a little more confidence each day feels like a win worth celebrating.
-
-## 6. Contact:
+## 5. Contact:
 
 - **Facebook:** [https://www.facebook.com/anduckhmt146/](https://www.facebook.com/anduckhmt146/)
 
