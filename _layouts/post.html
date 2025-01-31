@@ -2,16 +2,85 @@
 layout: default
 ---
 
+<style>
+  .views {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .views:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+  }
+
+  .views:before {
+    content: '👀 ';
+    font-size: 24px;
+    margin-right: 8px;
+  }
+</style>
+
+<!-- _includes/head.html -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: 'AIzaSyCK3rp01raN4r6-kSy7M5a7_Xjoiu9oWhs',
+    authDomain: 'anduckhmt146-blog.firebaseapp.com',
+    databaseURL:
+      'https://anduckhmt146-blog-default-rtdb.asia-southeast1.firebasedatabase.app',
+    projectId: 'anduckhmt146-blog',
+    storageBucket: 'anduckhmt146-blog.firebasestorage.app',
+    messagingSenderId: '34623715868',
+    appId: '1:34623715868:web:609a920d8af4bab72efdd9',
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var pagePath = window.location.pathname;
+    var viewsRef = firebase.database().ref('views' + pagePath);
+
+    viewsRef.transaction(
+      function (currentViews) {
+        return (currentViews || 0) + 1;
+      },
+      function (error, committed, snapshot) {
+        if (committed) {
+          var viewCount = snapshot.val() || 0;
+          var viewCountElement = document.querySelector('.views');
+          if (viewCountElement) {
+            viewCountElement.innerText = 'Total views: ' + viewCount;
+          }
+        } else {
+          console.error('Transaction failed:', error);
+        }
+      }
+    );
+  });
+</script>
+
 <article class="post">
   <h2>{{ page.title }}</h2>
 
-  <div class="entry">
-    {{ content }}
-  </div>
+  <div class="entry">{{ content }}</div>
 
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
+  <div class="date">Written on {{ page.date | date: "%B %e, %Y" }}</div>
+
+  <div class="views"></div>
 
   {% include disqus.html %}
 </article>
