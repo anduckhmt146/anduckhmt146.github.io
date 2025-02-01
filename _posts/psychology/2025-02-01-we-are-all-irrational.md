@@ -14,6 +14,7 @@ Do you believe you are rational, rarely being influenced by emotion? 🤔 If you
       padding: 10px;
       border-radius: 5px;
       font-style: italic;
+      width: 100%;
       margin: 10px auto;
     }
 
@@ -29,7 +30,7 @@ Do you believe you are rational, rarely being influenced by emotion? 🤔 If you
 
 **Book: The Laws of Human Nature - Robert Greene (INTJ)**
 
-### Rule 1: The Law of Irrationality
+# Rule 1: The Law of Irrationality
 
 <div class="quote-box">
    Quote: "You like to imagine yourself in control of your fate, consciously planning the course of your life as best you can. but you are largely unaware of how deeply your emotions dominate you."
@@ -37,7 +38,7 @@ Do you believe you are rational, rarely being influenced by emotion? 🤔 If you
 
 The first rule in understanding rational logic is just a way that you use to protect your vulnerable emotions or ego.
 
-### 1. Physical Evidence: Evolution of human brain
+## 1. Physical Evidence: Evolution of human brain
 
 ![Human Brain](https://miro.medium.com/v2/resize:fit:918/0*xPUfiJHYQCH-EjSZ)
 
@@ -53,7 +54,7 @@ The human brain have 3 main structures during evolution process:
 
 ![Human Brain](https://incident-prevention.com/wp-content/uploads/2024/02/Neo-Limbic-Image-e1708614756354.jpg)
 
-### 2. The Three Layers of Behavior Change:
+## 2. The Three Layers of Behavior Change:
 
 Reference: [Understanding Your Brain: Connecting “The Golden Circle” (Simon Sinek) & “The Three Layers of Behavior Change” (James Clear)](https://medium.com/@slowwco/understanding-your-brain-connecting-the-golden-circle-simon-sinek-the-three-layers-of-8750e7478df5)
 
