@@ -8,7 +8,7 @@ categories: book
 Do you believe you are rational, rarely being influenced by emotion? 🤔 If you think about it, you might want to reconsider—after all, we're all human, unconsciously emotional beings.
 
 <style>
-    .quote-box {
+    .quote-box-post {
       background-color: #f0f0f0;
       color: black;
       padding: 10px;
@@ -19,7 +19,7 @@ Do you believe you are rational, rarely being influenced by emotion? 🤔 If you
     }
 
     @media (max-width: 768px) {
-        .quote-box {
+        .quote-box-post {
             width: 95%;
             font-size: 1rem;
         }
@@ -32,7 +32,7 @@ Do you believe you are rational, rarely being influenced by emotion? 🤔 If you
 
 # Rule 1: The Law of Irrationality
 
-<div class="quote-box">
+<div class="quote-box-post">
    Quote: "You like to imagine yourself in control of your fate, consciously planning the course of your life as best you can. but you are largely unaware of how deeply your emotions dominate you."
 </div>
 
