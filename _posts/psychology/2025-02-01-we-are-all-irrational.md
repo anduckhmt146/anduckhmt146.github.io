@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[The Laws of Human Nature] - The Law of Irrationality - We are all Irrational Human 🤔'
+title: '[The Laws of Human Nature] - The Law of Irrationality - We are all irrational human 🤔'
 date: 2025-02-01
 categories: book
 ---
@@ -14,7 +14,6 @@ Do you believe you are rational, rarely being influenced by emotion? 🤔 If you
       padding: 10px;
       border-radius: 5px;
       font-style: italic;
-      width: 50%;
       margin: 10px auto;
     }
 
