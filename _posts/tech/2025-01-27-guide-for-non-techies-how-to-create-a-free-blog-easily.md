@@ -1,10 +1,9 @@
 ---
 layout: post
-title: "Guide for Non-Techies: How to Create a Free Blog Easily"
+title: 'Guide for Non-Techies: How to create a FREE blog easily (No server, No database, can be access 24/7)'
 date: 2025-01-27
 categories: tech
 ---
-
 
 Guide for Non-Techies How to Create a Free Blog Easily
 
@@ -33,34 +32,34 @@ As a result, if your content becomes valuable or requires privacy, your data ess
 
 ### **Solution**
 
-We use the **FREE & AUTO CONFIGURED** open-source **Jekyll** platform with GitHub to store your blog content directly in GitHub’s file system. This approach eliminates the need for a database or complicated HTML source code to host your blog. 
+We use the **FREE & AUTO CONFIGURED** open-source **Jekyll** platform with GitHub to store your blog content directly in GitHub’s file system. This approach eliminates the need for a database or complicated HTML source code to host your blog.
 
 However, the blog might feel a bit simple and focus =))) It’s not the most colorful or visually flashy option, but it’s perfectly sufficient for delivering content quickly. This approach prioritizes knowledge-sharing and ensures your blog is clean, clear, and highly readable.
 
 All you need to do is write simple Markdown files (similar to Notion’s syntax) and update to the folder posts/, and it automatically publishes your post to the blog directly.
 
-# 2.  Total Cost
+# 2. Total Cost
 
 **Step 1:** Prepare a Credit/Visa/Paypal card, around 0.98$/year for your domain (20k VND per year 🙂, cheaper than a cup of milk tea which makes you fat).
 
 **Step 2:** Buy domain
 
 - **Visit a Domain Provider**
-    - Go to a domain provider like [Namecheap](https://www.namecheap.com/domains/) or GoDaddy.
-    - I recommend Namecheap for its excellent customer support and user-friendly interface.
+  - Go to a domain provider like [Namecheap](https://www.namecheap.com/domains/) or GoDaddy.
+  - I recommend Namecheap for its excellent customer support and user-friendly interface.
 - **Search for Your Desired Domain**
-    - Enter the name of the domain you want to buy.
-    - For example, if I want a domain for my account "anduckhmt146," the system might suggest options like: **anduckhmt146.com, anduckhmt146.net, anduckhmt146.site**, etc.
+  - Enter the name of the domain you want to buy.
+  - For example, if I want a domain for my account "anduckhmt146," the system might suggest options like: **anduckhmt146.com, anduckhmt146.net, anduckhmt146.site**, etc.
 - **Choose Your Domain**
-    - Select the domain that fits your needs.
-    - Keep in mind:
-        - Domains with extensions like **.com**, **.net**, or **.org** are generally more expensive.
-        - For blogs, **.site** is a budget-friendly option, often priced as low as $0.98.
+  - Select the domain that fits your needs.
+  - Keep in mind:
+    - Domains with extensions like **.com**, **.net**, or **.org** are generally more expensive.
+    - For blogs, **.site** is a budget-friendly option, often priced as low as $0.98.
 - **Complete the Purchase**
-    - Add the domain to your cart, proceed to checkout, and follow the steps to complete your purchase.
-    - **Remember to turn off the auto-renewal feature** 😂 unless you’re okay with being charged $40 next year! Auto-renewal is great if you plan to use the domain long-term, but if you’re just running a small blog to share knowledge, you can always purchase a new domain for $1-2 when it expires.
+  - Add the domain to your cart, proceed to checkout, and follow the steps to complete your purchase.
+  - **Remember to turn off the auto-renewal feature** 😂 unless you’re okay with being charged $40 next year! Auto-renewal is great if you plan to use the domain long-term, but if you’re just running a small blog to share knowledge, you can always purchase a new domain for $1-2 when it expires.
 
-# 3.  How to do 🙂
+# 3. How to do 🙂
 
 **Step 1:** Create Github account, sign up/sign in with Google is enough 🙂
 
@@ -68,29 +67,24 @@ All you need to do is write simple Markdown files (similar to Notion’s syntax)
 
 ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/Screenshot_2025-01-26_at_23.04.20.png)
 
-
 **Step 3:** Open the repo that you have been forked, rename the repo to your-username.github.io, for example my username is anduckhmt146, so repo name is anduckhmt146.github.io.
 
-  ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image.png)
+![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image.png)
 
 **Step 4:** Open network access in your domain in Namecheap for Github IP, similar to Go Daddy or other domain providers
 
 - Click to “Advanced DNS”, and set up data configuration as same as following rules
-    
-   ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%201.png)
-    
+  ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%201.png)
 - Reference: [https://dev.to/pauljwil/connect-github-pages-to-your-namecheap-domain-4gjj](https://dev.to/pauljwil/connect-github-pages-to-your-namecheap-domain-4gjj)
-    
-     ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%202.png)
-    
+  ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%202.png)
 
 **Step 5:** Click to Settings in Github page ⇒ Input your custom domain ⇒ Select Github Actions
 
- ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%203.png)
+![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%203.png)
 
-**Step 6:** Go to _config.yml and change some information in Header (Name, Title, Image) and Footer (Social Media) to yourself, and about.md file for your “About Me” tab.
+**Step 6:** Go to \_config.yml and change some information in Header (Name, Title, Image) and Footer (Social Media) to yourself, and about.md file for your “About Me” tab.
 
- ![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%204.png)
+![](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%204.png)
 
 **Step 7:** When you update a new blog, create a markdown file (.md), you can write the blog in Notion and export to (Markdown & CSV files), then upload to folder **posts/,** with name of the file is **YYYY-MM-DD-Title.md**
 
@@ -100,12 +94,12 @@ Remember to update fields, such as field layout with value “post”, and field
 
 ![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%206.png)
 
-# 4.  Output 😂
+# 4. Output 😂
 
 Link: [https://anduckhmt146.site/](https://anduckhmt146.site/)
 
 ![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%207.png)
 
-# 5.  Contact
+# 5. Contact
 
 If you have any problems about this tutorial, do not hesitate to contact me via Facebook, Github or Gmail, I am willing to support you to create your first personal blog.
