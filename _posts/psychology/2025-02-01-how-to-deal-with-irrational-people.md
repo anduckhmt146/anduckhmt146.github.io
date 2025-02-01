@@ -9,7 +9,7 @@ Source dịch (Vietnamese version): [How to Deal with the Irrational and Impossi
 
 ### 🌷 How to Deal with the Irrational and Impossible People in Your Life
 
-Chúng ta thường nghĩ rằng những người đang tức giận hoặc đang quá bị cảm xúc ảnh hưởng trong suy nghĩ sẽ hành động khó lường. Nhưng thực tế không phải vậy. Họ sẽ rất dễ leo thang nếu chúng ta nói rằng quan điểm của họ là sai. Đôi khi, như người ta nói, “sự kháng cự là vô ích.” Ít nhất là lúc đầu.
+Chúng ta thường nghĩ rằng những người đang tức giận hoặc đang quá bị cảm xúc ảnh hưởng trong suy nghĩ sẽ hành động khó lường. Họ sẽ rất dễ leo thang nếu chúng ta nói rằng quan điểm của họ là sai.
 
 Khi chúng ta chịu chấp nhận thực tế từ góc nhìn của người không lý trí – khi chúng ta thừa nhận rằng phản ứng của họ là hợp lý trong mắt họ – chúng ta có thể giúp họ quay lại với sự tỉnh táo.
 
@@ -28,8 +28,11 @@ Trong lòng, hãy gọi tên cảm xúc của bạn. “Tôi đang cảm thấy 
 Họ đang ném về phía bạn những lời buộc tội nặng nề, đến mức bạn có cảm giác như mình đang đứng trước một tòa án xét xử tội ác chiến tranh. Thực sự thì cũng ấn tượng đấy, khi họ có thể dồn nén biết bao nhiêu uất ức lâu ngày vào một tràng xả giận.
 
 "Tôi ghét anh!"
+
 "Tôi nên sa thải cô!"
+
 "Tôi muốn ly hôn!"
+
 
 Nếu bạn là một trong số hiếm hoi những người thực sự suy nghĩ trước khi nói, bạn có thể lầm tưởng rằng người khác cũng làm như vậy. Nhưng đây không phải là một giả định khôn ngoan, nhất là khi ai đó đang bị cảm xúc chi phối.
 
