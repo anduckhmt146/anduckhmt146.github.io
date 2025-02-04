@@ -41,7 +41,7 @@ The first rule in understanding rational logic is just a way that you use to pro
 ## 1. Physical Evidence: Evolution of human brain
 
 ![Human Brain](https://miro.medium.com/v2/resize:fit:918/0*xPUfiJHYQCH-EjSZ)
-
+ 
 The human brain have 3 main structures during evolution process:
 
 - **Neocortex (Vỏ đại não):** Known as the Rational or Thinking Brain, the neocortex is responsible for higher cognitive functions such as reasoning, problem-solving, and logical thinking. It primarily processes facts and analytical information, answering the "What" questions.
