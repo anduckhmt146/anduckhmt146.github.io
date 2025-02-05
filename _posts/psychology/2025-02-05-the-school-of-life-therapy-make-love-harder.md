@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '[The School Of Life] RED FLAGS FOR EVERYONE: HOW THERAPY HAS MADE LOVE HARDER'
-date: 2025-01-30
+date: 2025-02-05
 categories: psychology
 ---
 
