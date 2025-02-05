@@ -40,7 +40,7 @@ The first rule in understanding rational logic is just a way that you use to pro
 
 ## 1. Physical Evidence: Evolution of human brain
 
-![Human Brain](https://miro.medium.com/v2/resize:fit:918/0*xPUfiJHYQCH-EjSZ)
+![Human Brain](/images/The-School-Of-Life/0_xPUfiJHYQCH-EjSZ.png)
  
 The human brain have 3 main structures during evolution process:
 
@@ -58,16 +58,16 @@ The human brain have 3 main structures during evolution process:
 
 Reference: [Understanding Your Brain: Connecting “The Golden Circle” (Simon Sinek) & “The Three Layers of Behavior Change” (James Clear)](https://medium.com/@slowwco/understanding-your-brain-connecting-the-golden-circle-simon-sinek-the-three-layers-of-8750e7478df5)
 
-![](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*ky1hc2Z0rwtHCBfR.jpg)
+![Human Brain](/images/The-School-Of-Life/0_ky1hc2Z0rwtHCBfR.webp)
 
 **The Golden Circle: Start With Why / Find Your Why by Simon Sinek**
 
-![](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*ASWjIimLG5vxN4ao.jpg)
+![Human Brain](/images/The-School-Of-Life/0_ASWjIimLG5vxN4ao.webp)
 
 **The Three Layers of Behavior Change: Atomic Habits by James Clear**
 
-![](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*XK3-NBjDZJbGfTUk.jpg)
+![](/images/The-School-Of-Life/0_XK3-NBjDZJbGfTUk.webp)
 
-![](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*ibbBCWg3KrAvC-rj.jpg)
+![](/images/The-School-Of-Life/0_ibbBCWg3KrAvC-rj.webp)
 
 > **Notes:** We are both based on logic (neocortex) and emotion (limbic system) to make decision (survival outcomes) because we are all human.

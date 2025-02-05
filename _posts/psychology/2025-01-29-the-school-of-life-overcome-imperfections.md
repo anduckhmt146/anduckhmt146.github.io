@@ -12,7 +12,7 @@ English version: [HOW BADLY ADAPTED WE ARE TO LIFE ON EARTH - The School Of Life
 
 Source dịch (Vietnamese version): [CHÚNG TA ĐÃ TỒN TẠI MỘT CÁCH KHÔNG HOÀN HẢO TRÊN TRÁI ĐẤT NHƯ THẾ NÀO  - Tâm lý học tội phạm Fanpage](https://www.facebook.com/share/p/1VRcbQxdc6/)
 
-![Ảnh](https://scontent.fsgn6-1.fna.fbcdn.net/v/t39.30808-6/474810706_597876599544068_7446206189402424275_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=109&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeEK_Lvv-Vmd064wVo2wxh__QVHCDOUY35VBUcIM5Rjflb4VDv0KkYOpkSxqn8Idh79PzIA5Ao_3UDH_4DxbrRIN&_nc_ohc=kKuyjhY4VU0Q7kNvgFlMoLy&_nc_oc=Adg-vpMg7sXddLh4EzPP_Kx38VLmN-pQlYZk_WNWeomr0JKqqjUrvueKXhfVKAXML9A&_nc_zt=23&_nc_ht=scontent.fsgn6-1.fna&_nc_gid=AxYLLnTn7VJr_ZAAptT0Z3N&oh=00_AYAb6JI7eddxYLLjC5yHgZ-GGphoH3tPRAI5cduE5TIGlQ&oe=679FD0CA)
+![Ảnh](/images/The-School-Of-Life/474810706_597876599544068_7446206189402424275_n.jpg)
 
 
 ### 🌼 CHÚNG TA ĐÃ TỒN TẠI MỘT CÁCH KHÔNG HOÀN HẢO TRÊN TRÁI ĐẤT NHƯ THẾ NÀO
