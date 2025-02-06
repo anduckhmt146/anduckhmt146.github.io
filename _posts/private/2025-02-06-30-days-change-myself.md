@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "30 days change myself ?"
+title: "30 days change myself - Day 1"
 date: 2025-02-06
 categories: private
 ---
@@ -9,23 +9,23 @@ categories: private
 
 Nhiệm vụ 1: Trả lời câu hỏi
 
-1. Viết 1 hoặc 2 câu về điều gì ở bản thân khiến anh tin rằng người khác nhận ra anh ngay lập tức? 
+### 1. Viết 1 hoặc 2 câu về điều gì ở bản thân khiến anh tin rằng người khác nhận ra anh ngay lập tức? 
 
 - Vui tính
 - Nhiệt tình
 
-2. Viết 1 hoặc 2 câu về những điều anh muốn được người khác đề cao. 
+### 2. Viết 1 hoặc 2 câu về những điều anh muốn được người khác đề cao. 
 
 - Vui tính
 - Nhiệt tình
 
-3. Hãy nói 3 thói quen hoặc tính cách anh muốn thay đổi. 
+### 3. Hãy nói 3 thói quen hoặc tính cách anh muốn thay đổi. 
 
 - Tự tin.
 - Yêu bản thân.
 - Focus vô mục tiêu quan trọng.
 
-4. Hãy nói 3 thói quen hoặc 3 tính cách anh muốn có được. 
+### 4. Hãy nói 3 thói quen hoặc 3 tính cách anh muốn có được. 
 
 - Tự tin.
 - Yêu bản thân.
@@ -37,14 +37,14 @@ Nhiệm vụ 2: Đọc và loại bỏ
 
 - **Tips: Mỗi khi ngại con gái, hãy nghĩ đến việc trước đây thoải mái với người con gái khác.**
 
-**1. RÀO CẢN NIỀM TIN: Nếu tôi bắt chuyện, cô ấy sẽ lơ tôi đi, bằng cách nói những từ không hay khiến tôi xấu hổ.**
+### **1. RÀO CẢN NIỀM TIN: Nếu tôi bắt chuyện, cô ấy sẽ lơ tôi đi, bằng cách nói những từ không hay khiến tôi xấu hổ.**
 
 **Thực tế:**
 
 - Phụ nữ càng khó tiếp cận thì khả năng từ chối càng thấp. 
 - Lý do là vì con người được dạy để trở nên nhã nhặn trừ khi họ cảm thấy bị đe doạ => anh chàng nhút nhát khó làm hại được ai. Anh đang tự làm tổn thương bản thân bằng hai từ "giá như".
 
-**2. RÀO CẢN NIỀM TIN: Mọi người chằm chằm nhìn tôi, bình phẩm và chế  nhạo tôi.**
+### **2. RÀO CẢN NIỀM TIN: Mọi người chằm chằm nhìn tôi, bình phẩm và chế  nhạo tôi.**
 
 **Thực tế:**
 
@@ -55,7 +55,7 @@ Nhiệm vụ 2: Đọc và loại bỏ
 - Việc thấy anh tiếp cận một cô gái, họ sẽ nghĩ bản thân anh biết giao thiệp.
 
 
-**3. RÀO CẢN NIỀM TIN: Phụ nữ không thích những chàng trai tử tế, họ thích  những tay thật ngầu**
+### **3. RÀO CẢN NIỀM TIN: Phụ nữ không thích những chàng trai tử tế, họ thích  những tay thật ngầu**
 
 **Thực tế:**
 
@@ -63,7 +63,7 @@ Nhiệm vụ 2: Đọc và loại bỏ
 
 - Đừng nhầm lẫn đàn ông tốt, với đàn ông tỏ ra "tốt" nhưng sợ hãi và yếu bóng vía.
 
-**4. RÀO CẢN NIỀM TIN: Không đẹp trai không thể hấp dẫn phụ nữ**
+### **4. RÀO CẢN NIỀM TIN: Không đẹp trai không thể hấp dẫn phụ nữ**
 
 **Thực tế:**
 
@@ -71,7 +71,7 @@ Nhiệm vụ 2: Đọc và loại bỏ
 
 - Hãy thể hiện tiềm lực và mục tiêu giống chàng hướng đạo sinh tài ba. Hãy cùng nhau gọt giũa hình ảnh để tăng cường mục tiêu của anh.
 
-**5. RÀO CẢN NIỀM TIN: Nàng chỉ có một**
+### **5. RÀO CẢN NIỀM TIN: Nàng chỉ có một**
 
 **Thực tế:**
 
@@ -81,13 +81,13 @@ Nhiệm vụ 2: Đọc và loại bỏ
 
 - Hãy ra đường và gặp gỡ các cô gái khác => nhận ra ngoài kia còn rất nhiều người hợp với mình – và có khả  năng thấu hiểu, trân trọng giá trị và đáp lại tình cảm của anh. 
 
-**6. RÀO CẢN NIỀM TIN: Một số người sinh ra đã có sức hấp dẫn với người khác phái, một số khác không có quà tặng trời cho đó và học được thì càng không.**
+### **6. RÀO CẢN NIỀM TIN: Một số người sinh ra đã có sức hấp dẫn với người khác phái, một số khác không có quà tặng trời cho đó và học được thì càng không.**
 
 **Thực tế:**
 
 May mắn làm sao, chúng ta còn một số khác nữa: những người có thể học để trở nên hấp dẫn.
 
-**7. RÀO CẢN NIỀM TIN: Cứ là chính mình rồi sẽ có người phù hợp đến với mình thôi.**
+### **7. RÀO CẢN NIỀM TIN: Cứ là chính mình rồi sẽ có người phù hợp đến với mình thôi.**
 
 **Thực tế:**
 
@@ -99,7 +99,7 @@ Cuộc sống thực của chúng ta ẩn sau cả những gì ta che giấu và
 
 Vì thế, thay vì chỉ thể hiện mình, anh hãy tập trung vào việc khám phá và luôn mang tới những điều tốt nhất mình có thể làm cho thế giới xung quanh.
 
-**8. RÀO CẢN NIỀM TIN: Để biết phụ nữ muốn gì, hãy trực tiếp hỏi họ.**
+### **8. RÀO CẢN NIỀM TIN: Để biết phụ nữ muốn gì, hãy trực tiếp hỏi họ.**
 
 **Thực tế:**
 
@@ -107,7 +107,7 @@ Cái phụ nữ muốn không phải lúc nào cũng là thứ họ cần. Hơn 
 
 Người ta đã đúc kết rằng, vẫn còn nhiều ẩn ý ngay cả khi người phụ nữ chỉ cho anh cách cưa cẩm nàng. 
 
-**9. RÀO CẢN NIỀM TIN: Nếu tôi tiếp cận một cô gái, nàng sẽ nghĩ rằng tôi đang mê mệt nàng và coi thường tôi.**
+### **9. RÀO CẢN NIỀM TIN: Nếu tôi tiếp cận một cô gái, nàng sẽ nghĩ rằng tôi đang mê mệt nàng và coi thường tôi.**
 
 **Thực tế:**
 
