@@ -1105,8 +1105,271 @@ print("Total MST Weight:", mst_weight)
 </details>
 </details>
 
-<h2>3.3. Array</h2>
+<details>
+<summary><h2>3.3. Array</h2></summary>
 
+<h3>Binary Search</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+# Example Feasible Function
+def feasible(mid: int, arr: List[int], target: int) -> bool:
+    # Check if the element at 'mid' is greater than or equal to 'target'
+    return arr[mid] >= target
+
+# Binary Search with Feasible Function
+def binary_search(arr: List[int], target: int) -> int:
+    left, right = 0, len(arr) - 1
+    first_true_index = -1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        # Use the feasible function to check the current index
+        if feasible(mid, arr, target):
+            first_true_index = mid
+            right = mid - 1  # Look for an earlier index where feasible is true
+        else:
+            left = mid + 1  # Look for a larger element in the right half
+    
+    return first_true_index
+
+
+arr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+target = 8
+
+result = binary_search(arr, target)
+
+if result != -1:
+    print(f"The first index where the value is greater than or equal to {target} is {result}")
+else:
+    print(f"No value greater than or equal to {target} found")
+
+</code>
+</pre>
+</details>
+
+<h3>Same Direction</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+def remove_duplicates(arr: List[int]) -> int:
+    slow = 0
+    for fast in range(len(arr)):
+        if arr[fast] != arr[slow]:
+            slow += 1
+            arr[slow] = arr[fast]
+    return slow + 1
+
+if __name__ == "__main__":
+    arr = [int(x) for x in input().split()]
+    res = remove_duplicates(arr)
+    print(" ".join(map(str, arr[:res])))
+</code>
+</pre>
+</details>
+
+<h3>Opposite Direction</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+def two_sum_sorted(arr: List[int], target: int) -> List[int]:
+    l, r = 0, len(arr) - 1
+    while l < r:
+        two_sum = arr[l] + arr[r]
+        if two_sum == target:
+            return [l, r]
+        if two_sum < target:
+            l += 1
+        else:
+            r -= 1
+    return []
+
+if __name__ == "__main__":
+    arr = [int(x) for x in input().split()]
+    target = int(input())
+    res = two_sum_sorted(arr, target)
+    print(" ".join(map(str, res)))
+</code>
+</pre>
+</details>
+
+<h3>Sliding Window (Fixed Size)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+# Example of an optimal function - find maximum in the current window
+def optimal(ans, window) -> int:
+    return max(ans, max(window))
+
+# Sliding Window Function with Fixed Window Size
+def sliding_window_fixed(input: List[int], window_size: int) -> int:
+    # Initialize the window with the first `window_size` elements
+    window = input[:window_size]
+    ans = optimal(float('-inf'), window)  # Set initial answer to the smallest possible number
+    
+    # Start sliding the window
+    for right in range(window_size, len(input)):
+        left = right - window_size
+        # Remove the element at the `left` side of the window
+        window.remove(input[left])
+        # Append the new element at the `right` side of the window
+        window.append(input[right])
+        
+        # Update the answer based on the current window
+        ans = optimal(ans, window)
+    
+    return ans
+
+# Example Usage
+input_list = [1, 3, -1, -3, 5, 3, 6, 7]
+window_size = 3
+
+result = sliding_window_fixed(input_list, window_size)
+print(f"The maximum value in each window is: {result}")
+
+</code>
+</pre>
+</details>
+
+<h3>Sliding Window (Longest Size)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+# Function to check if the window is invalid (contains duplicate characters)
+def invalid(window: List[str]) -> bool:
+    return len(window) != len(set(window))  # If the window has duplicates, it's invalid
+
+# Sliding Window Function to find the Longest Substring Without Repeating Characters
+def sliding_window_flexible_longest(input: str) -> int:
+    # Initialize the sliding window and result variable
+    window = []
+    ans = 0
+    left = 0
+    
+    # Iterate over the string with the 'right' pointer
+    for right in range(len(input)):
+        # Append the current character to the window
+        window.append(input[right])
+        
+        # Shrink the window from the left until it's valid (no duplicates)
+        while invalid(window):
+            window.remove(input[left])  # Remove the leftmost character
+            left += 1  # Move the left pointer to the right
+        
+        # Update the answer with the size of the current valid window
+        ans = max(ans, right - left + 1)
+    
+    return ans
+
+# Example Usage
+input_str = "abcabcbb"
+
+result = sliding_window_flexible_longest(input_str)
+print(f"The length of the longest substring without repeating characters is: {result}")
+
+
+</code>
+</pre>
+</details>
+
+<h3>Sliding Window (Smallest Size)</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+# Function to check if the window sum is greater than or equal to the target
+def valid(window: List[int], target: int) -> bool:
+    return sum(window) >= target
+
+# Sliding Window Function to find the Shortest Subarray with Sum >= target
+def sliding_window_flexible_shortest(input: List[int], target: int) -> int:
+    # Initialize the sliding window, result variable (ans), and left pointer
+    window = []
+    ans = float('inf')  # Start with an infinite answer
+    left = 0
+    
+    # Iterate over the list with the 'right' pointer
+    for right in range(len(input)):
+        # Add the current element to the window
+        window.append(input[right])
+        
+        # While the window is valid (sum >= target), shrink the window from the left
+        while valid(window, target):
+            # Update the answer to the minimum size of the valid window
+            ans = min(ans, right - left + 1)
+            
+            # Remove the element at the left side of the window and move 'left' pointer
+            window.pop(0)
+            left += 1
+    
+    # Return the smallest valid window length, or -1 if no valid window is found
+    return ans if ans != float('inf') else -1
+
+# Example Usage
+input_list = [2, 1, 5, 2, 3, 2]
+target = 7
+
+result = sliding_window_flexible_shortest(input_list, target)
+print(f"The length of the shortest subarray with sum >= {target} is: {result}")
+</code>
+</pre>
+</details>
+
+<h3>Prefix Sum</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import Counter, List
+
+def subarray_sum_total(arr: List[int], target: int) -> int:
+    prefix_sums: Counter[int] = Counter()
+    prefix_sums[0] = 1  # since empty array's sum is 0
+    cur_sum = 0
+    count = 0
+    for val in arr:
+        cur_sum += val
+        complement = cur_sum - target
+        if complement in prefix_sums:
+            count += prefix_sums[complement]
+        prefix_sums[cur_sum] += 1
+    return count
+
+if __name__ == "__main__":
+    arr = [int(x) for x in input().split()]
+    target = int(input())
+    res = subarray_sum_total(arr, target)
+    print(res)
+</code>
+</pre>
+</details>
+
+</details>
 <h2>3.4. Heap</h2>
 
 <h2>3.5. Backtracking</h2>
