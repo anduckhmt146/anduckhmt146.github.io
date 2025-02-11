@@ -1370,8 +1370,346 @@ if __name__ == "__main__":
 </details>
 
 </details>
-<h2>3.4. Heap</h2>
 
-<h2>3.5. Backtracking</h2>
+<details>
+<summary><h2>3.4. Stack</h2></summary>
+
+<h3>Mono Stack</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+def mono_stack(insert_entries):
+    stack = []
+    result = []  # This will store the next greater elements
+    for entry in insert_entries:
+        # Pop elements from the stack that are less than or equal to the current element
+        while stack and stack[-1] <= entry:
+            stack.pop()
+        if stack:
+            result.append(stack[-1])  # The top of the stack is the next greater element
+        else:
+            result.append(None)  # No greater element exists
+        stack.append(entry)  # Push the current entry onto the stack
+    return result
+
+# Example usage
+entries = [4, 5, 2, 10, 8]
+next_greater = mono_stack(entries)
+print(next_greater)
+
+# Output: [None, 4, None, 2, 2]
+</code>
+</pre>
+</details>
+</details>
+
+
+<details>
+<summary><h2>3.5. Heap</h2></summary>
+
+<h3>Top K</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from heapq import heappop, heappush
+from typing import List, Tuple
+
+def k_closest_points(points: List[List[int]], k: int) -> List[List[int]]:
+    def dist(point: List[int]) -> int:
+        return -(point[0] ** 2 + point[1] ** 2)  # "-" for max heap
+
+    max_heap: List[Tuple[int, List[int]]] = []
+    for i in range(k):
+        pt = points[i]
+        heappush(max_heap, (dist(pt), pt))
+
+    for i in range(k, len(points)):
+        pt = points[i]
+        if dist(pt) > max_heap[0][0]:
+            heappop(max_heap)
+            heappush(max_heap, (dist(pt), pt))
+
+    res = []
+    while len(max_heap) > 0:
+        _, pt = heappop(max_heap)
+        res.append(pt)
+    res.reverse()
+    return res
+
+if __name__ == "__main__":
+    # Fixed input example
+    points = [
+        [1, 3],  # Point (1, 3)
+        [-2, 2], # Point (-2, 2)
+        [5, 8],  # Point (5, 8)
+        [0, 1],  # Point (0, 1)
+        [-1, -1] # Point (-1, -1)
+    ]
+    k = 3  # We need to find the 3 closest points to the origin
+
+    # Get the closest k points
+    res = k_closest_points(points, k)
+
+    # Output the result
+    for row in res:
+        print(" ".join(map(str, row)))
+
+</code>
+</pre>
+</details>
+
+<h3>Two Heaps</h3>
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from heapq import heappop, heappush
+
+class MedianOfStream:
+    def __init__(self):
+        self.max_heap = []
+        self.min_heap = []
+
+    def add_number(self, num: float) -> None:
+        if len(self.min_heap) == 0 or num < self.min_heap[0]:
+            heappush(self.max_heap, -num)
+        else:
+            heappush(self.min_heap, num)
+        self._balance()
+
+    def get_median(self) -> float:
+        if len(self.max_heap) == len(self.min_heap):
+            return (-self.max_heap[0] + self.min_heap[0]) / 2
+        return -self.max_heap[0]
+
+    def _balance(self) -> None:
+        if len(self.max_heap) < len(self.min_heap):
+            val = heappop(self.min_heap)
+            heappush(self.max_heap, -val)
+        if len(self.max_heap) > len(self.min_heap) + 1:
+            val = heappop(self.max_heap)
+            heappush(self.min_heap, -val)
+
+if __name__ == "__main__":
+    median_of_stream = MedianOfStream()
+    n = int(input())
+    for _ in range(n):
+        line = input().strip()
+        if line == "get":
+            median = median_of_stream.get_median()
+            print(f"{median:.1f}")
+        else:
+            num = float(line)
+            median_of_stream.add_number(num)
+
+</code>
+</pre>
+</details>
+
+</details>
+
+<details>
+<summary><h2>3.6. Backtracking</h2></summary>
+
+<h3>Backtracking (Generate)</h3>
+
+<details>
+<summary>Template</summary>
+
+<pre>
+<code class="python">
+ans = []
+def dfs(start_index, path, [...additional states]):
+    if is_leaf(start_index):
+        ans.append(path[:]) # add a copy of the path to the result
+        return
+    for edge in get_edges(start_index, [...additional states]):
+        # prune if needed
+        if not is_valid(edge):
+            continue
+        path.add(edge)
+        if additional states:
+            update(...additional states)
+        dfs(start_index + len(edge), path, [...additional states])
+        # revert(...additional states) if necessary e.g. permutations
+        path.pop()
+
+</code>
+</pre>
+</details>
+
+<details>
+<summary>Example: Finding All Paths in a Graph with Additional States</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+# Example graph (nodes have weights)
+graph = {
+    0: [1, 2],    # Node 0 has edges to nodes 1 and 2
+    1: [3],       # Node 1 has an edge to node 3
+    2: [3],       # Node 2 has an edge to node 3
+    3: []         # Node 3 is a leaf node (no outgoing edges)
+}
+
+ans = []  # Store the result paths
+
+# Example of node weights for each node
+node_weights = {
+    0: 2,  # Node 0 has weight 2
+    1: 3,  # Node 1 has weight 3
+    2: 1,  # Node 2 has weight 1
+    3: 4   # Node 3 has weight 4
+}
+
+# Additional state: track the sum of the current path
+def is_leaf(start_index: int) -> bool:
+    return len(graph[start_index]) == 0
+
+# Get edges from the current node (outgoing edges)
+def get_edges(start_index: int) -> List[int]:
+    return graph[start_index]
+
+# Check if the edge is valid (pruning condition)
+def is_valid(edge: int, visited: set) -> bool:
+    return edge not in visited  # Valid if the edge has not been visited
+
+# DFS function with additional state (path_sum)
+def dfs(start_index: int, path: List[int], visited: set, path_sum: int, target_sum: int) -> None:
+    # If leaf node and the path sum is valid, add the path to the answer
+    if is_leaf(start_index):
+        if path_sum <= target_sum:  # Prune paths that exceed the target sum
+            ans.append(path[:])  # Add a copy of the path to the result
+        return
+    
+    # Explore all outgoing edges from the current node
+    for edge in get_edges(start_index):
+        # Prune if the edge is not valid (i.e., already visited)
+        if not is_valid(edge, visited):
+            continue
+        
+        # Add the current edge to the path and mark it as visited
+        path.append(edge)
+        visited.add(edge)
+        
+        # Update the path_sum as we add the weight of the current node
+        new_path_sum = path_sum + node_weights[edge]
+        
+        # Recursive DFS call with updated state
+        dfs(edge, path, visited, new_path_sum, target_sum)
+        
+        # Backtrack: Remove the edge from path and unmark it as visited
+        path.pop()
+        visited.remove(edge)
+
+# Example Usage
+start_node = 0  # Starting from node 0
+path = [start_node]  # Initial path with the start node
+visited = {start_node}  # Mark the start node as visited
+path_sum = node_weights[start_node]  # Initialize the path sum with the start node's weight
+target_sum = 7  # We want to find paths with a sum <= 7
+
+# Run DFS to find all valid paths
+dfs(start_node, path, visited, path_sum, target_sum)
+
+# Output the result
+print("All valid paths from start to end (with sum <= 7):", ans)
+</code>
+</pre>
+</details>
+
+
+<h3>Backtracking (Aggregation)</h3>
+
+<details>
+<summary>Template</summary>
+
+<pre>
+<code class="python">
+def dfs(start_index, [...additional states]):
+    if is_leaf(start_index):
+        return 1
+    ans = initial_value
+    for edge in get_edges(start_index, [...additional states]):
+        if additional states: 
+            update([...additional states])
+        ans = aggregate(ans, dfs(start_index + len(edge), [...additional states]))
+        if additional states: 
+            revert([...additional states])
+    return ans
+</code>
+</pre>
+</details>
+
+<details>
+<summary>Example: Finding the Number of Paths to Reach a Leaf Node in a Directed Graph</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+# Example graph (nodes are connected in a directed graph)
+graph = {
+    0: [1, 2],  # Node 0 has edges to nodes 1 and 2
+    1: [3],     # Node 1 has an edge to node 3
+    2: [3],     # Node 2 has an edge to node 3
+    3: []       # Node 3 is a leaf node (no outgoing edges)
+}
+
+# A function to check if the node is a leaf node (no outgoing edges)
+def is_leaf(start_index: int) -> bool:
+    return len(graph[start_index]) == 0
+
+# A function to get edges from the current node (outgoing edges)
+def get_edges(start_index: int) -> List[int]:
+    return graph[start_index]
+
+# A function to aggregate the result (sum of all valid paths)
+def aggregate(ans, result):
+    return ans + result
+
+# DFS function to find the number of paths from start node to leaf nodes
+def dfs(start_index: int, visited: set) -> int:
+    # If the node is a leaf node, return 1 (this is a valid path)
+    if is_leaf(start_index):
+        return 1
+    
+    ans = 0  # Initialize the result to 0 for counting valid paths
+
+    # Explore all outgoing edges (neighbors)
+    for edge in get_edges(start_index):
+        # If the edge leads to a node not visited yet (avoid cycles)
+        if edge not in visited:
+            # Add the edge to visited set (mark as visited)
+            visited.add(edge)
+            
+            # Recursively call DFS to find paths starting from 'edge'
+            ans = aggregate(ans, dfs(edge, visited))
+            
+            # Backtrack: Remove the edge from visited set (revert state)
+            visited.remove(edge)
+    
+    return ans
+
+# Example Usage
+start_node = 0  # Starting from node 0
+visited = {start_node}  # Mark the start node as visited
+
+# Run DFS to find all paths to the leaf nodes
+total_paths = dfs(start_node, visited)
+
+# Output the result
+print("Total number of paths to leaf nodes:", total_paths)
+</code>
+</pre>
+</details>
+
+</details>
 
 </details>
