@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Good boi ain't good'
+title: Good boi ain't good
 date: 2025-02-14
 categories: psychology
 ---
