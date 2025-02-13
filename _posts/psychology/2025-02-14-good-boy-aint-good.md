@@ -7,7 +7,7 @@ categories: psychology
 
 Good boi ain't good :). I mean shy boy, please read this post.
 
-Source : [Good boi ain't good](https://www.facebook.com/share/p/15iqBXNGK1/)
+Source: [Good boi ain't good](https://www.facebook.com/share/p/15iqBXNGK1/)
 
 ## Good boi ain't good - đề xuất chiến lược tìm người yêu cho các homies
 
