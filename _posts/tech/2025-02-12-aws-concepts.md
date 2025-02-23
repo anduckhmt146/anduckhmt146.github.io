@@ -5,6 +5,8 @@ date: 2025-02-12
 categories: tech
 ---
 
+Here is the concepts of AWS that I learned for AWS Certified Cloud Practitioner.
+
 # 1. Cloud Computing
 
 ## The deployment model of the cloud

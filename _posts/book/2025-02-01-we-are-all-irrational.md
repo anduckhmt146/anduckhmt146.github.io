@@ -26,7 +26,7 @@ Do you believe you are rational, rarely being influenced by emotion? 🤔 If you
     }
 </style>
 
-![The Laws of Human Nature ](https://m.media-amazon.com/images/I/61UPuQRgNKL._SY522_.jpg)
+![The Laws of Human Nature](https://m.media-amazon.com/images/I/61UPuQRgNKL._SY522_.jpg)
 
 **Book: The Laws of Human Nature - Robert Greene (INTJ)**
 
@@ -41,7 +41,7 @@ The first rule in understanding rational logic is just a way that you use to pro
 ## 1. Physical Evidence: Evolution of human brain
 
 ![Human Brain](/images/The-School-Of-Life/0_xPUfiJHYQCH-EjSZ.png)
- 
+
 The human brain have 3 main structures during evolution process:
 
 - **Neocortex (Vỏ đại não):** Known as the Rational or Thinking Brain, the neocortex is responsible for higher cognitive functions such as reasoning, problem-solving, and logical thinking. It primarily processes facts and analytical information, answering the "What" questions.

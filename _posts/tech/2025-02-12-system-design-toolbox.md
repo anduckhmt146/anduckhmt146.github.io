@@ -5,7 +5,9 @@ date: 2025-02-12
 categories: tech
 ---
 
-Chapter 5: Technical Toolbox
+Here is something I will note for Technological Toolbox in the book "System Design Fundamentals", but I haven't start :)
+
+![Ảnh](/images/system-design.jpg)
 
 # 1. Back-of-the-Envelope Math
 

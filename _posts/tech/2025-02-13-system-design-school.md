@@ -5,6 +5,8 @@ date: 2025-02-13
 categories: tech
 ---
 
+Here is something I will note for the course in System Design School, but I haven't start :)
+
 # 1. Introduction
 
 ## 1. Basics
