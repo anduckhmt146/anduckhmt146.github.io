@@ -35,7 +35,7 @@ Source: [BookLife - How to stop caring what others think (and free yourself)](ht
 
 - The desire for approval is real, but here's a trick: <b>start seeking approval from yourself</b>. Not others.
 
-- Write down three things you genuinely love about yourself. Each day, remind yourslef of those qualities.
+- Write down three things you genuinely love about yourself. Each day, remind yourself of those qualities.
 
 - Approval becomes way less urgent when it comes from within.
 
