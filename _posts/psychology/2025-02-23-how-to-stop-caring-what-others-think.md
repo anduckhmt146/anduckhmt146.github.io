@@ -65,9 +65,7 @@ Source: [BookLife - How to stop caring what others think (and free yourself)](ht
 
 - **Trying to please everyone will cost you everything: your energy, your authenticity, your happiness,...**
 
-- So, what do you value more ?
-
-- **Living for others or living for yourself ?**
+- So, what do you value more ? **Living for others or living for yourself ?**
 
 ![Ảnh](/images/480568359_122172209462318063_4790110946903090709_n.jpg)
 
