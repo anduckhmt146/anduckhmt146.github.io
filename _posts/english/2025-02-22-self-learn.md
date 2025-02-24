@@ -105,3 +105,11 @@ Ví dụ: “As” có thể có 3 nghĩa/chức năng:
 6. Since (kể từ khi - thời gian), thời gian (nguyên nhân - kết quả).
 
 7. For (nguyên nhân), thời gian (trong khoảng), đối với (đại diện).
+
+# 8. Relative clause
+
+- Có thể bổ nghĩa cho Noun Phrase or Noun.
+
+- Bổ nghĩa cho Noun Phrase thì số ít.
+
+- Bổ nghĩa cho Noun thì số ít hoặc số nhiều.
