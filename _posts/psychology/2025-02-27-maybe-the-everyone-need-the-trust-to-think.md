@@ -7,7 +7,7 @@ categories: psychology
 
 As me, a Ne-dom user, everytime, I overwhelmed by a tons of ideas in my head, overthinking too much about perfection with a lot of ideas and distractions, lost in my head, I can not find the one thing to trust and focus on.
 
-This makes me feel lacking in confidence and causes me to miss out on many moments in life.
+This makes me feel lacking in confidence and causes me to miss out on many moments in life.eg
 
 So the solution I have found is: **"Find a truth and trust it without worrying more. Not right or wrong, just you are happy."**
 
