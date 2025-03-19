@@ -37,13 +37,58 @@ Here is the concepts of AWS that I learned for AWS Certified Cloud Practitioner.
 
 ### Regions
 
+A region is a physical location, contain AZs.
+
+Regions have several characteristics:
+
+- Fully independent and isolated: if one region is impacted, the others will not be.
+
+- Resource and service specific: regions are isolated, and resources aren't automatically replicated across them
+
+Usecases:
+
+- Should set up resources in regions closest to your users.
+
+- Most resources are tied to a specific region.
+
 ### Availability Zones
 
+Availability Zones (Azs) consist of one or more physically separated data centers.
+
+An AZ contains a server you're renting, where you deploy application.
+
+An AZ is associated with a single region
+
+Multi-AZ deployments allow applications to communicate between different Availability Zones within the same region for redundancy and high availability
+
+Characteristics of Azs:
+
+- Physically separated
+- Connected through low-latency links
+- Fault tolerant
+- Allows for high availability
+
 ### Edge locations
+
+Edge locations cache content for fast delivery to your users
+
+Content delivery network CDN and Amazon CloudFront
+
+Notes:
+
+- An edge location is like a mini data center but it's doesn't run your main infrastructure like EC2 instances.
 
 ## 2.2. Compute Services - AWS Technology
 
 ### 1. EC2
+
+EC2 allows you to rent and manage virtual servers in the cloud. AWS virtual servers are called instances.
+
+Comparison:
+
+- Servers are the physical compute hardware running in a data center.
+- EC2 instances are the virtual servers running on these physical servers.
+- Instances are not considered serverless
 
 ### 2. AWS Lambda
 
