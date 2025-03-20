@@ -2,7 +2,7 @@
 layout: post
 title: 'System Design: Toolbox'
 date: 2025-02-12
-categories: tech
+categories: private
 ---
 
 Here is something I will note for Technological Toolbox in the book "System Design Fundamentals", but I haven't start :)

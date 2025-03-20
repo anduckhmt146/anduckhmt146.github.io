@@ -1,0 +1,208 @@
+@startmindmap
+* ZaloPay Project : Overall structure of the ZaloPay ecosystem.
+** Money Transfer & Utilities
+*** Money Transfer
+**** P2P Transfers : Money transfer 1-1 between ZaloPay wallets.
+**** IBFT : Money transfer 1-1 from user's fund to bank.
+**** Li xi by QR : 1-to-n money transfer with festive QR codes.
+**** Personal Receive Money QR : QR code for users to receive money from all banks/wallets.
+**** Split Bill : Create a QR for bill-sharing with multiple payers.
+**** Li xi VNG : Internal tool for mass money transfers on behalf of VNG.
+**** Scan QR : Optimize QR scanning experience for fast transactions.
+*** Non-Payment MiniApps
+**** Utilities : Includes Calendar, Financial Tools, Phat Nguoi.
+**** Entertainment : Includes high-frequency apps like Tarot.
+** Utilities
+*** Telco Services : UI/UX features for telecom services.
+**** Phone Services : Phone card, top-up, data, postpaid, and combo packages.
+**** Telco Incentives & Growth Features : Promotions and growth initiatives for telecom.
+**** Telco Auto Debit : Automatic bill payments for telecom services.
+*** Bill Payments : Supports various types of bill payments.
+**** Electricity, Water, Internet, etc. : Pay essential household bills.
+**** Bill Integration : Connects with ZaloPay, Biller OA, and more.
+**** Bill Incentives & Growth Features : Special promotions for bill payments.
+**** Bill Query & Auto Debit : Query and automate recurring bill payments.
+*** Insurance : Supports insurance payments.
+*** OTA : Supports online travel agency payments.
+**** Flight Booking : Supports flight ticket payments.
+**** Hotel Booking : Supports hotel booking payments.
+**** Train Booking : Supports train ticket payments.
+**** Bus Booking : Supports bus ticket payments.
+**** Attraction Booking : Supports attraction ticket payments.
+*** Movie: Supports movie ticket payments.
+** Merchant Services
+*** Onboarding Mini Apps
+**** Guidance Mini Apps: Introduction services for ride-hailing, e-commerce, etc.
+**** Web-view Mini Apps : Mini-apps developed & maintained by ZaloPay for strategic use cases Donation, Cinema tickets, Travel services.
+**** Web-view Merchant Apps : Entry points for merchants' web-based apps - developed and maintained by merchants, e.g. The Coffee House, Ahamove.
+*** Online Merchants
+**** Agreement Pay : One-time authorization for recurring payments.
+**** Disbursement Solutions : Solutions for mass payouts.
+**** Payment Gateways : Payment method integrated on merchant app/ merchant website that allow the user makes one time payment through a zalopay web payment page (zalopay gateway) with various source of fund (SOF).
+**** ZaloPay on Delivery: Payment method for delivery providers that allows users to make payment via ZaloPay VietQR at point of delivery.
+**** Middle page (App to App/ Web to App) : Payment method integrated on merchant app/ website that the users are redirect to open ZaloPay cashier to finish payment.
+**** Payment Link: Merchant to generate a link that end-user can use to pay with ZLP.
+** Ecosystem Solutions
+*** Online Sales Channel (OSC)
+**** Online ordering solution : Big C, KFC, Jollibee, Ông Bầu, Highlands... & At-table Ordering.
+***** Mua sắm ẩm thực : Ordering for food services.
+***** Đặt bàn : Table booking services (e.g., Phê La, Haidilao...).
+**** Merchant Platform Tools for OSC : Platform (website) for merchants to review transactions and manage assortment/orders for online ordering (OSC, Canteen, Promotion, ZNS).
+*** Zalopay Food
+**** Food ordering hub on Zalopay : Centralized food ordering system.
+*** Canteen
+**** Ordering solution for VNG Campus & University : Services for universities like Chuyên LA, UEL, FPT Cần Thơ.
+*** Merchant Loyalty & Membership
+**** Trung tâm hội viên : Membership center for partner points.
+***** Partners include : The Pizza Company, Bia Craft, Katinat, MMVN, Skyjoy, etc.
+*** Starbucks
+**** Starbucks mini app : Users can top up, manage card & place pick-up orders.
+*** Parking
+**** Thu phí giữ xe : Parking fee management.
+*** ZNS for Merchant
+**** ZNS service for merchants : Centralized service management.
+*** Onelink Solution
+**** Tool to generate & manage Zalopay Onelink : Integration management tool.
+** Offline Merchants
+*** Dynamic QR Payment
+**** QR is generated dynamically based on an acquiring order : QR code with expiration time.
+*** Static QR Payment
+**** QR is generated based on a store/cashier of merchant.
+*** QuickPay
+**** Consumer shows the QR to merchant cashier for payment.
+** Acquiring Core
+*** Refund Core : Management of refund processes.
+*** Order Management : Oversight and management of acquiring orders.
+** Merchant Platform
+*** Merchant onboarding & self-service tools
+**** MC onboarding flow on web.
+**** MC onboarding flow on ZPA.
+**** MC App (Native & mini app).
+**** MC Tool : Tools for merchant management.
+*** Merchant Management & Fee System
+**** MC Profile : KYB, contract management.
+**** MC Configuration : App, smartQR, payment info management.
+**** SoundBox management tool.
+*** Settlement
+**** Active Settlement : ZaloPay settles and transfers funds without confirmation from the merchant.
+**** Passive Settlement : ZaloPay transfers funds based on Merchant statement after reconciliation.
+***** Auto settlement to bank.
+***** Manual settlement.
+***** Settle to MC wallet.
+***** Settle to SME Wallet.
+***** Realtime settlement.
+***** Auto PMR.
+***** Auto AVR.
+*** Internal Operation Tool
+**** MC Admin Tool : Management tool for internal operations.
+** Growth Enablement
+*** Campaign Events : Campaigns requesting UI, product logic design, optional use of "Label", e.g. MegaCampaign : MKT/cross business campaigns.
+*** Promotion Core : Promotion platform or tools for product operation.
+*** Promotion pocket : Visualize user interaction with promotion assets.
+*** Advertising : Advertising inventories implement CRM (future is NBA server).
+*** Loyalty : Loyalty products for customer retention.
+** Payment Core
+*** Cashier : Cashier page/Result Page/Cashier domain.
+*** Asset Exchange : Payment Core version 2, support for asset exchange.
+*** Transaction History : User transaction history management.
+*** Agreement Product : Product agreement management.
+*** User Fee : User fee management.
+*** Bill Payment : Bill payment management.
+** Fund Management
+*** Accounting : Back Office & Accounting Core.
+*** Internal Reconciliation : Internal service reconciliation processes.
+*** Bank Reconciliation : Bank reconciliation services.
+** Financial Services
+*** Investment : Investment product portfolio, including Fixed Deposit, Stock, Fund Certificate, FS Hub, Fixed Income Product (upcoming).
+*** Lending : Integration with multiple partners for Paylater/Installment and Cashloan products.
+** Bank Solutions
+*** Bank Link & Fund Management, Link bank, Unlink bank, Fund management screen.
+*** Top-up : Transfer money from users' bank accounts/cards to their ZaloPay wallet.
+*** Withdraw : Transfer money from users' ZaloPay wallet to their bank accounts/cards.
+*** OAO Partner Integration: Integrate new partners : Connect Zalopay users with partners' financial services (bank account, credit card, cash loan, insurance).
+*** OAO Hub: Centralized financial services : The Hub ("Mở TK có quà") offers exclusive benefits.
+*** Bank Reward Registration: Allow users to register their bank accounts : Unlock exclusive benefits (earn loyalty coins, increase credit score, access to lending products).
+*** Bank Connector: Connect Zalopay with banks/partners for IBFT, payment by bank card/account (wallet/gateway), VietQR, Visa direct.
+** User Management
+*** User Lifecycle
+**** Manage all user lifecycle flows, including:
+***** Login and registration in ZPA & ZPI.
+***** Binding of Zalo and ZaloPay accounts.
+***** Session management to maintain user login.
+***** Collecting user information such as deviceID and IP address for risk management.
+***** Related user lifecycle management flows:
+****** Recycling SIMs or Zalo accounts to create new accounts.
+****** PIN management and reset processes.
+*** User Levels
+**** User privileges and limitations policy.
+**** K_level upgrade processes for users.
+**** Profile management, including history of profile level changes.
+*** User Identification
+**** Unique identifiers for users in the database.
+***** Identification from NFC products:
+****** NFC user identification via ID card, bank documents, VneID, or offline methods.
+****** Adjustments to NFC data.
+****** Multi-source identification using NFC and KYC data.
+***** Identification from KYC products:
+****** KYC user verification in ZPA & ZPI.
+****** Processes for adjusting, resetting, upgrading, or downgrading KYC levels.
+****** Identifying users with multiple Zalopay accounts.
+****** KYC procedures for foreign users.
+*** User Profile Changes
+**** Locking or unlocking user accounts.
+**** Changing phone numbers.
+**** Changing or resetting PINs.
+**** Resetting user profiles.
+**** Verification of PIN/Bio before accessing the ZPA home page.
+**** Security measures including spam OTP detection and alerts for new device logins.
+*** User Authentication
+**** Framework for managing user authentication methods and dynamic challenges, including:
+***** Authentication factors such as:
+****** Face authentication.
+****** Knowledge-Based Authentication (KBA) with full card details.
+****** Device management for trusted devices.
+***** Remaining authentication factors:
+****** PIN verification.
+****** Biometric verification.
+****** OTP/Smart OTP verification.
+****** "ZaloPay Owner Verification" flow to identify wallet owners and automate customer support workflows.
+*** Liquidation Account
+**** Management of liquidation balances.
+**** Processes for closing ZaloPay accounts.
+** Message Service
+*** Notification Service
+**** Framework for notifications within the app.
+**** Tracking and management of notifications.
+*** ZMS Service
+**** ZMS framework integration in ZPI.
+**** Tracking of ZMS services.
+*** SMS Service
+**** Management of SMS templates.
+**** Cost reduction strategies for SMS services.
+*** Monitor Message Service
+**** Centralized management of pushing rules for all services.
+** Customer Experience
+*** CXM (Customer Experience Management - CSTool V3): Tool for customer service (CS) to look up information and handle customer requests related to:
+**** Accounts.
+**** Transactions.
+**** Promotions.
+**** Other inquiries.
+*** Help Center
+**** FAQ: Provides information on frequently asked questions or concerns.
+**** Submit Ticket: A channel for customers to send requests to the CS team.
+**** Call Center: ZaloPay hotline at 1900545436 for customer support.
+** Mini App Platform
+*** Home: ZPI and ZPA home management.
+*** Design system
+*** A/B Testing Platform 
+*** Mini App Platform
+*** Website / Landing page 
+*** Mini App SDK
+*** Application Version Screen
+** Infrastructure Platform
+*** CI/CD
+*** Monitoring
+*** Logging
+*** Security
+*** Data Platform
+@endmindmap

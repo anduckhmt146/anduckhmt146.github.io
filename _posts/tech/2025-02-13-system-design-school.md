@@ -2,7 +2,7 @@
 layout: post
 title: 'System Design School'
 date: 2025-02-13
-categories: tech
+categories: private
 ---
 
 Here is something I will note for the course in System Design School, but I haven't start :)
