@@ -266,7 +266,7 @@ You are charged based on the duration and number of requests
 
 ### 3. AWS Fargate
 
-Fargate is a serverless compute engine for containers
+Fargate is a serverless compute engine for containers.
 
 Fargate allows you to manage containers, like Docker
 
