@@ -308,13 +308,181 @@ Dynamically provisions instances based on volume
 
 ## 3. Storage Services - AWS Technology
 
+- Used for access not query.
+
 ### 1. S3
+
+S3 is an object storage service for the cloud that is highly available
+
+- Objects (or files) are stored in buckets (or directories)
+
+- Essentially unlimited storage that can hold millions of objects per bucket
+
+- Objects can be public or private
+
+You can upload objects via the console, the CLI, programmatically from within code using SDKs
+
+You can set security at the bucket level or individual object level using access control lists (ACLs), bucket policies, or access point policies
+
+You can enable versioning to create multiple versions of your file in order to protect against accidental deletion and to use a previous version
+
+You can use S3 access logs to track the access to your buckets and objects
+
+S3 is a regional service, but bucket names must be globally unique
+
+S3 is a regional service but has a global namespace
+
+**Data accessibility**
+
+- Durability: make sure your objects are never lost or compromised
+
+- Availability: you can access your data quickly when you need it
+
+**S3 Storage Classes**
+
+Amazon S3 offers several storage classes designed for different use case:
+
+- S3 Standard: General purpose storage class, suitable for frequently accessed data.
+
+- S3 Intelligent-Tiering: Automatically moves data between two access tiers when access patterns change, optimizing costs without performance impact.
+
+- S3 Standard -(/) Infrequent Access (IA): Suitable for data that is accessed less frequently, but requires rapid access when needed. It offers lower storage costs compared to S3 Standard, but with a retrieval fee.
+
+- S3 One Zone -(/) Infrequent Access (IA): A low-cost storage option for infrequently accessed data that is stored in a single availability zone. Suitable for data that can be easily recreated if the availability zone is lost.
+
+- S3 Glacier: Low-cost storage service for data archiving and long-term backup. Suitable for data that is infrequently accessed and requires retrieval times ranging from minutes to hours.
+
+- S3 Glacier Deep Archive: Lowest-cost storage class for long-term data archiving that is rarely accessed. Retrieval times can range from 12 hours to 48 hours.
+
+- S3 Outposts: Extends S3 to on-premises environments, allowing you to store and retrieve data locally while still using the same S3 APIs and features.
+
+**When to use object storage when to use cdn ?**
+
+Use Object Storage When:
+
+1. Storing Large or Static Files
+
+Suitable for images, videos, logs, backups, database snapshots, and unstructured data.
+
+Example: AWS S3, Google Cloud Storage, MinIO.
+
+2. Files Need to Be Accessed Dynamically via API
+
+If your application dynamically retrieves or modifies objects, object storage is ideal.
+
+Example: Storing user-generated content (profile pictures, documents).
+
+Use a CDN When:
+
+1. You Need Fast Content Delivery to Users Worldwide
+
+CDNs cache content in multiple locations globally, reducing latency.
+
+Example: Cloudflare, AWS CloudFront, Akamai.
+
+2. Your Application Has High-Traffic Static Content
+
+Websites serving images, CSS, JS files, videos, or APIs benefit from caching.
+
+Example: Hosting static assets like JavaScript bundles for a React app.
+
+3. You Want to Reduce Load on Your Backend & Storage
+
+CDN offloads requests from the origin server, improving performance.
+
+Example: Instead of fetching images from S3 every time, serve cached copies from CDN nodes.
+
+**S3 in the real world**
+
+- Static websites: Deploy static websites to S3 and use CloudFront for Global Distribution
+
+- Data archive: Archive data using Amazon Glacier as a storage option for Amazon S3
+
+- Analytics systems: Store data in Amazon S3 for use with analytics services like Redshift and Athena
+
+- Mobile applications: Mobile application users can upload files to an Amazon S3 bucket
 
 ### 2. EC2 Storage
 
+### 2.1 EBS
+
+EBS is a storage device (called a volume) that can be attached to (or removed from) your instance
+
+Data persists when instance is not running
+
+- Can only be attached to one instance in the same availability zone
+
+- Tied to one Availability Zone
+
+Recommended for:
+
+- Quickly accessible data
+
+- Running a database on an instance
+
+- Long-term data storage
+
+### 2.2. EC2 Instance Store
+
+An instance store is local storage that is physically attached to the host computer and cannot be removed
+
+Storage on disks physically attached to an instance
+
+Storage is temporary since data loss occurs when the EC2 instance is stopped
+
+Faster with higher I/O speeds
+
+Recommended for:
+
+- Temporary storage needs
+
+- Data replicated across multiple instances
+
+Ideal for applications that require fast, temporary storage, such as Redis, Memcached, or intermediary processing buffers.
+
+### 2.3. EFS
+
+EFS is a serverless network file system for sharing files
+
+Only support the Linux file system
+
+Accessible across different availability zones in the same region
+
+More expensive than EBS
+
+Recommended for:
+
+- Main directories for business-critical apps
+
+- Lift-and-shift existing enterprise apps
+
+![image.png](/images/efs-s3.png)
+
 ### 3. Storage Gateway
 
+Storage Gateway is a hybrid storage service
+
+Connect on premises and cloud data
+
+Supports a hybrid model
+
+Recommended for:
+
+- Moving backups to the cloud
+
+- Reducing costs for hybrid cloud storage
+
+Low latency access to data
+
+![image.png](/images/storage-gateway.png)
+
 ### 4. AWS Backup
+
+AWS Backup helps you manage data backups across multiple AWS services
+
+Integrates with resources like EC2, EBS, EFS, and more
+
+Create a backup plan that includes frequency and retention
 
 ## 4. Content Delivery Services
 
