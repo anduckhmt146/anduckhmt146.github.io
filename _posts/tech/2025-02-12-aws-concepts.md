@@ -130,7 +130,7 @@ Use on-demand instances when:
 
 You care about low cost without any upfront payment or long-term commitment
 
-Your application has unpredictable workloads that can’t be interrupted
+Your application has unpredictable workloads that can't be interrupted
 
 Your applications are under development
 
@@ -272,7 +272,7 @@ Fargate allows you to manage containers, like Docker
 
 Scales automatically
 
-Serverless, means you don’t worry about provisioning, configuring or scaling servers
+Serverless, means you don't worry about provisioning, configuring or scaling servers
 
 ### 4. AWS Lightsail: Instance Provider (virtual private server (VPS)), like Heroku, Onrender
 
@@ -486,11 +486,59 @@ Create a backup plan that includes frequency and retention
 
 ## 4. Content Delivery Services
 
+Edge locations: mini data centers where files are cache
+
+Distribution cache: Name given to the collection of edge locations
+
+Origin: the original source of the content
+
 ### 1. Amazon CloudFront
+
+CloudFront is a CDN that delivers data and applications globally with low latency
+
+- Makes content available globally or restrict it based on location
+
+- Speeds up delivery of static and dynamic web content
+
+- Uses edge locations to cache content
+
+CloudFront in the real world:
+
+- S3 static websites: CloudFront is often used with S3 to deploy content globally
+
+- Prevent attacks: CloudFront can stop certain web attacks, like DDoS
+
+- **IP Address Blocking: Geo-restriction prevents users in certain country from accessing content**
+
+**Note: S3 chặn IP theo quốc gia được**
 
 ### 2. Amazon Global Accelerator
 
+- Nhiều người trên toàn thế giới (nhiều quốc gia) cùng access 1 cái => chọn global
+
+Amazon Global Accelerator is a networking service that improves the availability and performance of your applications with global users.
+
+- Provides static IP addresses that act as a fixed entry point to your application endpoints in AWS
+- Uses the AWS global network to optimize the path to your application, improving performance
+- Automatically reroutes traffic to healthy endpoints in the event of an application failure
+
+Global Accelerator in the real world:
+
+- Gaming: Reduces latency and improves the gaming experience for players around the world
+- IoT: Ensures reliable and fast communication between IoT devices and the cloud
+- Web Applications: Enhances the performance and availability of web applications for global users
+
 ### 3. Amazon S3 Transfer Acceleration
+
+- Nhiều người trên toàn thế giới (nhiều quốc gia) cùng access vào S3 => chọn global S3.
+
+S3 Transfer Acceleration improves content uploads and downloads to and from S3 buckets
+
+- Fast transfer of files over long distances
+
+- Uses CloudFront's globally distributed edge locations
+
+- Customers around the world can upload to a central bucket
 
 ## 5. Networking Services
 
