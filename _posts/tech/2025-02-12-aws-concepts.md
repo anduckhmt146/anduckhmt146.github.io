@@ -544,39 +544,273 @@ S3 Transfer Acceleration improves content uploads and downloads to and from S3 b
 
 ### 1. Amazon Virtual Private Cloud (VPC)
 
+VPC is a foundational service that allows you to create a secure private network in the AWS cloud where you launch your resources
+
+Private virtual network
+
+- Launch resources like EC2 instances inside the VPC
+
+- Isolate and protect resources
+
+- A VPC spans Availability Zones in a region
+
+Term:
+
+**NACL (network access control list):** Access control lists (ACLs) ensure the proper traffic is allowed into the subnet.
+
+**Internet Gateway:** allows public traffic to the internet like a VPC
+
+**VPC Peering:** allows you to connect 2 VPCs together. Peering facilitates the transfer of data in a secure manner
+
 ### 2. Amazon Route 53
+
+Request đi qua DNS trước => mới vào service.
+
+**Route 53 is a Domain Name Service that routes users to applications**
+
+- Domain name registration
+
+- Performs health checks on AWS resources
+
+- Support hybrid cloud architecture
+
+- DDoS attack protection
 
 ### 3. AWS Direct Connect
 
+VPC là các service internet gọi nhau, direct connect là từ on-premises hay server local lên AWS.
+
+AWS Direct Connect is a networking service that provides an alternative to using the internet to connect to AWS. Using AWS Direct Connect, data that would have previously been transported over the internet is delivered through a private network connection between your facilities and AWS.
+
+Direct Connect is a dedicated physical network connection from your on-premises data center to AWS
+
+In real world:
+
+- Large datasets: Transfer large datasets to AWS
+
+- Business-critical data: Transfer internal data directly to AWS, bypassing your internet service provider
+
+- Hybrid model: Build hybrid environment
+
 ### 4. AWS VPN
 
+Giống y chang AWS Direct Connect -> nhưng đi qua đường Internet.
+
+Site-to-Site VPN creates a secure connection between your internal networks and your AWS VPCs
+
+- Similar to Direct Connect, but data travels over the public internet
+
+Data is automatically encrypted
+
+- Connects your on-premises data center to AWS
+
+- Supports a hybrid environment
+
+In real world:
+
+- A Site-to-Site VPN makes moving application to the cloud easier-
+
 ### 5. API Gateway
+
+API Gateway allows you to build and manage APIs
+
+- Share data between systems
+
+- Integrate with services like Lambda
 
 ## 6. Databases
 
 ### 1. Amazon Relational Database Service (RDS)
 
+RDS is a service that makes it easy to launch and manage relational databases
+
+- Supports popular database engines
+
+- Offers high availability and fault tolerance using Multi-AZ deployment option
+
+AWS manages the database with automatic software patching, automated backups, operating system maintenance, and more.
+
+Launch read replicas across multiple regions in order to provide enhanced performance and durability
+
 ### 2. Amazon Aurora
 
-### 3. DynamoDB
+Giống RDS nhưng mà AWS nó optimized hơn.
 
-### 4. Amazon DocumentDB
+- Aurora is a relational database compatible with MySQL and PostgreSQL that was created by AWS
 
-### 5. Amazon ElastiCache
+Supports MySQL and PostgreSQL databases engines
 
-### 6. Amazon Neptune
+- 5x faster than normal MySQL and 3x faster than normal PostgreSQL
+
+- Scales automatically while providing durability and high availability
+
+- Managed by RDS
+
+### 3. DynamoDB: Key-value
+
+DynamoDB is a fully managed NoSQL key-value and document database
+
+- NoSQL key-value database
+
+- Fully managed and serverless
+
+- Non-relational
+
+Scales automatically to massive workloads with fast performance
+
+### 4. Amazon DocumentDB: Document
+
+DocumentDB is a fully managed document database that supports MongoDB
+
+Document Database
+
+- MongoDB compatible
+
+- Fully managed and serverless
+
+- Non-relational
+
+### 5. Amazon ElastiCache: Redis & Memcache
+
+ElastiCache is a fully managed in-memory datastore compatible with Redis or Memcached
+
+In-memory datastore
+
+- Compatible with Redis or Memcached engines
+
+- Data can be lost
+
+- Offers high performance and low-latency
+
+### 6. Amazon Neptune: GraphDB
+
+Neptune is a fully managed graph database that supports highly connected datasets
+
+- Graph database service
+
+- Supports highly connected datasets like social media networks
+
+- Fully managed and serverless
+
+- Fast and reliable
 
 ### 7. Databases in real world
+
+- Database to the cloud -> use RDS
+
+- Migrate an on-premises PostgreSQL database to the cloud -> RDS and Aurora
+
+- Alleviate database load for data that is accessed often -> ElastiCache
+
+- Process large sets of user profiles and social interactions -> Neptune
+
+- NoSQL database fast enough to handle millions of requests per second -> DynamoDB
+
+- Operate MongoDB workload at scale -> DocumentDB
+
+Note:
+
+- RDS is only for relational databases. Don't forget the supported database engines: Amazon Aurora, PostgreSQL, MySQL, MariaDB, Oracle database and SQL Server
+
+- Aurora: Don't forget Aurora only supports PostgreSQL and MySQL
+
+- DynamoDB: Don't forget DynamoDB is a NoSQL database
+
+- Neptune: Don't forget Neptune helps you to create social media graphs
+
+- ElastiCache: ElastiCache is a in-memory datastore
+
+- DocumentDB: Don't forget DocumentDB supports MongoDB
 
 ## 7. Migration and Transfer Services
 
 ### 1. Database Migration Service (DMS)
 
+DMS helps you to migrate database to or within AWS
+
+- Migrate on-premises databases to AWS
+
+- Provide continuous data replication
+
+- Support homogeneous and heterogeneous migrations
+
+- Virtually no downtime
+
+DMS in the real world:
+
+- Oracle to Aurora MySQL
+
+- Oracle to Oracle
+
+- RDS Oracle to Aurora MySQL
+
 ### 2. Server Migration Service (SMS)
+
+SMS allows you to migrate on-premises servers to AWS
+
+- Migrate on-premises servers to AWS
+
+- Server saved as a new Amazon Machine Image (AMI)
+
+- Use AMI to launch servers as EC2 instances
 
 ### 3. Snow Family
 
+- Sử dụng để truyền dữ liệu file từ on-premise to cloud (EC2 & S3).
+
+The Snow Family allows you to transfer large amounts of on-premses data to AWS using a physical device
+
+**Snowcone:**
+
+- Smallest member of data transport devices
+
+- 8 terabytes of usable storage
+
+- Offline shipping
+
+- Online with DataSync
+
+**Snowball and Snowball Edge:**
+
+- Peta-byte scale data transport solution
+
+- Transfer data in and out
+
+- Cheaper than internet transfer
+
+- Snowball Edge supports EC2 and Lambda
+
+**Snowmobile**
+
+- Multi-petabyte or exa-byte scale
+
+- Data loaded to S3
+
+- Securely transported
+
 ### 4. DataSync
+
+- Sử dụng để truyền dữ liệu file từ on-premise to cloud (Database).
+
+DataSync allows for online data transfer from on-premises to AWS storage services like S3 or EFS
+
+- Migrates data from on-premises to AWS
+
+- Copy data over Direct Connect or the Internet
+
+- Copy data between AWS storage services
+
+- Replicate data cross-region or cross-account
+
+**Notes:**
+
+- Snowball Edge: Don't forget the services natively supported by snowball edge, like EC2 and Lambda
+
+- Snowmobile: Don't forget Snowmobile is the largest member of the transport family and support exabyte-scale data
+
+- Snowball: Snowball transfers petabytes of data and is cheaper than transferring over the internet
+
+- DataSync: DataSync transfers data online and can be used to replicate data cross-region or cross-account
 
 ## 8. Analytics Service
 
