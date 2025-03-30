@@ -11,25 +11,174 @@ Here is the concepts of AWS that I learned for AWS Certified Cloud Practitioner.
 
 ## The deployment model of the cloud
 
-## Five characteristics of Cloud Computing
+Private cloud:
 
-## Six advantages of Cloud Computing
+- Cloud services used by a single organization, not exposed to the public
+
+- Complete control
+
+- Security for sensitive applications
+
+- Meet specific business needs
+
+Public cloud:
+
+- Cloud resources owned and operated by a third-party cloud service provider delivered over the internet
+
+Hybrid cloud:
+
+- Keep some server on premises and extend some capabilities to the cloud
+
+- Control over sensitive assets in your private infrastructure
+
+- Flexibility and cost-effectiveness of the public cloud
+
+## Five characteristics of Cloud Computing (5 tính chất)
+
+- **On-demand self service:**
+
+  - Users can provision recources and use them without human interaction from the service provider
+
+- **Broad network access**
+
+  - Resources available over the network and can be accessed by diverse client platforms
+
+- **Multi-tenancy and resource pooling**
+
+  - Multiple customers can share the same infrastructure and applications with security and privacy
+
+  - Multiple customers are serviced from the same physical resources
+
+- **Rapid elasticity and scalability**
+
+  - Automatically and quickly acquire and dispose resources when needed
+  - Quickly and easily scale based on demand
+
+- **Measured service**
+
+  - Usage is measured, users pay correctly for what they have used
+
+## Six advantages of Cloud Computing (6 lợi ích)
+
+- **Trade capital/fixed expense (CAPEX) for operational/ variable expense (OPEX):** You pay for what you use instead of making huge upfront investments
+
+  - Pay On-Demand: don't own hardware
+
+  - Reduced total cost of ownership (TCO) & operational expense (OPEX)
+
+- **Benefit from massive economies of scale:** Volumne discounts are passed on to you, which provides pay-as-you-go prices
+
+  - Prices are reduced as AWS is more efficient due to large scale
+
+- **Stop guessing capacity:** Your capacity is matched exactly to your demand
+
+  - Scale based on actual measured usage
+
+- **Increase speed and agility:** They provided services allow you to innovate more quickly and deliver yours applications faster
+
+- **Stop spending money running and maintaining data centers:** Your can focus on building your application instead of managing hardware
+
+- **Go global in minutes:** leverage the AWS global infrastructure. You can deploy your application around the world at the click of a button
 
 ## Problems solved by the Cloud
 
+- **Flexibility:** change resource types when needed
+
+- **Cost-effectiveness:** pay as you go, for what you use
+
+- **Scalability:** accomodate larger loads by makng hardware stronger or adding additional nodes
+
+- **Elasticity:** ability to scale out and scale in when needed
+
+- **High-availability and fault-tolerance:** build accross data centers
+
+- **Agility:** rapidly develop, test and launch software applications
+
 ## Benefits of Cloud Computing
+
+- **High availability:** Highly available systems area designed to operate continuously without failure for a long time. These systems avoid loss of service by reducing or managing failures
+
+- **Elasticity:** With elasticity, you don't have to plan ahead of time how much capacity you need. You can provision only what you need, and then grow and shrink based on demand
+
+- **Agility:** The cloud helps you increase agility. All the services you have access to help you innovate faster, giving you speed to market
+
+- **Durability:** Durability is all about long-term data protection. This means your data will remain intact without corruption
 
 ## CapEx vs OpEx
 
+- **Capital Expenditures (CapEx):** Capital Expenditures are upfront purchases toward fixed assets (equipment, computers, property, software,…).
+
+- **Operating Expenses (OpEx):** Operating Expenses are funds used to run day-to-day operations.
+
 ## Types of cloud computing
+
+**IaaS:**
+
+- Provide building blocks for cloud IT.
+
+- Provide networking, computers, data storage space.
+
+- Highest level of flexibility.
+
+- Easy parallel with traditional on-premises IT.
+
+**PaaS:**
+
+- Removes the need for your organization to manage the underlying infrastructure
+
+- Focus on the deployment and management of your application
+
+**SaaS:**
+
+- Completed product that is run and managed by the service provider
+
+![IaaS, PasS, SaaS](/images/iaas-paas-saas-diagram.png)
 
 ## Pricing of the cloud
 
+- 3 types: **Compute, Storage, Transfer OUT** (transfer IN is free).
+
 ## How to choose an AWS region
+
+- **Compliance with data governance and legal requirements:** data never leaves a region without your explicit permission
+
+- **Proximity to customers:** reduced latency
+
+- **Available services within a region:** new services and new features aren't available in every region
+
+- **Pricing:** pricing varies region to region and is transparent in the service pricing page
 
 ## AWS Availability Zones
 
+- Each region has many availability zones (usually 3, min is 3, max is 6).
+
+- Each availability zone (AZ) has one or more discrete data centers with redundant power, networking, and connectivity.
+
+- They're separate from each other, so they are isolated from disasters.
+
+- They're connected with high-bandwidth, ultra-low latency networking.
+
 ## Tour of the AWS console (Global Scope, Local Scope)
+
+AWS has Global Services (4 servies: IAM, CDN, DNS, WAF)
+
+- Identity and Access Management (IAM)
+
+- Route 53 (DNS Service)
+
+- CloudFront (Content Delivery Network)
+
+- WAF (Web Application Firewall)
+
+Most AWS services are region-scoped
+
+- Amazon EC2 (Infrastructure as a Service)
+
+- Elastic Beanstalk (Platform as a Service)
+
+- Lambda (Function as a Service)
+
+- Rekognition (Software as a Service)
 
 # 2. Technology
 
