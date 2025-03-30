@@ -1159,13 +1159,51 @@ In real world, OpsWorks allows you to define software installation scripts and a
 
 ## 12. Messaging and Integration Service
 
+Loose coupling: Coupling defines the inter-dependencies or connections between components of a system, loose coupling helps reduce the risk of cascading failures between components.
+
 ### 1. Simple Queue Service (SQS)
+
+SQS is a queuing service that allows you to build loosely coupled systems
+
+- Allows component-to-component communication using messages
+
+- Multiple components (or producers) can add messages to the queue
+
+- Messages are processed in an asynchronous manner
+
+In real world: Build a money transfer app that performs well under heavy load -> SQS lets you build an application that is loosely coupled, allows components to send, store and receive messages. The use of a messaging queue helps to improve performance and scalability.
 
 ### 2. Simple Notification Service (SNS)
 
+SNS allows you to send emails and text messages in your applications
+
+- Send email and text messages
+
+- Publish messages to a topic
+
+- Subscribers receive messages
+
+In real world: Send an email when CPU utilization of an EC2 instance goes above 80% -> SNS works with CloudWatch when an alarm's metric threshold is breached to send an email
+
 ### 3. Simple Email Service (SES)
 
+SES is an email service that allows you to send richly formatted HTML emails from your applications
+
+- Ideal choice for marketing campaigns or professional emails
+
+- Unlike SNS, SES sends HTML emails
+
+In real world: Send a marketing email and track open or click-through rates -> SES allows you to send richly formatted HTML emails in bulk and gain valuable insights about the effectiveness of your campaign
+
 ### 4. Messaging in real world
+
+- Messages in queue are processed in FIFO order
+
+- Message queues support loose coupling
+
+- SNS sends text messages and plain text emails
+
+- SES sends HTML-formatted emails for marketing campaigns
 
 ## 13. Auditing, Monitoring, and Logging Services
 
