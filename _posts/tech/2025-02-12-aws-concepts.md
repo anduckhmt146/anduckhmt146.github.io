@@ -816,33 +816,179 @@ DataSync allows for online data transfer from on-premises to AWS storage service
 
 ### 1. Amazon Redshift
 
+Redshift is a scalable data warehouse solution
+
+- Data warehousing solution
+
+- Improves speed and efficiency
+
+- Handle exabyte-scale data
+
+Redshift in the real world
+
+- Data consolidation: When you need to consolidate multiple data sources for reporting
+
+- Relational databases: When you want to run a database that doesn't require real-time transaction processing (insert, update and delete)
+
 ### 2. Athena
+
+Dùng để query S3.
+
+Athena is a query service for Amazon S3
+
+- Query service
+
+- Analyze S3 data using SQL
+
+- Pay per query
+
+- Considered serverless
 
 ### 3. Glue
 
+Dùng để làm ETL.
+
+Glue prepares your data for analytics
+
+- Extract, transform, load (ETL) service
+
+- Prepare and load data
+
+- Helps to better understand data
+
 ### 4. Kinesis
+
+Dùng để streaming log.
+
+Kinesis allows you to analyze data and video streams in real time
+
+- Analyze real-time, streaming data
+
+- Supports video, audio, application logs, website clickstreams and IoT
 
 ### 5. Elastic MapReduce
 
+Dùng để tính toán song song data trên nhiều node.
+
+EMR helps you process large amounts of data
+
+- Process big data
+
+- Analyze data using Hadoop
+
+- Works with big data frameworks
+
 ### 6. Data Pipeline
+
+Dùng để thiết kế dòng chảy data từ hệ thống này sang hệ thống khác.
+
+Data Pipeline helps you move data between compute and storage services running either on AWS or on-premises
+
+- Move data at specific intervals
+
+- Move data based on conditions
+
+- Send notifications on success failure
 
 ### 7. QuickSight
 
+Dùng để visualize data nhanh.
+
+QuickSight helps you visualize your data
+
+- Build interactive dashboards
+
+- Embed dashboards in your applications
+
 ### 8. Analytics in real world
+
+- Search data in S3: Athena helps you query historical data stored in S3 as if they were relational data using standard SQL
+
+- Log analytics: Kinesis helps you analyze logs in near real time for application monitoring or fraud detection
 
 ## 9. Machine Learning Services
 
 ### 1. Rekognition
 
+Object detection cho ảnh và video.
+
+Rekognition allows you to automate your image and video analysis
+
+- Image and video analysis
+
+- Identify custom labels in images and videos
+
+- Face and text detection in images and videos
+
+![AWS SageMaker](/images/rekognition.png)
+
 ### 2. Comprehend
 
-### 3. Polly
+Tìm relationship in text.
+
+Comprehend is a natural language processing (NLP) service that finds relationships in text
+
+- Natural-language processing (NLP) service
+
+- Uncover insights and relationships
+
+- Analyzes text
+
+![AWS Polly](/images/detect.png)
+
+### 3. Polly: con vẹt
+
+Chuyển text into speech, có thể điều chỉnh khoảng thời gian, giọng điệu này kia luôn.
+
+Polly turns text into speech
+
+- Mimics natural-sounding human speech
+
+- Several voices across many languages
+
+- Can create a custom voice
+
+![AWS Polly](/images/polly.png)
 
 ### 4. SageMaker
 
+- Hỗ trợ Jupiter Notebook, connect đến data source như S3, database, dùng để build, train và deploy model.
+
+SageMaker helps you build, train and deploy machine learning models quickly
+
+- Prepare data for models
+
+- Train and deploy models
+
+- Provide deep learning AMIs
+
+![AWS SageMaker](/images/sage-maker.png)
+
 ### 5. Translate
 
+Translate provides language translation
+
+- Provide real-time and batch language translation
+
+- Supports many languages
+
+- Translate many content formats
+
+![AWS Translate](/images/translate.png)
+
 ### 6. Lex
+
+- Dùng để build chatbot.
+
+Lex helps you build conversational interfaces like chatbots
+
+- Recognizes speech and understands language
+
+- Build highly engaging chatbot
+
+- Power Amazon Alexa
+
+![Lex](/images/lex.png)
 
 ## 10. Machine Learning Services
 
