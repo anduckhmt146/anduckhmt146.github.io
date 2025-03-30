@@ -23,13 +23,13 @@ Sometimes, I feel a sense of some issues when communicate with other people.
 
 But how to deal with it ?
 
-- Observe: Focus what she like, she share.
+- Observe: Focus what other like, other willing to share.
 
-- Listen: Listen and talk about the topic she share.
+- Listen: Listen and talk about the topic they share.
 
-- Open question: Dive deep more questions to encourage her to talk more.
+- Open question: Dive deep more questions to encourage they to talk more.
 
-- Learning about her topics: music, film,...
+- Learning about their topics: music, film,...
 
 Objective
 

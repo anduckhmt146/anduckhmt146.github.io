@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Emotional Wheel: How to call your emotion
-date: 2025-03-16
+date: 2025-03-31
 categories: psychology
 ---
 
