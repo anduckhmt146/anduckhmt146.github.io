@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'AWS Concepts'
-date: 2025-02-12
+date: 2025-03-30
 categories: tech
 ---
 
@@ -128,15 +128,15 @@ A fixed price in which you are billed down to the second based on the instance t
 
 Use on-demand instances when:
 
-You care about low cost without any upfront payment or long-term commitment
+- You care about low cost without any upfront payment or long-term commitment
 
-Your application has unpredictable workloads that can't be interrupted
+- Your application has unpredictable workloads that can't be interrupted
 
-Your applications are under development
+- Your applications are under development
 
-Your workloads will not run longer than a year
+- Your workloads will not run longer than a year
 
-You can reserve capacity using on-demand capacity reservations. The EC2 capacity is held for you whether or not you run the instance
+- You can reserve capacity using on-demand capacity reservations. The EC2 capacity is held for you whether or not you run the instance
 
 #### Spot:
 
@@ -144,15 +144,15 @@ Spot instances let you take advantage of unused EC2 capacity. Your request is fu
 
 Use spot instances when:
 
-You are not concerned about the start or stop time of your application
+- You are not concerned about the start or stop time of your application
 
-Your workloads can be interrupted
+- Your workloads can be interrupted
 
-Your application is only feasible at a very low compute prices
+- Your application is only feasible at a very low compute prices
 
-You can save up to 90% off On-Demand prices
+- You can save up to 90% off On-Demand prices
 
-You pay the spot price that's in effect at the beginning of each hour
+- You pay the spot price that's in effect at the beginning of each hour
 
 #### Reserved Instances (RIs):
 
@@ -160,19 +160,16 @@ RIs allows you to commit to a specific instance type in a particular region for 
 
 Use Reserved Instances when:
 
-Your application has steady state usage, and you can commit to 1 or 3 years
+- Your application has steady state usage, and you can commit to 1 or 3 years
+- You can pay money upfront in order to receive a discount for On-Demand prices
+- Your application requires a capacity reservation
+- You can save up to 75% off On-Demand prices
 
-You can pay money upfront in order to receive a discount for On-Demand prices
+- You are required to sign a contract
 
-Your application requires a capacity reservation
+- You can reserve capacity in an Availability Zone for any duration
 
-You can save up to 75% off On-Demand prices
-
-You are required to sign a contract
-
-You can reserve capacity in an Availability Zone for any duration
-
-You can pay All Upfront, Partial Upfront or No Upfront. All Upfront for the max term earns the highest discount
+- You can pay All Upfront, Partial Upfront or No Upfront. All Upfront for the max term earns the highest discount
 
 Provide convertible types at 54% discount
 
@@ -182,15 +179,15 @@ Dedicated hosts allow you to pay for a physical server that is fully dedicated t
 
 Use dedicated hosts when:
 
-Your want to bring your own server-bound software license from vendors like Microsoft or Oracle
+- Your want to bring your own server-bound software license from vendors like Microsoft or Oracle
 
-You have regulatory or corporate compliance requirements around tenancy model
+- You have regulatory or corporate compliance requirements around tenancy model
 
-You can save up to 70% off on-demand prices
+- You can save up to 70% off on-demand prices
 
-You bring your existing per-socket, per-core or per-VM software licenses
+- You bring your existing per-socket, per-core or per-VM software licenses
 
-There's no multi-tenancy, meaning the server is not shared with other customers
+- There's no multi-tenancy, meaning the server is not shared with other customers
 
 A dedicated host is a physical server, whereas a dedicated instance runs on the host
 
@@ -200,13 +197,13 @@ Savings plan allows you to commit to compute usage (measured per hour) for 1 or 
 
 Use savings plan when:
 
-You want to lower your bill across multiple compute services
+- You want to lower your bill across multiple compute services
 
-You want the flexibility to change compute services, instances types, operating systems, or regions
+- You want the flexibility to change compute services, instances types, operating systems, or regions
 
-You can save up to 72% On-demand prices
+- You can save up to 72% On-demand prices
 
-You are not making a commitment to dedicated host, just compute usage
+- You are not making a commitment to dedicated host, just compute usage
 
 Savings can be shared across various compute services like EC2, Fargate and Lambda
 
@@ -216,13 +213,13 @@ This does not provide a capacity reservation
 
 EC2 instances offer load balancing and auto-scaling
 
-Load balancing: Elastic load balancing automatically distributes your incoming application traffic across multiple EC2 instances
+- Load balancing: Elastic load balancing automatically distributes your incoming application traffic across multiple EC2 instances
 
-EC2 auto scaling adds or replaces EC2 instances automatically across AZs, based on need and changing demand. Reduce the impact of system failures and improve the availability of your applications
+- EC2 auto scaling adds or replaces EC2 instances automatically across AZs, based on need and changing demand. Reduce the impact of system failures and improve the availability of your applications
 
-Horizontal scaling (scaling out): adding or removing servers/instances
+- Horizontal scaling (scaling out): adding or removing servers/instances
 
-Vertical scaling (scaling up): upgrades an EC2 instance by adding more power (CPU, RAM) to an existing server
+- Vertical scaling (scaling up): upgrades an EC2 instance by adding more power (CPU, RAM) to an existing server
 
 ### 2. AWS Lambda
 
@@ -230,11 +227,11 @@ Lambda is a serverless compute service that lets you run code without managing s
 
 You author application code, called functions, using many popular languages
 
-Scales automatically
+- Scales automatically
 
-Serverless, means you don't have to worry about managing servers like with EC2
+- Serverless, means you don't have to worry about managing servers like with EC2
 
-Lambda is a building block for many serverless applications (serverless means AWS manages the servers for you and you cannot access them, you can pretend they don't exist)
+- Lambda is a building block for many serverless applications (serverless means AWS manages the servers for you and you cannot access them, you can pretend they don't exist)
 
 ### Usage
 
@@ -1106,11 +1103,59 @@ E.g: CodeStar can help you manage your entire development pipeline, integrating 
 
 ### 1. CloudFormation
 
+CloudFormation allows you to provision AWS resources using Infrastructure as Code (IaC)
+
+- Provide a repeatable process for provisioning resources
+
+- Works with most AWS services
+
+- Creates templates for the resources you want to provision
+
+In real world, you can use CloudFormation to automate the creation of EC2 instances in your AWS account
+
+![Cloud Formation](/images/cloud-formation.png)
+
 ### 2. Elastic Beanstalk
+
+- Cũng dạng template giống Cloudformation nhưng mà dùng Web UI để tạo.
+
+Elastic Beanstalk allows you to deploy your web applications and web services to AWS
+
+- Orchestration service that provisions resources
+
+- Automatically handles the deployment
+
+- Monitors application health via a health dashboard
+
+For example, after you upload your Java code, Elastic Beanstalk deploys it and handles capacity provisioning, load balancing, and Auto Scaling. Elastic Beanstalk even monitors the health of your application
+
+![BeanStalk](/images/beanstalk.png)
 
 ### 3. OpsWorks
 
+- Nó chỉ quản lý tầng instance thôi, có thể vừa on-premises vừa AWS cloud.
+
+OpsWorks allows you to use Chef or Puppet to automate the configuration of your servers and deploy code
+
+- Deploy code and manage applications
+
+- Manage on-premises servers on EC2 instances in AWS Cloud
+
+- Work with Chef and Puppet automation platforms
+
+In real world, OpsWorks allows you to define software installation scripts and automate configuration for your application servers
+
+![OpsWork](/images/ops-work.png)
+
+![Compare OpsWork](/images/compare-opswork.png)
+
 ### 4. Infrastructure Management in real world
+
+- CloudFormation: supports infrastructure automation using Infrastructure as Code (IaC)
+
+- Elastic Beanstalk: is only used to deploy applications to the AWS Cloud - it is not used to deploy applications on-premises
+
+- OpsWorks: can deploy applications on-premises, and it also automates infrastructure management using Chef or Puppet
 
 ## 12. Messaging and Integration Service
 
