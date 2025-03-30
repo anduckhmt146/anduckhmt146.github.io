@@ -990,23 +990,117 @@ Lex helps you build conversational interfaces like chatbots
 
 ![Lex](/images/lex.png)
 
-## 10. Machine Learning Services
+## 10. Developer tools
 
 ### 1. Cloud9
 
+Cloud9 như 1 IDE trên browser.
+
+Allows you to write code within an integrated development environment (IDE) from within your web browser
+
+- Integrated development environment
+
+- Write and debug code
+
+- Supports popular programming languages
+
+E.g: Cloud9 preconfigures the development environment with the needed SDKs and libraries. You can easily write the code for your Lambda function directly in your web browser
+
 ### 2. CodeCommit
+
+Github phiên bản AWS cloud.
+
+CodeCommit is a source control system for private Git repositories
+
+- Create repositories to store code
+
+- Commit, branch and merge code
+
+- Collaborate with other software developers
+
+E.g: CodeCommit can be used to manage source code and the different versions of application files. CodeCommit is similar to GitHub
 
 ### 3. CodeBuild
 
+Giống CI dùng để build và run tests.
+
+CodeBuild allows you to build and test your application source code
+
+- Compiles source code and runs tests
+
+- Enable continuous integration and delivery
+
+- Produces build artifacts ready to be deployed
+
+Eg: CodeBuild allows you to run as many parallel streams of tests as needed, allowing you to deploy your changes to production more quickly
+
 ### 4. CodeDeploy
+
+Giống CD để deploy.
+
+CodeDeploy manages the deployment of code to compute services in the cloud or on-premises
+
+- Deploys code to EC2, Fargate, Lambda and on-premises
+
+- Maintains application uptime
+
+E.g: CodeDeploy eliminates downtime of your application when deploying a new version due to its rolling deployments
 
 ### 5. CodePipeline
 
+Tích hợp CodeBuild (CI) and CodeDeploy (CD) thành một pipeline tổng như 1 CI/CD.
+
+CodePipeline automates the software release process
+
+Quickly deliver new features and updates
+
+- Integrates with CodeBuild to run builds and unit tests
+
+- Integrates with CodeCommit to retrieve source code
+
+- Integrate with CodeDeploy to deploy your changes
+
+E.g: When combined with other developer tools, CodePipeline helps development teams implement DevOps practices that automate testing and the movement of code to production
+
 ### 6. X-Ray
+
+Giống con Opentelemetry để tracing các service trên cloud.
+
+X-Ray helps you to debug production applications
+
+- Analyze and debug production applications
+
+- Map applications components
+
+- View requests end to end
+
+E.g: X-Ray can help you map requests made to your RDS database from within your application. You can track information about the SQL queries generated and more
 
 ### 7. CodeStar
 
+Giao diện UI để xem CodePipeline.
+
+CodeStar helps developers collaboratively work on development projects
+
+- Developers connect their development environment
+
+- Integrates with CodeCommit, CodeBuild, and CodeDeploy
+
+- Contains issue tracking dashboard
+
+E.g: CodeStar can help you manage your entire development pipeline, integrating with CodeCommit, CodeBuild, and CodeDeploy
+
+![Code Pipeline Code Star](/images/code-pipeline-code-star.png)
+
 ### 8. Developer Tools in real world
+
+- CodeCommit: offers a service similar to GitHub that works with Git repositories
+
+- Cloud9: offers an integrated development environment (IDE) that runs inside a web browser
+
+- CodeDeploy: allows you to deploy an application to servers running on-premises and in the cloud
+
+- CodePipeline: allows you to implement a CI/CD pipeline
 
 ## 11. Infrastructure Management Services
 
