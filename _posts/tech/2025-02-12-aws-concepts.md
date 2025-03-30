@@ -9,7 +9,7 @@ Here is the concepts of AWS that I learned for AWS Certified Cloud Practitioner.
 
 # 1. Cloud Computing
 
-## The deployment model of the cloud
+## 1.1. The deployment model of the cloud
 
 Private cloud:
 
@@ -33,7 +33,7 @@ Hybrid cloud:
 
 - Flexibility and cost-effectiveness of the public cloud
 
-## Five characteristics of Cloud Computing (5 tính chất)
+## 1.2. Five characteristics of Cloud Computing (5 tính chất)
 
 - **On-demand self service:**
 
@@ -58,7 +58,7 @@ Hybrid cloud:
 
   - Usage is measured, users pay correctly for what they have used
 
-## Six advantages of Cloud Computing (6 lợi ích)
+## 1.3. Six advantages of Cloud Computing (6 lợi ích)
 
 - **Trade capital/fixed expense (CAPEX) for operational/ variable expense (OPEX):** You pay for what you use instead of making huge upfront investments
 
@@ -80,7 +80,7 @@ Hybrid cloud:
 
 - **Go global in minutes:** leverage the AWS global infrastructure. You can deploy your application around the world at the click of a button
 
-## Problems solved by the Cloud
+## 1.4. Problems solved by the Cloud
 
 - **Flexibility:** change resource types when needed
 
@@ -94,7 +94,7 @@ Hybrid cloud:
 
 - **Agility:** rapidly develop, test and launch software applications
 
-## Benefits of Cloud Computing
+## 1.5. Benefits of Cloud Computing
 
 - **High availability:** Highly available systems area designed to operate continuously without failure for a long time. These systems avoid loss of service by reducing or managing failures
 
@@ -104,13 +104,13 @@ Hybrid cloud:
 
 - **Durability:** Durability is all about long-term data protection. This means your data will remain intact without corruption
 
-## CapEx vs OpEx
+## 1.6. CapEx vs OpEx
 
 - **Capital Expenditures (CapEx):** Capital Expenditures are upfront purchases toward fixed assets (equipment, computers, property, software,…).
 
 - **Operating Expenses (OpEx):** Operating Expenses are funds used to run day-to-day operations.
 
-## Types of cloud computing
+## 2.1. Types of cloud computing
 
 **IaaS:**
 
@@ -134,11 +134,11 @@ Hybrid cloud:
 
 ![IaaS, PasS, SaaS](/images/iaas-paas-saas-diagram.png)
 
-## Pricing of the cloud
+## 2.2. Pricing of the cloud
 
 - 3 types: **Compute, Storage, Transfer OUT** (transfer IN is free).
 
-## How to choose an AWS region
+### How to choose an AWS region
 
 - **Compliance with data governance and legal requirements:** data never leaves a region without your explicit permission
 
@@ -148,7 +148,7 @@ Hybrid cloud:
 
 - **Pricing:** pricing varies region to region and is transparent in the service pricing page
 
-## AWS Availability Zones
+### AWS Availability Zones
 
 - Each region has many availability zones (usually 3, min is 3, max is 6).
 
@@ -158,7 +158,7 @@ Hybrid cloud:
 
 - They're connected with high-bandwidth, ultra-low latency networking.
 
-## Tour of the AWS console (Global Scope, Local Scope)
+## 2.3. Tour of the AWS console (Global Scope, Local Scope)
 
 AWS has Global Services (4 servies: IAM, CDN, DNS, WAF)
 
