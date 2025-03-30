@@ -1209,15 +1209,73 @@ In real world: Send a marketing email and track open or click-through rates -> S
 
 ### 1. CloudWatch
 
+CloudWatch is a collection of services that help you monitor and observe your cloud resources
+
+- Collect metrics, logs and events
+
+- Detect anomalies in your environment
+
+- Set alarms
+
+- Visualize logs
+
+In real world:
+
+- CloudWatch Alarms: Set high resolution alarms
+
+- CloudWatch Logs: Monitor application logs
+
+- CloudWatch Metrics: Visualize time-series data
+
+- CloudWatch Events: Trigger an event based on a condition
+
+  - Provides real-time monitoring on EC2 instance: CloudWatch Alarms can notify you if an EC2 instance goes into the stopped state or usage goes above a certain utilization
+
+  - Receive a notification when root user activity is detected in your account: Create CloudWatch event rule to notify you when root user API calls are detected in your account indicating root user activity
+
 ### 2. CloudTrail
 
+CloudTrail tracks user activities and API calls within your account (IAM user).
+
+- Log and retain account activity
+
+- Track activity through the console, SDKs, and CLI
+
+- Identify which user made changes
+
+- Detect unusual activity in your account
+
+In real world:.
+
+- Track the time a particular event occur in your account -> You can troubleshoot events over the past 90 days using the CloudTrail event history log to find the specific time and event occurred on a per-region basis. You can create custom trail to extend past 90 days
+
 ### 3. Auditing, Monitoring, and Logging in real world
+
+- Use CloudWatch to monitor your EC2 instances and notify you when certain events occur
+
+- Things you can track with CloudTrail: username, event time and name, IP address, access key, region and error code
 
 ## 14. Additional Services
 
 ### 1. Amazon Workspaces
 
+Tạo một node instance cấp máy cho nhân viên trên cloud.
+
+Amazon Workspaces allows you to host virtual desktops in the cloud
+
+- Virtualize Window or Linux desktops
+
+- Enables employees to work from home
+
 ### 2. Amazon Connect
+
+Đóng vai trò như một helpdesk for customer support.
+
+Amazon Connect is a cloud contact center service
+
+- Provides customer service functionality
+
+- Improves productivity of help desk agents
 
 # 3. Security and Compliance
 
