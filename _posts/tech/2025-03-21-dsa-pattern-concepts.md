@@ -10,3 +10,87 @@ In this post, we will explore various data structure and algorithm (DSA) pattern
 Below is a mind map that provides a high-level overview of the different DSA patterns:
 
 ![DSA Pattern Mind Map](/images/dsa-patterns.png)
+
+# 1. Two Pointers
+
+## 1.1. Same Direction
+
+## 1.2. Opposite Direction
+
+## 1.3. Prefix Sum
+
+## 1.4. Fast & Slow Pointer
+
+## 1.5. Data Strutures
+
+### 1.5.1. Two Pointers on Sorted Arrays
+
+### 1.5.2. Two Pointers on Unsorted Arrays
+
+### 1.5.3. Two Pointers with Multiple Arrays/Lists
+
+### 1.5.4. Two Pointers for Searching and Filtering
+
+### 1.5.5. Two Pointers for String Manipulation
+
+### 1.5.6. Two Pointers for Geometric Applications
+
+### 1.5.7. Two Pointers and Dynamic Programming
+
+# 2. Sliding Window
+
+## 2.1. Fixed-Size Sliding Window
+
+## 2.2. Variable-Size Sliding Window
+
+## 2.3. Sliding Window and String Manipulation
+
+## 2.4. Sliding Window and Array/List Problems
+
+## 2.5. Sliding Window and Graph Algorithms
+
+## 2.6. Optimizing Sliding Window Solutions
+
+# 3. Backtracking
+
+## 3.1. Building Blocks: Recursion and Trees
+
+## 3.2. Solving Constraint Satisfaction Problems
+
+## 3.3. Combinatorial Problems
+
+## 3.4. Pruning
+
+## 3.5. Graph Traversal and Backtracking
+
+## 3.6. Additional States
+
+## 3.7. Optimization Problems and Backtracking
+
+## 3.8. Aggregation and Memoization
+
+## 3.9. Dedup
+
+## 3.10. Game Solving
+
+# 4. Stack
+
+## 4.1. Skyline Problem
+
+## 4.2. Queue with Max API
+
+## 4.3. Arithmetic Expressions
+
+# 5. Binary Search
+
+## 5.1. Search a target in a sorted array
+
+## 5.2. Search a target in a sorted array - lower_bound
+
+## 5.3. Search a target in a sorted array - upper_bound
+
+# 6. Tree
+
+# 7. Graph
+
+# 8. Dynamic Programming
