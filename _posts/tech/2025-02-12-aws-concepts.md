@@ -1432,9 +1432,123 @@ Amazon Connect is a cloud contact center service
 
 ### Public Cloud
 
+In the public cloud, there is a shared responsibility between you and AWS
+
+### AWS's responsibility:
+
+- **Security of the cloud:** AWS is responsible for protecting and securing their infrastructure
+
+  - AWS Global Infrastructure: AWS is responsible for its global infrastructure elements: regions, edge locations, and Availability Zones
+
+  - Building security: AWS controls access to its data centers where your data resides
+
+  - Networking components: AWS maintains networking components: generators, uninterruptible power supply (UPS) systems, computer room air conditioning (CRAC) units, fire suppression systems, and more
+
+  - Software: AWS is responsible for any managed service like RDS, S3, ECS, or Lambda, patching of host operating systems, and data access endpoints
+
+### Your responsibility
+
+**Security in the cloud:** You are responsible for how the services are implemented and managing your application data
+
+- Application data: you're responsible for managing your application data, which includes encryption options
+
+- Security Configuration: You're responsible for securing your account and API calls, rotating credentials, internet access from your VPCs and more
+
+- Patching: You're responsible for the guest operating system (OS), which includes updates and security patches
+
+- Identity and Access Management: You're responsible for application security and identity and access management
+
+- Network traffic: You're responsible for network traffic protection, which includes security group firewall configuration
+
+- Installed Software: You’re responsible for your application code, installed software, and more. You should frequently scan for and patch vulnerabilities in your code
+
+Examples:
+
+- Firewall configuration -> yours
+
+- Data centers security for the physical building -> AWS
+
+- Encryption for EBS volumes -> yours
+
+- Language version of Lambda -> AWS
+
+- Taking DB backups in RDS -> yours
+
+- Updating the firmware on the underlying EC2 hosts -> AWS
+
+- Ensuring data is encrypted at rest -> yours
+
+- Managing the network infrastructure -> AWS
+
+- Patching the guest operating system for EC2 -> yours
+
+- Physically destroying storage media at end of life -> AWS
+
 ### EC2 Shared Responsibility Model
 
+Đối với EC2, host là của AWS, OS là của người dùng
+
+Your responsibility:
+
+- Install application
+
+- Patching the guest operating system
+
+- Security controls
+
+AWS:
+
+- EC2 service
+
+- Patching the host operating system
+
+- Security of the physical server
+
 ### Lambda Shared Responsibility Model
+
+Đối với Lambda, code là của bạn, toàn bộ runtime environment là của AWS.
+
+Your responsibility:
+
+- Security of code
+
+- Security of sensitive data
+
+- IAM for permissions
+
+AWS
+
+- Lambda service
+
+- Upgrading Lambda languages
+
+- Lambda endpoints
+
+- Operating system
+
+- Underlying infrastructure
+
+- Software dependencies
+
+Which security responsibilities are shared?
+
+Patch management:
+
+- AWS: Patching infrastructure
+
+- Yours: Patching guest OS and applications
+
+Configuration Management:
+
+- AWS: Configuring infrastructure devices
+
+- Yours: Configuring databases and applications
+
+Awareness of Training:
+
+- AWS: AWS employees
+
+- Yours: your employees
 
 ## 2. 6 pillars of Well-Architected Framework
 
