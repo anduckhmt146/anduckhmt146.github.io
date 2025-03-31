@@ -14,7 +14,7 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 - **Education**: Bachelor's Degree of Honors Program (Advanced Program for the top 40 students) in Computer Science at Bach Khoa University, Ho Chi Minh City. Ranked among the top 10 highest GPAs in the Computer Science faculty during my graduation year, with an approximate GPA of 3.8/4.0.
 
-- **Main Languages:** Experienced and familiar with Golang and JavaScript, have deep understanding about those languages.
+- **Languages:** Experienced and familiar with Golang and JavaScript, have deep understanding about those languages.
 
 - **Techstack:** Golang, Java, Python, React, NodeJs, JavaScript, TypeScript, Kafka, Redis, Grafana, MySQL, RESTful API (HTTP API), gRPC API.
 
