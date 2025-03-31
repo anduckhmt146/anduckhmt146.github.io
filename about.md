@@ -34,6 +34,8 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 5. **Human Design**: The Manifesting Generator.
 
+![MBTI](/images/enfp-ne-te-loop.webp)
+
 ## 3. Strengths & Weaknesses
 
 I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development.
