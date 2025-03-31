@@ -34,8 +34,6 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 5. **Human Design**: The Manifesting Generator.
 
-<!-- ![MBTI](/images/enfp-ne-te-loop.webp) -->
-
 ## 3. Strengths & Weaknesses
 
 I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development.
@@ -56,7 +54,7 @@ I am a dreamer, an analytical over-thinker, and an over-achiever, who is constan
 
   - Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repeatable, boring tasks. There are moments when I battle feelings of inadequacy, caught in the grip of self-doubt.
 
-- **What I am learning to better**
+- **What I am learning to better:**
 
   - Control yourself, not others.
 
