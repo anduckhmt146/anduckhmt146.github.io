@@ -1552,6 +1552,122 @@ Awareness of Training:
 
 ## 2. 6 pillars of Well-Architected Framework
 
+### Operation Excellence
+
+Tốt cho operation cho business.
+
+This pillar focuses on creating applications that effective support production workloads:
+
+- Plan for and anticipate failure
+
+- Deploy smaller, reversible changes
+
+- Script operations and code
+
+- Learn from failure and refine
+
+### Security
+
+Tốt cho vấn đề security dữ liệu người dùng.
+
+This pillar focuses on putting mechanism in place that help protect your systems and data
+
+- Automate security tasks
+
+- Encrypt data in transit and at rest
+
+- Assign only the least privileges required
+
+- Track who did what and when
+
+- Ensure security at all application layers
+
+### Reliability
+
+Nó phải tự khôi phục được khi xảy ra sự cố.
+
+This pillar focuses on designing systems that work consistently and recover quickly
+
+- Recover from failure automatically
+
+- Scale horizontally from resilience
+
+- Stop guessing capacity
+
+- Manage change through automation
+
+- Test recovery procedures
+
+### Performance Efficiency
+
+Đảm bảo hiệu năng của ứng dụng.
+
+This pillar focuses on effective use of computing resources to meet system and business requirements while removing bottlenecks
+
+- Use serverless architectures first
+
+- Use multi-region deployments
+
+- Delegate tasks to a cloud vendor
+
+- Experiment with virtual resources
+
+### Cost Optimization
+
+Tiết kiệm chi phí sử dụng.
+
+This pillar focuses on delivering optimum and resilient solutions at the least cost to the user.
+
+- Utilize consumption-based pricing
+
+- Implement Cloud Financial Management
+
+- Measure overall efficiency
+
+- Pay only for resources your application requires
+
+### Sustainability
+
+Thân thiện về môi trường phát triển bền vững.
+
+This pillar focuses on environmental impacts, especially energy consumption and efficiency
+
+- Understand your impact
+
+- Establish sustainability goals
+
+- Maximize utilization
+
+- Use managed services
+
+- Reduce downstream impact
+
+### In Real Life
+
+**Operational Excellence**
+
+- You can use AWS CodeCommit for version control to enable tracking of code changes and to version-control CloudFormation templates of your infrastructure
+
+**Security**
+
+- You can configure central logging of all actions performed in your account using CloudTrail
+
+**Reliability**
+
+- You can use Multi-AZ deployments for enhanced availability and reliability of RDS databases
+
+**Performance Efficiency**
+
+- You can use Lambda to run code with zero administration
+
+**Cost Optimization**
+
+- You can use S3 Intelligent-Tiering to automatically move your data between access tiers based on how frequently you access/ your usage patterns
+
+**Sustainability**
+
+- You can use EC2 Auto Scaling to ensure your are maximizing utilization
+
 ## 3. IAM Users
 
 ### Identity and Access Management
