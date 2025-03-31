@@ -1792,7 +1792,7 @@ Firewalls prevent unauthorized access to your networks by inspecting incoming an
 
 ![Firewall Security Group](/images/firewall-security-group.png)
 
-#### 1. Web Application Firewall (WAF): XSS, SQL Injection.
+### 1. Web Application Firewall (WAF): XSS, SQL Injection.
 
 WAF helps protect your web applications against common web attacks
 
@@ -1802,7 +1802,7 @@ WAF helps protect your web applications against common web attacks
 
 - Protect against cross-site scripting
 
-#### 2. Firewall in real world
+Firewall in real world
 
 - **Protect your web application from cross-site scripting attacks:** You can deploy a web application directly to an EC2 instance and protect it from cross-site scripting attacks using WAF. You can even deploy WAF on CloudFront as part of your CDN solution to block malicious traffic
 
