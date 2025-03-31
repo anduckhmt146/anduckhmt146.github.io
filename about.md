@@ -18,7 +18,7 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 - **Techstack:** Golang, Java, Python, React, NodeJs, JavaScript, TypeScript, Kafka, Redis, Grafana, MySQL, RESTful API (HTTP API), gRPC API.
 
-- **Expertise Domain:** Mini App Platform Architecture (Micro-frontend & Module Federation), Microservices, System Design, AWS Cloud.
+- **Architecture & System Design:** Mini App Platform Architecture, Microservices, System Design, AWS Cloud, LLM Application.
 
 - **Background knowledge:** Have strong background knowledge about Computer Science, ability to apply this knowledge to practice in company products, including: Networking, Operating Systems, DSA, OOP Design.
 
