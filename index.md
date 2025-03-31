@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-permalink: /about
+permalink: /
 ---
 
 Hello, reader. This blog offers a glimpse into who I am, after years of grappling with a deep, overwhelming sense of confusion. While others my age seemed to flow easily through life, I found myself constantly lost in thought, overanalyzing every detail, struggling to connect on a deeper emotional level. I became consumed by this internal complexity and chose to retreat from the world.
