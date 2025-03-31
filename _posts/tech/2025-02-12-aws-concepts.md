@@ -1672,45 +1672,193 @@ This pillar focuses on environmental impacts, especially energy consumption and 
 
 ### Identity and Access Management
 
+IAM allows you to control access to your AWS services and resources
+
+- How you secure your cloud resources
+
+- You define who has access
+
+- You define what they can do
+
+- A free global service
+
 ### Identities vs Access
+
+Identities: Who can access you resources
+
+- Root user
+
+- Individual users
+
+- Groups
+
+- Roles
+
+Access: What resources they can access
+
+- Policies
+
+- AWS managed policies
+
+- Customer managed policies
+
+- Permissions boundaries
 
 ### Authentication ("Who") vs Authorization ("What")
 
+- **Authentication:** Authentication is where you present your identity (username) and provide verification (password)
+
+- **Authorization:** Authorization determines which services and resources the authenticated identity has access to
+
 ### Users
+
+- Users are entities you create in IAM to represent the person or application needing to access your resource.
+
+- The Principle of least privileges involves giving a user the minimum access required to get the job done.
 
 ### Groups
 
+Group là chủ động tự phân quyền (có thể áp dụng cho mỗi phòng ban 1 admin)
+
+A Group is a collection of IAM users that helps you apply common access controls to all group members
+
+- Administrators: perform administrative tasks such as creating new users
+
+- Developers: use compute and database services to build applications
+
+- Analysts: run budget and usage report
+
 ### IAM Users in real world
+
+- IAM: Identity and Access Management, Global service
+
+- Root account created by default, shouldn't be used or shared
+
+- Users are people within your organization, and can be grouped
+
+- Groups only contains users, not other groups
+
+- Users don't have to belong to a group, and user can belong to multiple groups
 
 ## 4. IAM Permissions
 
 ### Roles
 
+- Roles define access permissions and are temporarily assumed by an IAM user or a service
+
 ### Policies
+
+- You manage permissions for IAM users, groups and roles by creating a policy document in JSON format and attaching it
+
+![IAM](/images/iam.png)
+
+**Notes:** Can i user have multiple policies AWS ?
+
+- Yes, an AWS IAM user can have multiple policies attached, including both inline and managed policies, allowing for flexible and granular permission assignments.
 
 ### IAM Best Practices
 
+- **Enable MFA for privileged users:** You should enable multi-factor authentication (MFA) for the root user and other administrative users
+
+- **Implement strong password policies:** You should require IAM users to change their passwords after a specified period of time, prevent users from reusing previous passwords, and rotate security credentials regularly
+
+- **Create individual users instead of using root:** You shouldn't use the root user for daily tasks
+
+- **Use roles for Amazon EC2 instances:** You should use roles for applications that run on EC2 instances instead of long term credentials like access keys
+
 ### IAM Credential Report
+
+The IAM Credential Report lists all users in your account and the status or their various credentials
+
+- Lists all users and status of passwords, access keys, and MFA devices
+
+- Used for auditing and compliance
 
 ### IAM Permissions in real world
 
-## 5. Application Security Services
+- Users or Groups can be assigned JSON documents called policies
 
-### 1. Firewall
+- These policies define the permissions of the users
 
-#### 1. Web Application Firewall (WAF)
+- In AWS you apply the least privilege principle: don’t give more permissions than a user needs
+
+## 5. Application Security Services: Prevent Attack
+
+### 1. Firewall (tầng Gateway)
+
+Trong khi đó, Security Group (tầng Instance).
+
+Firewalls prevent unauthorized access to your networks by inspecting incoming and ongoing traffic against security rules you've defined
+
+![Firewall Security Group](/images/firewall-security-group.png)
+
+#### 1. Web Application Firewall (WAF): XSS, SQL Injection.
+
+WAF helps protect your web applications against common web attacks
+
+- Protect apps against common attacks pattern
+
+- Protect against SQL injection
+
+- Protect against cross-site scripting
 
 #### 2. Firewall in real world
 
-### 2. Distributed Denial of Service (DDoS)
+- **Protect your web application from cross-site scripting attacks:** You can deploy a web application directly to an EC2 instance and protect it from cross-site scripting attacks using WAF. You can even deploy WAF on CloudFront as part of your CDN solution to block malicious traffic
 
-#### 1. Shield
+![WAF](/images/waf.png)
 
-#### 2. Macie
+### 2. Shield: DDOS
 
-#### 3. Distributed Denial of Service (DDoS)
+A DDoS attack causes a traffic jam on a website or web application in an attempt to cause it to crash
 
-## 6. Additional Security Services
+Shield is a managed Distributes Denial of Service (DDoS) protection service
+
+- Shield standard: Provides free protection of against common and frequently occurring attacks
+
+- Shield advanced: Provides enhanced protection and 24/7 access to AWS experts for a fee
+
+DDoS protection via Shield Advanced is supported on several services
+
+- CloudFront
+
+- Route 53
+
+- Elastic Load Balancing
+
+- AWS Global Accelerator
+
+In Real World:
+
+- Receive real-time notifications of suspected DDoS incidents and assistance from AWS during the attack.
+
+- Shield Advanced will give you notifications of DDoS attacks via CloudWatch Metrics. Additionally, with Shield Advanced, you will have 24/7 access to AWS experts to assist during an attack
+
+### 3. Macie: Protect Sensitive Data
+
+Macie helps you discover and protect sensitive data
+
+- Use machine learning
+
+- Evaluate S3 environment
+
+- Uncovers personally identifiable information (PII)
+
+In Real World:
+
+- Discover passport numbers stored on S3
+
+- Macie can be used to find sensitive data like passport numbers, social security numbers, and credit card numbers on S3
+
+**Review**
+
+- WAF protects against SQL injection and cross-site scripting attacks
+
+- Shield provides DDoS protection and works with CloudFront, Route 53, Elastic Load Balancing, and AWS Global Accelerator
+
+- Macie helps you find sensitive information
+
+## 6. Additional Security Services: Config
 
 ### 1. Config
 
