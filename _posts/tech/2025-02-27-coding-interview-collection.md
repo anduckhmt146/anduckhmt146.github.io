@@ -2,7 +2,7 @@
 layout: post
 title: 'Coding Interview Collection'
 date: 2025-02-27
-categories: tech
+categories: private
 ---
 
 Plan: 18 parts/9 weeks ~ 180 questions.
