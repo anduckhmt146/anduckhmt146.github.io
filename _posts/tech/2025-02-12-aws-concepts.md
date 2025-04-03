@@ -2042,19 +2042,105 @@ In Real World:
 
 ### 1. Fundamental drivers of cost
 
+There are three fundamental drivers of cost
+
+- Compute: Hourly from launch to termination
+
+- Storage: The data you store in the cloud
+
+- Outbound data transfer: Data in flight moving between systems
+
 ### 2. Free Offer Types
+
+- 12 months free: 12 months' free usage following your initial sign-up date to AWS
+
+- Always free: Offers do not expire and are available to all AWS customer
+
+- Trials: Short-term free trials starting from the date you activate a particular service
 
 ### 3. EC2 Pricing
 
+- **On-demand:** You pay by the hour or the second without pre-paying
+
+- **Savings plan:** Commit to compute usage measured per hour for a 1- or 3-year term
+
+- **Reserved Instances:** Commit to use for 1 or 3 years; pay regardless of usage
+
+- **Spot Instances:** Instances only launch if spare capacity is available
+
+- **Dedicated Hosts:** An entire physical server just for you
+
 ### 4. Lambda Pricing
+
+- **Number of requests:** Include test invokes from the console
+
+- **Code execution time:** From execution start, in response to events, to stop
+
+- **Always free:** 1 million requests per month
 
 ### 5. S3 Pricing: you pay for the storage you use
 
-### 6. RSD Pricing
+- **Storage class:** Various storage classes
 
-### 7. Application Discovery Service
+- **Storage:** Number and size of objects
 
-### 8. AWS Price List API
+- **Data transfer:** Data transferred out of S3 Region
+
+- **Request data and retrieval:** Requests made for data and amount of requests
+
+### 6. RDS Pricing
+
+- **Running clock hours**
+
+- **Type of database**
+
+- **Storage**
+
+- **Purchase type**
+
+- **Database count**
+
+- **API requests**
+
+- **Deployment type**
+
+- **Data transfer:** Inbound data transfer is free, and there is a charge for outbound data transfer
+
+### 7. Application Discovery Service (compute price)
+
+- **Total Cost of Ownership (TCO):** TCO is a financial estimate that helps you understand both the direct and indirect costs AWS.
+
+Application Discovery Service helps you plan migration projects to the AWS Cloud
+
+- Plan migration projects
+
+- Used to estimate TCO
+
+- Works with other services to migrate servers
+
+Few ways to reduce TCO Using AWS
+
+- **Minimize capital expenditures:** AWS helps you minimize large capital expenditures, which reduce your TCO.
+
+- **Utilize Reserved Instances:** AWS provides Reserved Instances to help you lock in savings and reduce your TCO.
+
+- **Right size your resources:** AWS helps you match the provisioning of resources to your usage needs to reduce your TCO.
+
+Pricing Calculator
+
+- The pricing calculator provides an estimate of AWS fees and charges
+
+- Explore services based on your use case
+
+- Find instance types that fit your needs
+
+### 8. AWS Price List API (API price)
+
+The Price List API allows you to query the price of AWS services
+
+- Query using JSON or HTML
+
+- Receive price alerts when prices change
 
 ## 4.2. Billing Services
 
