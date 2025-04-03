@@ -1862,35 +1862,179 @@ In Real World:
 
 ### 1. Config
 
+Access, thay đổi, audit các config change trên AWS, deliver vào S3, bắn SNS để cập nhật real time các thay đổi thông báo.
+
+Config allows you to assess, audit, and evaluate the configurations of resources
+
+- Track configuration changes over time
+
+- Delivers configuration history file to S3
+
+- Notifications via Simple Notification Service (SNS) of every configuration change
+
+In Real World:
+
+- Identify system-level configuration changes made to your EC2 instances: Config allows you to record configuration changes within your EC2 instances. You can view network, software and operating system (OS) configuration changes, system-level updates, and more
+
 ### 2. GuardDuty
+
+Sử dụng CloudTrail, VPC Flow Logs và DNS Logs để phân tích các hành vi bất thường của **người dùng** trên AWS.
+
+GuardDuty is an intelligent threat detection system that uncovers unauthorized behavior
+
+- Uses machine learning
+
+- Built-in detection for EC2, S3 and IAM
+
+- Review CloudTrail, VPC Flow Logs, and DNS Logs
+
+In Real World:
+
+- Detect unusual API calls in your account: GuardDuty 's anomaly detection feature evaluates all API requests in your account and identifies events that are associated with common techniques used by attackers
 
 ### 3. Inspector
 
+Inspector dùng để report những vulnerabilities liên quan đến **EC2, network**.
+
+Inspector works with EC2 instances to uncover and report vulnerabilities
+
+- Agent installed on EC2 instance
+
+- Reports vulnerabilities found
+
+- Checks access from the internet, remote root login, vulnerable software versions, etc.
+
+In Real World:
+
+- Identify unintended network access to an EC2 instance via a detailed report of security findings: inspector has several built-in rules to access your EC2 instances to find vulnerabilities and report them prioritized by level of severity.
+
 ### 4. Artifact
+
+Các thông tin về ISO compliance và certificate đối với các service của business đang host trên cloud.
+
+Artifact offers on-demand access to AWS security and compliance reports
+
+- Central repository for compliance reports from third-party auditors
+
+- Service Organization Control (SOC) reports
+
+- Payment Card Industry (PCI) reports
+
+In Real World:
+
+- You need to access AWS' certification for ISO compliance: Artifact provides central repository for AWS security and compliance reports via a self-service portal
 
 ### 5. Cognito
 
+Dịch vụ OAuth service của AWS.
+
+Cognito helps you control access to mobile and web applications
+
+- Provides authentication and authorization
+
+- Helps you manage users
+
+- Assist with user sign-up and sign-in
+
+In Real World:
+
+- You need to add a social media sign-in to your web application: Cognito provides functionality that allows your users to sign in to your application through social media accounts like Facebook and Google
+
 ### 6. Usecase in real world
+
+- Config allows you to identify changes to various resources over time
+
+- GuardDuty identifies malicious or unauthorized activities in your AWS account
+
+- Inspector only works for EC2 instances
+
+- Artifact provides you with compliance reports
+
+- Cognito controls access to mobile and web applications
 
 ## 7. Data Encryption and Secrets Management Services
 
+Có 2 loại data:
+
+- **Data in flight:** Data that is moving from one location to another.
+
+- **Data at rest**: Data that is inactive or stored for later use.
+
 ### 1. Key Management Service (KMS)
+
+Lưu tất cả các access và encryption keys của AWS **(kiểu software-key)**.
+
+KMS allows you to generate and store encryption keys
+
+- Key generator
+
+- Store and control keys
+
+- AWS manages encryption keys
+
+- Automatically enabled for certain services
+
+In Real World:
+
+- Create encrypted Amazon EBS volumes: When you create an encrypted Amazon EBS volume, you're able to specify a KMS customer master key
 
 ### 2. CloudHSM
 
+Dùng để lưu các key dạng **hardware**
+
+CloudHSM is a hardware security module (HSM) used to generate encryption keys
+
+- Dedicated hardware for security
+
+- Generate and manage your own encryption keys
+
+- AWS does not have access to your keys
+
+In Real World:
+
+- Meet compliance requirements for data security by using dedicated hardware: CloudHSM allows you to meet corporate, contractual, and regulatory compliance requirements for data security by using dedicated hardware in the cloud
+
 ### 3. Secrets Manager
 
+Serect Manager được dùng để built riêng cho RDS, RedShift, DocumentDB.
+
+Secrets Manager allows you to manage and retrieve secrets (passwords or keys)
+
+- Rotate, manage, and retrieve secrets
+
+- Encrypt secrets at rest
+
+- Integrates with services like RDS, Redshift, and DocumentDB
+
+In Real World:
+
+- Retrieve database credentials needed for your application code: Secrets Manager allows you to retrieve database credentials with a call to Secrets Manager APIs, removing the need to hardcore sensitive information in plain text within your application code
+
 ### 4. Application in real world
+
+- AWS manages KMS keys
+
+- Secrets Manager has built-in integration for RDS, Redshift, and DocumentDB
+
+- You manage the keys generated with CloudHSM
 
 ## 8. AWS Account
 
 ### 1. AWS Management Console
 
+- The AWS Management Console allows you to access your AWS account and manage applications running from your account from a web browser.
+
 ### 2. Root user
+
+- Automatically created when you open your account.
 
 ### 3. Console
 
+- Allows access via web browser (terminal nhưng mà trên web).
+
 ### 4. CLI
+
+- Is a form of programmatic access from a command or terminal window (terminal trong máy tính local).
 
 # 4. Pricing, Billing and Governance
 
