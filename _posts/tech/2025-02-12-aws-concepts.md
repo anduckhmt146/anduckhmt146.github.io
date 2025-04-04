@@ -2146,23 +2146,185 @@ The Price List API allows you to query the price of AWS services
 
 ### 1. Budgets
 
+Dùng để plan budget sẽ sử dụng.
+
+Budgets allows you to set custom budgets that alert you when your costs usage exceed your budgeted amount
+
+- Improve planning and cost control
+
+- Cost, usage and reservation budgets
+
+- Budget alerts
+
+There are 3 budget types:
+
+- **Cost budgets:** Plan how much you want to spend on a service
+
+- **Usage budgets:** Plan how much you want to use on one or more services
+
+- **Reservation budgets:** Set RIs or Saving Plans utilization or coverage targets
+
+In Real World:
+
+- Monitor Free Tier usage so you don't incur unwanted costs:
+
+  - You can monitor Free Tier usage to ensure you don't accidentally exceed Free Tier limits and incur unwanted costs.
+
+  - You can set up an alert notification for when your account is approaching a particular dollar amount
+
 ### 2. Cost and Usage Report
+
+Dùng để phân tích cost sử dụng hàng tháng **(số liệu, report)**
+
+The Cost and Usage Report contains the most comprehensive set of cost and usage data
+
+- Downloadable detailed and comprehensive report
+
+- Lists usage for each service category
+
+- Aggregate usage data on a daily, hourly or month level
+
+In Real World:
+
+- **View the most granular data about your AWS bill:** The Cost and Usage Report gives you the availability to do a deep dive into your AWS cost and usage data. Once set up, you can download the report using the Amazon S3 console
 
 ### 3. Cost Explorer
 
-## 4.3. Governance Services
+Dùng để vẽ **chart visualize** chi phí sử dụng cloud.
+
+Cost Explorer allows you to visualize and forecast your costs and usage over time
+
+- Visualize costs over time
+
+- View past 12 months
+
+- Forecast for up to 3 months
+
+In Real World:
+
+- **Analyze your EC2 usage over the past 7, 30, or 60 days:** If you are considering your options for Savings Plans, AWS Cost Explorer can analyze your EC2 usage over the past 7, 30, or 60 days
+
+## 4.3. Governance Services (Root Account / Admin Account dùng)
 
 ### 1. Organizations
 
+Quản lý các AWS Account theo Group, 1 group gồm nhiều Unit, thanh toán một lần cho cả group, quản lý quyền theo Unit. Thanh toán theo group thì được giảm giá nhiều hơn.
+
+Organizations allows you to centrally manage multiple AWS accounts under one umbrella
+
+- Group multiple accounts
+
+- Single payment for all accounts
+
+- Automate account creation
+
+- Allocate resources and apply policies across accounts
+
+Organization service control policies (SCPs) are used to enforce permissions you want everyone in the organization to follow.
+
+![Organization](/images/organization.png)
+
+Benefits of Organizations
+
+- **Consolidated billing:** The advantage of consolidated billing is that you receive one bill for multiple accounts
+
+- **Cost savings:** You'll receive volume discounts since usage is combined across accounts
+
+- **Account governance:** You have quick and automated way to create accounts or invite existing accounts
+
+In Real World:
+
+- **Reduce costs by sharing resources across accounts:** Organizations allows you to save money using Reserved Instances (RIs) sharing. RI sharing allows all accounts in the organization to receive the hourly cost-benefit of RIs purchased by any other account. You can always turn off RI sharing using the master payer (or root) organization
+
 ### 2. Control Tower
+
+Quản lý infrastructure và services theo mô hình multi-account.
+
+Control Tower helps you to ensure your account conform to company-wide policies
+
+- Helps set-up new accounts using a multi-account strategy
+
+- Works directly with AWS Organizations
+
+- Enforces the best use of services across accounts
+
+- Provides a dashboard to manage accounts
+
+![](/images/aws-control-tower.png)
+
+In Real World:
+
+- **Disallow public write access to all S3 buckets across your account:** Control Tower allows you to govern your multi-account environment by enabling cross-account security audits or preventing or detecting security issues through mandatory or optional guardrails.
 
 ### 3. Systems Manager
 
+Quản lý toàn bộ AWS resources.
+
+System Manager gives you visibility and control over you AWS resources
+
+- Automate operational tasks on your resources
+
+- Group resources and take action
+
+- Patch and run commands on multiple EC2 instances or manage RDS instances
+
+In Real World
+
+- **Deploy operating system and software patches automatically across a large group of instances:** System Manager allows you to auto-patch software running on EC2 instances according to a schedule
+
 ### 4. Trusted Advisor
+
+Check các issues vi phạm best practices đối với các services trên AWS.
+
+Trusted Advisor provides real-time guidance to help you provision your resources following AWS best practices
+
+- Checks your accounts and make recommendations
+
+- Helps you see service limits
+
+- Helps you understand best practices
+
+Recommendations:
+
+- Checks for unrestricted access for specific port on EC2 instances
+
+- Checks S3 bucket permissions to determine if public access
+
+- Checks for multi-factor authentication (MFA) on root account
+
+- Checks IAM password policy
+
+- Checks for RDS public snapshots
+
+- Checks for services usage greater than 80% over service limit
+
+- Checks for exposed access keys
+
+- Check for CloudFront content delivery optimization
+
+In Real World:
+
+- **Check read and write capacity service limits to DynamoDB:** Trusted Advisor helps you reduce your overall costs by monitoring service limits
 
 ### 5. License Manager
 
-### 6. Certificate Manager
+Dùng để quản lý software licenses.
+
+License Manager helps you manage software licenses
+
+- Manage on-premises and AWS licenses
+
+- Track licenses for Oracle, Microsoft, SAP and more
+
+### 6. Certificate Manager (chỉ SSL thôi)
+
+Dùng để quản lý các chứng chỉ SSL/TLS
+
+Certificate Manager helps you provision and manage SSL/TLS certificates
+
+- Provides public and private certificates for free
+
+- Integrate with Elastic Load Balancing, API Gateway, and more
 
 ## 4.4. Management Services
 
