@@ -11,53 +11,29 @@ Below is a mind map that provides a high-level overview of the different DSA pat
 
 ## References
 
-**1. Two Pointer Problems:**
+**1. Two Pointer Problems:** [https://lnkd.in/dK_fB-Eg](https://lnkd.in/dK_fB-Eg)
 
-- [https://lnkd.in/dK_fB-Eg](https://lnkd.in/dK_fB-Eg)
+**2. Backtracking Pattern:** [https://lnkd.in/dDGsdfps](https://lnkd.in/dDGsdfps)
 
-**2. Backtracking Pattern:**
+**3. Dynamic Programming Patterns:** [https://lnkd.in/dX7a4cau](https://lnkd.in/dX7a4cau)
 
-- [](https://lnkd.in/dDGsdfps)
+**4. Dynamic Programming Patterns 2:** [https://lnkd.in/db2tAp27](https://lnkd.in/db2tAp27)
 
-**3. Dynamic Programming Patterns:**
+**5. Powerful Ultimate Binary Search Template:** [https://lnkd.in/dxk7kdeb](https://lnkd.in/dxk7kdeb)
 
-- https://lnkd.in/dX7a4cau
+**6. A general approach to backtracking questions:** [https://lnkd.in/drsHxsZh](https://lnkd.in/drsHxsZh)
 
-**4. Dynamic Programming Patterns 2:**
+**7. Binary Tree Traversal & Views:** [https://lnkd.in/dxGcKx65](https://lnkd.in/dxGcKx65)
 
-- https://lnkd.in/db2tAp27
+**8. Graph For Beginners [Problems | Pattern | Sample Solutions]:** [https://lnkd.in/dkpyiB3R](https://lnkd.in/dkpyiB3R)
 
-**5. Powerful Ultimate Binary Search Template:**
+**9. A comprehensive guide and template for monotonic stack based problems:** [https://lnkd.in/dtmFMzDJ](https://lnkd.in/dtmFMzDJ)
 
-- https://lnkd.in/dxk7kdeb
+**10. All Types of Patterns for Bits Manipulations and How to use it:** [https://lnkd.in/d-rfVNx2](https://lnkd.in/d-rfVNx2)
 
-**6. A general approach to backtracking questions:**
+**11. Collections of Important String questions Pattern:** [https://lnkd.in/dCy_j-vw](https://lnkd.in/dCy_j-vw)
 
-- https://lnkd.in/drsHxsZh
-
-**7. Binary Tree Traversal & Views:**
-
-- https://lnkd.in/dxGcKx65
-
-**8. Graph For Beginners [Problems | Pattern | Sample Solutions]:**
-
-- https://lnkd.in/dkpyiB3R
-
-**9. A comprehensive guide and template for monotonic stack based problems:**
-
-- https://lnkd.in/dtmFMzDJ
-
-**10. All Types of Patterns for Bits Manipulations and How to use it:**
-
-- https://lnkd.in/d-rfVNx2
-
-**11. Collections of Important String questions Pattern:**
-
-- https://lnkd.in/dCy_j-vw
-
-**12. Leetcode Pattern 1 | BFS + DFS == 25% of the problems:**
-
-- https://lnkd.in/dtaEpzrC
+**12. Leetcode Pattern 1 | BFS + DFS == 25% of the problems:** [https://lnkd.in/dtaEpzrC](https://lnkd.in/dtaEpzrC)
 
 **13. Topological Sort**
 
