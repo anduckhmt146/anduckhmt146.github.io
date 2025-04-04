@@ -13,11 +13,11 @@ Below is a mind map that provides a high-level overview of the different DSA pat
 
 **1. Two Pointer Problems:**
 
-- https://lnkd.in/dK_fB-Eg
+- [https://lnkd.in/dK_fB-Eg](https://lnkd.in/dK_fB-Eg)
 
 **2. Backtracking Pattern:**
 
-- https://lnkd.in/dDGsdfps
+- [](https://lnkd.in/dDGsdfps)
 
 **3. Dynamic Programming Patterns:**
 
@@ -63,7 +63,7 @@ Below is a mind map that provides a high-level overview of the different DSA pat
 
 **14. 0/1 Knapsack**
 
-**15. Top 'K' elements: use Heap/priority queue**
+**15. Top K elements: use Heap/priority queue**
 
 ![DSA Pattern Mind Map](/images/dsa-patterns.png)
 
