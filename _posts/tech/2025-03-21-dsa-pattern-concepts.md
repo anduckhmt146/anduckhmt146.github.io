@@ -25,7 +25,7 @@ Below is a mind map that provides a high-level overview of the different DSA pat
 
 **7. Binary Tree Traversal & Views:** [https://lnkd.in/dxGcKx65](https://lnkd.in/dxGcKx65)
 
-**8. Graph For Beginners [Problems | Pattern | Sample Solutions]:** [https://lnkd.in/dkpyiB3R](https://lnkd.in/dkpyiB3R)
+**8. Graph For Beginners Problems - Pattern - Sample Solutions:** [https://lnkd.in/dkpyiB3R](https://lnkd.in/dkpyiB3R)
 
 **9. A comprehensive guide and template for monotonic stack based problems:** [https://lnkd.in/dtmFMzDJ](https://lnkd.in/dtmFMzDJ)
 
@@ -33,7 +33,7 @@ Below is a mind map that provides a high-level overview of the different DSA pat
 
 **11. Collections of Important String questions Pattern:** [https://lnkd.in/dCy_j-vw](https://lnkd.in/dCy_j-vw)
 
-**12. Leetcode Pattern 1 | BFS + DFS == 25% of the problems:** [https://lnkd.in/dtaEpzrC](https://lnkd.in/dtaEpzrC)
+**12. Leetcode Pattern 1: BFS + DFS == 25% of the problems:** [https://lnkd.in/dtaEpzrC](https://lnkd.in/dtaEpzrC)
 
 **13. Topological Sort**
 
