@@ -1,13 +1,69 @@
 ---
 layout: post
 title: 'DSA Pattern - Data Structure Concepts'
-date: 2025-03-21
+date: 2025-03-31
 categories: tech
 ---
 
 In this post, we will explore various data structure and algorithm (DSA) patterns that are essential for solving coding interview problems. Understanding these patterns will help you to approach problems systematically and come up with efficient solutions.
 
 Below is a mind map that provides a high-level overview of the different DSA patterns:
+
+## References
+
+**1. Two Pointer Problems:**
+
+- https://lnkd.in/dK_fB-Eg
+
+**2. Backtracking Pattern:**
+
+- https://lnkd.in/dDGsdfps
+
+**3. Dynamic Programming Patterns:**
+
+- https://lnkd.in/dX7a4cau
+
+**4. Dynamic Programming Patterns 2:**
+
+- https://lnkd.in/db2tAp27
+
+**5. Powerful Ultimate Binary Search Template:**
+
+- https://lnkd.in/dxk7kdeb
+
+**6. A general approach to backtracking questions:**
+
+- https://lnkd.in/drsHxsZh
+
+**7. Binary Tree Traversal & Views:**
+
+- https://lnkd.in/dxGcKx65
+
+**8. Graph For Beginners [Problems | Pattern | Sample Solutions]:**
+
+- https://lnkd.in/dkpyiB3R
+
+**9. A comprehensive guide and template for monotonic stack based problems:**
+
+- https://lnkd.in/dtmFMzDJ
+
+**10. All Types of Patterns for Bits Manipulations and How to use it:**
+
+- https://lnkd.in/d-rfVNx2
+
+**11. Collections of Important String questions Pattern:**
+
+- https://lnkd.in/dCy_j-vw
+
+**12. Leetcode Pattern 1 | BFS + DFS == 25% of the problems:**
+
+- https://lnkd.in/dtaEpzrC
+
+**13. Topological Sort**
+
+**14. 0/1 Knapsack**
+
+**15. Top 'K' elements: use Heap/priority queue**
 
 ![DSA Pattern Mind Map](/images/dsa-patterns.png)
 
