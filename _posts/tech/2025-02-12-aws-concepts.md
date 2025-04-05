@@ -2330,22 +2330,182 @@ Certificate Manager helps you provision and manage SSL/TLS certificates
 
 ### 1. Managed Services
 
+Dùng để quản lý AWS Infrastructure nhưng cho role Mangement.
+
+Managed Services helps you efficiently operate your AWS Infrastructure
+
+- Augment your internal staffs
+
+- Provide ongoing management of your infrastructure
+
+- Reduces operational risks and overhead
+
+In Real World
+
+- **Develop application-specific health monitoring using CloudWatch:** Managed services can increase your operational efficiency by helping you develop application-specific health monitoring using CloudWatch
+
 ### 2. Professional Services
+
+Dùng để đưa ra lời khuyên để migrate từ on-premises to cloud.
+
+Professional Services helps enterprise customers move to a cloud-based operating model
+
+- Proposes solutions
+
+- Architect solutions
+
+- Implement solutions
+
+In Real World
+
+- **Get help with evaluating an application for migration to the cloud:** You can quickly move on-premises applications to the cloud using AWS Professional Services
 
 ### 3. AWS Partner Network (APN)
 
+Một cộng đồng cho các partner triển khai và bán các giải pháp công nghệ và dịch vụ tư vấn AWS => Bán design.
+
+APN is a global community for approved partners that offer software solutions and consulting services for AWS
+
+- Offer technology partners that provide software solutions
+
+- Provide consulting partners that offer professional services
+
+- Find approved vendors with deep AWS expertise
+
+In Real World
+
+- **You need help designing and building a new application:** If your team lacks the technical expertise to build and deploy cloud applications, the APN could help you get up and running quickly
+
 ### 4. Marketplace
 
+Dùng để bán solution softwares => bán sản phẩm trên AWS.
+
+Marketplace
+
+- Buy third-party software
+
+- Sell solutions to AWS customers
+
+- Search the catalog of software listings and install with the click of a button
+
+In Real World
+
+- **Try out an application before making a long-term commitment:** Some products listed on marketplace offer free trials. The free trial allows you to try the software before you buy it
+
 ### 5. Personal Health Dashboard
+
+Dashboard các trạng thái sức khoẻ các services trên AWS.
+
+Personal Health Dashboard alerts you to events that might impact your AWS environment
+
+- Provides troubleshooting guidance
+
+- Feedback tailored to your specific environment
 
 ## 5. Support Plans
 
 ### 1.Basic
 
+Cho hỏi giá billing với account thôi.
+
+Basic Support is included for free for all AWS accounts
+
+- Account and Billing support cases
+
+- Service limit increases
+
 ### 2. Developer
+
+Cho hỗ trợ technical
+
+Developer Support starts at $29 a month, is recommended for testing and development.
+
+- Recommended for testing and development
+
+- Account and Billing support cases
+
+- Service limit increases
+
+- Technical support
+
+- 1 primary contact
+
+- Unlimited support cases
 
 ### 3. Business
 
+Cho hỗ trợ business case nhiều hơn trên production.
+
+Business Support starts at $100 a month and is recommended for production workloads
+
+- Account and Billing support cases
+
+- Service limit increases
+
+- Technical support
+
+- Unlimited contacts
+
+- Unlimited cases
+
+- Full Set of Trusted Advisor Checks
+
+- Cloud support engineers: 24/7 access via email, phone or chat
+
+Response times:
+
+- < 24 hours General guidance
+
+- < 4 hours Production system impaired
+
+- < 12 hours System impaired
+
+- < 1 hours Production system down
+
 ### 4. Enterprise
 
+- Thêm cái technical account manager.
+
+Enterprise Support starts at $15000 a month and is recommended for business or mission-critical production workloads.
+
+Enterprise Support starts at $15000 a month and is recommended for business or mission-critical production workloads
+
+- Account and Billing support cases
+
+- Service limit increases
+
+- Technical support
+
+- Unlimited contacts
+
+- Unlimited cases
+
+- Full Set of Trusted Advisor Checks
+
+- Technical Account Manager (TAM)
+
+- Concierge support team
+
+- Infrastructure Event Management
+
+- Cloud support engineers: 24/7 access via email, phone or chat
+
+Response times:
+
+- <24 hours General guidance
+
+- <4 hours Production system impaired
+
+- < 12 hours System impaired
+
+- < 1 hours Production system down
+
+- < 15 minutes Business-critical system down
+
 ### 5. Support Case Types
+
+- **Account and billing:** Account-related and billing cases can be opened by all customers
+
+- **Service limit increases:** Default service quota (or limit) increases can be opened by all customers
+
+- **Technical support:** Technical support cases can only be opened by customers on the Developer, Business, Enterprise plans
