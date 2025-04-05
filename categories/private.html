@@ -97,8 +97,8 @@ layout: default
 </script>
 
 <div class="posts">
-  {% assign filtered_posts = site.posts | where: "categories", "private" %} {% for
-  post in filtered_posts %}
+  {% assign filtered_posts = site.posts | where: "categories", "private" %} {%
+  for post in filtered_posts %}
   <article
     class="post"
     data-category="private"
@@ -138,7 +138,7 @@ layout: default
           {{ post.categories }}
         </a>
       </p>
-      <p class="date">Written on {{post.date | date: "%B %d, %Y"}}</p>
+      <p class="date">Last Updated on {{post.date | date: "%B %d, %Y"}}</p>
     </div>
 
     <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
