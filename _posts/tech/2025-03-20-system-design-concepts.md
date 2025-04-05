@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'System Design Concepts - High-level Component'
-date: 2025-03-20
+date: 2025-04-05
 categories: tech
 ---
 
@@ -22,6 +22,8 @@ To simplify the design process, we should design each layer in the following ord
 - For API need service communication, we use grpc DNS, queue, distributed cache.
 
 ![System Design Template](/images/system-design-mindmap.png)
+
+Reference: [https://medium.com/coders-mojo/day-19-of-system-design-series-system-design-important-terms-45002fbbb789](https://medium.com/coders-mojo/day-19-of-system-design-series-system-design-important-terms-45002fbbb789)
 
 # 1. Client
 
