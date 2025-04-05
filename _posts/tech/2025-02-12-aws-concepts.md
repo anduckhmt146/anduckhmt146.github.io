@@ -2492,9 +2492,9 @@ Enterprise Support starts at $15000 a month and is recommended for business or m
 
 Response times:
 
-- <24 hours General guidance
+- < 24 hours General guidance
 
-- <4 hours Production system impaired
+- < 4 hours Production system impaired
 
 - < 12 hours System impaired
 
