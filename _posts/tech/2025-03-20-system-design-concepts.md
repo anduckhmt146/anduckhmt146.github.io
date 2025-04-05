@@ -23,7 +23,11 @@ To simplify the design process, we should design each layer in the following ord
 
 ![System Design Template](/images/system-design-mindmap.png)
 
-Reference: [https://medium.com/coders-mojo/day-19-of-system-design-series-system-design-important-terms-45002fbbb789](https://medium.com/coders-mojo/day-19-of-system-design-series-system-design-important-terms-45002fbbb789)
+Reference:
+
+1. [https://medium.com/coders-mojo/complete-system-design-series-part-1-45bf9c8654bc](https://medium.com/coders-mojo/complete-system-design-series-part-1-45bf9c8654bc)
+
+2. [https://medium.com/coders-mojo/day-19-of-system-design-series-system-design-important-terms-45002fbbb789](https://medium.com/coders-mojo/day-19-of-system-design-series-system-design-important-terms-45002fbbb789)
 
 # 1. Client
 
