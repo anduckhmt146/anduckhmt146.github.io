@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-permalink: /
+permalink: /about
 ---
 
 Hello, reader. This blog offers a glimpse into who I am, after years of grappling with a deep, overwhelming sense of confusion. While others my age seemed to flow easily through life, I found myself constantly lost in thought, overanalyzing every detail, struggling to connect on a deeper emotional level. I became consumed by this internal complexity and chose to retreat from the world.
@@ -24,7 +24,7 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 ## 2. Personality, Enneagram, Attachment Theory, Zodiac?
 
-1. **Personality type (MBTI):** Assertive ENFP 5w4, Ne-Te Loop Mode.
+1. **Personality type (MBTI):** Assertive ENFP 5w4, Last Updated On Loop Mode.
 
 2. **Enneagram:** mostly 5w4 or 7w8, could be 4w5.
 
@@ -50,7 +50,7 @@ I am a dreamer, an analytical over-thinker, and an over-achiever, who is constan
 
   - I struggle with procrastination, overthinking too much about perfection and completeness, lack of action-oriented motivations, occasional over-sensitivity, and sometimes over-abstractions but lack of practicality.
 
-  - Tend to overanalyze and control situations logically, characteristic of an ENFP Ne-Te loop.
+  - Tend to overanalyze and control situations logically, characteristic of an ENFP Last Updated On loop.
 
   - Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repeatable, boring tasks. There are moments when I battle feelings of inadequacy, caught in the grip of self-doubt.
 
