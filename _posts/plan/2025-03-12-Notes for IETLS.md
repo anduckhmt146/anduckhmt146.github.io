@@ -9,23 +9,199 @@ Objective: Practice skills and habits of using English.
 
 # 1. Reading
 
-## 1. Introduction
+## 1.1 Introduction
 
-## 2. Read structure
+### 1.1.1 Read structure
 
-## 3. True - False - Not Given
+- Tìm S1, V1, S2, V2, object 1, object 2,...trong 1 câu.
 
-## 4. Gap Fill
+### 1.2.1. Read connection
 
-## 5. Read connection
+- Tìm paraphrase của S và V của câu topic với các câu sau đó.
 
-## 6. Matching Heading
+![Read Connection](/images/read-connection.jpeg)
 
-## 7. Matching Names & Multiple Choices
+## 1.2. Read structure
 
-## 8. Maching Information
+Nhìn ra cấu trúc của câu, ví dụ:
 
-## 9. Reading Strategy
+- SV, blame sth for sth.
+
+- Mấy cái liệt kê thì chỉ cần đọc 1 cái.
+
+### Câu đơn (Simple Sentence)
+
+- Một câu dài có thể vì các lý do sau:
+  - Liệt kê ví dụ
+  - Dùng cụm giới từ on, in, at.
+  - Relative clause, N dài bổ nghĩa cho N ngắn.
+  - S1, V1, V2, V3.
+  - S1, S2, S3, V1.
+  - S1, V1, O1, O2, O3.
+  - S allow sth to sth
+  - Không cần đọc câu ví dụ nếu đã hiểu câu trước đó.
+- Một số chủ ngữ đặt biệt
+
+  - The fact that SV
+  - Whether SV
+  - What/How people react to a problem + V
+
+### Câu ghép (Compound Sentence)
+
+**Structures**: SV ... SV
+
+**Tips: Fanboys**
+
+- E for C: for bằng because
+- (+) and (+): đồng nghỉa tích cực
+- (-) nor (-): đồng nghĩa tiêu cực
+- (>) but (<): tương phản
+- (A) or (B): một trong hai.
+- (>) yet (<): tương phản
+- C so E: so + kết quả
+
+Dựa vô các từ nối này split ra 2 câu đơn tìm S1, V1, S2, V2.
+
+### Câu phức (Complex Structure)
+
+#### Reported Sppech
+
+- S + said that + SV
+
+- S + belived that + SV
+
+- S + showed that + SV
+
+=> Chỉ cần quan tâm SV đằng sau thôi.
+
+#### Relative Clause
+
+- S + Ving + V
+
+- S + V_ed + be + Adj
+
+- S V that S V
+
+- S V which S V
+
+Dùng để bổ sung cho Noun, hoặc clauses trong verb.
+
+Đọc mệnh đề quan hệ khi chưa hiểu SV, còn hiểu SV rồi thì skip mệnh đề quan hệ.
+
+#### Adverbial Clause
+
+**A. Cause/Effect**
+
+**...SV, SV**
+
+- Because SV, SV
+
+**...N, SV**
+
+- Thanks to N, SV
+
+**...V_ing, SV**
+
+- By Ving, SV
+- SV, thereby Ving
+
+**Purpose**
+
+- In order to V, SV
+- To V, SV
+
+**B. Contrasting**
+
+**...SV, SV**
+
+- Although, SV
+- While, SV
+
+**...N, SV**
+
+- Despite N, SV
+
+**Even...**
+
+- Even if SV, SV
+- Even when SV, SV
+
+**C. Conditional**
+
+**...SV, SV**
+
+- Provided that SV, SV
+- If SV, SV
+
+**...N,SV**
+
+- But for N, SV
+- Without N, SV
+- With N, SV
+
+**Even...**
+
+- Unless, SV
+- SV, otherwise, SV
+- SV, or else SV
+
+**D. Comparison**
+
+**Similarity**
+
+- Like N, SV
+- Similar to
+- Same as
+
+**Difference**
+
+- Unlike N, SV
+
+- As opposed to N, SV
+
+- Contrary to N, SV
+
+- In contrast to N, SV
+
+**E. Clock (Time)**
+
+**Before**
+
+- Before SV/N/V_ing, SV
+- Prior to N, SV
+
+**During**
+
+- During N, SV
+- While SV, SV
+
+**After**
+
+- After SV/N/V_ing, SV
+
+- Following N, SV
+
+- Since N, SV
+
+- As soon as SV, SV
+
+- When SV, SV
+
+- Once SV, SV
+
+## 1.3. True - False - Not Given
+
+## 1.4. Gap Fill
+
+## 1.5. Read connection
+
+## 1.6. Matching Heading
+
+## 1.7. Matching Names & Multiple Choices
+
+## 1.8. Maching Information
+
+## 1.9. Reading Strategy
 
 # 2. Writing
 
