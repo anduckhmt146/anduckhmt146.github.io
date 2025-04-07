@@ -191,6 +191,54 @@ Dùng để bổ sung cho Noun, hoặc clauses trong verb.
 
 ## 1.3. True - False - Not Given
 
+1. Read question
+
+2. Locate info
+
+3. Read relevant info (2 - 3 câu) xung quanh
+
+4. Compare meaning to meaning
+
+**Tips:**
+
+**A. Comparison**
+
+1. Reading: không so sánh, Question: so sánh => Not Given.
+
+2. Reading: A, Question: B => Not Given.
+
+3. **Reading: trái ngược với Question** => False
+
+4. **Reading: giống với Question** => True
+
+**B. Absolutely words**
+
+**Gặp các từ absolutely words nhớ lưu ý các từ phủ định.**
+
+1. The only
+
+2. No other
+
+3. **All + phủ định = None**
+
+4. Some, Most.
+
+**C. True and Not Given**
+
+**Question general thường là đúng.**
+
+1. **Reading: Specific, Question: General => True**
+
+2. **Reading: General, Question: Specific => Not Given**
+
+**D. True and False**
+
+1. **Để ý các từ phủ định, các phép so sánh tuyệt đối, các từ như In contrast,...**
+
+**E. False and Not Given**
+
+1. Thường **để ý các từ phủ định, các phép so sánh tuyệt đối, các từ như In contrast,...**
+
 ## 1.4. Gap Fill
 
 ## 1.5. Read connection
