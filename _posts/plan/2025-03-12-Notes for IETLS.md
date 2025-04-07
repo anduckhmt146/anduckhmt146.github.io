@@ -37,7 +37,7 @@ Objective: Practice skills and habits of using English.
 
 ## 3.1. How to speak a right sentence
 
-### I. Câu Yes/No
+### 3.1.1. Câu Yes/No
 
 #### Câu hỏi không có mức độ
 
@@ -55,7 +55,7 @@ Không thích vừa: Probably not / Not really
 
 Không thích: Definately not / The answer is definite no
 
-### II. What/Which/Whom/Who (Cái gì)
+### 3.1.2. What/Which/Whom/Who (Cái gì)
 
 - It would be + nothing else/ no one else + other than + N
 
@@ -63,7 +63,7 @@ Không thích: Definately not / The answer is definite no
 
 - A couple of things, one of which is to make + people + V
 
-### III. When/Where (khi nào)
+### 3.1.3. When/Where (khi nào)
 
 #### Habit
 
@@ -75,7 +75,7 @@ Không thích: Definately not / The answer is definite no
 
 - It would be + time/place.
 
-### IV. How (bằng cách nào)
+### 3.1.4. How (bằng cách nào)
 
 #### Method
 
@@ -97,7 +97,7 @@ Không thích: Definately not / The answer is definite no
 
 - It is really + adj
 
-### IV. Why (lý do)
+### 3.1.5. Why (lý do)
 
 #### Lý do
 
@@ -110,3 +110,129 @@ Không thích: Definately not / The answer is definite no
 - The best/worst part about + N + is that + SV
 
 - What I like/hate most about + N + is that + SV
+
+## 3.2. Word Phrase + Collocations
+
+### 3.2.1. Effect
+
+#### Thing
+
+#### Positive (+)
+
+#### Verb
+
+- **allows someone to do sth**
+
+- helps someone to do sth
+
+- gives someone the opportunity to do V
+
+#### Noun
+
+- gives someone something
+
+- provides someone with something
+
+- reduces the risk of N
+
+#### People
+
+- have the opportuinity to V
+
+- be able to V
+
+#### Negative (-)
+
+#### Verb
+
+- **makes someone V**
+
+- give someone no choice but to V
+
+- requires someone to V
+
+#### Noun
+
+- prevents someone from Ving
+
+- stops someone from Ving
+
+#### People
+
+- have to
+
+- have no choice but to V
+
+- can't help but have to V
+
+### 3.2.2. Want/Need
+
+#### People
+
+- I want/need/hope (to + V) (N)
+
+- I truly long to + V (mong muốn lâu lắm rồi)
+
+### 3.2.3. Feeling/Opinion
+
+#### Thing
+
+- makes somebody feel + adj
+
+#### People (Opinion)
+
+- find + it + adj
+
+- find N + to be + adj
+
+- see Noun1 + as + Noun2
+
+#### People (Feeling)
+
+- I can't help but feel + adj
+
+- I find oneself feeling + adj
+
+### 3.2.4. Preference
+
+#### Thing
+
+- is/are (not) + my cup of tea
+
+- is/are (not) + my interest
+
+#### People
+
+#### Positive (+)
+
+- I am a big fan of + sth
+
+- I am particularly + interested in + sth
+
+#### Negative (-)
+
+- I can't stand + Ving
+
+- I hate it when I have to + V
+
+#### Compare (>)
+
+- I prefer sth + to + sth
+
+- I would rather + V + than + V
+
+### 3.2.5. Habit/Comparison
+
+#### Thing (Compare)
+
+- do sth + more than + sth
+
+- more adj + than
+
+- N + totally beats sth + in terms of + N
+
+#### People (Habit)
+
+- make a habit out of + Ving
+
+- make it a habit to + V
