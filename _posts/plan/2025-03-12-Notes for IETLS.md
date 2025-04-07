@@ -376,11 +376,11 @@ Dạng này làm cuối
 
 ## 1.9. Reading Strategy
 
-1. Do T/F/NG, Gap Fill -> Đọc 1 câu
+1. **Do T/F/NG, Gap Fill** -> Đọc 1 câu
 
-2. Matching Heading, Matching Names, MCQS -> Đọc cả đoạn
+2. **Matching Heading, Matching Names, MCQS** -> Đọc cả đoạn
 
-3. Matching Info -> Đọc cuối, do câu hỏi abstract, thông tin trong đoạn thì detail
+3. **Matching Info** -> Đọc cuối, do câu hỏi abstract, thông tin trong đoạn thì detail
 
 # 2. Writing
 
