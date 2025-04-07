@@ -241,7 +241,80 @@ Dùng để bổ sung cho Noun, hoặc clauses trong verb.
 
 ## 1.4. Gap Fill
 
+Tìm paraphrasing và suy ra word form.
+
+1. Read question
+
+2. Locate info
+
+3. Read relevant info
+
+4. Compare to question
+
 ## 1.5. Read connection
+
+### 1.5.1. Repeated Information
+
+- Repetition: Lặp đi lặp lại
+
+- Referencing:
+
+  - The + N(s)
+  - Such + a/an + N(s)
+  - This/That + N
+  - These/Those + N
+  - One(s) -> The other
+  - Counterpart
+
+- Meaning -> Explain
+
+### 1.5.2. Linking words
+
+#### Similarity
+
+Suy ra nghĩa tương đồng
+
+- Also, In the same way, just as...so too, likewise, similarly.
+
+#### Example:
+
+Dựa vô ví dụ để hiểu.
+
+- For example, For instance, To illustrate, by way of illustration, this is envidenced by,...
+
+#### Explain
+
+Không hiểu A thì đọc B
+
+- In fact, Indeed, As a matter of fact,...
+
+#### Listing
+
+Nhớ cái tổng quát nhất.
+
+- First, second, third, in addtion, besides, What's more,...
+
+#### Process
+
+Nhớ quy trình.
+
+- In the beginning, Then, Next, Later,...
+
+#### Contrast
+
+Suy ra nghĩa tương phản.
+
+- However, Yet, Despite this, By contrast,...
+
+#### Cause-Effect
+
+Suy ra nguyên nhân và kết quả.
+
+- Therefore, Thus, Consequently, As a result,...
+
+### 1.5.3. Meaning
+
+Notes: **Không có các từ nối như: This/These, However, Example, In fact,... => Thì dùng meaning để nối.**
 
 ## 1.6. Matching Heading
 
