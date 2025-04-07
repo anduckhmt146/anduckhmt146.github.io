@@ -253,6 +253,20 @@ Tìm paraphrasing và suy ra word form.
 
 ## 1.5. Read connection
 
+Read connection
+
+**1. Repeated info**
+
+- Repeated info
+
+- Referencing
+
+**2. Relationship**
+
+- Linking words
+
+- Meaning
+
 ### 1.5.1. Repeated Information
 
 - Repetition: Lặp đi lặp lại
@@ -318,11 +332,55 @@ Notes: **Không có các từ nối như: This/These, However, Example, In fact,
 
 ## 1.6. Matching Heading
 
+1. Đọc full paragraph
+
+2. **Read connection in a paragraph**
+
+3. Compare with options.
+
 ## 1.7. Matching Names & Multiple Choices
+
+### 1.7.1. Multiple Choice
+
+1. Read/Understand the question.
+
+2. Locate relevant infomation
+
+3. Read and understand relevant information
+
+4. Compare meaning with options
+
+=> Read connection
+
+### 1.7.2. Matching Names
+
+1. Đọc names
+
+2. Locate info, read relevant information
+
+3. Compare meaning with questions.
 
 ## 1.8. Maching Information
 
+Dạng này làm cuối
+
+- **Câu hỏi thường là abstract** => Cần phải đọc hết đoạn văn để hiểu được **cái concrete trong bài đọc**.
+
+1. Read the question (General -> Imagine -> Specific).
+
+2. Locate the info.
+
+3. Read the info.
+
+4. Compare info with Q -> Confirm Answer
+
 ## 1.9. Reading Strategy
+
+1. Do T/F/NG, Gap Fill -> Đọc 1 câu
+
+2. Matching Heading, Matching Names, MCQS -> Đọc cả đoạn
+
+3. Matching Info -> Đọc cuối, do câu hỏi abstract, thông tin trong đoạn thì detail
 
 # 2. Writing
 
