@@ -236,3 +236,103 @@ Không thích: Definately not / The answer is definite no
 - make a habit out of + Ving
 
 - make it a habit to + V
+
+## 3.3. How to expand your answer (Linear Tools)
+
+### 3.3.1. Description (Bài 1)
+
+- Verb + Objects + Contexts
+
+**Note:** Làm gì + Cái gì + Ở đâu + Khi nào
+
+Quay lại trả lời theo bài 1
+
+#### What/Who
+
+- The N + would be + nothing/noone else + other than + object.
+
+- There're a couple of Nouns that + SV, one of which is + N
+
+#### Where/When
+
+- I often + V + context (time/place)
+
+#### How often: Notes
+
+- I make it a habit to + V
+
+- I make a habit out of + Ving
+
+- I like it when I get to + V
+
+- I hate it when I have to + V
+
+- I would rather V than V
+
+### 3.3.2. Cause (Bài 2)
+
+- A big part of the reason goes to the fact that + SV
+
+#### Thing
+
+- ADS:
+
+  - It allows me to + V
+  - I'm able to + V
+  - I have the opportunity to V
+
+- DISADS:
+
+  - I've no choice but to + V
+  - It makes me + V.
+  - I can't help but have to + V
+  - It prevents me from being able to + V
+
+- OPINION:
+
+  - I find it adj to + V
+
+#### People
+
+- Feeling
+
+  - It makes me feel + Adj.
+  - I often find myself feeling + adj + whenever + SV.
+
+- Want/Need
+
+  - I wish to be able to + V.
+  - I am all about being able to V + those days/these days.
+
+### 3.3.3. Effect (Bài 2)
+
+- That's why, SV
+- As a result, SV
+
+#### Thing
+
+- Preference:
+
+  - I like it when I get to V
+  - I hate it when I have to V
+  - I would rather V than V
+
+- Want/Need
+
+  - I wish to be able to V
+  - I am all about being able to V + those days/these days.
+
+- Feeling:
+
+  - It makes me feel + Adj
+  - I ofen find myself feeling + Adj + whenever SV
+
+- Habit:
+  - I've make it a habit to + V
+
+### 3.3.4. Develop idea vertically and horizontally
+
+- Mở rộng theo chiều ngang bổ nghĩa cho Yes.
+- Mở rộng theo chiều rộng để bổ sung nghĩa cho D, C hoặc E.
+
+![Horizonal Idea IELTS](/images/horizonal_ielts_idea.jpeg)
