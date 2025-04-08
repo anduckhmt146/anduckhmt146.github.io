@@ -540,6 +540,7 @@ Có 3 dạng:
 - **Dạng 3: A -> B -> C**
 
   - A -> B, which + V.
+  - A -> B, meaning that S + V.
   - A -> B, and thus S + V.
   - A -> B, thereby V-ing.
   - A -> B and thus V.
