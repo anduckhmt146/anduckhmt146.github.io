@@ -494,7 +494,7 @@ Ví dụ:
 
 **Tool 1: This + verb patterns**
 
-1. **Allow group**
+1. **Allow group (Mình cho đi gì)**
 
 - **Positive:**
   - allow someone to do sth
@@ -504,7 +504,7 @@ Ví dụ:
   - make someone to do sth
   - cause someone to do sth
 
-2. **Provide group**
+2. **Provide group (Mình nhận được gì)**
 
 - **Positive**:
 
@@ -516,7 +516,7 @@ Ví dụ:
   - stop someone from doing sth.
   - discourage someone from doing sth.
 
-3. **Beneficial group**
+3. **Beneficial group (Nó có lợi ích gì)**
 
 - **Positive**:
 
@@ -529,7 +529,23 @@ Ví dụ:
   - be harmful so somebody/something.
   - be disadvantageous to somebody/something.
 
-**Tool 2: Conplex structures**
+**Tool 2: Complex structures**
+
+Có 3 dạng:
+
+- **Dạng 1: A -> B. C -> D**
+  - Dùng linking words.
+- **Dạng 2: A -> B. B -> C**
+  - Dùng this/these
+- **Dạng 3: A -> B -> C**
+
+  - A -> B, which + V.
+  - A -> B, and thus S + V.
+  - A -> B, thereby V-ing.
+  - A -> B and thus V.
+
+  - A -> B because S -> V (Because)
+  - A -> B because of N (Because)
 
 # 3. Speaking
 
