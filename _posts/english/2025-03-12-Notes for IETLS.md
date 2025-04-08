@@ -548,6 +548,113 @@ Có 3 dạng:
   - A -> B because S -> V (Because)
   - A -> B because of N (Because)
 
+## 2.3. Problems & Solutions
+
+**1. Paraphrase the topic.**
+
+---
+
+**2. Thesis, Answer Q1, Answer Q2.**
+
+---
+
+**3. Answer Q1.**
+
+4. Idea 1.
+
+5. Example.
+
+6. Idea 2.
+
+7. Effect.
+
+---
+
+**8. Answer Q2.**
+
+9. Idea 1.
+
+10. Effect.
+
+11. Idea 2.
+
+12. Effect.
+
+---
+
+**13. In conclusion, Answer Q1, answer Q2.**
+
+---
+
+### Expand Idea:
+
+- **Explain/Reason.**
+
+- **Effect.**
+
+- **Example.**
+
+### How to write essays:
+
+**Q1. Read Qtype** => Write 1 2 3 8 13 (10 mins)
+
+**Q2. Idea**
+
+- Explain
+- Example
+- Effect
+
+**Q3. Correct sentences**
+
+**Q4. Check/Proofneed**
+
+### Brainstorm
+
+**Expand:**
+
+- **Idea:** General thing (Vật).
+
+- **Expand:** People (Người).
+
+- **Example:** Specific people (Ví dụ cụ thể).
+
+### Outline
+
+1. Paraphrase the topic: **Is it true that + S + V**
+2. Thesis: **This can lead to some negative consequences, which calls for possible solutions to be adopted.**
+
+---
+
+3. There are many problems resulting from N/Ving/the fact that S' + V'.
+4. **One obvious issue is that S + V (vật)**
+5. **Expand (người) | Example (người cụ thể)**
+6. Another potential risk is that S + V (vật)
+7. **Expand (người) | Example (người cụ thể)**
+
+---
+
+8. Various measures, nevertheless, can be implemented to address the issues.
+9. The first possible solution is that S + V (vật)
+10. **Expand (người) | Example (người cụ thể)**
+11. The second approach is that S + V
+12. **Expand (người) | Example (người cụ thể)**
+
+---
+
+13. In conclusion, although [topic] can give rise to many issues, steps can be taken to improve the situation.
+
+## 2.4. Paraphrasing skills
+
+## 2.5. Advantages - Disadvantages
+
+## 2.6. Agree - Disagree
+
+## 2.7. Graphs with Trend
+
+## 2.8. Graphs without Trend
+
+## 2.9. Mixed Graphs
+
 # 3. Speaking
 
 ## 3.1. How to speak a right sentence
