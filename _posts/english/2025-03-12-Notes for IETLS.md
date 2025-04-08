@@ -973,7 +973,130 @@ Thereafter,
 
 ## 2.8. Graphs without Trend
 
-## 2.9. Mixed Graphs
+### Mở bài
+
+**Notes: nhớ chia quá khứ**
+
+Mở đầu:
+
+- The graph/chart/pie/table illustrates/shows/describes/provide information on
+
+  - the number of N => how many S + V (quá khứ)
+  - the amount of N => how much S + V (quá khứ)
+  - the percentage of N => the proportion of N
+
+- in place
+
+- in time
+
+  - from 1995 to 2000.
+  - between 1995 and 2000.
+  - over a **five-year** period, starting from 1995.
+
+### Overview
+
+C1: 2 đối tượng => **So sánh hơn.**
+
+C2: > 2 đối tượng => **So sánh nhất.**
+
+**Notes: Compare X, Y, Z, W, V in 2 categories [A] and [B]**
+
+**So sánh hơn giữa các đối tượng X, Y, Z, W, V**
+
+Overall, what is notable from the chart/table is that while [X] and [Y] had more [A] than [B], the reverse pattern could be observed in [Z] and [W], and [V] had equal numbers.
+
+**So sánh nhất dựa trên A và B**
+
+Among all the [categories], [X] had the highest figure/percentage/amount/number
+
+- for both [A] and [B].
+- for [A] while the highes figure for [B] belonged to [Y].
+
+### Body 1 (Chia X, Y)
+
+- People under 9: 67% F = 7% higher than M
+
+- 10 - 17s: 45% and 40% female
+
+#### Comparison
+
+**Đối tượng:**
+
+- The number/amount of N
+
+- The figure for N
+
+- [data] + S + V (75% females)
+
+- There + be + [data] + S + who/which (There are 75% females)
+
+**Verb:**
+
+- stand at + data
+
+- be + data
+
+**So sánh:**
+
+- (which is) [A-B] higher than the figure for B.
+
+- (which is) surpassing/exceeding the figure for B by [A-B].
+
+- (which is) higher/lower than + the figure for B, at [data].
+
+- (which is) x times as high as the figure for B.
+
+- (which is) double/triple/quadruple the figure for B.
+
+#### Structure
+
+- X: A > B, Y followed a similar pattern, with respective figures being [data A and B].
+
+- X: A > B, Y followed a similar pattern, albeit with a smaller difference between [A and B], with respective figures being [data A and B]
+
+- X: A > B, Y followed a contrasting pattern, as the number / amount / percentage of B stood at [data B], surpassing the figure A by [B - A].
+
+### Body 2 (Chia Z, W, V)
+
+- The 18 - 39s: 35% M = surpass F by 10%
+
+- The 40 - 59s: 20% M = nearly double females.
+
+- People over 60: 10% F and 7% M
+
+### Outline
+
+**Intro:**
+
+The chart illustrates how (many/much) S - V [in place], [in time]
+
+**Overview:**
+
+Overall,
+
+- A > B || B > A
+
+- Among XYZWV -> 1st category
+
+**Body 1:**
+
+X + Y
+
+- **Regarding X**, A vs B
+
+- Y: A vs B -> dùng linking words:
+  - **Similar:** Y followed a similar pattern, with respective figures being [data A and B].
+  - **Contrasting:** Y followed a contrasting pattern, as the number/amount/percentage of B stood at [data B], surpassing the figure A by [B - A].
+
+**Body 2:**
+
+Z + W + V
+
+- **Concerning Z**, A vs B
+
+- **[Linking words]** W: A vs B
+
+- **[Linking words]** V: A vs B
 
 # 3. Speaking
 
