@@ -494,6 +494,8 @@ Ví dụ:
 
 **Tool 1: This + verb patterns**
 
+**Notes: Allow - Provide - Beneficial đổi cho nhau được.**
+
 1. **Allow group (Mình cho đi gì)**
 
 - **Positive:**
@@ -618,6 +620,8 @@ Có 3 dạng:
 
 - **Example:** Specific people (Ví dụ cụ thể).
 
+**Notes: Nhớ cần đảm bảo sự mạch lạc: A -> B, thì xuống các câu dưới là A1 -> B1, sau đó là A2 -> B2.**
+
 ### Outline
 
 1. Paraphrase the topic: **Is it true that + S + V**
@@ -643,13 +647,329 @@ Có 3 dạng:
 
 13. In conclusion, although [topic] can give rise to many issues, steps can be taken to improve the situation.
 
-## 2.4. Paraphrasing skills
+## 2.4. Causes & Solutions, Paraphrasing skills
+
+### Causes & Solutions
+
+**Outline:**
+
+1. Paraphrase: It is true that S + V.
+
+2. Thesis: This can be attributed to several factors, which can require possible solutions to be adopted.
+
+---
+
+3. There are several explanations as to why S' + V'
+
+4. One possibility is that S + V (vật)
+
+5. Expand (người) | Example (người detail)
+
+6. Another reason worth mentioning is that S + V
+
+7. Expand (người) | Example (người detail)
+
+---
+
+8. Various measures, nevertheless, can be implemented to address these issues.
+
+9. The first possible solution is that S + V
+
+10. Expand (người) | Example (người detail)
+
+11. The second approach is that S + V
+
+12. Expand (người) | Example (người detail)
+
+---
+
+13. In conclusion, while many reasons can be given to explain why S' + V', steps can be taken to alleviate the situation.
+
+### Paraphrase
+
+Sentence: S + V
+
+**S:**
+
+- Pronounce
+- Noun
+- V-ing
+- It
+- There
+
+**V:**
+
+- **Giữ Noun => Tra Longman đổi verb.**
+- Chuyển word form
+- Normalization
 
 ## 2.5. Advantages - Disadvantages
 
+**Notes: Cái nào outweigh nói sau**
+
+**Outline:**
+
+1. Paraphrase the topic: It is true that S + V
+
+2. Thesis: Although this (doing this) has several disadvantages, the benfits may be far more significant.
+
+---
+
+3. On the one hand, there can be some minor disadvantages of N/V-ing
+
+4. One possible issue is that S + V (vật)
+
+5. **Expand (Người) | Example (Người cụ thể)**
+
+6. Another detrimental effect could be that S + V
+
+7. **Expand (Người) | Example (Người cụ thể)**
+
+---
+
+8. Nevertheless, N/the fact that S' + V' can have major advantages which overshadow these negative impacts.
+
+9. The most obvious benefit could be that S + V
+
+10. **Expand (Người) | Example (Người cụ thể)**
+
+11. Another merit worth mentioning is that S + V
+
+12. **Expand (Người) | Example (Người cụ thể)**
+
+---
+
+13. In conclusion, despite the potential downsides of N/V-ing, the beneficial effects brought about are of greater importance.
+
 ## 2.6. Agree - Disagree
 
+**Outline:**
+
+1. Paraphrase: It is sometimes believed that S + V
+
+2. Thesis: This essay strongly/completely/totally agree with the suggestion for several reasons.
+
+---
+
+3. The first argument given to support my opinion is that S1 + V1
+
+4. Expand 1
+
+5. Example 1
+
+6. Expand 2 | Example 2
+
+7. Link to the topic
+
+---
+
+8. Another point behind my belief is that S2 + V2
+
+9. Expand 1
+
+10. Example 1
+
+11. Expand 2 | Example 2
+
+12. Link to the topic
+
+---
+
+13. In conclusion, I totally | entirely agree | disagree that S + V given the aforementioned arguments.
+
 ## 2.7. Graphs with Trend
+
+### Mở bài
+
+**Notes: nhớ chia quá khứ**
+
+Mở đầu:
+
+- The graph/chart/pie/table illustrates/shows/describes/provide information on
+
+  - the number of N => how many S + V (quá khứ)
+  - the amount of N => how much S + V (quá khứ)
+  - the percentage of N => the proportion of N
+
+- in place
+
+- in time
+  - from 1995 to 2000.
+  - between 1995 and 2000.
+  - over a **five-year** period, starting from 1995.
+
+### Overview
+
+#### Compare (Compare nhất)
+
+- A 1st entire period.
+
+- A 1st begin, B 1st end
+
+- A 1st almost entire period, except [year] B 1st
+
+#### Trend (Compare tăng giảm)
+
+- All tăng.
+
+- All tăng, except A giảm.
+
+- AB tăng, CD giảm
+
+- E fluctuate, F remain unchanged.
+
+#### Sample
+
+Overall, what is notable from the table/chart is that.
+
+**Trend:**
+
+- While A witnessed an upward trend, B exhibited a contrasting pattern and C showed a fluctuation and D remained unchanged.
+
+**Compare:**
+
+- In addition, among all the [categories], A held the top spot
+
+  - during the entire period.
+
+  - in the beginning; however, this position belonged to B at the end of the period.
+
+  - during almost the entire period, except [year] when B took the leading position.
+
+### Body 1
+
+Chia dàn bài thành
+
+- 1st: A (4000 TkWh), closely followed by B (3500 TkWh).
+
+- Far below: D and C (2500 TkWh) and (2000 TkWh).
+
+- Lowest: E (1000 TKWh)
+
+#### Chia thành 1st
+
+**Mở đầu:** At the start
+
+- **Đối tượng**
+
+  - A emerged as the leading category
+  - A held the highest position
+
+- **Số liệu**
+
+  - with/at ... and ..., respectively.
+  - as its figure stood at/was ...
+  - with its figure standing at/being...
+  - as **their figures** stood at/were ... and ..., respectively.
+  - with **their figures** standing at/being ... and ..., respectively.
+
+#### Chia thành middle
+
+- **Đối tượng**
+
+  - This was followed by B
+  - Far/Slightly below was B / were B and C
+
+- **Số liệu**
+
+  - with/at ... and ..., respectively.
+  - as its figure stood at/was ...
+  - with its figure standing at/being...
+  - as **their figures** stood at/were ... and ..., respectively.
+  - with **their figures** standing at/being ... and ..., respectively.
+
+#### Chia thành last
+
+- **Đối tượng**
+
+  - At the bottom of the list was B / were B and C
+
+- **Số liệu**
+
+  - with/at ... and ..., respectively.
+  - as its figure stood at/was ...
+  - with its figure standing at/being...
+  - as **their figures** stood at/were ... and ..., respectively.
+  - with **their figures** standing at/being ... and ..., respectively.
+
+### Body 2
+
+**Mở đầu:** Thereafter,
+
+#### Verb to describe trend
+
+- fluctuated around 50 / between 40 and 60.
+
+- increased to 60 / an increase to 60.
+
+- increased by 40 / an increase of 40.
+
+- remained unchanged at 10.
+
+- peak at 10.
+
+- hit a peak of
+
+- hit a low of
+
+#### Frequency
+
+- **Rất cao:** Dramatically | Sharply
+- **Vừa vừa:** Considerably | Significantly
+- **Thấp vừa:** Moderately | Noticeably
+- **Rất thấp:** Slightly | Marginally | Modestly
+
+#### Paraphrasing
+
+- S + V, before [trend 2] was recorded.
+
+- S + V, followed by [trend 2]
+
+The number of students at DOL increased sharply to 2000.
+
+- **[place]** DOL witnessed a sharp increase to 1000 in the number of students in 2010.
+
+- **[time]** The year 2010 recorded a sharp increase to 1000 in the number of students at DOL.
+
+- **[trend]** A sharp increase to 1000 was recorded in the number of students at DOL.
+
+- **[There]** There was a sharp increase 1000 in the number of students at DOL in 2010.
+
+- **[Subject]** Students at DOL witnessed a sharp increase to 1000 in 2010.
+
+### Outline
+
+**Intro:**
+
+- The chart illustrates how many/how much S + V over a X-year period, staring from ...
+
+**Overview:**
+
+- Tăng giảm
+
+- 1st category
+
+**Body 1:** Compare
+
+At the start of the period,
+
+- with [data], A emerged as the leading category.
+
+- This was followed by B (and C), with [data] (with respective figures being B and C).
+
+- At the bottom of the list was/were D (and E). with [data]
+
+**Body 2:** Trend
+
+Thereafter,
+
+- The number of A increase/decrease to ... in [năm cuối].
+
+- **[Linking word]** B registered an upward/downward trend, with ... in [năm cuối].
+
+- **[Linking word]** An ascending/descending trend was recored in C, with ... in [năm cuối].
+
+- Finally, regarding D, there was an increase/decrease, with ... in [năm cuối].
 
 ## 2.8. Graphs without Trend
 
