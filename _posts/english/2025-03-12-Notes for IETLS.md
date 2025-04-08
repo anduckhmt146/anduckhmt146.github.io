@@ -386,6 +386,63 @@ Dạng này làm cuối
 
 ## 2.1. How to use word patterns & collocations
 
+### Tra word patterns và collocations
+
+- **Word patterns:** tra trên Oxford
+
+  - Nhớ tra word form (noun, adj, verb)
+  - Nhớ tra nghĩa
+
+- **Collocations**: thường là danh từ, tra Longman.
+
+=> Phần lớn tra danh từ trên Longman
+
+### Write a correct sentence
+
+- Có chủ ngữ và vị ngữ
+
+**Subject:**
+
+- Pronounce (I, He, She, We, They)
+
+- Noun (My car, This book)
+
+- Ving (Singing, Dancing)
+
+- There are
+
+- It is
+
+**Verb:**
+
+- Be + adj pattern
+
+- Be + noun pattern
+
+- Verb + pattern
+
+Cách viết:
+
+1. Think about what you want to express.
+
+2. Identify S V
+
+- S: dùng 1 trong 5 trường hợp trên
+- V: tìm word pattern hoặc collocation
+
+3. Word patterns, Collocations
+
+- Check word patterns -> Oxford.
+- Check Collocation -> Longman
+
+4. Combine
+
+Ví dụ:
+
+- affect: can affect to
+
+- effect: have negative effects on
+
 ## 2.2. How to write a comprehensive sentence
 
 # 3. Speaking
