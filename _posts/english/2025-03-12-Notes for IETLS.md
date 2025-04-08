@@ -92,54 +92,54 @@ Dùng để bổ sung cho Noun, hoặc clauses trong verb.
 
 **A. Cause/Effect**
 
-1. **...SV, SV**
+**1....SV, SV**
 
 - Because SV, SV
 
-2. **...N, SV**
+**2....N, SV**
 
 - Thanks to N, SV
 
-3. **...V_ing, SV**
+**3....V_ing, SV**
 
 - By Ving, SV
 - SV, thereby Ving
 
-4. **Purpose**
+**4. Purpose**
 
 - In order to V, SV
 - To V, SV
 
 **B. Contrasting**
 
-1. **...SV, SV**
+**1....SV, SV**
 
 - Although, SV
 - While, SV
 
-2. **...N, SV**
+**2....N, SV**
 
 - Despite N, SV
 
-3. **Even...**
+**3. Even...**
 
 - Even if SV, SV
 - Even when SV, SV
 
 **C. Conditional**
 
-1. **...SV, SV**
+**1....SV, SV**
 
 - Provided that SV, SV
 - If SV, SV
 
-2. **...N,SV**
+**2....N,SV**
 
 - But for N, SV
 - Without N, SV
 - With N, SV
 
-3. **Even...**
+**3. Even...**
 
 - Unless, SV
 - SV, otherwise, SV
@@ -147,13 +147,13 @@ Dùng để bổ sung cho Noun, hoặc clauses trong verb.
 
 **D. Comparison**
 
-1. **Similarity**
+**1. Similarity**
 
 - Like N, SV
 - Similar to
 - Same as
 
-2. **Difference**
+**2. Difference**
 
 - Unlike N, SV
 
@@ -165,17 +165,17 @@ Dùng để bổ sung cho Noun, hoặc clauses trong verb.
 
 **E. Clock (Time)**
 
-1. **Before**
+**1. Before**
 
 - Before SV/N/V_ing, SV
 - Prior to N, SV
 
-2. **During**
+**2. During**
 
 - During N, SV
 - While SV, SV
 
-3. **After**
+**3. After**
 
 - After SV/N/V_ing, SV
 
