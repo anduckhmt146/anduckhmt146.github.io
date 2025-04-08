@@ -445,6 +445,92 @@ Ví dụ:
 
 ## 2.2. How to write a comprehensive sentence
 
+### 1. Make a sentence more convincing and specific
+
+- Make it more convincing (đừng bao giờ khẳng định chắc chắn)
+
+  - Dùng từ Many, Some + N
+  - Modal verb: can/may/might + V
+  - Frequency adverb: usually/often + V
+  - Language of probability: tend to + V, be likely to + V, run the risk of + V_ing
+
+- Make it more specific (cụ thể nó, đừng dùng Noun chung như people mà dùng noun cụ thể)
+  - Give examples
+  - Noun specifics, thay vì people, sử dụng students, office workers,...
+  - Relative clauses
+  - Add Adj + N
+  - Add Adv + N, ví dụ **find valuable information easily**.
+
+### 2. Connect sentences
+
+#### With linking words
+
+1. Write a sentence
+2. Connect with other sentences
+3. Formula: (A -> B) [LW] (C -> D)
+
+**Notes: Nguyên nhân -> Ví dụ -> Kết quả**
+
+**Expand (Nguyên nhân - Câu topic):**
+
+- This is because S V.
+- The reason for this is that SV.
+- In fact, SV
+
+**Example (Ví dụ)**
+
+- For example, SV.
+- For instance, SV.
+- By way of illustration, SV.
+
+**Effect (A->B) (Kết quả)**:
+
+- As a result, SV.
+- Therefore, SV.
+- Thus, SV.
+- Consequently, SV.
+
+#### Without linking words
+
+**Tool 1: This + verb patterns**
+
+1. **Allow group**
+
+- **Positive:**
+  - allow someone to do sth
+  - enable someone to do sth
+  - help someone to do sth
+- **Negative:**
+  - make someone to do sth
+  - cause someone to do sth
+
+2. **Provide group**
+
+- **Positive**:
+
+  - provide someone with the opportunity to do sth.
+  - offer someone the opportunity to do sth.
+
+- **Negative**:
+  - prevent someone from doing sth.
+  - stop someone from doing sth.
+  - discourage someone from doing sth.
+
+3. **Beneficial group**
+
+- **Positive**:
+
+  - be beneficial to somebody/something.
+  - be advantageous to somebody/something.
+  - be helpful to somebody/something.
+
+- **Negative**:
+
+  - be harmful so somebody/something.
+  - be disadvantageous to somebody/something.
+
+**Tool 2: Conplex structures**
+
 # 3. Speaking
 
 ## 3.1. How to speak a right sentence
