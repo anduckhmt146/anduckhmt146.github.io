@@ -54,7 +54,7 @@ Implement a façade or adapter layer between different subsystems that don't sha
 
 Use it to make a proxy between calling subsystems, allowing in case **new system** to calling interface API to get resources in **legacy system**.
 
-You can know **legacy system** is the system that can not be change code or maintainable anymore. So instead of change code in legacy system, we only care about the input and output schema of the interface and enhance logic in adapter layer by Open-closed principle.
+You can know **legacy system** is the system that can not be change code or maintainable anymore. So instead of changing code in legacy system, we only care about the input and output schema of the interface and enhance logic in adapter layer by **Open-closed principle**.
 
 **Usecase:**
 
