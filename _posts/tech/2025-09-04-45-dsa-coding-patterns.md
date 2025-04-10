@@ -7,6 +7,17 @@ categories: tech
 
 Here is 42 coding interview patterns would help you think clearer about DSA.
 
+<!-- Highlight.js CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+
+<!-- Highlight.js JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    hljs.highlightAll();
+  });
+</script>
+
 Ref:
 
 - [https://github.com/Chanda-Abdul/Several-Coding-Patterns-for-Solving-Data-Structures-and-Algorithms-Problems-during-Interviews](https://github.com/Chanda-Abdul/Several-Coding-Patterns-for-Solving-Data-Structures-and-Algorithms-Problems-during-Interviews)
@@ -14,6 +25,66 @@ Ref:
 - [https://www.designgurus.io/blog/coding-patterns-for-tech-interviews](https://www.designgurus.io/blog/coding-patterns-for-tech-interviews)
 
 # 1. Pattern 1: Sliding Window
+
+## 1.1. Fixed Sliding Window
+
+Ref: [https://leetcode.com/problems/maximum-average-subarray-i/description/](https://leetcode.com/problems/maximum-average-subarray-i/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        result = []
+        windowStart, windowSum, windowEnd = 0, 0, 0
+        maxWindowAvg = float('-inf')
+        
+        for windowEnd in range(0, len(nums)):
+            windowSum += nums[windowEnd]
+            
+            if windowEnd >= k - 1:    
+                maxWindowAvg = max(maxWindowAvg, windowSum / k)
+                
+                windowSum -= nums[windowStart]
+                windowStart += 1
+        
+        return maxWindowAvg
+</code>
+</pre>
+</details>
+
+## 1.2. Variant Sliding Window
+
+Ref: [https://leetcode.com/problems/minimum-size-subarray-sum/description/](https://leetcode.com/problems/minimum-size-subarray-sum/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        windowSum, windowStart = 0, 0
+        minSubArrayLength = float('inf')
+
+        for windowEnd in range(0, len(nums)):
+            windowSum += nums[windowEnd]
+
+            while windowSum >= target:
+                minSubArrayLength = min(minSubArrayLength, windowEnd - windowStart + 1)
+
+                windowSum -= nums[windowStart]
+                windowStart += 1
+        
+        if minSubArrayLength == float('inf'):
+            return 0
+
+        return minSubArrayLength
+</code>
+</pre>
+</details>
 
 # 2. Pattern 2: Two Pointer
 
