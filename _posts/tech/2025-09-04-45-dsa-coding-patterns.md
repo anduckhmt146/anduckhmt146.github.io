@@ -122,6 +122,43 @@ class Solution:
 </pre>
 </details>
 
+## 1.4. Longest window without duplicate character
+
+Ref: [https://leetcode.com/problems/longest-substring-without-repeating-characters/description/](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # Initialize variables
+        windowStart = 0
+        maxLength = 0
+        charIndexMap = {}  # Store the last index of each character
+        
+        # Iterate through the string
+        for windowEnd in range(0, len(s)):
+            rightChar = s[windowEnd]
+            
+            # If the character is already in the map and its index is within our window
+            if rightChar in charIndexMap and charIndexMap[rightChar] >= windowStart:
+                # Move windowStart to the right of the previous occurrence
+                windowStart = charIndexMap[rightChar] + 1
+            
+            # Update the character's last seen index
+            charIndexMap[rightChar] = windowEnd
+            
+            # Update maxLength if current window is larger
+            maxLength = max(maxLength, windowEnd - windowStart + 1)
+        
+        return maxLength
+        
+</code>
+</pre>
+</details>
+
 # 2. Pattern 2: Two Pointer
 
 # 3. Pattern 3: Fast & Slow Pointer
