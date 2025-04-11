@@ -89,3 +89,103 @@ When we make a successful call to the status endpoint, it should return HTTP 200
 **Advantageous:**
 
 - **Performance Efficiency**: Decoupling the request and reply phases of interactions for processes that don't need immediate answers improves the responsiveness and scalability of systems. As an asynchronous approach, you can **maximize concurrency on the server side** and schedule work to be completed as capacity allows, allow **different services can be scale independently**.
+
+# 5. Backends for Frontends pattern
+
+Decouple backend services from the frontend implementations to tailor experiences for different client interfaces. This pattern is useful when you want to avoid customizing a backend that serves multiple interfaces. This pattern is based on Pattern: Backends For Frontends described by Sam Newman.
+
+**Notes:** It means that whether we build services, a lot of repeated usecase required calling to core services to serve frontend business, such as: get ID of users while accessing app by calling to UM services, implement the payment logic by calling to payment services,... And each team must implement ad-hocs API to serving this demand, it is waste and repetitive but can not avoid => We should use **BFF for ad-hocs APIs (only for frontend purposes)**.
+
+![](/images/backend-for-frontend-example.png)
+
+**Use this pattern when:**
+
+- A shared or general purpose backend service must be maintained with significant development overhead.
+
+- You want to optimize the backend for the requirements of specific client interfaces.
+
+- Customizations are made to a general-purpose backend to accommodate multiple interfaces.
+
+- A programming language is better suited for the backend of a specific user interface, but not all user interfaces.
+
+**This pattern may not be suitable:**
+
+- When interfaces make the same or similar requests to the backend.
+
+- When only one interface is used to interact with the backend.
+
+**Advantageous:**
+
+- **Reliability:** Having separate services that are exclusive to a specific frontend interface contains malfunctions so the availability of one client might not affect the availability of another client's access.
+
+- **Security:** Because of service separation introduced in this pattern, the security and authorization in the service layer that supports one client can be tailored to the functionality required by that client, potentially reducing the surface area of an API and lateral movement among different backends that might expose different capabilities.
+
+- **Performance Efficiency**: The backend separation enables you to optimize in ways that might not be possible with a shared service layer. When you handle individual clients differently, you can optimize performance for a specific client's constraints and functionality
+
+# 6. Bulkhead pattern (vách ngăn)
+
+The Bulkhead pattern is a type of application design that is tolerant of failure. In a bulkhead architecture, also known as cell-based architecture, **elements of an application are isolated into pools so that if one fails, the others will continue to function**. It is related to mechanism such as: circuit breaker, rate limiter, retry,...
+
+For example, **Resilience4j** is a library with patterns:
+
+- **Circuit Breaker:** This pattern monitors the health of a remote service and switches to a fallback if it's experiencing high error rates, preventing cascading failures.
+
+- **Rate Limiter:** This pattern controls the number of requests that a service can handle within a certain period, preventing overload and denial-of-service attacks.
+
+- **Retry:** This pattern automatically retries failed requests a certain number of times, giving the system a chance to recover.
+
+- **Bulkhead:** This pattern isolates different services within a system to prevent one service's failure from affecting others.
+
+- **Time Limiter:** This pattern ensures that requests are executed within a specified time frame, preventing indefinite hangs.
+
+- **Cache:** This pattern stores frequently accessed data in memory to reduce the number of calls to remote services and improve performance.
+
+![](/images/bulkhead-pattern.png)
+
+**Use this pattern to:**
+
+- Isolate resources used to consume a set of backend services, especially if the application can provide some level of functionality even when one of the services is not responding.
+
+- Isolate critical consumers from standard consumers.
+
+- Protect the application from cascading failures.
+
+**This pattern may not be suitable when:**
+
+- Less efficient use of resources may not be acceptable in the project.
+
+- The added complexity is not necessary
+
+**Advantageous:**
+
+- Reliability
+
+- Security
+
+- Performance Efficiency
+
+**Example**
+
+The following Kubernetes configuration file creates an isolated container to run a single service, with its own CPU and memory resources and limits.
+
+![](/images/k8s.png)
+
+# 7. Cache-aside
+
+If data in cache, load data in cache, else query database => update cache
+
+![](/images/cache-aside-diagram.png)
+
+**Disavantagous**:
+
+- Data in cache can be stale. **Must be set expired time while implementing this caching strategy.**
+
+**When to use this pattern:**
+
+- When the cached data set is static. If the data will fit into the available cache space, prime the cache with the data on startup and apply a policy that prevents the data from expiring.
+
+**Advantageous:**
+
+- Reliability
+
+- Performance Efficiency
