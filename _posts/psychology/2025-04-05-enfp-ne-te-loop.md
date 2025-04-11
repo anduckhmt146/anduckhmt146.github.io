@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Past Relationships of an ENFP Ne-Te Loop
+title: Some problems with ENFP Ne-Te Loop
 date: 2025-04-05
 categories: psychology
 ---
