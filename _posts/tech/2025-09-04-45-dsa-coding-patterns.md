@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '42 Coding Interview Pattern'
-date: 2025-04-11
+date: 2025-04-13
 categories: tech
 ---
 
@@ -202,6 +202,62 @@ print(longest_substring_with_k_distinct("cbbebi", 3))  # 5, The longest substrin
 </code>
 </pre>
 </details>
+
+## 1.6. Longest Repeating Character Replacement
+
+Ref: [https://leetcode.com/problems/longest-repeating-character-replacement/description/](https://leetcode.com/problems/longest-repeating-character-replacement/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        windowStart = 0
+        maxLength = 0
+        maxRepeatLetterCount = 0
+        charFrequency = {}
+        
+        # Try to extend the range [windowStart, windowEnd]
+        for windowEnd in range(0, len(s)):
+            endChar = s[windowEnd]
+            charFrequency[endChar] = charFrequency.get(endChar, 0) + 1
+            
+            # *REVIEW THIS LINE*
+            maxRepeatLetterCount = max(maxRepeatLetterCount, charFrequency[endChar])
+
+
+            # current window size is from windowStart to windowEnd, overall we have a letter which is
+            # repeating maxRepeatLetterCount times, this means we can have a window which has one letter
+            # repeating maxRepeatLetterCount times and the remaining letters we should replace
+            # if the remaining letters are more than k, it is the time to shrink the window as we
+            # are not allowed to replace more than k letters
+            if (windowEnd - windowStart + 1 - maxRepeatLetterCount) > k:
+                startChar = s[windowStart]
+                charFrequency[startChar] -= 1
+                windowStart += 1
+                
+            maxLength = max(maxLength, windowEnd - windowStart + 1)
+        
+        return maxLength
+</code>
+</pre>
+</details>
+
+The key differences between this problem and others where we need while:
+
+**Problems needing while:**
+
+- When multiple characters might need to be removed to make the window valid
+- Example: "Find longest substring with at most K distinct characters"
+- Because adding one character might require removing multiple characters
+
+**This problem (using if):**
+
+- Adding one character can only make the window invalid by at most one character
+- Because maxRepeatLetterCount can only increase or stay the same
+- Therefore, we only ever need to remove one character at most
 
 # 2. Pattern 2: Two Pointer
 
