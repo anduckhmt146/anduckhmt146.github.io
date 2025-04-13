@@ -161,7 +161,7 @@ class Solution:
 
 ## 1.5. Longest Substring with K Distinct Characters
 
-![https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)
+Ref: [https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)
 
 <details>
 <summary>Code</summary>
@@ -258,6 +258,100 @@ The key differences between this problem and others where we need while:
 - Adding one character can only make the window invalid by at most one character
 - Because maxRepeatLetterCount can only increase or stay the same
 - Therefore, we only ever need to remove one character at most
+
+## 1.6. Longest Repeating Character Replacement With Bit 1
+
+Ref: [https://leetcode.com/problems/max-consecutive-ones-iii/](https://leetcode.com/problems/max-consecutive-ones-iii/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        windowStart = 0
+        maxLength = 0
+        maxRepeatOneCount = 0  # Track count of 1's instead of 0's
+        bitFrequency = {}
+        
+        # Try to extend the range [windowStart, windowEnd]
+        for windowEnd in range(len(nums)):
+            endBit = nums[windowEnd]
+            bitFrequency[endBit] = bitFrequency.get(endBit, 0) + 1
+            
+            # Track the count of 1's as our maxRepeat count
+            if endBit == 1:
+                maxRepeatOneCount = max(maxRepeatOneCount, bitFrequency[1])
+            
+            # Current window size minus count of 1's gives us count of 0's
+            # If count of 0's exceeds k, shrink window
+            if (windowEnd - windowStart + 1 - maxRepeatOneCount) > k:
+                startBit = nums[windowStart]
+                bitFrequency[startBit] -= 1
+                windowStart += 1
+            
+            maxLength = max(maxLength, windowEnd - windowStart + 1)
+        
+        return maxLength
+</code>
+</pre>
+</details>
+
+## 1.7. Sliding Window in Multiple String
+
+Ref: [https://leetcode.com/problems/permutation-in-string/](https://leetcode.com/problems/permutation-in-string/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter
+
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        # Edge cases
+        if len(s1) > len(s2):
+            return False
+            
+        # Initialize frequency maps
+        s1Map = {}
+        windowMap = {}
+        
+        # Build frequency map for s1
+        for char in s1:
+            s1Map[char] = s1Map.get(char, 0) + 1
+            
+        # Initialize sliding window with first len(s1) characters
+        windowStart = 0
+        
+        # Try to extend the range [windowStart, windowEnd]
+        for windowEnd in range(len(s2)):
+            # Add character to window frequency map
+            endChar = s2[windowEnd]
+            windowMap[endChar] = windowMap.get(endChar, 0) + 1
+            
+            # If window size is larger than s1 length, shrink window
+            if windowEnd >= len(s1):
+                startChar = s2[windowStart]
+                windowMap[startChar] -= 1
+                
+                # Remove character from map if count becomes 0
+                if windowMap[startChar] == 0:
+                    del windowMap[startChar]
+                    
+                windowStart += 1
+            
+            # Check if current window is a permutation
+            if windowMap == s1Map:
+                return True
+                
+        return False
+
+</code>
+</pre>
+</details>
 
 # 2. Pattern 2: Two Pointer
 
