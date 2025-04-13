@@ -1108,6 +1108,24 @@ Z + W + V
 
 - Yes/No
 
+**Sample:**
+
+- Yes, absolutely!
+
+- Yes, certainly!
+
+- Yes, without a doubt!
+
+- Yes, I guess so
+
+- No, I haven't
+
+- The answer is definite no.
+
+- Not at all (Không hẳn)
+
+- Kind of
+
 #### Câu hỏi có mức độ
 
 Rất thích: Yes, definately / Without a doubt
@@ -1128,6 +1146,30 @@ Không thích: Definately not / The answer is definite no
 
 - A couple of things, one of which is to make + people + V
 
+**Sample:**
+
+Trả lời theo 2 kiểu:
+
+1. Có nhiều loại, nhưng tôi thích loại gì nhất. **(Of all + sth, S + V)**
+
+2. Nó là loại gì luôn. **(It would be + S + V)**
+
+- **What:** Of all the art forms, visual art is my favourite.
+
+- **What:** There are a few things, like,...
+
+- **What**: Of all the shows in Vietnam, S + is + the most popular.
+
+- **Which**: It would be + S + V
+
+3. Who: **None other than people**
+
+- **Who**: None other than my mother
+
+- **Who**: That person is/would be
+
+- **Who**: I want to be
+
 ### 3.1.3. When/Where (khi nào)
 
 #### Habit
@@ -1139,6 +1181,24 @@ Không thích: Definately not / The answer is definite no
 #### Past event
 
 - It would be + time/place.
+
+**Sample:**
+
+- **When:** 6 am is usually a good time.
+
+- **When:** It would be + time
+
+- **When:** It was + time
+
+---
+
+- **Where**: DOL English is a good place
+
+- **Where**: I usually + do sth + at somewhere.
+
+- **Where**: It would be + where
+
+- **Where**: It was + where
 
 ### 3.1.4. How (bằng cách nào)
 
@@ -1162,6 +1222,24 @@ Không thích: Definately not / The answer is definite no
 
 - It is really + adj
 
+**Sample:**
+
+- **How**: I usally get online by + V-ing.
+
+- **How**: A good idea woule be + Noun
+
+- **How much**: Less than I care to admit
+
+- **How often**: I do this once a week
+
+- **How important (adj)**: It is important as it can be
+
+- **How stress (adj)**: It is exactly very stressful
+
+- **How long**: Somewhere in the ballpark of + time + give or take.
+
+- **How far**: Around 2 kilometers
+
 ### 3.1.5. Why (lý do)
 
 #### Lý do
@@ -1175,6 +1253,24 @@ Không thích: Definately not / The answer is definite no
 - The best/worst part about + N + is that + SV
 
 - What I like/hate most about + N + is that + SV
+
+**Sample:**
+
+- **Why**: The main reason for this is that + S + V
+
+- **Why**: It is mainly because
+
+- **Why**: Part of the reason for this is that + SV
+
+- **Why**: The best part about doing sth is that + SV
+
+- **Why**: A big part of the reason goes to the fact that + SV
+
+- **Why**: People do sth + because + SV
+
+- **Why**: I do sth for the simple reason that S + V
+
+- **Why**: It is necessary to recycle since/because + SV
 
 ## 3.2. Word Phrase + Collocations
 
@@ -1206,6 +1302,10 @@ Không thích: Definately not / The answer is definite no
 
 - be able to V
 
+**Sample:**
+
+- Cứ allow them + SV
+
 #### Negative (-)
 
 #### Verb
@@ -1230,6 +1330,10 @@ Không thích: Definately not / The answer is definite no
 
 - can't help but have to V
 
+**Sample:**
+
+- Cứ make them + SV
+
 ### 3.2.2. Want/Need
 
 #### People
@@ -1250,13 +1354,25 @@ Không thích: Definately not / The answer is definite no
 
 - find N + to be + adj
 
+- find something adj.
+
 - see Noun1 + as + Noun2
 
 #### People (Feeling)
 
 - I can't help but feel + adj
 
+- I consider something to be something.
+
 - I find oneself feeling + adj
+
+**Sample:**
+
+- I find it something + SV
+
+- I can't help but feel + SV
+
+- It makes me feel + SV
 
 ### 3.2.4. Preference
 
@@ -1266,6 +1382,8 @@ Không thích: Definately not / The answer is definite no
 
 - is/are (not) + my interest
 
+- I'm so into + V-ing
+
 #### People
 
 #### Positive (+)
@@ -1274,17 +1392,31 @@ Không thích: Definately not / The answer is definite no
 
 - I am particularly + interested in + sth
 
+- I really like this + when N.
+
 #### Negative (-)
 
 - I can't stand + Ving
 
 - I hate it when I have to + V
 
+- I'm not too crazy about it
+
 #### Compare (>)
 
 - I prefer sth + to + sth
 
 - I would rather + V + than + V
+
+**Sample:**
+
+- It is my cup of tea.
+
+- I really like this
+
+- I'm not too crazy about it
+
+- I'm into + V-ing
 
 ### 3.2.5. Habit/Comparison
 
@@ -1301,6 +1433,16 @@ Không thích: Definately not / The answer is definite no
 - make a habit out of + Ving
 
 - make it a habit to + V
+
+**Sample:**
+
+- make it a habit to + do sth
+
+- make a habit out of + V_ing
+
+- I like sth than sth because it is more + adj + than + others form of entertainment.
+
+- It make me focus more easily.
 
 ## 3.3. How to expand your answer (Linear Tools)
 
