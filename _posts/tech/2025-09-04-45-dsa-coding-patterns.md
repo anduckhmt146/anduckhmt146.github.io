@@ -159,6 +159,50 @@ class Solution:
 </pre>
 </details>
 
+## 1.5. Longest Substring with K Distinct Characters
+
+![https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def longest_substring_with_k_distinct(self, str, k):
+        # Given a string, find the length of the longest substring in it with no more than K distinct characters.
+        windowStart = 0
+        maxLength = 0
+        charFrequency = {} # store the frequence count of character
+
+        # in the following loop we'll try to extend the range [windowStart, windowEnd]
+        for windowEnd in range(0, len(str)):
+            endChar = str[windowEnd]
+            charFrequency[endChar] = charFrequency.get(endChar, 0) + 1
+
+            # shrink the window until we are left with k distinct characters 
+            # in the charFrequency dictionary
+            while len(charFrequency) > k:
+                startChar = str[windowStart]
+                charFrequency[startChar] -= 1
+            
+                if charFrequency[startChar] == 0:
+                    del charFrequency[startChar]
+                windowStart += 1
+
+            maxLength = max(maxLength, windowEnd - windowStart + 1)
+
+        return maxLength
+
+# Test cases
+print(longest_substring_with_k_distinct("araaci", 2))  # 4, The longest substring with no more than '2' distinct characters is "araa"
+print(longest_substring_with_k_distinct("araaci", 1))  # 2, The longest substring with no more than '1' distinct characters is "aa"
+print(longest_substring_with_k_distinct("cbbebi", 3))  # 5, The longest substrings with no more than '3' distinct characters are "cbbeb" & "bbebi"
+        
+</code>
+</pre>
+</details>
+
 # 2. Pattern 2: Two Pointer
 
 # 3. Pattern 3: Fast & Slow Pointer
