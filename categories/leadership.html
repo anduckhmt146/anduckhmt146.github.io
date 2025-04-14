@@ -1,0 +1,150 @@
+---
+layout: default
+---
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination button,
+  .pagination span {
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 16px;
+  }
+
+  .pagination button:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .pagination .active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    pointer-events: none;
+  }
+
+  .pagination .disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+    pointer-events: none;
+  }
+
+  .pagination .page-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPage = parseInt(urlParams.get('page')) || 1;
+    const postsPerPage = 5;
+
+    const posts = document.querySelectorAll('.post');
+    let filteredPosts = [];
+
+    // Step 1: Filter posts by category
+    posts.forEach((post) => {
+      const postCategory = post.getAttribute('data-category');
+      if (postCategory === 'leadership') {
+        filteredPosts.push(post);
+      } else {
+        post.style.display = 'none';
+      }
+    });
+
+    // Step 2: Apply pagination
+    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+    const offset = (currentPage - 1) * postsPerPage;
+
+    filteredPosts.forEach((post, index) => {
+      post.style.display =
+        index >= offset && index < offset + postsPerPage ? 'block' : 'none';
+    });
+
+    // Step 3: Generate pagination dynamically
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = '';
+
+    if (totalPages >= 1) {
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.onclick = () => (window.location.href = `?page=${i}`);
+        if (i === currentPage) {
+          button.classList.add('active');
+        }
+        paginationContainer.appendChild(button);
+      }
+    }
+  });
+</script>
+
+<div class="posts">
+  {% assign filtered_posts = site.posts | where: "categories", "leadership" %}
+  {% for post in filtered_posts %}
+  <article
+    class="post"
+    data-category="leadership"
+    style="
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    ">
+    <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+    <div class="entry">{{ post.excerpt }}</div>
+
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      ">
+      <p style="font-size: 14px; margin-top: 10px; color: #333">
+        <a
+          href="{{ site.baseurl }}/categories/{{ post.categories }}"
+          style="
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #007bff;
+            width: 80px;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 12px;
+            text-align: center;
+          "
+          onmouseover="this.style.opacity=0.8"
+          onmouseout="this.style.opacity=1">
+          {{ post.categories }}
+        </a>
+      </p>
+      <p class="date">Last Updated On {{post.date | date: "%B %d, %Y"}}</p>
+    </div>
+
+    <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+  </article>
+  {% endfor %}
+</div>
+
+<!-- Pagination -->
+<div class="pagination" id="pagination"></div>
