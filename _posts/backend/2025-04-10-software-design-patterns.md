@@ -2,7 +2,7 @@
 layout: post
 title: Software Design Patterns
 date: 2025-04-10
-categories: tech
+categories: backend
 ---
 
 Here is some common design patterns in cloud architecture, applying to design software to fulfill with 5 well-architectured pillar: Reliability, Security, Performance Efficiency, Cost Optimization, Performance Efficiency
