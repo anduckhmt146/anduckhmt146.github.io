@@ -477,6 +477,59 @@ class Solution:
 
 # 2. Pattern 2: Two Pointer
 
+## 2.1. Two Sum
+
+Ref: [https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
+
+<pre>
+<code class="python">
+
+</code>
+</pre>
+</details>
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # O(N * logN)
+
+        # Pair each number with its index
+        nums_with_indices = list(enumerate(nums))  # [(index, value)]
+
+        # Sort based on the values
+        nums_with_indices.sort(key=lambda x: x[1])
+
+        # Two Pointer Technique
+        start, end = 0, len(nums_with_indices) - 1
+
+        while start < end:
+            curr_sum = nums_with_indices[start][1] + nums_with_indices[end][1]
+
+            if curr_sum == target:
+                return [nums_with_indices[start][0], nums_with_indices[end][0]]
+            elif curr_sum < target:
+                start += 1
+            else:
+                end -= 1
+
+        return [-1, -1]
+
+<pre>
+<code class="python">
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # O(N)
+        numToIndex = {}
+        for pE in range(0, len(nums)):
+            currVal = nums[pE]
+
+            if target - currVal in numToIndex:
+                return [pE, numToIndex[target - currVal]]
+            
+            numToIndex[currVal] = pE
+        return [-1, -1]
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
