@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Backend - Concurrency Programming
+title: Concurrency Programming - Server Lock
 date: 2025-04-02
-categories: tech
+categories: backend
 ---
 
 A breif about advanced skills in backend programming.
