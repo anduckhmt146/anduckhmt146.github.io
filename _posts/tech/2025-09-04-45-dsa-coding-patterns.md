@@ -530,6 +530,7 @@ class Solution:
                 return [pE, numToIndex[target - currVal]]
             
             numToIndex[currVal] = pE
+
         return [-1, -1]
 </code>
 </pre>
@@ -548,7 +549,6 @@ class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         nextNonDup = 0
         pE = 0
-
         while pE < len(nums):
             if pE == 0 or nums[pE] != nums[nextNonDup - 1]:
                 nums[nextNonDup] = nums[pE]
@@ -556,6 +556,174 @@ class Solution:
             pE += 1
 
         return nextNonDup
+</code>
+</pre>
+</details>
+
+## 2.3. Remove Element
+
+Ref: [https://leetcode.com/problems/squares-of-a-sorted-array/description/](https://leetcode.com/problems/squares-of-a-sorted-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        nextNonTarget = 0
+        pE = 0
+        while pE < len(nums):
+            if nums[pE] != val:
+                nums[nextNonTarget] = nums[pE]
+                nextNonTarget += 1
+            pE += 1
+
+        return nextNonTarget
+</code>
+</pre>
+</details>
+
+## 2.4. Squares of a Sorted Array
+
+Ref: [https://leetcode.com/problems/squares-of-a-sorted-array/description/](https://leetcode.com/problems/squares-of-a-sorted-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        start, end = 0, len(nums) - 1
+        highestSquare = len(nums) - 1
+        result = [0] * len(nums)   
+
+        while start <= end:
+            startSquare = nums[start] ** 2
+            endSquare = nums[end] ** 2
+
+            if startSquare > endSquare:
+                result[highestSquare] = startSquare
+                start += 1
+            else:
+                result[highestSquare] = endSquare
+                end -= 1
+
+            # M lớn nhất rồi thì t fill thằng thứ 2
+            highestSquare -= 1
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 2.5. Three sums
+
+Ref: [https://leetcode.com/problems/3sum/description/](https://leetcode.com/problems/3sum/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def twoSum(self, nums: List[int], start: int, end: int, target: int) -> List[int]:
+        # O(N)
+        numToIndex = {}
+        result = []
+        for pE in range(start, end + 1):
+            currVal = nums[pE]
+
+            if target - currVal in numToIndex:
+                result.append([currVal, target - currVal])
+            
+            numToIndex[currVal] = pE
+
+        return result
+
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()  # Sort the array to handle duplicates
+        result = set()
+        for pE in range(0, len(nums)):
+            # because the previous solution is contain this solution too
+            if pE > 0 and nums[pE] == nums[pE - 1]:
+                continue
+
+            firstVal = nums[pE]
+            resultTwoSum = self.twoSum(nums, pE + 1, len(nums) - 1, 0 - firstVal)
+            for [secondVal, thirdVal] in resultTwoSum:
+                result.add((firstVal, secondVal, thirdVal))
+
+        return [list(triplet) for triplet in result]
+    
+</code>
+</pre>
+</details>
+
+## 2.6. Three sums closest
+
+Ref: [https://leetcode.com/problems/3sum-closest/](https://leetcode.com/problems/3sum-closest/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        closestSum = float('inf')
+        for pE in range(0, len(nums) - 2):
+            left = pE + 1
+            right = len(nums) - 1
+            while (left < right):
+                currSum = nums[pE] + nums[left] + nums[right]
+                if abs(currSum - target) < abs(closestSum - target):
+                    closestSum = currSum
+
+                # Check with currSum
+                if currSum < target:
+                    left += 1
+                elif currSum > target:
+                    right -= 1
+                else:
+                    return currSum
+        return closestSum
+    
+</code>
+</pre>
+</details>
+
+## 2.7. Three sums smaller
+
+Ref: [https://leetcode.com/problems/3sum-smaller/](https://leetcode.com/problems/3sum-smaller/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def tripletsWithSmallerSum(self, nums: List[int], target: int) -> int:
+        nums.sort()  # Sort the array to use the two-pointer technique
+        count = 0
+
+        for i in range(len(nums) - 2):
+            left, right = i + 1, len(nums) - 1
+            while left < right:
+                current_sum = nums[i] + nums[left] + nums[right]
+                if current_sum < target:
+                    # If nums[i] + nums[left] + nums[right] is less than target,
+                    # then all elements from left to right form valid triplets
+                    count += right - left
+                    left += 1
+                else:
+                    right -= 1
+
+        return count
+    
 </code>
 </pre>
 </details>
