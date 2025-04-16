@@ -481,12 +481,11 @@ class Solution:
 
 Ref: [https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
 
+<details>
+<summary>Code</summary>
+
 <pre>
 <code class="python">
-
-</code>
-</pre>
-</details>
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         # O(N * logN)
@@ -511,6 +510,12 @@ class Solution:
                 end -= 1
 
         return [-1, -1]
+</code>
+</pre>
+</details>
+
+<details>
+<summary>Code</summary>
 
 <pre>
 <code class="python">
@@ -526,6 +531,31 @@ class Solution:
             
             numToIndex[currVal] = pE
         return [-1, -1]
+</code>
+</pre>
+</details>
+
+## 2.2. Remove duplicates
+
+Ref: [https://leetcode.com/problems/remove-duplicates-from-sorted-array/](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        nextNonDup = 0
+        pE = 0
+
+        while pE < len(nums):
+            if pE == 0 or nums[pE] != nums[nextNonDup - 1]:
+                nums[nextNonDup] = nums[pE]
+                nextNonDup += 1
+            pE += 1
+
+        return nextNonDup
 </code>
 </pre>
 </details>
