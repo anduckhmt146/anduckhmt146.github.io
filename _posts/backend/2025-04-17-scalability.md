@@ -89,7 +89,7 @@ FE spam nhiều API, payload lớn, thiếu lazy load.
 
 Traffic tăng đột biến nhưng app không scale theo
 
-Giải pháp:
+**Giải pháp:**
 
 - Deploy lên Kubernetes (HPA, VPA)
 
