@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Nginx
+title: Nginx Basic
 date: 2025-04-18
 categories: backend
 ---
