@@ -780,6 +780,7 @@ class Solution:
         right = len(nums) - 1
         curr = 0
 
+        # Because we compare curr <= right, do not increase the left pointer
         while curr <= right:
             if nums[curr] == 0:
                 nums[left], nums[curr] = nums[curr], nums[left]
