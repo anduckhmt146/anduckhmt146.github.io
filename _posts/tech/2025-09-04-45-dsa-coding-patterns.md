@@ -772,6 +772,58 @@ Ref: [https://leetcode.com/problems/sort-colors/](https://leetcode.com/problems/
 <pre>
 <code class="python">
 class Solution:
+    def twoSum(self, nums: List[int], start: int, end: int, target: int) -> List[int]:
+        # O(N)
+        numToIndex = {}
+        result = []
+        for pE in range(start, end + 1):
+            currVal = nums[pE]
+
+            if target - currVal in numToIndex:
+                result.append([currVal, target - currVal])
+            
+            numToIndex[currVal] = pE
+
+        return result
+
+    def threeSum(self, nums: List[int], start: int, end: int, target: int) -> List[List[int]]:
+        result = []
+        for pE in range(start, end + 1):
+            firstVal = nums[pE]
+            resultTwoSum = self.twoSum(nums, pE + 1, len(nums) - 1, target - firstVal)
+            for [secondVal, thirdVal] in resultTwoSum:
+                result.append([firstVal, secondVal, thirdVal])
+
+        return result
+
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()  # Sort the array to handle duplicates
+        result = set()
+        for pE in range(0, len(nums)):
+            if pE > 0 and nums[pE] == nums[pE - 1]:
+                continue
+            firstVal = nums[pE]
+            resultThreeSum = self.threeSum(nums, pE + 1, len(nums) - 1, target - firstVal)
+            for [secondVal, thirdVal, fourVal] in resultThreeSum:
+                result.add((firstVal, secondVal, thirdVal, fourVal))
+
+        return [list(triplet) for triplet in result]
+
+
+</code>
+</pre>
+</details>
+
+## 2.9. Four sum
+
+Ref: [https://leetcode.com/problems/4sum/](https://leetcode.com/problems/4sum/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
     def sortColors(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
@@ -796,6 +848,57 @@ class Solution:
 
         return nums
 
+</code>
+</pre>
+</details>
+
+## 2.10. Shortest Subarray to be Removed to Make Array Sorted
+
+Ref: [https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/description/](https://leetcode.com/problems/
+shortest-subarray-to-be-removed-to-make-array-sorted/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findLengthOfShortestSubarray(self, arr: List[int]) -> int:
+        n = len(arr)
+        
+        # Find the longest non-decreasing prefix
+        left = 0
+        while left < n - 1 and arr[left] <= arr[left + 1]:
+            left += 1
+            
+        # If the entire array is non-decreasing
+        if left == n - 1:
+            return 0
+            
+        # Find the longest non-decreasing suffix
+        right = n - 1
+        while right > 0 and arr[right] >= arr[right - 1]:
+            right -= 1
+            
+        # We have two options:
+        # 1. Remove everything after left
+        # 2. Remove everything before right
+        # First is remove all the prefix or the suffix
+        result = min(n - left - 1, right)
+        
+        # Try to merge the prefix and suffix, because we merge i to j, and find the min gap
+        i = 0
+        j = right
+        while i <= left and j < n:
+            if arr[i] <= arr[j]:
+                # We can merge from i to j
+                result = min(result, j - i - 1)
+                i += 1
+            else:
+                j += 1
+                
+        return result
+        
 </code>
 </pre>
 </details>
