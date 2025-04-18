@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '42 Coding Interview Pattern'
-date: 2025-04-13
+date: 2025-04-12
 categories: tech
 ---
 
