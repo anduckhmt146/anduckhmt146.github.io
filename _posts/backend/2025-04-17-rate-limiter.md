@@ -38,19 +38,6 @@ Key characteristics:
 - Allows for bursts of traffic up to bucket capacity
 - Simple to implement and memory efficient
 
-Pros:
-
-- Allows for burst traffic handling
-- Memory efficient implementation
-- Simple to understand and implement
-- Flexible rate control
-
-Cons:
-
-- Can be complex to tune bucket size and refill rate
-- May not be suitable for strict rate limiting
-- Burst allowance might not be desired in all cases
-
 Use when:
 
 - You need to allow brief bursts of requests
@@ -69,26 +56,6 @@ Key characteristics:
 - Smooths out bursts of traffic
 - Memory usage depends on queue size
 
-Pros:
-
-- Provides consistent output rate
-- Good for traffic shaping
-- Prevents system overload effectively
-- Ideal for constant rate processing
-
-Cons:
-
-- No burst handling capability
-- Can lead to added latency
-- Queue can grow large under heavy load
-- Memory overhead from queue
-
-Use when:
-
-- You need a consistent processing rate
-- You want to smooth out traffic spikes
-- Memory isn't a major constraint
-
 # 3. Fixed Window Counter
 
 ![](/images/fixed_window.webp)
@@ -102,25 +69,9 @@ Key characteristics:
 - Can allow twice the rate limit at window boundaries
 - Memory efficient
 
-Pros:
+Although it has the potential risks that the attackers can take advantage of the time in the bulkhead.
 
-- Very simple to implement
-- Minimal memory usage
-- Clear time boundaries
-- Easy to understand and debug
-
-Cons:
-
-- Boundary conditions can allow spike in traffic
-- Less accurate than other methods
-- Can be unfair at window boundaries
-- Not suitable for precise rate limiting
-
-Use when:
-
-- You need a simple implementation
-- Precise accuracy isn't critical
-- You have fixed time-based quotas
+For example, if you partition time by 24 hours, attackers can attack at 23:59h - 24h with the double traffic of 2 days.
 
 # 4. Sliding Window Log
 
@@ -135,26 +86,7 @@ Key characteristics:
 - Higher memory usage
 - More complex implementation
 
-Pros:
-
-- Highly accurate rate limiting
-- No boundary condition issues
-- Precise control over time windows
-- Fair distribution of requests
-
-Cons:
-
-- Need to store all requests.
-- High memory usage
-- Computationally expensive
-- Complex to implement
-- Can be slow with many requests
-
-Use when:
-
-- You need high accuracy
-- Memory isn't a constraint
-- You have variable rate requirements
+It limits the traffic by the gap between the final log and current timestamp, it is accurate to detect anomolies. But the **drawback** is we need to store **all the logs** when querying.
 
 # 5. Sliding Window Counter
 
@@ -169,23 +101,8 @@ Key characteristics:
 - Moderate implementation complexity
 - Good balance of accuracy and performance
 
-Pros:
+You can use the last access time and probability to predict the average frequency access of users.
 
-- Based on Probability
-- Better accuracy than fixed window
-- Reasonable memory usage
-- Smooth rate limiting
-- Good compromise solution
-
-Cons:
-
-- More complex than fixed window
-- Less accurate than sliding log
-- Can be tricky to implement correctly
-- May need fine-tuning of weights
-
-Use when:
-
-- You need better accuracy than fixed window
-- Memory efficiency is important
-- You can accept some approximation
+```bash
+Access per week 1 * (Number of days in week 1 / 7) + Access per week 2 * (Number of days in week 2 / 7)
+```
