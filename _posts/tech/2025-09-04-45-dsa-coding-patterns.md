@@ -1114,7 +1114,7 @@ class Solution:
 
 ## 2.14. Can Place Flower (Adjacent Bit 0 and 1)
 
-Ref: []()
+Ref: [https://leetcode.com/problems/can-place-flowers/](https://leetcode.com/problems/can-place-flowers/)
 
 <details>
 <summary>Code</summary>
