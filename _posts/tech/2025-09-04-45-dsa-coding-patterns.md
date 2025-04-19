@@ -585,6 +585,36 @@ class Solution:
 </pre>
 </details>
 
+## 1.13. Substring Sliding Window
+
+<details>
+<summary>Code</summary>
+class Solution:
+    def isSubstring(self, s: str, t: str) -> bool:
+        if len(t) > len(s):
+            return False
+
+        left, right = 0, 0
+        while right < len(s):
+            if right - left < len(t):
+                right += 1
+                continue
+
+            if s[left:right] == t:
+                return True
+
+            left += 1
+            right += 1
+
+        return False
+
+<pre>
+<code class="python">
+
+</code>
+</pre>
+</details>
+
 # 2. Pattern 2: Two Pointer
 
 ## 2.1. Two Sum
@@ -1130,3 +1160,30 @@ class Solution:
 # 41. Pattern 41: Segment Tree Pattern
 
 # 42. Pattern 42: Binary Indexed Tree Pattern
+
+# 43. Pattern 43: Math
+
+## 43.1. Greatest Common Divisor of Strings
+
+Ref: [https://leetcode.com/problems/greatest-common-divisor-of-strings/](https://leetcode.com/problems/greatest-common-divisor-of-strings/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import math
+
+class Solution:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        # If concatenating in both orders yields different results, there's no GCD string
+        if str1 + str2 != str2 + str1:
+            return ""
+
+        # The length of the GCD string is the GCD of the lengths
+        gcd_len = math.gcd(len(str1), len(str2))
+        return str1[:gcd_len]
+        
+</code>
+</pre>
+</details>
