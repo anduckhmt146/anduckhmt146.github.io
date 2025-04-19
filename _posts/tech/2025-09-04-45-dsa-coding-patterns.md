@@ -1009,6 +1009,48 @@ count = 0
 </pre>
 </details>
 
+## 2.12. Merge Alternatively
+
+<!-- Ref: []()
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+
+</code>
+</pre>
+</details> -->
+
+Ref: [https://leetcode.com/problems/merge-strings-alternately/description](https://leetcode.com/problems/merge-strings-alternately/description)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        s, i, j = "", 0, 0
+
+        while i < len(word1) and j < len(word2):
+            s += word1[i] + word2[j]
+            i += 1
+            j += 1
+
+        if i < len(word1):
+            s += word1[i:]
+
+        if j < len(word2):
+            s += word2[j:]
+
+        return s
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
