@@ -615,6 +615,102 @@ class Solution:
 </pre>
 </details>
 
+## 1.14. Prefix and Postfix
+
+Ref: [https://leetcode.com/problems/product-of-array-except-self/](https://leetcode.com/problems/product-of-array-except-self/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prefix = [1] * len(nums)
+        postfix = [1] * len(nums)
+        # Create prefix and postfix list
+        for i in range(0, len(nums)):
+            prefix[i] = nums[i] if i == 0 else prefix[i - 1] * nums[i]
+            postfix[len(nums) - 1 - i] = nums[len(nums) - 1] if i == 0 else postfix[len(nums) - i] * nums[len(nums) - 1 - i]
+
+        # print(prefix)
+        # print(postfix)
+
+        # Compute result using prefix and postfix
+        result = [1] * len(nums)
+        for i in range(0, len(nums)):
+            left = prefix[i - 1] if i > 0 else 1
+            right = postfix[i + 1] if i < len(nums) - 1 else 1
+            result[i] = left * right
+
+        return result
+</code>
+</pre>
+</details>
+
+## 1.15. Second Smallest
+
+Ref: [https://leetcode.com/problems/increasing-triplet-subsequence/](https://leetcode.com/problems/increasing-triplet-subsequence/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        first = float('inf')
+        second = float('inf')
+
+        for num in nums:
+            if num <= first:
+                first = num  # smallest so far
+            elif num <= second:
+                second = num  # second smallest
+            else:
+                # found a number greater than both -> triplet exists
+                return True
+
+        return False
+</code>
+</pre>
+</details>
+
+## 1.15. Group String (Count From Index 1)
+
+Ref: [https://leetcode.com/problems/string-compression/](https://leetcode.com/problems/string-compression/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        res = []
+        count = 1  # Start with 1 since we always have at least one occurrence
+
+        for i in range(1, len(chars) + 1):
+            if i < len(chars) and chars[i] == chars[i - 1]:
+                count += 1
+            else:
+                # End of a group
+                res.append(chars[i - 1])
+                if count > 1:
+                    for digit in str(count):
+                        res.append(digit)
+                count = 1  # Reset count for the next character group
+
+        # Modify input list in-place
+        chars[:] = res
+        return len(res)
+
+</code>
+</pre>
+</details>
+
 # 2. Pattern 2: Two Pointer
 
 ## 2.1. Two Sum
