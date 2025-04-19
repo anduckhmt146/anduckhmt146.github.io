@@ -1081,6 +1081,37 @@ class Solution:
 </pre>
 </details>
 
+## 2.13. String Immutable, Need to change to List Character
+
+Ref: [https://leetcode.com/problems/reverse-vowels-of-a-string/](https://leetcode.com/problems/reverse-vowels-of-a-string/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        # Give all the vowels first
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        vowelWord = []
+        for character in s:
+            if character.lower() in vowels:
+                vowelWord.append(character)
+
+        right = len(vowelWord) - 1
+        s_list = list(s)
+        for i in range(0, len(s_list)):
+            if s[i].lower() in vowels:
+                s_list[i] = vowelWord[right]
+                right -= 1
+
+        return ''.join(s_list)
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
