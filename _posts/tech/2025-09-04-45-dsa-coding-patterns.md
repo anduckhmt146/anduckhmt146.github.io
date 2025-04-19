@@ -1262,6 +1262,32 @@ class Solution:
 </pre>
 </details>
 
+## 2.15. Check A Map Values in Unique
+
+Ref: [https://leetcode.com/problems/unique-number-of-occurrences/](https://leetcode.com/problems/unique-number-of-occurrences/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        numToCount = {}
+        for num in arr:
+            numToCount[num] = numToCount.get(num, 0) + 1
+        
+        # Get all frequency values
+        frequencies = list(numToCount.values())
+        
+        # Use a set to check if all frequencies are unique
+        return len(frequencies) == len(set(frequencies))
+
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
