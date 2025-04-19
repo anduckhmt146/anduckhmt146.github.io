@@ -711,6 +711,36 @@ class Solution:
 </pre>
 </details>
 
+## 1.16. Prefix and Suffix
+
+Ref: [https://leetcode.com/problems/find-pivot-index/description/](https://leetcode.com/problems/find-pivot-index/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        prefix = [0] * len(nums)
+        for i in range(0, len(nums)):
+            prefix[i] = nums[0] if i == 0 else prefix[i - 1] + nums[i]
+
+        postfix = [0] * len(nums)
+        
+        for i in range(len(nums) - 1, -1, -1):
+            postfix[i] = nums[len(nums) - 1] if i == len(nums) - 1 else postfix[i + 1] + nums[i]
+
+        for i in range(len(nums)):
+            if prefix[i] == postfix[i]:
+                return i
+
+        return -1
+
+</code>
+</pre>
+</details>
+
 # 2. Pattern 2: Two Pointer
 
 ## 2.1. Two Sum
