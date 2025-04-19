@@ -300,7 +300,47 @@ class Solution:
 </pre>
 </details>
 
-## 1.7. Sliding Window in Multiple String
+## 1.7. Longest Subarray of Bit 1 After Deleting One Element
+
+Ref: [https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/](https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        windowStart = 0
+        maxLength = 0
+        maxRepeatOneCount = 0  # Track count of 1's instead of 0's
+        bitFrequency = {}
+        
+        # Try to extend the range [windowStart, windowEnd]
+        for windowEnd in range(0, len(nums)):
+            endBit = nums[windowEnd]
+            bitFrequency[endBit] = bitFrequency.get(endBit, 0) + 1
+            
+            # Track the count of 1's as our maxRepeat count
+            if endBit == 1:
+                maxRepeatOneCount = max(maxRepeatOneCount, bitFrequency[1])
+            
+            # Current window size minus count of 1's gives us count of 0's
+            # If count of 0's exceeds k, shrink window
+            if (windowEnd - windowStart + 1 - maxRepeatOneCount) > 1:
+                startBit = nums[windowStart]
+                bitFrequency[startBit] -= 1
+                windowStart += 1
+            
+            maxLength = max(maxLength, windowEnd - windowStart + 1)
+        
+        return maxLength - 1 if maxLength > 0 else maxLength
+        
+</code>
+</pre>
+</details>
+
+## 1.8. Sliding Window in Multiple String
 
 Ref: [https://leetcode.com/problems/permutation-in-string/](https://leetcode.com/problems/permutation-in-string/)
 
@@ -355,7 +395,7 @@ class Solution:
 </pre>
 </details>
 
-## 1.8. String Anagrams
+## 1.9. String Anagrams
 
 Ref: [https://leetcode.com/problems/find-all-anagrams-in-a-string/](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
 
@@ -411,7 +451,7 @@ class Solution:
 </pre>
 </details>
 
-## 1.9. Min Window Substring
+## 1.10. Min Window Substring
 
 Ref: [https://leetcode.com/problems/minimum-window-substring/](https://leetcode.com/problems/minimum-window-substring/)
 
@@ -477,9 +517,43 @@ class Solution:
 </pre>
 </details>
 
-## 1.10. Subarray Product Less Than K
+## 1.11. Subarray Product Less Than K
 
 Ref: [https://leetcode.com/problems/subarray-product-less-than-k/](https://leetcode.com/problems/subarray-product-less-than-k/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        if k <= 1:
+            return 0
+            
+        left = 0
+        product = 1
+        count = 0
+        
+        for right in range(0, len(nums)):
+            product *= nums[right]
+            
+            # Move left pointer until product is less than k
+            while product >= k:
+                product //= nums[left]
+                left += 1
+                
+            # Number of new subarrays ending at right
+            count += right - left + 1
+            
+        return count
+</code>
+</pre>
+</details>
+
+## 1.12. Maximum Number of Vowels in a Substring of Given Length
+
+Ref: [https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/)
 
 <details>
 <summary>Code</summary>
