@@ -259,6 +259,8 @@ The key differences between this problem and others where we need while:
 - Because maxRepeatLetterCount can only increase or stay the same
 - Therefore, we only ever need to remove one character at most
 
+**Notes:** You do not replace it in real, you only increase the windowStart and imply that we can replace all it.
+
 ## 1.6. Longest Repeating Character Replacement With Bit 1
 
 Ref: [https://leetcode.com/problems/max-consecutive-ones-iii/](https://leetcode.com/problems/max-consecutive-ones-iii/)
