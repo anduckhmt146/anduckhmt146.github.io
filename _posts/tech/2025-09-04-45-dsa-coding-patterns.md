@@ -1701,3 +1701,26 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 43.4. Best Time to Buy and Sell Stock 2 (If larger than previous price and you will buy)
+
+Ref: [https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # If larger than you will buy
+        maxProfit = 0
+        for i in range(1, len(prices)):
+            if prices[i] > prices[i - 1]:
+                maxProfit += prices[i] - prices[i - 1]
+
+        return maxProfit
+
+</code>
+</pre>
+</details>
