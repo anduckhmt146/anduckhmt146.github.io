@@ -828,7 +828,7 @@ class Solution:
 
 ## 2.3. Remove Element
 
-Ref: [https://leetcode.com/problems/squares-of-a-sorted-array/description/](https://leetcode.com/problems/squares-of-a-sorted-array/description/)
+Ref: [https://leetcode.com/problems/remove-element/](https://leetcode.com/problems/remove-element/)
 
 <details>
 <summary>Code</summary>
