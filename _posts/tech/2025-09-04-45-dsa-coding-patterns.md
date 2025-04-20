@@ -1317,6 +1317,40 @@ class Solution:
 </pre>
 </details>
 
+## 2.17. Count Tuple In Map
+
+Ref: [https://leetcode.com/problems/equal-row-and-column-pairs/description/](https://leetcode.com/problems/equal-row-and-column-pairs/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter
+
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+        # O(N^3)
+        N = len(grid)
+        count = 0
+        for i in range(0, N):
+            firstRow = tuple(grid[i]) # Row i
+            secondCol = []
+            for k in range(0, N):
+                thirdCol = []
+                for j in range(0, N):
+                    thirdCol.append(grid[j][k])
+                secondCol.append(tuple(thirdCol))
+
+            counterCol = Counter(secondCol)
+            count += counterCol[firstRow]
+
+        return count
+        
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
