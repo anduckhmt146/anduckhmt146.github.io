@@ -1287,6 +1287,36 @@ class Solution:
 </pre>
 </details>
 
+## 2.16. Determine if Two Strings Are Close
+
+Ref: [https://leetcode.com/problems/determine-if-two-strings-are-close/description/](https://leetcode.com/problems/determine-if-two-strings-are-close/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter
+
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        # Must be same length
+        if len(word1) != len(word2):
+            return False
+
+        # Same characters
+        if set(word1) != set(word2):
+            return False
+
+        # Same frequency pattern (ignoring which character)
+        # Such as [2,3,1] == [1,2,3] => sort for easy compare
+        return sorted(Counter(word1).values()) == sorted(Counter(word2).values())
+        
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
