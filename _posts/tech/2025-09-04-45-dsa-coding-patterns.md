@@ -1365,11 +1365,56 @@ class Solution:
         # for row in row_tuples:
         #     count += col_counter[row]
 
-        # return count
-            
-            
+        # return count            
         
-        
+</code>
+</pre>
+</details>
+
+## 2.18. Merge Sort Array
+
+Ref: [https://leetcode.com/problems/merge-sorted-array/description/]https://leetcode.com/problems/merge-sorted-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        # Create subarrays for nums1 and nums2
+        subNums1 = nums1[:m] if m > 0 else []
+        subNums2 = nums2[:n] if n > 0 else []
+
+        i = 0
+        j = 0
+        k = 0
+        res = [0] * (m + n)
+
+        # Merge the two arrays into res
+        while i < m and j < n:
+            if subNums1[i] < subNums2[j]:
+                res[k] = subNums1[i]
+                i += 1
+            else:
+                res[k] = subNums2[j]
+                j += 1
+            k += 1
+
+        while i < m:
+            res[k] = subNums1[i]
+            i += 1
+            k += 1
+
+        while j < n:
+            res[k] = subNums2[j]
+            j += 1
+            k += 1
+
+        # Modify nums1 in-place
+        for index in range(m + n):
+            nums1[index] = res[index]
+
 </code>
 </pre>
 </details>

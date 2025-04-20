@@ -24,13 +24,13 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 ## 2. Personality, Enneagram, Attachment Theory, Zodiac?
 
-1. **Personality type (MBTI):** Assertive ENFP 5w4, Ne-Te Loop Mode.
+1. **Personality type (MBTI):** Assertive ENFP, Ne-Te Loop Preference.
 
 2. **Enneagram:** mostly 5w4 or 7w8, could be 4w5.
 
 3. **Attachment Theory:** Anxious Attachment Style (20% people in the world who feel this way).
 
-4. **Zodiac:** I'm a Gemini, and maybe have Venus in Cancer, not sure because I do not know about my born hour.
+4. **Zodiac:** I'm a Sun and Jupier in Gemini, Venus in Cancer, Ascendant in Capricorn.
 
 5. **Human Design**: The Manifesting Generator.
 
@@ -50,7 +50,7 @@ I am a dreamer, an analytical over-thinker, and an over-achiever, who is constan
 
   - I struggle with procrastination, overthinking too much about perfection and completeness, lack of action-oriented motivations, occasional over-sensitivity, and sometimes over-abstractions but lack of practicality.
 
-  - Tend to overanalyze and control situations logically, characteristic of an ENFP Ne-Te loop.
+  - Tend to overanalyze and control situations logically, characteristic of an ENFP Last Updated On loop.
 
   - Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repeatable, boring tasks. There are moments when I battle feelings of inadequacy, caught in the grip of self-doubt.
 
