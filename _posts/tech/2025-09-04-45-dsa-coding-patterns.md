@@ -1283,7 +1283,6 @@ class Solution:
         # Use a set to check if all frequencies are unique
         return len(frequencies) == len(set(frequencies))
 
-
 </code>
 </pre>
 </details>
@@ -1390,6 +1389,37 @@ class Solution:
         # The length of the GCD string is the GCD of the lengths
         gcd_len = math.gcd(len(str1), len(str2))
         return str1[:gcd_len]
+        
+</code>
+</pre>
+</details>
+
+## 43.2. Rabbits in Forest
+
+Ref: [https://leetcode.com/problems/rabbits-in-forest/description/](https://leetcode.com/problems/rabbits-in-forest/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter
+import math
+
+class Solution:
+    def numRabbits(self, answers: List[int]) -> int:
+        # If a rabbit says "x other rabbits have the same color," it means there are x + 1 total rabbits of that color.
+        # But if multiple rabbits say the same number, they might be in the same group, or represent multiple groups of that same size.
+        counter = Counter(answers)
+        count = 0
+
+        # Edgecase: 1,1,1 => 2 group
+        for key, freq in counter.items():
+            group_size = key + 1
+            groups = math.ceil(freq / group_size)
+            count += groups * group_size
+
+        return count
         
 </code>
 </pre>
