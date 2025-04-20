@@ -1346,6 +1346,29 @@ class Solution:
             count += counterCol[firstRow]
 
         return count
+
+        # O(N^2) => tranpose matrix O(N)
+        # n = len(grid)
+        # # Convert rows to tuples
+        # row_tuples = [tuple(row) for row in grid]
+
+        # # Convert columns to tuples using zip
+        # col_tuples = list(zip(*grid))
+
+        # print(row_tuples, col_tuples)
+
+        # # Count frequency of each column
+        # col_counter = Counter(col_tuples)
+
+        # # Count how many rows match columns
+        # count = 0
+        # for row in row_tuples:
+        #     count += col_counter[row]
+
+        # return count
+            
+            
+        
         
 </code>
 </pre>
