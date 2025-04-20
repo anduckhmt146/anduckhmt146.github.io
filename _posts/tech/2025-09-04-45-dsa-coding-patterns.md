@@ -1445,6 +1445,60 @@ class Solution:
 </pre>
 </details>
 
+# 2.20. Majority Element
+
+Ref: [https://leetcode.com/problems/majority-element/description/](https://leetcode.com/problems/majority-element/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter
+import math
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        numsCounter = Counter(nums)
+
+        for key, value in numsCounter.items():
+            if value > math.floor(len(nums) / 2):
+                return key
+
+        return -1
+
+</code>
+</pre>
+</details>
+
+# 2.21. Rotate Array
+
+Ref: [https://leetcode.com/problems/rotate-array/description/](https://leetcode.com/problems/rotate-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        n = len(nums)
+        original = nums[:]
+
+        # Loop in the end
+        for i in range(n - 1, -1, -1):
+            nums[(i + k) % n] = original[i]
+
+        # n = len(nums)
+        # k %= n  # In case k > n
+
+        # # Copy the last k elements + the rest
+        # nums[:] = nums[-k:] + nums[:-k]
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
