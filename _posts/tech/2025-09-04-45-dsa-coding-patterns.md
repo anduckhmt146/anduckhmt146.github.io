@@ -1373,7 +1373,7 @@ class Solution:
 
 ## 2.18. Merge Sort Array
 
-Ref: [https://leetcode.com/problems/merge-sorted-array/description/]https://leetcode.com/problems/merge-sorted-array/description/)
+Ref: [https://leetcode.com/problems/merge-sorted-array/description/](https://leetcode.com/problems/merge-sorted-array/description/)
 
 <details>
 <summary>Code</summary>
@@ -1414,6 +1414,32 @@ class Solution:
         # Modify nums1 in-place
         for index in range(m + n):
             nums1[index] = res[index]
+
+</code>
+</pre>
+</details>
+
+## 2.19. Remove duplicates 2
+
+Ref: [https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        nextNonDup = 0
+        pE = 0
+
+        while pE < len(nums):
+            if pE < 2 or nums[pE] != nums[nextNonDup - 1] or nums[pE] != nums[nextNonDup - 2]:
+                nums[nextNonDup] = nums[pE]
+                nextNonDup += 1
+            pE += 1
+
+        return nextNonDup
 
 </code>
 </pre>
