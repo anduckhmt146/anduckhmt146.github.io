@@ -1674,3 +1674,30 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 43.4. Best Time to Buy and Sell Stock (Finding Min Dynamic)
+
+Ref: [https://leetcode.com/problems/best-time-to-buy-and-sell-stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        min_price = float('inf')
+        max_profit = 0
+
+        for i in range(0, len(prices)):
+            if prices[i] < min_price:
+                min_price = prices[i]
+            
+            # profit = price[i] - min_price at previous time
+            max_profit = max(max_profit, prices[i] - min_price)
+        
+        return max_profit
+
+</code>
+</pre>
+</details>
