@@ -1724,3 +1724,28 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 43.5. Jump Game
+
+Ref: [https://leetcode.com/problems/jump-game/](https://leetcode.com/problems/jump-game/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        farthest = 0
+        for i in range(0, len(nums)):
+            # Previous step can not read here
+            if (i > farthest): 
+                return False
+            # Farthest jump at step i
+            farthest = max(farthest, i + nums[i])
+        
+        return True
+
+</code>
+</pre>
+</details>
