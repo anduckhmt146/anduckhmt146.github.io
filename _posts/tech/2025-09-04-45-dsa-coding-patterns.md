@@ -1811,3 +1811,83 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 43.6. HashMap - Insert Delete GetRandom O(1)
+
+Ref: [https://leetcode.com/problems/insert-delete-getrandom-o1/](https://leetcode.com/problems/insert-delete-getrandom-o1/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import random
+
+class RandomizedSet:
+
+    def __init__(self):
+        self.hashMap = {}
+        
+
+    def insert(self, val: int) -> bool:
+        if val in self.hashMap:
+            return False
+        self.hashMap[val] = True
+        return True
+        
+
+    def remove(self, val: int) -> bool:
+        if val not in self.hashMap:
+            return False
+        del self.hashMap[val]
+        return True
+        
+
+    # O(N) => you can use a list to make it to O(1)
+    def getRandom(self) -> int:
+        return random.choice(list(self.hashMap.keys()))
+        
+
+
+# Your RandomizedSet object will be instantiated and called as such:
+# obj = RandomizedSet()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()
+
+
+# import random
+
+# class RandomizedSet:
+
+#     def __init__(self):
+#         self.dict = {}       # val -> index in list
+#         self.list = []       # index -> val
+
+#     def insert(self, val: int) -> bool:
+#         if val in self.dict:
+#             return False
+#         self.list.append(val)
+#         self.dict[val] = len(self.list) - 1
+#         return True
+
+#     def remove(self, val: int) -> bool:
+#         if val not in self.dict:
+#             return False
+#         index = self.dict[val]
+#         last_element = self.list[-1]
+#         # Move last element to the spot of the one to remove
+#         self.list[index] = last_element
+#         self.dict[last_element] = index
+#         # Remove last element
+#         self.list.pop()
+#         del self.dict[val]
+#         return True
+
+#     def getRandom(self) -> int:
+#         return random.choice(self.list)
+
+
+</code>
+</pre>
+</details>
