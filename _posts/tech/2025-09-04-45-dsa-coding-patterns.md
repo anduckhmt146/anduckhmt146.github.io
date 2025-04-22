@@ -1944,7 +1944,40 @@ class Solution:
 
         return start if total_gas >= total_cost else -1
 
+</code>
+</pre>
+</details>
 
+## 43.8. Candy
+
+Ref: [https://leetcode.com/problems/candy/](https://leetcode.com/problems/candy/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+
+# Do a left-to-right pass to make sure each child has more candies than the left neighbor if their rating is higher.
+# Do a right-to-left pass to ensure each child has more candies than the right neighbor if their rating is higher.
+
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        # Greedy
+        n = len(ratings)
+        candies = [1] * n
+
+        # Left to right
+        for i in range(1, n):
+            if ratings[i] > ratings[i - 1]:
+                candies[i] = candies[i - 1] + 1
+
+        # Right to left
+        for i in range(n - 2, -1, -1):
+            if ratings[i] > ratings[i + 1]:
+                candies[i] = max(candies[i], candies[i + 1] + 1)
+
+        return sum(candies)
 
 </code>
 </pre>
