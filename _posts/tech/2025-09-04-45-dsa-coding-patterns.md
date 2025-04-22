@@ -2072,3 +2072,70 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 43.12. Roman to Integer
+
+Ref: [https://leetcode.com/problems/roman-to-integer/description/](https://leetcode.com/problems/roman-to-integer/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        hashMap = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
+
+        val = 0
+        for i in range(0, len(s)):
+            if i < len(s) - 1 and hashMap[s[i]] < hashMap[s[i + 1]]:
+                val -= hashMap[s[i]]
+            else:
+                val += hashMap[s[i]]
+
+        return val
+        
+</code>
+</pre>
+</details>
+
+## 43.13. Integer to Roman
+
+Ref: [https://leetcode.com/problems/integer-to-roman/description/](https://leetcode.com/problems/integer-to-roman/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        val = [
+            1000, 900, 500, 400,
+            100, 90, 50, 40,
+            10, 9, 5, 4, 1
+        ]
+        syms = [
+            "M", "CM", "D", "CD",
+            "C", "XC", "L", "XL",
+            "X", "IX", "V", "IV", "I"
+        ]
+        
+        roman = ""
+        for i in range(len(val)):
+            while num >= val[i]:
+                roman += syms[i]
+                num -= val[i]
+        return roman
+        
+</code>
+</pre>
+</details>
