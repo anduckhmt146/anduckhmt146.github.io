@@ -1982,3 +1982,93 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 43.9. Container With Most Water
+
+Ref: [https://leetcode.com/problems/container-with-most-water/](https://leetcode.com/problems/container-with-most-water/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        maxArea = 0
+        while left < right:
+            currArea = min(height[left], height[right]) * (right - left)
+            maxArea = max(maxArea, currArea)
+            if height[left] <= height[right]:
+                left += 1
+            else:
+                right -= 1
+
+        return maxArea
+
+</code>
+</pre>
+</details>
+
+## 43.10. Trapping Rain Water
+
+Ref: [https://leetcode.com/problems/trapping-rain-water/](https://leetcode.com/problems/trapping-rain-water/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        stack = []
+        water_trapped = 0
+
+        for i in range(0, len(height)):
+            while stack and height[i] > height[stack[-1]]:
+                top = stack.pop()
+
+                if stack:
+                    width = i - stack[-1] - 1  
+                    bounded_height = min(height[i], height[stack[-1]]) - height[top] 
+                    water_trapped += width * bounded_height
+
+            stack.append(i)
+
+        return water_trapped
+
+</code>
+</pre>
+</details>
+
+## 43.11. Next Greater Element II
+
+Ref: [https://leetcode.com/problems/next-greater-element-ii/description/](https://leetcode.com/problems/next-greater-element-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        result = [-1] * n
+        stack = []
+        
+        for i in range(2 * n - 1, -1, -1):
+            curr_idx = i % n
+            
+            while stack and nums[stack[-1]] <= nums[curr_idx]:
+                stack.pop()
+                
+            if stack:
+                result[curr_idx] = nums[stack[-1]]
+            
+            stack.append(curr_idx)
+            
+        return result
+
+</code>
+</pre>
+</details>
