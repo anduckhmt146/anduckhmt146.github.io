@@ -2165,3 +2165,30 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 43.15. Longest Common Prefix
+
+Ref: [https://leetcode.com/problems/longest-common-prefix/description/](https://leetcode.com/problems/longest-common-prefix/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        minLen = min(len(word) for word in strs)
+        result = ""
+        
+        for i in range(0, minLen):
+            currChar = strs[0][i]
+            if all(word[i] == currChar for word in strs):
+                result += currChar
+            else:
+                break
+                
+        return result
+        
+</code>
+</pre>
+</details>
