@@ -2225,3 +2225,26 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 43.17. SubString Using Sliding Window
+
+Ref: [https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if not needle:
+            return 0
+
+        for i in range(len(haystack) - len(needle) + 1):
+            if haystack[i:i + len(needle)] == needle:
+                return i
+        return -1
+        
+</code>
+</pre>
+</details>
