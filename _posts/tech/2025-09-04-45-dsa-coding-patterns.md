@@ -1445,7 +1445,7 @@ class Solution:
 </pre>
 </details>
 
-# 2.20. Majority Element
+## 2.20. Majority Element
 
 Ref: [https://leetcode.com/problems/majority-element/description/](https://leetcode.com/problems/majority-element/description/)
 
@@ -1471,7 +1471,7 @@ class Solution:
 </pre>
 </details>
 
-# 2.21. Rotate Array
+## 2.21. Rotate Array
 
 Ref: [https://leetcode.com/problems/rotate-array/description/](https://leetcode.com/problems/rotate-array/description/)
 
@@ -1494,6 +1494,31 @@ class Solution:
 
         # # Copy the last k elements + the rest
         # nums[:] = nums[-k:] + nums[:-k]
+
+</code>
+</pre>
+</details>
+
+## 2.22. Append Characters to String to Make Subsequence
+
+Ref: [https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/description/](https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def appendCharacters(self, s: str, t: str) -> int:
+        i = 0 
+        j = 0 
+        
+        while i < len(s) and j < len(t):
+            if s[i] == t[j]:
+                j += 1
+            i += 1
+
+        return len(t) - j
 
 </code>
 </pre>
