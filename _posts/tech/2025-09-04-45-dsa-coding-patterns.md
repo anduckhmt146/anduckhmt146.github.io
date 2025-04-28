@@ -1551,6 +1551,38 @@ class Solution:
 </pre>
 </details>
 
+## 2.24. Group Anagrams
+
+Ref: [https://leetcode.com/problems/group-anagrams/description/](https://leetcode.com/problems/group-anagrams/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    # O(NlogN)
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # O(N * L)
+        result = []
+        outHashMap = {}
+        for i in range(0, len(strs)):
+            hashMap = {}
+            for character in strs[i]:
+                hashMap[character] = hashMap.get(character, 0) + 1
+            
+            # Sort hashmap by key
+            sorted_hashMap = tuple(sorted(hashMap.items()))
+            if sorted_hashMap not in outHashMap:
+                outHashMap[sorted_hashMap] = []
+            outHashMap[sorted_hashMap].append(strs[i])
+
+        return list(outHashMap.values())
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
