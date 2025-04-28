@@ -1524,6 +1524,33 @@ class Solution:
 </pre>
 </details>
 
+## 2.23. String Matching in an Array
+
+Ref: [https://leetcode.com/problems/string-matching-in-an-array/description/](https://leetcode.com/problems/string-matching-in-an-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def stringMatching(self, words: List[str]) -> List[str]:
+        # O(NlogN)
+        # O(N^2)
+        # Remove dup
+        result = set()
+        sortedWords = sorted(words, key=len)
+        for i in range(0, len(sortedWords) - 1):
+            for j in range(i + 1, len(sortedWords)):
+                if sortedWords[i] in sortedWords[j]:
+                    result.add(sortedWords[i])
+
+        return list(result)
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
@@ -2218,7 +2245,7 @@ class Solution:
 </pre>
 </details>
 
-## 43.16. Longest Common Prefix
+## 43.16. Zigzag Conversion
 
 Ref: [https://leetcode.com/problems/zigzag-conversion/](https://leetcode.com/problems/zigzag-conversion/)
 
