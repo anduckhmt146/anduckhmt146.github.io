@@ -2310,30 +2310,7 @@ class Solution:
 </pre>
 </details>
 
-## 43.17. SubString Using Sliding Window
-
-Ref: [https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/)
-
-<details>
-<summary>Code</summary>
-
-<pre>
-<code class="python">
-class Solution:
-    def strStr(self, haystack: str, needle: str) -> int:
-        if not needle:
-            return 0
-
-        for i in range(len(haystack) - len(needle) + 1):
-            if haystack[i:i + len(needle)] == needle:
-                return i
-        return -1
-        
-</code>
-</pre>
-</details>
-
-## 43.18. Text Justification
+## 43.17. Text Justification
 
 Ref: [https://leetcode.com/problems/text-justification/description/](https://leetcode.com/problems/text-justification/description/)
 
@@ -2382,6 +2359,53 @@ class Solution:
             i = j
         return res
         
+</code>
+</pre>
+</details>
+
+## 43.18. Substring
+
+Ref: [https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if not needle:
+            return 0
+
+        for i in range(len(haystack) - len(needle) + 1):
+            if haystack[i:i + len(needle)] == needle:
+                return i
+        return -1
+        
+</code>
+</pre>
+</details>
+
+## 43.19. Pascal's Triangle
+
+Ref: [https://leetcode.com/problems/pascals-triangle/description/](https://leetcode.com/problems/pascals-triangle/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        triangle = []
+        for i in range(0, numRows):
+            result = [1] * (i + 1) # 1,2,3,4,5,...
+            for j in range(1, len(result) - 1):
+                if i < 2:
+                    continue
+                result[j] = triangle[i - 1][j - 1] + triangle[i - 1][j]
+            triangle.append(result)
+        return triangle
 </code>
 </pre>
 </details>
