@@ -1,9 +1,11 @@
 ---
 layout: post
 title: Plan Career Path
-date: 2025-04-30
+date: 2025-05-01
 categories: plan
 ---
+
+Here is some plan to build myself in the future.
 
 # 1. Coding Interview
 
