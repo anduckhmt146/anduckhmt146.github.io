@@ -184,17 +184,17 @@ Instead, a fan-out-on-read (pull model) is used.
 
 ### Indexing New Content
 
-1. A New Post/User is Created
+**1. A New Post/User is Created**
 
-   - A user uploads a post or creates an account.
+- A user uploads a post or creates an account.
 
-   - The Post/User stores metadata in the database.
+- The Post/User stores metadata in the database.
 
-   - The Post/User Service publishes an event to Kafka.
+- The Post/User Service publishes an event to Kafka.
 
-2. Search Service Updates Elasticsearch Index
+**2. Search Service Updates Elasticsearch Index**
 
-   - The Search Service consumes Kafka events and adds new users, posts, or hashtags to Elasticsearch.
+- The Search Service consumes Kafka events and adds new users, posts, or hashtags to Elasticsearch.
 
 ### Search Request
 
