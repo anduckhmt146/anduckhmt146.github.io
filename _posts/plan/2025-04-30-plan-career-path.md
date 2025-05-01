@@ -87,6 +87,8 @@ Here is some plan to build myself in the future.
 
 - Staff Engineer: [https://drive.google.com/file/d/10JVQXPhZ49P45KTTy-CTe3l4V_O2LPiZ/view?usp=sharing](https://drive.google.com/file/d/10JVQXPhZ49P45KTTy-CTe3l4V_O2LPiZ/view?usp=sharing)
 
+- Software Engineer At Google: [https://drive.google.com/file/d/1QDX0K4duTDlWCwJQA9ciBRiHgBRuDFWF/view?usp=sharing](https://drive.google.com/file/d/1QDX0K4duTDlWCwJQA9ciBRiHgBRuDFWF/view?usp=sharing)
+
 # 7. Relationship
 
 - Book 1: [https://drive.google.com/file/d/1yjtNpNRq-Lg8cOjC8v9alJJcSLpRStRY/view?usp=sharing](https://drive.google.com/file/d/1yjtNpNRq-Lg8cOjC8v9alJJcSLpRStRY/view?usp=sharing)
