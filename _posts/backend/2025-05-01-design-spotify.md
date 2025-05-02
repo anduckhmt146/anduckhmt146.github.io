@@ -61,11 +61,11 @@ A caching layer like Redis can be used to store this data temporarily.
 
 **Examples of Cached Data:**
 
-    - **Search Queries:** Cache popular search queries to avoid hitting the search index repeatedly.
+- **Search Queries:** Cache popular search queries to avoid hitting the search index repeatedly.
 
-    - **Popular Songs:** Frequently streamed songs can be cached to reduce database queries.
+- **Popular Songs:** Frequently streamed songs can be cached to reduce database queries.
 
-    - **User Preferences:** Store the user's liked songs and playlists in the cache for faster retrieval.
+- **User Preferences:** Store the user's liked songs and playlists in the cache for faster retrieval.
 
 ```bash
 SET user:preferences:12345 "{liked_songs: [1, 2, 3], playlists: [10, 11, 12]}"
