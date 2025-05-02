@@ -2,7 +2,7 @@
 layout: post
 title: 'System Design: Url Shorterner Link - Bitly'
 date: 2025-05-01
-categories: technology
+categories: tech
 ---
 
 Here is some concepts about system design of url shorterner link

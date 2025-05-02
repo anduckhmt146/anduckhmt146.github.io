@@ -2,7 +2,7 @@
 layout: post
 title: 'System Design: Social Media - Instagram'
 date: 2025-05-01
-categories: technology
+categories: tech
 ---
 
 Here is some technique for design a social media, such as: Instagram, Facebook,...
