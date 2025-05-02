@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Don't Confuse Niceness With Kindness'
+title: 'Do not Confuse Niceness With Kindness'
 date: 2025-02-05
 categories: psychology
 ---
