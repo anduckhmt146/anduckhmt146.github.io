@@ -5,7 +5,7 @@ date: 2025-05-02
 categories: tech
 ---
 
-Here is some concepts of System Design: Streaming Video Platform - Youtube
+Here is some concepts of System Design: Streaming Video Platform - Youtube.
 
 # 1. Design
 
