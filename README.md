@@ -275,7 +275,7 @@ When a video is uploaded, it undergoes post-processing to convert it into a stre
   - `Transcoded URLs` for different resolutions
   - `Thumbnail URL`
   - `status = "live"` (video is ready to stream).
-- The CDN caches video segments for low-latency streaming and fast access.
+- The CDN caches video segments for low-latency streaming and fast access
 
 ## Video Streaming
 
