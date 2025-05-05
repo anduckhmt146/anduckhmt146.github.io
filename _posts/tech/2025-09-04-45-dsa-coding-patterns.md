@@ -1764,6 +1764,8 @@ class Solution:
 </pre>
 </details>
 
+## 19.4. Graph Valid Tree (Check do not have cycle)
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
