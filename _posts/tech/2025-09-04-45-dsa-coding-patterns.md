@@ -1664,6 +1664,60 @@ class Solution:
 </pre>
 </details>
 
+## 19.2. Paths in Maze That Lead to Same Room (Find All Paths)
+
+Ref: [https://leetcode.com/problems/paths-in-maze-that-lead-to-same-room/description/](https://leetcode.com/problems/paths-in-maze-that-lead-to-same-room/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import defaultdict
+
+class Solution:
+    def find_all_paths(self, graph, start):
+        stack = [(start, [start])]
+        room_paths = defaultdict(list)
+
+        while stack:
+            node, path = stack.pop()
+            room_paths[node].append(path)
+
+            for neighbor in graph.get(node, []):
+                if neighbor not in path:  # avoid cycles
+                    stack.append((neighbor, path + [neighbor]))
+        
+        # {'A': [['A']], 'C': [['A', 'C']], 'D': [['A', 'C', 'D'], ['A', 'B', 'D']], 'B': [['A', 'B']]}
+        print(room_paths)
+
+        # Filter rooms that have more than one path
+        multiple_path_rooms = {
+            room: paths for room, paths in room_paths.items()
+            if len(paths) > 1
+        }
+
+        return multiple_path_rooms
+
+# Example usage
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D'],
+    'C': ['D'],
+    'D': []
+}
+
+result = find_all_paths(graph, 'A')
+for room, paths in result.items():
+    print(f"Room {room} has {len(paths)} paths:")
+    for p in paths:
+        print("  -> " + " -> ".join(p))
+
+
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
