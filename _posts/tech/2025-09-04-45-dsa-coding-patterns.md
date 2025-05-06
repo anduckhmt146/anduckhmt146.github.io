@@ -1791,6 +1791,34 @@ class Solution:
                 provinces += 1
         
         return provinces
+        
+from typing import List
+
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        n = len(isConnected)
+        parent = list(range(n))  # Initially, each node is its own parent
+
+        def find(x):
+            if parent[x] != x:
+                parent[x] = find(parent[x])  # Path compression
+            return parent[x]
+
+        def union(x, y):
+            rootX = find(x)
+            rootY = find(y)
+            if rootX != rootY:
+                parent[rootX] = rootY  # Union
+
+        # Iterate through the upper triangle of the matrix to avoid duplicates
+        for i in range(n):
+            for j in range(i + 1, n):
+                if isConnected[i][j] == 1:
+                    union(i, j)
+
+        # Count unique roots
+        return len({find(i) for i in range(n)})
+
 
 </code>
 </pre>
@@ -1808,52 +1836,6 @@ Ref: [https://leetcode.com/problems/redundant-connection/description/](https://l
 from typing import List
 
 class Solution:
-    # 🧠 Step-by-step Processing
-    # 1. Edge: [1, 2]
-    # find(1) = 1, find(2) = 2 → different groups → no cycle
-
-    # union(1, 2) → make parent[2] = 1
-
-    # Now: parent = [0, 1, 1, 3, 4, 5]
-
-    # 2. Edge: [2, 3]
-    # find(2):
-
-    # parent[2] = 1, so find(1) = 1 → find(2) = 1
-
-    # find(3) = 3
-
-    # Different groups → no cycle
-
-    # union(2, 3) → make parent[3] = 1
-
-    # Now: parent = [0, 1, 1, 1, 4, 5]
-
-    # 3. Edge: [3, 4]
-    # find(3):
-
-    # parent[3] = 1 → find(3) = 1
-
-    # find(4) = 4
-
-    # Different groups → no cycle
-
-    # union(3, 4) → make parent[4] = 1
-
-    # Now: parent = [0, 1, 1, 1, 1, 5]
-
-    # 4. Edge: [1, 4]
-    # find(1) = 1
-
-    # find(4):
-
-    # parent[4] = 1 → find(4) = 1
-
-    # Same root → cycle detected!
-    # ✅ This edge is redundant → return [1, 4]
-
-    # 5. (Optional) Edge: [1, 5]
-    # We already returned [1, 4], so we stop before processing this.
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         parent = [i for i in range(len(edges) + 1)]
 
@@ -1872,7 +1854,6 @@ class Solution:
 
         for u, v in edges:
             if not union(u, v):
-                print(parent)
                 return [u, v]
 
 </code>
@@ -1933,54 +1914,129 @@ Ref: [https://leetcode.com/problems/number-of-operations-to-make-network-connect
 <code class="python">
 from typing import List
 
-class UnionFind:
-    def __init__(self, n):
-        # Initialize parent to itself, rank to 0
-        self.parent = list(range(n))
-        self.rank = [0] * n
-    
-    def find(self, x):
-        if self.parent[x] != x:
-            # Path compression: flatten the structure for faster future queries
-            self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
-    
-    def union(self, x, y):
-        rootX = self.find(x)
-        rootY = self.find(y)
-        
-        if rootX != rootY:
-            # Union by rank: attach the smaller tree under the larger tree
-            if self.rank[rootX] > self.rank[rootY]:
-                self.parent[rootY] = rootX
-            elif self.rank[rootX] < self.rank[rootY]:
-                self.parent[rootX] = rootY
-            else:
-                self.parent[rootY] = rootX
-                self.rank[rootX] += 1
-
 class Solution:
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
-        # If there are fewer than n-1 connections, we can't connect all nodes
         if len(connections) < n - 1:
-            return -1
+            return -1  # Not enough cables
         
-        # Initialize Union-Find structure
-        uf = UnionFind(n)
+        parent = [i for i in range(n)]
         
-        # Process all the connections and unite the nodes
-        for u, v in connections:
-            uf.union(u, v)
+        def find(x):
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
         
-        # Count the number of connected components
-        components = 0
-        for i in range(n):
-            # [0,0,0,3]
-            if uf.find(i) == i:  # If a node is its own parent, it's a root (a separate component)
-                components += 1
+        def union(x, y):
+            rootX = find(x)
+            rootY = find(y)
+            if rootX != rootY:
+                parent[rootX] = rootY
         
-        # The number of operations needed is the number of components minus 1
+        for a, b in connections:
+            union(a, b)
+        
+        # Count number of connected components
+        components = len(set(find(i) for i in range(n)))
         return components - 1
+
+</code>
+</pre>
+</details>
+
+## 19.8. Satisfiability of Equality Equations
+
+Ref: [https://leetcode.com/problems/satisfiability-of-equality-equations/description/](https://leetcode.com/problems/satisfiability-of-equality-equations/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def equationsPossible(self, equations: List[str]) -> bool:
+        parent = [i for i in range(26)]  # one for each lowercase letter
+        
+        def find(x):
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
+        
+        def union(x, y):
+            parent[find(x)] = find(y)
+        
+        # First, process all '==' equations
+        for eq in equations:
+            if eq[1:3] == '==':
+                x = ord(eq[0]) - ord('a')
+                y = ord(eq[3]) - ord('a')
+                union(x, y)
+        
+        # Then, process all '!=' equations
+        for eq in equations:
+            if eq[1:3] == '!=':
+                x = ord(eq[0]) - ord('a')
+                y = ord(eq[3]) - ord('a')
+                if find(x) == find(y):
+                    return False
+        
+        return True
+
+</code>
+</pre>
+</details>
+
+## 19.9. Accounts Merge
+
+Ref: [https://leetcode.com/problems/accounts-merge/description/](https://leetcode.com/problems/accounts-merge/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        parent = {}
+        
+        def find(x):
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
+        
+        def union(x, y):
+            parent.setdefault(x, x)
+            parent.setdefault(y, y)
+            parent[find(x)] = find(y)
+        
+        email_to_name = {}
+
+        # Union all emails under the same person
+        for account in accounts:
+            name = account[0]
+            first_email = account[1]
+            for email in account[1:]:
+                email_to_name[email] = name
+                union(first_email, email)
+
+        # Merge emails by their root parent
+        merged = defaultdict(list)
+        for email in parent:
+            root = find(email)
+            merged[root].append(email)
+
+        # Build final result
+        result = []
+        for root, emails in merged.items():
+            # Because all email have the same root
+            name = email_to_name[root]
+            result.append([name] + sorted(emails))
+
+        return result
 
 </code>
 </pre>
