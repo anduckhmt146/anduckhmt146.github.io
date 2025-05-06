@@ -1,0 +1,41 @@
+@startuml
+actor User
+participant Frontend
+participant "API Gateway" as API
+participant "Event Storage" as Storage
+participant "User Database" as UserDB
+participant "Message Queue" as MQ
+participant "Stream Processing" as StreamProcessing
+participant "Reporting Engine" as ReportingEngine
+participant "Dashboard UI" as DashboardUI
+participant "Data Warehouse" as DataWarehouse
+
+== Data Collection ==
+User -> Frontend : Interact with website/app
+Frontend -> API : POST /trackEvent
+API -> Storage : Store raw event data
+API -> MQ : Enqueue event for processing
+API --> Frontend : Return success
+
+== Event Processing ==
+StreamProcessing -> MQ : Fetch event data
+StreamProcessing -> Storage : Retrieve raw event
+StreamProcessing -> DataWarehouse : Aggregate event data
+StreamProcessing -> Storage : Store aggregated metrics
+StreamProcessing -> UserDB : Retrieve user data for segmentation
+
+== Analytics Reporting ==
+User -> DashboardUI : Access reports
+DashboardUI -> ReportingEngine : Request analytics report
+ReportingEngine -> DataWarehouse : Query aggregated data
+ReportingEngine -> UserDB : Retrieve user data for segmentation
+ReportingEngine --> DashboardUI : Return report
+
+== Real-Time Monitoring ==
+User -> DashboardUI : View real-time data
+DashboardUI -> API : GET /realTimeMetrics
+API -> StreamProcessing : Query real-time metrics
+StreamProcessing --> API : Return real-time metrics
+API --> DashboardUI : Display metrics
+
+@enduml

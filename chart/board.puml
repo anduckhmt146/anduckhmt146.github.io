@@ -1,0 +1,51 @@
+@startuml
+actor User
+participant "Web Client" as WebClient
+participant "Mobile Client" as MobileClient
+participant "API Gateway" as ApiGateway
+participant "Match Service" as MatchService
+participant "Player Stats Service" as PlayerStatsService
+participant "Real-Time Service" as RealTimeService
+participant "WebSocket Server" as WebSocketServer
+participant "Event Stream (Kafka/Redis)" as EventStream
+participant "Notification Service" as NotificationService
+
+== Request Match Details ==
+User -> WebClient : Request match details
+WebClient -> ApiGateway : GET /match-details
+ApiGateway -> MatchService : Fetch match data
+MatchService -> ApiGateway : Return match data
+ApiGateway -> WebClient : Return match details
+WebClient --> User : Display match details
+
+== Connect for Live Updates ==
+User -> WebClient : Request live score updates
+WebClient -> WebSocketServer : Establish WebSocket connection
+WebSocketServer -> RealTimeService : Subscribe to match events
+RealTimeService --> WebSocketServer : Acknowledge subscription
+WebSocketServer --> WebClient : Ready for real-time updates
+
+== Real-Time Score Update ==
+alt Match Event (e.g., wicket, run, boundary)
+    MatchService -> RealTimeService : Send event (runs, wickets)
+    RealTimeService -> EventStream : Broadcast event
+    EventStream -> WebSocketServer : Deliver event
+    WebSocketServer -> WebClient : Push live score update
+    WebSocketServer -> MobileClient : Push live score update
+end
+
+== Notification Triggered ==
+alt Notification (e.g., wicket, milestone)
+    RealTimeService -> NotificationService : Send notification
+    NotificationService -> User : Push notification
+end
+
+== Check Match Status ==
+User -> WebClient : Check match status
+WebClient -> ApiGateway : GET /status?matchId=xyz
+ApiGateway -> MatchService : Fetch match status
+MatchService -> ApiGateway : Return match status
+ApiGateway -> WebClient : Return match status
+WebClient --> User : Display status
+
+@enduml

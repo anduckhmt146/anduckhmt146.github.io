@@ -1,0 +1,41 @@
+@startuml
+actor User
+participant Frontend
+participant "API Gateway" as API
+participant "Object Storage" as Storage
+participant "Database" as DB
+participant "Message Queue" as MQ
+participant "Worker Service" as Worker
+participant "Conversion Engine" as Converter
+
+== File Upload ==
+User -> Frontend : Upload File + Select Format
+Frontend -> API : POST /upload
+API -> Storage : Store original file
+API -> DB : Save file metadata + status "uploaded"
+API -> MQ : Enqueue conversion job
+API --> Frontend : Return job ID
+
+== File Conversion ==
+Worker -> MQ : Fetch job
+Worker -> Storage : Download original file
+Worker -> Converter : Convert file to target format
+Converter -> Worker : Return converted file
+Worker -> Storage : Upload converted file
+Worker -> DB : Update status to "done"
+
+== Status Check ==
+User -> Frontend : Check conversion status
+Frontend -> API : GET /status?jobId=xyz
+API -> DB : Query job status
+DB --> API : Return status
+API --> Frontend : Return status
+
+== File Download ==
+User -> Frontend : Click download
+Frontend -> API : GET /download?jobId=xyz
+API -> Storage : Fetch converted file URL
+API --> Frontend : Return download link
+Frontend -> Storage : Download file
+
+@enduml
