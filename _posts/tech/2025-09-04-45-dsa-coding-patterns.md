@@ -1764,6 +1764,38 @@ class Solution:
 </pre>
 </details>
 
+## 19.4. Number of Provinces (DFS Island, Union Find)
+
+Ref: [https://leetcode.com/problems/number-of-provinces/description/](https://leetcode.com/problems/number-of-provinces/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        def dfs(city: int):
+            visited[city] = True
+            for neighbor in range(len(isConnected)):
+                # Explore the graph when needed
+                if isConnected[city][neighbor] == 1 and not visited[neighbor]:
+                    dfs(neighbor)
+
+        n = len(isConnected)
+        visited = [False] * n
+        provinces = 0
+        for i in range(n):
+            if not visited[i]:
+                dfs(i)
+                provinces += 1
+        
+        return provinces
+
+</code>
+</pre>
+</details>
+
 ## 19.4. Graph Valid Tree (Check do not have cycle)
 
 # 20. Pattern 20: Island
