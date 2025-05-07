@@ -2182,6 +2182,50 @@ class Solution:
 </pre>
 </details>
 
+## 19.13. Number of Closed Islands
+
+Ref: [http://leetcode.com/problems/number-of-closed-islands/description/](http://leetcode.com/problems/number-of-closed-islands/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        rows, cols = len(grid), len(grid[0])
+    
+        def dfs(r, c):
+            if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == 1:
+                return
+            grid[r][c] = 1  # mark as visited
+            for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:
+                dfs(r + dr, c + dc)
+
+        # Step 1: Remove lands connected to borders
+        # Reason: Change all 0 in the border to 1
+        for i in range(rows):
+            dfs(i, 0)
+            dfs(i, cols - 1)
+        for j in range(cols):
+            dfs(0, j)
+            dfs(rows - 1, j)
+
+        # Step 2: Count closed islands
+        count = 0
+        for i in range(1, rows - 1):
+            for j in range(1, cols - 1):
+                # It must be an isolation and count += 1
+                if grid[i][j] == 0:
+                    dfs(i, j)
+                    count += 1
+
+        return count            
+
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
