@@ -2264,6 +2264,33 @@ class Solution:
 </pre>
 </details>
 
+## 19.15. Keys and Rooms
+
+Ref: [https://leetcode.com/problems/keys-and-rooms/description/](https://leetcode.com/problems/keys-and-rooms/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        visited = set()
+        
+        def dfs(room: int):
+            if room in visited:
+                return
+            visited.add(room)
+            for key in rooms[room]:
+                dfs(key)
+        
+        dfs(0)  # Start from room 0
+        return len(visited) == len(rooms)
+
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
