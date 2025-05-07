@@ -1764,6 +1764,10 @@ class Solution:
 </pre>
 </details>
 
+---
+
+**Union Find**
+
 ## 19.4. Number of Provinces (DFS Island, Union Find)
 
 Ref: [https://leetcode.com/problems/number-of-provinces/description/](https://leetcode.com/problems/number-of-provinces/description/)
@@ -2037,6 +2041,142 @@ class Solution:
             result.append([name] + sorted(emails))
 
         return result
+
+</code>
+</pre>
+</details>
+
+---
+
+**DFS**
+
+## 19.10. Surrounded Regions
+
+Ref: [https://leetcode.com/problems/surrounded-regions/](https://leetcode.com/problems/surrounded-regions/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def solve(self, board):
+        if not board or not board[0]:
+            return
+
+        rows, cols = len(board), len(board[0])
+
+        def dfs(r, c):
+            if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != 'O':
+                return
+            board[r][c] = '#'  # temporary mark
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+
+        # Step 1: Mark border-connected 'O's
+        for i in range(rows):
+            dfs(i, 0)
+            dfs(i, cols - 1)
+        for j in range(cols):
+            dfs(0, j)
+            dfs(rows - 1, j)
+
+        # Step 2: Flip internal 'O' to 'X', and '#' back to 'O'
+        for i in range(rows):
+            for j in range(cols):
+                if board[i][j] == 'O':
+                    board[i][j] = 'X'
+                elif board[i][j] == '#':
+                    board[i][j] = 'O'
+
+</code>
+</pre>
+</details>
+
+## 19.11. Number of Enclaves
+
+Ref: [https://leetcode.com/problems/number-of-enclaves/description/](https://leetcode.com/problems/number-of-enclaves/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def numEnclaves(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+
+        rows, cols = len(grid), len(grid[0])
+
+        def dfs(r, c):
+            if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] != 1:
+                return
+            grid[r][c] = 2  # temporary mark
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+
+        # Step 1: Mark border-connected 'O's
+        for i in range(rows):
+            dfs(i, 0)
+            dfs(i, cols - 1)
+        for j in range(cols):
+            dfs(0, j)
+            dfs(rows - 1, j)
+
+        count = 0
+        # Step 2: Flip internal 'O' to 'X', and '#' back to 'O'
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == 1:
+                    count += 1
+
+        return count
+
+</code>
+</pre>
+</details>
+
+---
+
+**Time taken to reach all nodes or share information to all graph nodes**
+
+## 19.12. Time Needed to Inform All Employees
+
+Ref: [https://leetcode.com/problems/time-needed-to-inform-all-employees/description/](https://leetcode.com/problems/time-needed-to-inform-all-employees/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    # Employee:   0  1  2  3  4  5  6
+    # Manager:   -1  0  0  1  1  2  2
+    #      0
+    #    /   \
+    #   1     2
+    #. / \   / \
+    # 3  4  5   6
+
+    def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
+        tree = defaultdict(list)
+        for emp, mgr in enumerate(manager):
+            if mgr != -1:
+                tree[mgr].append(emp)
+
+        def dfs(emp_id):
+            max_time = 0
+            for subordinate in tree[emp_id]:
+                max_time = max(max_time, dfs(subordinate))
+            return informTime[emp_id] + max_time
+
+        return dfs(headID)
+            
 
 </code>
 </pre>
