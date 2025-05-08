@@ -2337,6 +2337,76 @@ class Solution:
 </pre>
 </details>
 
+## 19.17. Flood Fill
+
+Ref: [https://leetcode.com/problems/flood-fill/description/](https://leetcode.com/problems/flood-fill/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        rows, cols = len(image), len(image[0])
+        original_color = image[sr][sc]
+
+        if original_color == color:
+            return image  # no need to fill if color is same
+    
+        # Change color to original_color, similar idea flip 1 to 0 and count
+        def dfs(r, c):
+            if r < 0 or r >= rows or c < 0 or c >= cols or image[r][c] != original_color:
+                return
+            image[r][c] = color # mark as visited
+            for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:
+                dfs(r + dr, c + dc)
+
+        # Step 2: DFS here
+        dfs(sr, sc)
+
+        return image
+
+</code>
+</pre>
+</details>
+
+---
+
+**Graph Cycle**
+
+## 19.18. Find Eventual Safe States
+
+Ref: [https://leetcode.com/problems/find-eventual-safe-states/description/](https://leetcode.com/problems/find-eventual-safe-states/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
+        # Still run 0 -> n
+        n = len(graph)
+        state = [0] * n
+
+        def dfs(node):
+            if state[node] != 0:
+                return state[node] == 2  # safe if previously marked safe
+
+            state[node] = 1  # mark as visiting
+            for neighbor in graph[node]:
+                if not dfs(neighbor):  # if any neighbor is unsafe
+                    return False
+            state[node] = 2  # mark as safe
+            return True
+
+        return [i for i in range(n) if dfs(i)]
+
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
