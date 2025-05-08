@@ -2718,6 +2718,82 @@ class Solution:
 </pre>
 </details>
 
+---
+
+**Graph coloring/Bipartition**
+
+## 19.35. Graph Bipartite
+
+Ref: [https://leetcode.com/problems/is-graph-bipartite/description/](https://leetcode.com/problems/is-graph-bipartite/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import deque
+
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        n = len(graph)
+        color = [-1] * n  # -1 means unvisited; 0 and 1 are two colors
+
+        for start in range(n):
+            if color[start] == -1:
+                queue = deque([start])
+                color[start] = 0
+
+                while queue:
+                    node = queue.popleft()
+                    for neighbor in graph[node]:
+                        if color[neighbor] == -1:
+                            color[neighbor] = 1 - color[node]  # alternate color
+                            queue.append(neighbor)
+                        elif color[neighbor] == color[node]:
+                            return False  # same color on both sides means not bipartite
+        return True
+
+</code>
+</pre>
+</details>
+
+## 19.36. Possible Bipartition
+
+Ref: [https://leetcode.com/problems/possible-bipartition/description/](https://leetcode.com/problems/possible-bipartition/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
+        graph = defaultdict(list)
+        for a, b in dislikes:
+            graph[a].append(b)
+            graph[b].append(a)
+
+        color = {}
+
+        for node in range(1, n+1):
+            if node not in color:
+                queue = deque([node])
+                color[node] = 0
+                while queue:
+                    curr = queue.popleft()
+                    for neighbor in graph[curr]:
+                        if neighbor not in color:
+                            color[neighbor] = 1 - color[curr]
+                            queue.append(neighbor)
+                        elif color[neighbor] == color[curr]:
+                            return False
+        return True
+            
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
