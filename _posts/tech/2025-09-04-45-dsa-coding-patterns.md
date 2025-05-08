@@ -2375,7 +2375,7 @@ class Solution:
 
 **Graph Cycle**
 
-## 19.18. Find Eventual Safe States
+## 19.18. Find Eventual Safe States (Cycle)
 
 Ref: [https://leetcode.com/problems/find-eventual-safe-states/description/](https://leetcode.com/problems/find-eventual-safe-states/description/)
 
@@ -2444,6 +2444,45 @@ class Solution:
             grid[r][c] = color
 
         return grid
+
+</code>
+</pre>
+</details>
+
+## 19.20. Find the Town Judge
+
+Ref: [https://leetcode.com/problems/find-the-town-judge/description/](https://leetcode.com/problems/find-the-town-judge/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        graph = defaultdict(list)
+        out_degree = [0] * (n + 1)
+        in_degree = [0] * (n + 1)
+
+        for a, b in trust:
+            graph[a].append(b)
+            out_degree[a] += 1
+            in_degree[b] += 1
+
+        # def dfs(person, visited):
+        #     visited.add(person)
+        #     for neighbor in graph[person]:
+        #         if neighbor not in visited:
+        #             dfs(neighbor, visited)
+
+        for i in range(1, n + 1):
+            if out_degree[i] == 0 and in_degree[i] == n - 1:
+                return i
+
+        return -1
 
 </code>
 </pre>
