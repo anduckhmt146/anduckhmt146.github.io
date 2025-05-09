@@ -2794,6 +2794,96 @@ class Solution:
 </pre>
 </details>
 
+---
+
+**Topology Sort (Kahn Algorithm)**
+
+## 19.37. Course Schedule
+
+Ref: [https://leetcode.com/problems/course-schedule/description/](https://leetcode.com/problems/course-schedule/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import defaultdict, deque
+from typing import List
+
+# BFS Topology Sort)
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # Build the graph and in-degree array
+        graph = defaultdict(list)
+        in_degree = [0] * numCourses
+
+        for dest, src in prerequisites:
+            graph[src].append(dest)
+            in_degree[dest] += 1
+
+        # Initialize queue with nodes having zero in-degree (no prerequisites)
+        queue = deque([i for i in range(numCourses) if in_degree[i] == 0])
+        completed_courses = 0
+
+        result = []
+        while queue:
+            course = queue.popleft()
+            result.append(course)
+            completed_courses += 1
+
+            for neighbor in graph[course]:
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+
+        # [0, 1]
+        print("Result: ", result)
+        return completed_courses == numCourses
+            
+</code>
+</pre>
+</details>
+
+## 19.37. Course Schedule II
+
+Ref: [https://leetcode.com/problems/course-schedule-ii/](https://leetcode.com/problems/course-schedule-ii/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        # Build the graph and in-degree array
+        graph = defaultdict(list)
+        in_degree = [0] * numCourses
+
+        for dest, src in prerequisites:
+            graph[src].append(dest)
+            in_degree[dest] += 1
+
+        # Initialize queue with nodes having zero in-degree (no prerequisites)
+        queue = deque([i for i in range(numCourses) if in_degree[i] == 0])
+        completed_courses = 0
+
+        result = []
+        while queue:
+            course = queue.popleft()
+            result.append(course)
+            completed_courses += 1
+
+            for neighbor in graph[course]:
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+
+        return result if completed_courses == numCourses else []
+            
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
