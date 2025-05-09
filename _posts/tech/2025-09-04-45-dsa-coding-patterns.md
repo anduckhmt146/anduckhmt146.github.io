@@ -3015,6 +3015,52 @@ class Solution:
 </pre>
 </details>
 
+---
+
+**Prim Algorithm**
+
+## 19.40. Connecting Cities With Minimum Cost (Prim)
+
+Ref: [https://leetcode.com/problems/connecting-cities-with-minimum-cost/description/](https://leetcode.com/problems/connecting-cities-with-minimum-cost/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        if n == 0:
+            return 0
+
+        # Step 1: Build graph
+        graph = defaultdict(list)
+        for city1, city2, cost in connections:
+            graph[city1].append((cost, city2))
+            graph[city2].append((cost, city1))
+
+        visited = set()
+        min_heap = [(0, 1)]  # (cost, starting_city)
+        total_cost = 0
+
+        while min_heap and len(visited) < n:
+            cost, city = heapq.heappop(min_heap)
+            if city in visited:
+                continue
+            visited.add(city)
+            total_cost += cost
+            for nei_cost, nei_city in graph[city]:
+                if nei_city not in visited:
+                    heapq.heappush(min_heap, (nei_cost, nei_city))
+
+        return total_cost if len(visited) == n else -1
+            
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
