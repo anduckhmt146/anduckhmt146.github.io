@@ -3061,6 +3061,113 @@ class Solution:
 </pre>
 </details>
 
+---
+
+**Strongly Connected Components**
+
+## 19.41. Strongly Connected Components: Tarjan's Algorithm
+
+Ref: [https://leetcode.com/problems/critical-connections-in-a-network/](https://leetcode.com/problems/critical-connections-in-a-network/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
+        graph = defaultdict(list)
+        for u, v in connections:
+            graph[u].append(v)
+            graph[v].append(u)
+
+        discovery = [-1] * n
+        low = [-1] * n
+        time = [0]
+        result = []
+
+        def dfs(node, parent):
+            discovery[node] = low[node] = time[0]
+            time[0] += 1
+
+            for neighbor in graph[node]:
+                if neighbor == parent:
+                    continue
+                if discovery[neighbor] == -1:
+                    dfs(neighbor, node)
+                    low[node] = min(low[node], low[neighbor])
+                    if low[neighbor] > discovery[node]:
+                        result.append([node, neighbor])
+                else:
+                    low[node] = min(low[node], discovery[neighbor])
+
+        dfs(0, -1)
+        return result
+            
+</code>
+</pre>
+</details>
+
+---
+
+**A\* Search**
+
+## 19.42. Sliding puzzle (Game Backtracking)
+
+Ref: [https://leetcode.com/problems/sliding-puzzle/](https://leetcode.com/problems/sliding-puzzle/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import deque
+
+class Solution:
+    def slidingPuzzle(self, board: List[List[int]]) -> int:
+        start = ''.join(str(cell) for row in board for cell in row)
+        target = '123450'
+
+        # Mapping of index to its neighbors on a 2x3 board
+        neighbors = {
+            0: [1, 3],
+            1: [0, 2, 4],
+            2: [1, 5],
+            3: [0, 4],
+            4: [1, 3, 5],
+            5: [2, 4]
+        }
+
+        visited = set()
+        queue = deque([(start, 0)])
+        visited.add(start)
+
+        while queue:
+            state, steps = queue.popleft()
+            if state == target:
+                return steps
+
+            zero_idx = state.index('0')
+            for neighbor in neighbors[zero_idx]:
+                new_state = list(state)
+                # Swap '0' with the neighbor
+                new_state[zero_idx], new_state[neighbor] = new_state[neighbor], new_state[zero_idx]
+                new_state_str = ''.join(new_state)
+
+                if new_state_str not in visited:
+                    visited.add(new_state_str)
+                    queue.append((new_state_str, steps + 1))
+
+        return -1
+            
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
