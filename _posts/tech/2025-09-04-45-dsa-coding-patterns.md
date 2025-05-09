@@ -3200,6 +3200,164 @@ class Solution:
 
         backtrack(nums, 0)
         return result
+
+
+# Solution 2
+from typing import List
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        result = []
+
+        def backtrack(start=0):
+            if start == len(nums):
+                result.append(nums[:])
+                return
+            for i in range(start, len(nums)):
+                # [1,2], [1,3], [1,4]
+                # When the i = 1 is pass, i = 2 and continue
+                nums[start], nums[i] = nums[i], nums[start]  # swap
+                backtrack(start + 1)
+                # Backtrack
+                nums[start], nums[i] = nums[i], nums[start]  # backtrack
+
+        backtrack()
+        return result
+
+            
+</code>
+</pre>
+</details>
+
+## 22.2. Permutations II (Unique)
+
+Ref: [https://leetcode.com/problems/permutations-ii/description/](https://leetcode.com/problems/permutations-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        nums.sort()  # Sort to group duplicates together
+
+        def backtrack(nums, i):
+            if i == len(nums):
+                result.append(nums)
+                return
+
+            used = set()
+            for j in range(i, len(nums)):
+                if nums[j] in used:
+                    continue  # Skip duplicates at this level
+
+                used.add(nums[j])
+                new_nums = nums[:]  # make a copy
+                new_nums[i], new_nums[j] = new_nums[j], new_nums[i]
+                backtrack(new_nums, i + 1)
+
+        backtrack(nums, 0)
+        return result
+
+
+from typing import List
+
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        nums.sort()  # Sort to make it easy to skip duplicates
+
+        def backtrack(start=0):
+            if start == len(nums):
+                result.append(nums[:])
+                return
+
+            # [1,2], [1,3], [1,4]
+            # When the i = 1 is pass, i = 2 and continue
+            seen = set()  # Used to skip duplicates at this recursion level
+            for i in range(start, len(nums)):
+                if nums[i] in seen:
+                    continue
+                seen.add(nums[i])
+                nums[start], nums[i] = nums[i], nums[start]
+                backtrack(start + 1)
+                nums[start], nums[i] = nums[i], nums[start]  # backtrack
+
+        backtrack()
+        return result
+
+            
+</code>
+</pre>
+</details>
+
+## 22.3. Combinations
+
+Ref: [https://leetcode.com/problems/combinations/](https://leetcode.com/problems/combinations/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        res = []
+
+        def backtrack(start: int, path: List[int]):
+            if len(path) == k:
+                res.append(path[:])
+                return
+            # [1,2], [1,3], [1,4]
+            # When the i = 1 is pass, i = 2 and continue
+            for i in range(start, n + 1):
+                path.append(i)
+                backtrack(i + 1, path)
+                path.pop()
+        
+        backtrack(1, [])
+        return res
+            
+</code>
+</pre>
+</details>
+
+## 22.4. Combination Sum
+
+Ref: [https://leetcode.com/problems/combination-sum/description/](https://leetcode.com/problems/combination-sum/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+
+        def backtrack(remaining, start, path):
+            if remaining == 0:
+                result.append(path[:])
+                return
+            elif remaining < 0:
+                return
+            
+            for i in range(start, len(candidates)):
+                path.append(candidates[i])
+                # i, not i+1 because we can reuse same elements
+                backtrack(remaining - candidates[i], i, path) 
+                path.pop()
+
+        backtrack(target, 0, [])
+        return result
             
 </code>
 </pre>
