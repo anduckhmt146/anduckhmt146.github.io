@@ -2884,6 +2884,137 @@ class Solution:
 </pre>
 </details>
 
+---
+
+**Find Shortest Path in Weighted Graph (Dijkstra's/Bellman Ford)**
+
+About no-directed graph, we use BFS
+
+## 19.38. Network Delay Time (Dijkstra - Find 1 to 1)
+
+Ref: [https://leetcode.com/problems/network-delay-time/description/](https://leetcode.com/problems/network-delay-time/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+from collections import defaultdict
+
+class Solution:
+    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        # Build the adjacency list
+        graph = defaultdict(list)
+        for u, v, w in times:
+            graph[u].append((v, w))
+
+        # Min-heap to get the next closest node
+        min_heap = [(0, k)]  # (time, node)
+        visited = set()
+        time_to_reach = {}
+
+        while min_heap:
+            time, node = heapq.heappop(min_heap)
+            if node in visited:
+                continue
+            visited.add(node)
+            time_to_reach[node] = time
+
+            for neighbor, weight in graph[node]:
+                if neighbor not in visited:
+                    heapq.heappush(min_heap, (time + weight, neighbor))
+
+        # {2: 0, 1: 1, 3: 1, 4: 2}
+        print(time_to_reach)
+
+        return max(time_to_reach.values()) if len(visited) == n else -1
+            
+</code>
+</pre>
+</details>
+
+## 19.38. Find the City With the Smallest Number of Neighbors at a Threshold Distance (Floyd-Warshall - Find N to N)
+
+Ref: [https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/](https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
+        # Step 1: Initialize distance matrix
+        dist = [[float('inf')] * n for _ in range(n)]
+        
+        for i in range(n):
+            dist[i][i] = 0
+        
+        for u, v, w in edges:
+            dist[u][v] = w
+            dist[v][u] = w  # Because the graph is undirected
+        
+        # Step 2: Floyd-Warshall to compute all-pairs shortest paths
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    if dist[i][j] > dist[i][k] + dist[k][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+        
+        # Step 3: Count reachable cities within distanceThreshold
+        min_reachable = n
+        city_index = -1
+        
+        for i in range(n):
+            # Number of nodes can reachable
+            count = sum(1 for j in range(n) if i != j and dist[i][j] <= distanceThreshold)
+            if count <= min_reachable:
+                min_reachable = count
+                city_index = i  # Prefer the city with the greatest number in case of tie
+        
+        return city_index
+            
+</code>
+</pre>
+</details>
+
+## 19.39. Cheapest Flights Within K Stops (Bellman-Ford - Snapshot in Kth)
+
+Ref: [https://leetcode.com/problems/cheapest-flights-within-k-stops/](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        # Step 1: Initialize distances array with "infinite" cost
+        prices = [float('inf')] * n
+        prices[src] = 0
+        
+        # Step 2: Run the Bellman-Ford algorithm for k+1 times
+        for i in range(k + 1):
+            tmp = prices.copy()
+            for u, v, w in flights:
+                if prices[u] == float('inf'):
+                    continue
+                if prices[u] + w < tmp[v]:
+                    tmp[v] = prices[u] + w
+            prices = tmp
+        
+        return -1 if prices[dst] == float('inf') else prices[dst]
+            
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
