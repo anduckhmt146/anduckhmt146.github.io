@@ -3406,6 +3406,110 @@ class Solution:
 </pre>
 </details>
 
+## 19.48. Eventual Safe States
+
+Ref: [https://www.geeksforgeeks.org/problems/eventual-safe-states/1](https://www.geeksforgeeks.org/problems/eventual-safe-states/1)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:    
+    def eventualSafeNodes(self, V : int, adj : List[List[int]]) -> List[int]:
+        state = [0] * V  # 0 = unvisited, 1 = visiting, 2 = safe
+
+        def dfs(node):
+            if state[node] == 1:
+                return False  # cycle detected
+            if state[node] == 2:
+                return True  # already determined safe
+
+            state[node] = 1  # mark as visiting
+
+            for neighbor in adj[node]:
+                if not dfs(neighbor):
+                    return False
+
+            state[node] = 2  # mark as safe
+            return True
+
+        result = []
+        for i in range(V):
+            if dfs(i):
+                result.append(i)
+
+        return result
+
+</code>
+</pre>
+</details>
+
+For example:
+
+![](/images/cycle_safe_node.png)
+
+- So the unsafe nodes are: 0, 1, 3
+
+- And the safe nodes are: 2, 4, 5, 6
+
+## 19.49. Longest Cycle in a Graph
+
+Ref: [https://leetcode.com/problems/longest-cycle-in-a-graph/description/](https://leetcode.com/problems/longest-cycle-in-a-graph/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def longestCycle(self, edges: List[int]) -> int:
+        state = [0] * len(edges)  # 0 = unvisited, 1 = visiting, 2 = safe
+        max_cycle_length = -1
+        
+        def dfs(node, path):
+            if state[node] == 1:  # cycle detected
+                cycle_start = node
+                cycle_length = 0
+                for i in range(len(path) - 1, -1, -1):
+                    cycle_length += 1
+                    if path[i] == cycle_start:
+                        break
+                return cycle_length
+
+            if state[node] == 2:  # already safe
+                return 0
+            
+            state[node] = 1  # mark as visiting
+            
+            path.append(node)
+            next_node = edges[node]
+            
+            cycle_length = 0
+            # Loop dfs from a node until meet cycle
+            if next_node != -1:  # valid edge
+                cycle_length = dfs(next_node, path)
+
+            state[node] = 2  # mark as safe
+            path.pop()
+            
+            return cycle_length
+        
+        for i in range(len(edges)):
+            if state[i] == 0:  # unvisited node
+                cycle_length = dfs(i, [])
+                max_cycle_length = max(max_cycle_length, cycle_length)
+        
+        return max_cycle_length if max_cycle_length > 0 else -1
+
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
