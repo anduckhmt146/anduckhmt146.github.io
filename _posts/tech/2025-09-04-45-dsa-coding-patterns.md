@@ -3363,7 +3363,7 @@ class Solution:
 </pre>
 </details>
 
-## 22.4. Combination Sum II
+## 22.5. Combination Sum II
 
 Ref: [https://leetcode.com/problems/combination-sum-ii/description/](https://leetcode.com/problems/combination-sum-ii/description/)
 
@@ -3403,7 +3403,7 @@ class Solution:
 </pre>
 </details>
 
-## 22.5. Combination Sum III
+## 22.6. Combination Sum III
 
 Ref: [https://leetcode.com/problems/combination-sum-iii/](https://leetcode.com/problems/combination-sum-iii/)
 
@@ -3442,7 +3442,7 @@ class Solution:
 </pre>
 </details>
 
-## 22.6. Subsets
+## 22.7. Subsets
 
 Ref: [https://leetcode.com/problems/subsets/description/](https://leetcode.com/problems/subsets/description/)
 
@@ -3471,7 +3471,7 @@ class Solution:
 </pre>
 </details>
 
-## 22.7. Subsets II
+## 22.8. Subsets II
 
 Ref: [https://leetcode.com/problems/subsets-ii/description/](https://leetcode.com/problems/subsets-ii/description/)
 
@@ -3499,6 +3499,179 @@ class Solution:
 
         backtrack(0, [])
         return result
+
+</code>
+</pre>
+</details>
+
+## 22.9. Palindrome Partitioning
+
+Ref: [https://leetcode.com/problems/palindrome-partitioning/description/](https://leetcode.com/problems/palindrome-partitioning/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        result = []
+        current_partition = []
+        
+        def is_palindrome(sub: str) -> bool:
+            return sub == sub[::-1]
+        
+        def backtrack(start: int):
+            if start == len(s):
+                result.append(current_partition[:])
+                return
+            
+            for end in range(start + 1, len(s) + 1):
+                substring = s[start:end]
+                if is_palindrome(substring):
+                    current_partition.append(substring)
+                    backtrack(end)
+                    current_partition.pop()
+        
+        backtrack(0)
+        return result
+
+</code>
+</pre>
+</details>
+
+## 22.10. Generate Parentheses
+
+Ref: [https://leetcode.com/problems/generate-parentheses/description/](https://leetcode.com/problems/generate-parentheses/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        result = []
+
+        def backtrack(current: str, open_count: int, close_count: int):
+            # Base case: if the current string has all pairs
+            if len(current) == 2 * n:
+                result.append(current)
+                return
+            
+            # Add an opening parenthesis if we still have one
+            if open_count < n:
+                backtrack(current + "(", open_count + 1, close_count)
+            
+            # Add a closing parenthesis if it won't exceed the number of opens
+            
+            # Why You Don’t See current.pop()
+            # That creates a new string every time (current + "("), so we don’t need to undo        anything — the old current is untouched.
+            if close_count < open_count:
+                backtrack(current + ")", open_count, close_count + 1)
+        
+        backtrack("", 0, 0)
+        return result
+
+</code>
+</pre>
+</details>
+
+## 22.11. Letter Combinations of a Phone Number
+
+Ref: [https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/](https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+
+        phone_map = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+
+        result = []
+
+        def backtrack(index: int, path: str):
+            if index == len(digits):
+                result.append(path)
+                return
+
+            possible_letters = phone_map[digits[index]]
+            for letter in possible_letters:
+                # Backtrack for each letter "a", "b", "c" 
+                backtrack(index + 1, path + letter)
+
+        backtrack(0, "")
+        return result
+
+</code>
+</pre>
+</details>
+
+## 22.12. Word search
+
+Ref: [https://leetcode.com/problems/word-search/description/](https://leetcode.com/problems/word-search/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        rows, cols = len(board), len(board[0])
+        
+        def dfs(r, c, i):
+            if i == len(word):
+                return True
+            if (r < 0 or c < 0 or r >= rows or c >= cols 
+                or board[r][c] != word[i]):
+                return False
+            
+            # Temporarily mark the cell as visited
+            temp = board[r][c]
+            
+            # Flip the word[i] to '#' is found
+            board[r][c] = "#"
+            
+            # Explore neighbors in 4 directions
+            for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                found = dfs(r + dr, c + dc, i + 1)  # Recursively check neighbors
+                if found:
+                    return True
+            
+            # Restore the cell
+            board[r][c] = temp
+            
+            return False
+        
+        for r in range(rows):
+            for c in range(cols):
+                if board[r][c] == word[0]:
+                    if dfs(r, c, 0):
+                        return True
+        return False
 
 </code>
 </pre>
