@@ -1583,6 +1583,33 @@ class Solution:
 </pre>
 </details>
 
+## 2.25. Maximum Swap
+
+Ref: [https://leetcode.com/problems/maximum-swap/description/](https://leetcode.com/problems/maximum-swap/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def maximumSwap(self, num: int) -> int:
+        num_str = list(str(num))
+        last = {int(x): i for i, x in enumerate(num_str)}  # last position of each digit
+
+        for i, digit in enumerate(num_str):
+            for d in range(9, int(digit), -1):  # check digits larger than current
+                if last.get(d, -1) > i:
+                    # swap
+                    num_str[i], num_str[last[d]] = num_str[last[d]], num_str[i]
+                    return int(''.join(num_str))
+
+        return num  # already the maximum
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
@@ -3777,7 +3804,7 @@ class Solution:
 </pre>
 </details>
 
-## 22.15. Permutations of a String
+## 22.15. Permutations of a String (Permutation)
 
 Ref: [https://www.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1](https://www.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1)
 
@@ -3803,6 +3830,44 @@ class Solution:
 
         backtrack()
         return list(result)
+</code>
+</pre>
+</details>
+
+## 22.16. Word Break (Combination Sum)
+
+Ref: [https://leetcode.com/problems/word-break/description/](https://leetcode.com/problems/word-break/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+# Idea of Combination Sum
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        result = []
+        word_set = set(wordDict)
+        n = len(s)
+
+        def backtrack(start: int, path: List[str]):
+            # Multiple function call so we can not return False here
+            if start == n:
+                result.append(" ".join(path))
+                return
+
+            for end in range(start + 1, n + 1):
+                word = s[start:end]
+                if word in word_set:
+                    path.append(word)
+                    backtrack(end, path)
+                    path.pop()
+
+        backtrack(0, [])
+        return len(result) > 0
+
 </code>
 </pre>
 </details>
