@@ -3510,6 +3510,109 @@ class Solution:
 </pre>
 </details>
 
+## 19.50. Largest Color Value in a Directed Graph (Topology Sort): Can not generate all paths because it will cause out of memory if we have a loop
+
+Ref: [https://leetcode.com/problems/largest-color-value-in-a-directed-graph/description/](https://leetcode.com/problems/largest-color-value-in-a-directed-graph/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import defaultdict, deque
+from typing import List
+
+class Solution:
+    def largestPathValue(self, colors: str, edges: List[List[int]]) -> int:
+        n = len(colors)
+        graph = defaultdict(list)
+        in_degree = [0] * n
+        
+        for u, v in edges:
+            graph[u].append(v)
+            in_degree[v] += 1
+        
+        # color_count[i][c] = max count of color c in any path ending at node i
+        color_count = [[0] * 26 for _ in range(n)]
+        
+        queue = deque()
+        for i in range(n):
+            if in_degree[i] == 0:
+                queue.append(i)
+                color_count[i][ord(colors[i]) - ord('a')] = 1
+        
+        visited = 0
+        max_color_value = 0
+        
+        while queue:
+            node = queue.popleft()
+            visited += 1
+            for neighbor in graph[node]:
+                for c in range(26):
+        # "For node i, what is the max number of times each color can appear on a path ending at i?"
+                    color_count[neighbor][c] = max(
+                        color_count[neighbor][c],
+                        color_count[node][c] + (1 if c == ord(colors[neighbor]) - ord('a') else 0)
+                    )
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+            max_color_value = max(max_color_value, max(color_count[node]))
+        
+        return max_color_value if visited == n else -1
+
+</code>
+</pre>
+</details>
+
+## 19.51. Geek's Village and Wells (BFS to find shortest distance in Matrix)
+
+Ref: [https://www.geeksforgeeks.org/problems/geeks-village-and-wells--170647/1](https://www.geeksforgeeks.org/problems/geeks-village-and-wells--170647/1)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import deque
+
+class Solution:
+    # BFS from W to other node
+    def chefAndWells(self, n: int, m: int,
+                     c: List[List[str]]) -> List[List[int]]:
+
+        result = [[0 if c[i][j] != 'H' else -1 for j in range(m)] for i in range(n)]
+        visited = [[False] * m for _ in range(n)]
+        q = deque()
+        
+        # Start from all wells
+        for i in range(n):
+            for j in range(m):
+                if c[i][j] == 'W':
+                    q.append((i, j, 0))  # (row, col, dist)
+                    visited[i][j] = True
+        
+        dirs = [(-1,0), (1,0), (0,-1), (0,1)]
+        
+        while q:
+            x, y, d = q.popleft()
+            for dx, dy in dirs:
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < n and 0 <= ny < m and not visited[nx][ny]:
+                    if c[nx][ny] != 'N':  # not blocked
+                        visited[nx][ny] = True
+                        q.append((nx, ny, d + 1))
+                        if c[nx][ny] == 'H':
+                            if result[nx][ny] == -1 or result[nx][ny] > (d + 1) * 2:
+                                result[nx][ny] = (d + 1) * 2
+        
+        return result
+
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
