@@ -3223,7 +3223,6 @@ class Solution:
 
         backtrack()
         return result
-
             
 </code>
 </pre>
@@ -3673,6 +3672,137 @@ class Solution:
                         return True
         return False
 
+</code>
+</pre>
+</details>
+
+## 22.13. N-Queens
+
+Ref: [https://leetcode.com/problems/n-queens/description/](https://leetcode.com/problems/n-queens/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        def is_valid(board, row, col):
+            # Check column
+            for i in range(row):
+                if board[i][col] == 'Q':
+                    return False
+            # Check upper-left diagonal
+            i, j = row - 1, col - 1
+            while i >= 0 and j >= 0:
+                if board[i][j] == 'Q':
+                    return False
+                i -= 1
+                j -= 1
+            # Check upper-right diagonal
+            i, j = row - 1, col + 1
+            while i >= 0 and j < n:
+                if board[i][j] == 'Q':
+                    return False
+                i -= 1
+                j += 1
+            return True
+
+        def backtrack(row):
+            if row == n:
+                result.append(["".join(r) for r in board])
+                return
+            for col in range(n):
+                if is_valid(board, row, col):
+                    board[row][col] = 'Q'
+                    backtrack(row + 1)
+                    board[row][col] = '.'
+
+        result = []
+        board = [['.'] * n for _ in range(n)]
+        backtrack(0)
+        return result
+
+</code>
+</pre>
+</details>
+
+## 22.14. Sudoku Solver
+
+Ref: [https://leetcode.com/problems/sudoku-solver/description/](https://leetcode.com/problems/sudoku-solver/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        def is_valid(r, c, ch):
+            # Check row
+            for i in range(9):
+                if board[r][i] == ch:
+                    return False
+            # Check column
+            for i in range(9):
+                if board[i][c] == ch:
+                    return False
+            # Check 3x3 sub-box
+            box_row_start = (r // 3) * 3
+            box_col_start = (c // 3) * 3
+            for i in range(3):
+                for j in range(3):
+                    if board[box_row_start + i][box_col_start + j] == ch:
+                        return False
+            return True
+
+        def backtrack():
+            for i in range(9):
+                for j in range(9):
+                    if board[i][j] == '.':
+                        for ch in map(str, range(1, 10)):
+                            if is_valid(i, j, ch):
+                                board[i][j] = ch
+                                if backtrack():
+                                    return True
+                                board[i][j] = '.'  # backtrack
+                        return False  # No valid number found
+            return True  # All cells filled
+
+        backtrack()
+
+</code>
+</pre>
+</details>
+
+## 22.15. Permutations of a String
+
+Ref: [https://www.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1](https://www.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findPermutation(self, s):
+        s = list(s)
+        result = set()
+
+        def backtrack(start=0):
+            if start == len(s):
+                result.add(''.join(s[:]))
+                return
+            for i in range(start, len(s)):
+                s[start], s[i] = s[i], s[start]  # swap
+                backtrack(start + 1)
+                # Backtrack
+                s[start], s[i] = s[i], s[start]  # backtrack
+
+        backtrack()
+        return list(result)
 </code>
 </pre>
 </details>
