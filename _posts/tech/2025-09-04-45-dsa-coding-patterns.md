@@ -3282,7 +3282,126 @@ class Solution:
                     queue.append((nx, ny, steps + 1))
 
         return -1  # If unreachable (shouldn't happen on an open board)
-        
+
+</code>
+</pre>
+</details>
+
+## 19.45. Reorder Routes to Make All Paths Lead to the City Zero (Idea đi từ 0 đến các thành phố khác, nào đi không được thì change + 1)
+
+Ref: [https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/description/](https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import defaultdict, deque
+from typing import List
+
+class Solution:
+    def minReorder(self, n: int, connections: List[List[int]]) -> int:
+        # Build the graph with direction info
+        graph = defaultdict(list)
+        for u, v in connections:
+            graph[u].append((v, 1))  # original direction
+            graph[v].append((u, 0))  # reverse direction
+
+        visited = set()
+        queue = deque([0])
+        visited.add(0)
+        changes = 0
+
+        while queue:
+            current = queue.popleft()
+            for neighbor, direction in graph[current]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+                    changes += direction  # increment if we need to reverse this edge
+
+        return changes
+
+</code>
+</pre>
+</details>
+
+## 19.46. Detect cycle in an undirected graph
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import defaultdict
+
+class Solution:
+    def hasCycle(self, n: int, edges: list[list[int]]) -> bool:
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)  # undirected
+
+        visited = [False] * n
+
+        def dfs(node, parent):
+            visited[node] = True
+            for neighbor in graph[node]:
+                if not visited[neighbor]:
+                    if dfs(neighbor, node):
+                        return True
+                elif neighbor != parent:
+                    return True  # found a back edge (cycle)
+            return False
+
+        for i in range(n):
+            if not visited[i]:
+                if dfs(i, -1):
+                    return True
+        return False
+
+</code>
+</pre>
+</details>
+
+## 19.47. Detect cycle in an directed graph
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import defaultdict
+
+class Solution:
+    def hasCycle(self, n: int, edges: list[list[int]]) -> bool:
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)  # directed edge
+
+        visited = [False] * n
+        rec_stack = [False] * n  # recursion stack
+
+        def dfs(node):
+            visited[node] = True
+            rec_stack[node] = True
+
+            for neighbor in graph[node]:
+                if not visited[neighbor]:
+                    if dfs(neighbor):
+                        return True
+                elif rec_stack[neighbor]:
+                    return True  # cycle detected
+
+            rec_stack[node] = False
+            return False
+
+        for i in range(n):
+            if not visited[i]:
+                if dfs(i):
+                    return True
+        return False
+
 </code>
 </pre>
 </details>
