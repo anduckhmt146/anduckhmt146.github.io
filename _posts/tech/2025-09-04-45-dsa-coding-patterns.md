@@ -3237,6 +3237,56 @@ class Solution:
 </pre>
 </details>
 
+## 19.44. Steps by Knight (BFS with 8 direction)
+
+Ref: [https://www.geeksforgeeks.org/problems/steps-by-knight5927/1](https://www.geeksforgeeks.org/problems/steps-by-knight5927/1)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+
+class Solution:
+    def minStepToReachTarget(self, knightPos, targetPos, n):
+        # All 8 possible movements for a knight in chess
+        directions = [
+            (-2, -1), (-1, -2), (1, -2), (2, -1),
+            (2, 1), (1, 2), (-1, 2), (-2, 1)
+        ]
+        
+        # Convert to 0-indexed positions
+        knightPos = (knightPos[0] - 1, knightPos[1] - 1)
+        targetPos = (targetPos[0] - 1, targetPos[1] - 1)
+
+        # If starting position is the same as target
+        if knightPos == targetPos:
+            return 0
+
+        visited = [[False for _ in range(n)] for _ in range(n)]
+        queue = deque()
+        queue.append((knightPos[0], knightPos[1], 0))  # (x, y, steps)
+        visited[knightPos[0]][knightPos[1]] = True
+
+        while queue:
+            x, y, steps = queue.popleft()
+
+            for dx, dy in directions:
+                nx, ny = x + dx, y + dy
+
+                if 0 <= nx < n and 0 <= ny < n and not visited[nx][ny]:
+                    if (nx, ny) == targetPos:
+                        return steps + 1
+                    visited[nx][ny] = True
+                    queue.append((nx, ny, steps + 1))
+
+        return -1  # If unreachable (shouldn't happen on an open board)
+        
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
