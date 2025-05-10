@@ -3872,6 +3872,52 @@ class Solution:
 </pre>
 </details>
 
+## 22.17. Rat in a Maze Problem
+
+Ref: [https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1](https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    # Function to find all possible paths in the maze
+    def ratInMaze(self, maze):
+        n = len(maze)
+        result = []
+        
+        # Directions: D (down), L (left), R (right), U (up)
+        # ('D', dx + 1, dy), ('L', dx, dy - 1), ('R', dx, dy + 1), ('U', dx - 1, dy)
+        directions = [('D', 1, 0), ('L', 0, -1), ('R', 0, 1), ('U', -1, 0)]
+
+        def isSafe(x, y, visited):
+            return 0 <= x < n and 0 <= y < n and maze[x][y] == 1 and not visited[x][y]
+
+        def backtrack(x, y, path, visited):
+            if x == n - 1 and y == n - 1:
+                result.append(path)
+                return
+            
+            visited[x][y] = True
+
+            for dir_char, dx, dy in directions:
+                new_x, new_y = x + dx, y + dy
+                if isSafe(new_x, new_y, visited):
+                    backtrack(new_x, new_y, path + dir_char, visited)
+
+            visited[x][y] = False  # backtrack
+
+        if maze[0][0] == 1:
+            visited = [[False for _ in range(n)] for _ in range(n)]
+            backtrack(0, 0, '', visited)
+
+        return sorted(result)
+
+</code>
+</pre>
+</details>
+
 # 23. Pattern 23: Trie
 
 # 24. Pattern 24: Union Find
