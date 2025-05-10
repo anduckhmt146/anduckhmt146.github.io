@@ -3195,6 +3195,48 @@ class Solution:
 </pre>
 </details>
 
+## 19.43. Find if Path Exists in Graph
+
+Ref: [https://leetcode.com/problems/find-if-path-exists-in-graph/description/](https://leetcode.com/problems/find-if-path-exists-in-graph/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        
+        visited = [False] * n
+        result = []
+
+        def dfs(node, target, path = []):
+            if node == target:
+                result.append(path[:])
+                return
+
+            visited[node] = True  # mark as visiting
+            path.append(node)
+            
+            for neighbor in graph[node]:
+                if not visited[neighbor]:
+                    dfs(neighbor, target, path)
+            
+            # Backtracking
+            # Do not set visited[node] = False for do not repeated visited
+            path.pop()
+
+        dfs(source, destination)
+        return len(result) > 0
+            
+</code>
+</pre>
+</details>
+
 # 20. Pattern 20: Island
 
 # 21. Pattern 21: Greedy Algorithms
