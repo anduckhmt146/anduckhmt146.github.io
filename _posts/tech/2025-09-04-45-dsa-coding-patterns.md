@@ -1739,6 +1739,310 @@ class Solution:
 </pre>
 </details>
 
+## 7.4. Lowest Common Ancestor of Deepest Leaves
+
+Ref: [https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/description/](https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        # Helper function to return both depth and LCA
+        def dfs(node):
+            if not node:
+                return (0, None)
+            
+            left_depth, left_lca = dfs(node.left)
+            right_depth, right_lca = dfs(node.right)
+            
+            if left_depth > right_depth:
+                return (left_depth + 1, left_lca)
+            elif right_depth > left_depth:
+                return (right_depth + 1, right_lca)
+            else:
+                # Equal depth => current node is the LCA of both deepest sides
+                return (left_depth + 1, node)
+        
+        return dfs(root)[1]
+
+</code>
+</pre>
+</details>
+
+## 7.5. Kth Ancestor of a Tree Node (Store All Tree Ancestor)
+
+Ref: [https://leetcode.com/problems/kth-ancestor-of-a-tree-node/](https://leetcode.com/problems/kth-ancestor-of-a-tree-node/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class TreeAncestor:
+
+    def __init__(self, n: int, parent: List[int]):
+        self.LOG = 20  # Enough for trees with up to around 10^6 nodes
+        self.dp = [[-1] * self.LOG for _ in range(n)]
+
+        # Initialize each node's direct parent (2^0-th ancestor)
+        for i in range(n):
+            self.dp[i][0] = parent[i]
+
+        # Fill in the dp table for all 2^j-th ancestors
+        for j in range(1, self.LOG):
+            for i in range(n):
+                prev_ancestor = self.dp[i][j - 1]
+                if prev_ancestor != -1:
+                    self.dp[i][j] = self.dp[prev_ancestor][j - 1]
+
+        print(self.dp)
+
+    def getKthAncestor(self, node: int, k: int) -> int:
+        power = 0
+        while k > 0 and node != -1:
+            if k % 2 == 1:
+                node = self.dp[node][power]
+            k //= 2
+            power += 1
+        return node
+
+    
+</code>
+</pre>
+</details>
+
+---
+
+**Tree Depth First Search (DFS)**
+
+## 7.6. Path Sum
+
+Ref: [https://leetcode.com/problems/path-sum/description/](https://leetcode.com/problems/path-sum/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        def dfs(node, currentSum):
+            if not node:
+                return False
+            
+            currentSum += node.val
+            
+            # If it's a leaf node, check if the path sum matches targetSum
+            if not node.left and not node.right:
+                return currentSum == targetSum
+            
+            # Continue DFS on left and right subtrees
+            return dfs(node.left, currentSum) or dfs(node.right, currentSum)
+        
+        return dfs(root, 0)
+
+</code>
+</pre>
+</details>
+
+## 7.7. Binary Tree Paths
+
+Ref: [https://leetcode.com/problems/binary-tree-paths/description/](https://leetcode.com/problems/binary-tree-paths/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        result = []
+        def dfs(node, path):
+            if not node:
+                return
+            
+            path.append(str(node.val))
+            if not node.left and not node.right:
+                result.append("->".join(path))
+            else:
+                dfs(node.left, path)
+                dfs(node.right, path)
+
+            # Backtrack
+            path.pop()
+
+        
+        dfs(root, [])
+        print(result)
+        return result
+
+</code>
+</pre>
+</details>
+
+## 7.8. Path Sum II (Backtracking Magic)
+
+Ref: [https://leetcode.com/problems/path-sum-ii/description/](https://leetcode.com/problems/path-sum-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        result = []
+        def dfs(node, path, target):
+            if not node:
+                return
+            
+            path.append(node.val)
+            target -= node.val
+            if not node.left and not node.right and target == 0:
+                result.append(path[:])
+            else:
+                dfs(node.left, path, target)
+                dfs(node.right, path, target)
+
+            # Backtrack
+            path.pop()
+            target += node.val
+
+        
+        dfs(root, [], targetSum)
+        return result
+
+</code>
+</pre>
+</details>
+
+## 7.9. Sum Root to Leaf Numbers (Modify an nonlocal variable)
+
+Ref: [https://leetcode.com/problems/sum-root-to-leaf-numbers/description/](https://leetcode.com/problems/sum-root-to-leaf-numbers/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        total = 0
+        def dfs(node, path):
+            nonlocal total  # Declare nonlocal so we can modify 'total'
+            if not node:
+                return
+            
+            path.append(str(node.val))
+            if not node.left and not node.right:
+                total += int("".join(path))
+            else:
+                dfs(node.left, path)
+                dfs(node.right, path)
+
+            # Backtrack
+            path.pop()
+
+        
+        dfs(root, [])
+        return total
+
+</code>
+</pre>
+</details>
+
+## 7.10. Path Sum III (Sum of the local branch - Idea)
+
+Ref: [https://leetcode.com/problems/path-sum-iii/description/](https://leetcode.com/problems/path-sum-iii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+from typing import Optional
+from collections import defaultdict
+
+class Solution:
+
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        prefix_sum = defaultdict(int)
+        prefix_sum[0] = 1  # base case: empty path has sum = 0
+        self.count = 0
+
+        def dfs(node, current_sum):
+            if not node:
+                return
+
+            current_sum += node.val
+
+            # Check if there is a prefix path we can subtract to reach targetSum
+
+            # IDEA: current_sum = sum from the root to the current node
+            # If there exists a prefix_sum = current_sum - targetSum, then
+            # the subpath from after that earlier prefix to the current node must sum to targetSum.
+
+            # IDEA: Sum root -> m subtract for root -> n = targetSum => n -> m is the prefix path
+            self.count += prefix_sum[current_sum - targetSum]
+
+            # Add current sum to prefix sums
+            prefix_sum[current_sum] += 1
+
+            dfs(node.left, current_sum)
+            dfs(node.right, current_sum)
+
+            # Backtrack: remove current sum from the map
+            prefix_sum[current_sum] -= 1
+
+        dfs(root, 0)
+        return self.count
+
+</code>
+</pre>
+</details>
+
 # 8. Pattern 8: BFS, DFS in Tree
 
 # 9. Pattern 9: Two Heaps
