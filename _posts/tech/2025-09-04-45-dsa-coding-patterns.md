@@ -2499,6 +2499,126 @@ class Solution:
 </pre>
 </details>
 
+# 7.21. Right View of Binary Tree
+
+Ref: [https://leetcode.com/problems/binary-tree-right-side-view/description/](https://leetcode.com/problems/binary-tree-right-side-view/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+from typing import Optional, List
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+
+        result = []
+        queue = deque([root])
+
+        while queue:
+            level_size = len(queue)
+
+            # level_nodes = []
+
+            for i in range(level_size):
+                node = queue.popleft()
+                # Capture the rightmost element at this level
+                if i == level_size - 1:
+                    result.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+            # result.append(level_nodes)
+
+        return result
+        
+</code>
+</pre>
+</details>
+
+# 7.22. Left View of Binary Tree
+
+Ref: [https://www.geeksforgeeks.org/problems/left-view-of-binary-tree/1](https://www.geeksforgeeks.org/problems/left-view-of-binary-tree/1)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import deque
+from typing import Optional, List
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    class Solution:
+    def LeftView(self, root):
+        if not root:
+            return []
+
+        result = []
+        queue = deque([root])
+
+        while queue:
+            level_size = len(queue)
+            for i in range(level_size):
+                node = queue.popleft()
+                # Capture the leftmost element at this level
+                if i == 0:
+                    result.append(node.data)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+        return result
+        
+</code>
+</pre>
+</details>
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def LeftView(self, root):
+        result = []
+
+        def dfs(node, depth):
+            if not node:
+                return
+            if depth == len(result):  # First node seen at this depth
+                result.append(node.data)
+            dfs(node.left, depth + 1)
+            dfs(node.right, depth + 1)
+
+        dfs(root, 0)
+        return result
+        
+</code>
+</pre>
+</details>
+
 # 8. Pattern 8: BFS, DFS in Tree
 
 # 9. Pattern 9: Two Heaps
