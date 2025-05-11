@@ -1986,7 +1986,7 @@ class Solution:
 </pre>
 </details>
 
-## 7.10. Path Sum III (Sum of the local branch - Idea)
+## 7.10. Path Sum III (Sum of the local branch - Idea - Root -> M - Root-> N = M -> N)
 
 Ref: [https://leetcode.com/problems/path-sum-iii/description/](https://leetcode.com/problems/path-sum-iii/description/)
 
@@ -2038,6 +2038,81 @@ class Solution:
 
         dfs(root, 0)
         return self.count
+
+</code>
+</pre>
+</details>
+
+## 7.11. Diameter of Binary Tree (Backtrack Height of the Node)
+
+Ref: [https://leetcode.com/problems/diameter-of-binary-tree/description/](https://leetcode.com/problems/diameter-of-binary-tree/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        self.max_diameter = 0
+
+        def dfs(node):
+            if not node:
+                return 0
+
+            left = dfs(node.left)
+            right = dfs(node.right)
+
+            self.max_diameter = max(self.max_diameter, left + right)
+
+            # Backtrack height of the node
+            return 1 + max(left, right)
+
+        dfs(root)
+        return self.max_diameter
+
+
+</code>
+</pre>
+</details>
+
+## 7.12. Binary Tree Maximum Path Sum (Care about what we return in root and leaf, it is enough)
+
+Ref: [https://leetcode.com/problems/binary-tree-maximum-path-sum/description/](https://leetcode.com/problems/binary-tree-maximum-path-sum/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        self.max_sum = float('-inf')
+
+        def dfs(node):
+            if not node:
+                return 0
+
+            # Compute max path sum *starting* from left/right, ignore negatives
+            left = max(dfs(node.left), 0)
+            right = max(dfs(node.right), 0)
+
+            # Max path THROUGH this node = left + node.val + right
+            self.max_sum = max(self.max_sum, node.val + left + right)
+
+            # Return max gain from this node to parent
+            # IDEA: In root, in left and right, we have multiple branches, we only select a branch to do this
+            # Care about what we return in root and leaf, it is enough
+            return node.val + max(left, right)
+
+        dfs(root)
+        return self.max_sum
 
 </code>
 </pre>
