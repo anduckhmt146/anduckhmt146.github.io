@@ -2639,6 +2639,167 @@ class Solution:
 
 # 17. Pattern 17: Stacks
 
+## 17.1. Next Greater Element I
+
+Ref: [https://leetcode.com/problems/next-greater-element-i/description/](https://leetcode.com/problems/next-greater-element-i/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        stack = []
+        next_greater = {}
+        
+        for num in nums2:
+            while stack and num > stack[-1]:
+                prev_num = stack.pop()
+                next_greater[prev_num] = num
+            stack.append(num)
+        
+        # For elements that don't have a next greater element
+        # We add all nums2 to stack, and use next_greater as a hash
+        for num in stack:
+            next_greater[num] = -1
+        
+        return [next_greater[num] for num in nums1]
+</code>
+</pre>
+</details>
+
+## 17.2. Next Greater Element II
+
+Ref: [https://leetcode.com/problems/next-greater-element-ii/](https://leetcode.com/problems/next-greater-element-ii/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = [-1] * n
+        stack = []
+
+        for i in range(2 * n):
+            curr = nums[i % n]
+            while stack and nums[stack[-1]] < curr:
+                index = stack.pop()
+                res[index] = curr
+            if i < n:
+                stack.append(i)
+        
+        return res
+
+
+</code>
+</pre>
+</details>
+
+## 17.3. Next Greater Array
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+def next_greater_elements(arr):
+    n = len(arr)
+    result = [None] * n
+    stack = []
+
+    for i in range(n - 1, -1, -1):
+        # Pop elements from the stack that are less than or equal to current element
+        while stack and stack[-1] <= arr[i]:
+            stack.pop()
+        
+        # If stack is not empty, top is the next greater element
+        if stack:
+            result[i] = stack[-1]
+        else:
+            result[i] = None  # Or use -1 if preferred
+
+        # Push current element onto stack
+        stack.append(arr[i])
+
+    return result
+
+# Test input
+arr = [13, 8, 1, 5, 2, 5, 9, 7, 6, 12]
+
+# [None, 9, 5, 9, 5, 9, 12, 12, 12, None]
+print(next_greater_elements(arr))
+
+</code>
+</pre>
+</details>
+
+## 17.4. Previous Greater Array
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def previousGreaterElements(self, nums: List[int]) -> List[int]:
+        res = []
+        stack = []  # This will store elements in decreasing order
+
+        for num in nums:
+            while stack and stack[-1] <= num:
+                stack.pop()
+            if stack:
+                res.append(stack[-1])
+            else:
+                res.append(-1)
+            stack.append(num)
+        
+        return res
+
+</code>
+</pre>
+</details>
+
+## 17.5. Daily Temperatures
+
+Ref: [https://leetcode.com/problems/daily-temperatures/description/](https://leetcode.com/problems/daily-temperatures/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        n = len(temperatures)
+        result = [0] * n
+        stack = []
+
+        for i in range(n - 1, -1, -1):
+            while stack and temperatures[stack[-1]] <= temperatures[i]:
+                stack.pop()
+            
+            if stack:
+                result[i] = stack[-1] - i
+            else:
+                result[i] = 0
+
+            stack.append(i)
+
+        return result
+            
+</code>
+</pre>
+</details>
+
 # 18. Pattern 18: Monotonic Stack
 
 # 19. Pattern 19: Graphs
