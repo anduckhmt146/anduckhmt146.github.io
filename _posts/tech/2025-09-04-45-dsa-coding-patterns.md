@@ -2650,21 +2650,28 @@ Ref: [https://leetcode.com/problems/next-greater-element-i/description/](https:/
 <code class="python">
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        n = len(nums2)
+        result = [0] * n
         stack = []
-        next_greater = {}
+
+        for i in range(n - 1, -1, -1):
+            while stack and stack[-1] <= nums2[i]:
+                stack.pop()
+            
+            if stack:
+                result[i] = stack[-1]
+            else:
+                result[i] = -1
+
+            stack.append(nums2[i])
+
+        hashMapGreater = {}
+
+        for i in range(len(nums2)):
+            hashMapGreater[nums2[i]] = result[i]
+
+        return [hashMapGreater[num] for num in nums1]
         
-        for num in nums2:
-            while stack and num > stack[-1]:
-                prev_num = stack.pop()
-                next_greater[prev_num] = num
-            stack.append(num)
-        
-        # For elements that don't have a next greater element
-        # We add all nums2 to stack, and use next_greater as a hash
-        for num in stack:
-            next_greater[num] = -1
-        
-        return [next_greater[num] for num in nums1]
 </code>
 </pre>
 </details>
@@ -2682,20 +2689,24 @@ from typing import List
 
 class Solution:
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        res = [-1] * n
+        nums2 = nums + nums
+
+        n = len(nums2)
+        result = [0] * n
         stack = []
 
-        for i in range(2 * n):
-            curr = nums[i % n]
-            while stack and nums[stack[-1]] < curr:
-                index = stack.pop()
-                res[index] = curr
-            if i < n:
-                stack.append(i)
-        
-        return res
+        for i in range(n - 1, -1, -1):
+            while stack and stack[-1] <= nums2[i]:
+                stack.pop()
+            
+            if stack:
+                result[i] = stack[-1]
+            else:
+                result[i] = -1
 
+            stack.append(nums2[i])
+
+        return result[:len(nums)]
 
 </code>
 </pre>
