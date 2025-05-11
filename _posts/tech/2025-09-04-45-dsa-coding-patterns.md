@@ -2317,6 +2317,148 @@ class Solution:
 </pre>
 </details>
 
+## 7.17. Maximum Level Sum of a Binary Tree
+
+Ref: [https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/description/](https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxLevelSum(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        
+        queue = deque([root])
+        maxSum = float('-inf')
+        maxLevelSum = 0
+        
+        currLevel = 0
+        
+        while queue:
+            level_size = len(queue)
+
+            # NOTES: Each level we declare here
+            level_nodes = []
+            
+            for _ in range(level_size):
+                node = queue.popleft()
+                level_nodes.append(node.val)
+                
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+            currLevel += 1
+            
+            if sum(level_nodes) > maxSum:
+                maxSum = sum(level_nodes)
+                maxLevelSum = currLevel
+        
+        return maxLevelSum
+
+</code>
+</pre>
+</details>
+
+## 7.18. Minimum Depth of Binary Tree
+
+Ref: [https://leetcode.com/problems/minimum-depth-of-binary-tree/description/](https://leetcode.com/problems/minimum-depth-of-binary-tree/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        
+        result = []
+        queue = deque([root])
+
+        # NOTES: Each level we declare here
+        currLevel = 1
+        
+        while queue:
+            level_size = len(queue)
+            
+            for _ in range(level_size):
+                node = queue.popleft()
+
+                if not node.left and not node.right:
+                    return currLevel
+                
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            
+            currLevel += 1
+        
+        return 1
+
+</code>
+</pre>
+</details>
+
+# 7.19. Maximum Depth of Binary Tree
+
+Ref: [https://leetcode.com/problems/maximum-depth-of-binary-tree/description/](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        self.max_height = 0
+
+        # def dfs(node):
+        #     if not node:
+        #         return 0
+        #     left = dfs(node.left)
+        #     right = dfs(node.right)
+        #     return 1 + max(left, right)
+
+        def dfs(node, depth):
+            if not node:
+                return
+
+            self.max_height = max(self.max_height, depth)
+            dfs(node.left, depth + 1)
+            dfs(node.right, depth + 1)
+
+        dfs(root, 1)
+        return self.max_height
+        
+</code>
+</pre>
+</details>
+
 # 8. Pattern 8: BFS, DFS in Tree
 
 # 9. Pattern 9: Two Heaps
