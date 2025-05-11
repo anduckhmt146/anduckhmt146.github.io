@@ -1618,9 +1618,83 @@ class Solution:
 
 # 6. Pattern 6: In-place Reversal of a LinkedList
 
-# 7. Pattern 7: Breadth First Search (Tree)
+# 7. Pattern 7: Binary Tree (Tree)
 
-# 8. Pattern 8: Depth First Search (DFS)
+## 7.1. Lowest Common Ancestor of a Binary Search Tree
+
+Ref: [https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # If both nodes are smaller than the current root, go left.
+        # If both are greater, go right.
+        # Otherwise, you have found the split point, i.e., the Lowest Common Ancestor.
+
+        while root:
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else:
+                return root
+
+</code>
+</pre>
+</details>
+
+## 7.2. Lowest Common Ancestor of a Binary Tree
+
+Ref: [https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # Base case: if root is None or matches either p or q
+        if root is None or root == p or root == q:
+            return root
+        
+        # Search in the left and right subtrees
+
+        # Loop in both left and right, and find the first reach node
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        
+        # If both sides return non-null, current root is the LCA
+        if left and right:
+            return root
+        
+        # If only one side is non-null, return that side
+        return left if left else right
+        
+</code>
+</pre>
+</details>
+
+# 8. Pattern 8: BFS, DFS in Tree
 
 # 9. Pattern 9: Two Heaps
 
