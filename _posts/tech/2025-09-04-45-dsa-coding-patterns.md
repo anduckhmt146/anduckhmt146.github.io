@@ -1653,6 +1653,129 @@ class Solution:
 
 # 4. Pattern 4: Merge Interval
 
+## 4.1. Merge Intervals
+
+Ref: [https://leetcode.com/problems/merge-intervals/description/](https://leetcode.com/problems/merge-intervals/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        if len(intervals) < 2:
+            return intervals
+
+        # Sort intervals based on the start time
+        intervals.sort(key=lambda x: x[0])
+
+        merged = []
+        start, end = intervals[0]
+
+        for i in range(1, len(intervals)):
+            curr_start, curr_end = intervals[i]
+
+            if curr_start <= end:  # Overlapping intervals
+                end = max(end, curr_end)
+            else:
+                # Non-overlapping interval, append previous one
+                merged.append([start, end])
+                start, end = curr_start, curr_end
+
+        # Add the last interval
+        merged.append([start, end])
+
+        return merged
+
+</code>
+</pre>
+</details>
+
+## 4.2. Insert Interval
+
+Ref: [https://leetcode.com/problems/insert-interval/](https://leetcode.com/problems/insert-interval/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        # Sort intervals based on the start time
+        intervals += [newInterval]
+
+        if len(intervals) < 2:
+            return intervals
+
+        intervals.sort(key=lambda x: x[0])
+
+        merged = []
+        start, end = intervals[0]
+
+        for i in range(1, len(intervals)):
+            curr_start, curr_end = intervals[i]
+
+            if curr_start <= end:  # Overlapping intervals
+                end = max(end, curr_end)
+            else:
+                # Non-overlapping interval, append previous one
+                merged.append([start, end])
+                start, end = curr_start, curr_end
+
+        # Add the last interval
+        merged.append([start, end])
+
+        return merged
+
+</code>
+</pre>
+</details>
+
+## 4.3. Intersection Interval
+
+Ref: [https://leetcode.com/problems/interval-list-intersections/description/](https://leetcode.com/problems/interval-list-intersections/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+        # Step 1: Merge both lists
+        intervals = firstList + secondList
+        
+        # Step 2: Sort by start time
+        intervals.sort(key=lambda x: x[0])
+        
+        result = []
+        prev = intervals[0]
+
+        for i in range(1, len(intervals)):
+            curr = intervals[i]
+
+            # Check for overlap
+            start = max(prev[0], curr[0])
+            end = min(prev[1], curr[1])
+            if start <= end:
+                result.append([start, end])
+
+            # Update prev to the one that extends further
+            if curr[1] > prev[1]:
+                prev = curr
+
+        return result
+        
+</code>
+</pre>
+</details>
+
 # 5. Pattern 5: Cyclic Sort
 
 # 6. Pattern 6: In-place Reversal of a LinkedList
