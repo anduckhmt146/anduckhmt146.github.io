@@ -2779,7 +2779,72 @@ class Solution:
 </pre>
 </details>
 
-## 17.5. Daily Temperatures
+## 17.5. Next Smaller Element
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+def next_smaller_elements(arr: List[int]) -> List[int]:
+    result = [-1] * len(arr)
+    stack = []
+
+    for i in range(len(arr) - 1, -1, -1):
+        while stack and stack[-1] >= arr[i]:
+            stack.pop()
+        
+        if stack:
+            result[i] = stack[-1]
+        
+        stack.append(arr[i])
+
+    return result
+
+# Example
+arr = [13, 8, 1, 5, 2, 5, 9, 7, 6, 12]
+print(next_smaller_elements(arr))
+
+
+</code>
+</pre>
+</details>
+
+## 17.6. Previous Smaller Element
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+def previous_smaller_elements(arr: List[int]) -> List[int]:
+    result = [-1] * len(arr)
+    stack = []
+
+    for i in range(len(arr)):
+        while stack and stack[-1] >= arr[i]:
+            stack.pop()
+        
+        if stack:
+            result[i] = stack[-1]
+        
+        stack.append(arr[i])
+
+    return result
+
+# Example
+arr = [13, 8, 1, 5, 2, 5, 9, 7, 6, 12]
+print(previous_smaller_elements(arr))
+
+</code>
+</pre>
+</details>
+
+## 17.7. Daily Temperatures
 
 Ref: [https://leetcode.com/problems/daily-temperatures/description/](https://leetcode.com/problems/daily-temperatures/description/)
 
@@ -2807,6 +2872,103 @@ class Solution:
 
         return result
             
+</code>
+</pre>
+</details>
+
+## 17.8. Largest Rectangle in Histogram
+
+Ref: [https://leetcode.com/problems/largest-rectangle-in-histogram/description/](https://leetcode.com/problems/largest-rectangle-in-histogram/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        n = len(heights)
+        prev_smaller = [-1] * n
+        next_smaller = [n] * n
+
+        # Compute Previous Smaller Element (PSE)
+        stack = []
+        for i in range(n):
+            while stack and heights[stack[-1]] >= heights[i]:
+                stack.pop()
+            if stack:
+                prev_smaller[i] = stack[-1]
+            stack.append(i)
+
+        # Compute Next Smaller Element (NSE)
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and heights[stack[-1]] >= heights[i]:
+                stack.pop()
+            if stack:
+                next_smaller[i] = stack[-1]
+            stack.append(i)
+
+        # Compute max area
+        max_area = 0
+        for i in range(n):
+            height = heights[i]
+            width = next_smaller[i] - prev_smaller[i] - 1
+            area = height * width
+            max_area = max(max_area, area)
+
+        return max_area
+
+            
+</code>
+</pre>
+</details>
+
+## 17.9. Online Stock Span
+
+Ref: [https://leetcode.com/problems/online-stock-span/description/](https://leetcode.com/problems/online-stock-span/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class StockSpanner:
+
+    def __init__(self):
+        self.prices = []       # Stores all prices seen so far
+
+    def next(self, price: int) -> int:
+        self.prices.append(price)
+
+        res = []
+        stack = []  # This will store elements in decreasing order
+
+        for i in range(len(self.prices)):
+            while stack and self.prices[stack[-1]] <= self.prices[i]:
+                stack.pop()
+            if stack:
+                res.append(stack[-1])
+            else:
+                res.append(-1)
+            stack.append(i)
+
+        # Get the previous greater index for the latest price
+        prev_greater_index = res[-1]
+        current_index = len(self.prices) - 1
+
+        if prev_greater_index == -1:
+            span = current_index + 1
+        else:
+            span = current_index - prev_greater_index
+
+        return span
+
+# Your StockSpanner object will be instantiated and called as such:
+# obj = StockSpanner()
+# param_1 = obj.next(price)
 </code>
 </pre>
 </details>
