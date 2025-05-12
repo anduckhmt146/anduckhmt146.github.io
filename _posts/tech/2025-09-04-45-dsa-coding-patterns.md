@@ -1610,6 +1610,45 @@ class Solution:
 </pre>
 </details>
 
+## 2.26. Max Chunks To Make Sorted II
+
+Ref: [https://leetcode.com/problems/max-chunks-to-make-sorted-ii/](https://leetcode.com/problems/max-chunks-to-make-sorted-ii/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def maxChunksToSorted(self, arr: List[int]) -> int:
+        n = len(arr)
+        max_left = [0] * n
+        min_right = [0] * n
+
+        # Fill max_left array
+        max_left[0] = arr[0]
+        for i in range(1, n):
+            max_left[i] = max(max_left[i - 1], arr[i])
+
+        # Fill min_right array
+        min_right[-1] = arr[-1]
+        for i in range(n - 2, -1, -1):
+            min_right[i] = min(min_right[i + 1], arr[i])
+
+        # Count valid chunks
+        chunks = 0
+        for i in range(n - 1):
+            if max_left[i] <= min_right[i + 1]:
+                chunks += 1
+
+        return chunks + 1
+
+</code>
+</pre>
+</details>
+
 # 3. Pattern 3: Fast & Slow Pointer
 
 # 4. Pattern 4: Merge Interval
