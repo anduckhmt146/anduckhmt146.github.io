@@ -2973,6 +2973,114 @@ class StockSpanner:
 </pre>
 </details>
 
+## 17.20. 132 Pattern
+
+Ref: [https://leetcode.com/problems/132-pattern/description/](https://leetcode.com/problems/132-pattern/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def find132pattern(self, nums: List[int]) -> bool:
+        stack = []  # This will store potential "2"s (nums[k]) in decreasing order
+        third = float('-inf')  # This keeps track of the "2" in the 132 pattern
+
+        # Traverse from right to left
+        # Next greater element
+        # Next
+        for num in reversed(nums):
+            if num < third:
+                # Found a 132 pattern
+                return True
+            # Greater
+            while stack and stack[-1] < num:
+                # Pop all smaller elements and update the "2" (third)
+                third = stack.pop()
+            stack.append(num)
+
+        return False
+
+</code>
+</pre>
+</details>
+
+## 17.21. Trapping Rain Water
+
+Ref: [https://leetcode.com/problems/trapping-rain-water/description/](https://leetcode.com/problems/trapping-rain-water/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        stack = []
+        water = 0
+
+        for i in range(len(height)):
+            while stack and height[stack[-1]] <= height[i]:
+                top = stack.pop()
+
+                if not stack:
+                    break  # No left boundary to trap water
+
+                # Distance (width) between the left and right boundaries
+                distance = i - stack[-1] - 1
+
+                # Height of water above the current bar
+                # Area of 2 rectangle - Area of bottom valley
+                bounded_height = min(height[stack[-1]], height[i]) - height[top]
+
+                # Add trapped water
+                water += distance * bounded_height
+
+            stack.append(i)
+
+        return water
+
+</code>
+</pre>
+</details>
+
+## 17.28. Number of Visible People in a Queue (Remove the height when needed)
+
+Ref: [https://leetcode.com/problems/number-of-visible-people-in-a-queue/description/](https://leetcode.com/problems/number-of-visible-people-in-a-queue/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def canSeePersonsCount(self, heights: List[int]) -> List[int]:
+        n = len(heights)
+        res = [0] * n
+        stack = []
+
+        # Next greater element
+        for i in range(n - 1, -1, -1):
+            count = 0
+            while stack and stack[-1] < heights[i]:
+                stack.pop()
+                count += 1
+            if stack:
+                count += 1
+            res[i] = count
+            stack.append(heights[i])
+        
+        return res
+
+</code>
+</pre>
+</details>
+
 # 18. Pattern 18: Monotonic Stack
 
 # 19. Pattern 19: Graphs
