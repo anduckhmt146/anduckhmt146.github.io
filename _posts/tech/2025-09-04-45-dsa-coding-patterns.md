@@ -1771,7 +1771,236 @@ class Solution:
                 prev = curr
 
         return result
+
+</code>
+</pre>
+</details>
+
+## 4.4. Meeting Rooms
+
+Ref: [https://leetcode.com/problems/meeting-rooms/description/](https://leetcode.com/problems/meeting-rooms/description/)
+
+```bash
+Input: intervals = [[0,30],[5,10],[15,20]]
+Output: False  # Because [0,30] overlaps with both other meetings
+```
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
+        intervals.sort(key=lambda x: x[0])
         
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < intervals[i-1][1]:  # overlap
+                return False
+                
+        return True
+
+</code>
+</pre>
+</details>
+
+## 4.5. Meeting Rooms 2
+
+Ref: [https://leetcode.com/problems/meeting-rooms-ii/description/](https://leetcode.com/problems/meeting-rooms-ii/description/)
+
+```bash
+Meetings: [[4,5], [2,3], [2,4], [3,5]]
+Output: 2
+Explanation: We will need one room for [2,3] and [3,5], and another room for [2,4] and [4,5].
+```
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+
+# Start processing:
+
+# Heap: []
+# Add [2,3]:
+
+# No rooms yet, so we allocate one.
+# Heap becomes [3].
+
+# Process [2,4]:
+# Start time 2 < earliest end time 3 → Overlap → need new room.
+
+# Heap: [3, 4]
+# Process [3,5]:
+# Start time 3 ≥ earliest end time 3 → Room becomes free → reuse room.
+
+# Pop 3, push 5.
+# Heap: [4, 5]
+
+# Process [4,5]:
+# Start time 4 ≥ earliest end time 4 → Room becomes free → reuse room.
+
+# Pop 4, push 5.
+# Heap: [5, 5]
+
+from typing import List
+import heapq
+
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        if not intervals:
+            return 0
+
+        # Sort by start time
+        intervals.sort(key=lambda x: x[0])
+        
+        # Initialize a heap with the end time of the first meeting
+        heap = [intervals[0][1]]
+        
+        for i in range(1, len(intervals)):
+            # If the room is free, reuse it (pop the earliest end time)
+            if intervals[i][0] >= heap[0]:
+                heapq.heappop(heap)
+            # Allocate a new room
+            heapq.heappush(heap, intervals[i][1])
+        
+        return len(heap)
+
+</code>
+</pre>
+</details>
+
+## 4.6. Car Pooling (Greedy)
+
+Ref: [https://leetcode.com/problems/car-pooling/description/](https://leetcode.com/problems/car-pooling/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        # Step 1: Use a difference array to track passenger changes at each location
+        changes = [0] * 1001  # locations go from 0 to 1000
+
+        for num_passengers, start, end in trips:
+            changes[start] += num_passengers
+            changes[end] -= num_passengers
+
+        # Step 2: Sweep through the route and track the number of passengers
+        current_passengers = 0
+        for passengers in changes:
+            current_passengers += passengers
+            if current_passengers > capacity:
+                return False
+
+        return True
+
+
+</code>
+</pre>
+</details>
+
+## 4.7. Max CPU Load (Merge intervals => Find max)
+
+Ref: [https://www.geeksforgeeks.org/maximum-cpu-load-from-the-given-list-of-jobs/](https://www.geeksforgeeks.org/maximum-cpu-load-from-the-given-list-of-jobs/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+from typing import List
+
+def findMaxCPULoad(jobs: List[List[int]]) -> int:
+    # Step 1: Sort jobs by start time
+    jobs.sort(key=lambda x: x[0])
+
+    max_cpu_load = 0
+    current_load = 0
+    min_heap = []  # stores [end_time, load]
+
+    for start, end, load in jobs:
+        # Step 2: Remove all jobs that have ended
+        while min_heap and min_heap[0][0] <= start:
+            ended_job = heapq.heappop(min_heap)
+            current_load -= ended_job[1]
+
+        # Step 3: Add current job
+        heapq.heappush(min_heap, [end, load])
+        current_load += load
+
+        # Step 4: Update max load
+        max_cpu_load = max(max_cpu_load, current_load)
+
+    return max_cpu_load
+
+</code>
+</pre>
+</details>
+
+## 4.8. Employee Freetime (Merge Overlap, and get the free gap)
+
+Ref: [https://leetcode.com/problems/employee-free-time/description/](https://leetcode.com/problems/employee-free-time/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+# Provided Interval class
+class Interval:
+    def __init__(self, start: int, end: int):
+        self.start = start
+        self.end = end
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        if len(intervals) < 2:
+            return intervals
+
+        intervals.sort(key=lambda x: x[0])
+        merged = []
+        start, end = intervals[0]
+
+        for i in range(1, len(intervals)):
+            curr_start, curr_end = intervals[i]
+
+            if curr_start <= end:
+                end = max(end, curr_end)
+            else:
+                merged.append([start, end])
+                start, end = curr_start, curr_end
+
+        merged.append([start, end])
+        return merged
+
+    def employeeFreeTime(self, schedule: 'List[List[Interval]]') -> 'List[Interval]':
+        # Step 1: Flatten intervals
+        intervals = [[i.start, i.end] for employee in schedule for i in employee]
+
+        # Step 2: Merge using your function
+        merged = self.merge(intervals)
+
+        # Step 3: Find gaps (free time)
+        free_times = []
+        for i in range(1, len(merged)):
+            prev_end = merged[i-1][1]
+            curr_start = merged[i][0]
+            if prev_end < curr_start:
+                free_times.append(Interval(prev_end, curr_start))
+
+        return free_times
+
 </code>
 </pre>
 </details>
