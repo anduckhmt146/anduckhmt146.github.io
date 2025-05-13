@@ -3205,10 +3205,167 @@ class KthLargest:
         return self.min_heap[0]
         
 
-
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
 # param_1 = obj.add(val)
+
+</code>
+</pre>
+</details>
+
+## 13.7. 'K' Closest Numbers
+
+Ref: [https://leetcode.com/problems/find-k-closest-elements/description/](https://leetcode.com/problems/find-k-closest-elements/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+
+class Solution:
+    # Max Heap
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        # Use a max-heap (invert distances)
+        max_heap = []
+
+        for num in arr:
+            dist = -abs(num - x) # invert to simulate max-heap
+            heapq.heappush(max_heap, (dist, -num))
+
+            # Because it push larger, remove the smaller first => reverse to remove the larger first, push smaller later
+            if len(max_heap) > k:
+                # IDEA: Python's heapq is a min-heap by default, meaning:
+                # IDEA: It always keeps the smallest element at the top (heap[0]), here is dist
+                heapq.heappop(max_heap)
+
+        # Extract only the arr from the heap
+        result = [-num for _, num in max_heap]
+        # Why -num? 
+        # This ensures that when two numbers have the same distance from x, the smaller number is preferred — as required by the problem.
+        result.sort()
+        return result
+
+</code>
+</pre>
+</details>
+
+## 13.8. Least Number of Unique Integers after K Removals
+
+Ref: [https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/description/](https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
+        # Step 1: Count the frequency of each number
+        count = Counter(arr)
+
+        # Step 2: Sort the frequencies from smallest to largest
+        freq_list = sorted(count.values())  # we only care about the frequencies
+
+        # Step 3: Remove the least frequent elements first, reducing k
+        unique_count = len(freq_list)
+        for freq in freq_list:
+            if k >= freq:
+                k -= freq
+                unique_count -= 1  # one unique number is fully removed
+            else:
+                break  # can't remove this whole group, stop here
+
+        return unique_count
+
+</code>
+</pre>
+</details>
+
+## 13.9. Reorganize String
+
+Ref: [https://leetcode.com/problems/reorganize-string/description/](https://leetcode.com/problems/reorganize-string/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+from collections import Counter
+
+class Solution:
+    # To avoid having the same characters next to each other, you want to spread out the most frequent characters as evenly as possible.
+    def reorganizeString(self, s: str) -> str:
+        # Step 1: Count the frequency of each character
+        count = Counter(s)
+
+        if any(freq > (len(s) + 1) // 2 for freq in count.values()):
+            return ""
+
+        max_heap = [(-freq, char) for char, freq in count.items()]
+        heapq.heapify(max_heap)
+
+        prev_freq, prev_char = 0, ''
+        result = []
+
+        while max_heap:
+            freq, char = heapq.heappop(max_heap)
+            result.append(char)
+
+            # If the previous character can still be used, push it back
+            if prev_freq < 0:
+                heapq.heappush(max_heap, (prev_freq, prev_char))
+
+            # Update previous character to the current one
+            prev_freq, prev_char = freq + 1, char  # since freq is negative
+
+        reorganized = ''.join(result)
+
+        # Final check: if the result is valid
+        for i in range(1, len(reorganized)):
+            if reorganized[i] == reorganized[i - 1]:
+                return ""
+        
+        return reorganized
+
+</code>
+</pre>
+</details>
+
+## 13.10. Task Scheduler
+
+Ref: [https://leetcode.com/problems/task-scheduler/description/](https://leetcode.com/problems/task-scheduler/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter, deque
+
+class Solution:
+    def leastInterval(self, tasks, n):
+        time = 0
+        task_counts = Counter(tasks)
+        cooldown = {}  # task -> next available time
+
+        while task_counts:
+            available = [task for task in task_counts if cooldown.get(task, 0) <= time]
+
+            if available:
+                # Choose task with highest remaining count
+                task = max(available, key=lambda x: task_counts[x])
+                task_counts[task] -= 1
+                if task_counts[task] == 0:
+                    del task_counts[task]
+                cooldown[task] = time + n + 1
+
+            time += 1
+
+        return time
+
 
 </code>
 </pre>
