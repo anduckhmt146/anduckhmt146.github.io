@@ -3022,6 +3022,98 @@ class Solution:
 
 # 13. Pattern 13: Top 'K' Elements
 
+## 13.1. Top K Frequent Elements
+
+Ref: [https://leetcode.com/problems/top-k-frequent-elements/description/](https://leetcode.com/problems/top-k-frequent-elements/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter
+import heapq
+from typing import List
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # Count frequencies using Counter
+        count = Counter(nums)
+         # Build a heap of the k most frequent elements
+        heap = heapq.nlargest(k, count.items(), key=lambda x: x[1])
+        return [item for item, freq in heap]
+
+</code>
+</pre>
+</details>
+
+## 13.2. Kth Largest Element in an Array (Min Heap Size K)
+
+Ref: [https://leetcode.com/problems/kth-largest-element-in-an-array/description/](https://leetcode.com/problems/kth-largest-element-in-an-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        #  Best (heap size = k)
+        # Create a min-heap with the first k elements
+        min_heap = nums[:k]
+        heapq.heapify(min_heap)
+        
+        # Iterate through the remaining elements
+        for num in nums[k:]:
+            if num > min_heap[0]:
+                heapq.heappushpop(min_heap, num)
+        
+        # The root of the heap is the kth largest element
+        return min_heap[0]
+
+</code>
+</pre>
+</details>
+
+## 13.3. K Closest Points to Origin (Max Heap Size K)
+
+Ref: [https://leetcode.com/problems/k-closest-points-to-origin/description/](https://leetcode.com/problems/k-closest-points-to-origin/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+import math
+from typing import List
+
+class Solution:
+    def distance(self, point: List[int]) -> float:
+        return point[0] ** 2 + point[1] ** 2  # skip sqrt for efficiency
+
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        # Use a max-heap (invert distances)
+        max_heap = []
+
+        for point in points:
+            dist = -self.distance(point)  # invert to simulate max-heap
+            heapq.heappush(max_heap, (dist, point))
+
+            if len(max_heap) > k:
+                # IDEA: Python's heapq is a min-heap by default, meaning:
+                # IDEA: It always keeps the smallest element at the top (heap[0]), here is dist
+                heapq.heappop(max_heap)
+
+        # Extract only the points from the heap
+        return [point for _, point in max_heap]
+
+</code>
+</pre>
+</details>
+
 # 14. Pattern 14: K-way merge
 
 # 15. Pattern 15: 0/1 Knapsack (Dynamic Programming)
