@@ -3047,7 +3047,7 @@ class Solution:
 </pre>
 </details>
 
-## 13.2. Kth Largest Element in an Array (Min Heap Size K)
+## 13.2. Kth Largest Element in an Array (Pop Min => Min Heap Size K)
 
 Ref: [https://leetcode.com/problems/kth-largest-element-in-an-array/description/](https://leetcode.com/problems/kth-largest-element-in-an-array/description/)
 
@@ -3059,25 +3059,24 @@ Ref: [https://leetcode.com/problems/kth-largest-element-in-an-array/description/
 import heapq
 
 class Solution:
+    # IDEA: Min Heap to pop min
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        #  Best (heap size = k)
-        # Create a min-heap with the first k elements
-        min_heap = nums[:k]
-        heapq.heapify(min_heap)
-        
-        # Iterate through the remaining elements
-        for num in nums[k:]:
-            if num > min_heap[0]:
-                heapq.heappushpop(min_heap, num)
-        
-        # The root of the heap is the kth largest element
+        # Use a max-heap (invert distances)
+        min_heap = []
+
+        for num in nums:
+            heapq.heappush(min_heap, num)
+
+            if len(min_heap) > k:
+                heapq.heappop(min_heap)
+
         return min_heap[0]
 
 </code>
 </pre>
 </details>
 
-## 13.3. K Closest Points to Origin (Max Heap Size K)
+## 13.3. K Closest Points to Origin (Pop Max => Max Heap Size K)
 
 Ref: [https://leetcode.com/problems/k-closest-points-to-origin/description/](https://leetcode.com/problems/k-closest-points-to-origin/description/)
 
@@ -3109,6 +3108,63 @@ class Solution:
 
         # Extract only the points from the heap
         return [point for _, point in max_heap]
+
+</code>
+</pre>
+</details>
+
+## 13.4. Connect Ropes
+
+Ref: [https://leetcode.com/problems/minimum-cost-to-connect-sticks/description/](https://leetcode.com/problems/minimum-cost-to-connect-sticks/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+
+def connect_ropes(ropes):
+    heapq.heapify(ropes) # Convert list into a min-heap
+    total_cost = 0
+
+    while len(ropes) > 1:
+        # Pop two smallest ropes
+        first = heapq.heappop(ropes)
+        second = heapq.heappop(ropes)
+
+        cost = first + second
+        total_cost += cost
+
+        # Push the combined rope back into the heap
+        heapq.heappush(ropes, cost)
+
+    return total_cost
+
+</code>
+</pre>
+</details>
+
+## 13.5. Sort Characters By Frequency
+
+Ref: [https://leetcode.com/problems/sort-characters-by-frequency/description/](https://leetcode.com/problems/sort-characters-by-frequency/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter
+import heapq
+from typing import List
+
+class Solution:
+    def frequencySort(self, s: str) -> str:
+         # Count frequencies using Counter
+        count = Counter(s)
+         # Build a heap of the k most frequent elements
+        heap = heapq.nlargest(len(s), count.items(), key=lambda x: x[1])
+        return ''.join([item * freq for item, freq in heap])
 
 </code>
 </pre>
