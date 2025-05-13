@@ -3371,6 +3371,82 @@ class Solution:
 </pre>
 </details>
 
+## 13.11. Maximum Frequency Stack
+
+Ref: [https://leetcode.com/problems/maximum-frequency-stack/description/](https://leetcode.com/problems/maximum-frequency-stack/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter, deque
+
+class Solution:
+    def leastInterval(self, tasks, n):
+        time = 0
+        task_counts = Counter(tasks)
+        cooldown = {}  # task -> next available time
+
+        while task_counts:
+            available = [task for task in task_counts if cooldown.get(task, 0) <= time]
+
+            if available:
+                # Choose task with highest remaining count
+                task = max(available, key=lambda x: task_counts[x])
+                task_counts[task] -= 1
+                if task_counts[task] == 0:
+                    del task_counts[task]
+                cooldown[task] = time + n + 1
+
+            time += 1
+
+        return time
+
+
+</code>
+</pre>
+</details>
+
+## 13.12. Maximum Frequency Stack
+
+Ref: [https://leetcode.com/problems/maximum-frequency-stack/description/](https://leetcode.com/problems/maximum-frequency-stack/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import defaultdict
+
+class FreqStack:
+
+    def __init__(self):
+        self.freq = defaultdict(int)          # val -> freq
+        self.group = defaultdict(list)        # freq -> list (stack of values)
+        self.max_freq = 0
+
+    def push(self, val: int) -> None:
+        f = self.freq[val] + 1
+        self.freq[val] = f
+        self.group[f].append(val)
+
+        if f > self.max_freq:
+            self.max_freq = f
+
+    def pop(self) -> int:
+        val = self.group[self.max_freq].pop()
+        self.freq[val] -= 1
+
+        if not self.group[self.max_freq]:
+            self.max_freq -= 1
+
+        return val
+
+</code>
+</pre>
+</details>
+
 # 14. Pattern 14: K-way merge
 
 # 15. Pattern 15: 0/1 Knapsack (Dynamic Programming)
