@@ -3447,6 +3447,62 @@ class FreqStack:
 </pre>
 </details>
 
+## 13.13. Top K Frequent Words
+
+Ref: [https://leetcode.com/problems/top-k-frequent-words/description/](https://leetcode.com/problems/top-k-frequent-words/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        # Count frequencies using Counter
+        count = Counter(words)
+        # Build a heap of the k most frequent elements, and by lexicalgraphical order
+        # -x[1] ensures higher frequency comes first.
+        # x[0] ensures lexicographical order among words with the same frequency.
+        heap = heapq.nsmallest(k, count.items(), key=lambda x: (-x[1], x[0]))
+        return [item for item, freq in heap]
+</code>
+</pre>
+</details>
+
+---
+
+**Add new element to the pq if future calculation will depend on the current calculated value**
+
+## 13.14. Maximum Average Pass Ratio (Sample Calculation for Max Heap)
+
+Ref: [https://leetcode.com/problems/maximum-average-pass-ratio/description/](https://leetcode.com/problems/maximum-average-pass-ratio/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -> float:
+        def gain(p: int, t: int) -> float:
+            return (p + 1) / (t + 1) - p / t
+
+        heap = []
+        for p, t in classes:
+            heapq.heappush(heap, (-gain(p, t), p, t))
+
+        for _ in range(extraStudents):
+            g, p, t = heapq.heappop(heap)
+            p += 1
+            t += 1
+            heapq.heappush(heap, (-gain(p, t), p, t))
+
+        return sum(p / t for _, p, t in heap) / len(classes)
+        
+</code>
+</pre>
+</details>
+
 # 14. Pattern 14: K-way merge
 
 # 15. Pattern 15: 0/1 Knapsack (Dynamic Programming)
