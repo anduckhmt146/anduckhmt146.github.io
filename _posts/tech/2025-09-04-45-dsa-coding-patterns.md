@@ -1806,7 +1806,7 @@ class Solution:
 </pre>
 </details>
 
-## 4.5. Meeting Rooms 2
+## 4.5. Meeting Rooms 2 (Pop ra thêm vào)
 
 Ref: [https://leetcode.com/problems/meeting-rooms-ii/description/](https://leetcode.com/problems/meeting-rooms-ii/description/)
 
@@ -3498,6 +3498,136 @@ class Solution:
             heapq.heappush(heap, (-gain(p, t), p, t))
 
         return sum(p / t for _, p, t in heap) / len(classes)
+        
+</code>
+</pre>
+</details>
+
+## 13.15. Maximum Ice Cream Bars
+
+Ref: [https://leetcode.com/problems/maximum-ice-cream-bars/description/](https://leetcode.com/problems/maximum-ice-cream-bars/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def maxIceCream(self, costs: List[int], coins: int) -> int:
+        costs.sort()
+        count = 0
+
+        for price in costs:
+            if coins < price:
+                break
+            coins -= price
+            count += 1
+
+        return count
+        
+</code>
+</pre>
+</details>
+
+## 13.16. Minimum Interval to Include Each Query
+
+Ref: [https://leetcode.com/problems/minimum-interval-to-include-each-query/description/](https://leetcode.com/problems/minimum-interval-to-include-each-query/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+
+class Solution:
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        intervals.sort()
+        sorted_queries = sorted((q, i) for i, q in enumerate(queries))
+        result = [-1] * len(queries)
+        min_heap = []
+        i = 0  # Pointer for intervals
+
+        for query, idx in sorted_queries:
+            # Add all intervals starting before or at the query
+            while i < len(intervals) and intervals[i][0] <= query:
+                start, end = intervals[i]
+                if end >= query:
+                    heapq.heappush(min_heap, (end - start + 1, end))
+                i += 1
+            
+            # Remove intervals from heap that don't cover the query
+            while min_heap and min_heap[0][1] < query:
+                heapq.heappop(min_heap)
+
+            if min_heap:
+                result[idx] = min_heap[0][0]
+
+        return result
+        
+</code>
+</pre>
+</details>
+
+## 13.17. Equal Sum Arrays With Minimum Number of Operations (Two Heap, Min Heap and Max Heap)
+
+Ref: [https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/description/](https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+
+class Solution:
+    def minOperations(self, nums1: List[int], nums2: List[int]) -> int:
+        if len(nums1) * 6 < len(nums2) or len(nums2) * 6 < len(nums1):
+            return -1  # impossible to match sums
+
+        sum1, sum2 = sum(nums1), sum(nums2)
+
+        if sum1 == sum2:
+            return 0
+
+        # Ensure sum1 is smaller
+        if sum1 > sum2:
+            nums1, nums2 = nums2, nums1
+            sum1, sum2 = sum2, sum1
+
+        # Gains for increasing nums1 (values: 6 - num)
+        min_heap = [6 - num for num in nums1 if 6 - num > 0]
+        # Gains for decreasing nums2 (values: num - 1)
+        max_heap = [num - 1 for num in nums2 if num - 1 > 0]
+
+        # Use max-heaps: invert signs
+        min_heap = [-x for x in min_heap]
+        max_heap = [-x for x in max_heap]
+        heapq.heapify(min_heap)
+        heapq.heapify(max_heap)
+
+        diff = sum2 - sum1
+        ops = 0
+
+        while diff > 0:
+            gain1 = -min_heap[0] if min_heap else 0
+            gain2 = -max_heap[0] if max_heap else 0
+
+            if gain1 == 0 and gain2 == 0:
+                return -1  # No possible gains left
+
+            if gain1 >= gain2:
+                diff -= gain1
+                heapq.heappop(min_heap)
+            else:
+                diff -= gain2
+                heapq.heappop(max_heap)
+
+            ops += 1
+
+        return ops
         
 </code>
 </pre>
