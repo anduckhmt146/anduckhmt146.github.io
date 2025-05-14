@@ -5969,6 +5969,31 @@ class Solution:
 
 # 21. Pattern 21: Greedy Algorithms
 
+## 22.1. Jump Game
+
+Ref: [https://leetcode.com/problems/jump-game/description/](https://leetcode.com/problems/jump-game/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        farthest = 0
+        for i in range(0, len(nums)):
+            # Previous step can not read here
+            if (i > farthest): 
+                return False
+            # Farthest jump at step i
+            farthest = max(farthest, i + nums[i])
+        
+        return True
+
+</code>
+</pre>
+</details>
+
 # 22. Pattern 22: Backtracking
 
 ## 22.1. Permutations
