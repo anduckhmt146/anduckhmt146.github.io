@@ -1806,7 +1806,7 @@ class Solution:
 </pre>
 </details>
 
-## 4.5. Meeting Rooms 2
+## 4.5. Meeting Rooms 2 (Pop ra thêm vào)
 
 Ref: [https://leetcode.com/problems/meeting-rooms-ii/description/](https://leetcode.com/problems/meeting-rooms-ii/description/)
 
@@ -3498,6 +3498,73 @@ class Solution:
             heapq.heappush(heap, (-gain(p, t), p, t))
 
         return sum(p / t for _, p, t in heap) / len(classes)
+        
+</code>
+</pre>
+</details>
+
+## 13.15. Maximum Ice Cream Bars
+
+Ref: [https://leetcode.com/problems/maximum-ice-cream-bars/description/](https://leetcode.com/problems/maximum-ice-cream-bars/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def maxIceCream(self, costs: List[int], coins: int) -> int:
+        costs.sort()
+        count = 0
+
+        for price in costs:
+            if coins < price:
+                break
+            coins -= price
+            count += 1
+
+        return count
+        
+</code>
+</pre>
+</details>
+
+## 13.16. Minimum Interval to Include Each Query
+
+Ref: [https://leetcode.com/problems/minimum-interval-to-include-each-query/description/](https://leetcode.com/problems/minimum-interval-to-include-each-query/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+
+class Solution:
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        intervals.sort()
+        sorted_queries = sorted((q, i) for i, q in enumerate(queries))
+        result = [-1] * len(queries)
+        min_heap = []
+        i = 0  # Pointer for intervals
+
+        for query, idx in sorted_queries:
+            # Add all intervals starting before or at the query
+            while i < len(intervals) and intervals[i][0] <= query:
+                start, end = intervals[i]
+                if end >= query:
+                    heapq.heappush(min_heap, (end - start + 1, end))
+                i += 1
+            
+            # Remove intervals from heap that don't cover the query
+            while min_heap and min_heap[0][1] < query:
+                heapq.heappop(min_heap)
+
+            if min_heap:
+                result[idx] = min_heap[0][0]
+
+        return result
         
 </code>
 </pre>
