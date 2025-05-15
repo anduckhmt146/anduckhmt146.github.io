@@ -3173,7 +3173,371 @@ class Solution:
 
 # 10. Pattern 10: Subsets
 
-# 11. Pattern 11: Modified Binary Search
+# 11. Pattern 11: Binary Search (As for the question "When can we use binary search?", my answer is that, If we can discover some kind of monotonicity, for example, if condition(k) is True then condition(k + 1) is True, then we can consider binary search.)
+
+---
+
+**Optimize Binary Search (Cái gì monolithic increase được là cứ binary search được)**
+
+## 11.1. Minimum Time to Complete Trips (Greedy in range)
+
+Ref: [https://leetcode.com/problems/minimum-time-to-complete-trips/description/](https://leetcode.com/problems/minimum-time-to-complete-trips/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minimumTime(self, time: List[int], totalTrips: int) -> int:
+        # Set search boundaries
+        left = 1
+        right = min(time) * totalTrips  # worst-case upper bound
+        
+        # Binary search
+        while left < right:
+            mid = (left + right) // 2
+            trips = sum(mid // t for t in time)
+            
+            if trips >= totalTrips:
+                right = mid
+            else:
+                left = mid + 1
+        
+        return left
+        
+</code>
+</pre>
+</details>
+
+## 11.2. Minimum Speed to Arrive on Time (Bài nào mà tìm time có khoảng cụ thể cứ Binary Search)
+
+Ref: [https://leetcode.com/problems/minimum-speed-to-arrive-on-time/description/](https://leetcode.com/problems/minimum-speed-to-arrive-on-time/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import math
+
+class Solution:
+    def minSpeedOnTime(self, dist: List[int], hour: float) -> int:
+        def time_required(speed: int) -> float:
+            time = 0.0
+            for i in range(len(dist) - 1):
+                time += math.ceil(dist[i] / speed)
+            time += dist[-1] / speed
+            return time
+
+        left, right = 1, 10**7
+        result = -1
+
+        while left <= right:
+            mid = (left + right) // 2
+            if time_required(mid) <= hour:
+                result = mid
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 11.3. Kth Smallest Number in Multiplication Table
+
+Ref: [https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/description/](https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findKthNumber(self, m: int, n: int, k: int) -> int:
+        # Count how many numbers in the m x n multiplication table are less than or equal to x.
+        def count(x):
+            total = 0
+            for i in range(1, m + 1):
+                total += min(x // i, n)
+            return total
+        
+        left, right = 1, m * n
+        while left < right:
+            mid = (left + right) // 2
+            if count(mid) < k:
+                left = mid + 1
+            else:
+                right = mid
+        return left
+
+</code>
+</pre>
+</details>
+
+## 11.4. Split Array Largest Sum
+
+Ref: [https://leetcode.com/problems/split-array-largest-sum/description/](https://leetcode.com/problems/split-array-largest-sum/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def splitArray(self, nums: List[int], k: int) -> int:
+        def can_split(max_sum: int) -> bool:
+            count = 1
+            current_sum = 0
+            for num in nums:
+                if current_sum + num > max_sum:
+                    count += 1
+                    current_sum = num
+                else:
+                    current_sum += num
+            return count <= k
+
+        left, right = max(nums), sum(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if can_split(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
+
+</code>
+</pre>
+</details>
+
+## 11.5. Maximum Profit in Job Scheduling
+
+Ref: [https://leetcode.com/problems/maximum-profit-in-job-scheduling/description/](https://leetcode.com/problems/maximum-profit-in-job-scheduling/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import bisect
+
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        # Combine all jobs into a list of tuples and sort by end time
+        jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1])
+        
+        # dp will store pairs of (endTime, maxProfitUntilThatTime)
+        dp = [(0, 0)]  # base case: at time 0, profit is 0
+        
+        for s, e, p in jobs:
+            # Use binary search to find the latest job that ends before the current job starts
+            i = bisect.bisect_right(dp, (s, float('inf'))) - 1
+            # Calculate new profit if this job is included
+            curr_profit = dp[i][1] + p
+            # Only add to dp if it's better than the last recorded profit
+            if curr_profit > dp[-1][1]:
+                dp.append((e, curr_profit))
+        
+        return dp[-1][1]
+
+</code>
+</pre>
+</details>
+
+---
+
+**Lower Bound **
+
+## 11.6. First Bad Version
+
+Ref: [https://leetcode.com/problems/first-bad-version/description/](https://leetcode.com/problems/first-bad-version/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        left, right = 1, n
+        while left < right:
+            mid = (left + right) // 2
+            if isBadVersion(mid):
+                right = mid  # the first bad version is at mid or before
+            else:
+                left = mid + 1  # the first bad version must be after mid
+        return left
+
+</code>
+</pre>
+</details>
+
+## 11.7. Lower Bound and Higher Bound Template
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import bisect
+
+arr = [1, 3, 3, 5, 7, 9]
+
+# Lower Bound: First position >= target
+lb = bisect.bisect_left(arr, 3)  # Returns 1
+
+# Upper Bound: First position > target
+ub = bisect.bisect_right(arr, 3)  # Returns 3
+
+print("Lower Bound:", lb)
+print("Upper Bound:", ub)
+
+</code>
+</pre>
+</details>
+
+## 11.8. Find Target Indices After Sorting Array
+
+Ref: [https://leetcode.com/problems/find-target-indices-after-sorting-array/description/](https://leetcode.com/problems/find-target-indices-after-sorting-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def targetIndices(self, nums: List[int], target: int) -> List[int]:
+        nums.sort()
+        start = bisect.bisect_left(nums, target)  # First occurrence (lower bound)
+        end = bisect.bisect_right(nums, target)   # First after last occurrence (upper bound)
+        return list(range(start, end))
+
+</code>
+</pre>
+</details>
+
+## 11.9. Find First and Last Position of Element in Sorted Array
+
+Ref: [https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions/1634732543/](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions/1634732543/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        left = bisect.bisect_left(nums, target)
+        right = bisect.bisect_right(nums, target)
+
+        if left == right:
+            return [-1, -1]
+        return [left, right - 1]
+
+</code>
+</pre>
+</details>
+
+## 11.10. Sqrt(x)
+
+Ref: [https://leetcode.com/problems/sqrtx/description/](https://leetcode.com/problems/sqrtx/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x < 2:
+            return x
+        
+        left, right = 1, x // 2
+
+        while left <= right:
+            mid = (left + right) // 2
+            square = mid * mid
+
+            if square == x:
+                return mid
+            elif square < x:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+        return right  # Right is the integer part of sqrt(x)
+
+</code>
+</pre>
+</details>
+
+## 11.12. Search Insert Position
+
+Ref: [https://leetcode.com/problems/search-insert-position/description/](https://leetcode.com/problems/search-insert-position/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import bisect
+from typing import List
+
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        return bisect.bisect_left(nums, target)
+
+</code>
+</pre>
+</details>
+
+## 11.13. Capacity To Ship Packages Within D days
+
+Ref: [https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        def can_ship(capacity):
+            current = 0
+            required_days = 1
+            for weight in weights:
+                if current + weight > capacity:
+                    required_days += 1
+                    current = 0
+                current += weight
+            return required_days <= days
+
+        left, right = max(weights), sum(weights)
+
+        while left < right:
+            mid = (left + right) // 2
+            if can_ship(mid):
+                right = mid  # Try a smaller capacity
+            else:
+                left = mid + 1  # Need more capacity
+
+        return left
+
+</code>
+</pre>
+</details>
 
 # 12. Pattern 12: Bitwise XOR
 
