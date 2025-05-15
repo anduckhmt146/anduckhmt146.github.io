@@ -3014,6 +3014,163 @@ class Solution:
 
 # 9. Pattern 9: Two Heaps
 
+## 9.1. Find Median from Data Stream
+
+Ref: [https://leetcode.com/problems/find-median-from-data-stream/description/](https://leetcode.com/problems/find-median-from-data-stream/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+
+# IDEA: A max heap to store the lower half of the numbers.
+# IDEA: A min heap to store the upper half of the numbers.
+
+class MedianFinder:
+
+    def __init__(self):
+        self.low = []  # Max heap (inverted min heap)
+        self.high = []  # Min heap
+
+    def addNum(self, num: int) -> None:
+        # Add to max heap (invert the value to simulate max heap)
+        heapq.heappush(self.low, -num)
+
+        # Make sure every number in low is <= every number in high
+        heapq.heappush(self.high, -heapq.heappop(self.low))
+
+        # Balance the sizes (low can have one more element than high)
+        if len(self.low) < len(self.high):
+            heapq.heappush(self.low, -heapq.heappop(self.high))
+
+    def findMedian(self) -> float:
+        if len(self.low) > len(self.high):
+            return -self.low[0]
+        return (-self.low[0] + self.high[0]) / 2.0
+
+        
+
+
+# Your MedianFinder object will be instantiated and called as such:
+# obj = MedianFinder()
+# obj.addNum(num)
+# param_2 = obj.findMedian()
+        
+</code>
+</pre>
+</details>
+
+## 9.2. Sliding Window Median
+
+Ref: [https://leetcode.com/problems/sliding-window-median/description/](https://leetcode.com/problems/sliding-window-median/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
+        def find_median(window: List[int]) -> float:
+            window_sorted = sorted(window)
+            n = len(window_sorted)
+            if n % 2 == 1:
+                return float(window_sorted[n // 2])
+            else:
+                return (window_sorted[n // 2 - 1] + window_sorted[n // 2]) / 2
+
+        result = []
+        for i in range(len(nums) - k + 1):
+            window = nums[i:i + k]
+            result.append(find_median(window))
+
+        return result
+        
+</code>
+</pre>
+</details>
+
+## 9.3. IPO (Classical Application of Heap)
+
+Ref: [https://leetcode.com/problems/ipo/description/](https://leetcode.com/problems/ipo/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+from typing import List
+
+class Solution:
+    def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:
+        # Pair up capital and profit
+        projects = list(zip(capital, profits))
+        # Sort by capital needed ascending
+        projects.sort()
+
+        max_heap = []
+        i = 0
+        n = len(profits)
+
+        for _ in range(k):
+            # Push all projects we can afford into max-heap
+            while i < n and projects[i][0] <= w:
+                # Use negative profit because heapq is min-heap
+                heapq.heappush(max_heap, -projects[i][1])
+                i += 1
+
+            # If no available projects, break
+            if not max_heap:
+                break
+
+            # Choose the most profitable project
+            w += -heapq.heappop(max_heap)
+
+        return w
+        
+</code>
+</pre>
+</details>
+
+## 9.4. Find Right Interval
+
+Ref: [https://leetcode.com/problems/find-right-interval/description/](https://leetcode.com/problems/find-right-interval/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import bisect
+
+class Solution:
+    def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
+        # Create a list of (start, index) and sort by start
+        sorted_starts = sorted((start, i) for i, (start, end) in enumerate(intervals))
+        starts_only = [start for start, _ in sorted_starts]
+        
+        result = []
+        for interval in intervals:
+            end = interval[1]
+            # Binary search for the smallest start >= current end
+            # IDEA hay: tìm thằng start đầu tiên lớn hơn thằng end là được bằng binary search
+            idx = bisect.bisect_left(starts_only, end)
+            if idx < len(intervals):
+                result.append(sorted_starts[idx][1])  # Return original index
+            else:
+                result.append(-1)
+        return result
+        
+</code>
+</pre>
+</details>
+
 # 10. Pattern 10: Subsets
 
 # 11. Pattern 11: Modified Binary Search
@@ -3634,6 +3791,207 @@ class Solution:
 </details>
 
 # 14. Pattern 14: K-way merge
+
+## 14.1. Merge k Sorted Lists
+
+Ref: [https://leetcode.com/problems/merge-k-sorted-lists/](https://leetcode.com/problems/merge-k-sorted-lists/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        heap = []
+        
+        # Step 1: Initialize the heap with the head of each list
+        for idx, node in enumerate(lists):
+            if node:
+                heappush(heap, (node.val, idx, node))
+
+        dummy = ListNode(0)
+        current = dummy
+
+        # Step 2: Extract min and add next node from the same list to the heap
+        while heap:
+            val, idx, node = heappop(heap)
+            current.next = node
+            current = current.next
+            if node.next:
+                heappush(heap, (node.next.val, idx, node.next))
+
+        return dummy.next
+        
+</code>
+</pre>
+</details>
+
+## 14.2. Find K Pairs with Smallest Sums
+
+Ref: [https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+from typing import List
+
+class Solution:
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+        if not nums1 or not nums2 or k == 0:
+            return []
+
+        min_heap = []
+        result = []
+
+        # Initialize the heap with the first element in nums2 paired with the first k elements in nums1
+        for i in range(min(k, len(nums1))):
+            heapq.heappush(min_heap, (nums1[i] + nums2[0], i, 0))
+
+        while min_heap and len(result) < k:
+            curr_sum, i, j = heapq.heappop(min_heap)
+            result.append([nums1[i], nums2[j]])
+
+            # If there is another element in nums2 for the same nums1[i], push it to the heap
+            if j + 1 < len(nums2):
+                heapq.heappush(min_heap, (nums1[i] + nums2[j + 1], i, j + 1))
+
+        return result
+        
+</code>
+</pre>
+</details>
+
+## 14.3. Kth Smallest Element in a Sorted Matrix
+
+Ref: [https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/description/](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+from typing import List
+
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        n = len(matrix)
+        # Min-heap: each entry is (value, row, col)
+        heap = []
+        
+        # Initialize the heap with the first element of each row
+        for r in range(min(k, n)):  # We don't need more than k rows
+            heapq.heappush(heap, (matrix[r][0], r, 0))
+        
+        # Extract the smallest element k times
+        count = 0
+        while heap:
+            val, r, c = heapq.heappop(heap)
+            count += 1
+            if count == k:
+                return val
+            if c + 1 < n:
+                heapq.heappush(heap, (matrix[r][c + 1], r, c + 1))
+        
+</code>
+</pre>
+</details>
+
+## 14.4. Smallest Range Covering Elements from K Lists
+
+Ref: [https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/description/](https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from heapq import heappush, heappop
+from typing import List
+
+class Solution:
+    def smallestRange(self, nums: List[List[int]]) -> List[int]:
+        min_heap = []
+        max_val = float('-inf')
+        
+        # Initialize heap with the first element from each list
+        for i in range(len(nums)):
+            val = nums[i][0]
+            heappush(min_heap, (val, i, 0))  # (value, list index, element index)
+            max_val = max(max_val, val)
+        
+        range_start, range_end = float('-inf'), float('inf')
+
+        while True:
+            min_val, list_idx, elem_idx = heappop(min_heap)
+
+            # Update the range if smaller
+            if max_val - min_val < range_end - range_start:
+                range_start, range_end = min_val, max_val
+            
+            # Move to the next element in the same list
+            if elem_idx + 1 == len(nums[list_idx]):
+                break  # We've reached the end of one of the lists
+            next_val = nums[list_idx][elem_idx + 1]
+            heappush(min_heap, (next_val, list_idx, elem_idx + 1))
+            max_val = max(max_val, next_val)
+        
+        return [range_start, range_end]
+        
+</code>
+</pre>
+</details>
+
+## 14.5. Median of Two Sorted Arrays
+
+Ref: [https://leetcode.com/problems/median-of-two-sorted-arrays/description/](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        merged = []
+        i = j = 0
+        
+        # Merge the arrays
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] < nums2[j]:
+                merged.append(nums1[i])
+                i += 1
+            else:
+                merged.append(nums2[j])
+                j += 1
+                
+        while i < len(nums1):
+            merged.append(nums1[i])
+            i += 1
+        while j < len(nums2):
+            merged.append(nums2[j])
+            j += 1
+        
+        n = len(merged)
+        if n % 2 == 1:
+            return float(merged[n // 2])
+        else:
+            return (merged[n // 2 - 1] + merged[n // 2]) / 2
+
+</code>
+</pre>
+</details>
 
 # 15. Pattern 15: 0/1 Knapsack (Dynamic Programming)
 
@@ -6124,6 +6482,37 @@ class Solution:
 </pre>
 </details>
 
+## 2.2. Ugly Number II (Heap)
+
+Ref: [https://leetcode.com/problems/ugly-number-ii/description/](https://leetcode.com/problems/ugly-number-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        heap = [1]
+        seen = {1}
+        primes = [2, 3, 5]
+
+        for _ in range(n):
+            ugly = heapq.heappop(heap)
+            for prime in primes:
+                new_ugly = ugly * prime
+                if new_ugly not in seen:
+                    seen.add(new_ugly)
+                    heapq.heappush(heap, new_ugly)
+        
+        return ugly
+
+</code>
+</pre>
+</details>
+
 # 22. Pattern 22: Backtracking
 
 ## 22.1. Permutations
@@ -7748,3 +8137,5 @@ class Solution:
 </code>
 </pre>
 </details>
+
+# 44. Minimum number Pattern
