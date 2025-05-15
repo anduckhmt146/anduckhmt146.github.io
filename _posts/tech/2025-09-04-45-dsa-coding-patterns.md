@@ -3539,6 +3539,193 @@ class Solution:
 </pre>
 </details>
 
+## 11.14. Koko Eating Bananas
+
+Ref: [https://leetcode.com/problems/koko-eating-bananas/description/](https://leetcode.com/problems/koko-eating-bananas/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import math
+
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        # Define the search space for k
+        left, right = 1, max(piles)
+
+        while left < right:
+            mid = (left + right) // 2
+            # Calculate the total hours it would take at speed mid
+            hours = sum(math.ceil(pile / mid) for pile in piles)
+
+            if hours <= h:
+                right = mid  # Try a smaller k
+            else:
+                left = mid + 1  # Increase k
+
+        return left
+
+</code>
+</pre>
+</details>
+
+## 11.15. Minimum Number of Days to Make m Bouquets
+
+Ref: [https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/description/](https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
+        # Total flowers needed
+        if m * k > len(bloomDay):
+            return -1  # Not enough flowers to form required bouquets
+
+        # Helper function to check if we can make m bouquets by `day`
+        def canMake(day: int) -> bool:
+            bouquets = 0
+            flowers = 0
+            for bloom in bloomDay:
+                if bloom <= day:
+                    flowers += 1
+                    if flowers == k:
+                        bouquets += 1
+                        flowers = 0
+                else:
+                    flowers = 0
+            return bouquets >= m
+
+        # Binary search on the number of days
+        left, right = min(bloomDay), max(bloomDay)
+        while left < right:
+            mid = (left + right) // 2
+            if canMake(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
+
+</code>
+</pre>
+</details>
+
+## 11.16. Ugly Number III
+
+Ref: [https://leetcode.com/problems/ugly-number-iii/description/](https://leetcode.com/problems/ugly-number-iii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from math import gcd
+
+class Solution:
+    def nthUglyNumber(self, n: int, a: int, b: int, c: int) -> int:
+        # Least Common Multiple
+        def lcm(x, y):
+            return x * y // gcd(x, y)
+
+        # Count of numbers <= x divisible by a, b, or c
+        def count(x):
+            ab = lcm(a, b)
+            bc = lcm(b, c)
+            ac = lcm(a, c)
+            abc = lcm(ab, c)
+            return (x // a) + (x // b) + (x // c) - (x // ab) - (x // bc) - (x // ac) + (x // abc)
+
+        # Binary search to find the smallest number with count >= n
+        left, right = 1, 2 * 10**9
+        while left < right:
+            mid = (left + right) // 2
+            if count(mid) < n:
+                left = mid + 1
+            else:
+                right = mid
+        return left
+
+</code>
+</pre>
+</details>
+
+## 11.17. Find the Smallest Divisor Given a Threshold
+
+Ref: [https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/](https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import math
+
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        # Helper to compute the total sum of ceil divisions
+        def compute_sum(divisor: int) -> int:
+            return sum((num + divisor - 1) // divisor for num in nums)
+
+        # Binary search range: 1 to max(nums)
+        left, right = 1, max(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if compute_sum(mid) > threshold:
+                left = mid + 1
+            else:
+                right = mid
+        return left
+
+</code>
+</pre>
+</details>
+
+## 11.18. Find K-th Smallest Pair Distance
+
+Ref: [https://leetcode.com/problems/find-k-th-smallest-pair-distance/description/](https://leetcode.com/problems/find-k-th-smallest-pair-distance/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def smallestDistancePair(self, nums: List[int], k: int) -> int:
+        nums.sort()
+
+        def count_pairs(max_dist: int) -> int:
+            count = 0
+            left = 0
+            for right in range(len(nums)):
+                while nums[right] - nums[left] > max_dist:
+                    left += 1
+                count += right - left
+            return count
+
+        # Binary search on distance
+        left, right = 0, nums[-1] - nums[0]
+        while left < right:
+            mid = (left + right) // 2
+            if count_pairs(mid) < k:
+                left = mid + 1
+            else:
+                right = mid
+        return left
+        
+</code>
+</pre>
+</details>
+
 # 12. Pattern 12: Bitwise XOR
 
 # 13. Pattern 13: Top 'K' Elements
