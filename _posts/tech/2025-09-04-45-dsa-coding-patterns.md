@@ -8139,3 +8139,120 @@ class Solution:
 </details>
 
 # 44. Minimum number Pattern
+
+## 44.1. Minimum Cost to Hire K Workers
+
+Ref: [https://leetcode.com/problems/minimum-cost-to-hire-k-workers/description/](https://leetcode.com/problems/minimum-cost-to-hire-k-workers/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
+        workers = sorted([(w/q, q) for q, w in zip(quality, wage)])
+    
+        heap = []
+        total_quality = 0
+        min_cost = float('inf')
+
+        for ratio, q in workers:
+            heapq.heappush(heap, -q)  # Max heap by pushing negative
+            total_quality += q
+
+            if len(heap) > k:
+                total_quality += heapq.heappop(heap)  # Remove largest quality (least efficient)
+            
+            if len(heap) == k:
+                cost = total_quality * ratio
+                min_cost = min(min_cost, cost)
+        
+        return min_cost
+        
+</code>
+</pre>
+</details>
+
+## 44.2. Task Scheduler
+
+Ref: [https://leetcode.com/problems/task-scheduler/description/](https://leetcode.com/problems/task-scheduler/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import Counter
+import heapq
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        task_counts = Counter(tasks)
+        # Max heap by pushing negative frequencies
+        max_heap = [-cnt for cnt in task_counts.values()]
+        heapq.heapify(max_heap)
+
+        time = 0
+
+        while max_heap:
+            temp = []
+            for _ in range(n + 1):
+                if max_heap:
+                    cnt = heapq.heappop(max_heap)
+                    if cnt < -1:
+                        temp.append(cnt + 1)  # reduce frequency
+                time += 1
+                if not max_heap and not temp:
+                    break  # all tasks done
+
+            for item in temp:
+                heapq.heappush(max_heap, item)
+
+        return time
+        
+</code>
+</pre>
+</details>
+
+## 44.3. Minimum Number of Refueling Stops
+
+Ref: [https://leetcode.com/problems/minimum-number-of-refueling-stops/description/](https://leetcode.com/problems/minimum-number-of-refueling-stops/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+
+class Solution:
+    def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
+        max_heap = []
+        fuel = startFuel
+        prev = 0
+        i = 0
+        refuels = 0
+
+        while fuel < target:
+            # Push all reachable stations into the heap
+            while i < len(stations) and stations[i][0] <= fuel:
+                # Use negative for max-heap
+                heapq.heappush(max_heap, -stations[i][1])
+                i += 1
+
+            # If no fuel stations to use and can't reach target
+            if not max_heap:
+                return -1
+
+            # Refuel with the largest available
+            fuel += -heapq.heappop(max_heap)
+            refuels += 1
+
+        return refuels
+
+</code>
+</pre>
+</details>
