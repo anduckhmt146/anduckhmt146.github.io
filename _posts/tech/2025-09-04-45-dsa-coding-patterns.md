@@ -3721,7 +3721,7 @@ class Solution:
             else:
                 right = mid
         return left
-        
+
 </code>
 </pre>
 </details>
@@ -8803,6 +8803,308 @@ class Solution:
             refuels += 1
 
         return refuels
+
+</code>
+</pre>
+</details>
+
+# 45. Two Pointer Master
+
+---
+
+**Running from both ends of an array (Binary Search)**
+
+---
+
+**2 Sum problem**
+
+## 45.1. Number of Subsequences That Satisfy the Given Sum Condition
+
+Ref: [https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/description/](https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def numSubseq(self, nums: List[int], target: int) -> int:
+        MOD = 10**9 + 7
+        nums.sort()
+        n = len(nums)
+        
+        # Precompute powers of 2 up to n
+        # The number of subsequences between left and right is 2^(right - left).
+        power = [1] * n
+        for i in range(1, n):
+            power[i] = (power[i - 1] * 2) % MOD
+        
+        left, right = 0, n - 1
+        result = 0
+
+        while left <= right:
+            if nums[left] + nums[right] <= target:
+                result = (result + power[right - left]) % MOD
+                left += 1
+            else:
+                right -= 1
+        
+        return result
+
+</code>
+</pre>
+</details>
+
+## 45.2. Two Sum IV - Input is a BST
+
+Ref: [https://leetcode.com/problems/two-sum-iv-input-is-a-bst/](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        if not root:
+            return k == 0
+        
+        result = []
+        queue = deque([root])
+
+        # When out the loop 
+        while queue:
+            level_size = len(queue)
+            
+            for _ in range(level_size):
+                node = queue.popleft()
+                result.append(node.val)
+                
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+        numToIndex = {}
+        for pE in range(0, len(result)):
+            currVal = result[pE]
+
+            if k - currVal in numToIndex:
+                return True
+
+            numToIndex[currVal] = pE
+
+        return False
+
+</code>
+</pre>
+</details>
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        # Step 1: In-order DFS traversal to get sorted list
+        def in_order(node):
+            if not node:
+                return []
+            return in_order(node.left) + [node.val] + in_order(node.right)
+
+        nums = in_order(root)
+
+        # Step 2: Two-pointer technique to find if two numbers sum to k
+        left, right = 0, len(nums) - 1
+        while left < right:
+            total = nums[left] + nums[right]
+            if total == k:
+                return True
+            elif total < k:
+                left += 1
+            else:
+                right -= 1
+
+        return False
+
+</code>
+</pre>
+</details>
+
+## 45.3. Sum of Square Numbers
+
+Ref: [https://leetcode.com/problems/sum-of-square-numbers/description/](https://leetcode.com/problems/sum-of-square-numbers/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        # Start with left = 0 and right = sqrt(c)
+        left, right = 0, int(c**0.5)
+        
+        while left <= right:
+            total = left * left + right * right
+            if total == c:
+                return True
+            elif total < c:
+                left += 1
+            else:
+                right -= 1
+        
+        return False
+
+</code>
+</pre>
+</details>
+
+## 45.4. Boats to Save People
+
+Ref: [https://leetcode.com/problems/boats-to-save-people/](https://leetcode.com/problems/boats-to-save-people/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        people.sort()
+        left = 0
+        right = len(people) - 1
+        boats = 0
+
+        while left <= right:
+            if people[left] + people[right] <= limit:
+                left += 1  # one boat for both
+            right -= 1  # heaviest person always goes
+            boats += 1
+
+        return boats
+
+</code>
+</pre>
+</details>
+
+## 45.5. Minimize Maximum Pair Sum in Array
+
+Ref: [https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/description/](https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minPairSum(self, nums: List[int]) -> int:
+        nums.sort()
+        max_pair_sum = 0
+        left = 0
+        right = len(nums) - 1
+
+        while left < right:
+            pair_sum = nums[left] + nums[right]
+            max_pair_sum = max(max_pair_sum, pair_sum)
+            left += 1
+            right -= 1
+
+        return max_pair_sum
+
+</code>
+</pre>
+</details>
+
+## 45.6. 3Sum With Multiplicity
+
+Ref: [https://leetcode.com/problems/3sum-with-multiplicity/description/](https://leetcode.com/problems/3sum-with-multiplicity/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import Counter
+
+class Solution:
+    def twoSum(self, nums: List[int], start: int, end: int, target: int, freq: Counter) -> List[tuple]:
+        seen = {}
+        result = set()
+
+        for i in range(start, end + 1):
+            curr = nums[i]
+            complement = target - curr
+            pair = tuple(sorted((curr, complement)))
+
+            if complement in seen:
+                result.add(pair)
+            seen[curr] = i
+
+        # Include counts with each pair
+        counted_results = []
+        for a, b in result:
+            if a == b:
+                count = freq[a] * (freq[a] - 1) // 2
+            else:
+                count = freq[a] * freq[b]
+            counted_results.append((a, b, count))
+
+        return counted_results
+
+    def threeSumMulti(self, nums: List[int], target: int) -> int:
+        MOD = 10**9 + 7
+        nums.sort()
+        freq = Counter(nums)
+        n = len(nums)
+        count = 0
+
+        for i in range(n):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue  # Skip duplicates for first value
+
+            firstVal = nums[i]
+            rest_target = target - firstVal
+            # Get unique (a, b, count) pairs from twoSum
+            resultTwoSum = self.twoSum(nums, i + 1, n - 1, rest_target, freq)
+
+            for secondVal, thirdVal, pairCount in resultTwoSum:
+                # Ensure order and uniqueness: firstVal <= secondVal <= thirdVal
+                triplet = tuple(sorted([firstVal, secondVal, thirdVal]))
+                a, b, c = triplet
+
+                # Count valid combinations depending on value equality
+                if a == b == c:
+                    count += freq[a] * (freq[a] - 1) * (freq[a] - 2) // 6
+                elif a == b:
+                    count += freq[a] * (freq[a] - 1) // 2 * freq[c]
+                elif b == c:
+                    count += freq[b] * (freq[b] - 1) // 2 * freq[a]
+                elif a == c:
+                    count += freq[a] * (freq[a] - 1) // 2 * freq[b]
+                else:
+                    count += freq[a] * freq[b] * freq[c]
+
+        return count % MOD
 
 </code>
 </pre>
