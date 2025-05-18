@@ -9973,3 +9973,239 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 45.35. Remove Nth Node From End of List
+
+Ref: [https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        fast = slow = dummy
+
+        # Move fast ahead by n+1 steps to maintain a gap
+        for _ in range(n + 1):
+            fast = fast.next
+
+        # Move both pointers until fast reaches the end
+        while fast:
+            fast = fast.next
+            slow = slow.next
+
+        # Remove the nth node from end
+        slow.next = slow.next.next
+
+        return dummy.next
+        
+</code>
+</pre>
+</details>
+
+## 45.36. Rotate List
+
+Ref: [https://leetcode.com/problems/rotate-list/description/](https://leetcode.com/problems/rotate-list/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next or k == 0:
+            return head
+
+        # Step 1: Compute the length and get the tail
+        length = 1
+        tail = head
+        while tail.next:
+            tail = tail.next
+            length += 1
+
+        # Step 2: Normalize k
+        k = k % length
+        if k == 0:
+            return head
+
+        # Step 3: Make the list circular
+        tail.next = head
+
+        # Step 4: Find new tail and new head
+        steps_to_new_tail = length - k
+        new_tail = head
+        for _ in range(steps_to_new_tail - 1):
+            new_tail = new_tail.next
+
+        new_head = new_tail.next
+        new_tail.next = None  # Break the circle
+
+        return new_head
+        
+</code>
+</pre>
+</details>
+
+---
+
+**Cyclic Detection**
+
+## 45.37. Find the Duplicate Number
+
+Ref: [https://leetcode.com/problems/find-the-duplicate-number/description/](https://leetcode.com/problems/find-the-duplicate-number/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        # Phase 1: Finding the intersection point of the two runners.
+        slow = nums[0]
+        fast = nums[0]
+
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+
+        # Phase 2: Find the entrance to the cycle.
+        slow = nums[0]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+
+        return slow
+
+</code>
+</pre>
+</details>
+
+---
+
+**Sliding Window/Caterpillar Method**
+
+## 45.38. Number of Subarrays with Bounded Maximum (Idea two pointer hay)
+
+Ref: [https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/description/](https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def numSubarrayBoundedMax(self, nums: List[int], left: int, right: int) -> int:
+        count = 0
+        prev_count = 0
+        start = -1
+
+        for i, num in enumerate(nums):
+            # num > right (invalid)
+            if num > right:
+                start = i
+                prev_count = 0
+            # left <= num <= right
+            elif num >= left:
+                prev_count = i - start
+                count += prev_count
+            # num < left
+            else:
+                count += prev_count
+
+        return count
+
+</code>
+</pre>
+</details>
+
+## 45.39. Count Binary Substrings
+
+Ref: [https://leetcode.com/problems/count-binary-substrings/description/](https://leetcode.com/problems/count-binary-substrings/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def countBinarySubstrings(self, s: str) -> int:
+        prev = 0  # previous group length
+        curr = 1  # current group length
+        count = 0
+
+        for i in range(1, len(s)):
+            if s[i] == s[i - 1]:
+                curr += 1
+            else:
+                count += min(prev, curr)
+                prev = curr
+                curr = 1
+
+        # Last group pair
+        count += min(prev, curr)
+        return count
+
+</code>
+</pre>
+</details>
+
+## 45.40. K-diff Pairs in an Array (Idea two pointer hay)
+
+Ref: [https://leetcode.com/problems/k-diff-pairs-in-an-array/description/](https://leetcode.com/problems/k-diff-pairs-in-an-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findPairs(self, nums: List[int], k: int) -> int:
+        if k < 0:
+            return 0  # Absolute difference cannot be negative
+
+        count = 0
+        seen = {}
+        
+        for num in nums:
+            seen[num] = seen.get(num, 0) + 1
+
+        if k == 0:
+            # Count elements with frequency >= 2
+            for val in seen.values():
+                if val > 1:
+                    count += 1
+        else:
+            # Count unique pairs where num + k exists
+            for num in seen:
+                if num + k in seen:
+                    count += 1
+
+        return count
+
+</code>
+</pre>
+</details>
