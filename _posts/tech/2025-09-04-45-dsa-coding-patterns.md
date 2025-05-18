@@ -8816,7 +8816,7 @@ class Solution:
 
 ---
 
-**2 Sum problem**
+**2 Sum problem (Binary Search Greedy)**
 
 ## 45.1. Number of Subsequences That Satisfy the Given Sum Condition
 
@@ -9106,6 +9106,430 @@ class Solution:
 
         return count % MOD
 
+</code>
+</pre>
+</details>
+
+---
+
+**Trap Water**
+
+## 45.7. Trapping Rain Water (Hold water based on left-max and right-max)
+
+Ref: [https://leetcode.com/problems/trapping-rain-water/description/](https://leetcode.com/problems/trapping-rain-water/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        left_max = right_max = 0
+        water = 0
+
+        while left < right:
+            if height[left] < height[right]:
+                if height[left] >= left_max:
+                    left_max = height[left]
+                else:
+                    water += left_max - height[left]
+                left += 1
+            else:
+                if height[right] >= right_max:
+                    right_max = height[right]
+                else:
+                    water += right_max - height[right]
+                right -= 1
+
+        return water
+
+</code>
+</pre>
+</details>
+
+## 45.8. Container With Most Water
+
+Ref: [https://leetcode.com/problems/container-with-most-water/description/](https://leetcode.com/problems/container-with-most-water/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        maxArea = 0
+        while left < right:
+            currArea = min(height[left], height[right]) * (right - left)
+            maxArea = max(maxArea, currArea)
+            if height[left] <= height[right]:
+                left += 1
+            else:
+                right -= 1
+
+        return maxArea
+
+</code>
+</pre>
+</details>
+
+---
+
+**Next Permutation**
+
+## 45.9. Next Permutation
+
+Ref: [https://leetcode.com/problems/next-permutation/description/](https://leetcode.com/problems/next-permutation/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        i = n - 2
+        
+        # Step 1: Find the first decreasing element from the right
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+        
+        if i >= 0:
+            # Step 2: Find the next greater element to the right of nums[i]
+            j = n - 1
+            while nums[j] <= nums[i]:
+                j -= 1
+            # Swap nums[i] and nums[j]
+            nums[i], nums[j] = nums[j], nums[i]
+        
+        # Step 3: Reverse the subarray nums[i+1:]
+        left, right = i + 1, n - 1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
+
+</code>
+</pre>
+</details>
+
+## 45.10. Next Greater Element III
+
+Ref: [https://leetcode.com/problems/next-greater-element-iii/description/](https://leetcode.com/problems/next-greater-element-iii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def nextGreaterElement(self, n: int) -> int:
+        digits = list(str(n))
+        i = len(digits) - 2
+
+        # Step 1: Find the first decreasing digit from the right
+        while i >= 0 and digits[i] >= digits[i + 1]:
+            i -= 1
+        
+        if i == -1:
+            return -1  # digits are in descending order, no next permutation
+
+        # Step 2: Find the next greater digit to the right of digits[i]
+        j = len(digits) - 1
+        while digits[j] <= digits[i]:
+            j -= 1
+        
+        # Step 3: Swap and reverse the suffix
+        digits[i], digits[j] = digits[j], digits[i]
+        digits[i + 1:] = reversed(digits[i + 1:])
+
+        # Step 4: Convert back to integer
+        result = int("".join(digits))
+
+        # Step 5: Check if result is within 32-bit signed integer range
+        return result if result < 2**31 else -1
+
+</code>
+</pre>
+</details>
+
+## 45.11. Minimum Adjacent Swaps to Reach the Kth Smallest Number
+
+Ref: [https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/description/](https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def getMinSwaps(self, num: str, k: int) -> int:
+        def next_permutation(arr):
+            i = len(arr) - 2
+            while i >= 0 and arr[i] >= arr[i + 1]:
+                i -= 1
+            if i == -1:
+                return
+            j = len(arr) - 1
+            while arr[j] <= arr[i]:
+                j -= 1
+            arr[i], arr[j] = arr[j], arr[i]
+            arr[i + 1:] = reversed(arr[i + 1:])
+        
+        # Step 1: Compute the k-th permutation
+        target = list(num)
+        for _ in range(k):
+            next_permutation(target)
+        
+        # Step 2: Count minimum adjacent swaps to match target
+        original = list(num)
+        swaps = 0
+        
+        for i in range(len(original)):
+            if original[i] == target[i]:
+                continue
+            j = i
+            while original[j] != target[i]:
+                j += 1
+            # Now swap original[j] leftward to position i
+            while j > i:
+                original[j], original[j - 1] = original[j - 1], original[j]
+                swaps += 1
+                j -= 1
+
+        return swaps
+
+</code>
+</pre>
+</details>
+
+---
+
+**Reversing / Swapping**
+
+## 45.12. Valid Palindrome
+
+Ref: [https://leetcode.com/problems/valid-palindrome/description/](https://leetcode.com/problems/valid-palindrome/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            # Move left to next alphanumeric
+            while left < right and not s[left].isalnum():
+                left += 1
+            # Move right to previous alphanumeric
+            while left < right and not s[right].isalnum():
+                right -= 1
+            # Compare characters
+            if s[left].lower() != s[right].lower():
+                return False
+            left += 1
+            right -= 1
+        
+        return True
+
+</code>
+</pre>
+</details>
+
+## 45.13. Reverse String
+
+Ref: [https://leetcode.com/problems/reverse-string/description/](https://leetcode.com/problems/reverse-string/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+
+</code>
+</pre>
+</details>
+
+## 45.14. Reverse Vowels of a String
+
+Ref: [https://leetcode.com/problems/reverse-vowels-of-a-string/description/](https://leetcode.com/problems/reverse-vowels-of-a-string/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        vowels = set('aeiouAEIOU')
+        s = list(s)  # Convert string to list for in-place modification
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            # Move left to the next vowel
+            while left < right and s[left] not in vowels:
+                left += 1
+            # Move right to the previous vowel
+            while left < right and s[right] not in vowels:
+                right -= 1
+            # Swap vowels
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+
+        return ''.join(s)
+
+</code>
+</pre>
+</details>
+
+## 45.15. Valid Palindrome II
+
+Ref: [https://leetcode.com/problems/valid-palindrome-ii/description/](https://leetcode.com/problems/valid-palindrome-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        def is_palindrome_range(left: int, right: int) -> bool:
+            while left < right:
+                if s[left] != s[right]:
+                    return False
+                left += 1
+                right -= 1
+            return True
+
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            if s[left] != s[right]:
+                # Try skipping left or right character
+                return is_palindrome_range(left + 1, right) or is_palindrome_range(left, right - 1)
+            left += 1
+            right -= 1
+
+        return True
+
+</code>
+</pre>
+</details>
+
+## 45.16. Reverse Only Letters
+
+Ref: [https://leetcode.com/problems/reverse-only-letters/description/](https://leetcode.com/problems/reverse-only-letters/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def reverseOnlyLetters(self, s: str) -> str:
+        s = list(s)  # Convert string to list for in-place modification
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            # Move left to the next vowel
+            while left < right and not s[left].isalpha():
+                left += 1
+            # Move right to the previous vowel
+            while left < right and not s[right].isalpha():
+                right -= 1
+            # Swap vowels
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+
+        return ''.join(s)
+
+</code>
+</pre>
+</details>
+
+## 45.17. Sort Colors (Move 0 first, move 2 last)
+
+Ref: [https://leetcode.com/problems/sort-colors/description/](https://leetcode.com/problems/sort-colors/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        left = 0
+        right = len(nums) - 1
+        curr = 0
+
+        # Because we compare curr <= right, do not increase the left pointer
+        while curr <= right:
+            if nums[curr] == 0:
+                nums[left], nums[curr] = nums[curr], nums[left]
+                left += 1
+                # Because after swap: 1,2 will always > 0
+                curr += 1
+            elif nums[curr] == 2:
+                nums[right], nums[curr] = nums[curr], nums[right]
+                right -= 1
+                # Because after swap may be it is 2, and 2 may be > 1
+            else:
+                curr += 1
+
+        return nums
+
+</code>
+</pre>
+</details>
+
+## 45.18. Flipping an Image
+
+Ref: [https://leetcode.com/problems/flipping-an-image/description/](https://leetcode.com/problems/flipping-an-image/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
+        for row in image:
+            # Flip the row (reverse it) and invert each value (1 becomes 0, 0 becomes 1)
+            for i in range((len(row) + 1) // 2):
+                # Swap and invert in a single step
+                row[i], row[-i - 1] = 1 - row[-i - 1], 1 - row[i]
+        return image
+        
 </code>
 </pre>
 </details>
