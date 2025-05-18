@@ -9671,3 +9671,227 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 45.23. Reverse Prefix of Word
+
+Ref: [https://leetcode.com/problems/reverse-prefix-of-word/description/](https://leetcode.com/problems/reverse-prefix-of-word/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def reversePrefix(self, word: str, ch: str) -> str:
+        idx = word.find(ch)
+        if idx == -1:
+            return word
+        return word[:idx + 1][::-1] + word[idx + 1:]
+
+</code>
+</pre>
+</details>
+
+## 45.26. Reverse String II
+
+Ref: [https://leetcode.com/problems/reverse-string-ii/description/](https://leetcode.com/problems/reverse-string-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def reverseStr(self, s: str, k: int) -> str:
+        s = list(s)
+        for i in range(0, len(s), 2 * k):
+            s[i:i + k] = reversed(s[i:i + k])
+        return ''.join(s)
+
+</code>
+</pre>
+</details>
+
+## 45.27. Reverse Words III
+
+Ref: [https://leetcode.com/problems/reverse-words-in-a-string-iii/description/](https://leetcode.com/problems/reverse-words-in-a-string-iii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        words = s.split()
+        return ' '.join([word[::-1] for word in words])
+
+</code>
+</pre>
+</details>
+
+---
+
+**Others**
+
+## 45.28. Bag of Tokens
+
+Ref: [https://leetcode.com/problems/bag-of-tokens/description/](https://leetcode.com/problems/bag-of-tokens/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
+        tokens.sort()
+        score = max_score = 0
+        i, j = 0, len(tokens) - 1
+        
+        while i <= j:
+            if power >= tokens[i]:
+                power -= tokens[i]
+                score += 1
+                i += 1
+                max_score = max(max_score, score)
+            elif score >= 1:
+                power += tokens[j]
+                score -= 1
+                j -= 1
+            else:
+                break
+        
+        return max_score
+
+</code>
+</pre>
+</details>
+
+## 45.29. DI String Match
+
+Ref: [https://leetcode.com/problems/di-string-match/description/](https://leetcode.com/problems/di-string-match/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def diStringMatch(self, s: str) -> List[int]:
+        low, high = 0, len(s)
+        result = []
+
+        for char in s:
+            if char == 'I':
+                result.append(low)
+                low += 1
+            else:  # char == 'D'
+                result.append(high)
+                high -= 1
+
+        result.append(low)  # low == high at this point
+        return result
+
+</code>
+</pre>
+</details>
+
+## 45.30. Minimum Length of String After Deleting Similar Ends
+
+Ref: [https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/](https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minimumLength(self, s: str) -> int:
+        left, right = 0, len(s) - 1
+
+        while left < right and s[left] == s[right]:
+            char = s[left]
+            while left <= right and s[left] == char:
+                left += 1
+            while left <= right and s[right] == char:
+                right -= 1
+
+        return right - left + 1
+
+</code>
+</pre>
+</details>
+
+## 45.31. Sentence Similarity III
+
+Ref: [https://leetcode.com/problems/sentence-similarity-iii/description/](https://leetcode.com/problems/sentence-similarity-iii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def areSentencesSimilar(self, sentence1: str, sentence2: str) -> bool:
+        words1 = sentence1.split()
+        words2 = sentence2.split()
+
+        # Always make words1 the shorter sentence
+        if len(words1) > len(words2):
+            words1, words2 = words2, words1
+
+        # Match from the start
+        i = 0
+        while i < len(words1) and words1[i] == words2[i]:
+            i += 1
+
+        # Match from the end
+        j = 0
+        while j < len(words1) - i and words1[-1 - j] == words2[-1 - j]:
+            j += 1
+
+        return i + j == len(words1)
+
+
+</code>
+</pre>
+</details>
+
+## 45.32. Shortest Distance to a Character
+
+Ref: [https://leetcode.com/problems/shortest-distance-to-a-character/description/](https://leetcode.com/problems/shortest-distance-to-a-character/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def shortestToChar(self, s: str, c: str) -> List[int]:
+        n = len(s)
+        result = [0] * n
+        
+        # List of all indices where c appears
+        positions = [i for i, char in enumerate(s) if char == c]
+        
+        # Pointer for positions
+        j = 0
+        
+        for i in range(n):
+            # Move j if next c position is closer
+            while j < len(positions) - 1 and abs(positions[j + 1] - i) < abs(positions[j] - i):
+                j += 1
+            result[i] = abs(positions[j] - i)
+        
+        return result
+
+</code>
+</pre>
+</details>
