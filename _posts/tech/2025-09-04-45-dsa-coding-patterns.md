@@ -9931,3 +9931,45 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 45.34. Linked List Cycle II
+
+Ref: [https://leetcode.com/problems/linked-list-cycle-ii/](https://leetcode.com/problems/linked-list-cycle-ii/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return None
+        
+        slow = head
+        fast = head
+        
+        # Step 1: Determine whether a cycle exists
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            
+            if slow == fast:
+                # Step 2: Find the entry location of the cycle
+                entry = head
+                while entry != slow:
+                    entry = entry.next
+                    slow = slow.next
+                return entry
+        
+        return None
+        
+</code>
+</pre>
+</details>
