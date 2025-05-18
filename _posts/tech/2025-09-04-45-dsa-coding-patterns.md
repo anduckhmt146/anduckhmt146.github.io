@@ -9529,7 +9529,145 @@ class Solution:
                 # Swap and invert in a single step
                 row[i], row[-i - 1] = 1 - row[-i - 1], 1 - row[i]
         return image
+
+</code>
+</pre>
+</details>
+
+## 45.19. Squares of a Sorted Array
+
+Ref: [https://leetcode.com/problems/squares-of-a-sorted-array/description/](https://leetcode.com/problems/squares-of-a-sorted-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        start, end = 0, len(nums) - 1
+        highestSquare = len(nums) - 1
+        result = [0] * len(nums)   
+
+        while start <= end:
+            startSquare = nums[start] ** 2
+            endSquare = nums[end] ** 2
+
+            if startSquare > endSquare:
+                result[highestSquare] = startSquare
+                start += 1
+            else:
+                result[highestSquare] = endSquare
+                end -= 1
+
+            highestSquare -= 1
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 45.20. Sort Array By Parity
+
+Ref: [https://leetcode.com/problems/sort-array-by-parity/description/](https://leetcode.com/problems/sort-array-by-parity/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def sortArrayByParity(self, nums: List[int]) -> List[int]:
+        left, right = 0, len(nums) - 1
         
+        while left < right:
+            # Move left forward if nums[left] is even
+            if nums[left] % 2 == 0:
+                left += 1
+            # Move right backward if nums[right] is odd
+            elif nums[right] % 2 == 1:
+                right -= 1
+            # If nums[left] is odd and nums[right] is even, swap them
+            else:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+                
+        return nums
+
+</code>
+</pre>
+</details>
+
+## 45.21. Sort Array By Parity II
+
+Ref: [https://leetcode.com/problems/sort-array-by-parity-ii/description/](https://leetcode.com/problems/sort-array-by-parity-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def sortArrayByParityII(self, nums: List[int]) -> List[int]:
+        even_idx, odd_idx = 0, 1
+        n = len(nums)
+        
+        while even_idx < n and odd_idx < n:
+            if nums[even_idx] % 2 == 0:
+                even_idx += 2
+            elif nums[odd_idx] % 2 == 1:
+                odd_idx += 2
+            else:
+                # nums[even_idx] is odd and nums[odd_idx] is even, swap them
+                nums[even_idx], nums[odd_idx] = nums[odd_idx], nums[even_idx]
+                even_idx += 2
+                odd_idx += 2
+        
+        return nums
+
+</code>
+</pre>
+</details>
+
+## 45.22. Pancake Sorting
+
+Ref: [https://leetcode.com/problems/pancake-sorting/description/](https://leetcode.com/problems/pancake-sorting/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def pancakeSort(self, arr: List[int]) -> List[int]:
+        res = []
+        n = len(arr)
+        
+        for size in range(n, 1, -1):
+            # Order from max 4,3,2,1
+            # Find the index of the max number in arr[0:size]
+            max_idx = arr.index(max(arr[:size]))
+            
+            if max_idx == size - 1:
+                continue  # Already in correct position
+            
+            # Flip to bring the max element to the front (if not already there)
+            if max_idx != 0:
+                res.append(max_idx + 1)
+                arr[:max_idx + 1] = reversed(arr[:max_idx + 1])
+            
+            # Flip to move it to its correct position
+            res.append(size)
+            arr[:size] = reversed(arr[:size])
+        
+        return res
+
 </code>
 </pre>
 </details>
