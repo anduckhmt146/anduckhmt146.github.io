@@ -10248,3 +10248,421 @@ class Solution:
 </code>
 </pre>
 </details>
+
+## 45.42. Rotate Array
+
+Ref: [https://leetcode.com/problems/rotate-array/description/](https://leetcode.com/problems/rotate-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        n = len(nums)
+        original = nums[:]
+
+        # Loop in the end
+        for i in range(n - 1, -1, -1):
+            nums[(i + k) % n] = original[i]
+
+        # n = len(nums)
+        # k %= n  # In case k > n
+
+        # # Copy the last k elements + the rest
+        # nums[:] = nums[-k:] + nums[:-k]
+
+</code>
+</pre>
+</details>
+
+---
+
+**String**
+
+## 45.43. String Compression
+
+Ref: [https://leetcode.com/problems/string-compression/description/](https://leetcode.com/problems/string-compression/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        res = []
+        count = 1  # Start with 1 since we always have at least one occurrence
+
+        for i in range(1, len(chars) + 1):
+            if i < len(chars) and chars[i] == chars[i - 1]:
+                count += 1
+            else:
+                # End of a group
+                res.append(chars[i - 1])
+                if count > 1:
+                    for digit in str(count):
+                        res.append(digit)
+                count = 1  # Reset count for the next character group
+
+        # Modify input list in-place
+        chars[:] = res
+        return len(res)
+
+</code>
+</pre>
+</details>
+
+## 45.44. Last Substring in Lexicographical Order
+
+Ref: [https://leetcode.com/problems/last-substring-in-lexicographical-order/description/](https://leetcode.com/problems/last-substring-in-lexicographical-order/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def lastSubstring(self, s: str) -> str:
+        max_char = max(s)
+        candidates = [i for i, c in enumerate(s) if c == max_char]
+        return max(s[i:] for i in candidates)
+
+class Solution:
+    def lastSubstring(self, s: str) -> str:
+        n = len(s)
+        i, j = 0, 1
+        k = 0  # offset
+
+        while j + k < n:
+            if s[i + k] == s[j + k]:
+                k += 1
+            elif s[i + k] > s[j + k]:
+                j = j + k + 1
+                k = 0
+            else:
+                i = max(i + k + 1, j)
+                j = i + 1
+                k = 0
+
+        return s[i:]
+
+</code>
+</pre>
+</details>
+
+---
+
+**Remove duplicates**
+
+## 45.45. Remove Duplicates from Sorted Array
+
+Ref: [https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        nextNonDup = 0
+        pE = 0
+
+        while pE < len(nums):
+            if pE == 0 or nums[pE] != nums[nextNonDup - 1]:
+                nums[nextNonDup] = nums[pE]
+                nextNonDup += 1
+            pE += 1
+
+        return nextNonDup
+
+</code>
+</pre>
+</details>
+
+## 45.46. Remove Duplicates from Sorted Array II
+
+Ref: [https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        nextNonDup = 0
+        pE = 0
+
+        while pE < len(nums):
+            if pE < 2 or nums[pE] != nums[nextNonDup - 1] or nums[pE] != nums[nextNonDup - 2]:
+                nums[nextNonDup] = nums[pE]
+                nextNonDup += 1
+            pE += 1
+
+        return nextNonDup
+
+</code>
+</pre>
+</details>
+
+## 45.47. Remove Duplicates from Sorted List II
+
+Ref: [https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/description/](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        current = head
+        while current and current.next:
+            if current.val == current.next.val:
+                current.next = current.next.next  # Skip the duplicate
+            else:
+                current = current.next  # Move forward only when values differ
+        return head
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+        current = head
+        
+        while current:
+            # Detect duplicates
+            if current.next and current.val == current.next.val:
+                # Skip all nodes with the same value
+                while current.next and current.val == current.next.val:
+                    current = current.next
+                prev.next = current.next  # Bypass all duplicates
+            else:
+                prev = prev.next  # Move forward if no duplicate
+            current = current.next
+        
+        return dummy.next
+
+</code>
+</pre>
+</details>
+
+## 45.48. Duplicate Zeros (Hay)
+
+Ref: [https://leetcode.com/problems/duplicate-zeros/description/](https://leetcode.com/problems/duplicate-zeros/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        n = len(arr)
+        zeros = 0
+        
+        # Count the number of zeros to be duplicated
+        for i in range(n):
+            if arr[i] == 0:
+                zeros += 1
+
+        # Start from the end and move elements backwards
+        i = n - 1
+        j = n + zeros - 1
+
+        while i < j:
+            if j < n:
+                if arr[i] != 0:
+                    arr[j] = arr[i]
+                else:
+                    arr[j] = 0
+            j -= 1
+
+            if arr[i] == 0:
+                if j < n:
+                    arr[j] = 0
+                j -= 1
+            i -= 1
+
+</code>
+</pre>
+</details>
+
+## 45.49. Magical String
+
+Ref: [https://leetcode.com/problems/magical-string/description/](https://leetcode.com/problems/magical-string/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def magicalString(self, n: int) -> int:
+        if n <= 0:
+            return 0
+        if n <= 3:
+            return 1
+        
+        s = [1, 2, 2]
+        i = 2  # pointer to the index in s that tells us how many times to append
+        num = 1  # next number to append (flip between 1 and 2)
+
+        while len(s) < n:
+            s.extend([num] * s[i])
+            num = 3 - num  # flip between 1 and 2
+            i += 1
+
+        return s[:n].count(1)
+
+</code>
+</pre>
+</details>
+
+## 45.50. Friends Of Appropriate Ages
+
+Ref: [https://leetcode.com/problems/friends-of-appropriate-ages/description/](https://leetcode.com/problems/friends-of-appropriate-ages/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import Counter
+
+class Solution:
+    def numFriendRequests(self, ages: List[int]) -> int:
+        count = Counter(ages)
+        total = 0
+
+        for ageA in count:
+            for ageB in count:
+                if ageB <= 0.5 * ageA + 7:
+                    continue
+                if ageB > ageA:
+                    continue
+                if ageB > 100 and ageA < 100:
+                    continue
+                if ageA == ageB:
+                    total += count[ageA] * (count[ageA] - 1)
+                else:
+                    total += count[ageA] * count[ageB]
+        
+        return total
+
+</code>
+</pre>
+</details>
+
+## 45.51. Longest Mountain in Array (Hay)
+
+Ref: [https://leetcode.com/problems/longest-mountain-in-array/description/](https://leetcode.com/problems/longest-mountain-in-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def longestMountain(self, arr: List[int]) -> int:
+        n = len(arr)
+        longest = 0
+        i = 1  # Start from second element
+
+        while i < n - 1:
+            # Check if arr[i] is a peak
+            if arr[i - 1] < arr[i] > arr[i + 1]:
+                # Expand left
+                left = i - 1
+                while left > 0 and arr[left - 1] < arr[left]:
+                    left -= 1
+                # Expand right
+                right = i + 1
+                while right < n - 1 and arr[right] > arr[right + 1]:
+                    right += 1
+                # Update longest mountain
+                longest = max(longest, right - left + 1)
+                i = right  # Move i to the end of this mountain
+            else:
+                i += 1  # Not a peak, move forward
+
+        return longest
+
+</code>
+</pre>
+</details>
+
+## 45.52. Shortest Subarray to be Removed to Make Array Sorted
+
+Ref: [https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/description/](https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findLengthOfShortestSubarray(self, arr: List[int]) -> int:
+        n = len(arr)
+        
+        # Find the longest non-decreasing prefix
+        left = 0
+        while left < n - 1 and arr[left] <= arr[left + 1]:
+            left += 1
+            
+        # If the entire array is non-decreasing
+        if left == n - 1:
+            return 0
+            
+        # Find the longest non-decreasing suffix
+        right = n - 1
+        while right > 0 and arr[right] >= arr[right - 1]:
+            right -= 1
+            
+        # We have two options:
+        # 1. Remove everything after left
+        # 2. Remove everything before right
+        result = min(n - left - 1, right)
+        
+        # Try to merge the prefix and suffix
+        i = 0
+        j = right
+        while i <= left and j < n:
+            if arr[i] <= arr[j]:
+                # We can merge from i to j
+                result = min(result, j - i - 1)
+                i += 1
+            else:
+                j += 1
+                
+        return result
+
+</code>
+</pre>
+</details>
