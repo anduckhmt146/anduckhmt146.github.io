@@ -10666,3 +10666,309 @@ class Solution:
 </code>
 </pre>
 </details>
+
+---
+
+**Running from beginning of 2 arrays / Merging 2 arrays**
+
+---
+
+**Sorted arrays**
+
+## 45.43. Merge Sorted Array
+
+Ref: [https://leetcode.com/problems/merge-sorted-array/description/](https://leetcode.com/problems/merge-sorted-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        # Create subarrays for nums1 and nums2
+        subNums1 = nums1[:m] if m > 0 else []
+        subNums2 = nums2[:n] if n > 0 else []
+
+        i = 0
+        j = 0
+        k = 0
+        res = [0] * (m + n)
+
+        # Merge the two arrays into res
+        while i < m and j < n:
+            if subNums1[i] < subNums2[j]:
+                res[k] = subNums1[i]
+                i += 1
+            else:
+                res[k] = subNums2[j]
+                j += 1
+            k += 1
+
+        while i < m:
+            res[k] = subNums1[i]
+            i += 1
+            k += 1
+
+        while j < n:
+            res[k] = subNums2[j]
+            j += 1
+            k += 1
+
+        # Modify nums1 in-place
+        for index in range(m + n):
+            nums1[index] = res[index]
+
+</code>
+</pre>
+</details>
+
+## 45.44. Heaters (Hay)
+
+Ref: [https://leetcode.com/problems/heaters/description/](https://leetcode.com/problems/heaters/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import bisect
+
+class Solution:
+    def findRadius(self, houses: List[int], heaters: List[int]) -> int:
+        houses.sort()
+        heaters.sort()
+        radius = 0
+
+        for house in houses:
+            # Find the position to insert the house in the sorted heaters list
+            index = bisect.bisect_left(heaters, house)
+
+            # Calculate distances to the nearest heater on the left and right
+            left_dist = float('inf') if index == 0 else house - heaters[index - 1]
+            right_dist = float('inf') if index == len(heaters) else heaters[index] - house
+
+            # The nearest heater distance for this house
+            nearest = min(left_dist, right_dist)
+
+            # Update the required radius to cover all houses
+            radius = max(radius, nearest)
+
+        return radius
+
+</code>
+</pre>
+</details>
+
+## 45.45. Find the Distance Value Between Two Arrays (Hay)
+
+Ref: [https://leetcode.com/problems/find-the-distance-value-between-two-arrays/description/](https://leetcode.com/problems/find-the-distance-value-between-two-arrays/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import bisect
+
+class Solution:
+    def findTheDistanceValue(self, arr1: List[int], arr2: List[int], d: int) -> int:
+        arr2.sort()
+        count = 0
+
+        for num in arr1:
+            # Binary search to find the insertion point in arr2
+            index = bisect.bisect_left(arr2, num)
+
+            # Check left neighbor and right neighbor (if any)
+            left_close = abs(num - arr2[index - 1]) if index > 0 else float('inf')
+            right_close = abs(num - arr2[index]) if index < len(arr2) else float('inf')
+
+            # If both neighbors are farther than d, count this number
+            if min(left_close, right_close) > d:
+                count += 1
+
+        return count
+
+</code>
+</pre>
+</details>
+
+---
+
+**Intersections/LCA like**
+
+## 45.46. Intersection of Two Linked Lists
+
+Ref: [https://leetcode.com/problems/intersection-of-two-linked-lists/description/](https://leetcode.com/problems/intersection-of-two-linked-lists/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+from typing import Optional
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        if not headA or not headB:
+            return None
+
+        ptrA, ptrB = headA, headB
+
+        # List A:     A1 → A2 → A3
+        # List B: B1 → B2 → B3 → B4 → B5
+
+        # ptrA path: A1 → A2 → A3 → B1 → B2 → B3 → B4 → B5 → None  
+        # ptrB path: B1 → B2 → B3 → B4 → B5 → A1 → A2 → A3 → None
+        while ptrA != ptrB:
+            # Move each pointer to the next node, or switch lists at the end
+            ptrA = ptrA.next if ptrA else headB
+            ptrB = ptrB.next if ptrB else headA
+
+        # They either meet at the intersection or both become None (no intersection)
+        return ptrA
+
+</code>
+</pre>
+</details>
+
+## 45.47. Intersection of Two Arrays
+
+Ref: [https://leetcode.com/problems/intersection-of-two-arrays/description/](https://leetcode.com/problems/intersection-of-two-arrays/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return list(set(nums1) & set(nums2))
+
+</code>
+</pre>
+</details>
+
+## 45.47. Intersection of Two Arrays 2 (Hay)
+
+Ref: [https://leetcode.com/problems/intersection-of-two-arrays-ii/description/](https://leetcode.com/problems/intersection-of-two-arrays-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import Counter
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        counts1 = Counter(nums1)
+        result = []
+        
+        for num in nums2:
+            if counts1[num] > 0:
+                result.append(num)
+                counts1[num] -= 1
+        
+        return result
+
+</code>
+</pre>
+</details>
+
+---
+
+**SubString**
+
+## 45.48. Find the Index of the First Occurrence in a String
+
+Ref: [https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if not needle:
+            return 0
+
+        for i in range(len(haystack) - len(needle) + 1):
+            if haystack[i:i + len(needle)] == needle:
+                return i
+        return -1
+
+</code>
+</pre>
+</details>
+
+## 45.49. Longest Word in Dictionary through Deleting
+
+Ref: [https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/description/](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findLongestWord(self, s: str, dictionary: List[str]) -> str:
+        def is_subsequence(word: str, s: str) -> bool:
+            # Check if word is a subsequence of s
+            i = 0
+            for char in s:
+                if i < len(word) and word[i] == char:
+                    i += 1
+            return i == len(word)
+        
+        longest = ""
+        for word in dictionary:
+            if is_subsequence(word, s):
+                if len(word) > len(longest) or (len(word) == len(longest) and word < longest):
+                    longest = word
+        return longest
+
+</code>
+</pre>
+</details>
+
+## 45.50. Long Pressed Name (Hay, Không dùng is_subsequence được)
+
+Ref: [https://leetcode.com/problems/long-pressed-name/description/](https://leetcode.com/problems/long-pressed-name/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def isLongPressedName(self, name: str, typed: str) -> bool:
+        i = j = 0  # i for name, j for typed
+
+        while j < len(typed):
+            if i < len(name) and name[i] == typed[j]:
+                i += 1
+                j += 1
+            elif j > 0 and typed[j] == typed[j - 1]:
+                j += 1
+            else:
+                return False
+        
+        return i == len(name)
+
+</code>
+</pre>
+</details>
