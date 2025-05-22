@@ -7827,6 +7827,351 @@ class Solution:
 
 # 23. Pattern 23: Trie
 
+## 23.1. Implement Trie (Prefix Tree)
+
+Ref: [https://leetcode.com/problems/implement-trie-prefix-tree/description/](https://leetcode.com/problems/implement-trie-prefix-tree/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+
+class Trie:
+
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str) -> None:
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_of_word = True
+
+    def search(self, word: str) -> bool:
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_end_of_word
+
+    def startsWith(self, prefix: str) -> bool:
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return True
+
+
+# Example usage:
+# obj = Trie()
+# obj.insert("apple")
+# param_2 = obj.search("apple")  # Returns True
+# param_3 = obj.startsWith("app")  # Returns True
+
+</code>
+</pre>
+</details>
+
+## 23.2. Longest Word in Dictionary (All Prefix is in the list)
+
+Ref: [https://leetcode.com/problems/longest-word-in-dictionary/description/](https://leetcode.com/problems/longest-word-in-dictionary/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.word = None  # store the word at the end node for retrieval
+
+class Solution:
+    def longestWord(self, words: List[str]) -> str:
+        root = TrieNode()
+
+        # Insert words into the Trie
+        for word in words:
+            node = root
+            for char in word:
+                if char not in node.children:
+                    node.children[char] = TrieNode()
+                node = node.children[char]
+            node.word = word  # mark the end of the word
+
+        # DFS to find the longest valid word
+        stack = list(root.children.values())
+        longest = ""
+
+        while stack:
+            node = stack.pop()
+            if node.word is not None:  # only consider complete words
+                if len(node.word) > len(longest) or \
+                   (len(node.word) == len(longest) and node.word < longest):
+                    longest = node.word
+                for child in node.children.values():
+                    stack.append(child)
+
+        return longest
+
+</code>
+</pre>
+</details>
+
+## 23.3. Map Sum Pairs
+
+Ref: [https://leetcode.com/problems/map-sum-pairs/description/](https://leetcode.com/problems/map-sum-pairs/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class MapSum:
+
+    def __init__(self):
+        self.map = {}
+
+    def insert(self, key: str, val: int) -> None:
+        self.map[key] = val
+
+    def sum(self, prefix: str) -> int:
+        total = 0
+        for k in self.map:
+            if k.startswith(prefix):
+                total += self.map[k]
+        return total
+
+
+# Your MapSum object will be instantiated and called as such:
+# obj = MapSum()
+# obj.insert(key,val)
+# param_2 = obj.sum(prefix)
+
+</code>
+</pre>
+</details>
+
+## 23.4. Word Search II
+
+Ref: [https://leetcode.com/problems/word-search-ii/description/](https://leetcode.com/problems/word-search-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.word = None  # Stores the complete word at the end node
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        root = TrieNode()
+
+        # Build Trie from the words list
+        for word in words:
+            node = root
+            for char in word:
+                if char not in node.children:
+                    node.children[char] = TrieNode()
+                node = node.children[char]
+            node.word = word  # Mark the end of a word
+
+        rows, cols = len(board), len(board[0])
+        result = []
+
+        def dfs(r, c, node):
+            char = board[r][c]
+            if char not in node.children:
+                return
+
+            next_node = node.children[char]
+            if next_node.word:
+                result.append(next_node.word)
+                next_node.word = None  # Avoid duplicates
+
+            board[r][c] = '#'  # Mark visited
+
+            for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:  # Up, Down, Left, Right
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < rows and 0 <= nc < cols and board[nr][nc] != '#':
+                    dfs(nr, nc, next_node)
+
+            board[r][c] = char  # Restore after DFS
+
+            # Optional optimization: prune the Trie
+            if not next_node.children:
+                del node.children[char]
+
+        for r in range(rows):
+            for c in range(cols):
+                dfs(r, c, root)
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 23.5. Maximum XOR of Two Numbers in an Array
+
+Ref: [https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/description/](https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+
+class Solution:
+    def findMaximumXOR(self, nums: List[int]) -> int:
+        # Build the Trie
+        root = TrieNode()
+        for num in nums:
+            node = root
+            for i in range(31, -1, -1):  # 32-bit integer
+                bit = (num >> i) & 1
+                if bit not in node.children:
+                    node.children[bit] = TrieNode()
+                node = node.children[bit]
+        
+        # Find maximum XOR
+        max_xor = 0
+        for num in nums:
+            node = root
+            curr_xor = 0
+            for i in range(31, -1, -1):
+                bit = (num >> i) & 1
+                toggled_bit = 1 - bit
+                if toggled_bit in node.children:
+                    curr_xor |= (1 << i)
+                    node = node.children[toggled_bit]
+                else:
+                    node = node.children[bit]
+            max_xor = max(max_xor, curr_xor)
+        
+        return max_xor
+
+</code>
+</pre>
+</details>
+
+## 23.6. Design Add and Search Words Data Structure
+
+Ref: [https://leetcode.com/problems/design-add-and-search-words-data-structure/description/](https://leetcode.com/problems/design-add-and-search-words-data-structure/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end = False
+
+class WordDictionary:
+
+    def __init__(self):
+        self.root = TrieNode()
+
+    def addWord(self, word: str) -> None:
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end = True
+
+    def search(self, word: str) -> bool:
+        def dfs(node, i):
+            if i == len(word):
+                return node.is_end
+            if word[i] == '.':
+                for child in node.children.values():
+                    if dfs(child, i + 1):
+                        return True
+                return False
+            if word[i] in node.children:
+                return dfs(node.children[word[i]], i + 1)
+            return False
+
+        return dfs(self.root, 0)
+
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
+
+</code>
+</pre>
+</details>
+
+## 23.7. Replace Words
+
+Ref: [https://leetcode.com/problems/replace-words/description/](https://leetcode.com/problems/replace-words/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.word = None  # Store word at end of root
+
+class Solution:
+    def replaceWords(self, dictionary: List[str], sentence: str) -> str:
+        # Build Trie from dictionary
+        root = TrieNode()
+        for word in dictionary:
+            node = root
+            for char in word:
+                if char not in node.children:
+                    node.children[char] = TrieNode()
+                node = node.children[char]
+            node.word = word  # Mark end of a root word
+
+        def replace(word):
+            node = root
+            for char in word:
+                if char not in node.children:
+                    break
+                node = node.children[char]
+                if node.word:
+                    return node.word
+            return word
+
+        return ' '.join(replace(w) for w in sentence.split())
+
+</code>
+</pre>
+</details>
+
 # 24. Pattern 24: Union Find
 
 # 25. Pattern 25: Ordered Set
