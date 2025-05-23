@@ -7008,7 +7008,13 @@ class Solution:
 
 # 21. Pattern 21: Greedy Algorithms
 
-## 22.1. Jump Game
+---
+
+**Sort/Array**
+
+---
+
+## 21.1. Jump Game
 
 Ref: [https://leetcode.com/problems/jump-game/description/](https://leetcode.com/problems/jump-game/description/)
 
@@ -7033,7 +7039,35 @@ class Solution:
 </pre>
 </details>
 
-## 2.2. Ugly Number II (Heap)
+## 23.2. Jump Game II
+
+Ref: [https://leetcode.com/problems/jump-game-ii/description/](https://leetcode.com/problems/jump-game-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        jumps = 0
+        current_end = 0
+        farthest = 0
+
+        # [0, 2]
+        for i in range(len(nums) - 1):
+            farthest = max(farthest, i + nums[i])
+            if i == current_end:
+                jumps += 1
+                current_end = farthest
+
+        return jumps
+
+</code>
+</pre>
+</details>
+
+## 21.3. Ugly Number II (Heap)
 
 Ref: [https://leetcode.com/problems/ugly-number-ii/description/](https://leetcode.com/problems/ugly-number-ii/description/)
 
@@ -7060,6 +7094,165 @@ class Solution:
         
         return ugly
 
+</code>
+</pre>
+</details>
+
+## 21.4. Gas Station
+
+Ref: [https://leetcode.com/problems/gas-station/description/](https://leetcode.com/problems/gas-station/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        # O(N)
+        total_gas = 0
+        total_cost = 0
+        tank = 0
+        start = 0
+
+        for i in range(len(gas)):
+            total_gas += gas[i]
+            total_cost += cost[i]
+
+            # No need to add gas[i + 1] — it gets picked up in the next loop iteration.
+            tank += gas[i] - cost[i]
+
+            if tank < 0:
+                # Can't reach this station from previous start
+                start = i + 1
+                tank = 0
+
+        return start if total_gas >= total_cost else -1
+
+</code>
+</pre>
+</details>
+
+## 21.5. Candy
+
+Ref: [https://leetcode.com/problems/candy/description/](https://leetcode.com/problems/candy/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        # Greedy
+        n = len(ratings)
+        candies = [1] * n
+
+        # Left to right
+        for i in range(1, n):
+            if ratings[i] > ratings[i - 1]:
+                candies[i] = candies[i - 1] + 1
+
+        # Right to left
+        for i in range(n - 2, -1, -1):
+            if ratings[i] > ratings[i + 1]:
+                candies[i] = max(candies[i], candies[i + 1] + 1)
+
+        return sum(candies)
+
+</code>
+</pre>
+</details>
+
+## 21.6. Remove K Digits
+
+Ref: [https://leetcode.com/problems/remove-k-digits/description/](https://leetcode.com/problems/remove-k-digits/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        stack = []
+
+        for digit in num:
+            while k > 0 and stack and stack[-1] > digit:
+                stack.pop()
+                k -= 1
+            stack.append(digit)
+
+        # If k > 0, remove the last k digits
+        stack = stack[:-k] if k else stack
+
+        # Convert to string and remove leading zeros
+        result = ''.join(stack).lstrip('0')
+
+        return result if result else "0"
+
+</code>
+</pre>
+</details>
+
+## 21.7. Wiggle Subsequence
+
+Ref: [https://leetcode.com/problems/wiggle-subsequence/description/](https://leetcode.com/problems/wiggle-subsequence/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+
+        n = len(nums)
+        up = down = 1
+
+        # If the sequence goes up, we can extend the last down sequence.
+        # If it goes down, we can extend the last up sequence.
+        for i in range(1, n):
+            if nums[i] > nums[i - 1]:
+                up = down + 1
+            elif nums[i] < nums[i - 1]:
+                down = up + 1
+
+        return max(up, down)
+
+</code>
+</pre>
+</details>
+
+## 21.8. Assign Cookies (Hay)
+
+Ref: [https://leetcode.com/problems/assign-cookies/submissions/1641721832/](https://leetcode.com/problems/assign-cookies/submissions/1641721832/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        # Sort both arrays
+        g.sort()
+        s.sort()
+
+        # Two pointers for greed factors and cookie sizes
+        child = cookie = 0
+
+        # Try to satisfy each child with the smallest sufficient cookie
+        while child < len(g) and cookie < len(s):
+            if s[cookie] >= g[child]:
+                # Cookie satisfies this child
+                child += 1
+            # Move to the next cookie
+            cookie += 1
+
+        return child
 </code>
 </pre>
 </details>
@@ -11313,6 +11506,311 @@ class Solution:
                 return False
         
         return i == len(name)
+
+</code>
+</pre>
+</details>
+
+# 46. Bit Manipulation
+
+---
+
+**Gray code**
+
+## 46.1. Gray code
+
+Ref: [https://leetcode.com/problems/gray-code/](https://leetcode.com/problems/gray-code/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def grayCode(self, n: int) -> List[int]:
+        result = []
+        for i in range(1 << n):  # 2^n combinations
+            result.append(i ^ (i >> 1))
+        return result
+
+</code>
+</pre>
+</details>
+
+## 46.2. Circular Permutation in Binary Representation
+
+Ref: [https://leetcode.com/problems/circular-permutation-in-binary-representation/description/](https://leetcode.com/problems/circular-permutation-in-binary-representation/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def circularPermutation(self, n: int, start: int) -> List[int]:
+        # Step 1: Generate the standard Gray code sequence
+        gray_codes = [i ^ (i >> 1) for i in range(1 << n)]
+        
+        # Step 2: Find the index of the starting number
+        start_index = gray_codes.index(start)
+        
+        # Step 3: Rotate the sequence so it starts from `start`
+        return gray_codes[start_index:] + gray_codes[:start_index]
+
+</code>
+</pre>
+</details>
+
+---
+
+**Power of n**
+
+## 46.3. Power of Two
+
+Ref: [https://leetcode.com/problems/power-of-two/description/](https://leetcode.com/problems/power-of-two/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        return n > 0 and (n & (n - 1)) == 0
+
+</code>
+</pre>
+</details>
+
+## 46.4. Power of Three
+
+Ref: [https://leetcode.com/problems/power-of-three/description/](https://leetcode.com/problems/power-of-three/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        if n < 1:
+            return False
+        while n % 3 == 0:
+            n //= 3
+        return n == 1
+
+</code>
+</pre>
+</details>
+
+## 46.5. Power of Four
+
+Ref: [https://leetcode.com/problems/power-of-four/description/](https://leetcode.com/problems/power-of-four/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def isPowerOfFour(self, n: int) -> bool:
+        return n > 0 and (n & (n - 1)) == 0 and (n & 0x55555555) != 0
+
+</code>
+</pre>
+</details>
+
+---
+
+**Question on the Basic Prop of xor**
+
+## 46.6. Single Number
+
+Ref: [https://leetcode.com/problems/single-number/description/](https://leetcode.com/problems/single-number/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        result = 0
+        for num in nums:
+            result ^= num  # XOR cancels out duplicates
+        return result
+
+
+</code>
+</pre>
+</details>
+
+## 46.7. Single Number II
+
+Ref: [https://leetcode.com/problems/single-number/](https://leetcode.com/problems/single-number/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        result = 0
+        for i in range(32):
+            bit_sum = sum((num >> i) & 1 for num in nums)
+            if bit_sum % 3 != 0:
+                result |= (1 << i)
+
+        # Handle negative numbers (since Python ints are not limited to 32-bit)
+        if result >= 2**31:
+            result -= 2**32
+        return result
+
+</code>
+</pre>
+</details>
+
+## 46.8. Single Number III
+
+Ref: [https://leetcode.com/problems/single-number-iii/description/](https://leetcode.com/problems/single-number-iii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        # Step 1: XOR all numbers. The result is the XOR of the two unique numbers.
+        xor_all = 0
+        for num in nums:
+            xor_all ^= num
+        
+        # Step 2: Find a bit that is set (i.e., 1) in xor_all.
+        # This bit is different between the two unique numbers.
+        diff_bit = xor_all & -xor_all
+        
+        # Step 3: Divide numbers into two groups and XOR separately.
+        result = [0, 0]
+        for num in nums:
+            if num & diff_bit:
+                result[0] ^= num
+            else:
+                result[1] ^= num
+                
+        return result
+
+</code>
+</pre>
+</details>
+
+## 46.9. Find The Original Array of Prefix Xor
+
+Ref: [https://leetcode.com/problems/find-the-original-array-of-prefix-xor/description/](https://leetcode.com/problems/find-the-original-array-of-prefix-xor/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def findArray(self, pref: List[int]) -> List[int]:
+        n = len(pref)
+        arr = [0] * n
+        arr[0] = pref[0]
+        for i in range(1, n):
+            arr[i] = pref[i] ^ pref[i - 1]
+        return arr
+
+</code>
+</pre>
+</details>
+
+## 46.10. Maximum XOR of Two Numbers in an Array
+
+Ref: [https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/description/](https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}  # keys: 0 or 1
+
+class Solution:
+    def findMaximumXOR(self, nums: List[int]) -> int:
+        # Build Trie
+        root = TrieNode()
+        for num in nums:
+            node = root
+            for i in range(31, -1, -1):  # 32-bit integers
+                bit = (num >> i) & 1
+                if bit not in node.children:
+                    node.children[bit] = TrieNode()
+                node = node.children[bit]
+        
+        max_xor = 0
+        for num in nums:
+            node = root
+            curr_xor = 0
+            for i in range(31, -1, -1):
+                bit = (num >> i) & 1
+                opposite = 1 - bit
+                if opposite in node.children:
+                    curr_xor |= (1 << i)
+                    node = node.children[opposite]
+                else:
+                    node = node.children.get(bit, node)
+            max_xor = max(max_xor, curr_xor)
+        
+        return max_xor
+
+</code>
+</pre>
+</details>
+
+## 46.11. XOR Queries of a Subarray
+
+Ref: [https://leetcode.com/problems/xor-queries-of-a-subarray/description/](https://leetcode.com/problems/xor-queries-of-a-subarray/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
+        n = len(arr)
+        prefix = [0] * n
+        prefix[0] = arr[0]
+        
+        for i in range(1, n):
+            prefix[i] = prefix[i - 1] ^ arr[i]
+        
+        result = []
+        for l, r in queries:
+            if l == 0:
+                result.append(prefix[r])
+            else:
+                result.append(prefix[r] ^ prefix[l - 1])
+        
+        return result
+
 
 </code>
 </pre>
