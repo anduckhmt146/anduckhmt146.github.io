@@ -7257,6 +7257,254 @@ class Solution:
 </pre>
 </details>
 
+## 21.9. Boats to Save People
+
+Ref: [https://leetcode.com/problems/boats-to-save-people/description/](https://leetcode.com/problems/boats-to-save-people/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        people.sort()
+        left = 0
+        right = len(people) - 1
+        boats = 0
+
+        while left <= right:
+            if people[left] + people[right] <= limit:
+                left += 1  # one boat for both
+            right -= 1  # heaviest person always goes
+            boats += 1
+
+        return boats
+
+</code>
+</pre>
+</details>
+
+## 22.10. Bag of Tokens
+
+Ref: [https://leetcode.com/problems/bag-of-tokens/description/](https://leetcode.com/problems/bag-of-tokens/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
+        tokens.sort()
+        score = max_score = 0
+        i, j = 0, len(tokens) - 1
+        
+        while i <= j:
+            if power >= tokens[i]:
+                power -= tokens[i]
+                score += 1
+                i += 1
+                max_score = max(max_score, score)
+            elif score >= 1:
+                power += tokens[j]
+                score -= 1
+                j -= 1
+            else:
+                break
+        
+        return max_score
+
+</code>
+</pre>
+</details>
+
+## 22.11. Number of Burgers with No Waste of Ingredients
+
+Ref: [https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/description/](https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
+        tokens.sort()
+        score = max_score = 0
+        i, j = 0, len(tokens) - 1
+        
+        while i <= j:
+            if power >= tokens[i]:
+                power -= tokens[i]
+                score += 1
+                i += 1
+                max_score = max(max_score, score)
+            elif score >= 1:
+                power += tokens[j]
+                score -= 1
+                j -= 1
+            else:
+                break
+        
+        return max_score
+
+</code>
+</pre>
+</details>
+
+## 22.12. Number of Burgers with No Waste of Ingredients
+
+Ref: [https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/description/](https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def numOfBurgers(self, tomatoSlices: int, cheeseSlices: int) -> List[int]:
+        x = (tomatoSlices - 2 * cheeseSlices) // 2
+        y = cheeseSlices - x
+
+        # Check that x and y are non-negative and valid
+        if x < 0 or y < 0 or 4 * x + 2 * y != tomatoSlices or x + y != cheeseSlices:
+            return []
+        
+        return [x, y]
+
+</code>
+</pre>
+</details>
+
+## 22.13. Queue Reconstruction by Height
+
+Ref: [https://leetcode.com/problems/queue-reconstruction-by-height/description/](https://leetcode.com/problems/queue-reconstruction-by-height/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+        people.sort(key=lambda x: (-x[0], x[1]))
+        
+        queue = []
+        for person in people:
+            queue.insert(person[1], person)
+        return queue
+
+</code>
+</pre>
+</details>
+
+## 22.14. Minimum Cost to Move Chips to The Same Position
+
+Ref: [https://leetcode.com/problems/minimum-cost-to-move-chips-to-the-same-position/description/](https://leetcode.com/problems/minimum-cost-to-move-chips-to-the-same-position/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def minCostToMoveChips(self, position: List[int]) -> int:
+        even = sum(1 for p in position if p % 2 == 0)
+        odd = len(position) - even
+        return min(even, odd)
+
+</code>
+</pre>
+</details>
+
+## 22.15. Previous Permutation With One Swap
+
+Ref: [https://leetcode.com/problems/previous-permutation-with-one-swap/description/](https://leetcode.com/problems/previous-permutation-with-one-swap/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def prevPermOpt1(self, arr: List[int]) -> List[int]:
+        n = len(arr)
+        
+        # Step 1: Find the first index i such that arr[i] > arr[i + 1] from the right
+        i = n - 2
+        while i >= 0 and arr[i] <= arr[i + 1]:
+            i -= 1
+        
+        if i < 0:
+            return arr  # Already the smallest permutation
+        
+        # Step 2: Find the largest j > i such that arr[j] < arr[i]
+        # and arr[j] is the rightmost occurrence of that value
+        j = n - 1
+        while arr[j] >= arr[i]:
+            j -= 1
+        
+        # Move to the leftmost j that has the same value (to avoid unnecessary swaps)
+        while j - 1 > i and arr[j] == arr[j - 1]:
+            j -= 1
+        
+        # Step 3: Swap arr[i] and arr[j]
+        arr[i], arr[j] = arr[j], arr[i]
+        
+        return arr
+
+</code>
+</pre>
+</details>
+
+## 22.16. Lemonade Change (Hay)
+
+Ref: [https://leetcode.com/problems/lemonade-change/description/](https://leetcode.com/problems/lemonade-change/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def lemonadeChange(self, bills: List[int]) -> bool:
+        five, ten = 0, 0
+        
+        for bill in bills:
+            if bill == 5:
+                five += 1
+            elif bill == 10:
+                if five == 0:
+                    return False
+                five -= 1
+                ten += 1
+            else:  # bill == 20
+                if ten > 0 and five > 0:
+                    ten -= 1
+                    five -= 1
+                elif five >= 3:
+                    five -= 3
+                else:
+                    return False
+        return True
+
+</code>
+</pre>
+</details>
+
 # 22. Pattern 22: Backtracking
 
 ## 22.1. Permutations
