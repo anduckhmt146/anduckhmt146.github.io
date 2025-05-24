@@ -7505,6 +7505,532 @@ class Solution:
 </pre>
 </details>
 
+---
+
+**Hash/Multi-set**
+
+## 22.17. Task Scheduler
+
+Ref: [https://leetcode.com/problems/task-scheduler/description/](https://leetcode.com/problems/task-scheduler/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter, deque
+
+class Solution:
+    def leastInterval(self, tasks, n):
+        time = 0
+        task_counts = Counter(tasks)
+        cooldown = {}  # task -> next available time
+
+        while task_counts:
+            available = [task for task in task_counts if cooldown.get(task, 0) <= time]
+
+            if available:
+                # Choose task with highest remaining count
+                task = max(available, key=lambda x: task_counts[x])
+                task_counts[task] -= 1
+                if task_counts[task] == 0:
+                    del task_counts[task]
+                cooldown[task] = time + n + 1
+
+            time += 1
+
+        return time
+
+</code>
+</pre>
+</details>
+
+## 22.18. Partition Labels
+
+Ref: [https://leetcode.com/problems/partition-labels/description/](https://leetcode.com/problems/partition-labels/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        # Step 1: Record the last occurrence of each character
+        last_index = {char: idx for idx, char in enumerate(s)}
+        
+        result = []
+        start = 0
+        end = 0
+        
+        # Step 2: Iterate through the string to find partitions
+        for i, char in enumerate(s):
+            end = max(end, last_index[char])
+            if i == end:
+                result.append(end - start + 1)
+                start = i + 1
+        
+        return result
+
+</code>
+</pre>
+</details>
+
+## 22.19. Car Pooling
+
+Ref: [https://leetcode.com/problems/car-pooling/description/](https://leetcode.com/problems/car-pooling/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        # Use a list to store the change in passengers at each location
+        passenger_changes = [0] * 1001  # Locations range from 0 to 1000
+        
+        for num_passengers, start, end in trips:
+            passenger_changes[start] += num_passengers
+            passenger_changes[end] -= num_passengers
+        
+        current_passengers = 0
+        for passengers in passenger_changes:
+            current_passengers += passengers
+            if current_passengers > capacity:
+                return False
+        
+        return True
+
+</code>
+</pre>
+</details>
+
+## 22.20. Divide Array in Sets of K Consecutive Numbers
+
+Ref: [https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/description/](https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import Counter
+import heapq
+
+class Solution:
+    def isPossibleDivide(self, nums: List[int], k: int) -> bool:
+        if len(nums) % k != 0:
+            return False
+        
+        count = Counter(nums)
+        min_heap = list(count.keys())
+        heapq.heapify(min_heap)
+        
+        while min_heap:
+            first = min_heap[0]
+            for i in range(first, first + k):
+                if count[i] == 0:
+                    return False
+                count[i] -= 1
+                if count[i] == 0:
+                    if i != min_heap[0]:
+                        return False
+                    heapq.heappop(min_heap)
+        
+        return True
+
+</code>
+</pre>
+</details>
+
+## 22.21. Group the People Given the Group Size They Belong To
+
+Ref: [https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/description/](https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def groupThePeople(self, groupSizes: List[int]) -> List[List[int]]:
+        size_to_people = defaultdict(list)
+        result = []
+
+        for person, size in enumerate(groupSizes):
+            size_to_people[size].append(person)
+            # Once a group of the correct size is formed, add it to result
+            if len(size_to_people[size]) == size:
+                result.append(size_to_people[size])
+                size_to_people[size] = []
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 22.22. Cinema Seat Allocation
+
+Ref: [https://leetcode.com/problems/cinema-seat-allocation/description/](https://leetcode.com/problems/cinema-seat-allocation/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def maxNumberOfFamilies(self, n: int, reservedSeats: List[List[int]]) -> int:
+        reserved = defaultdict(set)
+        
+        for row, seat in reservedSeats:
+            reserved[row].add(seat)
+        
+        max_families = 0
+        
+        for row in reserved:
+            taken = reserved[row]
+            # Check three possible blocks of 4 contiguous seats:
+            # Block A: seats 2-5, Block B: seats 4-7, Block C: seats 6-9
+            can_place_left = all(seat not in taken for seat in range(2, 6))
+            can_place_right = all(seat not in taken for seat in range(6, 10))
+            can_place_middle = all(seat not in taken for seat in range(4, 8))
+
+            if can_place_left and can_place_right:
+                max_families += 2
+            elif can_place_left or can_place_right or can_place_middle:
+                max_families += 1
+            # Else: no family can be placed in this row
+
+        # Rows without any reserved seats can accommodate 2 families
+        rows_without_reservations = n - len(reserved)
+        max_families += rows_without_reservations * 2
+        
+        return max_families
+
+</code>
+</pre>
+</details>
+
+## 22.23. Construct K Palindrome Strings
+
+Ref: [https://leetcode.com/problems/construct-k-palindrome-strings/description/](https://leetcode.com/problems/construct-k-palindrome-strings/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import Counter
+
+class Solution:
+    def canConstruct(self, s: str, k: int) -> bool:
+        if len(s) < k:
+            return False  # Not enough characters to make k palindromes
+
+        char_counts = Counter(s)
+        odd_count = sum(1 for count in char_counts.values() if count % 2 != 0)
+
+        return odd_count <= k
+
+</code>
+</pre>
+</details>
+
+## 22.24. Advantage Shuffle
+
+Ref: [https://leetcode.com/problems/advantage-shuffle/description/](https://leetcode.com/problems/advantage-shuffle/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def advantageCount(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        max_heap = [(-val, idx) for idx, val in enumerate(nums2)]
+        heapq.heapify(max_heap)
+
+        result = [0] * len(nums1)
+        low = 0
+        high = len(nums1) - 1
+
+        while max_heap:
+            val, idx = heapq.heappop(max_heap)
+            val = -val
+            # If the largest in nums1 can beat the largest in nums2
+            if nums1[high] > val:
+                result[idx] = nums1[high]
+                high -= 1
+            else:
+                # Use the smallest number — sacrifice it
+                result[idx] = nums1[low]
+                low += 1
+
+        return result
+
+</code>
+</pre>
+</details>
+
+---
+
+**Strings**
+
+## 22.25. Reorganize String
+
+Ref: [https://leetcode.com/problems/reorganize-string/](https://leetcode.com/problems/reorganize-string/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+from collections import Counter
+
+class Solution:
+    # To avoid having the same characters next to each other, you want to spread out the most frequent characters as evenly as possible.
+    def reorganizeString(self, s: str) -> str:
+        # Step 1: Count the frequency of each character
+        count = Counter(s)
+
+        if any(freq > (len(s) + 1) // 2 for freq in count.values()):
+            return ""
+
+        max_heap = [(-freq, char) for char, freq in count.items()]
+        heapq.heapify(max_heap)
+
+        prev_freq, prev_char = 0, ''
+        result = []
+
+        while max_heap:
+            freq, char = heapq.heappop(max_heap)
+            result.append(char)
+
+            # If the previous character can still be used, push it back
+            if prev_freq < 0:
+                heapq.heappush(max_heap, (prev_freq, prev_char))
+
+            # Update previous character to the current one
+            prev_freq, prev_char = freq + 1, char  # since freq is negative
+
+        reorganized = ''.join(result)
+
+        # Final check: if the result is valid
+        for i in range(1, len(reorganized)):
+            if reorganized[i] == reorganized[i - 1]:
+                return ""
+        
+        return reorganized
+
+</code>
+</pre>
+</details>
+
+## 22.26. String Without AAA or BBB
+
+Ref: [https://leetcode.com/problems/string-without-aaa-or-bbb/description/](https://leetcode.com/problems/string-without-aaa-or-bbb/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def strWithout3a3b(self, a: int, b: int) -> str:
+        result = []
+        
+        while a > 0 or b > 0:
+            if a > b:
+                if a >= 2:
+                    result.append('aa')
+                    a -= 2
+                else:
+                    result.append('a')
+                    a -= 1
+                if b > 0:
+                    result.append('b')
+                    b -= 1
+            elif b > a:
+                if b >= 2:
+                    result.append('bb')
+                    b -= 2
+                else:
+                    result.append('b')
+                    b -= 1
+                if a > 0:
+                    result.append('a')
+                    a -= 1
+            else:  # a == b
+                result.append('ab' * a)
+                break
+
+        return ''.join(result)
+
+</code>
+</pre>
+</details>
+
+## 22.27. Check If a String Can Break Another String
+
+Ref: [https://leetcode.com/problems/check-if-a-string-can-break-another-string/description/](https://leetcode.com/problems/check-if-a-string-can-break-another-string/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def checkIfCanBreak(self, s1: str, s2: str) -> bool:
+        s1_sorted = sorted(s1)
+        s2_sorted = sorted(s2)
+
+        def can_break(a, b):
+            return all(x >= y for x, y in zip(a, b))
+
+        return can_break(s1_sorted, s2_sorted) or can_break(s2_sorted, s1_sorted)
+
+</code>
+</pre>
+</details>
+
+## 22.28. Remove Duplicate Letters (Hay)
+
+Ref: [https://leetcode.com/problems/remove-duplicate-letters/description/](https://leetcode.com/problems/remove-duplicate-letters/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        last_index = {c: i for i, c in enumerate(s)}  # Last occurrence of each character
+        stack = []
+        seen = set()
+
+        for i, c in enumerate(s):
+            if c in seen:
+                continue
+            while stack and c < stack[-1] and i < last_index[stack[-1]]:
+                seen.remove(stack.pop())
+            stack.append(c)
+            seen.add(c)
+
+        return ''.join(stack)
+
+</code>
+</pre>
+</details>
+
+---
+
+**Heap**
+
+## 22.29. Last Stone Weight
+
+Ref: [https://leetcode.com/problems/last-stone-weight/description/](https://leetcode.com/problems/last-stone-weight/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        # Use a max-heap by pushing negative values
+        max_heap = [-stone for stone in stones]
+        heapq.heapify(max_heap)
+
+        while len(max_heap) > 1:
+            first = -heapq.heappop(max_heap)
+            second = -heapq.heappop(max_heap)
+            if first != second:
+                heapq.heappush(max_heap, -(first - second))
+
+        return -max_heap[0] if max_heap else 0
+
+</code>
+</pre>
+</details>
+
+## 22.30. Reduce Array Size to The Half
+
+Ref: [https://leetcode.com/problems/reduce-array-size-to-the-half/description/](https://leetcode.com/problems/reduce-array-size-to-the-half/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import Counter
+import heapq
+
+class Solution:
+    def minSetSize(self, arr: List[int]) -> int:
+        count = Counter(arr)
+        max_heap = [-freq for freq in count.values()]  # Use max-heap
+        heapq.heapify(max_heap)
+        
+        removed = 0
+        total_removed = 0
+        half = len(arr) // 2
+
+        while total_removed < half:
+            freq = -heapq.heappop(max_heap)
+            total_removed += freq
+            removed += 1
+
+        return removed
+
+</code>
+</pre>
+</details>
+
+---
+
+**Stack**
+
+## 22.31. Minimum Add to Make Parentheses Valid
+
+Ref: [https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/description/](https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+        open_needed = 0  # Count of unmatched '('
+        insertions = 0   # Count of insertions needed
+
+        for char in s:
+            if char == '(':
+                open_needed += 1
+            else:  # char == ')'
+                if open_needed > 0:
+                    open_needed -= 1
+                else:
+                    insertions += 1  # Need to insert a '(' before this ')'
+
+        return open_needed + insertions
+
+</code>
+</pre>
+</details>
+
 # 22. Pattern 22: Backtracking
 
 ## 22.1. Permutations
