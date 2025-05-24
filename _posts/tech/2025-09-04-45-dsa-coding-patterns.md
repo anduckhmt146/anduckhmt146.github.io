@@ -4544,7 +4544,852 @@ class Solution:
 </pre>
 </details>
 
-# 15. Pattern 15: 0/1 Knapsack (Dynamic Programming)
+# 15. Pattern 15: Dynamic Programming
+
+---
+
+## Pattern DP-1: 0/1 Knapsack (Chỉ dùng được 1 Item - 1 Quantity)
+
+---
+
+🧭 What is the Knapsack Problem?
+
+- The Knapsack Problem is a classic optimization problem. The goal is:
+
+- Given a list of items, each with a weight and a value, and a knapsack capacity, select a subset of items to maximize total value without exceeding the knapsack's weight capacity.
+
+Template:
+
+**Top Down**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+def solveKnapsack(profits: List[int], weights: List[int], capacity: int) -> int:
+    memo = {}
+
+    def knapsackRecursive(currIndex: int, capacity: int) -> int:
+        # base cases
+        if capacity <= 0 or currIndex >= len(profits):
+            return 0
+
+        if (currIndex, capacity) in memo:
+            return memo[(currIndex, capacity)]
+
+        currentProfit = 0
+        # include the item if possible
+        if weights[currIndex] <= capacity:
+            currentProfit = profits[currIndex] + knapsackRecursive(currIndex + 1, capacity - weights[currIndex])
+
+        # exclude the item
+        profitWithoutCurrent = knapsackRecursive(currIndex + 1, capacity)
+
+        memo[(currIndex, capacity)] = max(currentProfit, profitWithoutCurrent)
+        return memo[(currIndex, capacity)]
+
+    return knapsackRecursive(0, capacity)
+
+
+# Example usage:
+print(f"Total knapsack profit: ---> ${solveKnapsack([1, 6, 10, 16], [1, 2, 3, 5], 7)}")
+print(f"Total knapsack profit: ---> ${solveKnapsack([1, 6, 10, 16], [1, 2, 3, 5], 6)}")
+
+</code>
+</pre>
+</details>
+
+**Bottom Up**
+
+<details>
+<summary>Code</summary>
+from typing import List
+
+def solveKnapsack(profits: List[int], weights: List[int], capacity: int) -> int:
+n = len(profits)
+
+    if capacity <= 0 or n == 0 or len(weights) != n:
+        return 0
+
+    # initialize dp array: n rows, capacity+1 cols
+    dp = [[0 for _ in range(capacity + 1)] for _ in range(n)]
+
+    # populate capacity=0 columns; profit is 0 if capacity is zero
+    for i in range(n):
+        dp[i][0] = 0
+
+    # fill first row (only one item)
+    for c in range(capacity + 1):
+        if weights[0] <= c:
+            dp[0][c] = profits[0]
+
+    # process all items for all capacities
+    for i in range(1, n):
+        for c in range(1, capacity + 1):
+            profit_with_i = 0
+            profit_without_i = 0
+
+            # include item if weight allows
+            if weights[i] <= c:
+                profit_with_i = profits[i] + dp[i-1][c - weights[i]]
+
+            # exclude item
+            profit_without_i = dp[i-1][c]
+
+            # choose max
+            dp[i][c] = max(profit_with_i, profit_without_i)
+
+    # answer is in bottom-right corner
+    return dp[n-1][capacity]
+
+# Example usage
+
+print(f"Total knapsack profit: ---> ${solveKnapsack([1, 6, 10, 16], [1, 2, 3, 5], 7)}")
+print(f"Total knapsack profit: ---> ${solveKnapsack([1, 6, 10, 16], [1, 2, 3, 5], 6)}")
+
+<pre>
+<code class="python">
+
+
+</code>
+</pre>
+</details>
+
+## 15.1. Maximum Earnings From Taxi
+
+Ref: [https://leetcode.com/problems/maximum-earnings-from-taxi/description/](https://leetcode.com/problems/maximum-earnings-from-taxi/description/)
+
+![](/images/knapstack.png)
+
+**Top Down**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import bisect
+
+class Solution:
+    def maxTaxiEarnings(self, n: int, rides: List[List[int]]) -> int:
+        # Sort rides by start time
+        rides.sort(key=lambda x: x[0])
+        starts = [ride[0] for ride in rides]
+
+        memo = {}
+
+        def knapsack(currIndex: int) -> int:
+            # Base case
+            if currIndex >= len(rides):
+                return 0
+
+            if currIndex in memo:
+                return memo[currIndex]
+
+            start, end, tip = rides[currIndex]
+            earning = (end - start) + tip
+
+            # Find next ride index that can be taken after this one
+            nextIndex = bisect.bisect_left(starts, end)
+
+            # Option 1: Include current ride + optimal from next compatible ride
+            include = earning + knapsack(nextIndex)
+            # Option 2: Skip current ride
+            exclude = knapsack(currIndex + 1)
+
+            memo[currIndex] = max(include, exclude)
+            return memo[currIndex]
+
+        return knapsack(0)
+
+</code>
+</pre>
+</details>
+
+**Bottom-up**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import bisect
+
+class Solution:
+    def maxTaxiEarnings(self, n: int, rides: List[List[int]]) -> int:
+        # Sort rides by end time to process them in order
+        rides.sort(key=lambda x: x[1])
+        ends = [ride[1] for ride in rides]
+        
+        m = len(rides)
+        # dp[i] will store max earnings considering rides up to i-th (1-indexed)
+        dp = [0] * (m + 1)
+
+        for i in range(1, m + 1):
+            start, end, tip = rides[i - 1]
+            earning = (end - start) + tip
+
+            # Find the last ride that ends before the current ride starts
+            idx = bisect.bisect_right(ends, start)
+            # max earnings if we include current ride
+            include = earning + dp[idx]
+
+            # max earnings if we exclude current ride
+            exclude = dp[i - 1]
+
+            # Take the max of including or excluding the current ride
+            dp[i] = max(include, exclude)
+
+        return dp[m]
+
+</code>
+</pre>
+</details>
+
+## 15.2. Partition Equal Subset Sum
+
+Ref: [https://leetcode.com/problems/partition-equal-subset-sum/description/](https://leetcode.com/problems/partition-equal-subset-sum/description/)
+
+**Top Down**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total_sum = sum(nums)
+        # If sum is odd, partition not possible
+        if total_sum % 2 != 0:
+            return False
+
+        target = total_sum // 2
+        n = len(nums)
+        memo = {}
+
+        def can_find_sum(curr_index: int, curr_sum: int) -> bool:
+            # Base cases
+            if curr_sum == 0:
+                return True
+            if curr_index >= n or curr_sum < 0:
+                return False
+
+            # Check memo
+            if (curr_index, curr_sum) in memo:
+                return memo[(curr_index, curr_sum)]
+
+            # Choose to include nums[curr_index]
+            include = can_find_sum(curr_index + 1, curr_sum - nums[curr_index])
+            # Or exclude nums[curr_index]
+            exclude = can_find_sum(curr_index + 1, curr_sum)
+
+            memo[(curr_index, curr_sum)] = include or exclude
+            return memo[(curr_index, curr_sum)]
+
+        return can_find_sum(0, target)
+
+
+</code>
+</pre>
+</details>
+
+**Bottom-up**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total_sum = sum(nums)
+        # If total sum is odd, can't partition equally
+        if total_sum % 2 != 0:
+            return False
+
+        target = total_sum // 2
+        n = len(nums)
+
+        # dp[i][j] = True if subset of first i numbers can make sum j
+        dp = [[False] * (target + 1) for _ in range(n)]
+
+        # Sum 0 is always possible: take no elements
+        for i in range(n):
+            dp[i][0] = True
+
+        # With only the first number, can we form sum nums[0]?
+        if nums[0] <= target:
+            dp[0][nums[0]] = True
+
+        # Process all subsets
+        for i in range(1, n):
+            for j in range(1, target + 1):
+                # Exclude current number
+                dp[i][j] = dp[i - 1][j]
+
+                # Include current number if it does not exceed the sum
+                if nums[i] <= j:
+                    dp[i][j] = dp[i][j] or dp[i - 1][j - nums[i]]
+
+        return dp[n - 1][target]
+
+</code>
+</pre>
+</details>
+
+## 15.3. Subset Sum Problem
+
+Ref: [https://www.techiedelight.com/subset-sum-problem/](https://www.techiedelight.com/subset-sum-problem/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def subsetSum(self, nums: List[int], target: int) -> bool:
+        memo = {}
+
+        def can_find_sum(curr_index: int, curr_sum: int) -> bool:
+            # Base cases
+            if curr_sum == 0:
+                return True
+            if curr_index >= len(nums) or curr_sum < 0:
+                return False
+
+            # Check memo
+            if (curr_index, curr_sum) in memo:
+                return memo[(curr_index, curr_sum)]
+
+            # Include current number
+            include = can_find_sum(curr_index + 1, curr_sum - nums[curr_index])
+            # Exclude current number
+            exclude = can_find_sum(curr_index + 1, curr_sum)
+
+            memo[(curr_index, curr_sum)] = include or exclude
+            return memo[(curr_index, curr_sum)]
+
+        return can_find_sum(0, target)
+
+</code>
+</pre>
+</details>
+
+## 15.4. Target Sum
+
+Ref: [https://leetcode.com/problems/target-sum/description/](https://leetcode.com/problems/target-sum/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        memo = {}
+
+        def backtrack(index: int, current_sum: int) -> int:
+            # Base case: if at the end of array
+            if index == len(nums):
+                return 1 if current_sum == target else 0
+            
+            # Check memo
+            if (index, current_sum) in memo:
+                return memo[(index, current_sum)]
+
+            # Choose '+'
+            positive = backtrack(index + 1, current_sum + nums[index])
+            # Choose '-'
+            negative = backtrack(index + 1, current_sum - nums[index])
+
+            memo[(index, current_sum)] = positive + negative
+            return memo[(index, current_sum)]
+
+        return backtrack(0, 0)
+
+</code>
+</pre>
+</details>
+
+---
+
+## Pattern DP-2: Unbounded Knapsack (Được dùng nhiều quantity của 1 item)
+
+---
+
+**Top Down**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+def solveKnapsack(profits: List[int], weights: List[int], capacity: int) -> int:
+    dp = {}
+
+    def knapsackRecursive(profits, weights, capacity, currIndex):
+        # base case
+        if capacity <= 0 or currIndex >= len(profits):
+            return 0
+        if len(profits) == 0 or len(profits) != len(weights):
+            return 0
+
+        if (currIndex, capacity) in dp:
+            return dp[(currIndex, capacity)]
+
+        currentProfit = 0
+        # include the item at currIndex if it fits
+        if weights[currIndex] <= capacity:
+            currentProfit = profits[currIndex] + knapsackRecursive(
+                profits, weights, capacity - weights[currIndex], currIndex
+            )
+
+        # exclude the item at currIndex and move to next
+        currentProfitMinusIndexItem = 0
+        if capacity - weights[currIndex] >= 0:  # same as above but careful with capacity
+            currentProfitMinusIndexItem = knapsackRecursive(
+                profits, weights, capacity - weights[currIndex], currIndex + 1
+            )
+        else:
+            # can't include the item, so just move on without reducing capacity
+            currentProfitMinusIndexItem = knapsackRecursive(
+                profits, weights, capacity, currIndex + 1
+            )
+
+        dp[(currIndex, capacity)] = max(currentProfit, currentProfitMinusIndexItem)
+        return dp[(currIndex, capacity)]
+
+    return knapsackRecursive(profits, weights, capacity, 0)
+
+
+profits = [15, 50, 60, 90]
+weights = [1, 3, 4, 5]
+print(f"Total knapsack profit: ---> {solveKnapsack(profits, weights, 8)}")
+
+
+</code>
+</pre>
+</details>
+
+**Bottom Up**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+def solveKnapsack(profits: List[int], weights: List[int], capacity: int) -> int:
+    if capacity <= 0 or len(profits) == 0 or len(profits) != len(weights):
+        return 0
+
+    n = len(profits)
+    dp = [[0] * (capacity + 1) for _ in range(n)]
+
+    # initialize capacity=0 columns with 0 (optional since default is 0)
+    for i in range(n):
+        dp[i][0] = 0
+
+    for i in range(n):
+        for c in range(1, capacity + 1):
+            currentProfit = 0
+            currentProfitMinusIndex = 0
+
+            if weights[i] <= c:
+                # note dp[i][c - weights[i]] allows reusing same item multiple times
+                currentProfit = profits[i] + dp[i][c - weights[i]]
+            if i > 0:
+                currentProfitMinusIndex = dp[i - 1][c]
+
+            dp[i][c] = max(currentProfit, currentProfitMinusIndex)
+
+    # Uncomment this to see dp table
+    # for row in dp:
+    #     print(row)
+
+    return dp[n - 1][capacity]
+
+
+profits = [15, 50, 60, 90]
+weights = [1, 3, 4, 5]
+print(f"Total knapsack profit: ---> {solveKnapsack(profits, weights, 8)}")
+print(f"Total knapsack profit: ---> {solveKnapsack(profits, weights, 6)}")
+
+</code>
+</pre>
+</details>
+
+## 15.5. Coin Change
+
+Ref: [https://leetcode.com/problems/coin-change/](https://leetcode.com/problems/coin-change/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        memo = {}
+
+        def dp(rem: int) -> int:
+            # Base case: if amount is 0, we need 0 coins
+            if rem == 0:
+                return 0
+            # If amount becomes negative, no solution
+            if rem < 0:
+                return float('inf')
+            # If already computed, return cached result
+            if rem in memo:
+                return memo[rem]
+
+            # Try every coin and choose the best (min)
+            min_coins = float('inf')
+            for coin in coins:
+                res = dp(rem - coin)
+                if res != float('inf'):
+                    min_coins = min(min_coins, res + 1)
+
+            memo[rem] = min_coins
+            return min_coins
+
+        result = dp(amount)
+        return result if result != float('inf') else -1
+
+</code>
+</pre>
+</details>
+
+## 15.6. Coin Change II
+
+Ref: [https://leetcode.com/problems/coin-change-ii/description/](https://leetcode.com/problems/coin-change-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        memo = {}
+
+        def count_ways(index: int, remaining: int) -> int:
+            # Base cases
+            if remaining == 0:
+                return 1
+            if index == len(coins):
+                return 0
+
+            # Check memo
+            if (index, remaining) in memo:
+                return memo[(index, remaining)]
+
+            # Choose the coin
+            pick = 0
+            if coins[index] <= remaining:
+                pick = count_ways(index, remaining - coins[index])
+            # Skip the coin
+            skip = count_ways(index + 1, remaining)
+
+            memo[(index, remaining)] = pick + skip
+            return memo[(index, remaining)]
+
+        return count_ways(0, amount)
+
+</code>
+</pre>
+</details>
+
+## 15.7. Maximum Ribbon Cut
+
+Ref: [https://leetcode.com/problems/cutting-ribbons/](https://leetcode.com/problems/cutting-ribbons/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def maxRibbonPieces(self, ribbonLengths: List[int], total: int) -> int:
+        n = len(ribbonLengths)
+        dp = [[float('-inf')] * (total + 1) for _ in range(n)]
+
+        # Base case: zero total length => zero pieces
+        for i in range(n):
+            dp[i][0] = 0
+
+        for i in range(n):
+            for t in range(1, total + 1):
+                if i > 0:
+                    # Exclude current ribbon length
+                    dp[i][t] = dp[i - 1][t]
+
+                if t >= ribbonLengths[i] and dp[i][t - ribbonLengths[i]] != float('-inf'):
+                    # Include current ribbon length
+                    dp[i][t] = max(dp[i][t], dp[i][t - ribbonLengths[i]] + 1)
+
+        return -1 if dp[n - 1][total] == float('-inf') else dp[n - 1][total]
+
+
+# Example usage:
+sol = Solution()
+print(sol.maxRibbonPieces([2, 3, 5], 5))  # Output: 2
+print(sol.maxRibbonPieces([2, 3], 7))     # Output: 3
+print(sol.maxRibbonPieces([3, 5, 7], 13)) # Output: 3
+print(sol.maxRibbonPieces([3, 5], 7))     # Output: -1
+
+
+</code>
+</pre>
+</details>
+
+## Pattern DP-3: Fibonacci Numbers (Kết quả sau dựa trên các kết quả n - 1 và n - 2)
+
+**Top down**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+def calculateFibonacci(n):
+    memoize = {}
+
+    def fib(n):
+        if n < 2:
+            return n
+
+        if n in memoize:
+            return memoize[n]
+
+        memoize[n] = fib(n - 1) + fib(n - 2)
+        return memoize[n]
+
+    return fib(n)
+
+
+print(f"5th Fibonacci is ---> {calculateFibonacci(5)}")
+print(f"6th Fibonacci is ---> {calculateFibonacci(6)}")
+print(f"7th Fibonacci is ---> {calculateFibonacci(7)}")
+
+</code>
+</pre>
+</details>
+
+**Bottom up**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+def calculateFibonacci(n):
+    if n < 2:
+        return n
+    dp = [0, 1]
+
+    for i in range(2, n + 1):
+        dp.append(dp[i - 1] + dp[i - 2])
+
+    return dp[n]
+
+
+print(f"5th Fibonacci is ---> {calculateFibonacci(5)}")
+print(f"6th Fibonacci is ---> {calculateFibonacci(6)}")
+print(f"7th Fibonacci is ---> {calculateFibonacci(7)}")
+
+</code>
+</pre>
+</details>
+
+## 15.8. Climbing Stairs
+
+Ref: [https://leetcode.com/problems/climbing-stairs/description/](https://leetcode.com/problems/climbing-stairs/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n <= 2:
+            return n
+        dp = [0] * (n + 1)
+        dp[1], dp[2] = 1, 2
+        for i in range(3, n + 1):
+            dp[i] = dp[i-1] + dp[i-2]
+        return dp[n]
+
+</code>
+</pre>
+</details>
+
+## 15.9. Number factors
+
+Ref: [https://www.geeksforgeeks.org/count-ofdifferent-ways-express-n-sum-1-3-4/](https://www.geeksforgeeks.org/count-ofdifferent-ways-express-n-sum-1-3-4/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def countWays(self, n):
+        dp = {}
+
+        def countWaysRecursive(n):
+            # base cases
+            if n <= 2:
+                return 1
+            if n == 3:
+                return 2
+            
+            if n not in dp:
+                subtract1 = countWaysRecursive(n - 1)
+                subtract3 = countWaysRecursive(n - 3)
+                subtract4 = countWaysRecursive(n - 4)
+                dp[n] = subtract1 + subtract3 + subtract4
+            
+            return dp[n]
+
+        return countWaysRecursive(n)
+
+
+print(f"Number of ways: ---> {countWays(4)}")
+print(f"Number of ways: ---> {countWays(5)}")
+print(f"Number of ways: ---> {countWays(6)}")
+
+</code>
+</pre>
+</details>
+
+## 15.10. Minimum jumps with fee
+
+Ref: [https://leetcode.com/problems/min-cost-climbing-stairs/description/](https://leetcode.com/problems/min-cost-climbing-stairs/description/)
+
+**Top Down**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+def findMinFee(fee):
+    dp = {}
+
+    def findMinFeeRecursive(currIndex):
+        if currIndex > len(fee) - 1:
+            return 0
+
+        if currIndex not in dp:
+            # if we take 1 step, we are left with n-1 steps
+            take1Step = findMinFeeRecursive(currIndex + 1)
+            # if we take 2 steps, we are left with n-2 steps
+            take2Step = findMinFeeRecursive(currIndex + 2)
+            # if we take 3 steps, we are left with n-3 steps
+            take3Step = findMinFeeRecursive(currIndex + 3)
+
+            dp[currIndex] = min(take1Step, take2Step, take3Step) + fee[currIndex]
+
+        return dp[currIndex]
+
+    return findMinFeeRecursive(0)
+
+ 
+</code>
+</pre>
+</details>
+
+**Bottom Up**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        n = len(cost)
+        dp = [0] * (n + 1)  # dp[i] = min cost to reach step i
+
+        # Base cases
+        dp[0] = 0  # start before step 0, no cost
+        dp[1] = 0  # start before step 1, no cost
+
+        for i in range(2, n + 1):
+            dp[i] = min(
+                dp[i-1] + cost[i-1],  # cost to come from one step below
+                dp[i-2] + cost[i-2]   # cost to come from two steps below
+            )
+
+        return dp[n]
+
+</code>
+</pre>
+</details>
+
+## 15.11. House thief
+
+Ref: [https://leetcode.com/problems/house-robber/](https://leetcode.com/problems/house-robber/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# If there are no houses, return 0.
+# If there's only one house, return the money in that house.
+# For each house, there are two choices:
+# You can rob the current house, which means you should add the money from that house to the total amount up to house i-2.
+# Or, you can skip robbing the current house, and the total amount will just be the same as the amount up to house i-1.
+# Formula:
+# dp[i] = max(dp[i-1], nums[i] + dp[i-2])
+class Solution:
+    def rob(self, nums):
+        if not nums:
+            return 0
+        elif len(nums) == 1:
+            return nums[0]
+        
+        # Initialize the dp array
+        dp = [0] * len(nums)
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+        
+        for i in range(2, len(nums)):
+            dp[i] = max(dp[i-1], nums[i] + dp[i-2])
+        
+        return dp[-1]
+
+</code>
+</pre>
+</details>
 
 # 16. Pattern 16: Topological Sort
 
