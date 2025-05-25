@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '42 Coding Interview Pattern'
-date: 2025-05-05
+date: 2025-05-25
 categories: tech
 ---
 
@@ -14128,6 +14128,282 @@ class Solution:
         return result
 
 
+</code>
+</pre>
+</details>
+
+# 47. Line Sweep (Quét hết khoảng)
+
+---
+
+1-axis Problem
+
+---
+
+## 47.1. Maximum Population Year
+
+Ref: [https://leetcode.com/problems/maximum-population-year/description/](https://leetcode.com/problems/maximum-population-year/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def maximumPopulation(self, logs: List[List[int]]) -> int:
+        population = [0] * 101  # years 1950 to 2050 → index 0 to 100
+
+        for birth, death in logs:
+            population[birth - 1950] += 1
+            population[death - 1950] -= 1
+
+        max_pop = year = 0
+        current_pop = 0
+
+        for i in range(101):
+            current_pop += population[i]
+            if current_pop > max_pop:
+                max_pop = current_pop
+                year = 1950 + i
+
+        return year
+
+</code>
+</pre>
+</details>
+
+## 47.2. Points That Intersect With Cars
+
+Ref: [https://leetcode.com/problems/points-that-intersect-with-cars/description/](https://leetcode.com/problems/points-that-intersect-with-cars/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def numberOfPoints(self, nums: List[List[int]]) -> int:
+        points = set()
+        for start, end in nums:
+            for x in range(start, end + 1):
+                points.add(x)
+        return len(points)
+
+</code>
+</pre>
+</details>
+
+## 47.3. Meeting Rooms II
+
+Ref: [https://leetcode.com/problems/meeting-rooms-ii/description/](https://leetcode.com/problems/meeting-rooms-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+import heapq
+from typing import List
+
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        if not intervals:
+            return 0
+
+        # Sort by start time
+        intervals.sort(key=lambda x: x[0])
+        
+        # Min-heap for end times
+        heap = []
+
+        for interval in intervals:
+            start, end = interval
+
+            # Free up rooms that are done
+            if heap and heap[0] <= start:
+                heapq.heappop(heap)
+
+            # Allocate new room (push current meeting's end time)
+            heapq.heappush(heap, end)
+
+        return len(heap)  # Max number of concurrent meetings
+
+</code>
+</pre>
+</details>
+
+## 47.4. My Calendar II
+
+Ref: [https://leetcode.com/problems/my-calendar-ii/description/](https://leetcode.com/problems/my-calendar-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class MyCalendarTwo:
+
+    def __init__(self):
+        self.booked = []
+        self.overlaps = []
+
+    def book(self, start: int, end: int) -> bool:
+        # Check if it would cause a triple booking
+        for os, oe in self.overlaps:
+            if start < oe and end > os:
+                return False
+
+        # Add overlaps with existing bookings into overlaps list
+        for bs, be in self.booked:
+            if start < be and end > bs:
+                self.overlaps.append((max(start, bs), min(end, be)))
+
+        # Add to booked list
+        self.booked.append((start, end))
+        return True
+
+</code>
+</pre>
+</details>
+
+## 47.5. Count Positions on Street With Required Brightness
+
+Ref: [https://leetcode.com/problems/count-positions-on-street-with-required-brightness/](https://leetcode.com/problems/count-positions-on-street-with-required-brightness/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def meetRequirement(self, n: int, lights: List[List[int]], requirement: List[int]) -> int:
+        diff = [0] * (n + 1)  # Difference array
+
+        # Apply range increment for each light
+        for pos, rng in lights:
+            left = max(0, pos - rng)
+            right = min(n - 1, pos + rng)
+            diff[left] += 1
+            diff[right + 1] -= 1
+
+        # Build brightness array using prefix sum
+        brightness = [0] * n
+        curr = 0
+        for i in range(n):
+            curr += diff[i]
+            brightness[i] = curr
+
+        # Count how many positions meet or exceed requirement
+        count = 0
+        for i in range(n):
+            if brightness[i] >= requirement[i]:
+                count += 1
+
+        return count
+
+</code>
+</pre>
+</details>
+
+## 47.6. Check if All the Integers in a Range Are Covered
+
+Ref: [https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/](https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
+        diff = [0] * 52  # We use size 52 because 1 ≤ left, right ≤ 50
+
+        # Mark the difference array for each range
+        for start, end in ranges:
+            diff[start] += 1
+            if end + 1 <= 51:
+                diff[end + 1] -= 1
+
+        # Convert to prefix sum to get actual coverage
+        for i in range(1, 52):
+            diff[i] += diff[i - 1]
+
+        # Check if all numbers in [left, right] are covered
+        for i in range(left, right + 1):
+            if diff[i] <= 0:
+                return False
+
+        return True
+
+</code>
+</pre>
+</details>
+
+## 47.7. Range Addition
+
+Ref: [https://leetcode.com/problems/range-addition/](https://leetcode.com/problems/range-addition/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:
+        res = [0] * (length + 1)  # Use one extra space for easier subtraction
+
+        # Apply difference array technique
+        for start, end, inc in updates:
+            res[start] += inc
+            if end + 1 < len(res):
+                res[end + 1] -= inc
+
+        # Convert to prefix sum to finalize updates
+        for i in range(1, length):
+            res[i] += res[i - 1]
+
+        return res[:length]
+
+</code>
+</pre>
+</details>
+
+## 47.8. Car Pooling
+
+Ref: [https://leetcode.com/problems/car-pooling/](https://leetcode.com/problems/car-pooling/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        # Use a list to store the change in passengers at each location
+        passenger_changes = [0] * 1001  # Locations range from 0 to 1000
+        
+        for num_passengers, start, end in trips:
+            passenger_changes[start] += num_passengers
+            passenger_changes[end] -= num_passengers
+        
+        current_passengers = 0
+        for passengers in passenger_changes:
+            current_passengers += passengers
+            if current_passengers > capacity:
+                return False
+        
+        return True
+        
 </code>
 </pre>
 </details>
