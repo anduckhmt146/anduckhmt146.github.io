@@ -4606,6 +4606,9 @@ print(f"Total knapsack profit: ---> ${solveKnapsack([1, 6, 10, 16], [1, 2, 3, 5]
 
 <details>
 <summary>Code</summary>
+
+<pre>
+<code class="python">
 from typing import List
 
 def solveKnapsack(profits: List[int], weights: List[int], capacity: int) -> int:
@@ -4649,10 +4652,6 @@ n = len(profits)
 
 print(f"Total knapsack profit: ---> ${solveKnapsack([1, 6, 10, 16], [1, 2, 3, 5], 7)}")
 print(f"Total knapsack profit: ---> ${solveKnapsack([1, 6, 10, 16], [1, 2, 3, 5], 6)}")
-
-<pre>
-<code class="python">
-
 
 </code>
 </pre>
@@ -5386,6 +5385,704 @@ class Solution:
             dp[i] = max(dp[i-1], nums[i] + dp[i-2])
         
         return dp[-1]
+
+</code>
+</pre>
+</details>
+
+## Pattern DP-4: Longest Palindromic Subsequence (liên quan palindrome)
+
+**Top Down**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+def find_lps_length(s):
+    dp = {}
+
+    def find_lps_length_recursive(start_index, end_index):
+        # Base case: invalid substring
+        if start_index > end_index:
+            return 0
+
+        # Base case: single character is a palindrome of length 1
+        if start_index == end_index:
+            return 1
+
+        # Check if result is already in dp
+        if (start_index, end_index) in dp:
+            return dp[(start_index, end_index)]
+
+        if s[start_index] == s[end_index]:
+            dp[(start_index, end_index)] = 2 + find_lps_length_recursive(start_index + 1, end_index - 1)
+        else:
+            skip_start = find_lps_length_recursive(start_index + 1, end_index)
+            skip_end = find_lps_length_recursive(start_index, end_index - 1)
+            dp[(start_index, end_index)] = max(skip_start, skip_end)
+
+        return dp[(start_index, end_index)]
+
+    return find_lps_length_recursive(0, len(s) - 1)
+
+</code>
+</pre>
+</details>
+
+**Bottom Up**
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+def find_lps_length(s):
+    n = len(s)
+    # dp[i][j] stores the length of LPS from index i to j
+    dp = [[0 for _ in range(n)] for _ in range(n)]
+
+    # every sequence with 1 character is a palindrome of length 1
+    for i in range(n):
+        dp[i][i] = 1
+
+    # build the table in a bottom-up manner
+    for start_index in range(n - 1, -1, -1):
+        for end_index in range(start_index + 1, n):
+            if s[start_index] == s[end_index]:
+                dp[start_index][end_index] = 2 + dp[start_index + 1][end_index - 1]
+            else:
+                dp[start_index][end_index] = max(dp[start_index + 1][end_index],
+                                                 dp[start_index][end_index - 1])
+
+    return dp[0][n - 1]
+
+</code>
+</pre>
+</details>
+
+## 15.12. Longest Palindromic Subsequence
+
+Ref: [https://leetcode.com/problems/longest-palindromic-subsequence/description/](https://leetcode.com/problems/longest-palindromic-subsequence/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        n = len(s)
+        # Create a 2D DP array initialized to 0
+        dp = [[0] * n for _ in range(n)]
+
+        # All substrings of length 1 are palindromes of length 1
+        for i in range(n):
+            dp[i][i] = 1
+
+        # Build the DP table
+        for length in range(2, n + 1):  # Substring lengths from 2 to n
+            for i in range(n - length + 1):
+                j = i + length - 1
+                if s[i] == s[j]:
+                    dp[i][j] = 2 + dp[i + 1][j - 1]
+                else:
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+
+        return dp[0][n - 1]
+
+</code>
+</pre>
+</details>
+
+## 15.13. Palindromic Substrings
+
+Ref: [https://leetcode.com/problems/palindromic-substrings/description/](https://leetcode.com/problems/palindromic-substrings/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        n = len(s)
+        dp = [[False] * n for _ in range(n)]
+        count = 0
+
+        for end in range(n):
+            for start in range(end + 1):
+                if s[start] == s[end] and (end - start <= 1 or dp[start + 1][end - 1]):
+                    dp[start][end] = True
+                    count += 1
+                    
+        return count
+
+</code>
+</pre>
+</details>
+
+## 15.14. Minimum Deletions in a String to make it a Palindrome
+
+Ref: [https://www.geeksforgeeks.org/minimum-number-deletions-make-string-palindrome/](https://www.geeksforgeeks.org/minimum-number-deletions-make-string-palindrome/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minDeletionsToMakePalindrome(self, s: str) -> int:
+        n = len(s)
+        # dp[i][j] = length of longest palindromic subsequence in s[i..j]
+        dp = [[0] * n for _ in range(n)]
+
+        for i in range(n):
+            dp[i][i] = 1  # every single character is a palindrome of length 1
+
+        for length in range(2, n + 1):
+            for i in range(n - length + 1):
+                j = i + length - 1
+                if s[i] == s[j]:
+                    dp[i][j] = 2 + dp[i + 1][j - 1]
+                else:
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+
+        lps_length = dp[0][n - 1]
+        return n - lps_length
+
+</code>
+</pre>
+</details>
+
+## 15.15. Minimum insertions in a string to make it a palindrome
+
+Ref: [https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/](https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minInsertions(self, s: str) -> int:
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+
+        for i in range(n):
+            dp[i][i] = 1  # A single character is a palindrome of length 1
+
+        for length in range(2, n + 1):
+            for i in range(n - length + 1):
+                j = i + length - 1
+                if s[i] == s[j]:
+                    dp[i][j] = 2 + dp[i + 1][j - 1]
+                else:
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+
+        lps = dp[0][n - 1]
+        return n - lps
+
+</code>
+</pre>
+</details>
+
+## 15.16. Find if a string is K-Palindromic
+
+Ref: [https://leetcode.com/problems/valid-palindrome-iii/description/](https://leetcode.com/problems/valid-palindrome-iii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def isKPalindromic(self, s: str, k: int) -> bool:
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+
+        for i in range(n):
+            dp[i][i] = 1  # single characters are palindromes
+
+        for length in range(2, n + 1):
+            for i in range(n - length + 1):
+                j = i + length - 1
+                if s[i] == s[j]:
+                    dp[i][j] = 2 + dp[i + 1][j - 1]
+                else:
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+
+        lps = dp[0][n - 1]
+        min_deletions = n - lps
+        return min_deletions <= k
+
+</code>
+</pre>
+</details>
+
+## 15.17. Palindrome Partitioning II
+
+Ref: [https://leetcode.com/problems/palindrome-partitioning-ii/description/](https://leetcode.com/problems/palindrome-partitioning-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minCut(self, s: str) -> int:
+        n = len(s)
+        # pal[i][j] = True if s[i:j+1] is a palindrome
+        pal = [[False] * n for _ in range(n)]
+
+        for i in range(n):
+            pal[i][i] = True  # single character is always a palindrome
+
+        # Fill pal table
+        for length in range(2, n + 1):
+            for i in range(n - length + 1):
+                j = i + length - 1
+                if s[i] == s[j]:
+                    if length == 2 or pal[i + 1][j - 1]:
+                        pal[i][j] = True
+
+        # dp[i] = min cuts needed for s[0..i]
+        dp = [0] * n
+        for i in range(n):
+            if pal[0][i]:
+                dp[i] = 0
+            else:
+                dp[i] = float('inf')
+                for j in range(i):
+                    if pal[j + 1][i]:
+                        dp[i] = min(dp[i], dp[j] + 1)
+
+        return dp[n - 1]
+
+</code>
+</pre>
+</details>
+
+## Pattern DP-5: Longest Common Substring (find common substring between 2 string)
+
+## 15.18. Longest Common Substring
+
+Ref: [https://www.geeksforgeeks.org/longest-common-substring-dp-29/](https://www.geeksforgeeks.org/longest-common-substring-dp-29/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def longestCommonSubstring(self, s1: str, s2: str) -> int:
+        m, n = len(s1), len(s2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        max_len = 0
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if s1[i - 1] == s2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                    max_len = max(max_len, dp[i][j])
+                else:
+                    dp[i][j] = 0
+
+        return max_len
+
+</code>
+</pre>
+</details>
+
+## 15.19. Longest Common Subsequence
+
+Ref: [https://leetcode.com/problems/longest-common-subsequence/description/](https://leetcode.com/problems/longest-common-subsequence/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def longestCommonSubsequence(self, s1: str, s2: str) -> int:
+        m, n = len(s1), len(s2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if s1[i - 1] == s2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+        return dp[m][n]
+
+</code>
+</pre>
+</details>
+
+## 15.20. Minimum Deletions & Insertions to Transform a String into another
+
+Ref: [https://www.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1](https://www.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minInsertDelete(self, s1: str, s2: str) -> (int, int):
+        m, n = len(s1), len(s2)
+        
+        # Step 1: Compute LCS
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if s1[i - 1] == s2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+        lcs = dp[m][n]
+
+        deletions = m - lcs
+        insertions = n - lcs
+
+        return deletions, insertions
+
+</code>
+</pre>
+</details>
+
+## 15.21. Longest Increasing Subsequence
+
+Ref: [https://leetcode.com/problems/longest-increasing-subsequence/](https://leetcode.com/problems/longest-increasing-subsequence/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 0:
+            return 0
+        
+        dp = [1] * n  # every number is an LIS of length 1 by itself
+
+        for i in range(n):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+
+        return max(dp)
+
+</code>
+</pre>
+</details>
+
+## 15.22. Maximum Sum Increasing Subsequence
+
+Ref: [https://www.geeksforgeeks.org/maximum-sum-increasing-subsequence-dp-14/](https://www.geeksforgeeks.org/maximum-sum-increasing-subsequence-dp-14/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 0:
+            return 0
+        
+        dp = [1] * n
+        
+        for i in range(n):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        
+        return max(dp)
+
+</code>
+</pre>
+</details>
+
+## 15.23. Shortest Common Supersequence
+
+Ref: [https://leetcode.com/problems/shortest-common-supersequence/description/](https://leetcode.com/problems/shortest-common-supersequence/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
+        m, n = len(str1), len(str2)
+
+        # Step 1: Compute LCS
+        dp = [[""] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(m):
+            for j in range(n):
+                if str1[i] == str2[j]:
+                    dp[i + 1][j + 1] = dp[i][j] + str1[i]
+                else:
+                    dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j], key=len)
+
+        lcs = dp[m][n]
+
+        # Step 2: Merge based on LCS
+        res = []
+        i = j = 0
+        for c in lcs:
+            while i < m and str1[i] != c:
+                res.append(str1[i])
+                i += 1
+            while j < n and str2[j] != c:
+                res.append(str2[j])
+                j += 1
+            res.append(c)
+            i += 1
+            j += 1
+
+        # Append remaining characters
+        res.extend(str1[i:])
+        res.extend(str2[j:])
+        
+        return ''.join(res)
+
+</code>
+</pre>
+</details>
+
+## 15.24. Minimum number of deletions to make a sorted sequence
+
+Ref: [https://www.geeksforgeeks.org/minimum-number-deletions-make-sorted-sequence/](https://www.geeksforgeeks.org/minimum-number-deletions-make-sorted-sequence/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from bisect import bisect_left
+from typing import List
+
+class Solution:
+    def minDeletionsToSort(self, nums: List[int]) -> int:
+        sub = []  # to hold the current LIS
+        for num in nums:
+            i = bisect_left(sub, num)
+            if i == len(sub):
+                sub.append(num)
+            else:
+                sub[i] = num
+        return len(nums) - len(sub)
+
+</code>
+</pre>
+</details>
+
+## 15.25. Longest Repeating Subsequence
+
+Ref: [https://www.geeksforgeeks.org/longest-repeating-subsequence/](https://www.geeksforgeeks.org/longest-repeating-subsequence/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def LongestRepeatingSubsequence(self, s: str) -> int:
+        n = len(s)
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        
+        for i in range(1, n + 1):
+            for j in range(1, n + 1):
+                if s[i - 1] == s[j - 1] and i != j:
+                    dp[i][j] = 1 + dp[i - 1][j - 1]
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+        
+        return dp[n][n]
+
+</code>
+</pre>
+</details>
+
+## 15.26. Find number of times a string occurs as a subsequence in given string
+
+Ref: [https://www.geeksforgeeks.org/find-number-times-string-occurs-given-string/](https://www.geeksforgeeks.org/find-number-times-string-occurs-given-string/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def numDistinct(self, S: str, T: str) -> int:
+        m, n = len(S), len(T)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        # An empty T is a subsequence of any prefix of S
+        for i in range(m + 1):
+            dp[i][0] = 1
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if S[i - 1] == T[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]
+                else:
+                    dp[i][j] = dp[i - 1][j]
+
+        return dp[m][n]
+
+</code>
+</pre>
+</details>
+
+## 15.27. Longest Bitonic Subsequence
+
+Ref: [https://www.geeksforgeeks.org/longest-bitonic-subsequence-dp-15/](https://www.geeksforgeeks.org/longest-bitonic-subsequence-dp-15/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def LongestBitonicSubsequence(self, nums: List[int]) -> int:
+        n = len(nums)
+        
+        # Step 1: Compute LIS ending at each index
+        inc = [1] * n
+        for i in range(n):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    inc[i] = max(inc[i], inc[j] + 1)
+
+        # Step 2: Compute LDS starting at each index
+        dec = [1] * n
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                if nums[j] < nums[i]:
+                    dec[i] = max(dec[i], dec[j] + 1)
+
+        # Step 3: Compute max of (inc[i] + dec[i] - 1)
+        max_len = 0
+        for i in range(n):
+            max_len = max(max_len, inc[i] + dec[i] - 1)
+
+        return max_len
+
+</code>
+</pre>
+</details>
+
+## 15.28. Longest alternating subsequence
+
+Ref: [https://www.geeksforgeeks.org/longest-alternating-subsequence/](https://www.geeksforgeeks.org/longest-alternating-subsequence/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def AlternatingMaxLength(self, nums: List[int]) -> int:
+        n = len(nums)
+        up = [1] * n
+        down = [1] * n
+
+        for i in range(1, n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    up[i] = max(up[i], down[j] + 1)
+                elif nums[i] < nums[j]:
+                    down[i] = max(down[i], up[j] + 1)
+
+        return max(max(up), max(down))
+
+</code>
+</pre>
+</details>
+
+## 15.29. Edit Distance
+
+Ref: [https://leetcode.com/problems/edit-distance/](https://leetcode.com/problems/edit-distance/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        m, n = len(word1), len(word2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        # Initialize base cases
+        for i in range(m + 1):
+            dp[i][0] = i
+        for j in range(n + 1):
+            dp[0][j] = j
+
+        # Fill DP table
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
+                else:
+                    dp[i][j] = 1 + min(
+                        dp[i - 1][j],     # delete
+                        dp[i][j - 1],     # insert
+                        dp[i - 1][j - 1]  # replace
+                    )
+
+        return dp[m][n]
+
+</code>
+</pre>
+</details>
+
+## 15.30. Interleaving String
+
+Ref: [https://leetcode.com/problems/interleaving-string/description/](https://leetcode.com/problems/interleaving-string/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        if len(s1) + len(s2) != len(s3):
+            return False
+
+        m, n = len(s1), len(s2)
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = True
+
+        for i in range(m + 1):
+            for j in range(n + 1):
+                if i > 0 and s1[i - 1] == s3[i + j - 1]:
+                    dp[i][j] |= dp[i - 1][j]
+                if j > 0 and s2[j - 1] == s3[i + j - 1]:
+                    dp[i][j] |= dp[i][j - 1]
+
+        return dp[m][n]
 
 </code>
 </pre>
