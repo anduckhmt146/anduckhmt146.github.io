@@ -14407,3 +14407,821 @@ class Solution:
 </code>
 </pre>
 </details>
+
+---
+
+## 47.9. Minimum Number of Arrows to Burst Balloons
+
+Ref: [https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/description/](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        if not points:
+            return 0
+
+        # Sort the balloons based on their ending x-coordinate
+        points.sort(key=lambda x: x[1])
+        
+        arrows = 1
+        end = points[0][1]
+
+        for start, curr_end in points[1:]:
+            if start > end:
+                arrows += 1
+                end = curr_end
+
+        return arrows
+        
+</code>
+</pre>
+</details>
+
+## 47.10. Non-overlapping Intervals
+
+Ref: [https://leetcode.com/problems/non-overlapping-intervals/description/](https://leetcode.com/problems/non-overlapping-intervals/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        if not intervals:
+            return 0
+
+        # Sort intervals by end time
+        intervals.sort(key=lambda x: x[1])
+        
+        count = 0
+        prev_end = intervals[0][1]
+
+        for i in range(1, len(intervals)):
+            start, end = intervals[i]
+            if start < prev_end:
+                # Overlap found, need to remove one
+                count += 1
+            else:
+                # No overlap, update prev_end
+                prev_end = end
+
+        return count
+        
+</code>
+</pre>
+</details>
+
+## 47.11. Maximum Length of Pair Chain
+
+Ref: [https://leetcode.com/problems/maximum-length-of-pair-chain/](https://leetcode.com/problems/maximum-length-of-pair-chain/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findLongestChain(self, pairs: List[List[int]]) -> int:
+        # Sort pairs by the second element (end of the pair)
+        pairs.sort(key=lambda x: x[1])
+        
+        curr_end = float('-inf')
+        count = 0
+        
+        for start, end in pairs:
+            if start > curr_end:
+                count += 1
+                curr_end = end
+        
+        return count
+        
+</code>
+</pre>
+</details>
+
+## 47.12. Insert Interval
+
+Ref: [https://leetcode.com/problems/insert-interval/](https://leetcode.com/problems/insert-interval/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        result = []
+        i = 0
+        n = len(intervals)
+
+        # Add all intervals ending before newInterval starts
+        while i < n and intervals[i][1] < newInterval[0]:
+            result.append(intervals[i])
+            i += 1
+
+        # Merge overlapping intervals with newInterval
+        while i < n and intervals[i][0] <= newInterval[1]:
+            newInterval[0] = min(newInterval[0], intervals[i][0])
+            newInterval[1] = max(newInterval[1], intervals[i][1])
+            i += 1
+        result.append(newInterval)
+
+        # Add remaining intervals
+        while i < n:
+            result.append(intervals[i])
+            i += 1
+
+        return result
+
+        
+</code>
+</pre>
+</details>
+
+## 47.13. Remove Interval
+
+Ref: [https://leetcode.com/problems/remove-interval/](https://leetcode.com/problems/remove-interval/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+def removeInterval(intervals, toBeRemoved):
+    result = []
+
+    for start, end in intervals:
+        # No overlap
+        if toBeRemoved[1] <= start or toBeRemoved[0] >= end:
+            result.append([start, end])
+        else:
+            # Left non-overlapping part
+            if start < toBeRemoved[0]:
+                result.append([start, toBeRemoved[0]])
+            # Right non-overlapping part
+            if end > toBeRemoved[1]:
+                result.append([toBeRemoved[1], end])
+
+    return result
+        
+</code>
+</pre>
+</details>
+
+## 47.14. Remove Covered Intervals
+
+Ref: [https://leetcode.com/problems/remove-covered-intervals/description/](https://leetcode.com/problems/remove-covered-intervals/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+        # Sort intervals by start ascending, and end descending
+        intervals.sort(key=lambda x: (x[0], -x[1]))
+
+        count = 0
+        prev_end = 0
+
+        for _, end in intervals:
+            # If current end is greater than previous, it's not covered
+            if end > prev_end:
+                count += 1
+                prev_end = end
+            # else: current interval is covered
+
+        return count
+
+</code>
+</pre>
+</details>
+
+## 47.15. Maximum Number of Events That Can Be Attended
+
+Ref: [https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/](https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+
+class Solution:
+    def maxEvents(self, events: List[List[int]]) -> int:
+        # Sort events by their start day
+        events.sort()
+        
+        total_days = max(end for _, end in events)
+        event_index = 0
+        attended = 0
+        min_heap = []
+
+        for day in range(1, total_days + 1):
+            # Add all events that start today
+            while event_index < len(events) and events[event_index][0] == day:
+                heapq.heappush(min_heap, events[event_index][1])
+                event_index += 1
+
+            # Remove events that already expired
+            while min_heap and min_heap[0] < day:
+                heapq.heappop(min_heap)
+
+            # Attend the event that ends the earliest
+            if min_heap:
+                heapq.heappop(min_heap)
+                attended += 1
+
+        return attended
+
+</code>
+</pre>
+</details>
+
+## 47.16. Maximum Sum Obtained of Any Permutation
+
+Ref: [https://leetcode.com/problems/maximum-sum-obtained-of-any-permutation/description/](https://leetcode.com/problems/maximum-sum-obtained-of-any-permutation/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:
+        MOD = 10**9 + 7
+        n = len(nums)
+        freq = [0] * (n + 1)
+
+        # Use prefix sums to count frequency of each index in requests
+        for start, end in requests:
+            freq[start] += 1
+            if end + 1 < n:
+                freq[end + 1] -= 1
+        
+        # Prefix sum to get the exact frequency for each index
+        for i in range(1, n):
+            freq[i] += freq[i - 1]
+        
+        freq.pop()  # remove the extra element used for prefix sum
+
+        # Sort nums and freq in descending order
+        nums.sort(reverse=True)
+        freq.sort(reverse=True)
+
+        # Calculate max sum by multiplying sorted nums and freq
+        result = 0
+        for f, num in zip(freq, nums):
+            result = (result + f * num) % MOD
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 47.17. Describe the Painting
+
+Ref: [https://leetcode.com/problems/describe-the-painting/description/](https://leetcode.com/problems/describe-the-painting/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def splitPainting(self, segments: List[List[int]]) -> List[List[int]]:
+        changes = defaultdict(int)
+
+        # Record color increments and decrements at segment boundaries
+        for start, end, color in segments:
+            changes[start] += color
+            changes[end] -= color
+
+        points = sorted(changes.keys())
+
+        result = []
+        curr_color = 0
+        prev_point = points[0]
+
+        for i in range(len(points)):
+            point = points[i]
+
+            if i > 0 and curr_color > 0:
+                # Create segment from prev_point to current point
+                result.append([prev_point, point, curr_color])
+
+            # Update curr_color after recording the segment
+            curr_color += changes[point]
+            prev_point = point
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 47.18. Minimum Moves to Make Array Complementary
+
+Ref: [https://leetcode.com/problems/minimum-moves-to-make-array-complementary/description/](https://leetcode.com/problems/minimum-moves-to-make-array-complementary/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def minMoves(self, nums: List[int], limit: int) -> int:
+        n = len(nums)
+        diff = [0] * (2 * limit + 2)  # difference array for sums from 2 to 2*limit
+        
+        for i in range(n // 2):
+            a, b = nums[i], nums[n - 1 - i]
+            low = 1 + min(a, b)
+            high = limit + max(a, b)
+            
+            # For all sums, initially assume 2 moves per pair
+            diff[2] += 2  
+            
+            # For sums from low to high, reduce moves by 1 (1 move needed)
+            diff[low] -= 1
+            diff[high + 1] += 1
+            
+            # For the exact sum a + b, reduce moves by another 1 (0 moves needed)
+            diff[a + b] -= 1
+            diff[a + b + 1] += 1
+        
+        min_moves = float('inf')
+        curr = 0
+        
+        # Calculate prefix sums over diff array to get moves needed for each sum
+        for s in range(2, 2 * limit + 1):
+            curr += diff[s]
+            min_moves = min(min_moves, curr)
+        
+        return min_moves
+
+
+</code>
+</pre>
+</details>
+
+## 47.19. Amount of New Area Painted Each Day
+
+Ref: [https://leetcode.com/problems/amount-of-new-area-painted-each-day/](https://leetcode.com/problems/amount-of-new-area-painted-each-day/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def amountPainted(self, paint: List[List[int]]) -> List[int]:
+        painted = set()
+        result = []
+
+        for start, end in paint:
+            new_paint = 0
+            i = start
+            while i < end:
+                if i not in painted:
+                    painted.add(i)
+                    new_paint += 1
+                i += 1
+            result.append(new_paint)
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 47.20. Number of Flowers in Full Bloom
+
+Ref: [https://leetcode.com/problems/number-of-flowers-in-full-bloom/description/](https://leetcode.com/problems/number-of-flowers-in-full-bloom/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import bisect
+
+class Solution:
+    def fullBloomFlowers(self, flowers: List[List[int]], people: List[int]) -> List[int]:
+        starts = sorted(f[0] for f in flowers)
+        ends = sorted(f[1] for f in flowers)
+        
+        result = []
+        for t in people:
+            # Flowers that started blooming on or before t
+            started = bisect.bisect_right(starts, t)
+            # Flowers that ended before t (not blooming at t)
+            ended = bisect.bisect_left(ends, t)
+            result.append(started - ended)
+        
+        return result
+
+</code>
+</pre>
+</details>
+
+## 47.21. Minimum Number of Taps to Open to Water a Garden
+
+Ref: [https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/description/](https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def minTaps(self, n: int, ranges: List[int]) -> int:
+        max_range = [0] * (n + 1)
+
+        # Convert to [start, end] intervals and track max reach from each start
+        for i in range(n + 1):
+            left = max(0, i - ranges[i])
+            right = min(n, i + ranges[i])
+            max_range[left] = max(max_range[left], right)
+
+        taps = 0
+        curr_end = 0
+        next_end = 0
+
+        for i in range(n + 1):
+            if i > next_end:
+                return -1  # Cannot reach this point
+            if i > curr_end:
+                taps += 1
+                curr_end = next_end
+            next_end = max(next_end, max_range[i])
+
+        return taps
+
+</code>
+</pre>
+</details>
+
+## 47.22. My Calendar III
+
+Ref: [https://leetcode.com/problems/my-calendar-iii/](https://leetcode.com/problems/my-calendar-iii/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from collections import defaultdict
+
+class MyCalendarThree:
+
+    def __init__(self):
+        self.timeline = defaultdict(int)
+        self.max_overlap = 0
+
+    def book(self, startTime: int, endTime: int) -> int:
+        self.timeline[startTime] += 1
+        self.timeline[endTime] -= 1
+
+        # Sort keys and compute current overlap
+        active = 0
+        for time in sorted(self.timeline):
+            active += self.timeline[time]
+            self.max_overlap = max(self.max_overlap, active)
+
+        return self.max_overlap
+
+</code>
+</pre>
+</details>
+
+## 47.23. Employee Free Time
+
+Ref: [https://leetcode.com/problems/employee-free-time/description/](https://leetcode.com/problems/employee-free-time/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+# Definition for an Interval.
+class Interval:
+    def __init__(self, start: int, end: int):
+        self.start = start
+        self.end = end
+
+class Solution:
+    def employeeFreeTime(self, schedule: 'List[List[Interval]]') -> 'List[Interval]':
+        # Flatten all intervals
+        intervals = [i for employee in schedule for i in employee]
+        
+        # Sort by start time
+        intervals.sort(key=lambda x: x.start)
+
+        merged = []
+        for interval in intervals:
+            if not merged or merged[-1].end < interval.start:
+                merged.append(interval)
+            else:
+                merged[-1].end = max(merged[-1].end, interval.end)
+
+        # Find gaps between merged intervals
+        free_time = []
+        for i in range(1, len(merged)):
+            free_time.append(Interval(merged[i-1].end, merged[i].start))
+
+        return free_time
+
+</code>
+</pre>
+</details>
+
+## 47.24. Minimum Interval to Include Each Query
+
+Ref: [https://leetcode.com/problems/minimum-interval-to-include-each-query/description/](https://leetcode.com/problems/minimum-interval-to-include-each-query/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+
+class Solution:
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        intervals.sort()
+        sorted_queries = sorted((q, i) for i, q in enumerate(queries))
+        
+        result = [-1] * len(queries)
+        min_heap = []
+        i = 0  # Pointer for intervals
+
+        for q, idx in sorted_queries:
+            # Add all intervals where start ≤ q
+            while i < len(intervals) and intervals[i][0] <= q:
+                start, end = intervals[i]
+                if end >= q:
+                    heapq.heappush(min_heap, (end - start + 1, end))
+                i += 1
+
+            # Remove intervals from heap that end < q
+            while min_heap and min_heap[0][1] < q:
+                heapq.heappop(min_heap)
+
+            if min_heap:
+                result[idx] = min_heap[0][0]  # Length of smallest valid interval
+
+        return result
+
+</code>
+</pre>
+</details>
+
+---
+
+**2D Array**
+
+## 47.25. Rectangle Area II (Hay)
+
+Ref: [https://leetcode.com/problems/rectangle-area-ii/description/](https://leetcode.com/problems/rectangle-area-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+from bisect import bisect_left, insort
+from collections import defaultdict
+
+class Solution:
+    def rectangleArea(self, rectangles: List[List[int]]) -> int:
+        MOD = 10**9 + 7
+        
+        events = []
+        for r in rectangles:
+            # (x, type, y1, y2)
+            events.append([r[0], 0, r[1], r[3]])  # opening edge
+            events.append([r[2], 1, r[1], r[3]])  # closing edge
+        
+        # Sort by x, then by type (open before close)
+        events.sort(key=lambda x: (x[0], x[1]))
+        
+        yline = []  # active intervals as (y, type): 1 = entry, -1 = exit
+        prev_x = None
+        area = 0
+
+        def get_area(width):
+            yline_sorted = sorted(yline)
+            count = 0
+            total_y = 0
+            prev_y = None
+            for y, typ in yline_sorted:
+                if count == 0:
+                    prev_y = y
+                count += typ
+                if count == 0 and prev_y is not None:
+                    total_y += y - prev_y
+            return total_y * width
+
+        for x, typ, y1, y2 in events:
+            if prev_x is not None:
+                width = x - prev_x
+                area = (area + get_area(width)) % MOD
+
+            if typ == 0:
+                # insert y1 (entry) and y2 (exit)
+                yline.append((y1, 1))
+                yline.append((y2, -1))
+            else:
+                # remove y1 (entry) and y2 (exit)
+                yline.remove((y1, 1))
+                yline.remove((y2, -1))
+
+            prev_x = x
+
+        return area
+
+</code>
+</pre>
+</details>
+
+## 47.26. Perfect Rectangle
+
+Ref: [https://leetcode.com/problems/perfect-rectangle/description/](https://leetcode.com/problems/perfect-rectangle/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def isRectangleCover(self, rectangles: List[List[int]]) -> bool:
+        corner_set = set()
+        total_area = 0
+
+        min_x = float('inf')
+        min_y = float('inf')
+        max_x = float('-inf')
+        max_y = float('-inf')
+
+        for x1, y1, x2, y2 in rectangles:
+            # Update bounding box
+            min_x = min(min_x, x1)
+            min_y = min(min_y, y1)
+            max_x = max(max_x, x2)
+            max_y = max(max_y, y2)
+
+            # Accumulate area
+            total_area += (x2 - x1) * (y2 - y1)
+
+            # Define all four corners
+            corners = [(x1, y1), (x1, y2), (x2, y1), (x2, y2)]
+
+            # Use a set to track corners
+            for c in corners:
+                if c in corner_set:
+                    corner_set.remove(c)
+                else:
+                    corner_set.add(c)
+
+        # Final bounding rectangle area
+        expected_area = (max_x - min_x) * (max_y - min_y)
+        if total_area != expected_area:
+            return False
+
+        # Check corners — must match the 4 corners of bounding rectangle
+        expected_corners = {(min_x, min_y), (min_x, max_y), (max_x, min_y), (max_x, max_y)}
+        return corner_set == expected_corners
+
+</code>
+</pre>
+</details>
+
+## 47.27. The Skyline Problem
+
+Ref: [https://leetcode.com/problems/the-skyline-problem/description/](https://leetcode.com/problems/the-skyline-problem/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+import heapq
+
+class Solution:
+    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
+        # Create events: (x, height, start/end)
+        events = []
+        for left, right, height in buildings:
+            events.append((left, -height, right))  # start event; height negated to make max-heap using min-heap
+            events.append((right, 0, 0))  # end event
+
+        # Sort by x, then by height
+        events.sort()
+
+        result = []
+        # Heap of active buildings: (neg_height, end)
+        heap = [(0, float('inf'))]  # dummy building with height 0 to avoid empty heap
+        prev_max = 0
+
+        for x, neg_height, right in events:
+            # Remove buildings from heap that ended before or at x
+            while heap and heap[0][1] <= x:
+                heapq.heappop(heap)
+
+            if neg_height != 0:
+                # Add building height and end to heap
+                heapq.heappush(heap, (neg_height, right))
+
+            current_max = -heap[0][0] if heap else 0
+
+            if current_max != prev_max:
+                result.append([x, current_max])
+                prev_max = current_max
+
+        return result
+
+</code>
+</pre>
+</details>
+
+## 47.28. Erect the Fence
+
+Ref: [https://leetcode.com/problems/erect-the-fence/description/](https://leetcode.com/problems/erect-the-fence/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def outerTrees(self, trees: List[List[int]]) -> List[List[int]]:
+        # Cross product of OA and OB vectors
+        def cross(o, a, b):
+            return (a[0]-o[0])*(b[1]-o[1]) - (a[1]-o[1])*(b[0]-o[0])
+        
+        # Sort points
+        points = sorted(trees)
+        if len(points) <= 3:
+            return points
+        
+        # Build lower hull
+        lower = []
+        for p in points:
+            while len(lower) >= 2 and cross(lower[-2], lower[-1], p) < 0:
+                lower.pop()
+            lower.append(p)
+        
+        # Build upper hull
+        upper = []
+        for p in reversed(points):
+            while len(upper) >= 2 and cross(upper[-2], upper[-1], p) < 0:
+                upper.pop()
+            upper.append(p)
+        
+        # Concatenate lower and upper hull to get full hull
+        # Remove duplicates by converting to set then back to list
+        hull = lower[:-1] + upper[:-1]
+        return list(map(list, set(map(tuple, hull))))
+
+</code>
+</pre>
+</details>
