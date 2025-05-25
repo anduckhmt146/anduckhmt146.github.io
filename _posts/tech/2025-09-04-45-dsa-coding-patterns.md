@@ -2005,7 +2005,255 @@ class Solution:
 </pre>
 </details>
 
-# 5. Pattern 5: Cyclic Sort
+# 5. Pattern 5: Cyclic Sort (Missing Number)
+
+## 5.1. Find A Missing Number
+
+Ref: [https://leetcode.com/problems/missing-number/description/](https://leetcode.com/problems/missing-number/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        i = 0
+        while i < n:
+            correct_pos = nums[i]
+            # Place nums[i] at its correct position if possible
+            # Also check that correct_pos < n to avoid index out of range since missing number is in 0..n
+            if correct_pos < n and nums[i] != nums[correct_pos]:
+                nums[i], nums[correct_pos] = nums[correct_pos], nums[i]
+            else:
+                i += 1
+        
+        # [9,6,4,2,3,5,7,0,1]
+        # [0, 1, 2, 3, 4, 5, 6, 7, 9]
+        print(nums)
+
+        # After sorting, the first index where nums[i] != i is the missing number
+        for i in range(n):
+            if nums[i] != i:
+                return i
+        
+        # If all numbers are at correct positions, then missing number is n
+        return n
+
+</code>
+</pre>
+</details>
+
+## 5.2. Find All Missing Number
+
+Ref: [https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        i = 0
+        
+        # Place each number at its correct index: nums[i] should be at nums[nums[i]-1]
+        while i < n:
+            correct_pos = nums[i] - 1
+            if nums[i] != nums[correct_pos]:
+                nums[i], nums[correct_pos] = nums[correct_pos], nums[i]
+            else:
+                i += 1
+        
+        # After placement, numbers which are not at correct index are missing
+        disappeared = []
+        for i in range(n):
+            if nums[i] != i + 1:
+                disappeared.append(i + 1)
+        
+        return disappeared
+
+</code>
+</pre>
+</details>
+
+## 5.3. Find the Duplicate Number
+
+Ref: [https://leetcode.com/problems/find-the-duplicate-number/description/](https://leetcode.com/problems/find-the-duplicate-number/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        i = 0
+        n = len(nums)
+        
+        while i < n:
+            correct_pos = nums[i] - 1
+            if nums[i] != nums[correct_pos]:
+                nums[i], nums[correct_pos] = nums[correct_pos], nums[i]
+            else:
+                if i != correct_pos:
+                    # Duplicate found
+                    return nums[i]
+                else:
+                    i += 1
+        return -1  # If no duplicate found (problem guarantees one duplicate)
+
+</code>
+</pre>
+</details>
+
+## 5.4. Find all Duplicate Numbers
+
+Ref: [https://leetcode.com/problems/find-all-duplicates-in-an-array/](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        i = 0
+        n = len(nums)
+        duplicates = []
+        
+        while i < n:
+            correct_pos = nums[i] - 1
+            if nums[i] != nums[correct_pos]:
+                nums[i], nums[correct_pos] = nums[correct_pos], nums[i]
+            else:
+                i += 1
+
+        # [4,3,2,7,8,2,3,1]
+        # [1, 2, 3, 4, 3, 2, 7, 8]
+
+        print(nums)
+        
+        for i in range(n):
+            if nums[i] != i + 1:
+                duplicates.append(nums[i])
+        
+        return duplicates
+
+</code>
+</pre>
+</details>
+
+## 5.5. Find the Corrupt Pair
+
+Find duplicates and missing numbers.
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+        i = 0
+        n = len(nums)
+        
+        while i < n:
+            correct_pos = nums[i] - 1
+            if nums[i] != nums[correct_pos]:
+                nums[i], nums[correct_pos] = nums[correct_pos], nums[i]
+            else:
+                i += 1
+        
+        for i in range(n):
+            if nums[i] != i + 1:
+                # nums[i] is the duplicate, i+1 is the missing
+                return [nums[i], i + 1]
+
+        return [-1, -1]
+
+</code>
+</pre>
+</details>
+
+## 5.6. First Missing Positive
+
+Ref: [https://leetcode.com/problems/first-missing-positive/description/](https://leetcode.com/problems/first-missing-positive/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        n = len(nums)
+        i = 0
+        
+        while i < n:
+            correct_pos = nums[i] - 1
+            # Place nums[i] at its correct position if possible
+            if 1 <= nums[i] <= n and nums[i] != nums[correct_pos]:
+                nums[i], nums[correct_pos] = nums[correct_pos], nums[i]
+            else:
+                i += 1
+        
+        # After placement, the first index where nums[i] != i+1 is the missing positive
+        for i in range(n):
+            if nums[i] != i + 1:
+                return i + 1
+        
+        # If all numbers are in correct place, missing positive is n+1
+        return n + 1
+
+</code>
+</pre>
+</details>
+
+## 5.7. Kth Missing Positive Number
+
+Ref: [https://leetcode.com/problems/kth-missing-positive-number/description/](https://leetcode.com/problems/kth-missing-positive-number/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+from typing import List
+
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        missing_count = 0
+        current = 1
+        i = 0
+        n = len(arr)
+        
+        while True:
+            if i < n and arr[i] == current:
+                i += 1
+            else:
+                missing_count += 1
+                if missing_count == k:
+                    return current
+            current += 1
+
+</code>
+</pre>
+</details>
 
 # 6. Pattern 6: In-place Reversal of a LinkedList
 
