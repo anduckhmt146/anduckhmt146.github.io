@@ -10582,6 +10582,36 @@ class Solution:
 </pre>
 </details>
 
+## 22.19. Distribute Candies Among Children II
+
+Ref: [https://leetcode.com/problems/distribute-candies-among-children-ii/description/](https://leetcode.com/problems/distribute-candies-among-children-ii/description/)
+
+<details>
+<summary>Code</summary>
+
+<pre>
+<code class="python">
+class Solution:
+    def distributeCandies(self, n: int, limit: int) -> int:
+        result = 0
+
+        def backtrack(i, remaining):
+            nonlocal result
+            if i == 3:
+                if remaining == 0:
+                    result += 1
+                return
+
+            for candies in range(min(limit, remaining) + 1):
+                backtrack(i + 1, remaining - candies)
+
+        backtrack(0, n)
+        return result
+
+</code>
+</pre>
+</details>
+
 # 23. Pattern 23: Trie
 
 ## 23.1. Implement Trie (Prefix Tree)
