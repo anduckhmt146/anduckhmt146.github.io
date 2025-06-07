@@ -94,3 +94,43 @@ categories: tech
 - What to do: Request details to understand the specific concerns => review the code, find solution to optimize performance, implement more effcient algorithms, reducing unnecessary complexity.
 
 - The code improve that application performance, receiving positive feedback from manager and the client => need to response for the possive feedback.
+
+## 11. Describe a time when you had to give someone difficult feedback. How did you handle it?
+
+- I have a mentor a junior developer, call Alex => he is entiastic and talented => but his code often lacked proper document, which is crucial to team's workflow and long-term project management.
+
+- My task is give him a constructive and encouraging feedback without discourating his enthusiasm and confidence.
+
+- What to do (Constructive Feedback: Nói tốt trước => Phê bình sau): Create one-to-one meeting with Alex => First I give him a **pros**: acknowledge the strengths of his coding skills and value that he brought to team. Then, I gently explained the importance of documentation, not only for current team but other team working on the project. To guide him, I provided example for well-documented code and share reources to learn how to write a effective documentation.
+
+- Alex response well to the feedback => began to improve in later, strengthen relationship with him and make him work better in the next project, focusing on growth and learning in his career.
+
+## 12. Tell me about a time when you had to prioritize your tasks quickly.
+
+- In starup company, we have multiple projects simultaneously. We have one particular week where the demands peaked unexpectedly.
+
+- In the middle of developing new feature of main product, at the same time, a critical bug was reported in another project => enhance scope of tasks => I need to address urgent bug and working ongoing development project.
+
+- I need to prioritized the tasks => Because the bug is crucial to fix for client => contact team lead to pause the feature development. Then I fix the bug first, after that, I shifted my focus back to the feature development, I broke the remaining development to smaller tasks and set mini-deadlines => stayed a couple of extra hours to complete the tasks.
+
+- Result: fix bug for client and the feature development still completed on time.
+
+## 13. Describe a time when you anticipated potential problems and developed preventive measures.
+
+- We are working on large-scale web application, and I recognize the the issues related to scalability in source base when user grow rapidly.
+
+- My task to ensure the application scalable with high traffic without performance degradation.
+
+- What to do: Prepare load testing, detect the vulnerability such as optimize database queries, implement effecient caching, utilize load balancing, auto scaling,...
+
+- The feature after launch and monitoring result reach the baseline => enhance software engineer skills.
+
+## 14. Describe a situation where you had to deal with a difficult customer.
+
+- They are unhappy about the initial version of a custom software tool we developed for them => claiming it doesn't meer their expectations despite their expectations.
+
+- My task in understand client's concerns, understand their specific issues with the product => find a solution would satisfy them.
+
+- What to do: Initiate a meeting with client to discuss concern in detail, active lisnening their feedback, recoginize the gap between their expectation and what we misunderstand in project planning phrase => we need to proposed a series of modifications for the software => set up weekly progress meetings with the client to ensure they were continually updated and their feedback was integrated into the development process.
+
+- The modification and additional features were well-received by the client => make them satisfied, enhance relationship with client and led to further business opportunities with them.
