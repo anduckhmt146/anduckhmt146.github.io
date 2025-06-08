@@ -24,11 +24,11 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 ## 2. Personality, Enneagram, Attachment Theory, Zodiac?
 
-1. **Personality type (MBTI):** Assertive ENFP, Ne-Te Loop Preference.
+1. **Personality type (MBTI):** Assertive ENFP.
 
-2. **Enneagram:** mostly 5w4 or 7w8, could be 4w5.
+2. **Enneagram:** 7w8 -> 5w4.
 
-3. **Attachment Theory:** Anxious Attachment Style (20% people in the world who feel this way).
+3. **Attachment Theory:** Dismissive Avoidant.
 
 4. **Zodiac:** I'm a Sun and Jupier in Gemini, Venus in Cancer, Ascendant in Capricorn.
 
