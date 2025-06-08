@@ -28,7 +28,7 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 2. **Enneagram:** 7w8 -> 5w4.
 
-3. **Attachment Theory:** Dismissive Avoidant.
+3. **Attachment Theory:** Fearful-Avoidant.
 
 4. **Zodiac:** I'm a Sun and Jupier in Gemini, Venus in Cancer, Ascendant in Capricorn.
 

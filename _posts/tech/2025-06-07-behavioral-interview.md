@@ -182,3 +182,67 @@ categories: tech
 - Result: The prototyping exercise showed that while John’s method was innovative, it was not stable enough for our current project. We decided to go with Sarah’s approach, but agreed to explore John's method in a future project. This resolution was accepted by both parties, and the team's morale improved significantly. The team-building activities and open forums also proved to be effective in strengthening team cohesion and communication.
 
 ## 20. Describe a time when you went out of your comfort zone. Why did you do it? What lessons did you learn from the experience?
+
+- Backend => But need to do fullstack.
+
+- What to do: Learning course, research colleagues for guidance, spend extra hours to practice and gradually become more proficient, do POC project, maintain clear timeline and track progess.
+
+- Result: I had successfully implemented several key front-end feature, change to work end to end product.
+
+## 21. Describe a time when you delivered a project under a tight deadline.
+
+- Develop the new feature for mobile banking app => very tight timeline.
+
+- My task: Lead the team => Complete the tasks on time.
+
+- What to do: Kick-off meeting, split projects into smaller and managable tasks, prioritize the tasks based on importance and dependencies. Implement agile-development progress, with daily stand-up meetings to track progress and identify any blockers early => track progress closely to make sure the feature met all neccessary regulations
+
+- Through diligent work and effective team coordination, we completed the development ahead of schedule, which gave us extra time for thorough testing and quality assurance => This experience reinforced the importance of strategic planning, agile methodologies, and clear communication in successfully managing and delivering projects under tight deadlines.
+
+## 22. Describe a time when you took a big risk and it failed.
+
+- We are develop an innovative new feature for our product => cutting-edge solution but relatively untested technology stack.
+
+- Task: My task was to develop a core component of our product using this new technology.
+
+- What to do: Ask for agreement from team lead, invest time learning new technology, build POC, monitoring progress. Passionate and Enthusiasm to learn new technology, confident in its potential and work diligently to integrate it into our product.
+
+- Result: Unfortunately, despite my efforts, the integration of this new technology did not go as planned => due to reliability issues, technology was not yet stable for our needs => delay the timeline => Learn how to balancing innovation with feasibility, especially in production environment => please asset the risks and readiness of new technologies => need to careful to make decisions to adoption of emerging technologies in projects.
+
+## 23. How would you design/test a product to make sure its diverse/inclusive to all users?
+
+- In planning phrase, my task was to lead the effort in redesigning and testing the app to ensure it was inclusive and accessible to a broad user base, including people with different abilities and from diverse cultural backgrounds.
+
+- What to do: Implement by phrases
+
+  - **User Research:** Conduct extensive of user research => understand the needs and preferences of diverse user group => surveys, interviews and focus groups.
+
+  - **Inclusive Design Principles:** Implement the design, considering factors such as color constrast for visuallly impaired users, text size options, and culturally sensitive content.
+
+  - **Diverse Testing Team:** Assembled a diverse group of beta testers who could provide feedback from different perspectives => This group included people with disabilities, non-native English speakers, and users from various age groups and cultural backgrounds.
+
+  - **Accessibility Standards:** Ensure the app met international accessibility standards => web content accessibility standards => The Web Content Accessibility Guidelines (WCAG).
+
+  - **Regular Feedback Loops:** Established regular feedback loops during the development cycle to incorporate user input into the design continually.
+
+- Result: The revised app received positive feedback for its inclusivity and user-friendly design. Users particularly appreciated features such as adjustable text sizes, high-contrast color schemes, and culturally diverse content.
+
+## 24. Describe a time you had to explain a complex technical concept to someone non-technical.
+
+- Context: We are developing a new feature that utilized the machine learning algorithms. During a team meeting, a non-technical stakeholder from the marketing department was present and expressed interest in understanding how this feature works => want to know the technically behind the product.
+
+- Task: Explain the concept of machine learning algorithms to someone without technical background in a way that was easy to understand and relevant to their work.
+
+- Action: I prepared a brief presentation, avoid technical jargons and focus on the fundamentals => Give example as you teaching a child with to differentiate between different types of fruits => the concept of 'learning from data' in a tangible way => I also used visual ads to demonstrate how the algorithm process data and improves over time => After the explanation, I related it back to how the technology would enhance user experience and benefit to the marketing campaign => which was the main area of interest.
+
+- Result: The stakeholder appreciated the clear and relatable explanation. They left the meeting with a good understanding of how the feature worked and how it could be leveraged in their marketing strategies => effective communication skills in technical roles, especially the ability to convey complex concepts in simple terms, enhance cross-departmental collaboration.
+
+## 25. Tell me about a time you disagreed with a colleague. How did you handle the situation?
+
+- Context: I had a disagreement with a colleague, whom we'll call Jake, about the best approach to database design for this feature => I want to use SQL for strong consistency and established relationships between data entities, but he want to use NoSQL Database for greater flexibilty.
+
+- Task: Make the best technical decision and maintain positive working relationship with Jake.
+
+- What to do: We have a dedicated meeting to discuss viewpoints in detail => During the meeting, I listened carefully Jake's reasoning and shared my perspective => Create a small prototype for each approach, allowing us to pros and cons in practical context => consult with other team members and gather their insights => allow us to evaluate both options objectively.
+
+- Result: After testing both prototypes and discussing with the team, we concluded that the SQL approach was more suited to our needs => Jake appreciated the empirical and collaborative manner in which the disagreement was handled => open communication, collaboration, and evidence-based decision-making in software development.
