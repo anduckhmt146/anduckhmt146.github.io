@@ -246,3 +246,80 @@ categories: tech
 - What to do: We have a dedicated meeting to discuss viewpoints in detail => During the meeting, I listened carefully Jake's reasoning and shared my perspective => Create a small prototype for each approach, allowing us to pros and cons in practical context => consult with other team members and gather their insights => allow us to evaluate both options objectively.
 
 - Result: After testing both prototypes and discussing with the team, we concluded that the SQL approach was more suited to our needs => Jake appreciated the empirical and collaborative manner in which the disagreement was handled => open communication, collaboration, and evidence-based decision-making in software development.
+
+## 26. Give an example of a time you had to collaborate effectively with a team from a different department.
+
+- Task: Build a new analytics tool. This tool was intended to provide in-depth customer engagement metrics, we needed to collaborate closely with the marketing department, who were the end-users of this tool.
+
+- My responsibility was not only to contribute to the development of the tool but also to ensure that it met the specific needs and expectations of the marketing team.
+
+- What to do: Join meeting between the development and marketing teams => discussed the marketing team's requirements and expectations in detail => clarify the questions to understand their needs and explain technical constraints and possibilities => apply agile development approach, allowing for iterative feedback and adjustments, set up shared communication channel => ensure both teams were aligned on the goals and progress of the project.
+
+- Result: This collaborative approach proved highly effective => The marketing team's insights were invaluable in shaping the tool’s functionality, and our iterative process allowed us to fine-tune features and interfaces in response to their feedback => This experience underscored the importance of cross-departmental collaboration in developing software that truly meets user needs, translating technical concepts to non-technical audiences.
+
+## 27. Tell me about a complex technical project you've worked on.
+
+- We embarked on a project to develop a large-scale data processing and analysis platform. The platform was designed to handle vast amounts of data from various sources and provide real-time analytics.
+
+- Task: My task was to lead the backend development team responsible for creating the data processing engine => This engine needed to be highly efficient, scalable, and capable of processing terabytes of data in real-time.
+
+- What to do: Research the technology stack meet our performance requirements => design high-performance computing techniques and distributed processing system => ensure scalability and maintainability => using Apache Spark, Kafka, Goroutines => Ensured that we followed best practices in code reviews, testing, and documentation => Work with front-end team and data scientists to ensure seamless integration and alignment with the user interface and data analysis needs.
+
+- Result: After several months of development, the platform was successfully launched => It was able to process and analyze data at a scale and speed that significantly exceeded our initial benchmarks => Our clients were able to gain insights from their data much faster than before, greatly enhancing their decision-making processes => thoughtful architecture design, the power of teamwork, and the value of rigorous testing and optimization in building robust, high-performance software solutions.
+
+## 28. How do you stay up-to-date with the latest technological advancements?
+
+- I have a multi-pronged approach to learn knowledge:
+
+  - **Online Learning Platforms:** Udemy, Coursera, Udacity, and Pluralsight to take courses on emerging technologies and programming languages.
+
+  - **Industry News and Publication:** Read news about technology TechCrunch, Wired, and Hacker News.
+
+  - **Community Engagement:** Stack Overflow and GitHub, participating in discussions and collaborating on open-source projects allows me to learn from peers and stay connected with the broader tech community.
+
+  - **Conferences and Meetups:** Attending industry conferences, webinars, and local meetups => into industry trends and offer networking opportunities with other professionals.
+
+  - **Experimentation and Personal Projects:** I believe in learning by doing. So, I often experiment with new technologies by incorporating them into my personal projects => his hands-on approach helps deepen my understanding and assess the practical application of new tools and frameworks.
+
+## 29. Give an example of a time you had to debug a challenging technical issue.
+
+- Context: Our team faced a critical issue where our content management system (CMS) would sporadically crash, significantly disrupting the workflow of the content team.
+
+- Task: Identify and resolve root cause => sporadic nature of the issue, which made it difficult to replicate and diagnose.
+
+- What to do: Analyze system log => Discover potential issues => Develop hypothesis (memory leak) => Validate it (monitoring tools)
+  => Refactor the problematic code => Confirm the issues was resolved.
+
+- Result: The issues had been resolved => improve CMS to crash => learning systematic problem-solving and persistence in debugging => highlighted the value of thorough testing and the effective use of diagnostic tools.
+
+## 30. Why are you interested in working at [company name]?
+
+- Innovative approach + Reputation for fostering a culture of continuous learning and development.
+
+- I've been following your work in [specific area or project], and I'm impressed by the impact your solutions have had in the industry
+
+- Focus on collaborative teamwork and its inclusive culture.
+
+- The opportunity to work alongside a diverse team of talented professionals who are passionate about their work is very appealing to me.
+
+. Finally, the company's commitment to [any other aspect like community involvement, environmental sustainability, etc.] resonates with my personal values.
+
+- I'm enthusiastic about the opportunity to be part of a company that not only leads in technology but also contributes positively to the broader community.
+
+- Give me a chance to learn.
+
+## 31. Assume you are given a task to design a system. How would you do it? How would you resolve ambiguity?
+
+- What to do: Clarify and requirement gathering => Conduct a feasibility study and research => Draft an initial design proposal => System architecture, data flow diagrams, and a basic prototype or wireframe of the user interface => Visualizing how different components of the system will interact and function => Setting up review meetings with stakeholders and gather feedback => clarifying any vague requirements => Serves as a guide for the development team and ensures everyone is on the same page.
+
+- What to learn: Effective communication, continuous collaboration with stakeholders, and being open to feedback are my top priorities => Facilitates the creation of a system that truly meets the users' needs.
+
+## 32. Have you ever been in a situation where another team and yours were creating a similar product? What happened?
+
+- Context: At my previous job as a software developer at a tech company, we found ourselves in an unexpected situation where my team and another in-house team were working on projects with overlapping functionalities.
+
+- Task: Address this duplication of effort without hampering the progress and morale of either team.
+
+- What to do: Suggest a meeting between two teams => Discuss the scope and objective of each team => Collaborative approach where both teams could work together to integrate the best aspects of each tool into a single, more comprehensive solution => merged while maintaining the integrity and performance of each too.
+
+- Result: Success outcome => collaboration, communication, and flexibility, working together towards a common goal can lead to superior results and more efficient use of resources.
