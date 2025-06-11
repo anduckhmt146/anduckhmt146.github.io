@@ -357,3 +357,35 @@ categories: tech
 - What to do: Voice my opinion during team meeting => Prepare detailed presentation => Performance analysis of the current system, identifiying the bottlenecks => showcasing how targeted refactoring could resolve the issues => Highlight risks associated with complete rewrite, potential new bug, longer development time, edge cases, resource allocation changes => Took initiative to refactor small portion of the code as proof of concept (POC) => Share before and after metrics with team => show a significant improvement with minimal changes.
 
 - Result: After reviewing my analysis and the results of the proof of concept, the team agreed to try the refactoring approach => The project was completed ahead of schedule and under budget, and the improved performance metrics were well-received by stakeholders => The importance of effective communication in team settings, and how taking initiative can lead to better decision-making.
+
+## 36. Tell me about a time when you were faced with a problem that had a number of possible solutions. What was the problem and how did you determine the course of action? What was the outcome of that choice?
+
+## 37. Describe a time when you needed to motivate a group of individuals or encourage collaboration during a particular project.
+
+## 38. What do you do to enhance your technical knowledge apart from your project work?
+
+## 39. How do you prioritize your workload? What do you do when your work feels like it's just too much to get done?
+
+## 40. What’s the Number One Accomplishment You’re Most Proud Of?
+
+## 41. Tell me about a time when you had an excessive amount of work and you knew you could not meet the deadline. How did you manage then?
+
+## 42. What will be your course of action if you are assigned some task which you don’t know at all?
+
+## 43. Give an example of when you took a huge risk and failed.
+
+## 44. Describe a time when you had to work simultaneously on both high-priority urgent projects as well as long-term projects. How did you go about handling both?
+
+## 45. Tell me about a time when you had a hard time working with someone in your team. How did you handle it?
+
+## 46. Tell me about a project that didn’t go according to plan.
+
+## 47. What is something new that you’ve learned recently?
+
+## 48. Tell me about a time when you had to make a decision without all the information you needed.
+
+## 49. Tell me a time when you linked two or more problems together and identified an underlying issue.
+
+## 50. Tell me about a time you made a decision to sacrifice short term gain for a longer term goal.
+
+## 51. How would you respond if you were the last member of the team in the office on a Friday afternoon and the product owner asks you to develop and deploy a change to production?
