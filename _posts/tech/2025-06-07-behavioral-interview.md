@@ -323,3 +323,37 @@ categories: tech
 - What to do: Suggest a meeting between two teams => Discuss the scope and objective of each team => Collaborative approach where both teams could work together to integrate the best aspects of each tool into a single, more comprehensive solution => merged while maintaining the integrity and performance of each too.
 
 - Result: Success outcome => collaboration, communication, and flexibility, working together towards a common goal can lead to superior results and more efficient use of resources.
+
+## 33. What is the biggest technical challenge you have worked on?
+
+- Task: At my previous job as a software developer at a data analytics firm, we faced a significant challenge when we were tasked with developing a large-scale data processing system.
+
+- Task: Design the processing module that would not only handle the massive influx of data but also perform real-time analysis.
+
+- What to do: Research about distributed computing and data processing framework => Apache Kafka for data ingestion and Apache Spark for real-time data processing => Design microservices approach to ensure independent scalability => Set up simulated test environment => Regular meeting, clear communication, adapting our approach based on feedback and envolving requirements.
+
+- Result: The system is successfully deployed => processing and analyzing data streams in real-time with high accurary and minimal latency => it honed my skills in distributed computing, team leadership, and problem-solving under pressure.
+
+## 34. Why do you want to change your current company?
+
+- Context: I have had a very rewarding experience at my current company, where I've grown both professionally and technically.
+
+- Over the years, I've had the opportunity to work on a variety of challenging projects, which have allowed me to develop a strong skill set in software development: distributed system, mini app system, microservices, frontend, backend, leadership, ownership, communcation skills.
+
+- However, I am now seeking a new challenge and an opportunity to further expand my skills and experiences in an English-speaking culture. I believe change is essential for personal and professional growth, and I feel that now is the right time for me to explore a new environment.
+
+- Your company, with its focus on sth => it align with my career goals and collaborating with a team that is known for its expertise and innovation.
+
+- I am eager to bring my experience in Golang, monitoring, design high large scale service to your team and looking forward to learning opportunites with this role.
+
+=> The things now I need is an English-speaking environment culture.
+
+## 35. Tell me a time when you had a different opinion than the rest of the team. How did you handle it?
+
+- Context: Improving performance of our main product => rewrite a significant portion of the legacy code => address the performance issues.
+
+- Task: Reasoning => Rewrite is risky and unnecessary => Propose to refactor the specific inefficient code segment would be more efficient and less resource-intensive.
+
+- What to do: Voice my opinion during team meeting => Prepare detailed presentation => Performance analysis of the current system, identifiying the bottlenecks => showcasing how targeted refactoring could resolve the issues => Highlight risks associated with complete rewrite, potential new bug, longer development time, edge cases, resource allocation changes => Took initiative to refactor small portion of the code as proof of concept (POC) => Share before and after metrics with team => show a significant improvement with minimal changes.
+
+- Result: After reviewing my analysis and the results of the proof of concept, the team agreed to try the refactoring approach => The project was completed ahead of schedule and under budget, and the improved performance metrics were well-received by stakeholders => The importance of effective communication in team settings, and how taking initiative can lead to better decision-making.
