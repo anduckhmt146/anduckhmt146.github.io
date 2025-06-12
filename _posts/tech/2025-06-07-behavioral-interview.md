@@ -360,6 +360,14 @@ categories: tech
 
 ## 36. Tell me about a time when you were faced with a problem that had a number of possible solutions. What was the problem and how did you determine the course of action? What was the outcome of that choice?
 
+- Context: There are serveral solutions to improve performance of the application => horizontal scaling in server infrastructure, optimal code in server side, implementing a new content delivery network (CDN).
+
+- Task: Choose the option that is better.
+
+- What to do: Using performance profiling tool (Grafana) => identify server response times => Discuss potential solutions => prioritizing code optimization due to limited resources => and simultaneously, I presented a proposal to management for server infrastructure upgrades, detailing the long-term benefits => and also included an analysis of implementing a CDN as part of our future scalability plan.
+
+- Result: The code optimization resulted in a 50% reduction in load time => While the CDN implementation was scheduled for a later phase, planning for it in advance helped us in our long-term scalability strategy => problem-solving, the value of teamwork and collaboration in decision-making, and the need for balancing immediate needs with long-term planning.
+
 ## 37. Describe a time when you needed to motivate a group of individuals or encourage collaboration during a particular project.
 
 ## 38. What do you do to enhance your technical knowledge apart from your project work?
