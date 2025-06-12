@@ -390,7 +390,7 @@ categories: tech
 
 ## 38. What do you do to enhance your technical knowledge apart from your project work?
 
-- Engage online courses: Coursera, Udemy and Pluralsight => Learning about Cloud Computing and Python programming => participate coding challenges and hackathons => learning new approaches and techniques from talented developers (Leetcode, Hackerrank) => contribute open-source on Github => apply my skills to real world and collaborate sith other developers, broaden my perspective and enhance problem-solving skills => Regularly read tech blogs, follow industry leaders on social media, subscribe to relevant tech magazines and newsletters => Come to local tech community meetups and seminars => greate opportunity to network, enchance knowledge and learn from the experiences of other in the field => this combination of continuous learning, practical application and community involvement => sharpen my skills and ensures I am well-versed the latest technology advancements. 
+- Engage online courses: Coursera, Udemy and Pluralsight => Learning about Cloud Computing and Python programming => participate coding challenges and hackathons => learning new approaches and techniques from talented developers (Leetcode, Hackerrank) => contribute open-source on Github => apply my skills to real world and collaborate sith other developers, broaden my perspective and enhance problem-solving skills => Regularly read tech blogs, follow industry leaders on social media, subscribe to relevant tech magazines and newsletters => Come to local tech community meetups and seminars => greate opportunity to network, enchance knowledge and learn from the experiences of other in the field => this combination of continuous learning, practical application and community involvement => sharpen my skills and ensures I am well-versed the latest technology advancements.
 
 ## 39. How do you prioritize your workload? What do you do when your work feels like it's just too much to get done?
 
@@ -406,7 +406,25 @@ categories: tech
 
 ## 41. Tell me about a time when you had an excessive amount of work and you knew you could not meet the deadline. How did you manage then?
 
+- Context: A week before the deadline, we received feedback from beta testing that indicated significant issues with user experience => required additional work.
+
+- What to do:
+
+  - **Reassessing Priorities:** I quickly reassessed the tasks based on their urgency and importance.
+
+  - **Communicating with Stakeholders:** communicate the situation with my manager and project stakeholders.
+
+  - **Seeking Assistance:** Coordinate with my team to redistribute the workload effectively => Seek additional help, either from other teams or by temporarily bringing in extra resources.
+
+  - **Maximizing Efficiency:** I reprioritized my workload, focusing on the most critical tasks first. I also extended my work hours and streamlined my working process to increase productivity.
+
+  - **Regular Updates:** I provided regular updates to the management and stakeholders.
+
+- Result: Address all the critical issues identified in the beta testing => We missed the original deadline but managed to release the feature only two days later => It also highlighted the significance of teamwork and effective resource management under tight deadlines.
+
 ## 42. What will be your course of action if you are assigned some task which you don't know at all?
+
+- Being assigned tasks that involve unfamiliar is common => systematic and proactive => Assess the requirements of the task to understand its scope and objectives => Determining the specific areas where I need to buind knowledge or skills => Research relevant documentation, tutorials, online courses (Stack Overflow, GitHub, Medium) => Reach out to colleagues or mentors who might have expertise in that area => Ask for tips, best practices, and any potential pitfalls to avoid => Once I have a basic understanding, implement the hands-on approach => I would apply the concepts I’ve learned and iterate based on the results => . I believe in maintaining a positive attitude towards such challenges. Each unfamiliar task is an opportunity to grow and expand my skill set, contributing to my development as a well-rounded software developer.
 
 ## 43. Give an example of when you took a huge risk and failed.
 
