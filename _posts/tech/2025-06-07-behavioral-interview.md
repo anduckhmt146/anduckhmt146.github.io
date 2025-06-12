@@ -358,7 +358,7 @@ categories: tech
 
 - Result: After reviewing my analysis and the results of the proof of concept, the team agreed to try the refactoring approach => The project was completed ahead of schedule and under budget, and the improved performance metrics were well-received by stakeholders => The importance of effective communication in team settings, and how taking initiative can lead to better decision-making.
 
-## 36. Tell me about a time when you were faced with a problem that had a number of possible solutions. What was the problem and how did you determine the course of action? What was the outcome of that choice?
+## 36. Tell me about a time when you were faced with a problem that had a number of possible solutions. What was the problem and how did you determine the course of action? What was the outcome of that choice? (Priority short-term solutions first, long-term solutions later)
 
 - Context: There are serveral solutions to improve performance of the application => horizontal scaling in server infrastructure, optimal code in server side, implementing a new content delivery network (CDN).
 
@@ -370,15 +370,43 @@ categories: tech
 
 ## 37. Describe a time when you needed to motivate a group of individuals or encourage collaboration during a particular project.
 
+- Context: Develop new feature for our product => tight deadline and innovative nature of the feature, required learning new technologies.
+
+- Task: Ensure project delivery on time => Keep my team motivated and encourage collaboration who had varying levels of expertise with the new technologies.
+
+- What to do:
+
+  - **Kickoff meeting:** outline the project importance and collecive goals => emphasizing each team member's contribution was vital to the project.
+
+  - **Skill-sharing sessions:** team members who had more experience with technology conducted mini-workshops to upskill others.
+
+  - **Open Communication Channels:** establish open communication channel and regular check-ins => team member can share progress, raise concerns and offer help to each other.
+
+  - **Milestone Celebrations**: To keep team motivated, when we reach significant milestone => we take a moment to recognize team's effort => small virtual celebrations.
+
+  - **Feedback and Support:** Provide continuous feedback and support => acknowledge individuals and team efforts => continuously improve from feedback and tackling challenging tasks.
+
+- Result: This strategies led to high level of team engagement and collaboration => skill-sharing sessions help upskilling the team and foster the sense of camaraderie => We successfully completed the project two days ahead the deadline => increase 10% in user engagement in our software => understanding and leveraging individual team members' strengths, effective communcation and recoginization => fostering a collaborative team environment.
+
 ## 38. What do you do to enhance your technical knowledge apart from your project work?
+
+- Engage online courses: Coursera, Udemy and Pluralsight => Learning about Cloud Computing and Python programming => participate coding challenges and hackathons => learning new approaches and techniques from talented developers (Leetcode, Hackerrank) => contribute open-source on Github => apply my skills to real world and collaborate sith other developers, broaden my perspective and enhance problem-solving skills => Regularly read tech blogs, follow industry leaders on social media, subscribe to relevant tech magazines and newsletters => Come to local tech community meetups and seminars => greate opportunity to network, enchance knowledge and learn from the experiences of other in the field => this combination of continuous learning, practical application and community involvement => sharpen my skills and ensures I am well-versed the latest technology advancements. 
 
 ## 39. How do you prioritize your workload? What do you do when your work feels like it's just too much to get done?
 
-## 40. What’s the Number One Accomplishment You’re Most Proud Of?
+- Effective workload management is crucial => Apply Eisehower Matrix and Agile methodlogy => categorize tasks based on urgency and importance => Critical and urgent tasks get highest priority, followed by important but not urgent tasks => focus on what needs immendiate attention while not losing sight of long-term goals => apply Agile methodlogy to break down larger projects into smaller, managable tasks => setting short-term achievable goals => clear roadmap and tracking progress.
+
+- When face with an overwhelming workload => my first step is to re-evaluate my priorities => review task lists to see if anything can be delegated or broken down further => Communicate is key in such situations => discuss workload challenges with my manager of team => seeking their input and assistance to reprioritize and redistributing tasks
+
+- Moreover, I beleive in taking proactive breaks to avoid burnout => regual intervals of rest or engaging in activities unrelated to work => help me recharge and maintain focus => leverage tools and automation to increase efficiency => automative repetitive tasks or using project managment tools to keep track deadlines and dependencies can significantly reduce the workload => continuously communicating with my team and efficiently managing my time to handle workload effectively, to ensure high-quality outputs and work-life balance.
+
+## 40. What's the Number One Accomplishment You're Most Proud Of?
+
+- The accomplishment I am most proud of in my career => leading the development team and successful launch of comprehensive inventory management system => this project stands out for me because challeges we faced, the technical skills I had to employ, the imact on the company's operations => We decide to to modern technology stacks => the most challenging of the project is that required various external APIS for real-time data syncing => after months of hard work, including coding, testing, several interations based on user feedback => we successfully deploy the system => it enabled real-time inventory tracking, automated reordering and provided valuable insights through data analytics => recuding overstock or stockouts => reduce 20% in operation costs and noticable imporvement in customer satis faction due to better stock managament => solving real business problem and make good relationship with operation team.
 
 ## 41. Tell me about a time when you had an excessive amount of work and you knew you could not meet the deadline. How did you manage then?
 
-## 42. What will be your course of action if you are assigned some task which you don’t know at all?
+## 42. What will be your course of action if you are assigned some task which you don't know at all?
 
 ## 43. Give an example of when you took a huge risk and failed.
 
