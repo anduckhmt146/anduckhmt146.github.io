@@ -428,6 +428,14 @@ categories: tech
 
 ## 43. Give an example of when you took a huge risk and failed.
 
+- Context: Working on a major project => revamp the company's client data management system => designing and implementing the new system.
+
+- Task: Proposed an ambitious idea => Integrate an advanced machine learning algorithm to provide predictive analytics based on client data.
+
+- What to do: Getting agree from team lead => Devoted myself to the task => Research extensively, invest extra hours with an external expert for the implementation. Despite my efforts, as the project deadline approached => Complex algorithm was far more challenging than anticipated => Require more data processing power and expertise => I made the tough decision to revert to our original plan => communicated this to my team lead, explaining the challenges and why I believed it was the best course of action to ensure timely delivery.
+
+- Result: It failed to implement the machine learning component => this experience was a significant learning opportunity => The importance of thorough risk assessment and being realistic about project scopes and capabilities . It also highlighted the need for incremental innovation rather than making giant leaps in unfamiliar territories => From this experience, I learned to balance ambition with feasibility and to more effectively evaluate the risks and rewards of innovative solutions.
+
 ## 44. Describe a time when you had to work simultaneously on both high-priority urgent projects as well as long-term projects. How did you go about handling both?
 
 ## 45. Tell me about a time when you had a hard time working with someone in your team. How did you handle it?
