@@ -438,11 +438,35 @@ categories: tech
 
 ## 44. Describe a time when you had to work simultaneously on both high-priority urgent projects as well as long-term projects. How did you go about handling both?
 
+- Context: Working urgent client issue on a live product and working on long-term, strategic software development project.
+
+- Task: Handle both things.
+
+- What to do: Assesed the scope and the urgency of the tasks of immediate project and long-term project => using Gantt chart for long-term project and Kanban board for the urgent issue => Delegate some less critical tasks of the long-term project to trusted team member, ensuring that they had neccessary resource => Establish a daily quick stand-up meeting => keep track progress and address blockers immediately => set specific hours in my day dedicated to the long-term project to ensure continuous progress.
+
+- Result: Resolving the client issue in a week => enhance our relationship and trust in our services => the long-term project stayed on track due to effective delegation and time management => balancing these projects taught me valuable lessons in prioritization, delegation, agile response in project managment => highlight the clear communcation with both my team and stakeholders => manange expectations effectively.
+
 ## 45. Tell me about a time when you had a hard time working with someone in your team. How did you handle it?
 
-## 46. Tell me about a project that didn’t go according to plan.
+- Context: I have worked with John, who had a very working style from the rest of the team, John was highly skilled but often worked in isolation, which sometimes led to misalignment with the team's progress and objectives.
 
-## 47. What is something new that you’ve learned recently?
+- Task: Ensure the project's success but also foster a collaborative and cohensive team environment.
+
+- What to do: Initiated one-on-one meeting to understand his perspective and work habits => emphasized the team's goals and how each member's contributions were critical => share feedback about how his working style impacting the team dyanmics and project progress => to bridge the gap, I proposed more frequent check-ins and collaborative sessions => ensuring they were structured and respect his work preferences as much as possible => arrange team-building activities to enhance mutual understanding and camaraderie among team members.
+
+- Result: John appreciated the open communcation and willing to adapt his working style for the benefit of the team => increase interaction and understanding among team members led to synchronized workflow => the project was completed successfull with the client satisfaction and our team dynamics => valuable lessons about the importance of empathy and clear communcation in team managament.
+
+## 46. Tell me about a project that didn't go according to plan.
+
+- Context: Develop new customer relationship managament (CRM) => Streamline sales process and improve customer interaction.
+
+- Task: Lead backend development team, integrated seamlessly with frontend system and the database.
+
+- Action: Apply aigle methodology and regular sprint => However, we encounter significant issues => The project was falling behind due to unexpected technical challenges with third-party services => Re-evaluate our project plan => Organize the meetings with my team, FE team, BE team and stakeholders to reassess our approach => identify the bottlenecks and realize that your initical assessment and the complexity of integrating various API => Revised plan to shift in technology stack for certain components and additional resources.
+
+- Result: Although the project was initially delayed, the new approach allowed us to overcome the technical hurdles and deliver a more robust CRM system => enhancing our sales team's efficiency by 25% => The experience taught me valuable lessons in project management, the importance of agility in problem-solving, and proactive communication with all stakeholders.
+
+## 47. What is something new that you've learned recently?
 
 ## 48. Tell me about a time when you had to make a decision without all the information you needed.
 
