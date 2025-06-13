@@ -468,7 +468,17 @@ categories: tech
 
 ## 47. What is something new that you've learned recently?
 
+- Context: I'm constantly looking for new technologies and methodologies to improve my work and efficiency.
+
+- Task: I decide to enhance my understanding of cloud computing => learning AWS, Azure => our team was transitioning more of our projects to the cloud to leverage its scalability and efficiency.
+
+- What to do: Enrolled in an AWS Certified Solutions Architect course => Learning about EC2, S3, VPC, Lambda => dedecated my evenings and weekends to study and hands-on practice => learn about different services, how to architect and deploy secure and robust applications => focus on practical applications in future projects.
+
+- Result: Pass the certification exam with high score => apply knowledge to team's projects => optimize our application deployment using AWS Lambda, which resulted in a 30% reduction in our operational costs and improved scalability => my solution become a standard practice in our project deployments. This experience reinforced the importance of continuous learning and staying updated with industry advancements.
+
 ## 48. Tell me about a time when you had to make a decision without all the information you needed.
+
+-
 
 ## 49. Tell me a time when you linked two or more problems together and identified an underlying issue.
 
