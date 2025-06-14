@@ -2,7 +2,7 @@
 layout: post
 title: Nginx Advanced
 date: 2025-04-18
-categories: backend
+categories: private
 ---
 
 [Docker + Nginx] Config Nginx cơ bản cho SPA (React) & Spring Boot trong Docker

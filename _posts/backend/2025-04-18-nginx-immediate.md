@@ -2,7 +2,7 @@
 layout: post
 title: Nginx Immediate
 date: 2025-04-18
-categories: backend
+categories: private
 ---
 
 [Nginx 201] Làm sao để backend scale 20 instance mà Nginx không cần sửa tay ?
