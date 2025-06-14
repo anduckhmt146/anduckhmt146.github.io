@@ -91,11 +91,11 @@ Here is some plan to build myself in the future.
 
 # 7. Relationship
 
-- Book 1: [https://drive.google.com/file/d/1yjtNpNRq-Lg8cOjC8v9alJJcSLpRStRY/view?usp=sharing](https://drive.google.com/file/d/1yjtNpNRq-Lg8cOjC8v9alJJcSLpRStRY/view?usp=sharing)
+<!-- - Book 1: [https://drive.google.com/file/d/1yjtNpNRq-Lg8cOjC8v9alJJcSLpRStRY/view?usp=sharing](https://drive.google.com/file/d/1yjtNpNRq-Lg8cOjC8v9alJJcSLpRStRY/view?usp=sharing)
 
 - Book 2: [https://drive.google.com/file/d/1MN8cdBJ_DjH16y9GRuoiXAEVo5v7IiCv/view?usp=sharing](https://drive.google.com/file/d/1MN8cdBJ_DjH16y9GRuoiXAEVo5v7IiCv/view?usp=sharing)
 
-- Book 3: [https://drive.google.com/file/d/1H_VgUhxRRdYr0IfUvcTaUS3N_EXyvnHy/view?usp=sharing](https://drive.google.com/file/d/1H_VgUhxRRdYr0IfUvcTaUS3N_EXyvnHy/view?usp=sharing)
+- Book 3: [https://drive.google.com/file/d/1H_VgUhxRRdYr0IfUvcTaUS3N_EXyvnHy/view?usp=sharing](https://drive.google.com/file/d/1H_VgUhxRRdYr0IfUvcTaUS3N_EXyvnHy/view?usp=sharing) -->
 
 # 8. Advanced Frontend:
 
