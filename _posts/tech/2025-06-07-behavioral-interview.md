@@ -543,3 +543,103 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 15. What excites you the most about the [company name]'s future?
 
 16. I'm very interested in scalability, and I'd love to learn more about it. What opportunities are there at this company to learn more about this?
+
+# 3. Some skills based on demand
+
+## 3.1. General
+
+### 1. Introduce my self
+
+- Keep the question in 40 - 60s.
+
+- Focus on your outstanding experience, key skills, and the value you bring.
+
+- Do not share much about irrelevant personal information.
+
+### 2. Previous job
+
+- Emphasize measurable/facts accomplishments.
+
+- List skills that relevant to the job in the company.
+
+- Avoid going into too much detail about each company.
+
+### 3. Why you apply for this position
+
+- Connect personal value to company value.
+
+- Emphasize the relevant of your skills to the job requirements.
+
+- Do not say general something like 'I need to job to earn money'.
+
+### 4. What do you know about company ?
+
+- Read website, blog, news of company before interviewing.
+
+- Emphasize the relevant of your skills with the job that you apply.
+
+### 5. Your strength
+
+- Give 1-2 strengths that suitable to the job.
+
+- Give example to increase persuasiveness.
+
+### 6. Your weaknesses
+
+- Choose 1 weakness that not impact seriously to the job.
+
+- Emphasize the way that you are improving.
+
+### 7. Plan in the next 5 years
+
+- Propose the ojective is suitable match with the job.
+
+- Show that you want to long-time commitment with the company.
+
+## 8. What you want to learn most ?
+
+- Skill relevant to the job.
+
+- Show that you are eager to learn.
+
+## 9. Will you do extra hour and go for a vacation trip ?
+
+- Show flexible but do not need to excessively commit.
+
+- If you have family, children => explain reasonably.
+
+## 10. What you expect the salary ? (\*)
+
+- Research about the average salary for this position.
+
+- Give a range of salary but not the detail number.
+
+## 11. What do you do under pressure ?
+
+- Keep calm and logic when working under pressure (e.g. priority task by importance and urgency).
+
+- Give an example that you solve the problem under pressure.
+
+## 12. How to deal with difficult colleague ?
+
+- Give an example that you handle conflict.
+
+- Emphasize about solving the problem but not avoidance.
+
+## 13. How you manage work effectively ?
+
+- Give a specific methodology, kick-off meeting, break down to measurable tasks,...
+
+- Give an example for the big projects that you manage successfully.
+
+## 14. How you learn new skills ?
+
+- Show a new skill that you have learn and apply successfully.
+
+- Show that you are eager to learn and actively improving your competence.
+
+## 15. Will you do the teamwork ? Give example
+
+- Give a example to success in working in team.
+
+- Emphasize your role and your contribution in the team.
