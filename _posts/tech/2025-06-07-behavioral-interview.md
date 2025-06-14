@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Behavioral Interview
-date: 2025-06-07
+date: 2025-06-14
 categories: tech
 ---
 
@@ -596,49 +596,49 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Show that you want to long-time commitment with the company.
 
-## 8. What you want to learn most ?
+### 8. What you want to learn most ?
 
 - Skill relevant to the job.
 
 - Show that you are eager to learn.
 
-## 9. Will you do extra hour and go for a vacation trip ?
+### 9. Will you do extra hour and go for a vacation trip ?
 
 - Show flexible but do not need to excessively commit.
 
 - If you have family, children => explain reasonably.
 
-## 10. What you expect the salary ? (\*)
+### 10. What you expect the salary ? (\*)
 
 - Research about the average salary for this position.
 
 - Give a range of salary but not the detail number.
 
-## 11. What do you do under pressure ?
+### 11. What do you do under pressure ?
 
 - Keep calm and logic when working under pressure (e.g. priority task by importance and urgency).
 
 - Give an example that you solve the problem under pressure.
 
-## 12. How to deal with difficult colleague ?
+### 12. How to deal with difficult colleague ?
 
 - Give an example that you handle conflict.
 
 - Emphasize about solving the problem but not avoidance.
 
-## 13. How you manage work effectively ?
+### 13. How you manage work effectively ?
 
 - Give a specific methodology, kick-off meeting, break down to measurable tasks,...
 
 - Give an example for the big projects that you manage successfully.
 
-## 14. How you learn new skills ?
+### 14. How you learn new skills ?
 
 - Show a new skill that you have learn and apply successfully.
 
 - Show that you are eager to learn and actively improving your competence.
 
-## 15. Will you do the teamwork ? Give example
+### 15. Will you do the teamwork ? Give example
 
 - Give a example to success in working in team.
 
