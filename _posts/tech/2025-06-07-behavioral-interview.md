@@ -5,6 +5,10 @@ date: 2025-06-07
 categories: tech
 ---
 
+Here is some behavioral interview questions to learn about: Leadership, Ownership, Teamwork, Communication, Conflict Resolution,... as Software Engineer.
+
+# 1. Behavioral Interview
+
 ## 1. Tell me about yourself
 
 - Backend/Frontend/Fullstack
@@ -505,3 +509,37 @@ categories: tech
 - What to do: I analyzed the situation => decided that compromising on the security aspect could pose long-term risks => Present my case to the management, highlighting the importance of robust security measures => use data and examples to demonstrate how a more comprehensive security approach would benefit us in the long run => propose timeline that allowed us to fully implement the advanced security features => priority the advanced features in cremental releases => balance market entry with product integrity.
 
 - Result: After thorough discussion, management agreed with my proposal => We launched the application with basic functionalities first and rolled out the advanced security features in the following months => Although this decision initially delayed our full market entry, it paid off => The application was well-received for its security and reliability, which enhanced our company's reputation => This experience taught me the value of prioritizing long-term benefits over short-term gains.
+
+# 2. Questions you can ask the interviewer
+
+1. What brought you to this company? What has been most challenging for you? (Culture)
+
+2. Can you share some insight about the day-to-day responsibilities of this position? What's a typical day like?
+
+3. Can you tell me about the opportunities for career advancement at [company name]?
+
+4. What are some of the challenges [company name] is facing right now and how could I contribute to overcoming it?
+
+5. How has the organisation changed since you've joined?
+
+6. What is the code and design review process like?
+
+7. What is the day-to-day responsibility for someone in this role?
+
+8. Could you talk little about your work?
+
+9. What is the ratio of testers to developers to program managers? What is the interaction like? How does project planning happen on the team?
+
+10. What is a typical career path at [company name] for someone in the role that I am interviewing for?
+
+11. What are the most exciting projects you've worked on here?
+
+12. What is the onboarding process like for this role?
+
+13. What do you like most about working here?
+
+14. Can you describe the [company name]'s overall management style and the type of person who usually does well here?
+
+15. What excites you the most about the [company name]'s future?
+
+16. I'm very interested in scalability, and I'd love to learn more about it. What opportunities are there at this company to learn more about this?
