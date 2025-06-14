@@ -50,7 +50,7 @@ I am a dreamer, an analytical over-thinker, and an over-achiever, who is constan
 
   - I struggle with procrastination, overthinking too much about perfection and completeness, lack of action-oriented motivations, occasional over-sensitivity, and sometimes over-abstractions but lack of practicality.
 
-  - Tend to overanalyze and control situations logically, need to respect others'emotions.
+  - Tend to overanalyze and control situations logically, need to respect others' emotions.
 
   - Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repeatable, boring tasks. There are moments when I battle feelings of inadequacy, caught in the grip of self-doubt.
 
