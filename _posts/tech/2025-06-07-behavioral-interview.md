@@ -478,10 +478,30 @@ categories: tech
 
 ## 48. Tell me about a time when you had to make a decision without all the information you needed.
 
--
+- Context: Critical project to overhaul the online payment system => Major challenge with payment gateway integrations => they was delayed in providing us with the necessary API due to internal issues.
+
+- Task: Ensure the integration was completed on time => despite the lack of complete information from the gateway provider => We needed to move forward but had to do so cautiously to avoid any security or compliance issues.
+
+- What to do: Evaluate the patial information we had received to determine what we could reliably inferred about the missing parts => consult with senior colleague to had previous experience with similar integrations => hypothesis about how the missing parts of the API might function => Develop mock API based on our best guesses => Also reach out the another payment gateway provider we had good relations with to gain insights into industry-standard practices => Kept our project manager and the rest of the team about the steps I was taking and the risks involved => We agreed to proceed cautiously, with the understanding that we might need to revise our approach once the full information was available. Or receive to move other projects and wait for merchant.
+
+- Result: The mock integration worked well in our tests, and when we finally received the complete API documentation from the original provider, we found that our hypothesis was largely correct => We made some minor adjustments based on the full information and successfully completed the integration on time => The importance of collaboration and leveraging available resources to navigate challenging situations.
 
 ## 49. Tell me a time when you linked two or more problems together and identified an underlying issue.
 
+- Context: We were experiencing recurring issues with our patient data management system => first, there were intermittent errors in patient data synchronization across different modules => and second, users reported occasional system slowdowns, particularly during data retrieval processes(incosistence data => can not query).
+
+- Task: Investigate and resolve these issues.
+
+- What to do: Review system logs => Analyze the error patterns => I noticed that the synchronization errors and system slowdowns occurred around the same times => I performed a thorough review of the database operations, particularly focusing on the processes that ran during data synchronization and retrieval => discover slow query to exceed memory.
+
+- Result: After deployment the fix => observed a significant improvement in system performance => By linking the two problems together and identifying the root cause, I was able to devise a solution that not only resolved the immediate issues but also improved the system's long-term efficiency => Lesson to find the root cause of problems and the value of a holistic approach to problem-solving in software development.
+
 ## 50. Tell me about a time you made a decision to sacrifice short term gain for a longer term goal.
 
-## 51. How would you respond if you were the last member of the team in the office on a Friday afternoon and the product owner asks you to develop and deploy a change to production?
+- Context: Devveloping a new oneline banking application => there was significant pressure to release the application quickly due to competitive market reasons.
+
+- Task: We could launch on time, but the security module wouldn't have all the robust features I had planned => Launching on time meant sacrificing some advanced security features for a quicker release.
+
+- What to do: I analyzed the situation => decided that compromising on the security aspect could pose long-term risks => Present my case to the management, highlighting the importance of robust security measures => use data and examples to demonstrate how a more comprehensive security approach would benefit us in the long run => propose timeline that allowed us to fully implement the advanced security features => priority the advanced features in cremental releases => balance market entry with product integrity.
+
+- Result: After thorough discussion, management agreed with my proposal => We launched the application with basic functionalities first and rolled out the advanced security features in the following months => Although this decision initially delayed our full market entry, it paid off => The application was well-received for its security and reliability, which enhanced our company's reputation => This experience taught me the value of prioritizing long-term benefits over short-term gains.
