@@ -2,7 +2,7 @@
 layout: post
 title: DSA Playlist
 date: 2025-05-09
-categories: tech
+categories: private
 ---
 
 This is a curated playlist of Data Structures and Algorithms (DSA) resources, featuring video tutorials and lectures on various topics in DSA concepts.

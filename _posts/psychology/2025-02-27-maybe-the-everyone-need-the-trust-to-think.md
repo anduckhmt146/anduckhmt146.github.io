@@ -2,7 +2,7 @@
 layout: post
 title: Maybe everything is not right or wrong, everyone just need a belief to think
 date: 2025-02-27
-categories: psychology
+categories: private
 ---
 
 As me, a Ne-dom user, everytime, I overwhelmed by a tons of ideas in my head, overthinking too much about perfection with a lot of ideas and distractions, lost in my head, I can not find the one thing to trust and focus on.
