@@ -791,3 +791,137 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 ### 40. What is the important things to design a system ?
 
 - Emphasize the suitable criteria: performance, safety, cost of the company.
+
+## 3.4. Problem-solving:
+
+### 41. If you have technical error, what will you solve ?
+
+### 42. Have you optimize the working process ? Share it
+
+### 43. How do you keep the working quality always to the highest ?
+
+### 44. If you have a problem that you have not found before, what will you do ?
+
+### 45. Have you fix an important error ?
+
+### 46. What will you do if your process have difficult issues ?
+
+### 47. Have you make a difficult technical decision ?
+
+### 48. Describe the technical issues you have solved ?
+
+### 49. Have you fail in a project ? What do you learn ?
+
+### 50. If a client requests an unfeasible feature, what will you do ?
+
+## 3.5. Teamwork & Communication:
+
+### 51. How do you work with members in different departure ?
+
+### 52. If you have problems with members in a group, what will you solve ?
+
+### 53. Do you have experience to train others ?
+
+### 54. If a member in a group do wrong things, what will you solve ?
+
+### 55. Have you usually make reports ?
+
+### 56. Have you present about technical project ?
+
+### 57. Do you have any tips to communicate with client and merchant ?
+
+### 58. Have you working with international project ?
+
+### 59. Can you explain a complexity technical issue ?
+
+### 60. How to explain technical idea to non-technical member ?
+
+## 3.6. Mangement & Communication
+
+### 61. What is your typical working day ?
+
+### 62. What tool do you use to manage work effectively ?
+
+### 63. Do you have experience to work with Microsoft Office and Google Suite ?
+
+### 64. Have you work with foreign client ?
+
+### 65. If you have many emails at the same time, what will you handle ?
+
+### 66. Do you have experience to host internal event and team meeting ?
+
+### 67. Have you make report and analyze data ?
+
+### 68. Can you make plan and manage small project ?
+
+### 69. Can you work in the environment with many changes ?
+
+### 70. How do you make sure you will not miss the important tasks ?
+
+## 3.7. Soft-skills and teamwork
+
+### 71. Can you work this them minimum control ?
+
+### 72. Have you work with a difficult manager, how do you solve ?
+
+### 73. If colleague ask for your help, but you are busy, how do you solve ?
+
+### 74. Have you propose an idea to improve the working process ?
+
+### 75. If you see a process can be improved, what will you propose ?
+
+### 76. If you have an important error, what will you do ?
+
+### 77. What will you do if you have a tasks outside your expertise ?
+
+### 78. Do you have experience to work with Trello, Asana ?
+
+### 79. Have you manager a group of employee ?
+
+### 80. Have you work remote and hybrid ?
+
+## 3.8. Mindset, Leadership and Personal Development
+
+### 81. Do you have experience to mange a team ? If yes, how many members in your group ?
+
+### 82. When you lead a team, what do you prior to make sure the efficient of the tasks ?
+
+### 83. If your team work ineffectively, how do you handle ?
+
+### 84. Have you make difficult decision when working in a team ? Share it
+
+### 85. Have you have experience in mentoring new member ?
+
+### 86. Have you work in a team that member have not agree with each other, what will you do ?
+
+### 87. What do you think about personalities that a good leader should have ?
+
+### 88. If you are assigned to manage an important project, what will you plan ?
+
+### 89. Do you have experience to work with different department, what will you do to collaboration ?
+
+### 90. If you have conflict between you and your manager, what will you solve ?
+
+## 3.9. Innovation and Improvement
+
+### 91. Do you have any innovation that improve the working process ?
+
+### 92. If you have a working process can be better, what will you propose ?
+
+### 93. Have you do any creative project that help the company save cost or improve performance ?
+
+### 94. What do you do to keep your creative every day ?
+
+### 95. If company have difficulty in changes, what solution will you propose ?
+
+## 3.10. Personal Development and career orientation
+
+### 96. What do you currently learn in your career development ?
+
+### 97. Have you attend the expertise training or conference ? Share it
+
+### 98. Do you usually follow the new trends in your expertise ? If yes, how do you do ?
+
+### 99. Do you have any plan for learning and development in next years ?
+
+### 100. If you have a skill to improve immediately, what skill do you choose ?
