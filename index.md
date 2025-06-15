@@ -26,7 +26,7 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 1. **Personality type (MBTI):** Assertive ENFP.
 
-2. **Enneagram:** 7w8 -> 5w4.
+2. **Enneagram:** 5w4 - The Visionary, The Iconoclast
 
 3. **Attachment Theory:** Fearful-Avoidant.
 

@@ -643,3 +643,151 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 - Give a example to success in working in team.
 
 - Emphasize your role and your contribution in the team.
+
+### 16. Do you like working independently or teamwork ?
+
+- Show that you are flexible, can do both.
+
+- If the job required the skill of working independently or teamwork, emphasize the relevant of your skills with the job.
+
+### 17. What do you have difficult with your manager ? How do you solve it ?
+
+- Do not blame old manager, show that you have ability to adaptability and learn.
+
+- Give an example and what you have learnt.
+
+### 18. What your fail you have in work and how you improve it ?
+
+- Choose a fail but not serious, have value to learn.
+
+- Emphasize how you improve the problem.
+
+### 19. How you adapt with new environment ?
+
+- Give an example how you adapt with new environent.
+
+- Emphasize about active attitude, eager to learn and ability to quickly catch up with the job.
+
+### 20. What do you do if you don't agree with manager ?
+
+- Show that you have your viewpoint, but respect your manager.
+
+- Emphasize the reason by facts and logics, not feeling/emotionally.
+
+## 3.2. Question that you match with the company
+
+### 21. What do you expect about the company working environment ?
+
+- Emphasize the demand to learn, grow and contribute.
+
+- Show that the suitable with the company culture.
+
+### 22. What is the ideal working environment ?
+
+- Link your working culture with company working culture.
+
+- Emphasize the role of collaborate, creative and efficient.
+
+### 23. What will you contribute to the company ?
+
+- Emphasize the skills and experiences that you can offer.
+
+- Give an example to solve your ability.
+
+### 24. Why we choose you but not other applications ?
+
+- Emphasize the outstanding strength of you.
+
+- Show your experience, skill and working attitude.
+
+### 25. What is important for you: work or work-life balance ?
+
+- Balance both work and life.
+
+### 26. Will you have long-term plan to work in the company ?
+
+- Show that you are willing to learn and contribute to the company for long-term commitment.
+
+### 27. Have you work with difficult client ? How you handle it
+
+- Respect the customer, not to blame them.
+
+- Emphasize how to solve the problem: listen with them, emphathy, clear communication, propose suitable solution.
+
+### 28. If you have multile work at the same time, what do you do ?
+
+- Prioritize tasks by importance and urgency.
+
+- Communicate with team and manager.
+
+### 29. Do you willing to take responsibility outside the scope ?
+
+- Flexible to do it but have reasonably limit.
+
+### 30. Do you any questions for the company ?
+
+- What the plan of company in next 3 years ?
+
+- Culture ?
+
+- What you expect about me ?
+
+## 3.3. Expertise knowledge
+
+### 31. Describe your job that you apply
+
+- Describe main point of the job.
+
+- Link your ability and value that you can bring to the job.
+
+### 32. What technology have you do ?
+
+- Describe the technology that you do.
+
+- Example for real world projects.
+
+### 33. Have you do any special projects ? Describe it
+
+- Choose a project with measurable value.
+
+- Emphasize your role and contribution.
+
+### 34. What tool that you usually use to optimize efficient in your work ?
+
+- Use some popular tool in your major: Notion, chatGPT,...
+
+- Example that tool can help you to optimize efficient in your work.
+
+### 35. Do you have experience with a software: Golang, Java ?
+
+- Example that you use this software.
+
+- If you have not master in this skill, show that you are willing to learn.
+
+### 36. Do you have design or optimize the system ?
+
+- Choose an example of the system that you have designed.
+
+- Result of the project.
+
+### 37. What methodlogy standards that you usually do ?
+
+- List some 1 - 2 standards in your major.
+
+- Example to apply this standards into work.
+
+### 38. Describe how you detect bugs and ensure quality of the products ?
+
+- Describe the process of detecting bugs and issues.
+
+- Example result of a bug that you have detected and resolve.
+
+### 39. Do you have experience with CAD design
+
+- Give an example of the CAD software that you have used.
+
+- Example and result.
+
+### 40. What is the important things to design a system ?
+
+- Emphasize the suitable criteria: performance, safety, cost of the company.
