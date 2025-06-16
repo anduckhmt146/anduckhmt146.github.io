@@ -852,23 +852,61 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 51. How do you work with members in different departure ?
 
+- Give an example that you work with other departure.
+
+- Emphasize the importance of communication and collaboration.
+
 ### 52. If you have problems with members in a group, what will you solve ?
+
+- Emphasize the importance of keeping calm and listening carefully.
+
+- Propose solution.
 
 ### 53. Do you have experience to train others ?
 
+- Example that you have trained others.
+
+- If you have not trained others, share tips that you help colleagues.
+
 ### 54. If a member in a group do wrong things, what will you solve ?
+
+- Private meeting with them, do not critize them in public.
+
+- Analyze problem, errors, find the way to improve, find long-term solutions to improve teamwork performance.
+
+- Emphasize to solve problem professionally, do not critize individuals.
 
 ### 55. Have you usually make reports ?
 
+- Emphasize the details and ability to use report tools: Excel, Google Sheet, Software to manage work.
+
+- Making reports help manager to understand information clearer.
+
 ### 56. Have you present about technical project ?
+
+- Example that you have present successfully.
+
+- Focus on numbers, solutions and slide, receive positive feedback from colleagues and manager.
 
 ### 57. Do you have any tips to communicate with client and merchant ?
 
+- Emphasize the listening skills and problem-solving.
+
+- Listen their needs, propose suitable solutions.
+
 ### 58. Have you working with international project ?
+
+- Learning about difference culture to work effectively.
+
+- Result: The project is implement successfully due to the different in time zone and way of work.
 
 ### 59. Can you explain a complexity technical issue ?
 
+- Give example and show the result.
+
 ### 60. How to explain technical idea to non-technical member ?
+
+- Emphasize the skill of simplifying the information.
 
 ## 3.6. Mangement & Communication
 
