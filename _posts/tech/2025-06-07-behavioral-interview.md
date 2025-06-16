@@ -428,7 +428,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ## 42. What will be your course of action if you are assigned some task which you don't know at all?
 
-- Being assigned tasks that involve unfamiliar is common => systematic and proactive => Assess the requirements of the task to understand its scope and objectives => Determining the specific areas where I need to buind knowledge or skills => Research relevant documentation, tutorials, online courses (Stack Overflow, GitHub, Medium) => Reach out to colleagues or mentors who might have expertise in that area => Ask for tips, best practices, and any potential pitfalls to avoid => Once I have a basic understanding, implement the hands-on approach => I would apply the concepts I’ve learned and iterate based on the results => . I believe in maintaining a positive attitude towards such challenges. Each unfamiliar task is an opportunity to grow and expand my skill set, contributing to my development as a well-rounded software developer.
+- Being assigned tasks that involve unfamiliar is common => systematic and proactive => Assess the requirements of the task to understand its scope and objectives => Determining the specific areas where I need to buind knowledge or skills => Research relevant documentation, tutorials, online courses (Stack Overflow, GitHub, Medium) => Reach out to colleagues or mentors who might have expertise in that area => Ask for tips, best practices, and any potential pitfalls to avoid => Once I have a basic understanding, implement the hands-on approach => I would apply the concepts I've learned and iterate based on the results => . I believe in maintaining a positive attitude towards such challenges. Each unfamiliar task is an opportunity to grow and expand my skill set, contributing to my development as a well-rounded software developer.
 
 ## 43. Give an example of when you took a huge risk and failed.
 
@@ -796,23 +796,57 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 41. If you have technical error, what will you solve ?
 
+- Emphasize to analytical and handle errors.
+
+- Emphasize the active attitude and collaboration when needed.
+
 ### 42. Have you optimize the working process ? Share it
+
+- Give an example and result
+
+- Emphasize the value that you bring to the company.
 
 ### 43. How do you keep the working quality always to the highest ?
 
+- Show the methodlogy that you use.
+
+- Show the carefulness and ability to continuous improvement.
+
 ### 44. If you have a problem that you have not found before, what will you do ?
+
+- Emphasize the ability to find, analysis the problem.
+
+- Ability for active attitude, independently working.
 
 ### 45. Have you fix an important error ?
 
+- Choose a practical error but do not very important.
+
+- Emphasize how you solve the problem.
+
 ### 46. What will you do if your process have difficult issues ?
+
+- Emphasize the ability to flexible and adaptability to solve root causes.
+
+- Analyze log to detect issues => colloborate with the relevant departure => minimize impacts => analyze root cause and propose long-term solution.
 
 ### 47. Have you make a difficult technical decision ?
 
+- Choose an example that has big impacts.
+
+- Show that how to make decision based on data.
+
 ### 48. Describe the technical issues you have solved ?
+
+- Choose the practical problem and show how you solve it.
 
 ### 49. Have you fail in a project ? What do you learn ?
 
+- Choose a failure that do not really serious and emphasize what the lessons you learn from it.
+
 ### 50. If a client requests an unfeasible feature, what will you do ?
+
+- I will explain why their requests is unfeasible, provide solutions that would suitable for their needs.
 
 ## 3.5. Teamwork & Communication:
 
