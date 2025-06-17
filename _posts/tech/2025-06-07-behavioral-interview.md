@@ -1008,13 +1008,25 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 76. If you have an important error, what will you do ?
 
+- Emphasize how to solve the problem
+
+- Give an example: Take responsibilty => Research root cause => Report to relevant members => Propose solutions => Lesson learnt for new project in the future.
+
 ### 77. What will you do if you have a tasks outside your expertise ?
+
+- Flexible to learn new things, but if the tasks outside my scope => raise and receive supports from colleagues.
 
 ### 78. Do you have experience to work with Trello, Asana ?
 
+- I have used Trello, Asana to manage tasks and track progress of projects => helpful to assign tasks, manage deadlines and optimize teamwork.
+
 ### 79. Have you manager a group of employee ?
 
+- I have time to manage a group of members in a company => take responsibility to assign tasks, track progress and support members when needed => inspire, motivate team to work effectively.
+
 ### 80. Have you work remote and hybrid ?
+
+- I have experience to work remotely and have ability to self-mangement, using online meeting software: Microsoft Team, Slack => communicate effectively with colleagues.
 
 ## 3.8. Mindset, Leadership and Personal Development
 
