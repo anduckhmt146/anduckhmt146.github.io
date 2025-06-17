@@ -1032,44 +1032,106 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 81. Do you have experience to mange a team ? If yes, how many members in your group ?
 
+- If you have not manage a group => give example that you have support colleagues in work.
+
+- Communicate clearly => Encourage active attitude and collaboration in group.
+
 ### 82. When you lead a team, what do you prior to make sure the efficient of the tasks ?
+
+- There are 3 important things: communcation clearly, planning effectively and motivate team.
+
+- Encourage clarify requirements => creative and support other members => track progress => short meeting and handle issues.
 
 ### 83. If your team work ineffectively, how do you handle ?
 
+- Analyze root causes (skills, motivations or personal problems) => Communicate with them about the difficulty and find solutions => provide guidance, training or adjust tasks effectively => collaborate with manager to find suitable solution.
+
 ### 84. Have you make difficult decision when working in a team ? Share it
+
+- Whether change the direction of a team because the important project do not reach the expectations => Analyze data, colleagues to propose a suitable solution => Provide benefits and reasons of the changes.
+
+- Result: Reach the goals.
 
 ### 85. Have you have experience in mentoring new member ?
 
+- I have experience mentoring new member
+
+  - Training them about working process.
+  - Share practical experience.
+  - Track progress.
+  - Make sure they have necessary skills.
+  - Encourage they ask questions and active learning to catch up with the jobs.
+
 ### 86. Have you work in a team that member have not agree with each other, what will you do ?
+
+- Active listen, aggregate different ideas => Propose suitable solutions based on the project goals => Make sure project complete effectively and deliver on-time.
 
 ### 87. What do you think about personalities that a good leader should have ?
 
+- Vision, Communication, Strategy Idea, Problem-solving.
+
+- Motivation, listen and collaboration to reach the highest performance.
+
 ### 88. If you are assigned to manage an important project, what will you plan ?
+
+- Clarify objective of project, scope and timeline => Assign tasks based on strength of each members => Establish milestones and track progess to make sure project is completed on time.
 
 ### 89. Do you have experience to work with different department, what will you do to collaboration ?
 
+- I have experience to work with different department => communicate clearly, track progress frequently and support each other when needed.
+
 ### 90. If you have conflict between you and your manager, what will you solve ?
+
+- Communicate clearly, listen manager point of views, propose suitable solutions and bring benefits for company.
+
+- **Notes:** If you have conflicts, handle it by the common between you.
 
 ## 3.9. Innovation and Improvement
 
 ### 91. Do you have any innovation that improve the working process ?
 
+- Example that show your innovations, e.g. automation CI/CD
+
+- Result of the innovations, e.g. reduce 30% deployment time.
+
 ### 92. If you have a working process can be better, what will you propose ?
+
+- Analyze problem -> Collect data, response from colleagues => Propose solution => Ask for approval of maanager => Validate hypothesis => Adjust to match the practical requirements.
 
 ### 93. Have you do any creative project that help the company save cost or improve performance ?
 
+- Example for a project can be measurable => Optimize cost and performance => Save money and improve performance (increase 30% revenue)
+
 ### 94. What do you do to keep your creative every day ?
 
+- Learning new thing, reading books, conference, experience new technology.
+
+- How to improve things better to improve performance.
+
 ### 95. If company have difficulty in changes, what solution will you propose ?
+
+- Propose solutions -> Encourage employees to share ideas through brainstorming -> Experience a mock POC (proof of concepts) before apply popularly -> Research market and analyze competition to propose the suitable strategy.
 
 ## 3.10. Personal Development and career orientation
 
 ### 96. What do you currently learn in your career development ?
 
+- Learning AWS -> Helps me do work effectively -> Practice soft skills as communication, leadership -> Improve teamwork and manage tasks.
+
 ### 97. Have you attend the expertise training or conference ? Share it
+
+- I have attend course about AWS -> learn about specific knowledge -> it helps me to apply this knowledge to my work -> example
+
+- Emphasize the benefits that you gain in the learning conference -> and how it is applied to your work.
 
 ### 98. Do you usually follow the new trends in your expertise ? If yes, how do you do ?
 
+- I am usually catch up with new technology trends -> through technical news, reports, podcast, conference -> connect with experts in domain through social media -> to keep up with latest technology.
+
 ### 99. Do you have any plan for learning and development in next years ?
 
+- I would like to learn skills about cloud computing, solution architects and SRE through courses and books -> Additionally, I want to improve soft skills to improve performance in work and manage time effectively.
+
 ### 100. If you have a skill to improve immediately, what skill do you choose ?
+
+- I would improve the communication skills -> it applys to my work -> I am practicing it through learning in e-learning platform.
