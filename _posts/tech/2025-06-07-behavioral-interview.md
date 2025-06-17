@@ -912,35 +912,99 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 61. What is your typical working day ?
 
+- Emphasize the skill to manage and priority jobs.
+
+- Example: check email, list tasks in a day => using Trello, Asana to priority tasks by importance and urgency, spend time to communicate with colleagues and client when needed => Summary what I have done and prepare for the next day.
+
 ### 62. What tool do you use to manage work effectively ?
+
+- Example some tools that you use to manage and plan work effectively: Trello, Asana, Notion => Using Google Calendar to plan meetings and remind deadlines => About team projects, I using Slack, Microsoft Teams to communicate effectively.
 
 ### 63. Do you have experience to work with Microsoft Office and Google Suite ?
 
+- I have experience work with Microsoft Office: Word, Excel, Powerpoint => using Excel for analyze data, create table and reports => using Google Docs to teamwork effectively when need to share and edit documents directly.
+
 ### 64. Have you work with foreign client ?
+
+- Good ability to use foreign language or good experience.
+
+- Communicate with foreign client through email, Microsoft Teams and English to communicate => I can clarify client needds and complete tasks by their anticipations.
 
 ### 65. If you have many emails at the same time, what will you handle ?
 
+- Prioritize to handle important and urgent email first, categorize other emails by importance.
+
+- Using the filter and manage inbox by tags.
+
+- About email that do not response immediately, plan to handle it in convenient time.
+
 ### 66. Do you have experience to host internal event and team meeting ?
+
+- Meeting: Make a activities list => Plan the location, invitation => Operation program.
+
+- Team Conference: Prepare document => Book meetings => Operation to have next actions after meetings.
 
 ### 67. Have you make report and analyze data ?
 
+- Show if you have ability to work with Excel: Pivot Table, VLookup, Marco, Python,...
+
+- Have ability to create reports, dashboard and measure performance.
+
 ### 68. Can you make plan and manage small project ?
+
+- I have experience manage a small project: kick-off meeting => planning tasks => track progress.
+
+- Using tool as Notion to make sure the tasks are completed on time.
 
 ### 69. Can you work in the environment with many changes ?
 
+- Flexible to adjust plan, learn quickly and active attitude to learn new information.
+
+- Changes brings opportunites to grow and improve workflow.
+
 ### 70. How do you make sure you will not miss the important tasks ?
+
+- Using Notion to track deadlines and reminders
+
+- Spend time to check the worklist daily to do not importance tasks => show the reliability.
 
 ## 3.7. Soft-skills and teamwork
 
 ### 71. Can you work this them minimum control ?
 
+- Emphasize the active attitude and self-managament.
+
+- Example about the experience: active planning, clear objective => using tool to make sure the tasks are completed on time.
+
 ### 72. Have you work with a difficult manager, how do you solve ?
+
+- Do not blame old manager, focus on how to learn and adapt: listen carefully, adjust working style and communicate clearer to clarify his expectations => improve working performance and build better relationship.
+
+- Give an example about improving relationships at work.
 
 ### 73. If colleague ask for your help, but you are busy, how do you solve ?
 
+- Priority the imporance and urgency of the tasks that they need to support.
+
+- If I can, I can manage my time to help them or recommending an alternative solution to help them and do not affect to my work.
+
+- Show the collaboration but need to manage time effectively.
+
 ### 74. Have you propose an idea to improve the working process ?
 
+- Example about the improvement in working process that you have proposed.
+
+- Problem in the process CI/CD make the deployment to reduce performance, I propose the solution to [do sth]
+
+- Result: it can help to reduce 30% time of deployment process.
+
 ### 75. If you see a process can be improved, what will you propose ?
+
+- Collect data to show that we need to improve process => Based on numbers and facts.
+
+- Propose the solution with manager => benefits of the changes, write documents to integrate.
+
+- Validate the hypothesis in sample projects.
 
 ### 76. If you have an important error, what will you do ?
 
