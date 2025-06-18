@@ -94,3 +94,13 @@ Here is a some notes to deep dive in Java Spring
 - Apply JDBC template for query db.
 
 - Add postgres, mysql to resources file => add connection JDBC to database.
+
+# 6. Build production
+
+- Java: We build .jar file in local -> Run the .jar file in production.
+
+- Golang: Build to binary .app -> Run the binary in production.
+
+- NodeJS: Need to run entry point node index.js.
+
+- React: Deploy build to CDN -> access index.html to get resources.
