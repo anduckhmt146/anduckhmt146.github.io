@@ -36,3 +36,15 @@ Here is a some notes to deep dive in Java Spring
 - Need to declare an "spring.xml" file, declare each <bean></bean> node to Application Context => point to a package className.
 
 - Scope: The default of bean scope is "singleton" => Create bean object when you call new ClassPathXmlApplicationContext("spring.xml") => But when you declare the scope to "prototype", the bean object is created when you init new Student(), new Employee().
+
+- You can use the <property></property> to set value to private variable of the class, value (initial value), ref (@Autowired)
+
+- You also can use <constructure-arg value=""></constructure-arg> => Init constructure Student(int age)
+
+---
+
+- Use @Override to implement the methods of the interface, using field autowire class -> bean byName or byType if we have 2 concrete class to implement the same interface.
+
+- Using primary to the class that you want to priority.
+
+- Lazy init Bean => If you have a Desktop and Laptop Bean to implement interface Computer => By default, it inits 2 beans in initial phrase => But you can use lazy-init to only init a bean when it is declared or autowired.
