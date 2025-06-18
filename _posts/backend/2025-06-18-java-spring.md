@@ -82,3 +82,15 @@ Here is a some notes to deep dive in Java Spring
 - @Service is the same as @Component, but write in layer.
 
 - @Repository is the same as @Component, but write in layer.
+
+# 5. Spring JDBC
+
+- Connect DB, Query database, Keep connection, connect with H2 database.
+
+- @Autowired for Setter and Getter
+
+- H2 is just a database, not a cluster => just add JDBC template to query => DSN: jdbc:h2:mem:testdb
+
+- Apply JDBC template for query db.
+
+- Add postgres, mysql to resources file => add connection JDBC to database.
