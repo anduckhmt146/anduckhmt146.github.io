@@ -48,3 +48,37 @@ Here is a some notes to deep dive in Java Spring
 - Using primary to the class that you want to priority.
 
 - Lazy init Bean => If you have a Desktop and Laptop Bean to implement interface Computer => By default, it inits 2 beans in initial phrase => But you can use lazy-init to only init a bean when it is declared or autowired.
+
+# 3. Apply Java-based approach
+
+- Similar to declare in xml file.
+
+- @Configuration is declare a config xml.
+
+- @Bean is declare a bean, can declare "name" of the bean.
+
+- @Scope to declare different object => use annotation with the same of xml file.
+
+- @Autowire, @Primary ("desktop" > "computer"), @Qualifier("desktop" or "laptop") => mock some fields in Bean.
+
+- @Configuration > @ComponentScan > @Component => Scan all the @Component to @Configuration => Only create Bean.
+
+- @Autowired to find the object and inject to the @Bean => Using @Primary or @Qualifier => Both object and setter, getter function.
+
+# 4. Spring Boot
+
+- @SpringBoot configure annotations for you.
+
+- @Configuration
+
+```bash
+  @ComponentScan(basePackages = "com.example.services")
+  @Import({DatabaseConfig.class})
+  @PropertySource("classpath:application.properties")
+  public class AppConfig {
+  }
+```
+
+- @Service is the same as @Component, but write in layer.
+
+- @Repository is the same as @Component, but write in layer.
