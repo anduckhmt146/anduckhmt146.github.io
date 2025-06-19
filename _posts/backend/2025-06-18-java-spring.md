@@ -132,3 +132,21 @@ Here is a some notes to deep dive in Java Spring
 - The model can use to addObject model.addObject => And we can use @ModelAttribute to set value for object before assign it to JSP.
 
 - Using @Configure properties default of Spring Boot => https://docs.spring.io/spring-boot/appendix/application-properties/index.html
+
+# 8. Spring MVC without Spring Boot:
+
+- Spring MVC is only a part of Spring Web.
+
+- Eclipse is free to run Tomcat server. Tomcat is a Servlets Container to run Servlet.
+
+- Dispatcher Servlet is a controller -> routing request to other controllers.
+
+- When to run in Tomcat, you need to define the config <dispatcher-servlet></dispatcher-servlet> in web.xml.
+
+- It is too much complicated to run Java in Tomcat outside, rather than Tomcat embedding.
+
+# 9. Spring DataJPA:
+
+- ORM to help query database, abstract in repository layer.
+
+- You can custom SQL for the repository layer.
