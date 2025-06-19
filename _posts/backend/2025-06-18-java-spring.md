@@ -104,3 +104,31 @@ Here is a some notes to deep dive in Java Spring
 - NodeJS: Need to run entry point node index.js.
 
 - React: Deploy build to CDN -> access index.html to get resources.
+
+# 7. Java Spring Web, Servlets, JSP and Reactive Programming:
+
+- Servlets: server handler of Java, that handle request HTTP, each request per a thread, back request need to wait previous requests to completed first => blocking I/O, using Tomcat.
+
+- Reactive: server handler Java, that handle concurrency project by event loop + callback => non-blocking I/O, using WebFlux.
+
+- Drawback of Reactive Programming: You’ve built a Spring Boot app using Spring WebFlux (reactive), but your data access layer uses Spring Data JPA, which is blocking => Blocking operations (like JDBC) stall those event loops, which are supposed to stay free and responsive.
+
+- Reactive apps are built on non-blocking event loops => When a JDBC come to event loop it will stuck the queue => **Do not use Reactive Programming for query database.**
+
+- Spring Boot can support both Sevelets (Spring Web) and Reactive (Spring Reactive Web).
+
+- Tomcat server to run Servlets HTTP, there are: External Tomcat (can use @WebServlets), Embeded Tomcat (add Serlets to Tomcat Server) => addServlets and Servlets Mapping.
+
+- JSP (Java Server Pages): file .jsp => can use to send HTML to the client - View layer. Serlets is a Controller, Object as Model => Model can come from database or object class (POJO - Plain Old Java Object).
+
+- Using Tomcat Jasper to convert JSP -> Servlets
+
+- Use response field of session.getAtrribute and session.setAttribute to bind data to another JSP file.
+
+- In Spring, you can change HttpServletRequest => parameter, e.g (@RequestParam("page") int page, @RequestParam("limit") limit int).
+
+- In Spring, you can change HTTPSession response => Model model or ModelAndView (spring.web.ui -> HTTPSession for JSP) => model.addAtribute("result", result) => as long as it contains the same interface.
+
+- The model can use to addObject model.addObject => And we can use @ModelAttribute to set value for object before assign it to JSP.
+
+- Using @Configure properties default of Spring Boot => https://docs.spring.io/spring-boot/appendix/application-properties/index.html
