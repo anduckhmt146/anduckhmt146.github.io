@@ -145,7 +145,7 @@ Here is a some notes to deep dive in Java Spring
 
 - It is too much complicated to run Java in Tomcat outside, rather than Tomcat embedding.
 
-# 9. Spring DataJPA:
+# 9. Spring Data JPA:
 
 - ORM to help query database, abstract in repository layer.
 
