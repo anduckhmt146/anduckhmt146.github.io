@@ -212,3 +212,23 @@ public Object validateAndUpdate(ProceedingJoinPoint jp, int postld) throws Throw
 ```
 
 **Notes:** It run function in @Around before executing function later or always check the validation, if it failed the Aspect function will throw error.
+
+
+# 12. Spring Security
+
+- User data is important, some data if leaked, you can blocked from the hacker such as credit cards. But some data if it's gone, it's gone, e.g. medical records, customer data.
+
+![](/images/spring_security.png)
+
+- **Notes:** Client -> Security Filters -> Filter Chain -> Servlet Filters (in order).
+
+- After login -> Create session ID -> use to access resource -> Write JSESSIONID to cookie to make other requests.
+
+- To get the session from request, we use HttpServletRequest to get session id.
+
+```bash
+@GetMapping("hello")
+public String greet(HttpServletRequest request) {
+  return request.getSession.getId();
+}
+```
