@@ -159,3 +159,7 @@ Here is a some notes to deep dive in Java Spring
 @RepositoryRestResource(path = "members")
 public interface UserRepository extends JpaRepository<User, Long> {
 ```
+
+# 11. Spring AOP (Aspect of Programming)
+
+- Instead of writing duplication in code: logging, validation, exception for each function in code => We can use Spring AOP to centralize the handling exception to another place.
