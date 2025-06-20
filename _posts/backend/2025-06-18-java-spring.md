@@ -150,3 +150,12 @@ Here is a some notes to deep dive in Java Spring
 - ORM to help query database, abstract in repository layer.
 
 - You can custom SQL for the repository layer.
+
+# 10. Spring Data REST
+
+- Use annotation @Repository, or @RepositoryRestResource(path = "members") to generate CRUD api with repository.
+
+```bash
+@RepositoryRestResource(path = "members")
+public interface UserRepository extends JpaRepository<User, Long> {
+```
