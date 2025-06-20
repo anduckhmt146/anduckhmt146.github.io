@@ -133,6 +133,16 @@ Here is a some notes to deep dive in Java Spring
 
 - Using @Configure properties default of Spring Boot => https://docs.spring.io/spring-boot/appendix/application-properties/index.html
 
+Notes:
+
+Why we use Spring MVC rather than Reactive Programming in REST API ?
+
+- Both WebFlux and WebMVC can do CRUD things.
+
+- The different is WebMVC the requests are waited the previous requests completed, it execute in order => Reactive Programming WebFlux execute it concurrency => CPU bounded
+
+- The most important is many essential libraries in the Java ecosystem (e.g., JPA, JDBC, Hibernate, Apache HTTP Client) are blocking => using Reactive Programming cause thread starvation.
+
 # 8. Spring MVC without Spring Boot:
 
 - Spring MVC is only a part of Spring Web.
@@ -163,3 +173,42 @@ public interface UserRepository extends JpaRepository<User, Long> {
 # 11. Spring AOP (Aspect of Programming)
 
 - Instead of writing duplication in code: logging, validation, exception for each function in code => We can use Spring AOP to centralize the handling exception to another place.
+
+- Using @Aspect in a class **LoggingAspect** to assign it as an Aspect Class.
+
+- Before Advice: using @Before("execution* com. telusko-springboatrest service.JobService.updateJob(..))") in the function call -> To make it call before everything function JobService execute.
+
+- Join Point: Can print the function that you called.
+
+- After Advice: @After, @AfterThrowing, @AfterReturning
+
+- Around Advice: using to **PerformanceMonitoringAspect** -> time execution of the function 
+
+```bash
+@Around ("execution (* com. telusko seningbeatrest service.JobService. getJob(..))")
+public void monitorTime (ProceedingJoinPoint jp) throws Throwable {
+    long start = System.currentTimeMillis(); I
+    const obj = jp.proceed();
+    Long end = System.currentTimeMillis();
+    
+    LOGGER.info("Time taken : " + (end-start));
+
+    return obj;
+}
+```
+- Around: using in **ValidationAspect** to using with argument
+
+```bash
+@Around ("execution (* com.telusko-spcingbaatrest.service.JobService.getJob(..)) && args(postId)")
+public Object validateAndUpdate(ProceedingJoinPoint jp, int postld) throws Throwable {
+  if (postId < 0) {
+     postId = -postId;
+  ｝
+
+  const obj = jp.proceed(new Object[]{postId});
+
+  return obj;
+}
+```
+
+**Notes:** It run function in @Around before executing function later or always check the validation, if it failed the Aspect function will throw error.
