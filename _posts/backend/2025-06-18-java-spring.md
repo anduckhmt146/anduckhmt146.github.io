@@ -71,7 +71,7 @@ Here is a some notes to deep dive in Java Spring
 
 - @Configuration
 
-```bash
+```java
   @ComponentScan(basePackages = "com.example.services")
   @Import({DatabaseConfig.class})
   @PropertySource("classpath:application.properties")
@@ -111,7 +111,7 @@ Here is a some notes to deep dive in Java Spring
 
 - Reactive: server handler Java, that handle concurrency project by event loop + callback => non-blocking I/O, using WebFlux.
 
-- Drawback of Reactive Programming: You’ve built a Spring Boot app using Spring WebFlux (reactive), but your data access layer uses Spring Data JPA, which is blocking => Blocking operations (like JDBC) stall those event loops, which are supposed to stay free and responsive.
+- Drawback of Reactive Programming: You've built a Spring Boot app using Spring WebFlux (reactive), but your data access layer uses Spring Data JPA, which is blocking => Blocking operations (like JDBC) stall those event loops, which are supposed to stay free and responsive.
 
 - Reactive apps are built on non-blocking event loops => When a JDBC come to event loop it will stuck the queue => **Do not use Reactive Programming for query database.**
 
@@ -161,11 +161,13 @@ Why we use Spring MVC rather than Reactive Programming in REST API ?
 
 - You can custom SQL for the repository layer.
 
+- You name the function findUsernameById => JPA is auto know to implement this function to find by id.
+
 # 10. Spring Data REST
 
 - Use annotation @Repository, or @RepositoryRestResource(path = "members") to generate CRUD api with repository.
 
-```bash
+```java
 @RepositoryRestResource(path = "members")
 public interface UserRepository extends JpaRepository<User, Long> {
 ```
@@ -176,29 +178,30 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 - Using @Aspect in a class **LoggingAspect** to assign it as an Aspect Class.
 
-- Before Advice: using @Before("execution* com. telusko-springboatrest service.JobService.updateJob(..))") in the function call -> To make it call before everything function JobService execute.
+- Before Advice: using @Before("execution\* com. telusko-springboatrest service.JobService.updateJob(..))") in the function call -> To make it call before everything function JobService execute.
 
 - Join Point: Can print the function that you called.
 
 - After Advice: @After, @AfterThrowing, @AfterReturning
 
-- Around Advice: using to **PerformanceMonitoringAspect** -> time execution of the function 
+- Around Advice: using to **PerformanceMonitoringAspect** -> time execution of the function
 
-```bash
+```java
 @Around ("execution (* com. telusko seningbeatrest service.JobService. getJob(..))")
 public void monitorTime (ProceedingJoinPoint jp) throws Throwable {
     long start = System.currentTimeMillis(); I
     const obj = jp.proceed();
     Long end = System.currentTimeMillis();
-    
+
     LOGGER.info("Time taken : " + (end-start));
 
     return obj;
 }
 ```
+
 - Around: using in **ValidationAspect** to using with argument
 
-```bash
+```java
 @Around ("execution (* com.telusko-spcingbaatrest.service.JobService.getJob(..)) && args(postId)")
 public Object validateAndUpdate(ProceedingJoinPoint jp, int postld) throws Throwable {
   if (postId < 0) {
@@ -213,7 +216,6 @@ public Object validateAndUpdate(ProceedingJoinPoint jp, int postld) throws Throw
 
 **Notes:** It run function in @Around before executing function later or always check the validation, if it failed the Aspect function will throw error.
 
-
 # 12. Spring Security
 
 - User data is important, some data if leaked, you can blocked from the hacker such as credit cards. But some data if it's gone, it's gone, e.g. medical records, customer data.
@@ -226,9 +228,188 @@ public Object validateAndUpdate(ProceedingJoinPoint jp, int postld) throws Throw
 
 - To get the session from request, we use HttpServletRequest to get session id.
 
-```bash
+```java
 @GetMapping("hello")
 public String greet(HttpServletRequest request) {
   return request.getSession.getId();
 }
 ```
+
+- You can define you own username, password in resources, application.properties with variable spring.security.user.name và spring.security.user.password.
+
+---
+
+**Basic Auth - Username, Password**
+
+- When you submit a request, you send a token but not username, password -> Because username, password is leakable -> using token is more secure.
+
+- Declare new object, e.g new Student(), List<Student> in Java Spring -> It is just a memcache, and class are the dto.
+
+- CSRF (Cross-site Request Forgery) is a token -> prevent website in other domain, such as: facebook.com -> share cookie to .zalopay.vn domain -> Use CSRF do make sure cookie is not share to other domain.
+
+- By default, Spring Security required to add CSRF token to POST, PUT, DELETE API => Else it will return 401, it means that Spring Security required users to add X-CSFF-TOKEN to the header requests of API.
+
+- You can use same.site.strict in application.properties -> to make sure it only can share cookie in same site.
+
+- 2 types of REST API: Stateless and Stateful -> /about, /students same token -> it is stateful (for sessionID in cookie)
+
+- **Notes:** If you are implement stateful API -> You need to maintain CSRF token to send with session ID, it means that although they have cookie, but not have token, it is not success to POST, PUT, DELETE resource.
+
+- **Notes:** If SameSite=Strict or SameSite=Lax cookies: Prevent cookies from being automatically sent in cross-site requests.
+
+- @Configuration and @Bean different -> @Configuration is a Singleton Bean.
+
+- **Notes: By default, Spring Security has default config for you, but if you declare SecurityConfig with @Configuration and @EnableWebSecurity, you overwrite the config => use @Configuration to overwrite the default config or define in application.properties.**
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+    http.csrf(customizer -> customizer.disable());
+    http.authorizeHttpRequests(request -> request.anyRequest() .authenticated());|
+    http.httpBasic(Customizer.withDefaults());
+    http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+    // Stateless you need to send request from the client every requests and do not need form
+    return http.build()
+  }
+```
+
+- Each request must contain all the information needed to process it. The server does not store session state between requests. Therefore, no session-based login -> no need for login form.
+
+- You can customize the http.csrf interface by using without lambda interface and @Overwrite the functions -> Lambda function make write the interface of java class easier.
+
+```java
+
+  Customizer<CsrfConfigurer<HttpSecurity>> customCsrf = new Customizer<CsrfContigurer<<HttpSecurity>> {
+      @Override
+      public void Customize(CrfConfigurer<HttpSecurity> configurer) {
+        configurer.disable();
+      }
+  }:
+
+  http.csrf(custCsrf);
+
+```
+
+- You can use Lambda function to write the filters, interceptors more cleaner
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.csrf(customizer -> customizer.disable())
+        .authorizeHttpRequests(request -> request.anyRequest() .authenticated())
+        .httpBasic(Customizer.withDefaults())
+        .sessionManagement(session -> bession sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+    return http.build()
+  }
+```
+
+- If you use basic authenticate with HTTP, it will display a prompt to input value in browser.
+
+---
+
+- Login with multiple users -> Database.
+
+- **Notes: Using UserDetail Service. We can return an object to implement the interface or an abstract class that implement the interface.**
+
+```java
+@Bean
+public UserDetailsService userDetailsService() {
+  UserDetails user = User.withRefaultPasswerdEncoder().username("navin").password("n@123").roles("USER").build();
+
+  UserDetails admin = User.withRefaulthasswerdEncoder().username("admin").password("admin@789").roles("ADMIN").build();
+
+  return new InMemoryUserDetailsManager (user, admin);
+}
+```
+
+- You can store data in MYSQL using JDBC, JPA -> load data to userdetail interface for authenticate users.
+
+- **Notes:** Filters/Interceptors are executed in order.
+
+- **Notes:** You can implement the userDetailService in your own with your database.
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+  @Autowined
+  private UserDetailsServive userDetailsService;
+
+  @Bean
+  public AuthenticationProvider authProvider(){
+    DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+
+    provider.setUserDetailsService(userDetailsService);
+    provider.setPasswordEncoder(...);
+
+    return provider;
+  }
+}
+```
+
+- Implement the UserDetail Service and UserRepository.
+
+```java
+public interface UserRepo extends JpaRepository<User, Integer> {
+  User findByUsername(string username)
+}
+```
+
+```java
+@Service
+public class MyUserDetailsService implements UserDetailsService {
+  @Autowined
+  private UserRepo repo;
+
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    User user = repo.findByUsername(username);
+
+    if (user == null) {
+      System.out.println("User 404");
+      throw new UsernameNotFoundException ("User 404");
+    }
+
+    return new UserPrincipal(user)
+  }
+}
+```
+
+```java
+public class UserPrincipal implements UserDetails {
+  private User user;
+
+  public UserPrincipal(user UserRepository) {
+    this.user = user;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return Collections.singleton(new SimpleGrantedAuthority(role: "USER"));
+  }
+
+  @Override
+  public String getPassword() {
+    return user.getPassword()
+  }
+
+```
+
+---
+
+- Hashing Algorithm: MD5 (128 bit), SHA256 (256 bit) -> Hash with multiple rounds -> Hash 1 time.
+
+- Bcrypt -> hash 256 bit + salt multiple times.
+
+- Using Bcrypt to encode when register new user when create/update user.
+
+- You can use BScrypt to implement in PasswordEncoder of UserDetail service and when store to database -> Because it tell the Spring Boot to verify 2 passwords during login by comparing the raw password -> encoded password and compare this password in the database (compare 2 hashing password)
