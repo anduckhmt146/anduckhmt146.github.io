@@ -499,3 +499,14 @@ public class UserPrincipal implements UserDetails {
 - **Notes:** Can not use a JSESSIONID from Spring Security because JSessionID is belong to 1 server -> If you have multiple server, it can not very it all because each server have a different JSESSIONID when start the service.
 
 - Solution: You can use a sticky session to assign client A to a server A, client B to server B or use to verify user data in the shared database.
+
+- You can use HS256 (Synmetric) to sign 1 token, or using RSA (Asynmetric) to sign 2 token.
+
+- Notes: People can decode your payload -> Do not send sensitive data to payload.
+
+```java
+    http.cSrf(customizer -> customize.disable())
+    .authorizeHttpRequests(request -> requestrequestMatchers("register").permitAll())
+    .anyRequest().authenticated()
+    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+```
