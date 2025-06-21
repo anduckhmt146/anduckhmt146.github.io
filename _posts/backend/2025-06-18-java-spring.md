@@ -484,4 +484,18 @@ public class UserPrincipal implements UserDetails {
 
 ---
 
-**JWT**
+**JWT (JSON Web Token)**
+
+- Idea: you have an ID to a branch of the coffee -> Cashier check the book and provide coffee for your membership -> But when the coffee has a new branch and they do not have a book, they can not know your membership info.
+
+- Solution step 1: Give you a card that can bring to every branch no matter the location.
+
+- But other people can clone the credit card, how can you solve ?
+
+- Solution step 2: The card is signed/issued by manager and after that, it is valid.
+
+- **Notes:** Static page do not need to authenticate, but if they have data from the database -> Must be authenticated.
+
+- **Notes:** Can not use a JSESSIONID from Spring Security because JSessionID is belong to 1 server -> If you have multiple server, it can not very it all because each server have a different JSESSIONID when start the service.
+
+- Solution: You can use a sticky session to assign client A to a server A, client B to server B or use to verify user data in the shared database.
