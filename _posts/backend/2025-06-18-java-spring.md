@@ -406,6 +406,8 @@ public class UserPrincipal implements UserDetails {
 
 ---
 
+**Encoding Password**
+
 - Hashing Algorithm: MD5 (128 bit), SHA256 (256 bit) -> Hash with multiple rounds -> Hash 1 time.
 
 - Bcrypt -> hash 256 bit + salt multiple times.
@@ -413,3 +415,73 @@ public class UserPrincipal implements UserDetails {
 - Using Bcrypt to encode when register new user when create/update user.
 
 - You can use BScrypt to implement in PasswordEncoder of UserDetail service and when store to database -> Because it tell the Spring Boot to verify 2 passwords during login by comparing the raw password -> encoded password and compare this password in the database (compare 2 hashing password)
+
+---
+
+**Cross Origin**
+
+- Using @CrossOrigin("http://localhost:3000") => Allow the origin "http://localhost:3000 to call API to http://localhost:8080 => Different Port is different origin.
+
+- Password is decoded in the same server -> Only using salting is enough.
+
+---
+
+**Encoding Token (JWT and OAuth2)**
+
+- When data send from A to B -> We need symetric key and asymetric key (private and public key) -> to encrypt and decrypt the sensitive data to protect from man of the middle attack.
+
+- Man of the middle attack can happen every where in the Internet -> Modify payload in the middle when server A send to server B.
+
+- Symetric key:
+
+  - Faster
+  - But A -> B using K1, A -> C using K2, A -> D using K3,...is very difficult to manage all the keys for A.
+
+- **Notes:** Algorithm to encrypt and decrypt symetric key, AES: Advanced Encryption Standard, DES: Data Encryption Standard.
+
+---
+
+- Asymetric Key (Public key and private key)
+
+  - Encrypt data with Private Key -> Decrypt data with Public Key.
+  - Encrypt data with Public Key -> Decrypt data with Private Key.
+
+- **Notes: All public key is shared in repository for everyone.**
+
+- **Question 1:** Flow A send data to B.
+
+  - A use public key of B to encrypt data.
+
+  - B use private key of B to decrypt data.
+
+- **Notes:** Algorithm to encrypt and decrypt asymetric key -> RSA (Rivest, Shamir, Adleman), ECC.
+
+- **Notes:** But the problem is C can catch the message of A -> using B public key to send data to B => We need to prove the data is come from the sender (A)
+
+---
+
+- Digital Signature: How to verify the person who send the message is A
+
+- **Question 2:** How B to know data send from A:
+
+  - A use private key of A to encrypt the data and send the digital sigature to B.
+
+  - B use A public key -> to decrypt the payload of digital sigature from A -> Make sure the payload is send from A
+
+  - Problem: But C can use A public key to decrypt the data.
+
+- **Question 3:** The best solution.
+
+  - A use public key of B to encrypt the data in step 1.
+
+  - In step 2, A use private key of A to encrypt the payload in step 2.
+
+  - If C can receive the payload, C can only see the encrypt message + data come from A.
+
+  - When data send to B, B use public key of A -> verify the message is come from A.
+
+  - B use private key of B -> to read the data.
+
+---
+
+**JWT**
