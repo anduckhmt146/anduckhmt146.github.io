@@ -1011,7 +1011,7 @@ public class ImageGenController {
 
     ImageResponse response = openAiImageModel.call(prompt);
 
-    return response.getResult).getOutput().getUrl();
+    return response.getResult().getOutput().getUrl();
   }
 
   @PostMapping ("image/describe")
