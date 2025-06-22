@@ -879,3 +879,95 @@ body: {
 ```
 
 ![](/images/embedding.png)
+
+- Embedding using Spring AI
+
+```java
+@Autowired
+@Qualifier("openAiEmbeddingModel")
+private EmbeddingModel embeddingModel;
+```
+
+```bash
+spring.api.openai.embedding.options.model=text-embedding-3-large
+```
+
+- Calculate similarity
+
+```java
+@PostMapping("/api/similarity")
+public double getSimilarity(@RequestParam String texti, @RequestParam String text2){
+  float[] embedding1 = embeddingModel.embed(text1);
+  float [] embedding2 = embeddingModel.embed(text2);
+
+  double dotProduct = 0;
+  double norm1 = 0;
+  double norm2 = 0;
+
+  for(int i = 0; i < embedding1.length; i++){
+      dotProduct += embedding1[i] * embedding2[il; norm1 += Math.pow(embedding1[i], 2);
+      norm2 += Math.pow(embedding2[i], 2);
+  }
+
+  return dotProduct / (Math.sqrt (norm1) * Math.sqrt (norm2)) ;
+}
+```
+
+---
+
+- Vector Store
+
+```java
+@Configuration
+public class AppConfig {
+  public VectorStore vectorStore(EmbeddingModel embeddingModel){
+    return SimpleVectorStore.builder(embeddingModel).build();
+  }
+}
+```
+
+```java
+@Component
+public class DataInitializer {
+
+  @Autowired
+  private VectorStore vectorStore;
+
+  public void initData(){
+      TextReader textReader = new TextReader(new ClassPathResource("product_details.txt"));
+
+      TokenTextSplitter splitter = new TokenTextSplitter();
+
+      List<Document> documents = splitter.split(textReader.get());
+
+      vectorStore.add(documents);
+  }
+};
+```
+
+```java
+@PostMapping("/api/product")
+public List<Document> getProducts(@RequestParam String text){
+    return vectorStore.similaritySearch(SearchRequest.builder().query(text).topK(2).build());
+}
+```
+
+---
+
+- **Posgres Vector Store**
+
+```java
+@Configuration
+public class AppConfig {
+  @Bean
+  public VectorStore vectorStore(JdbcTemplate jdbailemplate, EmbeddingModel embeddingModel) {
+    return PgVectorStore.builder(jdbcTemplate, embeddingModel)
+                        .dimensions(1536)
+                        .build();
+  }
+}
+```
+
+- **Redis Vector Store** use by index and prefix to search.
+
+---
