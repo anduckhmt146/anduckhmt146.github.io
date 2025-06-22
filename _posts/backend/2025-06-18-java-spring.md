@@ -971,3 +971,56 @@ public class AppConfig {
 - **Redis Vector Store** use by index and prefix to search.
 
 ---
+
+- **Using RAG**: Inject vector db to model, the LLM will find data in vector db and response.
+
+```java
+@PostMapping("/api/ask")
+public String getAnswerUsingRag (@RequestParam String query) {
+    return chatClient.prompt(query)
+                     .advisors(new QuestionAnswerAdvisor(vectorStore))
+                     .call()
+                     .content();
+```
+
+---
+
+- **Image Model**
+
+- Using OpenAIImageModel to gen the image
+
+```java
+@RestController
+public class ImageGenController {
+  private ChatClient chatclient;
+  private OpenAiImageModel openAiImageModel;
+
+  public ImageGenController(OpenAiImageModel openAiImageModel, ChatClient.Builder builder){
+    this.openAiImageModel = openAiImageModel
+    this.chatClient = builder.build();
+  }
+
+  @GetMapping ("image/{query}")
+  public String genImage(@PathVariable String query) {
+    ImagePrompt prompt = new ImagePrompt(query, OpenAiImage0ptions.builder()
+                             .quality("hd")
+                             .height(1024)
+                             .width(1024)
+                             .style("natural")
+                             .build());
+
+    ImageResponse response = openAiImageModel.call(prompt);
+
+    return response.getResult).getOutput().getUrl();
+  }
+
+  @PostMapping ("image/describe")
+  public String descImage(@RequestParam String query, @RequestParam MultipartFile file){
+    return chatClient.prompt.user((PromptUserSpec) us -> us.text(query)
+                            .media(MimeTypeUtils.IMAGE_JPEG, file.getResource()))
+                            .call()
+                            .content();
+
+  };
+
+```
