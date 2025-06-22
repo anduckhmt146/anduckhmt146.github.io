@@ -484,6 +484,24 @@ public class UserPrincipal implements UserDetails {
 
 ---
 
+- SSL Handshaking:
+
+  - Client say hello + client random to server
+
+  - Server response hello + server random + public key server to client
+
+  - Client use public key server + send "premaster secret" to Server
+
+  - Server use private key server to encrypt the "premaster secret" -> response to client.
+
+  - Create a session_key = client random + server random + "premaster secret"
+
+  - Client send "session_key" to server
+
+  - Server response ok for the "session_key"
+
+---
+
 **JWT (JSON Web Token)**
 
 - Idea: you have an ID to a branch of the coffee -> Cashier check the book and provide coffee for your membership -> But when the coffee has a new branch and they do not have a book, they can not know your membership info.
@@ -509,4 +527,85 @@ public class UserPrincipal implements UserDetails {
     .authorizeHttpRequests(request -> requestrequestMatchers("register").permitAll())
     .anyRequest().authenticated()
     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+```
+
+- Custom Login using AuthenticateManager
+
+```java
+@PostMapping("login")
+public String login(@RequestBody User user){
+
+  Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+
+  if (authentication. isAuthenticated()) {
+    return "Success" ;
+  }
+  else {
+     return "Login Failed";
+  }
+}
+```
+
+- You can use **.addFilterBeforejwtFilter(jwtFilter, UsernamePasswordAuthenticationFilter.class)** to add custom filter in middleware
+
+```java
+@Override
+protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+  String authHeader = request.getHeader("Authorization");
+  String token = null;
+
+  String username = null;
+  if (authHeader != null && authHeader.startsWith("Bearer ")) {
+    token = authHeader.substring(7);
+    username = jwtService.extractUserName(token);
+  }
+
+  if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+      // Check logic here
+      UserDetails userDetails = context.getBean(UserDetailsService.class).loadUserByUsername(username);
+  }
+
+  if (jwtService.validateToken(token, userDetails)) {
+      UsernamePasswordAuthenticationToken authentication = new
+      UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+      authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+  }
+  filterChain.doFilter(request, response);
+}
+```
+
+---
+
+- **OAuth2**
+
+- OAuth with Google
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+    @Bean
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throw Exception {
+
+      http.authorizeHttpRequests(auth -> auth.anyRequest()).authenticated()
+          .oauth2Login(Customizer.withDefaults());
+
+      return http.build;
+    };
+};
+```
+
+```bash
+spring.security.oauth2.client.registration.google.client-id=
+spring.security.oauth2.client.registration.google.client-secret=
+
+```
+
+- If you want to OAuth By Github, change the environment key
+
+```bash
+spring.security.oauth2.client.registration.github.client-id=
+spring.security.oauth2.client.registration.github.client-secret=
+
 ```
