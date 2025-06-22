@@ -609,3 +609,156 @@ spring.security.oauth2.client.registration.github.client-id=
 spring.security.oauth2.client.registration.github.client-secret=
 
 ```
+
+# 13. Spring Cloud
+
+- Use `mvn package` to create file .jar in target folder.
+
+```bash
+mvn package
+```
+
+- Create User Group -> IAM Account.
+
+- Upload .jar file to AWS Beanstalk -> Choose EC2 and policy -> Host it to EC2.
+
+- Create database cluster RDS in AWS
+
+```bash
+spring.datasource.url=jdbc:postgresql://my-db.czkygsqeesi2.us-east-1.rds.amazonaws.com:5432/telusko
+spring.datasource.username=postgres spring.datasource.password=12345678
+spring.datasource.password=
+```
+
+- You can use ECS to run serverless
+
+- Pull posgresql in Dockerhub and run the task: Create cluster (run in EC2, or Fargate Serverless) -> Create task (task is create a job to pull image docker + export port -> build docker and docker-compose file) -> Task can use to run any docker image.
+
+**Process:**
+
+- ECR: Push the dockernize service to ECR.
+
+- ECS: Create cluster, and task -> In the task, pull the image from ECR or dockerhub to run.
+
+---
+
+**Docker**
+
+- Notes:
+
+  - Dockerfile: Run 1 service in a container.
+
+```bash
+docker run my-image
+```
+
+- docker-compose.yml: use to run multiple containers.
+
+```bash
+docker-compose up
+```
+
+- When to run docker execute container-id, it runs the CMD in Dockerfile
+
+```bash
+docker execute container-id
+```
+
+```bash
+CMD ["npm", "start"]
+```
+
+---
+
+**Microservices**
+
+- Service Discovery (Eureka Server - Netflix): Find the location of question service.
+
+  - Service A, Service B: Eureka Client
+
+  - Service Discovery: Eruka Server
+
+```java
+@SpringBootApplication
+@EnableEurekaServer
+public class ServiceRegistryApplication {
+  public static void main (String[] args) {
+    SpringApplication.run(ServiceRegistryApplication.class);
+  }
+}
+```
+
+```bash
+spring.application.name=service-registry
+server.port=8761
+
+eureka.instance.hostname=localhost
+eureka.client.fetch-registry=false
+eureka.client.register-with-eureka=false
+```
+
+- HTTP Client (Feign Client)
+
+```java
+@FeignClient ("QUESTION-SERVICE")
+public interface QuizInterface {
+  @GetMapping("generate")
+  public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String categoryName, @RequestParam Integer numQuestions);
+}
+```
+
+```java
+@Service
+public class QuizService {
+  @Autowired
+  QuizDao quizDao;
+
+  @Autowired
+  QuizInterface quizInterface;
+
+  public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
+      List<Integer> questions = quizInterface.getQuestionsForQuiz(category, numQ.getBody();
+
+      Quiz quiz = new Quiz();
+      quiz.setTitle(title); I
+      quiz.setQuestionIds(questions) ;
+      quizDao.save(quiz);
+    }
+  }
+```
+
+```java
+@SpringBootApplication
+@EnableFeignClients
+public class QuizServiceApplication {
+  public static void main (String[] args) {
+    SpringApplication.run(QuizServiceApplication.class, args);
+  }
+}
+```
+
+- In addition, you can use HTTPClient, OkHttpClient to make requests as an HTTP client in Java.
+
+- **Load balacing:** 1 service have multiple instances -> point of view is about only 1 service.
+
+- **API Gateway**: Routing multiple services -> point of view is about multiple services => You can deploy service for API Gateway from **@Gateway package** of Spring.
+
+```bash
+spring.application.name=api-gateway
+server.port=8765
+
+sprina.cloud.aatewav.discovery.locator.enabled=true
+spring.cloud.gateway.discovery.locator.lower-case-service-id=true
+```
+
+**Flow:** Client -> API Gateway -> Euruka Server
+
+![](/images/spring_cloud.png)
+
+- Notes: The magic in API Gateway is here
+
+```bash
+GET: http://localhost:8765/QUIZ-SERVICE/quiz/get/2 -> Routing to QUIZ-SERVICE
+```
+
+![](/images/magic_api_gateway.png)
