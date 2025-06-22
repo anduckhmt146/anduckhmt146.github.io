@@ -1024,3 +1024,63 @@ public class ImageGenController {
   };
 
 ```
+
+---
+
+- **Audio**: Speech to Text (Transcription), Text to speech.
+
+- Model speech to text:
+
+```java
+@RestController
+public class AudioGenController {
+  private OpenAiAudioTranscriptionModel audioModel;
+
+  public AudioGenController(OpenAiAudioTranscriptionModel audioModel){
+    this.audioModel = audioModel;
+  }
+
+  @PostMapping ("api/stt")
+  public String speechToText(@RequestParam MultipartFile file){
+
+    OpenAiAudioTranscriptionOptions options = OpenAiAudioTranscriptionOptions.builder()
+                                                        .language("es").
+                                                        responseFormat(OpenAiAudioApi. ranscriptResponseFormat.SRT)
+                                                        .build();
+
+    AudioTranscriptionPrompt prompt = new AudioTranscriptionPrompt(file.getResource(), options);
+
+    return audioModel.call(prompt).getResult().getOutput();
+  }
+}
+```
+
+- Model text to speech:
+
+```java
+@RestController
+public class AudioGenController {
+  private OpenAiAudioTranscriptionModel audioModel;
+  private OpenAiAudioSpeechModel audioSpeechModel;
+
+  public AudioGenController (OpenAiAudioTranscriptionModel audioModel, OpenAiAudioSpeechModel audioSpeechModel){
+    this.audioModel = audioModel;
+    this.audioSpeechModel = audioSpeechModel;
+  }
+
+  @PostMapping ("api/tts")
+  public byte[] tts(@RequestParam String text) {
+    OpenAiAudioSpeechOptions options = OpenAiAudioSpeechOptions.builder()
+                                                               .speed(1.5f)
+                                                               .voice(OpenAiAudioApi. SpeechRequest.Voice.NOVA)
+                                                               .build();
+
+    SpeechPrompt prompt = new SpeechPrompt(text, options);
+
+    return audioSpeechModel.call(prompt).getResult().getOutput();
+  ｝
+}
+
+```
+
+- Finally, you should convert the response to JSON (can declare a BeanConverter).
