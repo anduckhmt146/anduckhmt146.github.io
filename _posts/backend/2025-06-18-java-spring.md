@@ -762,3 +762,120 @@ GET: http://localhost:8765/QUIZ-SERVICE/quiz/get/2 -> Routing to QUIZ-SERVICE
 ```
 
 ![](/images/magic_api_gateway.png)
+
+# 14. Spring AI
+
+- Because interface in OpenAPI and Anthropic is different -> We need Spring AI work as an abstract layer to interact with multiple models.
+
+- Add Spring AI dependencies and properties
+
+```bash
+spring.application.name=SpringAICode
+spring.ai.openai.api-key=
+```
+
+- Using chatModel: Inject the openAPIService to service controller
+
+```java
+@RestController
+public class OpenAIController {
+  private OpenAiChatModel chatModel;
+
+  public OpenAIController(OpenAiChatModel chatModel)(
+    this.chatModel = chatModel;
+  ｝
+
+  @GetMapping ("/api/(message}")
+  public String getAnswer (@PathVariable String message) {
+    String response = chatModel.call(message); I
+    return response;
+  }
+}
+```
+
+- Using chatClient: can connect with multiple chat model, stream messages response.
+
+- **Notes:** Define interface match with constructor on OpenAiChatModel in ok, to declare an variable in class -> Use Constructor or @Autowired.
+
+---
+
+- Using history context, because when user prompt "More" => It need to history context to remember history chat.
+
+- You can use Spring AI Memory Advisor to cache the history context of users.
+
+```java
+public OpenAIController (ChatClient.Builder builder){
+    this.chatClient = builder.defaultAdvisors (new MessageChatMenpryAdvisor(new InMemoryChatMemory)).build();
+}
+```
+
+---
+
+- Run model with Ollama, by addding Ollama controller
+
+```java
+@RestController
+public class OllamaController {
+  private ChatClient chatClient;
+
+  public OllamaController(OllamaChatModel chatModel) {
+    this.chatClient = ChatClient.create(chatModel);
+  }
+}
+```
+
+```bash
+spring.ai.ollama.chat.options.model=deepseek-r1:7b
+```
+
+- Prompt Template: Use it to send a prompt from params of client
+
+```java
+@PostMapping("/api/recommend")
+public String recommend(@RequestParam String type, @RequestParam String year, @RequestParam String Lang) {
+  String temp = """
+      I want to watch a {type} movie tonight with good rating, looking for movies around this year {year}.
+      The language im looking for is {lang}.
+      Suggest one specific movie and tell me the cast and length of the movie.
+
+      Response format should be:
+      1. Movie name
+      2. basic plot
+      3. cast
+      4. length
+      5. IMDB rating
+  """
+
+  PromptTemplate promptTemplate = new PromptTemplate(temp);
+  Prompt prompt = promptTemplate. create(Map.of(k1: "type", type, k2: "year", year, k3: "Zang", Lang));
+
+  String response = chatClient.prompt(prompt).call().content();
+
+  return response;
+}
+
+```
+
+---
+
+**Embedding**
+
+- Definition: The way to change from: Text, Image, Audio -> Binary vector
+
+- Dimension of the vector -> similar parameter to make the 2 objects are close together.
+
+- When you submit a text, image, audio -> It converts to an embedding vector.
+
+- **Notes:** You can limit the dimensions that you want to work, the embedding result is depended on model type.
+
+```bash
+POST: https://api.openai.com/v1/embeddings
+
+body: {
+    "model": "text-embedding-3-large",
+    "input": "Dog",
+    "dimensions": 2
+}
+```
+
+![](/images/embedding.png)
