@@ -36,4 +36,12 @@ Here is some techniques when implementing services in AWS
 
 - **Step 5:** Exploring Well-Architecture framework.
 
-- **Step 6:** Using AWS Console, AWS CLI, Terraform,...
+- **Step 6:** Using AWS Console, AWS CLI, AWS SDK, IaC (CloudFormation & Terraform)...
+    - AWS Console: convenient with create a EC2, but drawbacks when you need to create 100 - 1000 EC2s.
+    - AWS CLI: Using in your terminal, required AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION.
+```bash
+$ aws <command> <subcommand> [options and parameters]
+```
+    - AWS SDK: Golang, NodeJS, Python... provide abstract high-level interface for you to make HTTP/HTTPS requests.
+
+    - IaC: 
