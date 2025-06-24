@@ -72,3 +72,11 @@ Here is some high-level thinking when learning English
 ## 3.8. Agree - Disagree
 
 ![](/images/IELTS/ielts_writing_agree_disagree.png)
+
+## 3.9. Graph with trend:
+
+![](/images/IELTS/graph_with_trend.png)
+
+## 3.10. Graph without trend:
+
+![](/images/IELTS/graph_without_trend.png)
