@@ -94,7 +94,11 @@ Here is some high-level thinking when learning English.
   </figure>
   <h1>6. High-Level Booking System</h1>
   <figure>
-    <img src="/images/IELTS/tech_booking_system_design.jpeg" alt="Technical diagram of product organization">
+    <img src="/images/IELTS/tech_booking_system_design.jpeg" alt="Technical diagram of booking system">
+  </figure>
+  <h1>7. High-Level Digital Wallet System</h1>
+  <figure>
+    <img src="/images/IELTS/tech_payment_zalopay.png" alt="Technical diagram of digital wallet system">
   </figure>
 </section>
 
