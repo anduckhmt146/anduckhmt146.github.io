@@ -83,13 +83,12 @@ Here is some high-level thinking when learning English.
 
 ![Graph without Trend](/images/IELTS/graph_without_trend.png)
 
-<div id="private-section">
-  
-# 4. High-level Payment System Design
-
-![Payment System Design](/images/IELTS/tech_payment_system_design.png)
-
-</div>
+<section id="private-section">
+  <h1>4. High-Level Payment System Design</h1>
+  <figure>
+    <img src="/images/IELTS/tech_payment_system_design.png" alt="Technical diagram of a payment system design">
+  </figure>
+</section>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
