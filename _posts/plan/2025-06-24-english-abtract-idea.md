@@ -88,6 +88,10 @@ Here is some high-level thinking when learning English.
   <figure>
     <img src="/images/IELTS/tech_payment_system_design.png" alt="Technical diagram of a payment system design">
   </figure>
+  <h1>5. High-Level Product Company</h1>
+  <figure>
+    <img src="/images/IELTS/tech_product_organization.png" alt="Technical diagram of product organization">
+  </figure>
 </section>
 
 <script>
