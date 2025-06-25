@@ -80,3 +80,7 @@ Here is some high-level thinking when learning English
 ## 3.10. Graph without trend:
 
 ![](/images/IELTS/graph_without_trend.png)
+
+# 4. High-level payment system design:
+
+![](/images/IELTS/tech_payment_system_design.png)
