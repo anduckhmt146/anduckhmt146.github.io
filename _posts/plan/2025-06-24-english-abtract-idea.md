@@ -92,6 +92,10 @@ Here is some high-level thinking when learning English.
   <figure>
     <img src="/images/IELTS/tech_product_organization.png" alt="Technical diagram of product organization">
   </figure>
+  <h1>6. High-Level Booking System</h1>
+  <figure>
+    <img src="/images/IELTS/tech_booking_system_design.jpeg" alt="Technical diagram of product organization">
+  </figure>
 </section>
 
 <script>
