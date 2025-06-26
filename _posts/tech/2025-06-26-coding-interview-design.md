@@ -367,6 +367,30 @@ class Solution:
         return left
 ```
 
-## 6. CPU Scheduling
+## 6. Sudoku
 
-## 7. Sudoku
+### 6.1. Clarify requirements
+
+- Solving Sudoku
+
+### 6.2. Idea & Example
+
+- Solution 1: Go to the empty block -> Try [1 -> 9] -> Check row, col, in square 3 x 3.
+
+- After that -> BFS first the choice and continue to fill all the column.
+
+### 6.3. Implement
+
+## 7. Knight Move
+
+## 8. Max CPU Scheduling
+
+## 9. Valid Parenthesis
+
+## 10. Maximum Earnings From Taxi (Knapstack)
+
+## 11. Coin Change (Unbounding Knapstack)
+
+## 12. Generate Phone Numbers
+
+## 13. Subset
