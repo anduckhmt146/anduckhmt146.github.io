@@ -162,3 +162,82 @@ def most_common_words(text: str) -> List[Tuple[str, int]]:
 # debug your code below
 print(most_common_words("It was the best of times, it was the worst of times."))
 ```
+
+## 3. Valid Palindrome
+
+## 3.1. Clarify requirements
+
+- A man, a plan, a canal, Panama -> True
+
+- Only count for alphabet
+
+## 3.2. Idea:
+
+- Two Pointer legendary question
+
+## 3.3 Implement:
+
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            # Move left to next alphanumeric
+            # Reach the left
+            while left < right and not s[left].isalnum():
+                left += 1
+            # Move right to previous alphanumeric
+            # Reach the right
+            while left < right and not s[right].isalnum():
+                right -= 1
+            # Compare characters
+            if s[left].lower() != s[right].lower():
+                return False
+
+            # Need to increase left and right here -> Above is only find the character
+            left += 1
+            right -= 1
+
+        return True
+
+```
+
+```python
+# Core function
+def is_palindrome(s: str) -> bool:
+    left, right = 0, len(s) - 1
+    while left < right:
+        # Core function
+        if s[left].lower() != s[right].lower():
+            return False
+        left += 1
+        right -= 1
+    return True
+
+# debug your code below
+print(is_palindrome('abcba'))
+```
+
+- **Implementation**
+
+```python
+def is_palindrome(s: str) -> bool:
+    left, right = 0, len(s) - 1
+    while left < right:
+        while left < right and not s[left].isalnum():
+            left += 1
+        while left < right and not s[right].isalnum():
+            right -= 1
+
+        # Core function
+        if s[left].lower() != s[right].lower():
+            return False
+        left += 1
+        right -= 1
+
+    return True
+
+# debug your code below
+print(is_palindrome('abcba'))
+```
