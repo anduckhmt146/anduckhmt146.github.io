@@ -507,18 +507,239 @@ class Solution:
         return res
 ```
 
-## 8. Knight Move
+## 8. Minimum Knight Move (BFS)
 
-## 9. Island
+### 8.1. Requirements
 
-## 10. Max CPU Scheduling
+- Find minimum step for knight go from (0,0) -> (x,y)
 
-## 11. Valid Parenthesis
+### 8.2. Example:
 
-## 12. Maximum Earnings From Taxi (Knapstack)
+- Using BFS to find knight move
 
-## 13. Coin Change (Unbounding Knapstack)
+### 8.3. Implement
 
-## 14. Generate Phone Numbers
+- Step 1: Visit start, add queue + update visited
 
-## 15. Subset
+- Step 2: Visit neighbor, add queue + update visited
+
+```python
+from collections import deque
+
+class Solution:
+    def minStepToReachTarget(self, knightPos, targetPos, n):
+        start = (knightPos[0], knightPos[1])
+        target = (targetPos[0], targetPos[1])
+
+        if start == target:
+            return 0
+
+        # Init
+        visited = [[False for _ in range(n)] for _ in range(n)]
+        queue = deque()
+
+        # Visit start
+        queue.append((knightPos[0], knightPos[1], 0))
+        visited[knightPos[0]][knightPos[1]] = True
+
+        # Directions
+        directions = [
+            (-2, -1), (-1, -2), (1, -2), (2, -1),
+            (2, 1), (1, 2), (-1, 2), (-2, 1)
+        ]
+
+        def isValid(nx, ny):
+            return 0 <= nx < n and 0 <= ny < n and not visited[nx][ny]
+
+
+        while queue:
+            x, y, steps = queue.popleft()
+
+            # Visit neighbors
+            for dx, dy in directions:
+                nx, ny = x + dx, y + dy
+
+                if isValid(nx, ny):
+                    if (nx, ny) == target:
+                        return steps + 1
+                    # Visit neighbor
+                    queue.append(nx, ny, steps + 1)
+                    visited[nx][ny] = True
+
+        return -1
+```
+
+## 9. Island (DFS)
+
+### 9.1. Requirements
+
+- Count number of components in matrix
+
+### 9.2. Example
+
+### 9.3. Implement
+
+- Step 1: Find '1' and DFS from it.
+
+- Step 2: Count number of components
+
+```python
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        row, col = len(grid), len(grid[0])
+        visited = [[False for _ in range(col)] for _ in range(row)]
+        countNumIslands = 0
+
+        def isValid(row_index, col_index):
+            return 0 <= row_index < row and 0 <= col_index < col and not visited[row_index][col_index]
+
+
+        def dfs(row_index, col_index):
+            if not isValid(row_index, col_index) or grid[row_index][col_index] == "0":
+                return
+
+            # Visited it
+            grid[row_index][col_index] = "0"
+            visited[row_index][col_index] = True
+
+            # DFS without backtrack
+            dfs(row_index + 1, col_index)
+            dfs(row_index - 1, col_index)
+            dfs(row_index, col_index + 1)
+            dfs(row_index, col_index - 1)
+
+
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == '1':
+                    if isValid(i, j):
+                        dfs(i, j)
+                        countNumIslands += 1
+
+        return countNumIslands
+
+```
+
+# 10. Surrounded Regions (DFS Border)
+
+```python
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        row, col = len(board), len(board[0])
+        visited = [[False for _ in range(col)] for _ in range(row)]
+
+        def isValid(row_index, col_index):
+            return 0 <= row_index < row and 0 <= col_index < col and not visited[row_index][col_index]
+
+        def dfs(row_index, col_index):
+            if not isValid(row_index, col_index) or board[row_index][col_index] != "O":
+                return
+
+            # Visited it
+            board[row_index][col_index] = "#"
+            visited[row_index][col_index] = True
+
+            # DFS without backtrack
+            dfs(row_index + 1, col_index)
+            dfs(row_index - 1, col_index)
+            dfs(row_index, col_index + 1)
+            dfs(row_index, col_index - 1)
+
+        # DFS in borders
+        for i in range(row):
+            dfs(i, 0)
+            dfs(i, col - 1)
+        for j in range(col):
+            dfs(0, j)
+            dfs(row - 1, j)
+
+        for i in range(row):
+            for j in range(col):
+                if board[i][j] == 'O':
+                    board[i][j] = 'X'
+                elif board[i][j] == '#':
+                    board[i][j] = 'O'
+```
+
+## 11. Max CPU Load (Min Heap for End Time)
+
+### 11.1. Requirements
+
+Find the max CPU load the job overlap in the same time.
+
+### 11.2. Example:
+
+Input: jobs[] = {{1, 4, 3}, {2, 5, 4}, {7, 9, 6}}
+Output: 7
+
+### 11.3. Implement
+
+- Step 1: Init min heap
+
+- Step 2: When come to start -> add (end, load) to queue, update max CPU load => use heap to keep the min end.
+
+- Step 3: When come to end -> remove all tasks from the queue.
+
+```python
+import heapq
+
+def find_max_cpu_load(jobs):
+    sorted_jobs = sorted(jobs, key=lambda x:x[0]) # Sort by start time
+    min_heap = [] # store (end, load)
+
+    current_cpu_load = 0
+    max_cpu_load = 0
+
+    for job in sorted_jobs:
+        start, end, load = job
+
+        while min_heap and min_heap[0][0] <= start:
+            ended_job = heapq.heappop(min_heap)
+            current_cpu_load -= ended_job[1]
+
+        # Push CPU load
+        heapq.heappush(min_heap, (end, load))
+        current_cpu_load += load
+
+        # Max CPU load
+        max_cpu_load = max(current_cpu_load, max_cpu_load)
+
+    return max_cpu_load
+
+
+jobs = [(1, 4, 3), (2, 5, 4), (7, 9, 6)]
+print(find_max_cpu_load(jobs))
+```
+
+## 12. Task Scheduler (Max Heap)
+
+### 12.1. Requirements
+
+- Schedule jobs for CPU with each some must be wait for n time with same category.
+
+### 12.2. Idea
+
+- Using max heap to prior complete the long task first.
+
+### 12.3. Implement
+
+## 13. Maximum Profit in Job Scheduling
+
+## 14. Single-Threaded CPU
+
+## 15. Meeting Room 2
+
+## 16. Maximum Earnings From Taxi (Knapstack)
+
+## 17. Coin Change (Unbounding Knapstack)
+
+## 18. Valid Parenthesis
+
+## 19. Generate Phone Numbers
+
+## 20. Subset
+
+---
