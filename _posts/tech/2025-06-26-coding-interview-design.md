@@ -301,3 +301,72 @@ class Solution:
 
         return "Neither"
 ```
+
+## 5. Capacity to Ship Packages Within D Days (Greedy)
+
+### 5.1. Requirements
+
+- Maximum of the ship capacity -> load all the pakage in D days.
+
+### 5.2. Idea & Example (Idea High-level is important, important freely)
+
+- Ship capacity: [max(arr), sum(arr)]
+
+- With the capacity -> How to check the valid
+
+- Idea: Start increasing packages to the ship -> whether is <= days.
+
+### 5.3. Idea
+
+- **Idea 1**: Note, in case the load > capacity, set prev_sum = 0 and continue to load
+
+```python
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        left, right = max(weights), sum(weights)
+        for capacity in range(left, right + 1):
+            prev_sum = 0
+            count_day = 1
+            for i in range(len(weights)):
+                if prev_sum + weights[i] > capacity:
+                    count_day += 1
+                    prev_sum = 0
+                prev_sum += weights[i]
+
+            if count_day <= days:
+                return capacity
+
+        return 0
+```
+
+- **Idea 2**
+
+```python
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        left, right = max(weights), sum(weights)
+
+        def canShip(capacity):
+            prev_sum = 0
+            count_day = 1
+            for i in range(len(weights)):
+                if prev_sum + weights[i] > capacity:
+                    count_day += 1
+                    prev_sum = 0
+                prev_sum += weights[i]
+
+            return count_day <= days
+
+        while left <= right:
+            mid = (left + right) // 2
+            if canShip(mid):
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return left
+```
+
+## 6. CPU Scheduling
+
+## 7. Sudoku
