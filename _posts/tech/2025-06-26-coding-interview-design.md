@@ -92,3 +92,73 @@ def decrypt(word: str) -> str:
 # debug your code below
 print(decrypt("dnotq"))
 ```
+
+## 2. Most Common Words
+
+### 2.1. Clarify Requirements
+
+- Count the frequence of the sentence:
+
+```python
+text = 'It was the best of times, it was the worst of times.'
+```
+
+### 2.2. Example
+
+```python
+
+[
+    ('it', 2),
+    ('of', 2),
+    ('the', 2),
+    ('times', 2),
+    ('was', 2),
+    ('best', 1),
+    ('worst', 1)
+]
+```
+
+- Need to sort by alphabet.
+
+- Need to lower case a string.
+
+### 2.3. Implement
+
+- **Syntax**
+
+```python
+from collections import Counter
+
+sentence = sentence.lower()
+words = sentence.split()
+counter = Counter(words)
+
+# Using method items()
+list(counter.items())
+
+# Sort key
+sorted_items = sorted(counter.items(), key=lambda x: x[0])
+```
+
+- Sorted receive: (Item, and Lambda function to sort)
+
+- Priority sort by frequence first, alphabet later: key = lambda x: (-x[1], x[0])
+
+```python
+from typing import List, Tuple
+from collections import Counter
+import string
+
+def most_common_words(text: str) -> List[Tuple[str, int]]:
+    cleanedText = text.translate(str.maketrans('', '', string.punctuation)).lower()
+    words = cleanedText.split()
+
+    counter = Counter(words)
+    items = counter.items()
+
+    sortItems = sorted(items, key = lambda x: (-x[1], x[0]))
+    return list(sortItems)
+
+# debug your code below
+print(most_common_words("It was the best of times, it was the worst of times."))
+```
