@@ -381,16 +381,144 @@ class Solution:
 
 ### 6.3. Implement
 
-## 7. Knight Move
+- Write backtracking condition first.
 
-## 8. Max CPU Scheduling
+- Write condition check later.
 
-## 9. Valid Parenthesis
+- Backtracking need to return -> Think backtracking as an asynchonus job, others job below in call in recurstion step.
 
-## 10. Maximum Earnings From Taxi (Knapstack)
+- **Using backtrack return True -> prevent when find the solution (find điểm dừng) => luôn có điểm dừng cho đệ quy.**
 
-## 11. Coin Change (Unbounding Knapstack)
+```python
+import math
 
-## 12. Generate Phone Numbers
+class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        row, col = len(board), len(board[0])
 
-## 13. Subset
+        def isValid(row_index, col_index, val):
+            # Duyệt dọc -> chạy row, Check in col_index
+            for i in range(row):
+                if board[i][col_index] == val:
+                    return False
+
+            # Duyện ngang -> chạy col, Check in row_index
+            for j in range(col):
+                if board[row_index][j] == val:
+                    return False
+
+            # Check in math.sqrt(row) * math.sqrt(col)
+            box_start_row = 3 * (row_index // 3)
+            box_start_col = 3 * (col_index // 3)
+            for i in range(3):
+                for j in range(3):
+                    if board[box_start_row + i][box_start_col + j] == val:
+                        return False
+
+            return True
+
+        def backtrack():
+            for row_index in range(row):
+                for col_index in range(col):
+                    # Find "." and try [1 -> 9]
+                    if board[row_index][col_index] == ".":
+                        for val in range(1, 10):
+                            # Precheck before assign
+                            if isValid(row_index, col_index, str(val)):
+                                board[row_index][col_index] = str(val)
+                                # Asynchronus, find to the end of the table
+                                if backtrack():
+                                    return True
+                                board[row_index][col_index] = "."
+                        return False
+            return True
+
+        backtrack()
+```
+
+## 7. N-Queen
+
+### 7.1. Requirement:
+
+- Clear requirements
+
+### 7.2. Example:
+
+- Try to put N-queens into a table.
+
+## 7.3. Algorithm:
+
+- Put 1 queen first in row 0 first. Put another queens later.
+
+- Step 1: Find '.'
+
+- Step 2: Check valid
+
+- Step 3: Backtrack
+
+```python
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        board = [['.'] * n for _ in range(n)]
+        res = []
+
+        def isValid(row_index, col_index):
+            # Check col
+            for i in range(n):
+                if board[i][col_index] == 'Q':
+                    return False
+
+            # Check upper-left diagonal (Only check upper row)
+            i, j = row_index - 1, col_index - 1
+            while i >= 0 and j >= 0:
+                if board[i][j] == 'Q':
+                    return False
+                i -= 1
+                j -= 1
+
+            # Check upper-right diagonal
+            i, j = row_index - 1, col_index + 1
+            while i >= 0 and j < n:
+                if board[i][j] == 'Q':
+                    return False
+                i -= 1
+                j += 1
+            return True
+
+        def backtrack(row_index):
+            if row_index == n:
+                res.append(["".join(r) for r in board])
+                return
+
+            for col_index in range(n):
+                # Step 1: Find '.'
+                # Step 2: Check valid
+                # Step 3: Backtrack
+                if board[row_index][col_index] == '.':
+                    if isValid(row_index, col_index):
+                        board[row_index][col_index] = 'Q'
+                        backtrack(row_index + 1)
+                        board[row_index][col_index] = '.'
+
+        backtrack(0)
+        return res
+```
+
+## 8. Knight Move
+
+## 9. Island
+
+## 10. Max CPU Scheduling
+
+## 11. Valid Parenthesis
+
+## 12. Maximum Earnings From Taxi (Knapstack)
+
+## 13. Coin Change (Unbounding Knapstack)
+
+## 14. Generate Phone Numbers
+
+## 15. Subset
