@@ -1,0 +1,24 @@
+---
+layout: post
+title: High-level Happy Life Design
+date: 2025-06-27
+categories: plan
+---
+
+Here is a design of a happy life.
+
+# 1. Design Life
+
+![](/images/Design/life_design.png)
+
+# 2. Design DSA
+
+![](/images/Design/dsa_design.png)
+
+# 3. Design Solution Architect
+
+![](/images/Design/solution_architect_design.png)
+
+# 4. Design System Design
+
+![](/images/Design/system_design_design.png)
