@@ -594,12 +594,289 @@ Use stack when:
 
 ## 1.17. Basic Calculator
 
-## 1.18. Basic Calculator II
+Example: "-3+2"
 
-## 1.19. Design LRU
+    - First char is '-', so sign = '+' won’t apply right away.
+    - It sees '-' as the first actual operator, then reads '3', and processes sign == '-', so it appends -3.
 
-## 1.20. Queue using Stacks
+```python
+class Solution:
+    def calculate(self, s: str) -> int:
+        def helper(chars):
+            num = 0
+            sign = '+'
+            stack = []
+            while chars:
+                ch = chars.pop(0)
 
-## 1.21. Stack using Queues
+                if ch.isdigit():
+                    num = num * 10 + int(ch)
 
-## 1.22. Evaluation of Postfix Expression
+                if ch == '(':
+                    num = helper(chars)
+
+                # not digit -> sign or not chars
+                if ch in '+-*/)' or not chars:
+                    if sign == '+':
+                        stack.append(num)
+                    elif sign == '-':
+                        stack.append(-num)
+                    elif sign == '*':
+                        stack.append(stack.pop() * num)
+                    elif sign == '/':
+                        prev = stack.pop()
+                        stack.append(int(prev / num))  # Truncate toward zero
+
+                    sign = ch
+                    num = 0
+
+                    if ch == ')':
+                        break
+
+            return sum(stack)
+
+        return helper(list(s))
+```
+
+## 1.18. Design LRU
+
+```python
+class Node:
+    def __init__(self, key: int, value: int):
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache = {}  # key -> Node
+        self.head = None  # LRU
+        self.tail = None  # MRU
+
+    def _remove(self, node: Node):
+        """Remove a node from the linked list."""
+        if node.prev:
+            node.prev.next = node.next
+        else:
+            self.head = node.next  # node was head
+
+        if node.next:
+            node.next.prev = node.prev
+        else:
+            self.tail = node.prev  # node was tail
+
+    def _add_to_tail(self, node: Node):
+        """Add node to the end (MRU)."""
+        node.prev = self.tail
+        node.next = None
+        if self.tail:
+            self.tail.next = node
+        self.tail = node
+
+        if not self.head:
+            self.head = node
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+
+        node = self.cache[key]
+        self._remove(node)
+        self._add_to_tail(node)
+        return node.value
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            node = self.cache[key]
+            node.value = value
+            self._remove(node)
+            self._add_to_tail(node)
+        else:
+            if len(self.cache) >= self.capacity:
+                # Remove LRU node
+                lru = self.head
+                self._remove(lru)
+                del self.cache[lru.key]
+
+            new_node = Node(key, value)
+            self.cache[key] = new_node
+            self._add_to_tail(new_node)
+
+```
+
+## 1.19. Queue using Stacks
+
+```python
+class MyQueue:
+
+    def __init__(self):
+        self.in_stack = []
+        self.out_stack = []
+
+    def push(self, x: int) -> None:
+        self.in_stack.append(x)
+
+    def pop(self) -> int:
+        self.peek()  # Ensure out_stack has the current front element
+        return self.out_stack.pop()
+
+    def peek(self) -> int:
+        if not self.out_stack:
+            while self.in_stack:
+                self.out_stack.append(self.in_stack.pop())
+        return self.out_stack[-1]
+
+    def empty(self) -> bool:
+        return not self.in_stack and not self.out_stack
+
+```
+
+## 1.20. Stack using Queues
+
+```python
+from collections import deque
+
+class MyStack:
+
+    def __init__(self):
+        self.queue = deque()
+
+    def push(self, x: int) -> None:
+        self.queue.append(x)
+        # Rotate the queue so the last element becomes the front
+        for _ in range(len(self.queue) - 1):
+            self.queue.append(self.queue.popleft())
+
+    def pop(self) -> int:
+        return self.queue.popleft()
+
+    def top(self) -> int:
+        return self.queue[0]
+
+    def empty(self) -> bool:
+        return not self.queue
+
+```
+
+## 1.21. Evaluation of Postfix Expression
+
+```python
+def evaluate_postfix(expression):
+    stack = []
+    tokens = expression.split()
+
+    for token in tokens:
+        if token.isdigit():
+            stack.append(int(token))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            if token == '+':
+                stack.append(a + b)
+            elif token == '-':
+                stack.append(a - b)
+            elif token == '*':
+                stack.append(a * b)
+            elif token == '/':
+                stack.append(int(a / b))  # Integer division
+
+    return stack[0]
+
+# Example usage
+expr = "5 1 2 + 4 * + 3 -"
+print(evaluate_postfix(expr))  # Output: 14
+
+```
+
+## 1.22. Evaluation of Prefix Expression
+
+```python
+def evaluate_prefix(expression):
+    stack = []
+    tokens = expression.split()[::-1]  # reverse for right-to-left
+
+    for token in tokens:
+        if token.isdigit():
+            stack.append(int(token))
+        else:
+            a = stack.pop()
+            b = stack.pop()
+            if token == '+':
+                stack.append(a + b)
+            elif token == '-':
+                stack.append(a - b)
+            elif token == '*':
+                stack.append(a * b)
+            elif token == '/':
+                stack.append(int(a / b))  # integer division
+
+    return stack[0]
+
+# Example usage
+expr = "+ 9 * 2 3"
+print(evaluate_prefix(expr))  # Output: 15
+
+```
+
+## 1.23. Min Stack
+
+```python
+class MinStack:
+
+    def __init__(self):
+        self.stack = []       # Main stack
+        self.min_stack = []   # Stack to track current min at each level
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        # Push the new min (either val or current min)
+        if not self.min_stack or val <= self.min_stack[-1]:
+            self.min_stack.append(val)
+        else:
+            self.min_stack.append(self.min_stack[-1])
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.min_stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.min_stack[-1]
+
+```
+
+## 1.24. Max Stack
+
+```python
+class MaxStack:
+
+    def __init__(self):
+        self.stack = []
+        self.max_stack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if not self.max_stack or val >= self.max_stack[-1]:
+            self.max_stack.append(val)
+        else:
+            self.max_stack.append(self.max_stack[-1])
+
+    def pop(self) -> int:
+        self.max_stack.pop()
+        return self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMax(self) -> int:
+        return self.max_stack[-1]
+
+    def empty(self) -> bool:
+        return not self.stack
+
+```
