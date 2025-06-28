@@ -591,3 +591,15 @@ Use stack when:
 - Balancing / matching elements (like parentheses)
 
 - Monotonic order tracking (next greater/smaller)
+
+## 1.17. Basic Calculator
+
+## 1.18. Basic Calculator II
+
+## 1.19. Design LRU
+
+## 1.20. Queue using Stacks
+
+## 1.21. Stack using Queues
+
+## 1.22. Evaluation of Postfix Expression
