@@ -36,3 +36,27 @@ Here is some designs of system design concepts
 ## 2.5. Heartbeat IoT Device Tracker
 
 ![](/images/System-Design/Domain/iot_device_tracking.png)
+
+## 2.6. Chatbot History
+
+![](/images/System-Design/Domain/chatbot_history_logging.png)
+
+## 2.7. Notifications System
+
+![](/images/System-Design/Domain/notification_system.png)
+
+## 2.8. Transaction Payment System
+
+![](/images/System-Design/Domain/payment_system.png)
+
+## 2.9. Blog with user comment
+
+# 3 Server Application
+
+## 3.1. Static Website
+
+![](/images/AWS/static_security_website.png)
+
+## 3.1. Layer MVC Application
+
+![](/images/AWS/recipe_sharing_final.png)
