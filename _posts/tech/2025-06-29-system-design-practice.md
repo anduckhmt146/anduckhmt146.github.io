@@ -13,6 +13,10 @@ Here is some designs of system design concepts
 
 ![](/images/System-Design/Domain/rag-system-design.png)
 
+## 1.2. MCP Architecture
+
+![](/images/System-Design/Domain/mcp_architecture.avif)
+
 # 2. Serverless Application
 
 ## 2.1. User Register & Send email
@@ -51,12 +55,28 @@ Here is some designs of system design concepts
 
 ## 2.9. Blog with user comment
 
-# 3 Server Application
+![](/images/System-Design/Domain/social_media_system.png)
+
+## 2.10. Document Processing Workflow
+
+![](/images/System-Design/Domain/document_processing_workflow.png)
+
+## 2.12. Image Analysis System
+
+![](/images/System-Design/Domain/image_analysis.png)
+
+## 2.13. Audit Logging System
+
+![](/images/System-Design/Domain/audit_logging_system.png)
+
+![](/images/AWS/aws_business_intelligence.png)
+
+# 3. Server Application
 
 ## 3.1. Static Website
 
 ![](/images/AWS/static_security_website.png)
 
-## 3.1. Layer MVC Application
+## 3.2. Layer MVC Application
 
 ![](/images/AWS/recipe_sharing_final.png)
