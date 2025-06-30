@@ -22,3 +22,7 @@ Here is a design of a happy life.
 # 4. Design System Design
 
 ![](/images/Design/system_design_design.png)
+
+# 5. System Design High-level Thinking
+
+![](/images/Design/system_design_thinking.png)
