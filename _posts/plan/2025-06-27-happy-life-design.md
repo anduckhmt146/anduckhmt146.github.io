@@ -19,10 +19,18 @@ Here is a design of a happy life.
 
 ![](/images/Design/solution_architect_design.png)
 
-# 4. Design System Design
+<!-- # 4. Design System Design
 
-![](/images/Design/system_design_design.png)
+![](/images/Design/system_design_design.png) -->
 
-# 5. System Design High-level Thinking
+# 4. System Design High-level Thinking
 
 ![](/images/Design/system_design_thinking.png)
+
+# 5. High-level System Design By API
+
+![](/images/Design/high_level_design_by_api.png)
+
+# 6. Learning Plan
+
+![](/images/Design/learning_plan.png)
