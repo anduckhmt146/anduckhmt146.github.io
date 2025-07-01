@@ -943,7 +943,7 @@ class Solution:
                 curr_time = max(curr_time, time)
 
         return fleets
-        
+
 ```
 
 ## 2.10. Generate Parentheses
@@ -968,4 +968,203 @@ class Solution:
 
         backtrack("", 0, 0)
         return res
+```
+
+## 2.11. Longest Valid Parentheses
+
+- Store last "(" of the character.
+
+```python
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        max_len = 0
+        # Magic here to trick case ()
+        # Store last index of '('
+        stack = [-1]
+
+        for i, char in enumerate(s):
+            if char == '(':
+                stack.append(i)
+            else:
+                stack.pop()
+                if stack:
+                   max_len = max(max_len, i - stack[-1])
+                else:
+                    stack.append(i)
+
+        return max_len
+
+```
+
+---
+
+## 2.12. Next Greater Element
+
+Notes: Loop from left to right, if nums[i] > the last stack => Update the index of greater than last stack is nums[i]
+
+```python
+def nextGreaterElement(nums):
+  n = len(nums)
+  result = [-1] * n
+  stack = []
+
+  for i in range(n):
+    while stack and nums[i] > nums[stack[-1]]:
+      idx = stack.pop()
+      result[idx] = nums[i]
+    stack.append(i)
+
+  return result
+```
+
+## 2.12. Next Smaller Element
+
+Notes: Loop from left to right, if nums[i] < the last stack => Update the index of greater than last stack is nums[i]
+
+```python
+def nextSmallerElement(nums):
+  n = len(nums)
+  result = [-1] * n
+  stack = []
+
+  for i in range(n):
+    while stack and nums[i] < nums[stack[-1]]:
+      idx = stack.pop()
+      result[idx] = nums[i]
+    stack.append(i)
+
+  return result
+```
+
+## 2.13. Daily Temperatures
+
+```python
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        n = len(temperatures)
+
+        stack = []
+        result = [0] * n
+
+        for i in range(n):
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                top = stack.pop()
+                result[top] = i - top
+
+            stack.append(i)
+
+        return result
+```
+
+## 2.14. Largest Rectangle in Histogram
+
+- Find the first element smaller than the current row => Area.
+
+- Find the max area from the left and the right too.
+
+- Compare in both left and right max
+
+Specical case: [2,4,6]
+
+```python
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        stack = []
+        max_area = 0
+        i = 0
+        n = len(heights)
+        while i < n:
+            if not stack or heights[i] >= heights[stack[-1]]:
+                stack.append(i)
+                i += 1
+            else:
+                top = stack.pop()
+                right = i - 1
+                left = stack[-1] if stack else -1
+                area = heights[top] * (right - left)
+                max_area = max(max_area, area)
+
+        # Second pass: clean up remaining elements in stack
+        # Make sure the stack is increment (2,4,6)
+        while stack:
+            top = stack.pop()
+            right = n - 1
+            left = stack[-1] if stack else -1
+            area = heights[top] * (right - left)
+            max_area = max(max_area, area)
+
+        return max_area
+```
+
+# 3. Binary Search
+
+## 3.1. Koko Eating Bananas
+
+```python
+import math
+
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        # Greedy in range [1, max(piles)]
+        left, right = 1, max(piles)
+
+        def canEat(speed):
+            count = 0
+            for banana in piles:
+                count += math.ceil(banana / speed)
+
+            return count <= h
+
+        while left <= right:
+            mid = (left + right) // 2
+            if canEat(mid):
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return left
+```
+
+## 3.2. Search in Rotated Sorted Array
+
+- Search the target in array using O(logN)
+
+- Idea: Using Binary Search of Binary Search
+
+```python
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+```
+
+```python
+Input: nums = [4,5,6,7,0,1,2], target = 3
+Output: -1
+```
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        if not nums:
+            return -1
+
+        left, right = 0, len(nums) - 1
+
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+
+            if nums[left] <= nums[mid]:
+                if nums[left] <= target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+
+            else:
+                if nums[mid] < target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+
+        return -1
 ```
