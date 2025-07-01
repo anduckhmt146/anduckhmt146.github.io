@@ -1168,3 +1168,146 @@ class Solution:
 
         return -1
 ```
+
+# 4. Merge Interval (Sort theo start time)
+
+## 4.1. Check Overlap Interval (Can Attend Meeting)
+
+```python
+class Solution:
+    def canAttendMeetings(self, intervals: List[List[int]]):
+        # Sort by start time
+        intervals.sort(key=lambda x:x[0])
+
+        n = len(intervals)
+
+        # Check validate
+        for i in range(1, n):
+            # Overlap
+            if intervals[i][0] < intervals[i - 1][1]:
+                return False
+
+        return True
+
+```
+
+## 4.2. Merge Interval
+
+- Sort by start time:
+  - If the start < last merge (overlap) => merge to the last.
+  - Else: append to the list.
+
+```python
+def mergeIntervals(intervals):
+  sortedIntervals = sorted(intervals, key=lambda x: x[0])
+  merged = []
+
+  for interval in sortedIntervals:
+    if not merged or interval[0] > merged[-1][1]:
+      merged.append(interval)
+    else:
+      merged[-1][1] = max(interval[1], merged[-1][1])
+
+  return merged
+
+```
+
+## 4.3. Non-Overlapping
+
+- Sort by end => check the overlap with end
+
+```python
+def nonOverlappingIntervals(intervals):
+  if not intervals:
+    return 0
+
+  intervals.sort(key=lambda x: x[1])
+  end = intervals[0][1]
+  count = 1
+
+  for i in range(1, len(intervals)):
+    # Non-overlapping interval found
+    if intervals[i][0] >= end:
+      end = intervals[i][1]
+      count += 1
+
+  return len(intervals) - count
+```
+
+## 4.4. Insert Intervals
+
+```python
+class Solution:
+    def insertIntervals(self, intervals: List[List[int]], newInterval: List[int]):
+        intervals.append(newInterval)
+        intervals.sort(key=lambda x:x[0])
+        n = len(intervals)
+        merged = []
+
+        for i in range(0, n):
+            # Do not overlap
+            if not merged or intervals[i][0] > merged[-1][1]:
+                merged.append(intervals[i])
+            else:
+                merged[-1][1] = max(merged[-1][1], intervals[i][1])
+
+        return merged
+
+```
+
+## 4.5. Non-overlap Intervals
+
+- intervals = [[1,3], [2,4], [3,5]]
+
+=> Can not compare intervals[i][0] >= intervals[i - 1][1] => because if we skip the interval[i - 1], it will miss to select the interval[i].
+
+```python
+class Solution:
+    def nonOverlappingIntervals(self, intervals: List[List[int]]):
+        if not intervals:
+            return 0
+
+        # Sort by end time
+        intervals.sort(key=lambda x:x[1])
+
+        # len of intervals
+        n = len(intervals)
+        count = 1
+        end = intervals[0][1]
+
+        # Check the non-overlapping range
+        for i in range(1, n):
+            # The overlap interval
+            if intervals[i][0] >= end:
+                end = intervals[i][1]
+                count += 1
+
+        return n - count
+
+```
+
+## 4.6. Employee Free Time
+
+```python
+def employeeFreeTime(intervals):
+    intervals.sort(key=lambda x:x[0])
+    n = len(intervals)
+    merged = []
+
+    for i in range(n):
+        # Do not overlap
+        if not merged or intervals[i][0] > merged[-1][1]:
+            merged.append(intervals[i])
+        else:
+            merged[-1][1] = max(merged[-1][1], intervals[i][1])
+
+    result = []
+    for i in range(len(merged) - 1):
+        result.append([merged[i][1], merged[i + 1][0]])
+
+    return result
+
+
+schedule = [[2,4],[7,10],[1,5],[6,9]]
+print(employeeFreeTime(schedule))
+```
