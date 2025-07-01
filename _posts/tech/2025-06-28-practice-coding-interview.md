@@ -582,6 +582,8 @@ class Solution:
 
 ---
 
+# 2. Stack
+
 Use stack when:
 
 - Nested structures
@@ -592,7 +594,7 @@ Use stack when:
 
 - Monotonic order tracking (next greater/smaller)
 
-## 1.17. Basic Calculator
+## 2.1. Basic Calculator
 
 Example: "-3+2"
 
@@ -638,7 +640,7 @@ class Solution:
         return helper(list(s))
 ```
 
-## 1.18. Design LRU
+## 2.2 Design LRU
 
 ```python
 class Node:
@@ -707,7 +709,7 @@ class LRUCache:
 
 ```
 
-## 1.19. Queue using Stacks
+## 2.3. Queue using Stacks
 
 ```python
 class MyQueue:
@@ -761,7 +763,7 @@ class MyStack:
 
 ```
 
-## 1.21. Evaluation of Postfix Expression
+## 2.4. Evaluation of Postfix Expression
 
 ```python
 def evaluate_postfix(expression):
@@ -791,7 +793,7 @@ print(evaluate_postfix(expr))  # Output: 14
 
 ```
 
-## 1.22. Evaluation of Prefix Expression
+## 2.5. Evaluation of Prefix Expression
 
 ```python
 def evaluate_prefix(expression):
@@ -821,7 +823,7 @@ print(evaluate_prefix(expr))  # Output: 15
 
 ```
 
-## 1.23. Min Stack
+## 2.6. Min Stack
 
 ```python
 class MinStack:
@@ -850,7 +852,7 @@ class MinStack:
 
 ```
 
-## 1.24. Max Stack
+## 2.7. Max Stack
 
 ```python
 class MaxStack:
@@ -879,4 +881,43 @@ class MaxStack:
     def empty(self) -> bool:
         return not self.stack
 
+```
+
+## 2.8. Decode String
+
+Notes: curr_str = prev_str + curr_str \* prev_num
+
+```python
+ elif char == "]":
+    prev_num = stack.pop()
+    prev_str = stack.pop()
+    # Note
+    curr_str = prev_str + curr_str * prev_num
+```
+
+```python
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        curr_num = 0
+        curr_str = ""
+
+        for char in s:
+            if char.isdigit():
+                curr_num = curr_num * 10 + (int(char))
+            elif char == "[":
+                stack.append(curr_str)
+                stack.append(curr_num)
+                curr_num = 0
+                curr_str = ""
+            elif char == "]":
+                prev_num = stack.pop()
+                prev_str = stack.pop()
+                # Note
+                curr_str = prev_str + curr_str * prev_num
+            # Case char is character
+            else:
+                curr_str += char
+
+        return curr_str
 ```
