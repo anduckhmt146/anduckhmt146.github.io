@@ -1311,3 +1311,19 @@ def employeeFreeTime(intervals):
 schedule = [[2,4],[7,10],[1,5],[6,9]]
 print(employeeFreeTime(schedule))
 ```
+
+---
+
+# 5. Recursion
+
+- Rule 1: Luôn có basecase
+
+- Rule 2: Ví dụ với input nhỏ trước (Lấy ví dụ cái nhỏ nhất trước)
+
+- Rule 3: Không dùng external varibles, chỉ dùng parameter truyền vào recursive function => làm sao cái parameter đó nó càng gần base case hơn.
+
+- Rule 4: luôn assump là cái bước trước đó đúng => dùng cái đó chứng minh bước sau
+
+- Phân biệt Recursion and Tail Recursion:
+  - Recursion: lưu vào stack call => go the basecase => compute back.
+  - Tail Recursion: lưu trực tiếp trong hàm recursion => tới bước tail chỉ cần return không cần compute nữa.
