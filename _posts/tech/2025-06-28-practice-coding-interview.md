@@ -1695,3 +1695,95 @@ Visited Node: 2, Path: [5, 4, 11, 2], Sum: 22
 ✅ Found valid path: [5, 4, 11, 2]
 Final result: [5, 4, 11, 2]
 ```
+
+# 7. Practice
+
+## 7.1. Path Sum:
+
+- Find only 1 path
+
+```python
+class Solution:
+    def pathSum(self, root: TreeNode, target: int) -> bool:
+        def dfs(node, curr_sum):
+            if not node:
+                return False
+
+            curr_sum += node.val
+
+            # If it's a leaf node, check if the sum matches the target
+            if not node.left and not node.right:
+                # Find a function and return
+                return curr_sum == target
+
+            # Continue to left or right subtree
+            return dfs(node.left, curr_sum) or dfs(node.right, curr_sum)
+
+        return dfs(root, 0)
+
+```
+
+## 7.2. Count Good Nodes in Binary Tree:
+
+- Cover all
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        # Duyet het
+        count = 0
+        
+        def dfs(node, prev_max_value):
+            nonlocal count
+            if not node:
+                return
+
+            prev_max_value = max(prev_max_value, node.val)
+            if node.val == prev_max_value:
+                count += 1
+            
+            dfs(node.left, prev_max_value)
+            dfs(node.right, prev_max_value)
+
+        dfs(root, root.val)
+        return count
+```
+## 7.3. Count Path Sum
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+
+        def dfs(node, total):
+            if not node:
+                # In case [1,2] => When traversal right 1 -> null, targetSum = 1 => Count true, we do not allow it.
+                return False
+
+            # Calculate sum until val
+            total += node.val
+
+            # Only check when find in a leaf node
+            if not node.left and not node.right:
+                return total == targetSum
+
+            left = dfs(node.left, total)
+            right = dfs(node.right, total)
+            # Return when found the result
+            return left or right
+
+        return dfs(root, 0)
+```
