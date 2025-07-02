@@ -2097,3 +2097,85 @@ class Solution:
         return max_height
 
 ```
+# 8. Graph
+
+## 8.1. Adjacency List
+
+```python
+adjList = {
+    "1": ["2", "4"],
+    "2": ["1", "3"],
+    "3": ["2", "4"],
+    "4": ["1", "3", "5"],
+    "5": ["4"]
+}
+```
+
+```python
+def dfs(adjList):
+    visited = set()
+    def dfs_helper(node):
+        if node in visited:
+            return
+        
+        # Visit node
+        print("Visit node: ", node)
+        visited.add(node)
+        for neighbor in adjList[node]:
+            dfs_helper(neighbor)
+            
+    # Ensure the unconnected graph is still cover
+    for node in adjList:
+        if node not in visited:
+            dfs_helper(node)
+            
+adjList = {
+    "1": ["2", "4"],
+    "2": ["1", "3"],
+    "3": ["2", "4"],
+    "4": ["1", "3", "5"],
+    "5": ["4"]
+}
+dfs(adjList)
+```
+
+## 8.2. Copy Graph
+
+```python
+from typing import Dict, List
+
+class IntGraphNode:
+    def __init__(self, value = 0, neighbors = None):
+        self.value = value
+        self.neighbors = neighbors if neighbors is not None else []
+
+class Solution:
+    def copy_graph(self, node: IntGraphNode) -> Dict[int, List[int]]:
+        def dfs(root):
+            visited = set()
+            result = {}
+
+            def dfs_helper(node):
+                if node.value in visited:
+                    return
+
+                visited.add(node.value)
+                result[node.value] = [neighbor.value for neighbor in node.neighbors]
+                
+                for neighbor in node.neighbors:
+                    dfs_helper(neighbor)
+
+            if root:
+                dfs_helper(root)
+            return result
+
+        return dfs(node)
+```
+
+## 8.3. Graph Valid Tree
+
+- Graph connected.
+
+- But no cycle.
+
+    - **Idea:** Visit DFS and check we have visited the parent again.
