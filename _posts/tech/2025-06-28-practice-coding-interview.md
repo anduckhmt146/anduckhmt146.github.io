@@ -1327,3 +1327,231 @@ print(employeeFreeTime(schedule))
 - Phân biệt Recursion and Tail Recursion:
   - Recursion: lưu vào stack call => go the basecase => compute back.
   - Tail Recursion: lưu trực tiếp trong hàm recursion => tới bước tail chỉ cần return không cần compute nữa.
+
+# 6. Backtracking
+
+## 6.1. Core Idea
+
+- Backtrack is still a tree => depth-first tree searching
+
+```python
+function solvable(n):
+    if n is a leaf node:
+        if n is a goal node, return true
+        else return false
+    else:
+        for each child c of n:
+            if solvable(c): return true
+        return false
+```
+
+How does this work?
+
+    - If any child of n is solvable, then n is solvable.
+    - If no child of n is solvable, then n is not solvable.
+
+```python
+boolean solve(Node n):
+    put node n on the stack
+    while the stack is not empty:
+        topnode = the node at the top of the stack
+        if topnode is a leaf:
+            If it is a goal node, return true
+            else pop it off the stack
+        else:
+            if topnode has untried children:
+                push the next untried child onto the stack
+            else pop the node off the stack
+    return false
+```
+
+## 6.2. Prunning
+
+Bản chất check isValid là 1 cách prunning
+
+```python
+boolean explore1 (int country, Color color) {
+    if (country >= map.length())
+        return goodColoring();
+
+    mapColors[country] = color;
+    for (Color c: Color.values()) {
+        if (explore1(country + 1, c)) {
+            return true;
+        }
+    }
+    mapColors[country] = Color.NONE;
+    return false;
+}
+```
+
+- Prunning
+
+```python
+boolean explore1 (int country, Color color) {
+    if (country >= map.length())
+        return goodColoring();
+
+    if (okToColor(country, color)) {
+        mapColors[country] = color;
+        for (Color c: Color.values()) {
+            if (explore1(country + 1, c)) {
+                return true;
+            }
+        }
+        mapColors[country] = Color.NONE;
+    }
+    return false;
+}
+```
+
+- Benchmark
+
+```python
+Method 1: 2355638070 ns.
+Method 2: 20516 ns.
+```
+
+## 6.3. Binary Search
+
+```python
+function solvable(binaryTree):
+    1. if node is null/None, return false
+    2. if node is a goal node return true
+    3. if solvable(node.leftChild), return true
+    4. if solvable(node.rightChild), return true
+    5. return false
+```
+
+```python
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+class BST:
+    def __init__(self):
+        self.root = None
+
+    # Insert key into BST
+    def insert(self, key):
+        self.root = self._insert(self.root, key)
+
+    def _insert(self, node, key):
+        if node is None:
+            return Node(key)
+        if key < node.key:
+            node.left = self._insert(node.left, key)
+        elif key > node.key:
+            node.right = self._insert(node.right, key)
+        return node
+
+    # Search for a key
+    def search(self, key):
+        return self._search(self.root, key)
+
+    def _search(self, node, key):
+        if node is None or node.key == key:
+            return node
+        if key < node.key:
+            return self._search(node.left, key)
+        return self._search(node.right, key)
+
+    # In-order traversal (sorted order)
+    def inorder(self):
+        result = []
+        self._inorder(self.root, result)
+        return result
+
+    def _inorder(self, node, result):
+        if node:
+            self._inorder(node.left, result)
+            result.append(node.key)
+            self._inorder(node.right, result)
+
+```
+
+## 6.3. Binary Search II
+
+- How to get the solution
+
+```python
+def solve(node):
+    """Find goal node and report path."""
+    if node == None:
+        return None
+
+    if node.is_goal_node:
+        return [node.name]
+
+    temp = solve(node.left_child)
+
+    if temp != None:
+        return [node.name] + temp
+
+    temp = solve(node.right_child)
+    if temp != None:
+        return [node.name] + temp
+        return None
+```
+
+## 6.4. Concepts
+
+- Concepts for tree (k-tree)
+
+```python
+To search from a node:
+    if the node is a goal node,
+        return success.
+    for each child of the node:
+        if searching from that child succeeds,
+        return success.
+    return failure.
+```
+
+- Concepts for graph
+
+```python
+To search from a node:
+
+    if the node is a goal node,
+        return success.
+
+    if we've been at this node before,
+        return failure.
+
+    for each neighbor of the node:
+        if searching from that neighbor succeeds,
+            return success.
+    return failure
+```
+
+## 6.5. Debug:
+
+- Print the order of function call.
+
+- Order of sample call
+
+```python
+Entering solvable(Root)
+| Entering solvable(A)
+| | Entering solvable(C)
+| | | Entering solvable(null)
+| | | solvable(null) returns false
+| | | Entering solvable(null)
+| | | solvable(null) returns false
+| | solvable(C) returns false
+| | Entering solvable(D)
+| | | Entering solvable(null)
+| | | solvable(null) returns false
+| | | Entering solvable(null)
+| | | solvable(null) returns false
+| | solvable(D) returns false
+| solvable(A) returns false
+| Entering solvable(B)
+| | Entering solvable(E)
+| | solvable(E) returns true
+| solvable(B) returns true
+solvable(Root) returns true
+```
