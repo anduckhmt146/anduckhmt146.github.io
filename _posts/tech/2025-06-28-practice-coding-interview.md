@@ -1696,7 +1696,7 @@ Visited Node: 2, Path: [5, 4, 11, 2], Sum: 22
 Final result: [5, 4, 11, 2]
 ```
 
-# 7. Practice
+# 7. Tree
 
 ## 7.1. Path Sum:
 
@@ -1786,4 +1786,314 @@ class Solution:
             return left or right
 
         return dfs(root, 0)
+```
+
+## 7.4. Validate BST:
+
+```python
+class Solution:
+    def validateBST(self, root):
+        def dfs(node, min_val, max_val):
+            if not node:
+                return True
+            
+            if not (min_val < node.val < max_val):
+                return False
+            
+            return dfs(node.left, min_val, node.val) and dfs(node.right, node.val, max_val)
+
+        return dfs(root, float('-inf'), float('inf'))
+
+```
+
+## 7.5. Calculate Tilt
+
+- Condition 1: Góc nhìn của node.
+
+- Condition 2: Góc nhìn đối với parent của node.
+
+```python
+class Solution:
+    def calculateTilt(self, root):
+        # Scan all the tree
+        tilt = 0
+        def dfs(node):
+            nonlocal tilt
+
+            if not node:
+                return 0
+
+            # If I a node of the tree, I would return
+            # Top-down
+            left = dfs(node.left)
+            right = dfs(node.right)
+            tilt += abs(left - right)
+
+            # return the sum of the current subtree
+            # Bottom up
+            return left + right + node.val
+
+        dfs(root)
+        return tilt
+
+```
+
+## 7.6. Path Sum
+
+```python
+class Solution:
+    def pathSum(self, nodes: TreeNode, target: int):
+        def dfs(node, total):
+            if not node:
+                return total == target
+
+            # Calculate node
+            total += node.val
+
+            # Prunning here
+            if not node.left and not node.right and total == target:
+                return True
+
+            left = dfs(node.left, total)
+            right = dfs(node.right, total)
+
+            # Left Right trả gì cho root
+            return left or right
+
+        return dfs(nodes, 0)
+```
+
+## 7.7. Count Good Nodes in Binary Tree
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        count = 0
+        def dfs(node, prev_max):
+            nonlocal count
+            if not node:
+                return False
+
+            # What node do
+            if node.val >= prev_max:
+                prev_max = node.val
+                count += 1
+
+            # What left right do for root
+            left = dfs(node.left, prev_max)
+            right = dfs(node.right, prev_max)
+            return left and right
+
+        dfs(root, root.val)
+        return count
+```
+
+## 7.8. Validate Binary Search Tree
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def dfs(node):
+            if not node:
+                return True
+
+            # Step 1: Prunning
+            if node.val < node.left or node.val > node.right:
+                return False
+        
+            # Step 2: What node do
+            # Continue to traversal to left and right
+
+            # Step 3: What left and right do for node
+            left = dfs(node.left)
+            right = dfs(node.right)
+            return left and right
+        
+        return dfs(root)
+```
+
+## 7.9. Binary Tree Tilt
+
+- Step 1: Basecase
+- Step 2: Prunning 
+- Step 3: What node.val do
+- Step 4: What left right do for node
+        
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTilt(self, root: Optional[TreeNode]) -> int:
+        titl = 0
+        
+        def dfs(node):
+            nonlocal titl
+
+            # Step 1: Basecase
+            if not node:
+                return 0
+
+            # Step 2: Prunning
+        
+            # Step 3: What node.val do
+            # Calculate the left and right abs
+            left = dfs(node.left)
+            right = dfs(node.right)
+            titl += abs(left - right)
+
+            # Step 4: What left right do for node
+            return left + right + node.val
+
+        dfs(root)
+        return titl
+```
+
+## 7.10. Diameter of a Binary Tree
+
+- Height is call from the leaf to the node.
+
+```python
+class Solution:
+    def maxDiameter(self, nodes: TreeNode):
+        diameterLen = 0
+
+        # Height from the leaf to the node
+        def dfs(node): 
+            nonlocal diameterLen
+            # Step 1: Base case
+            if not node:
+                return 0
+
+            # Step 2: Prunning
+            # No prunning
+
+            # Step 3: What node val do
+            # Find the max distance from its left and right
+            left = dfs(node.left)
+            right = dfs(node.right)
+            # (Root -> right) + (Root -> left)
+            diameterLen = max(diameterLen, left + right)
+
+            # Step 4: Do left and right
+            # Return the height of current subtree
+            return 1 + max(left, right)
+
+        dfs(nodes)
+        return diameterLen
+```
+
+## 7.11. Path Sum II
+
+- Backtrack.
+
+- Basecase > Prunning > What Node do > What left and right do.
+
+```python
+class Solution:
+    def pathSum(self, root, target):
+        res = []
+
+        def dfs(node, path, curr_sum):
+            nonlocal res
+            # Base case
+            if not node:
+                return False
+
+            # What node do
+            path.append(node.val)
+            curr_sum += node.val
+
+            if not node.left and not node.right and curr_sum == target:
+                res.append(path[:])
+
+            # Prunning
+            if curr_sum > target:
+                return False
+
+            # What left and right do
+            left = dfs(node.left, path, curr_sum)
+            right = dfs(node.right, path, curr_sum)
+
+            # backtrack
+            path.pop() 
+            return left and right
+
+        dfs(root, [], 0)
+        return res
+
+```
+
+## 7.12. Longest Univalue Path (Hay)
+
+- Step 1: Basecase
+- Step 2: Prunning 
+- Step 3: What node.val do
+- Step 4: What left right do for node
+
+- Assump we already have the largest of the same value in left right
+
+```python
+    subLeft = dfs(node.left) 
+    subRight = dfs(node.right)
+
+    currLeft, currRight = 0, 0
+    if node.left and node.left.val == node.val:
+        currLeft = subLeft + 1
+    if node.right and node.right.val == node.val:
+        currRight = subRight + 1
+    max_height = max(max_height, currLeft + currRight)
+
+    # What left and right do
+    return max(currLeft, currRight)
+```
+
+```python
+class Solution:
+    def longestUnivaluePath(self, root: TreeNode):
+        max_height = 0
+
+        # Height from the leaf to curr_node
+        def dfs(node):
+            nonlocal max_height
+            # Base case
+            if not node:
+                return 0
+
+            # Prunning
+            # No prunning
+
+            # What node do
+            # The max of same value from left and from right
+            subLeft = dfs(node.left) 
+            subRight = dfs(node.right)
+
+            currLeft, currRight = 0, 0
+            if node.left and node.left.val == node.val:
+                currLeft = subLeft + 1
+            if node.right and node.right.val == node.val:
+                currRight = subRight + 1
+            max_height = max(max_height, currLeft + currRight)
+
+            # What left and right do
+            return max(currLeft, currRight)
+
+        dfs(root)
+        return max_height
+
 ```
