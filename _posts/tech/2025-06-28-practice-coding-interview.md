@@ -1555,3 +1555,143 @@ Entering solvable(Root)
 | solvable(B) returns true
 solvable(Root) returns true
 ```
+**- Scan all the path:**
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# Build the tree
+root = TreeNode(5)
+root.left = TreeNode(4)
+root.right = TreeNode(8)
+root.left.left = TreeNode(11)
+root.left.left.left = TreeNode(7)
+root.left.left.right = TreeNode(2)
+root.right.left = TreeNode(13)
+root.right.right = TreeNode(4)
+
+#        5
+#       / \
+#      4   8
+#     /   / \
+#   11  13  4
+#   /  \
+#  7    2
+
+def findAllPaths(root, target):
+    res = []
+
+    def backtrack(node, path, total):
+        if not node:
+            return
+
+        path.append(node.val)
+        total += node.val
+        print(f"Visited Node: {node.val}, Path: {path}, Sum: {total}")
+
+        if not node.left and not node.right and total == target:
+            print(f"✅ Found valid path: {path}")
+            res.append(list(path))
+
+        backtrack(node.left, path, total)
+        backtrack(node.right, path, total)
+
+        print(f"Backtracking from: {node.val}, Path before pop: {path}")
+        path.pop()
+
+    backtrack(root, [], 0)
+    return res
+
+paths = findAllPaths(root, 22)
+print("All paths that sum to 22:", paths)
+```
+
+Output:
+
+```python
+Visited Node: 5, Path: [5], Sum: 5
+Visited Node: 4, Path: [5, 4], Sum: 9
+Visited Node: 11, Path: [5, 4, 11], Sum: 20
+Visited Node: 7, Path: [5, 4, 11, 7], Sum: 27
+Backtracking from: 7, Path before pop: [5, 4, 11, 7]
+Visited Node: 2, Path: [5, 4, 11, 2], Sum: 22
+✅ Found valid path: [5, 4, 11, 2]
+Backtracking from: 2, Path before pop: [5, 4, 11, 2]
+Backtracking from: 11, Path before pop: [5, 4, 11]
+Backtracking from: 4, Path before pop: [5, 4]
+Visited Node: 8, Path: [5, 8], Sum: 13
+Visited Node: 13, Path: [5, 8, 13], Sum: 26
+Backtracking from: 13, Path before pop: [5, 8, 13]
+Visited Node: 4, Path: [5, 8, 4], Sum: 17
+Backtracking from: 4, Path before pop: [5, 8, 4]
+Backtracking from: 8, Path before pop: [5, 8]
+Backtracking from: 5, Path before pop: [5]
+All paths that sum to 22: [[5, 4, 11, 2]]
+```
+
+- Scan to find 1 path:
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# Build the tree
+root = TreeNode(5)
+root.left = TreeNode(4)
+root.right = TreeNode(8)
+root.left.left = TreeNode(11)
+root.left.left.left = TreeNode(7)
+root.left.left.right = TreeNode(2)
+root.right.left = TreeNode(13)
+root.right.right = TreeNode(4)
+
+def findOnePath(root, target):
+    result = []
+
+    def backtrack(node, path, total):
+        if not node:
+            return False
+
+        path.append(node.val)
+        total += node.val
+        print(f"Visited Node: {node.val}, Path: {path}, Sum: {total}")
+
+        if not node.left and not node.right and total == target:
+            print(f"✅ Found valid path: {path}")
+            result.extend(path)
+            return True
+
+        if backtrack(node.left, path, total) or backtrack(node.right, path, total):
+            return True
+
+        print(f"Backtracking from: {node.val}, Path before pop: {path}")
+        path.pop()
+        return False
+
+    found = backtrack(root, [], 0)
+    return result if found else None
+
+# ✅ ACTUALLY CALL THE FUNCTION HERE
+result = findOnePath(root, 22)
+print("Final result:", result)
+```
+
+Output:
+
+```python
+Visited Node: 5, Path: [5], Sum: 5
+Visited Node: 4, Path: [5, 4], Sum: 9
+Visited Node: 11, Path: [5, 4, 11], Sum: 20
+Visited Node: 7, Path: [5, 4, 11, 7], Sum: 27
+Backtracking from: 7, Path before pop: [5, 4, 11, 7]
+Visited Node: 2, Path: [5, 4, 11, 2], Sum: 22
+✅ Found valid path: [5, 4, 11, 2]
+Final result: [5, 4, 11, 2]
+```
