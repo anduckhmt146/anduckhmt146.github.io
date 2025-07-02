@@ -1555,6 +1555,7 @@ Entering solvable(Root)
 | solvable(B) returns true
 solvable(Root) returns true
 ```
+
 **- Scan all the path:**
 
 ```python
@@ -1738,7 +1739,7 @@ class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         # Duyet het
         count = 0
-        
+
         def dfs(node, prev_max_value):
             nonlocal count
             if not node:
@@ -1747,13 +1748,14 @@ class Solution:
             prev_max_value = max(prev_max_value, node.val)
             if node.val == prev_max_value:
                 count += 1
-            
+
             dfs(node.left, prev_max_value)
             dfs(node.right, prev_max_value)
 
         dfs(root, root.val)
         return count
 ```
+
 ## 7.3. Count Path Sum
 
 ```python
@@ -1796,10 +1798,10 @@ class Solution:
         def dfs(node, min_val, max_val):
             if not node:
                 return True
-            
+
             if not (min_val < node.val < max_val):
                 return False
-            
+
             return dfs(node.left, min_val, node.val) and dfs(node.right, node.val, max_val)
 
         return dfs(root, float('-inf'), float('inf'))
@@ -1912,7 +1914,7 @@ class Solution:
             # Step 1: Prunning
             if node.val < node.left or node.val > node.right:
                 return False
-        
+
             # Step 2: What node do
             # Continue to traversal to left and right
 
@@ -1920,17 +1922,17 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             return left and right
-        
+
         return dfs(root)
 ```
 
 ## 7.9. Binary Tree Tilt
 
 - Step 1: Basecase
-- Step 2: Prunning 
+- Step 2: Prunning
 - Step 3: What node.val do
 - Step 4: What left right do for node
-        
+
 ```python
 # Definition for a binary tree node.
 # class TreeNode:
@@ -1941,7 +1943,7 @@ class Solution:
 class Solution:
     def findTilt(self, root: Optional[TreeNode]) -> int:
         titl = 0
-        
+
         def dfs(node):
             nonlocal titl
 
@@ -1950,7 +1952,7 @@ class Solution:
                 return 0
 
             # Step 2: Prunning
-        
+
             # Step 3: What node.val do
             # Calculate the left and right abs
             left = dfs(node.left)
@@ -1974,7 +1976,7 @@ class Solution:
         diameterLen = 0
 
         # Height from the leaf to the node
-        def dfs(node): 
+        def dfs(node):
             nonlocal diameterLen
             # Step 1: Base case
             if not node:
@@ -2031,7 +2033,7 @@ class Solution:
             right = dfs(node.right, path, curr_sum)
 
             # backtrack
-            path.pop() 
+            path.pop()
             return left and right
 
         dfs(root, [], 0)
@@ -2042,14 +2044,14 @@ class Solution:
 ## 7.12. Longest Univalue Path (Hay)
 
 - Step 1: Basecase
-- Step 2: Prunning 
+- Step 2: Prunning
 - Step 3: What node.val do
 - Step 4: What left right do for node
 
 - Assump we already have the largest of the same value in left right
 
 ```python
-    subLeft = dfs(node.left) 
+    subLeft = dfs(node.left)
     subRight = dfs(node.right)
 
     currLeft, currRight = 0, 0
@@ -2080,7 +2082,7 @@ class Solution:
 
             # What node do
             # The max of same value from left and from right
-            subLeft = dfs(node.left) 
+            subLeft = dfs(node.left)
             subRight = dfs(node.right)
 
             currLeft, currRight = 0, 0
@@ -2097,6 +2099,7 @@ class Solution:
         return max_height
 
 ```
+
 # 8. Graph
 
 ## 8.1. Adjacency List
@@ -2117,18 +2120,18 @@ def dfs(adjList):
     def dfs_helper(node):
         if node in visited:
             return
-        
+
         # Visit node
         print("Visit node: ", node)
         visited.add(node)
         for neighbor in adjList[node]:
             dfs_helper(neighbor)
-            
+
     # Ensure the unconnected graph is still cover
     for node in adjList:
         if node not in visited:
             dfs_helper(node)
-            
+
 adjList = {
     "1": ["2", "4"],
     "2": ["1", "3"],
@@ -2161,7 +2164,7 @@ class Solution:
 
                 visited.add(node.value)
                 result[node.value] = [neighbor.value for neighbor in node.neighbors]
-                
+
                 for neighbor in node.neighbors:
                     dfs_helper(neighbor)
 
@@ -2178,4 +2181,38 @@ class Solution:
 
 - But no cycle.
 
-    - **Idea:** Visit DFS and check we have visited the parent again.
+  - **Idea:** Visit DFS and check we have visited the parent again.
+
+  - Visited đại từ 1 node nào cũng được => nếu tất cả đều connected component thì có thể visited được hết.
+
+- Using defaultdict for init.
+
+- Allow to visit a dup again, as long as it is not a parent.
+
+```python
+from collections import defaultdict
+
+class Solution:
+    def graph_valid_tree(self, n, edges):
+        graph = defaultdict(list)
+        for start, end in edges:
+            graph[start].append(end)
+            graph[end].append(start)
+
+        visited = set()
+        def isCycle(node, parent):
+            visited.add(node)
+            for neighbor in graph[node]:
+                # [0,1] and [1,0] is ok
+                if neighbor == parent:
+                    continue
+                if neighbor in visited:
+                    return True
+                if isCycle(neighbor, node):
+                    return True
+            return False
+
+        # Check not cycle & connected
+        return not isCycle(0, 0) and len(visited) == n
+
+```
