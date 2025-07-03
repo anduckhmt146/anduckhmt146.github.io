@@ -2730,9 +2730,191 @@ class Solution:
 
 - Step 4: Level
 
-- Step 5: Pop start
+- Step 5: Pop left
+
+```python
+from collections import deque
+
+def bfs(adjList, root):
+    # Base case
+
+    # Root
+    visited = set()
+    queue = deque([root])
+
+    # Neighbors
+    while queue:
+        # Popleft
+        start = queue.popleft()
+
+        print("Visited:", start)
+        visited.add(start)
+
+        # Neighbors
+        for neighbor in adjList[start]:
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor)
+
+adjList = {
+    "1": ["2", "4"],
+    "2": ["1", "3"],
+    "3": ["2", "4"],
+    "4": ["1", "3", "5"],
+    "5": ["4"]
+}
+
+bfs(adjList, "1")
+```
 
 ## 9.7. BFS in Matrix
+
+```python
+from collections import deque
+
+def bfs(grid, r, c):
+    # Base case
+
+    # Node
+    visited = set()
+    queue = deque([(r, c)])
+
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    # Neighbors
+    while queue:
+        # Pop left
+        start_row, start_col = queue.popleft()
+        visited.add((start_row, start_col))
+
+        print("Visited:", (start_row, start_col))
+
+        # Neighbors
+        for dr, dc in directions:
+            n_row = start_row + dr
+            n_col = start_col + dc
+
+            # Prunning
+            if n_row < 0 or n_row >= len(grid) or n_col < 0 or n_col >= len(grid[0]):
+                continue
+
+            if (n_row, n_col) in visited:
+                continue
+
+            queue.append((n_row, n_col))
+            visited.add((n_row, n_col))
+
+
+matrix = [
+    [0, 0, 0],
+    [0, 1, 1],
+    [0, 1, 0]
+]
+
+bfs(matrix, 0, 0)
+```
+
+## 9.8. Adjacency List Level-By-Level
+
+```python
+from collections import deque
+
+def bfs(adjList, root):
+    # Base case
+
+    # Root
+    visited = set()
+    queue = deque(root)
+    result = []
+
+    # Neighbors
+    while queue:
+        # Level
+        level_size = len(queue)
+        temp = []
+
+        for _ in range(level_size):
+            # Pop left
+            start = queue.popleft()
+            visited.add(start)
+            temp.append(start)
+
+            # Neighbors
+            for neighbor in adjList[start]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+                    visited.add(neighbor)
+
+        result.append(temp)
+
+    return result
+
+adjList = {
+    "1": ["2", "4"],
+    "2": ["1", "3"],
+    "3": ["2", "4"],
+    "4": ["1", "3", "5"],
+    "5": ["4"]
+}
+
+print(bfs(adjList, "1"))
+```
+
+## 9.9. Matrix Level-By-Level
+
+- queue = deque([(r, c)]): The way to init a tuple
+
+```python
+from collections import deque
+
+def bfs(grid, r, c):
+    # Base case
+
+    # Node
+    visited = set()
+    # The way to init a tuple
+    queue = deque([(r, c)])
+
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    result = []
+
+    # Neighbors
+    while queue:
+        level_size = len(queue)
+        temp = []
+
+        for _ in range(level_size):
+            # Pop left
+            start_row, start_col = queue.popleft()
+            visited.add((start_row, start_col))
+            temp.append((start_row, start_col))
+
+            # Visited the neighbors
+            for dr, dc in directions:
+                n_row = start_row + dr
+                n_col = start_col + dc
+
+                # Prunning
+                if n_row < 0 or n_row >= len(grid) or n_col < 0 or n_col >= len(grid[0]):
+                    continue
+
+                if (n_row, n_col) in visited:
+                    continue
+
+                queue.append((n_row, n_col))
+                visited.add((n_row, n_col))
+
+        result.append(temp)
+
+    return result
+
+matrix = [
+    [0, 0, 0],
+    [0, 1, 1],
+    [0, 1, 0]
+]
+print(bfs(matrix, 0, 0))
+```
 
 # 10. Backtracking
 
