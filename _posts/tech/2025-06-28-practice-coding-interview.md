@@ -2104,6 +2104,12 @@ class Solution:
 
 ## 8.1. Adjacency List
 
+- Step 1: Basecase
+
+- Step 2: Visit node
+
+- Step 3: Visit neighbors
+
 ```python
 adjList = {
     "1": ["2", "4"],
@@ -2426,7 +2432,7 @@ class Solution:
 class Solution:
     def pacific_atlantic_flow(self, grid: List[List[int]]):
         # Water from high to low
-        # Top - left: Pacific 
+        # Top - left: Pacific
         # Bottom - Right: Atlantic
 
         if not grid or not grid[0]:
@@ -2513,31 +2519,32 @@ def bfs(root):
     # Base case
     if not root:
         return []
-        
+
     # Root
     result = []
     queue = deque([root])
-    
+
     # Neighbors
     while queue:
         # Add the node in start of the queue
         start = queue.popleft()
         result.append(start.val)
-        
+
         # Add the left and right of start to queue
         if start.left:
             queue.append(start.left)
-            
+
         if start.right:
             queue.append(start.right)
-            
+
     return result
-    
+
 root = TreeNode(1)
 root.left = TreeNode(2, TreeNode(4), TreeNode(5))
 root.right = TreeNode(3, TreeNode(6))
 print(bfs(root))
 ```
+
 ## 9.2. Level Order Sum
 
 - Step 1: Base case
@@ -2576,7 +2583,7 @@ class Solution:
 
                 if start.left:
                     queue.append(start.left)
-                
+
                 if start.right:
                     queue.append(start.right)
 
@@ -2584,6 +2591,7 @@ class Solution:
 
         return result
 ```
+
 ## 9.3. Rightmost Node
 
 - Step 1: Base case
@@ -2628,4 +2636,371 @@ class Solution:
                     queue.append(start.right)
 
         return result
+```
+
+## 9.4. Zigzag Level Order
+
+```python
+from collections import deque
+
+class Solution:
+    def zig_zag(self, root: TreeNode):
+        # Base case
+        if not root:
+            return []
+
+        # Root
+        queue = deque([root])
+        result = []
+        odd = True
+
+        # Neighbors
+        while queue:
+            # Level
+            level_size = len(queue)
+            curr_list = []
+            for _ in range(level_size):
+                # Pop left
+                start = queue.popleft()
+                curr_list.append(start.val)
+                if start.left:
+                    queue.append(start.left)
+                if start.right:
+                    queue.append(start.right)
+
+            if odd:
+                result.append(curr_list[:])
+            else:
+                result.append(curr_list[::-1])
+
+            odd = not odd
+
+        return result
+
+```
+
+## 9.5. Maximum Width of Binary Tree
+
+- Add the index of the node.
+
+```python
+from collections import deque
+
+class Solution:
+    def maxWidth(self, root: TreeNode):
+        # Base case
+        if not root:
+            return 0
+
+        # Node
+        queue = deque([(root, 0)])
+        max_width = 0
+
+        # Neighbor
+        while queue:
+            # Level
+            level_size = len(queue)
+            _, first_index = queue[0]
+            last_index = -1
+            for i in range(level_size):
+                # Pop left
+                start, index = queue.popleft()
+
+                if i == level_size - 1:
+                    last_index = index
+
+                if start.left:
+                    queue.append((start.left, 2 * index))
+                if start.right:
+                    queue.append((start.right, 2 * index + 1))
+
+            max_width = max(max_width, last_index - first_index + 1)
+
+        return max_width
+
+```
+
+## 9.6. BFS in Adjacency List
+
+- Step 1: Base case
+
+- Step 2: Visit node
+
+- Step 3: Visit neighbors
+
+- Step 4: Level
+
+- Step 5: Pop start
+
+## 9.7. BFS in Matrix
+
+# 10. Backtracking
+
+# 11. Divide and Conquer
+
+## 11.1. Merge k Sorted Lists
+
+- Step 1: Base case
+
+- Step 2: Split Mid
+
+- Step 3: Merge 2 list
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        # Assump we have 50 lists => change it multiple [list1, list2], [list3, list4]
+        # Merge range
+        # Merge 2 lists
+        if not lists:
+            return None
+        return self.merge_range(lists, 0, len(lists) - 1)
+
+
+    def merge_range(self, lists, left, right):
+        # Base case
+        # Mid
+        # Merge 2 list
+
+        if left == right:
+            return lists[left]
+
+        mid = (left + right) // 2
+
+        l1 = self.merge_range(lists, left, mid)
+        l2 = self.merge_range(lists, mid + 1, right)
+        return self.merge_two_lists(l1, l2)
+
+
+    def merge_two_lists(self, l1, l2):
+        dummy = ListNode()
+        current = dummy
+        while l1 and l2:
+            if l1.val < l2.val:
+                current.next = l1
+                l1 = l1.next
+            else:
+                current.next = l2
+                l2 = l2.next
+
+            current = current.next
+
+        current.next = l1 if l1 else l2
+        return dummy.next
+
+```
+
+## 11.2. Merge Sort
+
+```python
+def merge_sort(arr):
+    # Base case: array of 0 or 1 element is already sorted
+    if len(arr) <= 1:
+        return arr
+
+    # Split the array into two halves
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+
+    # Merge the sorted halves
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    # Merge two sorted arrays
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    # Append any remaining elements
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+```
+
+## 11.3. Max Subarray (Sliding Window - Hay):
+
+```python
+from typing import List
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        # Initialize current max and global max to the first element
+        current_sum = max_sum = nums[0]
+
+        # Iterate through the rest of the array
+        for num in nums[1:]:
+            # Either start new subarray at current num or extend previous one
+            current_sum = max(num, current_sum + num)
+            max_sum = max(max_sum, current_sum)
+
+        return max_sum
+
+```
+
+## 11.4. Quick Sort
+
+- Using pivot to sort small < pivot < large.
+
+- Continue to subarray.
+
+- j đi sau i đi trước
+
+- Step 1: Find left - right.
+
+- Step 2: Find partition in subarray.
+
+- Step 3: Sort Partition.
+
+```python
+def quick_sort(arr):
+    def partition(low, high):
+        pivot = arr[high]
+        i = low - 1
+
+        for j in range(low, high):
+            if arr[j] <= pivot:
+                i += 1
+                arr[i], arr[j] = arr[j], arr[i]
+
+        arr[i + 1], arr[high] = arr[high], arr[i + 1]
+        return i + 1
+
+    def quicksort_recursive(low, high):
+        if low < high:
+            pi = partition(low, high)
+            quicksort_recursive(low, pi - 1)
+            quicksort_recursive(pi + 1, high)
+
+    quicksort_recursive(0, len(arr) - 1)
+    return arr
+
+```
+
+## 11.5. Implement Quick Sort
+
+- Step 1: Find pivot.
+
+- Step 2: Recursive sort for each pivot of subarray (pivot1 of arr1, pivot2 of arr2)
+
+```python
+def partition(arr, left, right):
+    pivot = arr[right]
+    i = left - 1
+
+    for j in range(left, right):
+        # Swap to after pivot
+        # j đi sau i đi trước
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+    # Swap pivot
+    arr[i + 1], arr[right] = arr[right], arr[i + 1]
+    return i + 1
+
+
+
+def quick_sort_recursion(arr, left, right):
+    if left < right:
+        pivot_index = partition(arr, left, right)
+        quick_sort_recursion(arr, left, pivot_index - 1)
+        quick_sort_recursion(arr,  pivot_index + 1, right)
+
+
+def quick_sort(arr):
+    quick_sort_recursion(arr, 0, len(arr) - 1)
+
+arr = [1, 7, 4, 1, 10, 9, 2]
+quick_sort(arr)
+print(arr)
+
+```
+
+## 11.6. Implement Merge Sort
+
+```python
+def merge_two_lists(l1, l2):
+    result = []
+    i, j = 0, 0
+    while i < len(l1) and j < len(l2):
+        if l1[i] < l2[j]:
+            result.append(l1[i])
+            i += 1
+        else:
+            result.append(l2[j])
+            j += 1
+
+    result.extend(l1[i:])
+    result.extend(l2[j:])
+    return result
+
+def merge_sort_recursive(arr, left, right):
+    if left == right:
+        return [arr[left]]
+
+    mid = (left + right) // 2
+
+    l1 = merge_sort_recursive(arr, left, mid)
+    l2 = merge_sort_recursive(arr, mid + 1, right)
+
+    return merge_two_lists(l1, l2)
+
+
+def merge_sort(arr):
+    if not arr:
+        return []
+    return merge_sort_recursive(arr, 0, len(arr) - 1)
+
+
+arr = [1, 7, 4, 1, 10, 9, 2]
+print(merge_sort(arr))
+
+```
+
+## 11.7. Pow(x, n):
+
+- Step 1: Base case
+
+- Step 2: Divide
+
+- Step 3: Conquer
+
+```python
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        def exponent(base, pow):
+            # Base case
+            if pow == 0:
+                return 1.0
+
+            # Divide
+            half = exponent(base, pow // 2)
+
+            # Conquer
+            if pow % 2 == 0:
+                return half * half
+            else:
+                return half * half * base
+
+        if n < 0:
+            x = 1 / x
+            n = -n
+
+        return exponent(x, n)
+
+
 ```
