@@ -2206,6 +2206,7 @@ class Solution:
                 # [0,1] and [1,0] is ok
                 if neighbor == parent:
                     continue
+                # Prunning => True xong không Prunning xuống nữa
                 if neighbor in visited:
                     return True
                 if isCycle(neighbor, node):
@@ -2214,5 +2215,208 @@ class Solution:
 
         # Check not cycle & connected
         return not isCycle(0, 0) and len(visited) == n
+
+```
+
+## 8.4. Matrix DFS
+
+- Step 1: Basecase
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+```python
+def dfs(matrix):
+    visited = set()
+
+    # Cứ tưởng tượng toạ độ trên trục Oxy (0, 0)
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    def dfs_helper(r, c):
+        # Basecase
+        if (r, c) in visited:
+            return
+
+        # Prunning
+        if r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]):
+            return
+
+        # Neighbor
+        visited.add((r, c))
+        print("Visit:", (r, c))
+        for dr, dc in directions:
+            dfs_helper(r + dr, c + dc)
+
+    dfs_helper(0, 0)
+
+matrix = [
+    [0, 1, 0],
+    [1, 0, 1],
+    [0, 1, 0]
+]
+dfs(matrix)
+```
+
+## 8.5. Flood Fill
+
+- Step 1: Basecase
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+```python
+class Solution:
+    def flood_fill(self, image, sr, sc, color):
+        m, n = len(image), len(image[0])
+        # Visited
+        visited = set()
+
+        # Directions
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        def dfs(r, c, prev_color, color):
+            # Base case
+            if (r, c) in visited:
+                return
+
+            # Prunning
+            if r < 0 or r >= m or c < 0 or c >= n:
+                return
+
+            if image[r][c] != prev_color or image[r][c] == color:
+                return
+
+            # Node
+            image[r][c] = color
+
+            # Neighbor
+            for dr, dc in directions:
+                dfs(r + dr, c + dc, prev_color, color)
+
+        dfs(sr, sc, image[sr][sc], color)
+        return image
+
+```
+
+## 8.6. Number of Islands
+
+- Step 1: Basecase
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+- Notes: Logic check (r, c) in visited only match when the dfs call to the (r, c) => So we still need to check the visited outside too.
+
+```python
+class Solution:
+    def number_of_islands(self, grid):
+        row, col = len(grid), len(grid[0])
+        visited = set()
+
+        # directions
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        def dfs(r, c):
+            # Base case
+            # (0, 1) is already in visited if it was reached by DFS from another cell.
+            if (r, c) in visited:
+                return
+
+            # Prunning
+            if r < 0 or r >= row or c < 0 or c >= col:
+                return
+
+            if grid[r][c] == 0:
+                return
+
+            # Node
+            visited.add((r, c))
+
+            # Neighbor
+            for dr, dc in directions:
+                dfs(r + dr, c + dc)
+
+        count = 0
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == 1 and (i, j) not in visited:
+                    dfs(i, j)
+                    count += 1
+
+        return count
+
+```
+
+## 8.7. Boundaries in the Matrix (Surrounded Regions)
+
+- DFS border 'O' to make is 'S'.
+
+- Change another 'O' to 'X'.
+
+```python
+class Solution:
+    def surrounded_regions(self, grid: List[List[str]]):
+        if not grid or not grid[0]:
+            return []
+        row, col = len(grid), len(grid[0])
+        visited = set()
+
+        # Directions
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        def dfs(r, c):
+            # Base case
+            if (r, c) in visited:
+                return
+
+            # Prunning
+            if r < 0 or r >= row or c < 0 or c >= col:
+                return
+
+            if grid[r][c] != 'O':
+                return
+
+            # Node
+            visited.add((r, c))
+            grid[r][c] = 'S'
+
+            # Check neighbor
+            for dr, dc in directions:
+                dfs(r + dr, c + dc)
+
+        # Step 1: DFS in col 0 and col - 1
+        for i in range(row):
+            if grid[i][0] == 'O':
+                dfs(i, 0)
+            if grid[i][col - 1] == 'O':
+                dfs(i, col - 1)
+
+        # Step 2: DFS in row 0 and row - 1
+        for j in range(col):
+            if grid[0][j] == 'O':
+                dfs(0, j)
+            if grid[row - 1][j] == 'O':
+                dfs(row - 1, j)
+
+        # Step 3: Change another X to O
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == 'O':
+                    grid[i][j] = 'X'
+                elif grid[i][j] == 'S':
+                    grid[i][j] = 'O'
+
+        return grid
+
+
 
 ```
