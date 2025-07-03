@@ -2416,7 +2416,216 @@ class Solution:
                     grid[i][j] = 'O'
 
         return grid
+```
 
+## 8.8. Pacific Atlantic Water Flow
 
+- Backtracking from border to check it contains both ocean.
 
+```python
+class Solution:
+    def pacific_atlantic_flow(self, grid: List[List[int]]):
+        # Water from high to low
+        # Top - left: Pacific 
+        # Bottom - Right: Atlantic
+
+        if not grid or not grid[0]:
+            return []
+
+        # Get row, col
+        row, col = len(grid), len(grid[0])
+
+        # Visited
+        pacific = set()
+        atlantic = set()
+
+        # directions
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        def dfs(r, c, visited, prev_height):
+            # Base case
+            if (r, c) in visited:
+                return
+
+            # Prunning
+            if r < 0 or r >= row or c < 0 or c >= col:
+                return
+
+            # If the height is larger than the curr_height => this water flow to the ocean
+            if grid[r][c] < prev_height:
+                return
+
+            # Node
+            visited.add((r, c))
+
+            # Neighbor
+            for dr, dc in directions:
+                dfs(r + dr, c + dc, visited, grid[r][c])
+
+        # Check in top and bottom row
+        for j in range(col):
+            dfs(0, j, pacific, grid[0][j])
+            dfs(row - 1, j, atlantic, grid[row - 1][j])
+
+        # Check in left and right col
+        for i in range(row):
+            dfs(i, 0, pacific, grid[i][0])
+            dfs(i, col - 1, atlantic, grid[i][col - 1])
+
+        # Count both in pacific and atlantic
+        result = []
+        for i in range(row):
+            for j in range(col):
+                if (i, j) in pacific and (i, j) in atlantic:
+                    result.append([i, j])
+
+        return result
+```
+
+# 9. BFS
+
+## 9.1. Implement BFS:
+
+Ideas:
+
+    - Append to queue.
+
+    - Popleft
+
+- Step 1: Base case
+
+- Step 2: Root
+
+- Step 3: Neighbors
+
+- Step 4: Pop start of the queue.
+
+```python
+from collections import deque
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def bfs(root):
+    # Base case
+    if not root:
+        return []
+        
+    # Root
+    result = []
+    queue = deque([root])
+    
+    # Neighbors
+    while queue:
+        # Add the node in start of the queue
+        start = queue.popleft()
+        result.append(start.val)
+        
+        # Add the left and right of start to queue
+        if start.left:
+            queue.append(start.left)
+            
+        if start.right:
+            queue.append(start.right)
+            
+    return result
+    
+root = TreeNode(1)
+root.left = TreeNode(2, TreeNode(4), TreeNode(5))
+root.right = TreeNode(3, TreeNode(6))
+print(bfs(root))
+```
+## 9.2. Level Order Sum
+
+- Step 1: Base case
+
+- Step 2: Root.
+
+- Step 3: Neighbors.
+
+- Step 4: Level of the queue.
+
+- Step 5: Pop start
+
+```python
+from collections import deque
+
+class Solution:
+    def level_order_sum(self, root: TreeNode):
+        # Base case
+        if not root:
+            return []
+
+        # Root
+        queue = deque([root])
+        result = []
+
+        # Neighbors
+        while queue:
+            # Level Queue
+            level_size = len(queue)
+
+            curr_sum = 0
+            for _ in range(level_size):
+                # Pop Start
+                start = queue.popleft()
+                curr_sum += start.val
+
+                if start.left:
+                    queue.append(start.left)
+                
+                if start.right:
+                    queue.append(start.right)
+
+            result.append(curr_sum)
+
+        return result
+```
+## 9.3. Rightmost Node
+
+- Step 1: Base case
+
+- Step 2: Root
+
+- Step 3: Neighbors
+
+- Step 4: Level
+
+- Step 5: Popleft.
+
+```python
+from collections import deque
+
+class Solution:
+    def rightmostNode(self, root: TreeNode):
+        # Base case
+        if not root:
+            return []
+
+        # Root
+        queue = deque([root])
+        result = []
+
+        # Neighbors
+        while queue:
+            # Level size
+            level_size = len(queue)
+
+            for i in range(level_size):
+                # Pop left
+                start = queue.popleft()
+
+                if i == level_size - 1:
+                    result.append(start.val)
+
+                if start.left:
+                    queue.append(start.left)
+
+                if start.right:
+                    queue.append(start.right)
+
+        return result
 ```
