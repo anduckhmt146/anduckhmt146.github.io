@@ -2736,7 +2736,7 @@ class Solution:
 
 # 10. Backtracking
 
-# 11. Divide and Conquer
+# 11. Divide and Conquer (quick sort, merge sort, pow x n)
 
 ## 11.1. Merge k Sorted Lists
 
