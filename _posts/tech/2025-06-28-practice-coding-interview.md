@@ -2916,6 +2916,125 @@ matrix = [
 print(bfs(matrix, 0, 0))
 ```
 
+## 9.10. Minimum Knight Moves
+
+- To count the level of the node in BFS, add the length to a node too.
+
+- level_size is total of of a level, find shortest path is the count of the level.
+
+```python
+from collections import deque
+
+class Solution:
+    def minimum_knight_moves(self, x: int, y: int):
+        def bfs(start_x, start_y):
+            # Base case
+
+            # Root
+            visited = set()
+            queue = deque([(start_x, start_y)])
+
+            # Start with (0, 0) in Oxy axis
+            directions = [(-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, 2), (2, 1), (2, -1), (1, -2)]
+
+            steps = 0
+
+            # Neighbors
+            while queue:
+                level_size = len(queue)
+                for _ in range(level_size):
+                    # Pop left
+                    x_idx, y_idx = queue.popleft()
+                    visited.add((x_idx, y_idx))
+                    if (x_idx, y_idx) == (x, y):
+                        return steps
+
+                    # Neighbors
+                    for dr, dc in directions:
+                        nx_idx = x_idx + dr
+                        ny_idx = y_idx + dc
+
+                        # Prunning
+                        if (nx_idx, ny_idx) in visited:
+                            continue
+
+                        queue.append((nx_idx, ny_idx))
+                        visited.add((nx_idx, ny_idx))
+
+                steps += 1
+
+            return -1
+
+        return bfs(0, 0)
+```
+
+## 9.11. Rotting Oranges
+
+- BFS and change the value Fresh oranges to rottens oranges.
+
+- If the value is rottens continue to BFS.
+
+- Find the intitial rottens index first, only change fresh to rotten oranges.
+
+```python
+from collections import deque
+
+class Solution:
+    def rotting_oranges(self, grid: List[List[str]]):
+        if not grid or not grid[0]:
+            return -1
+
+        row, col = len(grid), len(grid[0])
+        fresh_oranges = 0
+
+        # Node
+        visited = set()
+        queue = deque()
+        times = -1
+
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == 'R':
+                    queue.append((i, j))
+                    visited.add((i, j))
+                elif grid[i][j] == 'F':
+                    fresh_oranges += 1
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        # Neighbors
+        while queue:
+            # Level (Count)
+            level_size = len(queue)
+            for _ in range(level_size):
+                # Pop left
+                start_row, start_col = queue.popleft()
+
+                # Neighbors
+                for dr, dc in directions:
+                    n_row = start_row + dr
+                    n_col = start_col + dc
+
+                    # Prunning
+                    if n_row < 0 or n_row >= row or n_col < 0 or n_col >= col:
+                        continue
+
+                    if (n_row, n_col) in visited:
+                        continue
+
+                    if grid[n_row][n_col] != 'F':
+                        continue
+
+                    grid[n_row][n_col] = 'R'
+                    queue.append((n_row, n_col))
+                    visited.add((n_row, n_col))
+                    fresh_oranges -= 1
+            times += 1
+
+        return times if fresh_oranges == 0 else -1
+
+```
+
 # 10. Backtracking
 
 # 11. Divide and Conquer (quick sort, merge sort, pow x n)
