@@ -3350,7 +3350,7 @@ class Solution:
         # We can do it because we start from (0, 0)
         # Start first row
         for j in range(1, col):
-            dp[0][j] = grid[0][j] + dp[0][j - 1] 
+            dp[0][j] = grid[0][j] + dp[0][j - 1]
 
         # Start left column
         for i in range(1, row):
@@ -3363,4 +3363,278 @@ class Solution:
                 dp[i][j] = grid[i][j] + min(dp[i - 1][j], dp[i][j - 1])
 
         return dp[row - 1][col - 1]
+```
+
+## 12.3. Coin Change.
+
+- Can choose between dp[x] and dp[x - coin] + 1 => I mean dp[x - coin] + 1 to reach the target coin.
+
+- If the coin that can not be make => it still forever ('inf' + 1 = 'inf')
+
+- Notes: amount + 1 => Because to reach amount
+
+- Step 1: Loop coin
+
+- Step 2: Loop target
+
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # Step 1: Loop coin
+        # Step 2: Loop target
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0 # Base case
+
+
+        # amount + 1 => Because to reach amount
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+
+        return dp[amount] if dp[amount] != float('inf') else -1
+```
+
+## 12.4. Minimum Falling Path Sum (Hay)
+
+- Start from the row n - 2 to upward
+
+- Choose the min count until the last row.
+
+- Choose the min in the start of the matrix
+
+```python
+from typing import List
+
+class Solution:
+    def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+        n = len(matrix)
+
+        # Start from the second-last row and go upward
+        for row in range(n - 2, -1, -1):
+            for col in range(n):
+                # Get values from the next row: directly below, left-diagonal, right-diagonal
+                down = matrix[row + 1][col]
+                left = matrix[row + 1][col - 1] if col > 0 else float('inf')
+                right = matrix[row + 1][col + 1] if col < n - 1 else float('inf')
+
+                # Update current cell with min falling path sum
+                matrix[row][col] += min(down, left, right)
+
+        # The answer is the min in the first row
+        return min(matrix[0])
+```
+
+## 12.5. Minimum Cost For Tickets (Hay)
+
+```python
+from typing import List
+
+class Solution:
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        day_set = set(days)
+        last_day = days[-1]
+        dp = [0] * (last_day + 1)
+
+        for day in range(1, last_day + 1):
+            if day not in day_set:
+                dp[day] = dp[day - 1]  # no travel, cost stays the same
+            else:
+                dp[day] = min(
+                    dp[max(0, day - 1)] + costs[0],  # 1-day ticket
+                    dp[max(0, day - 7)] + costs[1],  # 7-day ticket
+                    dp[max(0, day - 30)] + costs[2]  # 30-day ticket
+                )
+        return dp[last_day]
+
+```
+
+## 12.6. 2 Keys Keyboard (Hay nhưng khó)
+
+```python
+class Solution:
+    def minSteps(self, n: int) -> int:
+        dp = [0] * (n + 1)
+        # dp[i] = min number of steps to get i 'A's
+
+        for i in range(2, n + 1):
+            dp[i] = i  # worst case: all Paste after one Copy All at 1
+            for j in range(i // 2, 1, -1):
+                if i % j == 0:
+                    dp[i] = dp[j] + (i // j)
+                    break  # we want the largest factor to minimize steps
+
+        return dp[n]
+```
+
+## 12.7. Perfect Squares (Giống bài chia coin)
+
+```python
+import math
+
+class Solution:
+    def numSquares(self, n: int) -> int:
+        # dp[i] will be the least number of perfect square numbers that sum to i
+        dp = [float('inf')] * (n + 1)
+        dp[0] = 0  # base case: 0 is made up of 0 numbers
+
+        # Precompute all perfect squares less than or equal to n
+        squares = [i * i for i in range(1, int(math.sqrt(n)) + 1)]
+
+        for square in squares:
+            for i in range(square, n + 1):
+                dp[i] = min(dp[i], dp[i - square] + 1)
+
+        return dp[n]
+
+```
+
+## 12.8. Last Stone Weight II (Each Stone use once)
+
+- Step 1: Loop by coin.
+
+- Step 2: Loop back from target
+
+```python
+class Solution:
+    def lastStoneWeightII(self, stones: List[int]) -> int:
+        total = sum(stones)
+        target = total // 2
+        # dp[j] means the maximum sum we can get which is <= j
+        dp = [0] * (target + 1)
+
+        for stone in stones:
+            for j in range(target, stone - 1, -1):
+                dp[j] = max(dp[j], dp[j - stone] + stone)
+
+        return total - 2 * dp[target]
+
+```
+
+## 12.9. Triangle (Giống Minimum Falling Path Sum)
+
+```python
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        if not triangle:
+            return 0
+
+        # Start from the bottom row
+        dp = triangle[-1][:]  # Copy the last row
+
+        # Iterate from the second-to-last row upward
+        for row in range(len(triangle) - 2, -1, -1):
+            for col in range(len(triangle[row])):
+                # Update dp[col] to be the min path sum from this cell
+                dp[col] = triangle[row][col] + min(dp[col], dp[col + 1])
+
+        return dp[0]  # Top element will contain the minimum path sum
+
+```
+
+Notes:
+
+- Unbounded Knapstack: Go forward because weight = 0 => dp[cap] = max(dp[cap], dp[cap - weight] + value) => if weight = 0 we can reuse
+
+- Knapstack 0/1: Go backward => dp[cap] = max(dp[cap], dp[cap - weight] + value) => cap - weight != cap => Due to weight start from end will different than 0.
+
+- Trùng thì forward, Khác thì backward.
+
+- Step 1: Loop coin.
+
+- Step 2: Loop target.
+
+## 12.10. Ones and Zeroes
+
+## 12.11. Maximal Square
+
+## 12.12. Coin Change
+
+- Step 1: Init DP
+- Step 2: Loop coin
+- Step 3: Loop target
+
+Here's what happens:
+
+dp[1] = min(dp[1], dp[0] + 1) → 1 coin
+
+dp[2] = min(dp[2], dp[1] + 1) → 2 coins
+
+...
+
+dp[5] = min(dp[5], dp[4] + 1) → 5 coins
+
+Each new dp[i] is built on top of the result from dp[i - coin], which may already include the same coin.
+
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # Step 1: Init DP
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
+
+        # Step 2: Loop coin
+        for coin in coins:
+            # Step 3: Loop target
+            for i in range(coin, amount + 1):
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+
+        return dp[amount] if dp[amount] != float('inf') else -1
+
+```
+
+## 12.13. Maximal Square (Hay nhưng chưa hiểu)
+
+```python
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+            return 0
+
+        rows, cols = len(matrix), len(matrix[0])
+        # dp[i][j] will represent the size of the largest square ending at (i, j)
+        dp = [[0] * (cols + 1) for _ in range(rows + 1)]
+        max_side = 0
+
+        for i in range(1, rows + 1):
+            for j in range(1, cols + 1):
+                if matrix[i - 1][j - 1] == '1':
+                    dp[i][j] = min(
+                        dp[i - 1][j],      # top
+                        dp[i][j - 1],      # left
+                        dp[i - 1][j - 1]   # top-left
+                    ) + 1
+                    max_side = max(max_side, dp[i][j])
+
+        return max_side * max_side  # return area
+
+```
+
+## 12.14. Ones and Zeroes (Hay)
+
+- Step 1: DP
+
+- Step 2: Coin
+
+- Step 3: Target
+
+- Forward: coin -> n + 1
+
+- Backward: n -> coin - 1
+
+```python
+class Solution:
+    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        # Step 1: DP
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        # Step 2: Coin
+        for s in strs:
+            zeros = s.count('0')
+            ones = s.count('1')
+            # Step 3: Target
+            for i in range(m, zeros - 1, -1):
+                for j in range(n, ones - 1, -1):
+                    dp[i][j] = max(dp[i][j], dp[i - zeros][j - ones] + 1)
+
+        return dp[m][n]
 ```
