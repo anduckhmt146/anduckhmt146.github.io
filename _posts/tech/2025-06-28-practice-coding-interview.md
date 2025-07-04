@@ -3305,3 +3305,62 @@ class Solution:
 
 
 ```
+
+# 12. Dynamic Programming
+
+## 12.1. Min Cost Climbing Stairs
+
+- To reach the ith => we need cost[i] + come from (i - 1) or (i - 2).
+
+```python
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        n = len(cost)
+        if n == 0:
+            return cost[0]
+        if n == 1:
+            return cost[1]
+
+        dp = [0] * (n + 1)
+        dp[0] = cost[0]
+        dp[1] = cost[1]
+
+        for i in range(2, n + 1):
+            dp[i] = (0 if i == n else cost[i]) + min(dp[i - 1], dp[i - 2])
+
+        return dp[n]
+```
+
+## 12.2. Minimum Path Sum
+
+- Max value in (i, j) => dp[i][j] = grid[i][j] + min(dp[i - 1][j], dp[i][j - 1])
+
+- Remember to fill the first row and left column.
+
+```python
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        row, col = len(grid), len(grid[0])
+
+        dp = [[0] * col for _ in range(row)]
+
+        # Init dp
+        dp[0][0] = grid[0][0]
+
+        # We can do it because we start from (0, 0)
+        # Start first row
+        for j in range(1, col):
+            dp[0][j] = grid[0][j] + dp[0][j - 1] 
+
+        # Start left column
+        for i in range(1, row):
+            dp[i][0] = grid[i][0] + dp[i - 1][0]
+
+
+        # Fill in another value
+        for i in range(1, row):
+            for j in range(1, col):
+                dp[i][j] = grid[i][j] + min(dp[i - 1][j], dp[i][j - 1])
+
+        return dp[row - 1][col - 1]
+```
