@@ -3946,3 +3946,90 @@ class Solution:
         return dp[n]
 
 ```
+
+## 12.25. Unique Paths II (Hay)
+
+```python
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+
+        if obstacleGrid[0][0] == 1 or obstacleGrid[m - 1][n - 1] == 1:
+            return 0
+
+        dp = [[0] * n for _ in range(m)]
+        dp[0][0] = 1
+
+        # DP in first row
+        for i in range(1, n):
+            if obstacleGrid[0][i] == 0:
+                dp[0][i] = dp[0][i - 1]
+
+
+        # DP in left column
+        for i in range(1, m):
+            if obstacleGrid[i][0] == 0:
+                dp[i][0] = dp[i - 1][0]
+
+        # DP in other grid
+        for i in range(1, m):
+            for j in range(1, n):
+                if obstacleGrid[i][j] == 0:
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+
+        return dp[m - 1][n - 1]
+```
+
+## 12.26. Number of Longest Increasing Subsequence
+
+- Using length[i] to keep the largest length.
+
+- Using count[i] to count the current largest length.
+
+```python
+class Solution:
+    def findNumberOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        length = [1] * (n + 1)
+        count = [1] * (n + 1)
+
+        for i in range(n):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    if length[j] + 1 > length[i]:
+                        length[i] = length[j] + 1
+                        count[i] = count[j]
+                    elif length[j] + 1 == length[i]:
+                        count[i] += count[j]
+
+        max_len = max(length)
+        return sum(count[i] for i in range(n) if length[i] == max_len)
+```
+
+## 12.17. Out of Boundary Paths
+
+- Thứ tự loop tuỳ depend of row.
+
+```python
+class Solution:
+    def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
+        MOD = 10**9 + 7
+
+        dp = [[[0] * (n + 1) for _ in range(m + 1)] for _ in range(maxMove + 1)]
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        for move in range(1, maxMove + 1):
+            for i in range(m):
+                for j in range(n):
+                    for dr, dc in directions:
+                        ni, nj = i + dr, j + dc
+                        if ni < 0 or ni >= m or nj < 0 or nj >= n:
+                            # State
+                            dp[move][i][j] = (dp[move][i][j] + 1) % MOD
+                        else:
+                            dp[move][i][j] = (dp[move][i][j] + dp[move - 1][ni][nj]) % MOD
+
+        return dp[maxMove][startRow][startColumn]
+
+```
