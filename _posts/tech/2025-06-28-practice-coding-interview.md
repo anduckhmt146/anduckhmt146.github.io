@@ -4033,3 +4033,115 @@ class Solution:
         return dp[maxMove][startRow][startColumn]
 
 ```
+
+---
+
+- DP in Mid of Merge Intervals
+
+## 12.18. Minimum Cost Tree From Leaf Values
+
+```python
+class Solution:
+    def mctFromLeafValues(self, arr: List[int]) -> int:
+        n = len(arr)
+        dp = [[0] * n for _ in range(n)]
+        max_leaf = [[0] * n for _ in range(n)]
+
+        # Precompute the max_leaf[i][j]
+        for i in range(n):
+            max_leaf[i][i] = arr[i]
+            for j in range(i + 1, n):
+                max_leaf[i][j] = max(max_leaf[i][j - 1], arr[j])
+
+        # Interval DP
+        for length in range(2, n + 1):  # length of subarray
+            for i in range(n - length + 1):
+                j = i + length - 1
+                dp[i][j] = float('inf')
+                for k in range(i, j):
+                    cost = (dp[i][k] + dp[k + 1][j] +
+                            max_leaf[i][k] * max_leaf[k + 1][j])
+                    dp[i][j] = min(dp[i][j], cost)
+
+        return dp[0][n - 1]
+```
+
+## 12.19. Unique Binary Search Trees
+
+- For n nodes, choose each number 1 to n as root.
+
+  The number of unique BSTs with root i is: dp[i-1] (left subtree) × dp[n-i] (right subtree)
+
+- Step 1: Node trước.
+
+- Step 2: Value sau
+
+```python
+class Solution:
+    def numTrees(self, n: int) -> int:
+        dp = [0] * (n + 1)
+        dp[0] = 1  # Empty tree
+        dp[1] = 1  # One node tree
+
+        for nodes in range(2, n + 1):
+            for root in range(1, nodes + 1):
+                left = root - 1
+                right = nodes - root
+                dp[nodes] += dp[left] * dp[right]
+
+        return dp[n]
+
+```
+
+## 12.20. Minimum Score Triangulation of Polygon
+
+- Step 1: Find i.
+
+- Step 2: Find sub range j => (i, j).
+
+- Step 3: Find maximum in range k
+
+```python
+class Solution:
+    def minScoreTriangulation(self, values: List[int]) -> int:
+        # Find 2D n x n
+        n = len(values)
+        dp = [[0] * n for _ in range(n)]
+
+        for length in range(3, n + 1):
+            for i in range(n - length + 1):
+                # Sub range (i, j)
+                j = i + length - 1
+                dp[i][j] = float('inf')
+                for k in range(i, j):
+                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j] + values[i] * values[k] * values[j])
+
+        return dp[0][n - 1]
+```
+
+## 12.21. Guess Number Higher or Lower II
+
+Pattern for merge interval DP.
+
+- Step 1: Length
+
+- Step 2: Start
+
+- Step 3: End
+
+```python
+class Solution:
+    def getMoneyAmount(self, n: int) -> int:
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+
+        for length in range(2, n + 1):  # length of interval
+            for start in range(1, n - length + 2):
+                end = start + length - 1
+                dp[start][end] = float('inf')
+                for x in range(start, end):
+                    cost = x + max(dp[start][x - 1], dp[x + 1][end])
+                    dp[start][end] = min(dp[start][end], cost)
+
+        return dp[1][n]
+
+```
