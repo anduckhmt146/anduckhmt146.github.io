@@ -3638,3 +3638,284 @@ class Solution:
 
         return dp[m][n]
 ```
+
+---
+
+**Distinct Ways:**
+
+## 12.15. Climbing Stairs
+
+- To go to the step i => go 1 step from step i - 1 or go 2 steps from i - 2
+
+```python
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        # To go to the step i => go 1 step from step i - 1 or go 2 steps from i - 2
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        dp[1] = 1
+
+        for i in range(2, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
+
+        return dp[n]
+```
+
+## 12.16. Unique Paths (Hay)
+
+- Find shortest path using bfs.
+
+- Count number of way using DP.
+
+```python
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [[1] * n for _ in range(m)]
+
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+
+        return dp[m - 1][n - 1]
+
+```
+
+## 12.17. Number of Dice Rolls With Target Sum (Hay - 2D DP - Note)
+
+- Step 1: Roll n times.
+
+- Step 2: Roll with value.
+
+- Step 3: Dynamic coin
+
+- Notes: Thường mấy này hơn nhau -1 lần thôi.
+
+```python
+class Solution:
+    def numRollsToTarget(self, n: int, k: int, target: int) -> int:
+        dp = [[0] * (target + 1) for _ in range(n + 1)]
+        dp[0][0] = 1
+
+        MOD = 10**9 + 7
+
+        for i in range(1, n + 1):
+            for j in range(1, target + 1):
+                for dice in range(1, k + 1):
+                    if j - dice >= 0:
+                        dp[i][j] = (dp[i][j] + dp[i - 1][j - dice]) % MOD
+
+        return dp[n][target]
+```
+
+## 12.18. Knight Probability in Chessboard
+
+- if moves_left == 0 => return 1. Because knight is still on the board after k move
+
+- for m in range(1, k + 1): # 1️⃣ For each move from 1 to k
+  for r in range(n): # 2️⃣ For each row on the board
+  for c in range(n): # 3️⃣ For each column on the board
+  for dr, dc in directions: # 4️⃣ For each possible knight move
+
+```python
+class Solution:
+    def knightProbability(self, n: int, k: int, row: int, column: int) -> float:
+        directions = [
+            (2, 1), (1, 2), (-1, 2), (-2, 1),
+            (-2, -1), (-1, -2), (1, -2), (2, -1)
+        ]
+
+        # dp[m][r][c] = probability of being on cell (r, c) after m moves
+        dp = [[[0] * n for _ in range(n)] for _ in range(k + 1)]
+        dp[0][row][column] = 1  # Start at (row, column)
+
+        for m in range(1, k + 1):         # 1️⃣ For each move from 1 to k
+            for r in range(n):           # 2️⃣ For each row on the board
+                for c in range(n):       # 3️⃣ For each column on the board
+                    for dr, dc in directions:  # 4️⃣ For each possible knight move
+                            prev_r, prev_c = r - dr, c - dc
+                            if 0 <= prev_r < n and 0 <= prev_c < n:
+                                dp[m][r][c] += dp[m - 1][prev_r][prev_c] / 8
+
+        # Sum up all probabilities of being on the board after k moves
+        total_prob = sum(dp[k][r][c] for r in range(n) for c in range(n))
+        return total_prob
+```
+
+## 12.19. Target Sum (Note)
+
+```python
+from typing import List
+
+class Solution:
+    from typing import List
+
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        total = sum(nums)
+        if (total - target) % 2 != 0 or total < target:
+            return 0
+        neg = (total - target) // 2
+
+        # Init DP
+        dp = [0] * (neg + 1)
+        dp[0] = 1
+
+        # Loop coin
+        for num in nums:
+            # Select only 1 => backward
+            for i in range(neg, num - 1, -1):
+                if i >= num:
+                    dp[i] = dp[i] + dp[i - num]
+
+        return dp[neg]
+```
+
+## 12.20. Combination Sum IV (Note)
+
+- Number of ways is always plus
+
+- We change the order of loops based on what the problem considers unique.
+
+  - Coin change: Coin is unique.
+
+  - Combination: Target is unique.
+
+- Notes: Cái gì unique để ngoài
+
+```python
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        dp = [0] * (target + 1)
+        dp[0] = 1
+
+        # Order matters → outer loop over target
+        for i in range(1, target + 1):
+            for num in nums:
+                if i >= num:
+                    dp[i] += dp[i - num]
+
+        return dp[target]
+
+```
+
+## 12.21. Knight Dialer (DP in graph - Hay)
+
+```python
+class Solution:
+    def knightDialer(self, n: int) -> int:
+        MOD = 10**9 + 7
+
+        # Knight moves from each digit
+        moves = {
+            0: [4, 6],
+            1: [6, 8],
+            2: [7, 9],
+            3: [4, 8],
+            4: [0, 3, 9],
+            5: [],         # 5 is unreachable by knight
+            6: [0, 1, 7],
+            7: [2, 6],
+            8: [1, 3],
+            9: [2, 4]
+        }
+
+        # dp[i][j]: number of ways to reach digit j at step i
+        dp = [ [0] * 10 for _ in range(n) ]
+
+        # Base case: 1 way to be at any digit at step 0
+        for digit in range(10):
+            dp[0][digit] = 1
+
+        # Fill dp table
+        for i in range(1, n):
+            for digit in range(10):
+                for nei in moves[digit]:
+                    dp[i][digit] = (dp[i][digit] + dp[i - 1][nei]) % MOD
+
+        return sum(dp[n - 1]) % MOD
+
+```
+
+## 12.22. Partition Equal Subset Sum
+
+- Step 1: Loop num
+
+- Step 2: Loop backward
+
+```python
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        # Find dp sum with nums / 2
+        total = sum(nums)
+        if total % 2 != 0:
+            return False
+
+        target = total // 2
+
+        dp = [0] * (target + 1)
+        dp[0] = 1
+
+        for num in nums:
+            for i in range(target, num - 1, -1):
+                dp[i] += dp[i - num]
+
+        return dp[target] != 0
+
+
+```
+
+2D Matrix:
+
+- Step 1: Loop row.
+
+- Step 2: Loop col.
+
+- Step 3: Loop coin.
+
+## 12.23. Soup Servings (Hay, giống bài mua vé ticket)
+
+- 2D array
+
+- Step 1: Loop row.
+
+- Step 2: Loop col.
+
+- Step 3: Loop coin.
+
+```python
+class Solution:
+    def soupServings(self, n: int) -> float:
+        if n >= 5000:
+            return 1.0
+
+        N = (n + 24) // 25
+        dp = [[0.0 for _ in range(N + 1)] for _ in range(N + 1)]
+
+        # Base cases
+        for i in range(N + 1):
+            dp[0][i] = 1.0          # A empty first
+            dp[i][0] = 0.0          # B empty first
+        dp[0][0] = 0.5              # Both empty at same time
+
+        for a in range(1, N + 1):
+            for b in range(1, N + 1):
+                dp[a][b] = 0.25 * (
+                    dp[max(0, a - 4)][b] +
+                    dp[max(0, a - 3)][max(0, b - 1)] +
+                    dp[max(0, a - 2)][max(0, b - 2)] +
+                    dp[max(0, a - 1)][max(0, b - 3)]
+                )
+
+        return dp[N][N]
+
+```
+
+## 12.24. Domino and Tromino Tiling
+
+- Step 1: Loop row.
+
+- Step 2: Loop col.
+
+- Step 3: Loop coin.
+
+- Find a rule
