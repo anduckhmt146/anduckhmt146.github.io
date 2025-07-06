@@ -34,3 +34,19 @@ Here is a design of a happy life.
 # 6. Learning Plan
 
 ![](/images/Design/learning_plan.png)
+
+# 7. Coding Interview Template
+
+![](/images/Design/coding_interview_template.png)
+
+# 8. System Design Template
+
+![](/images/Design/system_design_template.png)
+
+# 9. Behavioral Template
+
+![](/images/Design/behaviroral_interview_template.png)
+
+# 10. IELTS Template
+
+![](/images/Design/ielts_template.png)
