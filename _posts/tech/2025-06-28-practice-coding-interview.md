@@ -4145,3 +4145,451 @@ class Solution:
         return dp[1][n]
 
 ```
+
+---
+
+- DP on Strings
+
+## 12.22. Longest Common Subsequence
+
+- dp[i][j] represents the length of LCS of s1[:i] and s2[:j]
+
+- If match, update dp[i][j].
+
+- Else: skip i or j
+
+```python
+class Solution:
+    def longestCommonSubsequence(self, s1: str, s2: str) -> int:
+        m, n = len(s1), len(s2)
+
+        # dp[i][j] represents the length of LCS of s1[:i] and s2[:j]
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if s1[i - 1] == s2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1     # Match
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])  # Skip one character
+
+        return dp[m][n]
+
+```
+
+## 12.23. Palindromic Substrings
+
+```python
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        n = len(s)
+        count = 0
+        dp = [[False] * n for _ in range(n)]
+
+        for end in range(n):
+            for start in range(end + 1):
+                if s[start] == s[end]:
+                    # If the substring length is <= 3, it's a palindrome
+                    if end - start <= 2:
+                        dp[start][end] = True
+                    else:
+                        # For longer substrings, check the inner substring
+                        dp[start][end] = dp[start + 1][end - 1]
+
+                    # Count if it's a palindrome
+                    if dp[start][end]:
+                        count += 1
+
+        return count
+
+```
+
+## 12.24. Longest Palindromic Subsequence
+
+```python
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+
+        # Base case: every single letter is a palindrome of length 1
+        for i in range(n):
+            dp[i][i] = 1
+
+        # Fill in order of increasing substring length
+        for end in range(n):
+            for start in range(end - 1, -1, -1):  # go backward to ensure dp[start + 1][end - 1] is ready
+                if s[start] == s[end]:
+                    if end - start == 1:
+                        dp[start][end] = 2
+                    else:
+                        dp[start][end] = 2 + dp[start + 1][end - 1]
+                else:
+                    dp[start][end] = max(dp[start + 1][end], dp[start][end - 1])
+
+        return dp[0][n - 1]
+
+```
+
+- Notes: Substring khác với Subsequence:
+  - Substring là từ i quay ngược về trước được (1 cái là loop forward)
+  - Subsequence là cần backward về sau => có thể bỏ bớt ký tự được (1 cái là loop backward)
+
+## 12.25. Shortest Common Supersequence (Hay)
+
+```python
+class Solution:
+    def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
+        m, n = len(str1), len(str2)
+
+        # Step 1: Find the LCS
+        dp = [[""] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(m):
+            for j in range(n):
+                if str1[i] == str2[j]:
+                    dp[i + 1][j + 1] = dp[i][j] + str1[i]
+                else:
+                    dp[i + 1][j + 1] = max(dp[i + 1][j], dp[i][j + 1], key=len)
+
+        lcs = dp[m][n]
+
+        # Step 2: Build the SCS using LCS
+        res = []
+        i = j = 0
+        for c in lcs:
+            while str1[i] != c:
+                res.append(str1[i])
+                i += 1
+            while str2[j] != c:
+                res.append(str2[j])
+                j += 1
+            res.append(c)
+            i += 1
+            j += 1
+
+        # Add remaining parts
+        res.append(str1[i:])
+        res.append(str2[j:])
+
+        return ''.join(res)
+
+```
+
+## 12.26. Edit Distance (Hay mà khó)
+
+- How many operations to convert word1[0..i-1] to an empty string?
+
+- How many operations to convert an empty string to word2[0..j-1]?
+
+1. dp[i - 1][j] → Delete word1[i - 1]
+
+2. dp[i][j - 1] → Insert word2[j - 1]
+
+3. dp[i - 1][j - 1] → Replace word1[i - 1] with word2[j - 1]
+
+```python
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        m, n = len(word1), len(word2)
+
+        # dp[i][j] = min operations to convert word1[0..i-1] to word2[0..j-1]
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        # Initialize base cases
+        for i in range(m + 1):
+            dp[i][0] = i  # delete all characters
+        for j in range(n + 1):
+            dp[0][j] = j  # insert all characters
+
+        # Fill DP table
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]  # no operation needed
+                else:
+                    dp[i][j] = 1 + min(
+                        dp[i - 1][j],     # delete
+                        dp[i][j - 1],     # insert
+                        dp[i - 1][j - 1]  # replace
+                    )
+
+        return dp[m][n]
+```
+
+## 12.27. Distinct Subsequences (Idea giống Edit Distance)
+
+```python
+class Solution:
+    def numDistinct(self, s: str, t: str) -> int:
+        m, n = len(s), len(t)
+
+        # dp[i][j] = number of distinct subsequences of s[0..i-1] that match t[0..j-1]
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        # An empty t can always be matched by deleting all characters in s
+        for i in range(m + 1):
+            dp[i][0] = 1
+
+        # Fill the DP table
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if s[i - 1] == t[j - 1]:
+                    # Match or skip s[i-1]
+                    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]
+                else:
+                    # Skip s[i-1]
+                    dp[i][j] = dp[i - 1][j]
+
+        return dp[m][n]
+
+```
+
+## 12.28. Minimum ASCII Delete Sum for Two Strings (Giống Longest Common Subsequence)
+
+- Tìm total - 2 \* LCS
+
+```python
+class Solution:
+    def minimumDeleteSum(self, s1: str, s2: str) -> int:
+        m, n = len(s1), len(s2)
+
+        # dp[i][j] = max ASCII sum of common subsequence between s1[0..i-1] and s2[0..j-1]
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(m):
+            for j in range(n):
+                if s1[i] == s2[j]:
+                    dp[i + 1][j + 1] = dp[i][j] + ord(s1[i])
+                else:
+                    dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j])
+
+        total = sum(ord(c) for c in s1) + sum(ord(c) for c in s2)
+        common = dp[m][n]
+
+        return total - 2 * common
+```
+
+## 12.29. Longest Palindromic Substring (Hay)
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        if n == 0:
+            return ""
+
+        dp = [[False] * n for _ in range(n)]
+        start = 0
+        max_len = 1
+
+        for end in range(n):
+            for i in range(end + 1):
+                if s[i] == s[end]:
+                    if end - i <= 2:
+                        dp[i][end] = True
+                    else:
+                        dp[i][end] = dp[i + 1][end - 1]
+
+                    if dp[i][end] and end - i + 1 > max_len:
+                        start = i
+                        max_len = end - i + 1
+
+        return s[start:start + max_len]
+
+```
+
+---
+
+**Decision Making**
+
+## 12.30. House Robber
+
+```python
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+
+        n = len(nums)
+        dp = [0] * n
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+
+        for i in range(2, n):
+            # Skip the house[i]
+            # Or stole the house[i]
+            dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
+
+        return dp[-1]
+
+```
+
+## 12.31. Best Time to Buy and Sell Stock (Buy 1 time)
+
+```python
+from typing import List
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        min_price = float('inf')  # Initialize to a very high value
+        max_profit = 0
+
+        for price in prices:
+            if price < min_price:
+                min_price = price  # Update minimum price
+            else:
+                max_profit = max(max_profit, price - min_price)  # Potential profit
+
+        return max_profit
+
+```
+
+```python
+from typing import List
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        if n == 0:
+            return 0
+
+        dp0 = 0             # Max profit without stock
+        dp1 = -prices[0]    # Max profit with one stock bought
+
+        for i in range(1, n):
+            dp0 = max(dp0, dp1 + prices[i])  # Sell today or do nothing
+            dp1 = max(dp1, -prices[i])       # Buy today or do nothing
+
+        return dp0
+
+```
+
+## 12.32. Best Time to Buy and Sell Stock with Transaction Fee
+
+```python
+from typing import List
+
+class Solution:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+        if not prices:
+            return 0
+
+        cash = 0
+        hold = -prices[0]  # Buy on day 0
+
+        for price in prices[1:]:
+            cash = max(cash, hold + price - fee)  # Sell
+            hold = max(hold, cash - price)        # Buy
+
+        return cash
+
+```
+
+## 12.33. Best Time to Buy and Sell Stock with Cooldown
+
+💡 DP State Definitions:
+
+We track 3 states:
+
+- hold: Max profit on day i if holding a stock.
+
+- sold: Max profit on day i if just sold a stock (cooldown applies next day).
+
+- rest: Max profit on day i if in cooldown or doing nothing.
+
+```python
+from typing import List
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+
+        n = len(prices)
+        hold = -prices[0]     # Buy on day 0
+        sold = 0              # Nothing sold yet
+        rest = 0              # Initial rest state
+
+        for price in prices[1:]:
+            prev_hold = hold
+            prev_sold = sold
+            prev_rest = rest
+
+            hold = max(prev_hold, prev_rest - price) # Buy
+            sold = prev_hold + price                # Sell
+            rest = max(prev_rest, prev_sold)        # Stay resting or go into cooldown
+
+        return max(sold, rest)  # Final profit must not be holding
+
+```
+
+## 12.34. Best Time to Buy and Sell Stock III
+
+```python
+from typing import List
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+
+        buy1 = float('-inf')
+        sell1 = 0
+        buy2 = float('-inf')
+        sell2 = 0
+
+        for price in prices:
+            buy1 = max(buy1, -price)
+            sell1 = max(sell1, buy1 + price)
+            buy2 = max(buy2, sell1 - price)
+            sell2 = max(sell2, buy2 + price)
+
+        return sell2
+
+```
+
+## 12.35. Best Time to Buy and Sell Stock IV
+
+dp[day][transaction][holding]
+
+- day = current day
+
+- transaction = number of completed transactions
+
+- holding = 0 (no stock), 1 (holding stock)
+
+```python
+from typing import List
+
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        n = len(prices)
+        if n == 0:
+            return 0
+
+        # Optimization for large k
+        if k >= n // 2:
+            return sum(
+                max(prices[i] - prices[i - 1], 0) for i in range(1, n)
+            )
+
+        # dp[i][t][0 or 1]
+        dp = [[[0] * 2 for _ in range(k + 1)] for _ in range(n)]
+
+        for t in range(k + 1):
+            dp[0][t][0] = 0
+            dp[0][t][1] = -prices[0]  # if we buy on day 0
+
+        for i in range(1, n):
+            for t in range(1, k + 1):
+                # Not holding
+                dp[i][t][0] = max(dp[i-1][t][0], dp[i-1][t][1] + prices[i])
+                # Holding
+                dp[i][t][1] = max(dp[i-1][t][1], dp[i-1][t-1][0] - prices[i])
+
+        return max(dp[n-1][t][0] for t in range(k + 1))  # max profit without holding
+
+```
