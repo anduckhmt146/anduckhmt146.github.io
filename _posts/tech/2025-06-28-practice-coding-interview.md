@@ -1697,6 +1697,66 @@ Visited Node: 2, Path: [5, 4, 11, 2], Sum: 22
 Final result: [5, 4, 11, 2]
 ```
 
+## 6.6. Word Search
+
+- Step 1: Base case
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+Backtracking = DFS + Backtrack
+
+```python
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        row, col = len(board), len(board[0])
+        visited = set()
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        def backtrack(r, c, index):
+            # Base case
+            if index == len(word):
+                return True
+
+            # Prunning
+            if r < 0 or r >= row or c < 0 or c >= col:
+                return False
+
+            if (r, c) in visited:
+                return False
+
+            if board[r][c] != word[index]:
+                return False
+
+            # Node
+            visited.add((r, c))
+            index += 1
+
+            # Neighbor
+            for dr, dc in directions:
+                nr = r + dr
+                nc = c + dc
+                if backtrack(nr, nc, index):
+                    return True
+
+            visited.remove((r, c))
+            index -= 1
+            return False
+
+        for i in range(row):
+            for j in range(col):
+                if board[i][j] == word[0]:
+                    visited.clear() # Reset after change 'B'
+                    if backtrack(i, j, 0):
+                        return True
+
+        return False
+```
+
 # 7. Tree
 
 ## 7.1. Path Sum:
