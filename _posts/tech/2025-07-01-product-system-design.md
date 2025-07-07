@@ -18,8 +18,8 @@ Here is some note for product system design.
 - To achieve 10M rps, using multiple layer cache: CDN > Redis > Horizontal Scaling (Stateless).
 
 - Algorithm of Hashing
-    - Hex: [0–9] [a–f]
-    - Base64: [A–Z] [a–z] [0–9] [+ /]
+  - Hex: [0–9] [a–f]
+  - Base64: [A–Z] [a–z] [0–9] [+ /]
 
 ![](/images/System-Design/Product/bit-ly.png)
 
@@ -41,9 +41,9 @@ Here is some note for product system design.
 
 - Using 2 services:
 
-    - File Service: Upload file and create metadata.
+  - File Service: Upload file and create metadata.
 
-    - Sync Service: Listen changes and update metadata.
+  - Sync Service: Listen changes and update metadata.
 
 ![](/images/System-Design/Product/dropbox_sync_content.png)
 
@@ -84,7 +84,10 @@ Here is some note for product system design.
 - When the file is already upload, S3 trigger events => SQS => Amazon Dynamo DB to update status of the file to Completed.
 
 - Hybrid client-side for real-time update:
-    - Web Socket: active file.
-    - Pooling: in-active file.
+
+  - Web Socket: active file.
+  - Pooling: in-active file.
 
 - 'Last Write Win' improve the eventually consistency.
+
+# 3. Design a Local Delivery Service like Gopuff

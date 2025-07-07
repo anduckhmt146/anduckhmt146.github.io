@@ -3035,6 +3035,100 @@ class Solution:
 
 ```
 
+## 9.12. Bus Routes
+
+- BFS
+
+- Count the level to find the shortest path
+
+- Step 1: Node
+
+- Step 2: Neighbor
+
+- Step 3: Level
+
+- Step 4: Popleft
+
+```python
+from collections import defaultdict
+from collections import deque
+
+class Solution:
+    def bus_routes(self, routes: List[List[int]], source: int, target: int):
+        # Init
+        graph = defaultdict(list)
+
+        for route in routes:
+            n = len(route)
+            for i in range(n):
+                for j in range(n):
+                    if route[i] != route[j] and route[j] not in graph[route[i]]:
+                        graph[route[i]].append(route[j])
+
+        # Node
+        visited = set()
+        queue = deque([source])
+        count = 0
+
+        # Neighbor
+        while queue:
+            # Level
+            level_size = len(queue)
+            for _ in range(level_size):
+                # Pop left
+                start = queue.popleft()
+                if start == target:
+                    return count
+
+                for neighbor in graph[start]:
+                    # Prunning
+                    if neighbor not in visited:
+                        queue.append(neighbor)
+                        visited.add(neighbor)
+            count += 1
+
+        return -1
+
+```
+
+## 9.13. 01-Matrix
+
+```python
+from collections import deque
+from typing import List
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        m, n = len(mat), len(mat[0])
+        dist = [[-1 for _ in range(n)] for _ in range(m)]
+        q = deque()
+
+        # Step 1: Initialize the queue with all 0s
+        for i in range(m):
+            for j in range(n):
+                if mat[i][j] == 0:
+                    dist[i][j] = 0
+                    q.append((i, j))
+
+        # Step 2: BFS from all 0s
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        count = 1
+
+        while q:
+            level_size = len(q)
+            for _ in range(level_size):
+                x, y = q.popleft()
+                for dx, dy in directions:
+                    nx, ny = x + dx, y + dy
+                    if 0 <= nx < m and 0 <= ny < n and dist[nx][ny] == -1:
+                        dist[nx][ny] = count
+                        q.append((nx, ny))
+            count += 1
+
+        return dist
+
+```
+
 # 10. Backtracking
 
 # 11. Divide and Conquer (quick sort, merge sort, pow x n)
