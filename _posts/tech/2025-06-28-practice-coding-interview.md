@@ -1757,6 +1757,159 @@ class Solution:
         return False
 ```
 
+## 6.7. Letter Combinations of a Phone (Đủ ký tự => Chỉ thêm path tại base case)
+
+- Subsets = Tree + DFS + Backtrack
+
+```python
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        # Subsets = Tree + DFS + Backtrack
+
+        phone = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+
+        result = []
+
+        def backtrack(index, path):
+            # Base case
+            if index == len(digits):
+                if path:
+                    result.append(''.join(path[:]))
+                return
+
+            # Prunning
+            for char in phone[digits[index]]:
+                # Node
+                path.append(char)
+
+                # Neighbor
+                backtrack(index + 1, path)
+                path.pop()
+
+        backtrack(0, [])
+        return result
+```
+
+## 6.8. Subsets (Không đủ ký tự => tăng index nhưng không thêm path)
+
+- Vẫn index + 1 => nhưng không include in path.
+
+```python
+class Solution:
+    def subsets(self, nums: List[int]):
+        result = []
+
+        def backtrack(index, path):
+            # Base case
+            if index == len(nums):
+                result.append(path[:])
+                return
+
+            # Prunning
+
+            # Node
+            path.append(nums[index])
+
+            # Neighbor
+            backtrack(index + 1, path)
+
+            # Backtrack
+            path.pop()
+
+            # Magic here
+            backtrack(index + 1, path)
+
+
+        backtrack(0, [])
+        return result
+
+```
+
+## 6.9. Generate Parentheses
+
+- Step 1: Backtrack
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbors
+
+- Step 5: Backtrack
+
+```python
+class Solution:
+    def generateParenthesis(self, n: int):
+        result = []
+
+        def backtrack(path, open_bracket, close_bracket):
+            # Base case
+            if open_bracket == n and close_bracket == n:
+                result.append(''.join(path[:]))
+                return
+
+            # Prunning
+
+            # Node
+            if open_bracket < n:
+                path.append('(')
+                backtrack(path, open_bracket + 1, close_bracket)
+                path.pop()
+
+            # Neighbors
+            if close_bracket < open_bracket:
+                path.append(')')
+                backtrack(path, open_bracket, close_bracket + 1)
+                path.pop()
+
+        backtrack([], 0, 0)
+        return result
+```
+
+## 6.10. Combination Sum
+
+- For duplicate same num => For selection in a list => combination in loop, not outside.
+
+```python
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+
+        def backtrack(index, path, currSum):
+            # Base case
+            if currSum == 0:
+                result.append(path[:])
+                return
+
+            # Prunning
+            if index == len(candidates) or currSum < 0:
+                return
+
+            # Neighbor
+            for i in range(index, len(candidates)):
+                # Node
+                path.append(candidates[i])
+                currSum -= candidates[i]
+                backtrack(i, path, currSum)
+
+                # Backtrack
+                path.pop()
+                currSum += candidates[i]
+
+        backtrack(0, [], target)
+        return result
+
+```
+
 # 7. Tree
 
 ## 7.1. Path Sum:
