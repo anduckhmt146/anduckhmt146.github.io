@@ -4911,15 +4911,16 @@ n = 5
 
 def in_degrees(edges, n):
     in_degrees = [0] * n
-    
+
     for u, v in edges:
         in_degrees[v] += 1
-    
+
     return in_degrees
-    
+
 print(in_degrees(edges, n))
-    
+
 ```
+
 ## 13.2. Topo Sort (Kahn's Algorithm)
 
 Notes: Không phải visited mà indegree[i] = 0
@@ -4942,19 +4943,19 @@ from collections import deque
 def topo_sort(adjList, n):
     # Build indegrees
     in_degrees = [0] * n
-    
+
     for u in adjList:
         for v in adjList[u]:
             in_degrees[v] += 1
-            
+
     # Add indegrees = 0 to queue
     # Node
     queue = deque([u for u in range(n) if in_degrees[u] == 0])
     # Can visit multiple time => make sure indegrees[i] = 0
     # visited = set()
-    
+
     result = []
-    
+
     # Neighbor
     while queue:
         # Popleft
@@ -4964,11 +4965,11 @@ def topo_sort(adjList, n):
             in_degrees[neighbor] -= 1
             if in_degrees[neighbor] == 0:
                 queue.append(neighbor)
-    
+
     return result
-            
-adjList = {    
-    0: [1, 3],    
+
+adjList = {
+    0: [1, 3],
     1: [2],
     2: [],
     3: [1, 4, 5],
@@ -4989,14 +4990,14 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]):
         # Indegree
         in_degrees = [0] * numCourses
-        
+
         # Adjancy List
         adj_list = defaultdict(list)
 
         for u, v in prerequisites:
             in_degrees[v] += 1
             adj_list[u].append(v)
-        
+
         # Node
         queue = deque([u for u in range(numCourses) if in_degrees[u] == 0])
         result = []
@@ -5012,7 +5013,7 @@ class Solution:
                 if in_degrees[neighbor] == 0:
                     queue.append(neighbor)
 
-        return len(result) == numCourses 
+        return len(result) == numCourses
 ```
 
 ## 13.4. Course Schedule II
@@ -5024,14 +5025,14 @@ class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]):
         # Indegree
         in_degrees = [0] * numCourses
-        
+
         # Adjancy List
         adj_list = defaultdict(list)
 
         for u, v in prerequisites:
             in_degrees[u] += 1
             adj_list[v].append(u)
-        
+
         # Node
         queue = deque([u for u in range(numCourses) if in_degrees[u] == 0])
         result = []
@@ -5048,4 +5049,65 @@ class Solution:
                     queue.append(neighbor)
 
         return result if len(result) == numCourses else []
+```
+
+## 13.5. Dijkstra
+
+- Dijkstra = BFS + thay deque to heapq + dist[i] to store start -> i
+
+- dist[neighbor] = dist[start] + weight
+
+- Step 1: Init heap
+
+- Step 2: Node
+
+- Step 3: Neighbor
+
+- Step 4: Dist
+
+- Find min distance to start -> i -> j -> end, push when dist[neighbor] = dist[start] + weight
+
+```python
+import heapq
+from collections import defaultdict
+
+def dijkstra(graph, start):
+    # Init heap
+    dist = defaultdict(lambda: float('inf'))
+
+    # Node
+    pq = [(0, start)]
+    dist[start] = 0
+
+    # Neighbor
+    while pq:
+        curr_dist, start = heapq.heappop(pq)
+
+        # Prunning
+        if curr_dist > dist[start]:
+            continue
+
+        # Dist
+        for neighbor, weight in graph[start]:
+            if dist[neighbor] > dist[start] + weight:
+                dist[neighbor] = dist[start] + weight
+                heapq.heappush(pq, (dist[neighbor], neighbor))
+
+    return dist
+
+
+graph = {
+    'A': [('B', 5), ('C', 1)],
+    'B': [('A', 5), ('C', 2), ('D', 1)],
+    'C': [('A', 1), ('B', 2), ('D', 4), ('E', 8)],
+    'D': [('B', 1), ('C', 4), ('E', 3), ('F', 6)],
+    'E': [('C', 8), ('D', 3)],
+    'F': [('D', 6)]
+}
+
+start_node = 'A'
+distances = dijkstra(graph, start_node)
+
+for node in sorted(distances):
+    print(f"Distance from {start_node} to {node}: {distances[node]}")
 ```
