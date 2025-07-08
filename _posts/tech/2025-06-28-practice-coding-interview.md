@@ -4900,3 +4900,152 @@ class Solution:
         return max(dp[n-1][t][0] for t in range(k + 1))  # max profit without holding
 
 ```
+
+# 13. Scheduling
+
+## 13.1. Indegree
+
+```python
+edges = [(0, 1), (1, 2), (1, 3), (3, 2), (3, 4)]
+n = 5
+
+def in_degrees(edges, n):
+    in_degrees = [0] * n
+    
+    for u, v in edges:
+        in_degrees[v] += 1
+    
+    return in_degrees
+    
+print(in_degrees(edges, n))
+    
+```
+## 13.2. Topo Sort (Kahn's Algorithm)
+
+Notes: Không phải visited mà indegree[i] = 0
+
+- Indegrees + BFS
+
+- Step 1: Build Indegree
+
+- Step 2: Add indegree = 0 to queue
+
+- Step 3: Node
+
+- Step 4: Neighbor - add indegree = 0 to queue
+
+- Step 5: Popleft
+
+```python
+from collections import deque
+
+def topo_sort(adjList, n):
+    # Build indegrees
+    in_degrees = [0] * n
+    
+    for u in adjList:
+        for v in adjList[u]:
+            in_degrees[v] += 1
+            
+    # Add indegrees = 0 to queue
+    # Node
+    queue = deque([u for u in range(n) if in_degrees[u] == 0])
+    # Can visit multiple time => make sure indegrees[i] = 0
+    # visited = set()
+    
+    result = []
+    
+    # Neighbor
+    while queue:
+        # Popleft
+        start = queue.popleft()
+        result.append(start)
+        for neighbor in adjList[start]:
+            in_degrees[neighbor] -= 1
+            if in_degrees[neighbor] == 0:
+                queue.append(neighbor)
+    
+    return result
+            
+adjList = {    
+    0: [1, 3],    
+    1: [2],
+    2: [],
+    3: [1, 4, 5],
+    4: [5],
+    5: []
+}
+n = 5
+
+print(topo_sort(adjList, n + 1))
+```
+
+## 13.3. Course Schedule
+
+```python
+from collections import defaultdict, deque
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]):
+        # Indegree
+        in_degrees = [0] * numCourses
+        
+        # Adjancy List
+        adj_list = defaultdict(list)
+
+        for u, v in prerequisites:
+            in_degrees[v] += 1
+            adj_list[u].append(v)
+        
+        # Node
+        queue = deque([u for u in range(numCourses) if in_degrees[u] == 0])
+        result = []
+
+        # Neighbor
+        while queue:
+            # Popleft
+            start = queue.popleft()
+            result.append(start)
+
+            for neighbor in adj_list[start]:
+                in_degrees[neighbor] -= 1
+                if in_degrees[neighbor] == 0:
+                    queue.append(neighbor)
+
+        return len(result) == numCourses 
+```
+
+## 13.4. Course Schedule II
+
+```python
+from collections import defaultdict, deque
+
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]):
+        # Indegree
+        in_degrees = [0] * numCourses
+        
+        # Adjancy List
+        adj_list = defaultdict(list)
+
+        for u, v in prerequisites:
+            in_degrees[u] += 1
+            adj_list[v].append(u)
+        
+        # Node
+        queue = deque([u for u in range(numCourses) if in_degrees[u] == 0])
+        result = []
+
+        # Neighbor
+        while queue:
+            # Popleft
+            start = queue.popleft()
+            result.append(start)
+
+            for neighbor in adj_list[start]:
+                in_degrees[neighbor] -= 1
+                if in_degrees[neighbor] == 0:
+                    queue.append(neighbor)
+
+        return result if len(result) == numCourses else []
+```
