@@ -5111,3 +5111,87 @@ distances = dijkstra(graph, start_node)
 for node in sorted(distances):
     print(f"Distance from {start_node} to {node}: {distances[node]}")
 ```
+
+## 13.6. Single-thread CPU
+
+- Step 1: Sort by start_time, priority + keep index
+
+- Step 2: When to pass the start_time, add to process queue
+
+- Step 3: Process tasks.
+
+- Step 4: Handle case not ready tasks.
+
+```python
+import heapq
+
+class Solution:
+    def getOrder(self, tasks: List[List[int]]) -> List[int]:
+        # Sort tasks
+        tasks = [(task[0], task[1], idx) for idx, task in enumerate(tasks)]
+        tasks.sort(key=lambda x:(x[0], x[1]))
+
+        i = 0
+        n = len(tasks)
+        process_tasks = []
+        curr_time = 0
+        res = []
+
+        # Add tasks to queue
+        while i < n or process_tasks:
+            while i < n and tasks[i][0] <= curr_time:
+                heapq.heappush(process_tasks, (tasks[i][1], tasks[i][2])) # (process_time, idx)
+                i += 1
+
+            if process_tasks:
+                # Process
+                process_time, idx = heapq.heappop(process_tasks)
+                curr_time += process_time
+                res.append(idx)
+            else:
+                curr_time = tasks[i][0]
+
+        return res
+```
+
+## 13.7. Max CPU Load
+
+- Step 1: Sort job.
+
+- Step 2: Auto load job
+
+- Step 3: Process job and update curr_load
+
+```python
+import heapq
+
+def find_max_cpu_load(jobs):
+    # Sort jobs
+    jobs.sort(key=lambda x:x[0])
+    process_tasks = []
+
+    # CPU load
+    max_cpu_load = 0
+    curr_cpu_load = 0
+
+    for job in jobs:
+        start, end, load = job
+
+        while process_tasks and process_tasks[0][0] <= start:
+            processed_job = heapq.heappop(process_tasks)
+            curr_cpu_load -= processed_job[1]
+
+        # Append to jobs to queue by start_time
+        heapq.heappush(process_tasks, (end, load))
+
+        # Update max_cpu_load
+        curr_cpu_load += load
+        max_cpu_load = max(max_cpu_load, curr_cpu_load)
+
+    return max_cpu_load
+
+jobs = [(1, 4, 3), (2, 5, 4), (7, 9, 6)]
+print(find_max_cpu_load(jobs))
+```
+
+## 13.8. Multi-thread CPU

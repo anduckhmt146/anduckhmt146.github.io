@@ -638,7 +638,7 @@ def find_max_cpu_load(jobs):
 
     for job in sorted_jobs:
         start, end, load = job
-
+m
         while min_heap and min_heap[0][0] <= start:
             ended_job = heapq.heappop(min_heap)
             current_cpu_load -= ended_job[1]
