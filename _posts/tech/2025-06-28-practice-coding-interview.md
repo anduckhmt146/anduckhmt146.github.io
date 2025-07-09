@@ -5195,3 +5195,68 @@ print(find_max_cpu_load(jobs))
 ```
 
 ## 13.8. Multi-thread CPU
+
+```python
+import heapq
+from typing import List
+
+class Solution:
+    def getOrder(self, tasks: List[List[int]], k: int) -> List[int]:
+        tasks = [(task[0], task[1], idx) for idx, task in enumerate(tasks)]
+        tasks.sort()
+
+        task_heap = []        # (-processing_time, idx, enqueue_time)
+        running_tasks = []    # (end_time, idx)
+        res = []
+        time = 0
+        i = 0
+        max_end_time = 0
+
+        # Create a priority queue of time events (enqueue times and end times)
+        event_queue = [(task[0], i) for i, task in enumerate(tasks)]
+        heapq.heapify(event_queue)
+
+        while event_queue or task_heap or running_tasks:
+            # Get the next event time
+            if event_queue:
+                next_time, idx = event_queue[0]
+                if not running_tasks or (running_tasks[0][0] >= next_time):
+                    time = next_time
+                    # Process all enqueue events at this time
+                    while event_queue and event_queue[0][0] <= time:
+                        _ , task_idx = heapq.heappop(event_queue)
+                        enqueue_time, processing_time, idx = tasks[task_idx]
+                        heapq.heappush(task_heap, (-processing_time, idx, enqueue_time))
+                        i += 1
+                else:
+                    # Fast-forward to next task end time
+                    time = running_tasks[0][0]
+            elif running_tasks:
+                time = running_tasks[0][0]
+            else:
+                break
+
+            # Remove finished tasks
+            while running_tasks and running_tasks[0][0] <= time:
+                heapq.heappop(running_tasks)
+
+            # Assign available CPUs
+            while task_heap and len(running_tasks) < k:
+                neg_processing_time, idx, enqueue_time = heapq.heappop(task_heap)
+                processing_time = -neg_processing_time
+                # Start task at max(current time, enqueue time)
+                start_time = max(time, enqueue_time)
+                end_time = start_time + processing_time
+                heapq.heappush(running_tasks, (end_time, idx))
+                res.append(idx)
+                max_end_time = max(max_end_time, end_time)
+
+        print("Time", max_end_time)
+        return res
+
+# Test
+tasks = [[1, 2], [2, 4], [3, 2], [4, 1]]
+k = 2
+sol = Solution()
+print(sol.getOrder(tasks, k))
+```
