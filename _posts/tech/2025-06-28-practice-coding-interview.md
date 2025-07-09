@@ -5114,13 +5114,11 @@ for node in sorted(distances):
 
 ## 13.6. Single-thread CPU
 
-- Step 1: Sort by start_time, priority + keep index
+- Step 1: Start time at task[0]
 
-- Step 2: When to pass the start_time, add to process queue
+- Step 2: Add to queue.
 
-- Step 3: Process tasks.
-
-- Step 4: Handle case not ready tasks.
+- Step 3: Process
 
 ```python
 import heapq
@@ -5129,29 +5127,36 @@ class Solution:
     def getOrder(self, tasks: List[List[int]]) -> List[int]:
         # Sort tasks
         tasks = [(task[0], task[1], idx) for idx, task in enumerate(tasks)]
-        tasks.sort(key=lambda x:(x[0], x[1]))
+        tasks.sort(key=lambda x:(x[0]))
 
+        running_tasks = []
+
+        # Need a curr_time
+        curr_time = tasks[0][0]
+
+        # Index
         i = 0
         n = len(tasks)
-        process_tasks = []
-        curr_time = 0
-        res = []
 
-        # Add tasks to queue
-        while i < n or process_tasks:
+        # Result
+        result = []
+
+        while i < n or running_tasks:
+            # Add to queue
             while i < n and tasks[i][0] <= curr_time:
-                heapq.heappush(process_tasks, (tasks[i][1], tasks[i][2])) # (process_time, idx)
+                process_time, idx = tasks[i][1], tasks[i][2]
+                heapq.heappush(running_tasks, (process_time, idx))
                 i += 1
 
-            if process_tasks:
-                # Process
-                process_time, idx = heapq.heappop(process_tasks)
+            # Process
+            if running_tasks:
+                process_time, idx = heapq.heappop(running_tasks)
                 curr_time += process_time
-                res.append(idx)
+                result.append(idx)
             else:
                 curr_time = tasks[i][0]
 
-        return res
+        return result
 ```
 
 ## 13.7. Max CPU Load
@@ -5259,4 +5264,336 @@ tasks = [[1, 2], [2, 4], [3, 2], [4, 1]]
 k = 2
 sol = Solution()
 print(sol.getOrder(tasks, k))
+```
+
+## 13.9. Task Scheduler
+
+```python
+import heapq
+from collections import Counter, deque
+from typing import List
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        # Count the frequency of tasks
+        freq = Counter(tasks)
+
+        # Python's heapq is a min-heap, so we store negative frequencies for max-heap behavior
+        max_heap = [-cnt for cnt in freq.values()]
+        heapq.heapify(max_heap)
+
+        # Queue to manage cooldowns: (ready_time, -task_count)
+        cooldown = deque()
+
+        time = 0
+        while max_heap or cooldown:
+            time += 1
+
+            # Release from cooldown if task is ready
+            if cooldown and cooldown[0][0] == time:
+                heapq.heappush(max_heap, cooldown.popleft()[1])
+
+            if max_heap:
+                cnt = heapq.heappop(max_heap)
+                if cnt + 1 < 0:
+                    # Add to cooldown queue with ready time = now + n + 1
+                    cooldown.append((time + n + 1, cnt + 1))
+
+        return time
+```
+
+## 13.10. Task Scheduler II
+
+```python
+from typing import List
+
+class Solution:
+    def taskSchedulerII(self, tasks: List[int], space: int) -> int:
+        last_day = {}  # task -> last executed day
+        day = 0
+
+        for task in tasks:
+            day += 1
+            if task in last_day and day - last_day[task] <= space:
+                # If task was executed too recently, jump forward
+                day = last_day[task] + space + 1
+            last_day[task] = day
+
+        return day
+
+```
+
+## 13.11. Process Tasks Using Servers
+
+```python
+from typing import List
+import heapq
+
+class Solution:
+    def assignTasks(self, servers: List[int], tasks: List[int]) -> List[int]:
+        n = len(servers)
+        time = 0
+        result = []
+
+        # Min-heap for available servers: (weight, index)
+        available = [(weight, i) for i, weight in enumerate(servers)]
+        heapq.heapify(available)
+
+        # Min-heap for busy servers: (free_time, weight, index)
+        busy = []
+
+        for i, task_time in enumerate(tasks):
+            time = max(time, i)
+
+            # Release servers that have finished by current time
+            while busy and busy[0][0] <= time:
+                free_time, weight, index = heapq.heappop(busy)
+                heapq.heappush(available, (weight, index))
+
+            if available:
+                weight, index = heapq.heappop(available)
+                heapq.heappush(busy, (time + task_time, weight, index))
+                result.append(index)
+            else:
+                # No server available now, advance time to earliest free server
+                free_time, weight, index = heapq.heappop(busy)
+                time = free_time
+                heapq.heappush(busy, (time + task_time, weight, index))
+                result.append(index)
+
+        return result
+
+```
+
+## 13.12. FCFS - First Come First Serve
+
+```python
+def fcfs(tasks):
+    tasks.sort(key=lambda x: x['arrival_time'])
+    time = 0
+    schedule = []
+
+    for task in tasks:
+        if time < task['arrival_time']:
+            time = task['arrival_time']
+        start_time = time
+        end_time = start_time + task['burst_time']
+        schedule.append((task['pid'], start_time, end_time))
+        time = end_time
+
+    return schedule
+
+```
+
+## 13.13. SJF - Shortest Job First
+
+```python
+def sjf(tasks):
+    tasks = sorted(tasks, key=lambda x: (x['arrival_time'], x['burst_time']))
+    ready = []
+    time = 0
+    i = 0
+    schedule = []
+
+    while i < len(tasks) or ready:
+        while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+            ready.append(tasks[i])
+            i += 1
+        if ready:
+            ready.sort(key=lambda x: x['burst_time'])
+            task = ready.pop(0)
+            start_time = time
+            end_time = time + task['burst_time']
+            schedule.append((task['pid'], start_time, end_time))
+            time = end_time
+        else:
+            time = tasks[i]['arrival_time']
+
+    return schedule
+```
+
+## 13.14. SRTF - Shortest Remaining Time First
+
+```python
+import heapq
+
+def srtf(tasks):
+    tasks = sorted([(t['arrival_time'], t['burst_time'], t['pid']) for t in tasks])
+    n = len(tasks)
+    ready = []
+    result = []
+    time = 0
+    i = 0
+    remaining = {}
+
+    while i < n or ready:
+        while i < n and tasks[i][0] <= time:
+            at, bt, pid = tasks[i]
+            heapq.heappush(ready, (bt, pid, at))
+            remaining[pid] = bt
+            i += 1
+
+        if ready:
+            bt, pid, at = heapq.heappop(ready)
+            result.append((pid, time, time + 1))
+            remaining[pid] -= 1
+            if remaining[pid] > 0:
+                heapq.heappush(ready, (remaining[pid], pid, at))
+            time += 1
+        else:
+            time = tasks[i][0]
+
+    return result
+```
+
+## 13.15. Round Robin
+
+```python
+from collections import deque
+
+def round_robin(tasks, quantum):
+    tasks = sorted(tasks, key=lambda x: x['arrival_time'])
+    queue = deque()
+    time = 0
+    i = 0
+    remaining = {t['pid']: t['burst_time'] for t in tasks}
+    schedule = []
+
+    while i < len(tasks) or queue:
+        while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+            queue.append(tasks[i])
+            i += 1
+
+        if queue:
+            task = queue.popleft()
+            pid = task['pid']
+            start = time
+            run = min(quantum, remaining[pid])
+            time += run
+            remaining[pid] -= run
+            schedule.append((pid, start, time))
+            while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+                queue.append(tasks[i])
+                i += 1
+            if remaining[pid] > 0:
+                queue.append(task)
+        else:
+            time = tasks[i]['arrival_time']
+
+    return schedule
+
+```
+
+## 13.16. Priority Scheduling
+
+```python
+def priority_scheduling(tasks):
+    tasks.sort(key=lambda x: (x['arrival_time'], x['priority']))
+    ready = []
+    time = 0
+    i = 0
+    schedule = []
+
+    while i < len(tasks) or ready:
+        while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+            ready.append(tasks[i])
+            i += 1
+        if ready:
+            ready.sort(key=lambda x: x['priority'])
+            task = ready.pop(0)
+            start_time = time
+            end_time = time + task['burst_time']
+            schedule.append((task['pid'], start_time, end_time))
+            time = end_time
+        else:
+            time = tasks[i]['arrival_time']
+
+    return schedule
+
+```
+
+## 13.17. HRRN - Highest Response Ratio Next
+
+```python
+def hrrn(tasks):
+    tasks.sort(key=lambda x: x['arrival_time'])
+    time = 0
+    i = 0
+    ready = []
+    schedule = []
+
+    while i < len(tasks) or ready:
+        while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+            ready.append(tasks[i])
+            i += 1
+        if ready:
+            for task in ready:
+                wait = time - task['arrival_time']
+                task['response_ratio'] = (wait + task['burst_time']) / task['burst_time']
+            ready.sort(key=lambda x: -x['response_ratio'])
+            task = ready.pop(0)
+            start = time
+            end = time + task['burst_time']
+            schedule.append((task['pid'], start, end))
+            time = end
+        else:
+            time = tasks[i]['arrival_time']
+
+    return schedule
+
+```
+
+## 13.18. Multiple Queue Scheduling
+
+```python
+def multiple_queue(tasks, quantum=2):
+    # First queue: high priority (RR), Second: low (FCFS)
+    high = [t for t in tasks if t['priority'] == 1]
+    low = [t for t in tasks if t['priority'] != 1]
+
+    high_schedule = round_robin(high, quantum)
+    low_schedule = fcfs(low)
+    return high_schedule + low_schedule
+
+```
+
+## 13.19. Multilevel Feedback Queue Scheduling
+
+```python
+def mlfq(tasks, queues=3, quantum=2):
+    from collections import deque
+    levels = [deque() for _ in range(queues)]
+    tasks = sorted(tasks, key=lambda x: x['arrival_time'])
+    i = 0
+    time = 0
+    remaining = {t['pid']: t['burst_time'] for t in tasks}
+    level_map = {t['pid']: 0 for t in tasks}
+    schedule = []
+
+    while i < len(tasks) or any(levels):
+        while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+            levels[0].append(tasks[i])
+            i += 1
+
+        for q in range(queues):
+            if levels[q]:
+                task = levels[q].popleft()
+                pid = task['pid']
+                start = time
+                run = min(quantum * (2 ** q), remaining[pid])
+                time += run
+                remaining[pid] -= run
+                schedule.append((pid, start, time))
+                while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+                    levels[0].append(tasks[i])
+                    i += 1
+                if remaining[pid] > 0:
+                    level_map[pid] = min(q + 1, queues - 1)
+                    levels[level_map[pid]].append(task)
+                break
+        else:
+            time = tasks[i]['arrival_time']
+
+    return schedule
+
 ```
