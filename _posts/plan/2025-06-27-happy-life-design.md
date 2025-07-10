@@ -1,7 +1,7 @@
 ---
 layout: post
 title: High-level Happy Life Design
-date: 2025-06-27
+date: 2025-07-07
 categories: plan
 ---
 
