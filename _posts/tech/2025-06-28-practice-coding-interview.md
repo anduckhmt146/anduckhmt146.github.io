@@ -5268,6 +5268,8 @@ print(sol.getOrder(tasks, k))
 
 ## 13.9. Task Scheduler
 
+- Add tasks to cooldown queue => Only execute the task when come to time.
+
 ```python
 import heapq
 from collections import Counter, deque
@@ -5383,23 +5385,23 @@ import unittest
 def fcfs(tasks):
     # Task
     tasks.sort(key=lambda x:x['arrival_time'])
-    
+
     # Time
     time = 0
     schedule = []
-    
+
     for task in tasks:
         if time < task['arrival_time']:
             time = task['arrival_time']
-            
+
         start_time = time
         end_time = time + task['burst_time']
         schedule.append((task['pid'], start_time, end_time))
         time = end_time
-    
+
     return schedule
-    
-    
+
+
 tasks = [
     {'pid': 'P1', 'arrival_time': 0, 'burst_time': 5},
     {'pid': 'P2', 'arrival_time': 1, 'burst_time': 3},
@@ -5419,14 +5421,19 @@ print(fcfs(tasks))
 import heapq
 
 def sjf(tasks):
-    tasks = sorted(tasks, key=lambda x: x['arrival_time'])  # Sort by arrival time
-    ready = []
+    tasks.sort(key=lambda x:x['arrival_time'])
+
+    # Base
     time = 0
-    i = 0
     schedule = []
 
-    while i < len(tasks) or ready:
-        while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+    # Add them
+    i = 0
+    ready = []
+    n = len(tasks)
+
+    while i < n or ready:
+        while i < n and tasks[i]['arrival_time'] <= time:
             heapq.heappush(ready, (tasks[i]['burst_time'], tasks[i]['arrival_time'], tasks[i]['pid'], tasks[i]))
             i += 1
 
@@ -5441,6 +5448,19 @@ def sjf(tasks):
 
     return schedule
 
+# Sample test case
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 8},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 4},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 9},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 5}
+]
+
+result = sjf(tasks)
+for pid, start, end in result:
+    print(f"Task {pid}: Start at {start}, End at {end}")
+
+
 ```
 
 ## 13.14. SRTF - Shortest Remaining Time First
@@ -5449,32 +5469,60 @@ def sjf(tasks):
 import heapq
 
 def srtf(tasks):
-    tasks = sorted([(t['arrival_time'], t['burst_time'], t['pid']) for t in tasks])
-    n = len(tasks)
-    ready = []
-    result = []
+    # Preprocess: add 'remaining' field and sort by arrival
+    tasks = sorted([{**t, 'remaining': t['burst_time']} for t in tasks], key=lambda x: x['arrival_time'])
+
     time = 0
     i = 0
-    remaining = {}
+    n = len(tasks)
+    ready = []  # (remaining_time, arrival_time, pid, task)
+    schedule = []
 
-    while i < n or ready:
-        while i < n and tasks[i][0] <= time:
-            at, bt, pid = tasks[i]
-            heapq.heappush(ready, (bt, pid, at))
-            remaining[pid] = bt
+    completed = 0
+    last_pid = None
+    start_time = None
+
+    while completed < n:
+        # Push all tasks that have arrived into the ready
+        while i < n and tasks[i]['arrival_time'] <= time:
+            task = tasks[i]
+            heapq.heappush(ready, (task['remaining'], task['arrival_time'], task['pid'], task))
             i += 1
 
         if ready:
-            bt, pid, at = heapq.heappop(ready)
-            result.append((pid, time, time + 1))
-            remaining[pid] -= 1
-            if remaining[pid] > 0:
-                heapq.heappush(ready, (remaining[pid], pid, at))
-            time += 1
-        else:
-            time = tasks[i][0]
+            _, _, pid, task = heapq.heappop(ready)
 
-    return result
+            if pid != last_pid:
+                # Job cu chua xong
+                if last_pid is not None:
+                    schedule.append((last_pid, start_time, time))
+                start_time = time
+                last_pid = pid
+
+            # Execute task for 1 time unit
+            task['remaining'] -= 1
+            time += 1
+
+            if task['remaining'] > 0:
+                heapq.heappush(ready, (task['remaining'], task['arrival_time'], task['pid'], task))
+            else:
+                completed += 1
+                schedule.append((pid, start_time, time))
+                last_pid = None
+        else:
+            time += 1
+
+    return schedule
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 8},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 4},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 9},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 5}
+]
+
+for pid, start, end in srtf(tasks):
+    print(f"Task {pid}: Start at {start}, End at {end}")
 ```
 
 ## 13.15. Round Robin
@@ -5483,35 +5531,62 @@ def srtf(tasks):
 from collections import deque
 
 def round_robin(tasks, quantum):
-    tasks = sorted(tasks, key=lambda x: x['arrival_time'])
-    queue = deque()
+    # Add remaining time to each task
+    tasks = sorted([{**t, 'remaining': t['burst_time']} for t in tasks], key=lambda x: x['arrival_time'])
+
     time = 0
-    i = 0
-    remaining = {t['pid']: t['burst_time'] for t in tasks}
+    queue = deque()
+
+    i = 0  # Index for incoming tasks
+    n = len(tasks)
+
+    completed = 0
     schedule = []
 
-    while i < len(tasks) or queue:
-        while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+    while completed < n or queue:
+        # Enqueue tasks that have arrived
+        while i < n and tasks[i]['arrival_time'] <= time:
             queue.append(tasks[i])
             i += 1
 
         if queue:
             task = queue.popleft()
-            pid = task['pid']
-            start = time
-            run = min(quantum, remaining[pid])
-            time += run
-            remaining[pid] -= run
-            schedule.append((pid, start, time))
-            while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+
+            start_time = time
+            duration = min(quantum, task['remaining'])
+            time += duration
+            task['remaining'] -= duration
+            schedule.append((task['pid'], start_time, time))
+
+            # But while that task was executing, new tasks might have arrived
+            while i < n and tasks[i]['arrival_time'] <= time:
                 queue.append(tasks[i])
                 i += 1
-            if remaining[pid] > 0:
+
+            # If not finished, push back to queue
+            if task['remaining'] > 0:
                 queue.append(task)
+            else:
+                completed += 1
         else:
-            time = tasks[i]['arrival_time']
+            # No ready task, jump to the next arrival time
+            if i < n:
+                time = tasks[i]['arrival_time']
 
     return schedule
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 5},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 3},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 8},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 6}
+]
+
+quantum = 3
+
+result = round_robin(tasks, quantum)
+for pid, start, end in result:
+    print(f"Task {pid}: Start at {start}, End at {end}")
 
 ```
 
@@ -5519,34 +5594,47 @@ def round_robin(tasks, quantum):
 
 ```python
 import heapq
-from typing import List, Dict, Tuple
 
-def priority_scheduling(tasks: List[Dict]) -> List[Tuple[str, int, int]]:
-    tasks.sort(key=lambda x: x['arrival_time'])  # Sort once by arrival time
-    ready = []
+def priority_scheduling(tasks):
+    # Sort by arrival time first
+    tasks.sort(key=lambda x: x['arrival_time'])
+
     time = 0
     i = 0
+    n = len(tasks)
     schedule = []
+    ready = []
 
-    while i < len(tasks) or ready:
-        # Add all tasks that have arrived by current time to heap
-        while i < len(tasks) and tasks[i]['arrival_time'] <= time:
+    while i < n or ready:
+        # Push all tasks that have arrived into the ready queue
+        while i < n and tasks[i]['arrival_time'] <= time:
             task = tasks[i]
             heapq.heappush(ready, (task['priority'], task['arrival_time'], task['pid'], task))
             i += 1
 
         if ready:
             _, _, _, task = heapq.heappop(ready)
-            start_time = time
-            end_time = start_time + task['burst_time']
-            schedule.append((task['pid'], start_time, end_time))
-            time = end_time
+            start = time
+            end = start + task['burst_time']
+            schedule.append((task['pid'], start, end))
+            time = end
         else:
-            # Advance to the next task's arrival time
-            if i < len(tasks):
-                time = tasks[i]['arrival_time']
+            # If no task is ready, jump to the next arrival
+            time = tasks[i]['arrival_time']
 
     return schedule
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 10, 'priority': 3},
+    {'pid': 'P2', 'arrival_time': 2, 'burst_time': 5,  'priority': 1},
+    {'pid': 'P3', 'arrival_time': 1, 'burst_time': 8,  'priority': 2},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 6,  'priority': 4}
+]
+
+result = priority_scheduling(tasks)
+
+for pid, start, end in result:
+    print(f"Task {pid}: Start at {start}, End at {end}")
 
 ```
 
@@ -5657,7 +5745,7 @@ def sjf_multi_cpu(tasks: List[Dict], k: int) -> List[Tuple[str, int, int, int]]:
     n = len(tasks)
     i = 0
     time = 0
-    ready_heap = []  # (burst_time, arrival_time, pid, task)
+    ready = []  # (burst_time, arrival_time, pid, task)
     cpu_heap = []    # (available_time, cpu_id)
     schedule = []
 
@@ -5665,17 +5753,17 @@ def sjf_multi_cpu(tasks: List[Dict], k: int) -> List[Tuple[str, int, int, int]]:
     for cpu_id in range(k):
         heapq.heappush(cpu_heap, (0, cpu_id))
 
-    while i < n or ready_heap or any(cpu[0] > time for cpu in cpu_heap):
+    while i < n or ready or any(cpu[0] > time for cpu in cpu_heap):
         # Add tasks that have arrived by current time
         while i < n and tasks[i]['arrival_time'] <= time:
             task = tasks[i]
-            heapq.heappush(ready_heap, (task['burst_time'], task['arrival_time'], task['pid'], task))
+            heapq.heappush(ready, (task['burst_time'], task['arrival_time'], task['pid'], task))
             i += 1
 
         # Assign tasks to available CPUs
         assigned = False
-        while ready_heap and cpu_heap and cpu_heap[0][0] <= time:
-            burst_time, arrival_time, pid, task = heapq.heappop(ready_heap)
+        while ready and cpu_heap and cpu_heap[0][0] <= time:
+            burst_time, arrival_time, pid, task = heapq.heappop(ready)
             cpu_available_time, cpu_id = heapq.heappop(cpu_heap)
 
             start_time = max(time, cpu_available_time)
@@ -5694,9 +5782,7 @@ def sjf_multi_cpu(tasks: List[Dict], k: int) -> List[Tuple[str, int, int, int]]:
                 next_times.append(cpu_heap[0][0])
             if next_times:
                 time = max(time + 1, min(next_times))
-            else:
-                break  # done
-            
+
     print("Time", time)
 
     return schedule
@@ -5720,98 +5806,116 @@ for pid, start, end, cpu_id in schedule:
 
 ```python
 import heapq
-from typing import List, Dict, Tuple
 
-def fcfs_multi_cpu(tasks: List[Dict], k: int) -> List[Tuple[str, int, int, int]]:
-    tasks = sorted(tasks, key=lambda x: x['arrival_time'])  # Sort by arrival time
-    n = len(tasks)
-    i = 0
-    time = 0
-    schedule = []
+def fcfs_multi_cpu(tasks, cpu_count):
+    # Sort tasks by arrival time
+    tasks = sorted(tasks, key=lambda x: x['arrival_time'])
 
-    # Min-heap to track CPU availability: (available_time, cpu_id)
-    cpu_heap = [(0, cpu_id) for cpu_id in range(k)]
+    # Min-heap of (available_time, cpu_id)
+    cpu_heap = [(0, cpu_id) for cpu_id in range(cpu_count)]
     heapq.heapify(cpu_heap)
 
-    # Queue of tasks waiting to be assigned
-    ready_queue = []
+    schedule = []
 
-    while i < n or ready_queue or any(cpu[0] > time for cpu in cpu_heap):
-        # Add all tasks that have arrived
-        while i < n and tasks[i]['arrival_time'] <= time:
-            ready_queue.append(tasks[i])
-            i += 1
+    for task in tasks:
+        arrival = task['arrival_time']
+        burst = task['burst_time']
+        pid = task['pid']
 
-        # Assign ready tasks to available CPUs
-        while ready_queue and cpu_heap and cpu_heap[0][0] <= time:
-            task = ready_queue.pop(0)
-            cpu_time, cpu_id = heapq.heappop(cpu_heap)
+        # Get the earliest available CPU
+        available_time, cpu_id = heapq.heappop(cpu_heap)
 
-            start_time = max(time, cpu_time, task['arrival_time'])
-            end_time = start_time + task['burst_time']
-            schedule.append((task['pid'], start_time, end_time, cpu_id))
+        # The task starts at the max of CPU's available time or its own arrival
+        start_time = max(available_time, arrival)
+        end_time = start_time + burst
 
-            heapq.heappush(cpu_heap, (end_time, cpu_id))
+        schedule.append({
+            'pid': pid,
+            'cpu': cpu_id,
+            'start_time': start_time,
+            'end_time': end_time
+        })
 
-        # Advance time if nothing can be scheduled now
-        if not ready_queue or cpu_heap[0][0] > time:
-            next_times = []
-            if i < n:
-                next_times.append(tasks[i]['arrival_time'])
-            if cpu_heap:
-                next_times.append(cpu_heap[0][0])
-            time = max(time + 1, min(next_times)) if next_times else time + 1
+        # Update the CPU's available time
+        heapq.heappush(cpu_heap, (end_time, cpu_id))
 
     return schedule
 
+
+# Example
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 5},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 3},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 1},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 2},
+]
+result = fcfs_multi_cpu(tasks, cpu_count=2)
+for entry in result:
+    print(entry)
+
 ```
+
 ## 13.22. Priority Scheduling Multiple CPUs
 
 ```python
 import heapq
-from typing import List, Dict, Tuple
 
-def priority_scheduling_multi_cpu(tasks: List[Dict], k: int) -> List[Tuple[str, int, int, int]]:
-    tasks.sort(key=lambda x: x['arrival_time'])  # Sort by arrival time
-    n = len(tasks)
+def priority_scheduling_multi_cpu(tasks, cpu_count):
+    tasks = sorted(tasks, key=lambda x: x['arrival_time'])
     i = 0
     time = 0
-    schedule = []
+    n = len(tasks)
 
-    # Min-heap for available CPUs: (available_time, cpu_id)
-    cpu_heap = [(0, cpu_id) for cpu_id in range(k)]
+    cpu_heap = [(0, cpu_id) for cpu_id in range(cpu_count)]
     heapq.heapify(cpu_heap)
 
-    # Min-heap for ready tasks: (priority, arrival_time, pid, task)
-    ready_heap = []
+    ready_queue = []
+    schedule = []
 
-    while i < n or ready_heap or any(cpu[0] > time for cpu in cpu_heap):
-        # Add tasks that have arrived by now
+    while i < n or ready_queue:
+        # Add all tasks that have arrived by current time
         while i < n and tasks[i]['arrival_time'] <= time:
             task = tasks[i]
-            heapq.heappush(ready_heap, (task['priority'], task['arrival_time'], task['pid'], task))
+            heapq.heappush(ready_queue, (task['priority'], task['arrival_time'], task['pid'], task))
             i += 1
 
         # Assign ready tasks to available CPUs
-        while ready_heap and cpu_heap and cpu_heap[0][0] <= time:
-            _, _, _, task = heapq.heappop(ready_heap)
+        assigned = False
+        while ready_queue and cpu_heap and cpu_heap[0][0] <= time:
             cpu_available_time, cpu_id = heapq.heappop(cpu_heap)
+            _, arrival, pid, task = heapq.heappop(ready_queue)
 
-            start_time = max(time, cpu_available_time, task['arrival_time'])
+            start_time = max(cpu_available_time, arrival, time)
             end_time = start_time + task['burst_time']
-            schedule.append((task['pid'], start_time, end_time, cpu_id))
+
+            schedule.append({
+                'pid': pid,
+                'cpu': cpu_id,
+                'start_time': start_time,
+                'end_time': end_time
+            })
 
             heapq.heappush(cpu_heap, (end_time, cpu_id))
+            assigned = True
 
-        # If no task is scheduled, move time forward
-        if not ready_heap or cpu_heap[0][0] > time:
-            next_times = []
-            if i < n:
-                next_times.append(tasks[i]['arrival_time'])
-            if cpu_heap:
-                next_times.append(cpu_heap[0][0])
-            time = max(time + 1, min(next_times)) if next_times else time + 1
+        # If no task is assigned and no CPU is available yet, move time forward
+        if not assigned:
+            next_arrival = tasks[i]['arrival_time'] if i < n else float('inf')
+            next_cpu_free = cpu_heap[0][0] if cpu_heap else float('inf')
+            # Move to the next event (task arrival or CPU becomes free)
+            time = max(time + 1, min(next_arrival, next_cpu_free))
 
     return schedule
 
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 10, 'priority': 3},
+    {'pid': 'P2', 'arrival_time': 2, 'burst_time': 5,  'priority': 1},
+    {'pid': 'P3', 'arrival_time': 1, 'burst_time': 8,  'priority': 2},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 6,  'priority': 4}
+]
+
+result = priority_scheduling_multi_cpu(tasks, cpu_count=2)
+for r in result:
+    print(r)
 ```
