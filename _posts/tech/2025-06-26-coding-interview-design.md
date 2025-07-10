@@ -613,8 +613,12 @@ Find the max CPU load the job overlap in the same time.
 
 ### 10.2. Example:
 
+```python
+
 Input: jobs[] = {{1, 4, 3}, {2, 5, 4}, {7, 9, 6}}
 Output: 7
+```
+
 
 ### 10.3. Implement
 
