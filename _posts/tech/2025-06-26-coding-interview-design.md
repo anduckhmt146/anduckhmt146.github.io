@@ -619,7 +619,6 @@ Output: 7
 
 ```
 
-
 ### 10.3. Implement
 
 - Step 1: Init min heap
