@@ -5937,16 +5937,14 @@ import heapq
 
 class Solution:
     def kthLargest(self, nums: List[int], k: int):
-        min_heap = []
-
+        heap = []
         for num in nums:
-            if len(min_heap) < k:
-                heapq.heappush(min_heap, num)
-            elif num > min_heap[0]:
-                heapq.heappushpop(min_heap, num)
+            if len(heap) < k:
+                heapq.heappush(heap, num)
+            elif num > heap[0]:
+                heapq.heappushpop(heap, num)
 
-        return min_heap[0]
-
+        return heap[0]
 ```
 
 ## 13.24. K Closest Points to Origin
@@ -5964,18 +5962,70 @@ class Solution:
 - Step 4: If len > 5 => Heap pop push.
 
 ```python
+import heapq
+
 class Solution:
     def kClosest(self, points: List[List[int]], k: int):
         heap = []
-        for i in range(len(points)):
-            x, y = points[i]
+
+        for point in points:
+            x, y = point
             distance = x * x + y * y
 
             if len(heap) < k:
-                heapq.heappush(heap, (-distance, i))
+                heapq.heappush(heap, (-distance, point))
             elif distance < -heap[0][0]:
-                heapq.heappushpop(heap, (-distance, i))
+                heapq.heappushpop(heap, (-distance, point))
 
-        return [points[p[1]] for p in heap]
+        return [item[1] for item in heap]
+
+```
+
+Notes:
+
+- Min -> Max Heap
+
+- Max -> Min Heap
+
+## 13.24. Find K Closest Element
+
+```python
+import heapq
+
+class Solution:
+    def kClosest(self, nums: List[int], k: int, target: int):
+        # Max Heap
+        heap = []
+        for num in nums:
+            distance = abs(target - num)
+            if len(heap) < k:
+                heapq.heappush(heap, (-distance, num))
+            elif distance < -heap[0][0]:
+                heapq.heappushpop(heap, (-distance, num))
+
+        result = [item[1] for item in heap]
+        result.sort()
+        return result
+```
+
+## 13.25. Merge K Sort Lists
+
+```python
+from typing import List
+import heapq
+
+class Solution:
+    def mergeKLists(self, lists: List[List[int]]) -> List[int]:
+        heap = []
+        
+        for l in lists:
+            for val in l:
+                heapq.heappush(heap, val)
+        
+        result = []
+        while heap:
+            result.append(heapq.heappop(heap))
+        
+        return result
 
 ```
