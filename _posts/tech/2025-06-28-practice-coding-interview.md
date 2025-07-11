@@ -5924,9 +5924,13 @@ for r in result:
 
 - Heap: The value of root is smaller, larger than other child node => left > right, or right > left, no matters.
 
-- Step 1: If len heap < k => Push to heap.
+- Step 1: Init heap
 
-- Step 2: If the len heap > k => Using heappushpop
+- Step 2: Loop for number
+
+- Step 3: If len < k => Heap push.
+
+- Step 4: If len > 5 => Heap pop push.
 
 ```python
 import heapq
@@ -5950,6 +5954,14 @@ class Solution:
 - Using max-heap => we need to remove the farthest element.
 
 - Smallest Element is almost right => We need to fight the farthest element in the heap and remove it.
+
+- Step 1: Init heap
+
+- Step 2: Loop for number
+
+- Step 3: If len < k => Heap push.
+
+- Step 4: If len > 5 => Heap pop push.
 
 ```python
 class Solution:
