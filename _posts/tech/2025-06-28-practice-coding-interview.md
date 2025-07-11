@@ -5919,3 +5919,51 @@ result = priority_scheduling_multi_cpu(tasks, cpu_count=2)
 for r in result:
     print(r)
 ```
+
+## 13.23. Top K Smaller Number
+
+- Heap: The value of root is smaller, larger than other child node => left > right, or right > left, no matters.
+
+- Step 1: If len heap < k => Push to heap.
+
+- Step 2: If the len heap > k => Using heappushpop
+
+```python
+import heapq
+
+class Solution:
+    def kthLargest(self, nums: List[int], k: int):
+        min_heap = []
+
+        for num in nums:
+            if len(min_heap) < k:
+                heapq.heappush(min_heap, num)
+            elif num > min_heap[0]:
+                heapq.heappushpop(min_heap, num)
+
+        return min_heap[0]
+
+```
+
+## 13.24. K Closest Points to Origin
+
+- Using max-heap => we need to remove the farthest element.
+
+- Smallest Element is almost right => We need to fight the farthest element in the heap and remove it.
+
+```python
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int):
+        heap = []
+        for i in range(len(points)):
+            x, y = points[i]
+            distance = x * x + y * y
+
+            if len(heap) < k:
+                heapq.heappush(heap, (-distance, i))
+            elif distance < -heap[0][0]:
+                heapq.heappushpop(heap, (-distance, i))
+
+        return [points[p[1]] for p in heap]
+
+```
