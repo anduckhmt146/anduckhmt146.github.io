@@ -6017,15 +6017,246 @@ import heapq
 class Solution:
     def mergeKLists(self, lists: List[List[int]]) -> List[int]:
         heap = []
-        
+
         for l in lists:
             for val in l:
                 heapq.heappush(heap, val)
-        
+
         result = []
         while heap:
             result.append(heapq.heappop(heap))
-        
+
         return result
+
+```
+
+# 14. Sliding Window
+
+## 14.1. Fruit into market
+
+- Step 1: Loop from end
+
+- Step 2: Counting
+
+- Step 3: Prunning when reach the length
+
+- Step 4: Increase start
+
+```python
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        k = 2
+
+        # Init start
+        start = 0
+        n = len(fruits)
+        state = {}
+        max_len = 0
+
+        # Counting
+        for end in range(n):
+            state[fruits[end]] = state.get(fruits[end], 0) + 1
+
+            # Prunning
+            while len(state) > 2:
+                # Update start
+                state[fruits[start]] -= 1
+                if state[fruits[start]] == 0:
+                    del state[fruits[start]]
+                start += 1
+
+            max_len = max(max_len, end - start + 1)
+
+        return max_len
+
+```
+
+## 14.2. Longest Substring Without Repeating Characters
+
+- Cái trên là 3 loại khác nhau => này bao nhiêu loại cũng được miễn là k dup
+
+- Bài toán số lượng
+
+```python
+class Solution:
+    def longestSubstringWithoutRepeat(self, s: str):
+        k = 1
+
+        # Init start
+        start = 0
+        state = {}
+        n = len(s)
+        max_len = 0
+
+        # Loop end
+        for end in range(n):
+            # Counting
+            state[s[end]] = state.get(s[end], 0) + 1
+            while state[s[end]] > k:
+                state[s[start]] -= 1
+                if state[s[start]] == 0:
+                    del state[s[start]]
+                start += 1
+
+            max_len = max(max_len, end - start + 1)
+
+        return max_len
+```
+
+## 14.3. Longest Repeating Character Replacement
+
+- Step 1: Loop from end
+
+- Step 2: Counting
+
+- Step 3: Prunning when reach the length
+
+- Step 4: Increase start
+
+- Step 5: Find max_len outside.
+
+```python
+class Solution:
+    def characterReplacement(self, s: str, k: int):
+        state = {}
+        start = 0
+        max_len = 0
+        max_freq = 0
+
+        # Loop end
+        for end in range(len(s)):
+            state[s[end]] = state.get(s[end], 0) + 1
+            max_freq = max(max_freq, state[s[end]])
+            while (end - start + 1 - max_freq) > k:
+                state[s[start]] -= 1
+                if state[s[start]] == 0:
+                    del(state[s[start]])
+                start += 1
+
+            max_len = max(max_len, end - start + 1)
+
+        return max_len
+```
+
+## 14.4. Fixed-Length Sliding Window
+
+- Step 1: Loop end
+
+- Step 2: Prunning but end - start + 1 = k
+
+- Step 3: Increase start.
+
+- Step 4: Find max_len in prunning.
+
+```python
+def max_subarray_sum(nums, k):
+    start = 0
+    state = 0
+    max_sum = 0
+
+    # Loop end
+    for end in range(len(nums)):
+        state += nums[end]
+
+        # Prunning
+        if end - start + 1 == k:
+            # Update max_sum
+            max_sum = max(max_sum, state)
+            state -= nums[start]
+            # Increase start
+            start += 1
+
+    return max_sum
+
+nums = [2, 1, 5, 1, 3, 2]
+k = 3
+print(max_subarray_sum(nums, k))
+```
+
+## 14.5. Maximum Sum of Subarrays of Size K
+
+- Step 1: Loop end.
+
+- Step 2: Prunning when end - start + 1 = k.
+
+- Step 3: Update max_len trong loop.
+
+```python
+class Solution:
+    def maxSum(self, nums: List[int], k: int):
+        state = 0
+        start = 0
+        max_sum = 0
+
+        for end in range(len(nums)):
+            state += nums[end]
+
+            # Prunning
+            if end - start + 1 == k:
+                # Update max here
+                max_sum = max(max_sum, state)
+                state -= nums[start]
+                start +=1
+
+        return max_sum
+```
+
+## 14.6. Max Points You Can Obtain From Cards
+
+```python
+class Solution:
+    def maxScore(self, cards, k):
+        total = sum(cards)
+        if k >= len(cards):
+            return total
+
+        state = 0
+        max_points = 0
+        start = 0
+
+        for end in range(len(cards)):
+            state += cards[end]
+
+            if end - start + 1 == len(cards) - k:
+                max_points = max(total - state, max_points)
+                state -= cards[start]
+                start += 1
+
+        return max_points
+```
+
+## 14.7. Max Sum of Distinct Subarrays Length k
+
+- Step 1: Subarray length k => Find max event in loop when end - start + 1 == k.
+
+- Step 2: Subarray length k => Handle state count in when end - start + 1 == k.
+
+```python
+class Solution:
+    def maxSum(self, nums: List[int], k: int):
+        state = {}
+        curr_sum = 0
+
+        start = 0
+        max_sum = 0
+
+        for end in range(len(nums)):
+            state[nums[end]] = state.get(nums[end], 0) + 1
+            curr_sum += nums[end]
+
+            # Prunning
+            if end - start + 1 == k:
+                if len(state) == k:
+                    # Update max here
+                    max_sum = max(max_sum, curr_sum)
+
+                curr_sum -= nums[start]
+                state[nums[start]] -= 1
+                if state[nums[start]] == 0:
+                    del(state[nums[start]])
+
+                start += 1
+
+        return max_sum
 
 ```
