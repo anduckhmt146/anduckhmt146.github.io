@@ -90,4 +90,22 @@ Here is some note for product system design.
 
 - 'Last Write Win' improve the eventually consistency.
 
-# 3. Design a Local Delivery Service like Gopuff
+# 3. NoSQL Design
+
+## 3.1. Redis
+
+![](/images/System-Design/Product/redis.png)
+
+## 3.2. MongoDB
+
+![](/images/System-Design/Product/mongodb.png)
+
+![](/images/System-Design/Product/master-single-point-of-failure.png)
+
+## 3.3. Cassandra
+
+![](/images/System-Design/Product/cassandra.png)
+
+## 3.4. DynamoDB
+
+![](/images/System-Design/Product/dynamodb.png)
