@@ -203,3 +203,5 @@ When SELECT 1 billions records => What is lock db ?
 - Object: metadata -> ETL -> Read from S3 -> Tool make it (abstract from sql -> query data in engine).
 
 - Data will store in file and partitioning.
+
+- Everything is a distributed file system -> Partition -> Abstract by sql query in tool.
