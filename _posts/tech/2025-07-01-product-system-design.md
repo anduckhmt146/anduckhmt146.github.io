@@ -109,3 +109,97 @@ Here is some note for product system design.
 ## 3.4. DynamoDB
 
 ![](/images/System-Design/Product/dynamodb.png)
+
+# 4. SQL Design
+
+## 4.1. Lock Database
+
+- Khi select need to WHERE from 'index' => Không là nó scan DB.
+
+- Khi select \* => auto lock bảng => Write vào không được.
+
+When SELECT 1 billions records => What is lock db ?
+
+![](/images/lock-db.png)
+
+## 4.2. Isolation Lock happen in ACID
+
+- In ACID, Isolation Level in ACID
+
+- 3 types of READ:
+
+  - Dirty Read: Read without commit.
+
+  - Non-repeatable Read: In the same trasaction, read the same row 2 times => Return 2 different value because other transaction has commited it.
+
+  - Phanrom Read: Read same time with different numbers of row.
+
+- 4 Isolation of Level:
+
+  - Read Uncommited
+
+  - Read Commited.
+
+  - Repeatable Read.
+
+  - Seralizable
+
+![](/images/System-Design/isolation_level.png)
+
+## 4.3. Hadoop (File System)
+
+- Hadoop: Distributed File System from Data Warehouse.
+
+- Data Warehouse: Using Hive to query Hadoop.
+
+- Data Lakehouse: versioning, metadata, only has ACID, still distributed => Keep ACID by using distributed patterns: 2-Phrase-Commit, transaction logs, slower than warehouse.
+
+- DBMS: File System + Query Engine + Metadata.
+
+## 4.4. Hive:
+
+- Hive: Store metadata for Hadoop (File System)
+
+## 4.5. Two-phrase commit
+
+- Failed in ISOLATION level.
+
+![](/images/System-Design/two-phrase-commit.png)
+
+## 4.6. Airflow
+
+- Using cronjob to schedule job to query data.
+
+- CI/CD of data.
+
+## 4.7. Flink & Spark
+
+- Compute Engine
+
+- Spark: batch processing, read batch from Kafka => Count enough records to use.
+
+- Flink: Read real-time, read data from Kafka => Compute to predict the fraud detection real-time, costly and less to use.
+
+- Depend on jobs => write a cron job with Spark, Flink => DE write cronjob.
+
+## 4.8. OLAP
+
+- Using query engine to read data in data warehouse.
+
+- PostgreSQL
+
+- Redshift
+
+- Lakehouse -> trino
+
+## 4.9. Superset
+
+- Superset -> Trino -> Query data in lakehouse (warehouse) -> Red-shift.
+
+- Warehouse: SQL
+
+- Lakehouse.
+
+- Object: metadata -> ETL -> Read from S3 -> Tool make it (abstract from sql -> query data in engine).
+
+- Data will store in file and partitioning.
