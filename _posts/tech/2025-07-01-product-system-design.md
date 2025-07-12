@@ -110,6 +110,8 @@ Here is some note for product system design.
 
 ![](/images/System-Design/Product/dynamodb.png)
 
+## 3.5. Lock, concurrency, index, partition DBMS: Redis, MongoDB, Cassandra, DynamoDB, SQL
+
 # 4. SQL Design
 
 ## 4.1. Lock Database
@@ -205,3 +207,9 @@ When SELECT 1 billions records => What is lock db ?
 - Data will store in file and partitioning.
 
 - Everything is a distributed file system -> Partition -> Abstract by sql query in tool.
+
+## 4.10. Write-Ahead Log
+
+- A Write-Ahead Log is a sequential log file that records every intended modification to the database before the actual data is written.
+
+- Use to store history action of DBMS => Use for rollback, migration when change data capture,...
