@@ -6260,3 +6260,257 @@ class Solution:
         return max_sum
 
 ```
+
+# 15. Linked List
+
+## 15.1. Traversing a Linked List
+
+- Step 1: Using only current
+
+```python
+def findLength(head):
+  length = 0
+  current = head
+  while current:
+    length += 1
+    current = current.next
+  return length
+```
+
+## 15.2. Deleting a Node With a Given Target
+
+- Step 1: Using current and prev
+
+- Step 2: Read from prev to curr:
+  - prev = curr
+  - curr = curr -> next
+
+```python
+def deleteNode(head, target):
+  if head.val == target:
+    return head.next
+
+  prev = None
+  curr = head
+
+  while curr:
+    if curr.val == target:
+      prev.next = curr.next
+      break
+    prev = curr
+    curr = curr.next
+
+  return head;
+```
+
+## 15.3. Fast & Slow Pointer
+
+- Step 1: Điều kiện fast & fast.next.next
+
+```python
+
+def fastAndSlow(head):
+  fast = head
+  slow = head
+  while fast && fast.next:
+    fast = fast.next.next
+    slow = slow.next
+
+  return slow
+```
+
+## 15.4. Detect Cycle
+
+- Step 1: Điều kiện fast & fast.next.next
+
+```python
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                return True
+
+        return False
+```
+
+## 15.5. Reversing a Linked List
+
+- Step 1: Using prev and current.
+
+- Step 2: Chỗ này tư duy kiểu gán theo thứ tự => curr->next = prev, thứ tự gán prev = current, current = next.
+
+```python
+def reverse(head):
+  prev = None
+  current = head
+  while current:
+    next_ = current.next
+    current.next = prev
+    prev = current
+    current = next_
+
+  return prev
+```
+
+## 15.3. Merge Two Linked List
+
+- Step 1: Init head.
+
+- Step 2: Assign head to head of l1 or head of l2.
+
+- Step 3: Using tail = head, using tail to transfer the 2 linked list.
+
+```python
+def merge_lists(l1, l2):
+  if not l1: return l2
+  if not l2: return l1
+
+  if l1.val < l2.val:
+    head = l1
+    l1 = l1.next
+  else:
+    head = l2
+    l2 = l2.next
+
+  tail = head
+  while l1 and l2:
+    if l1.val < l2.val:
+      tail.next = l1
+      l1 = l1.next
+    else:
+      tail.next = l2
+      l2 = l2.next
+    tail = tail.next
+
+  tail.next = l1 or l2
+  return head
+
+```
+
+## 15.4. Palindrome Linked List
+
+Idea:
+
+- Step 1: Reverse second half.
+
+- Step 2: Compare 2 lists.
+
+```python
+def is_palindrome(head):
+  # find middle node of the list
+  slow = fast = head
+  while fast and fast.next:
+    fast = fast.next.next
+    slow = slow.next
+
+  # reverse second half of the list
+  curr, prev = slow, None
+  while curr:
+    next_ = curr.next # save next node
+    curr.next = prev # reverse pointer
+    prev = curr # move pointers
+    curr = next_
+
+  # Check palindrome
+  left, right = head, prev
+  while right:
+    if left.val != right.val:
+      return False
+    left = left.next
+    right = right.next
+  return True
+```
+
+## 15.5. Remove Nth Node From End of List (Hay)
+
+- Step 1: Cho con fast đi trước n steps.
+
+- Step 2: Chạy con fast vs slow cùng tới end.
+
+- Step 3: Trỏ con slow tới slow.next.next.
+
+```python
+def removeNthFromEnd(head, n):
+  dummy = ListNode(0)
+  dummy.next = head
+
+  fast, slow = dummy, dummy
+  for _ in range(n):
+    fast = fast.next
+
+  while fast.next:
+    fast = fast.next
+    slow = slow.next
+
+  # remove nth node from end
+  slow.next = slow.next.next
+  return dummy.next
+```
+
+## 15.6. Reorder List
+
+- Step 1: Reverse second half of list
+
+- Step 2: Merge first half with reversed second half
+
+```python
+def reorderList(head):
+  if not head or not head.next:
+    return head
+
+  # find middle node
+  slow = fast = head
+  while fast and fast.next:
+    fast = fast.next.next
+    slow = slow.next
+
+  # reverse second half of list
+  prev, curr = None, slow
+  while curr:
+    next_ = curr.next
+    curr.next = prev
+    prev, curr = curr, next_
+
+  # merge first and reversed second half of list
+  first, second = head, prev
+  while second.next:
+    first.next, first = second, first.next
+    second.next, second = first, second.next
+
+  return head
+```
+
+## 15.7. Swap Nodes in Pairs
+
+- Idea: Reverse pair + next
+
+- Using con dummyNode, prev, current.
+
+- Step 1: Dùng prev, current xong thêm vô list mới cũng được.
+
+![](/images/swap-pairs.png)
+
+```python
+def swapPairs(head):
+  dummy = ListNode(0)
+  dummy.next = head
+  tail, first = dummy, head
+
+  while first and first.next:
+    second = first.next
+
+    # swap nodes
+    tail.next = second
+    first.next = second.next
+    second.next = first
+
+    tail = first
+    first = first.next
+
+  return dummy.next
+```
