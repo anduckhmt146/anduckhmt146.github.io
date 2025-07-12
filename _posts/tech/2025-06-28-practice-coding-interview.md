@@ -6058,7 +6058,7 @@ class Solution:
             state[fruits[end]] = state.get(fruits[end], 0) + 1
 
             # Prunning
-            while len(state) > 2:
+            while len(state) > k:
                 # Update start
                 state[fruits[start]] -= 1
                 if state[fruits[start]] == 0:
@@ -6300,7 +6300,7 @@ def deleteNode(head, target):
     prev = curr
     curr = curr.next
 
-  return head;
+  return head
 ```
 
 ## 15.3. Fast & Slow Pointer
