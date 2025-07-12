@@ -6514,3 +6514,191 @@ def swapPairs(head):
 
   return dummy.next
 ```
+
+# 16. Two Pointer
+
+## 16.1. Two Pointer (2 end)
+
+- Step 1: Same with binary search => but do not use mid = (left + right) / 2
+
+```python
+def twoSum(nums, target):
+  left, right = 0, len(nums) - 1
+
+  while left < right:
+    current_sum = nums[left] + nums[right]
+    if current_sum == target:
+        return True
+
+    if current_sum < target:
+        left += 1
+    else:
+        right -= 1
+
+  return False
+```
+
+## 16.2. Container With Most Water
+
+- Step 1: Same with binary search => but do not use mid = (left + right) / 2
+
+```python
+class Solution:
+    def max_area(self, heights):
+        # Left and right but not mid
+        left, right = 0, len(heights) - 1
+        max_area = 0
+
+        while left < right:
+            width = right - left
+            height = min(heights[left], heights[right])
+            curr_area = width * height
+
+            max_area = max(max_area, curr_area)
+
+            if heights[left] < heights[right]:
+                left += 1
+            else:
+                right -= 1
+
+        return max_area
+```
+
+## 16.3. Three Sum
+
+- Step 1: Giữ 1 số dầu => xong binary search trong đoạn còn lại => N \* O(N) => O(N^2).
+
+## 16.4. Triangle Numbers
+
+- Step 1: Sort and keep the largest number => Keep it => Find 2 sums.
+
+```python
+class Solution:
+    def triangleNumber(self, nums: List[int]):
+        nums.sort()
+        n = len(nums)
+
+        count = 0
+
+        for end in range(n - 1, -1, -1):
+            target = nums[end]
+            left, right = 0, end - 1
+
+            while left < right:
+                curr_sum = nums[left] + nums[right]
+
+                if curr_sum > target:
+                    count += right - left # Node here (Keep right)
+                    right -= 1
+                else:
+                    left += 1
+
+        return count
+```
+
+## 16.5. Move Zeroes
+
+- Step 1: Init the nextNonZeros => Increase it by condition.
+
+- Step 2: Go from left to right => If meet 0 => Swap to the back.
+
+```python
+class Solution:
+    def moveZeroes(self, nums: List[int]):
+        n = len(nums)
+        nextNonZeros = 0
+
+        for i in range(n):
+            if nums[i] != 0:
+                nums[i], nums[nextNonZeros] = nums[nextNonZeros], nums[i]
+                nextNonZeros += 1
+
+        return nums
+```
+
+## 16.6. Remove duplicates
+
+- Step 1: Init the nextNonDup => Increase it by condition.
+
+- Step 2: If nums[i] != nums[nextNonDup - 1] => Increase nextNonDup
+
+```python
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        nextNonDup = 0
+        n = len(nums)
+
+        for i in range(n):
+            if i == 0 or nums[i] != nums[nextNonDup - 1]:
+                nums[nextNonDup] = nums[i]
+                nextNonDup += 1
+
+        return nextNonDup
+
+```
+
+## 16.7. Sort Flag (Merge 2 cái idea lại)
+
+- Step 1: nums[i] = 0 -> swap to left
+
+- Step 2: nums[i] = 1 -> Keep.
+
+- Step 3: nums[i] = 2 -> Swap right
+
+Chỉ swap left thì i += 1 thôi.
+
+- Notes: Merge 2 cái idea lại => Bản chất duyệt đầu cuối, khác cái Move Zeros do bài đó chỉ có move cuối, còn cái này move 2 đầu nên phải có duyệt đầu cuối.
+
+```python
+class Solution:
+    def sortColors(self, nums: List[int]):
+        left, right = 0, len(nums) - 1
+        i = 0
+
+        while i <= right:
+            if nums[i] == 0:
+                nums[i], nums[left] = nums[left], nums[i]
+                left += 1
+                i += 1
+            elif nums[i] == 1:
+                i += 1
+            else:
+                nums[i], nums[right] = nums[right], nums[i]
+                right -= 1
+
+        return nums
+
+
+```
+
+## 16.8. Trapping Rain Water
+
+Idea:
+
+![](/images/trapping_rain_water.png)
+
+```python
+class Solution:
+    def trappingWater(self, heights: List[int]):
+        if not heights:
+            return 0
+        left, right = 0, len(heights) - 1
+        leftMax, rightMax = heights[left], heights[right]
+        count = 0
+
+        while left < right:
+            if rightMax > leftMax:
+                left += 1
+                if heights[left] > leftMax:
+                    leftMax = heights[left]
+                else:
+                    count += leftMax - heights[left]
+            else:
+                right -= 1
+                if heights[right] > rightMax:
+                    rightMax = heights[right]
+                else:
+                    count += rightMax - heights[right]
+
+        return count
+```
