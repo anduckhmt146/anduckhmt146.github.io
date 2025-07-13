@@ -585,19 +585,410 @@ class Solution:
 
 ### 5.1.1. SJF - Shortest Job First
 
+- Step 1: Sort by start_time, init time, schedule.
+
+- Step 2: Init ready tasks.
+
+- Step 3: Init when i < n or ready tasks.
+
+- Step 4: while i < n and tasks[i]['arrival_time'] <= time => Push to ready heap => Order by burst_time (tasks[i]['burst_time'],...)
+
+- Step 5: If ready have tasks => Process it. Else time = start of the tasks.
+
+```python
+import heapq
+
+def sjf(tasks):
+    tasks.sort(key=lambda x:x['arrival_time'])
+
+    # Base
+    time = 0
+    schedule = []
+
+    # Add them
+    i = 0
+    ready = []
+    n = len(tasks)
+
+    while i < n or ready:
+        while i < n and tasks[i]['arrival_time'] <= time:
+            heapq.heappush(ready, (tasks[i]['burst_time'], tasks[i]['arrival_time'], tasks[i]['pid'], tasks[i]))
+            i += 1
+
+        if ready:
+            _, _, _, task = heapq.heappop(ready)
+            start_time = time
+            end_time = start_time + task['burst_time']
+            schedule.append((task['pid'], start_time, end_time))
+            time = end_time
+        else:
+            time = tasks[i]['arrival_time']
+
+    return schedule
+
+# Sample test case
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 8},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 4},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 9},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 5}
+]
+
+result = sjf(tasks)
+for pid, start, end in result:
+    print(f"Task {pid}: Start at {start}, End at {end}")
+```
+
 ### 5.1.2. Priority Scheduling
+
+- Step 1: Sort by start_time, init time, schedule.
+
+- Step 2: Init ready tasks.
+
+- Step 3: Init when i < n or ready tasks.
+
+- Step 4: while i < n and tasks[i]['arrival_time'] <= time => Push to ready heap => Order by (tasks[i]['priority'],...)
+
+- Step 5: If ready have tasks => Process it. Else time = start of the tasks.
+
+```python
+import heapq
+
+def priority_scheduling(tasks):
+    # Sort by arrival time first
+    tasks.sort(key=lambda x: x['arrival_time'])
+
+    time = 0
+    i = 0
+    n = len(tasks)
+    schedule = []
+    ready = []
+
+    while i < n or ready:
+        # Push all tasks that have arrived into the ready queue
+        while i < n and tasks[i]['arrival_time'] <= time:
+            task = tasks[i]
+            heapq.heappush(ready, (task['priority'], task['arrival_time'], task['pid'], task))
+            i += 1
+
+        if ready:
+            _, _, _, task = heapq.heappop(ready)
+            start = time
+            end = start + task['burst_time']
+            schedule.append((task['pid'], start, end))
+            time = end
+        else:
+            # If no task is ready, jump to the next arrival
+            time = tasks[i]['arrival_time']
+
+    return schedule
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 10, 'priority': 3},
+    {'pid': 'P2', 'arrival_time': 2, 'burst_time': 5,  'priority': 1},
+    {'pid': 'P3', 'arrival_time': 1, 'burst_time': 8,  'priority': 2},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 6,  'priority': 4}
+]
+
+result = priority_scheduling(tasks)
+
+for pid, start, end in result:
+    print(f"Task {pid}: Start at {start}, End at {end}")
+```
 
 ### 5.1.3. FCFS - First Come First Serve
 
+- Step 1: Sort by start_time, init time, schedule.
+
+- Step 2: Loop task in tasks.
+
+- Step 3: Update schedule.
+
+- Step 4: Update time = curr_time + burst_time, time = end_time.
+
+- Step 5: if time < task['arrival_time']: time = task['arrival_time']
+
+```python
+def fcfs(tasks):
+    # Task
+    tasks.sort(key=lambda x:x['arrival_time'])
+
+    # Time
+    time = 0
+    schedule = []
+
+    for task in tasks:
+        if time < task['arrival_time']:
+            time = task['arrival_time']
+
+        start_time = time
+        end_time = time + task['burst_time']
+        schedule.append((task['pid'], start_time, end_time))
+        time = end_time
+
+    return schedule
+
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 5},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 3},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 1},
+]
+print(fcfs(tasks))
+```
+
+### 5.1.4. Max CPU Load
+
+- Step 1: Init time, schedule.
+
+- Step 2: For job in jobs
+
+- Step 3: Auto add jobs to queue => count max_cpu_load outside.
+
+- Step 4: While time have pass end tasks => pop it out heap
+
+```python
+import heapq
+
+def find_max_cpu_load(jobs):
+    # Sort jobs
+    jobs.sort(key=lambda x:x[0])
+    process_tasks = []
+
+    # CPU load
+    max_cpu_load = 0
+    curr_cpu_load = 0
+
+    for job in jobs:
+        start, end, load = job
+
+        while process_tasks and process_tasks[0][0] <= start:
+            processed_job = heapq.heappop(process_tasks)
+            curr_cpu_load -= processed_job[1]
+
+        # Append to jobs to queue by start_time
+        heapq.heappush(process_tasks, (end, load))
+
+        # Update max_cpu_load
+        curr_cpu_load += load
+        max_cpu_load = max(max_cpu_load, curr_cpu_load)
+
+    return max_cpu_load
+
+jobs = [(1, 4, 3), (2, 5, 4), (7, 9, 6)]
+print(find_max_cpu_load(jobs))
+```
+
 ## 5.2. Preemptive scheduling
 
-### 5.2.1. SRTF - Shortest Remaining Time First
+### 5.2.1. SRTF - Shortest Remaining Time First (SJF + Remaining)
 
-### 5.2.2. Round Robin
+- Step 1: Sort by start_time, init time, schedule, add 'remaining': t['burst_time'].
+
+- Step 2: Init ready tasks, priority by remaining time.
+
+- Step 3: Init completed = 0, last_pid => to detect when the running process has changed, start_time => marks when a process starts (or resumes) execution
+
+- Step 4: Loop when completed < n or ready.
+
+- Step 5: While i < n and tasks[i]['arrival_time'] <= time => Add 'remaining_time' to tasks.
+
+- Step 6: If ready => task['remaining'] -= 1, time += 1, update last_pid.
+
+- Step 7: if pid != last_pid, next task is the last_pid but last_pid is not None => add the remaining tasks last_pid to heap.
+
+```python
+import heapq
+
+def srtf(tasks):
+    # Preprocess: add 'remaining' field and sort by arrival
+    tasks = sorted([{**t, 'remaining': t['burst_time']} for t in tasks], key=lambda x: x['arrival_time'])
+
+    time = 0
+    i = 0
+    n = len(tasks)
+    ready = []  # (remaining_time, arrival_time, pid, task)
+    schedule = []
+
+    completed = 0
+    last_pid = None
+    start_time = None
+
+    while completed < n or ready:
+        # Push all tasks that have arrived into the ready
+        while i < n and tasks[i]['arrival_time'] <= time:
+            task = tasks[i]
+            heapq.heappush(ready, (task['remaining'], task['arrival_time'], task['pid'], task))
+            i += 1
+
+        if ready:
+            _, _, pid, task = heapq.heappop(ready)
+
+            if pid != last_pid:
+                # Job cu chua xong
+                if last_pid is not None:
+                    schedule.append((last_pid, start_time, time))
+                start_time = time
+                last_pid = pid
+
+            # Execute task for 1 time unit
+            task['remaining'] -= 1
+            time += 1
+
+            if task['remaining'] > 0:
+                heapq.heappush(ready, (task['remaining'], task['arrival_time'], task['pid'], task))
+            else:
+                completed += 1
+                schedule.append((pid, start_time, time))
+                last_pid = None
+        else:
+            time += 1
+
+    return schedule
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 8},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 4},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 9},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 5}
+]
+
+for pid, start, end in srtf(tasks):
+    print(f"Task {pid}: Start at {start}, End at {end}")
+```
+
+### 5.2.2. Round Robin (FCFS + Remaining)
+
+- Step 1: Sort by start_time, init time, schedule, add 'remaining': t['burst_time'].
+
+- Step 2: Init completed = 0, ready => different than FCFS because to store remaining tasks.
+
+- Step 3: while completed < n or ready
+
+- Step 4: while i < n and tasks[i]['arrival_time'] <= time => ready.append(tasks[i]).
+
+- Step 5: If ready handle tasks + push remaning tasks to queue => schedule.append((task['pid'], start_time, time + min(quantum, task['remaining'])))
+
+- Step 6: Remember to push tasks come from the time while the current tasks is executed => while i < n and tasks[i]['arrival_time'] <= time => ready.append(tasks[i])
+
+- Step 7: Count completed += 1 when the tasks in compleeted.
+
+- Step 8: If not is queue => time = tasks[i]['arrival_time'].
+
+```python
+from collections import deque
+
+def round_robin(tasks, quantum):
+    # Add remaining time to each task
+    tasks = sorted([{**t, 'remaining': t['burst_time']} for t in tasks], key=lambda x: x['arrival_time'])
+
+    time = 0
+    schedule = []
+
+
+    i = 0  # Index for incoming tasks
+    n = len(tasks)
+
+    completed = 0
+    ready = deque()
+
+    while completed < n or ready:
+        # Enready tasks that have arrived
+        while i < n and tasks[i]['arrival_time'] <= time:
+            ready.append(tasks[i])
+            i += 1
+
+        if ready:
+            task = ready.popleft()
+
+            start_time = time
+            duration = min(quantum, task['remaining'])
+            time += duration
+            task['remaining'] -= duration
+            schedule.append((task['pid'], start_time, time))
+
+            # But while that task was executing, new tasks might have arrived
+            while i < n and tasks[i]['arrival_time'] <= time:
+                ready.append(tasks[i])
+                i += 1
+
+            # If not finished, push back to ready
+            if task['remaining'] > 0:
+                ready.append(task)
+            else:
+                completed += 1
+        else:
+            # No ready task, jump to the next arrival time
+            if i < n:
+                time = tasks[i]['arrival_time']
+
+    return schedule
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 5},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 3},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 8},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 6}
+]
+
+quantum = 3
+
+result = round_robin(tasks, quantum)
+for pid, start, end in result:
+    print(f"Task {pid}: Start at {start}, End at {end}")
+```
 
 ### 5.2.3. Cooldown
 
+- Step 1: Count the frequence of the jobs, do longer jobs first.
+
+- Step 2: Init time, schedule
+
+- Step 3: Init ready (max_heap) and cooldown deque.
+
+- Step 4: while ready or cooldown:
+
+- Step 4: If have ready => Process tasks in ready => Add remaining task to cool down at time + n + 1 => cooldown.append((time + n + 1, cnt + 1)).
+
+- Step 5: If have cooldown and come to time cooldown at cooldown[0][0] == time => Push cooldown tasks to ready task: heapq.heappush(ready, cooldown.popleft()[1])
+
+```python
+import heapq
+from collections import Counter, deque
+from typing import List
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        # Count the frequency of tasks
+        freq = Counter(tasks)
+
+        # Python's heapq is a min-heap, so we store negative frequencies for max-heap behavior
+        ready = [-cnt for cnt in freq.values()]
+        heapq.heapify(ready)
+
+        # Queue to manage cooldowns: (ready_time, -task_count)
+        cooldown = deque()
+
+        time = 0
+        while ready or cooldown:
+            time += 1
+
+            # Release from cooldown if task is ready
+            if cooldown and cooldown[0][0] == time:
+                heapq.heappush(ready, cooldown.popleft()[1])
+
+            if ready:
+                cnt = heapq.heappop(ready)
+                if cnt + 1 < 0:
+                    # Add to cooldown queue with ready time = now + n + 1
+                    cooldown.append((time + n + 1, cnt + 1))
+
+        return time
+```
+
 ## 5.3. Top-K
+
+## 5.4. Multiple CPUs
 
 ### 5.3.1. Closest (Max Heap)
 

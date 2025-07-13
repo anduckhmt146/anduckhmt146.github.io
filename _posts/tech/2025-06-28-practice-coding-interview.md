@@ -5281,22 +5281,22 @@ class Solution:
         freq = Counter(tasks)
 
         # Python's heapq is a min-heap, so we store negative frequencies for max-heap behavior
-        max_heap = [-cnt for cnt in freq.values()]
-        heapq.heapify(max_heap)
+        ready = [-cnt for cnt in freq.values()]
+        heapq.heapify(ready)
 
         # Queue to manage cooldowns: (ready_time, -task_count)
         cooldown = deque()
 
         time = 0
-        while max_heap or cooldown:
+        while ready or cooldown:
             time += 1
 
             # Release from cooldown if task is ready
             if cooldown and cooldown[0][0] == time:
-                heapq.heappush(max_heap, cooldown.popleft()[1])
+                heapq.heappush(ready, cooldown.popleft()[1])
 
-            if max_heap:
-                cnt = heapq.heappop(max_heap)
+            if ready:
+                cnt = heapq.heappop(ready)
                 if cnt + 1 < 0:
                     # Add to cooldown queue with ready time = now + n + 1
                     cooldown.append((time + n + 1, cnt + 1))
@@ -5380,7 +5380,6 @@ class Solution:
 - Step 4: Using for.
 
 ```python
-import unittest
 
 def fcfs(tasks):
     # Task
@@ -5535,22 +5534,23 @@ def round_robin(tasks, quantum):
     tasks = sorted([{**t, 'remaining': t['burst_time']} for t in tasks], key=lambda x: x['arrival_time'])
 
     time = 0
-    queue = deque()
+    schedule = []
+
 
     i = 0  # Index for incoming tasks
     n = len(tasks)
 
     completed = 0
-    schedule = []
+    ready = deque()
 
-    while completed < n or queue:
-        # Enqueue tasks that have arrived
+    while completed < n or ready:
+        # Enready tasks that have arrived
         while i < n and tasks[i]['arrival_time'] <= time:
-            queue.append(tasks[i])
+            ready.append(tasks[i])
             i += 1
 
-        if queue:
-            task = queue.popleft()
+        if ready:
+            task = ready.popleft()
 
             start_time = time
             duration = min(quantum, task['remaining'])
@@ -5560,12 +5560,12 @@ def round_robin(tasks, quantum):
 
             # But while that task was executing, new tasks might have arrived
             while i < n and tasks[i]['arrival_time'] <= time:
-                queue.append(tasks[i])
+                ready.append(tasks[i])
                 i += 1
 
-            # If not finished, push back to queue
+            # If not finished, push back to ready
             if task['remaining'] > 0:
-                queue.append(task)
+                ready.append(task)
             else:
                 completed += 1
         else:
