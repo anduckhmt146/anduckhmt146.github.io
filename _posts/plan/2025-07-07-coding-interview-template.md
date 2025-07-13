@@ -1280,11 +1280,78 @@ for r in result:
 
 ![](/images/Coding-Interview/merge-interval-pattern.png)
 
-## 6.1. Merge Interval
+## 6.1. Overlapping Interval
 
-## 6.2. Overlapping Interval
+- Step 1: Sort by start_time.
+
+- Step 2: Start from (1, n) => Check if intervals[i][0] < intervals[i - 1][1] => It is overlap.
+
+```python
+class Solution:
+    def canAttendMeetings(self, intervals: List[List[int]]):
+        # Sort by start time
+        intervals.sort(key=lambda x:x[0])
+
+        n = len(intervals)
+
+        # Check validate
+        for i in range(1, n):
+            # Overlap
+            if intervals[i][0] < intervals[i - 1][1]:
+                return False
+
+        return True
+```
+
+## 6.2. Merge Interval
+
+- Step 1: Sort by start_time.
+
+- Step 2: Start from (1, n) => Check if intervals[i][0] < intervals[i - 1][1] => Merge by update the end of last list => merged[-1][1] = max(interval[1], merged[-1][1])
+
+- Step 3: Else append to the list => merged.append(interval)
+
+```python
+def mergeIntervals(intervals):
+  sortedIntervals = sorted(intervals, key=lambda x: x[0])
+  merged = []
+
+  for interval in sortedIntervals:
+    if not merged or interval[0] > merged[-1][1]:
+      merged.append(interval)
+    else:
+      merged[-1][1] = max(interval[1], merged[-1][1])
+
+  return merged
+```
 
 ## 6.3. Non-overlapping Interval
+
+- Step 1: Sort by end_time.
+
+- Step 2: Loop from (1, n)
+
+- Step 3: If start of the interval intervals[i][0] >= end => count += 1 and end = intervals[i][1] => Because sort by end, larger than overlapping.
+
+- Step 3: Count len(intervals) - count
+
+```python
+def nonOverlappingIntervals(intervals):
+  if not intervals:
+    return 0
+
+  intervals.sort(key=lambda x: x[1])
+  end = intervals[0][1]
+  count = 1
+
+  for i in range(1, len(intervals)):
+    # Non-overlapping interval found
+    if intervals[i][0] >= end:
+      end = intervals[i][1]
+      count += 1
+
+  return len(intervals) - count
+```
 
 # 7. Divide and Conquer
 

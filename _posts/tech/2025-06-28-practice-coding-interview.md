@@ -1188,7 +1188,6 @@ class Solution:
                 return False
 
         return True
-
 ```
 
 ## 4.2. Merge Interval
