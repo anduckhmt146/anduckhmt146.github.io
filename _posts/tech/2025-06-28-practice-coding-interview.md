@@ -5774,14 +5774,10 @@ def sjf_multi_cpu(tasks: List[Dict], k: int) -> List[Tuple[str, int, int, int]]:
             assigned = True
 
         if not assigned:
-            # Advance time to next task arrival or next CPU free time
-            next_times = []
-            if i < n:
-                next_times.append(tasks[i]['arrival_time'])
-            if cpu_heap:
-                next_times.append(cpu_heap[0][0])
-            if next_times:
-                time = max(time + 1, min(next_times))
+            next_arrival = tasks[i]['arrival_time'] if i < n else float('inf')
+            next_cpu_free = cpu_heap[0][0] if cpu_heap else float('inf')
+            # Move to the next event (task arrival or CPU becomes free)
+            time = max(time + 1, min(next_arrival, next_cpu_free))
 
     print("Time", time)
 
@@ -5978,7 +5974,6 @@ class Solution:
                 heapq.heappushpop(heap, (-distance, point))
 
         return [item[1] for item in heap]
-
 ```
 
 Notes:

@@ -948,9 +948,9 @@ for pid, start, end in result:
 
 - Step 4: while ready or cooldown:
 
-- Step 4: If have ready => Process tasks in ready => Add remaining task to cool down at time + n + 1 => cooldown.append((time + n + 1, cnt + 1)).
+- Step 5: If have ready => Process tasks in ready => Add remaining task to cool down at time + n + 1 => cooldown.append((time + n + 1, cnt + 1)).
 
-- Step 5: If have cooldown and come to time cooldown at cooldown[0][0] == time => Push cooldown tasks to ready task: heapq.heappush(ready, cooldown.popleft()[1])
+- Step 6: If have cooldown and come to time cooldown at cooldown[0][0] == time => Push cooldown tasks to ready task: heapq.heappush(ready, cooldown.popleft()[1])
 
 ```python
 import heapq
@@ -988,11 +988,293 @@ class Solution:
 
 ## 5.3. Top-K
 
-## 5.4. Multiple CPUs
-
 ### 5.3.1. Closest (Max Heap)
 
+- Step 1: Init max heap
+
+- Step 2: Loop for number
+
+- Step 3: If len < k => heappush.
+
+- Step 4: Else if len > k and distance < -heap[0][0] => heappushpop.
+
+```python
+import heapq
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int):
+        heap = []
+
+        for point in points:
+            x, y = point
+            distance = x * x + y * y
+
+            if len(heap) < k:
+                heapq.heappush(heap, (-distance, point))
+            elif distance < -heap[0][0]:
+                heapq.heappushpop(heap, (-distance, point))
+
+        return [item[1] for item in heap]
+```
+
 ### 5.3.2. Maximum (Min Heap)
+
+- Step 1: Init min heap
+
+- Step 2: Loop for number
+
+- Step 3: If len < k => heappush.
+
+- Step 4: Else if len > k and num > heap[0] => heappushpop.
+
+```python
+class Solution:
+    def kthLargest(self, nums: List[int], k: int):
+        heap = []
+        for num in nums:
+            if len(heap) < k:
+                heapq.heappush(heap, num)
+            elif num > heap[0]:
+                heapq.heappushpop(heap, num)
+
+        return heap[0]
+```
+
+## 5.4. Multiple CPUs
+
+### 5.4.1. FCFS Multiple CPUs
+
+- Step 1: Sort by start_time, init time, schedule.
+
+- Step 2: Init cpu_heap [(0, cpu_id) for cpu_id in range(cpu_count)].
+
+- Step 3: Loop task in tasks.
+
+- Step 4: Get earliest available CPU, start_time = max(cpu_available_time, arrival)
+
+- Step 5: schedule.append({'pid': pid, 'cpu': cpu_id, 'start_time': start_time, 'end_time': end_time})
+
+- Step 6: Push end_time to CPU heapq.heappush(cpu_heap, (end_time, cpu_id))
+
+```python
+import heapq
+
+def fcfs_multi_cpu(tasks, cpu_count):
+    # Sort tasks by arrival time
+    tasks = sorted(tasks, key=lambda x: x['arrival_time'])
+
+    # Min-heap of (available_time, cpu_id)
+    cpu_heap = [(0, cpu_id) for cpu_id in range(cpu_count)]
+    heapq.heapify(cpu_heap)
+
+    schedule = []
+
+    for task in tasks:
+        arrival = task['arrival_time']
+        burst = task['burst_time']
+        pid = task['pid']
+
+        # Get the earliest available CPU
+        available_time, cpu_id = heapq.heappop(cpu_heap)
+
+        # The task starts at the max of CPU's available time or its own arrival
+        start_time = max(available_time, arrival)
+        end_time = start_time + burst
+
+        schedule.append({
+            'pid': pid,
+            'cpu': cpu_id,
+            'start_time': start_time,
+            'end_time': end_time
+        })
+
+        # Update the CPU's available time
+        heapq.heappush(cpu_heap, (end_time, cpu_id))
+
+    return schedule
+
+
+# Example
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 5},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 3},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 1},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 2},
+]
+result = fcfs_multi_cpu(tasks, cpu_count=2)
+for entry in result:
+    print(entry)
+```
+
+### 5.4.2. SJF Multiple CPUs
+
+- Step 1: Sort by start_time, init time, schedule.
+
+- Step 2: Init cpu_heap [(0, cpu_id) for cpu_id in range(cpu_count)].
+
+- Step 3: Init ready queue
+
+- Step 4: Using assigned = False => Use to make sure assign all tasks for available CPU
+
+- Step 5: while i < n or ready or any(cpu[0] > time for cpu in cpu_heap)
+
+- Step 6: while i < n and tasks[i]['arrival_time'] <= time => append tasks to heap priority task['burst_time'] => heapq.heappush(ready, (task['burst_time']..)).
+
+- Step 7: Assigned task to all CPUs
+  => while ready and cpu_heap and cpu_heap[0][0] <= time
+  => start_time = max(time, cpu_available_time)
+  => heapq.heappush(cpu_heap, (end_time, cpu_id))
+
+- Step 8: Fallback, if not CPU is ready => time = max(time + 1, min(tasks[i]['arrival_time'], cpu_heap[0][0])).
+
+```python
+import heapq
+from typing import List, Dict, Tuple
+
+def sjf_multi_cpu(tasks: List[Dict], k: int) -> List[Tuple[str, int, int, int]]:
+    tasks.sort(key=lambda x: x['arrival_time'])  # sort by arrival_time
+    n = len(tasks)
+    i = 0
+    time = 0
+    ready = []  # (burst_time, arrival_time, pid, task)
+    cpu_heap = []    # (available_time, cpu_id)
+    schedule = []
+
+    # Initialize all CPUs as available at time 0
+    for cpu_id in range(k):
+        heapq.heappush(cpu_heap, (0, cpu_id))
+
+    while i < n or ready or any(cpu[0] > time for cpu in cpu_heap):
+        # Add tasks that have arrived by current time
+        while i < n and tasks[i]['arrival_time'] <= time:
+            task = tasks[i]
+            heapq.heappush(ready, (task['burst_time'], task['arrival_time'], task['pid'], task))
+            i += 1
+
+        # Assign tasks to available CPUs
+        assigned = False
+        while ready and cpu_heap and cpu_heap[0][0] <= time:
+            burst_time, arrival_time, pid, task = heapq.heappop(ready)
+            cpu_available_time, cpu_id = heapq.heappop(cpu_heap)
+
+            start_time = max(time, cpu_available_time)
+            end_time = start_time + burst_time
+            schedule.append((pid, start_time, end_time, cpu_id))
+
+            heapq.heappush(cpu_heap, (end_time, cpu_id))
+            assigned = True
+
+        if not assigned:
+            # Advance time to next task arrival or next CPU free time
+            next_times = []
+            if i < n:
+                next_times.append(tasks[i]['arrival_time'])
+            if cpu_heap:
+                next_times.append(cpu_heap[0][0])
+            if next_times:
+                time = max(time + 1, min(next_times))
+
+    print("Time", time)
+
+    return schedule
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 4},
+    {'pid': 'P2', 'arrival_time': 1, 'burst_time': 3},
+    {'pid': 'P3', 'arrival_time': 2, 'burst_time': 1},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 2},
+    {'pid': 'P5', 'arrival_time': 4, 'burst_time': 5},
+]
+
+schedule = sjf_multi_cpu(tasks, k=3)
+
+for pid, start, end, cpu_id in schedule:
+    print(f"CPU{cpu_id} runs {pid} from {start} to {end}")
+```
+
+### 5.4.3. Priority Scheduling Multiple CPUs
+
+- Step 1: Sort by start_time, init time, schedule.
+
+- Step 2: Init cpu_heap [(0, cpu_id) for cpu_id in range(cpu_count)].
+
+- Step 3: Init ready queue
+
+- Step 4: Using assigned = False => Use to make sure assign all tasks for available CPU
+
+- Step 5: while i < n or ready or any(cpu[0] > time for cpu in cpu_heap)
+
+- Step 6: while i < n and tasks[i]['arrival_time'] <= time => append tasks to heap priority task['priority'] => heapq.heappush(ready, (task['priority']..)).
+
+- Step 7: Assigned task to all CPUs
+  => while ready and cpu_heap and cpu_heap[0][0] <= time
+  => start_time = max(time, cpu_available_time)
+  => heapq.heappush(cpu_heap, (end_time, cpu_id))
+
+- Step 8: Fallback, if not CPU is ready => time = max(time + 1, min(tasks[i]['arrival_time'], cpu_heap[0][0])).
+
+```python
+import heapq
+
+def priority_scheduling_multi_cpu(tasks, cpu_count):
+    tasks = sorted(tasks, key=lambda x: x['arrival_time'])
+    i = 0
+    time = 0
+    n = len(tasks)
+
+    cpu_heap = [(0, cpu_id) for cpu_id in range(cpu_count)]
+    heapq.heapify(cpu_heap)
+
+    ready_queue = []
+    schedule = []
+
+    while i < n or ready_queue:
+        # Add all tasks that have arrived by current time
+        while i < n and tasks[i]['arrival_time'] <= time:
+            task = tasks[i]
+            heapq.heappush(ready_queue, (task['priority'], task['arrival_time'], task['pid'], task))
+            i += 1
+
+        # Assign ready tasks to available CPUs
+        assigned = False
+        while ready_queue and cpu_heap and cpu_heap[0][0] <= time:
+            cpu_available_time, cpu_id = heapq.heappop(cpu_heap)
+            _, arrival, pid, task = heapq.heappop(ready_queue)
+
+            start_time = max(cpu_available_time, arrival, time)
+            end_time = start_time + task['burst_time']
+
+            schedule.append({
+                'pid': pid,
+                'cpu': cpu_id,
+                'start_time': start_time,
+                'end_time': end_time
+            })
+
+            heapq.heappush(cpu_heap, (end_time, cpu_id))
+            assigned = True
+
+        # If no task is assigned and no CPU is available yet, move time forward
+        if not assigned:
+            next_arrival = tasks[i]['arrival_time'] if i < n else float('inf')
+            next_cpu_free = cpu_heap[0][0] if cpu_heap else float('inf')
+            # Move to the next event (task arrival or CPU becomes free)
+            time = max(time + 1, min(next_arrival, next_cpu_free))
+
+    return schedule
+
+
+tasks = [
+    {'pid': 'P1', 'arrival_time': 0, 'burst_time': 10, 'priority': 3},
+    {'pid': 'P2', 'arrival_time': 2, 'burst_time': 5,  'priority': 1},
+    {'pid': 'P3', 'arrival_time': 1, 'burst_time': 8,  'priority': 2},
+    {'pid': 'P4', 'arrival_time': 3, 'burst_time': 6,  'priority': 4}
+]
+
+result = priority_scheduling_multi_cpu(tasks, cpu_count=2)
+for r in result:
+    print(r)
+```
 
 # 6. Merge Interval
 
