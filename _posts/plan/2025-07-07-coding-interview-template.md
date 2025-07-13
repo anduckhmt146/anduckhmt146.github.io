@@ -1484,9 +1484,894 @@ class Solution:
 
 ![](/images/Coding-Interview/dfs-pattern.png)
 
+## 8.1. DFS in tree
+
+### 8.1.1. Prunning
+
+- Step 1: Basecase
+
+- Step 2: Prunning
+
+- Step 3: What node.val do
+
+- Step 4: What left right do
+
+```python
+class Solution:
+    def pathSum(self, nodes: TreeNode, target: int):
+        def dfs(node, total):
+            if not node:
+                return total == target
+
+            # Calculate node
+            total += node.val
+
+            # Prunning here
+            if not node.left and not node.right and total == target:
+                return True
+
+            left = dfs(node.left, total)
+            right = dfs(node.right, total)
+
+            # Left Right trả gì cho root
+            return left or right
+
+        return dfs(nodes, 0)
+```
+
+### 8.1.2. No-prunning
+
+- Step 1: Basecase
+
+- Step 2: Prunning
+
+- Step 3: What node.val do
+
+- Step 4: What left right do
+
+```python
+class Solution:
+    def pathSum(self, root, target):
+        res = []
+
+        def dfs(node, path, curr_sum):
+            nonlocal res
+            # Base case
+            if not node:
+                return False
+
+            # What node do
+            path.append(node.val)
+            curr_sum += node.val
+
+            if not node.left and not node.right and curr_sum == target:
+                res.append(path[:])
+
+            # Prunning
+            if curr_sum > target:
+                return False
+
+            # What left and right do
+            left = dfs(node.left, path, curr_sum)
+            right = dfs(node.right, path, curr_sum)
+
+            # backtrack
+            path.pop()
+            return left and right
+
+        dfs(root, [], 0)
+        return res
+
+```
+
+## 8.2. DFS in graph
+
+### 8.2.1. DFS in graph
+
+- Step 1: Basecase
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+```python
+def dfs(adjList):
+    visited = set()
+    def dfs_helper(node):
+        if node in visited:
+            return
+
+        # Visit node
+        print("Visit node: ", node)
+        visited.add(node)
+        for neighbor in adjList[node]:
+            dfs_helper(neighbor)
+
+    # Ensure the unconnected graph is still cover
+    for node in adjList:
+        if node not in visited:
+            dfs_helper(node)
+
+adjList = {
+    "1": ["2", "4"],
+    "2": ["1", "3"],
+    "3": ["2", "4"],
+    "4": ["1", "3", "5"],
+    "5": ["4"]
+}
+dfs(adjList)
+```
+
+### 8.2.2. Check Cycle
+
+```python
+from collections import defaultdict
+
+class Solution:
+    def graph_valid_tree(self, n, edges):
+        graph = defaultdict(list)
+        for start, end in edges:
+            graph[start].append(end)
+            graph[end].append(start)
+
+        visited = set()
+        def isCycle(node, parent):
+            visited.add(node)
+            for neighbor in graph[node]:
+                # [0,1] and [1,0] is ok
+                if neighbor == parent:
+                    continue
+                # Prunning => True xong không Prunning xuống nữa
+                if neighbor in visited:
+                    return True
+                if isCycle(neighbor, node):
+                    return True
+            return False
+
+        # Check not cycle & connected
+        return not isCycle(0, 0) and len(visited) == n
+```
+
+### 8.2.3. Matrix: Flood Fill
+
+- Step 1: Basecase
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+```python
+class Solution:
+    def flood_fill(self, image, sr, sc, color):
+        m, n = len(image), len(image[0])
+        # Visited
+        visited = set()
+
+        # Directions
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        def dfs(r, c, prev_color, color):
+            # Base case
+            if (r, c) in visited:
+                return
+
+            # Prunning
+            if r < 0 or r >= m or c < 0 or c >= n:
+                return
+
+            if image[r][c] != prev_color or image[r][c] == color:
+                return
+
+            # Node
+            image[r][c] = color
+
+            # Neighbor
+            for dr, dc in directions:
+                dfs(r + dr, c + dc, prev_color, color)
+
+        dfs(sr, sc, image[sr][sc], color)
+        return image
+```
+
+### 8.2.4. Boundaries Matrix: Surrounded Regions
+
+- Step 1: Basecase
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+Idea:
+
+- Step 1: DFS in border => 'O' to make is 'S'.
+
+- Step 2: Change another 'O' to 'X'.
+
+```python
+class Solution:
+    def surrounded_regions(self, grid: List[List[str]]):
+        if not grid or not grid[0]:
+            return []
+        row, col = len(grid), len(grid[0])
+        visited = set()
+
+        # Directions
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        def dfs(r, c):
+            # Base case
+            if (r, c) in visited:
+                return
+
+            # Prunning
+            if r < 0 or r >= row or c < 0 or c >= col:
+                return
+
+            if grid[r][c] != 'O':
+                return
+
+            # Node
+            visited.add((r, c))
+            grid[r][c] = 'S'
+
+            # Check neighbor
+            for dr, dc in directions:
+                dfs(r + dr, c + dc)
+
+        # Step 1: DFS in col 0 and col - 1
+        for i in range(row):
+            if grid[i][0] == 'O':
+                dfs(i, 0)
+            if grid[i][col - 1] == 'O':
+                dfs(i, col - 1)
+
+        # Step 2: DFS in row 0 and row - 1
+        for j in range(col):
+            if grid[0][j] == 'O':
+                dfs(0, j)
+            if grid[row - 1][j] == 'O':
+                dfs(row - 1, j)
+
+        # Step 3: Change another X to O
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == 'O':
+                    grid[i][j] = 'X'
+                elif grid[i][j] == 'S':
+                    grid[i][j] = 'O'
+
+        return grid
+```
+
+## 8.4. Backtracking
+
+### 8.4.1. Word Search
+
+- Step 1: Base case
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+- Step 5: Backtracking out side the directions.
+
+```python
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        row, col = len(board), len(board[0])
+        visited = set()
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        def backtrack(r, c, index):
+            # Base case
+            if index == len(word):
+                return True
+
+            # Prunning
+            if r < 0 or r >= row or c < 0 or c >= col:
+                return False
+
+            if (r, c) in visited:
+                return False
+
+            if board[r][c] != word[index]:
+                return False
+
+            # Node
+            visited.add((r, c))
+            index += 1
+
+            # Neighbor
+            for dr, dc in directions:
+                nr = r + dr
+                nc = c + dc
+                if backtrack(nr, nc, index):
+                    return True
+
+            visited.remove((r, c))
+            index -= 1
+            return False
+
+        for i in range(row):
+            for j in range(col):
+                if board[i][j] == word[0]:
+                    visited.clear() # Reset after change 'B'
+                    if backtrack(i, j, 0):
+                        return True
+
+        return False
+```
+
+### 8.4.2. Combination
+
+- Step 1: Base case
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+- Step 5: Backtrack in loop item.
+
+```python
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        # Subsets = Tree + DFS + Backtrack
+
+        phone = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+
+        result = []
+
+        def backtrack(index, path):
+            # Base case
+            if index == len(digits):
+                if path:
+                    result.append(''.join(path[:]))
+                return
+
+            # Prunning
+            for char in phone[digits[index]]:
+                # Node
+                path.append(char)
+
+                # Neighbor
+                backtrack(index + 1, path)
+                path.pop()
+
+        backtrack(0, [])
+        return result
+```
+
+### 8.4.3. Subsets
+
+- Step 1: Base case
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbor
+
+- Step 5: Backtrack 2 times => Still index + 1 but not include in path.
+
+```python
+class Solution:
+    def subsets(self, nums: List[int]):
+        result = []
+
+        def backtrack(index, path):
+            # Base case
+            if index == len(nums):
+                result.append(path[:])
+                return
+
+            # Prunning
+
+            # Node
+            path.append(nums[index])
+
+            # Neighbor
+            backtrack(index + 1, path)
+
+            # Backtrack
+            path.pop()
+
+            # Magic here
+            backtrack(index + 1, path)
+
+
+        backtrack(0, [])
+        return result
+
+```
+
+### 8.4.4. Permutations
+
+- Step 1: Backtrack
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbors
+
+- Step 5: Backtrack in condition.
+
+```python
+class Solution:
+    def generateParenthesis(self, n: int):
+        result = []
+
+        def backtrack(path, open_bracket, close_bracket):
+            # Base case
+            if open_bracket == n and close_bracket == n:
+                result.append(''.join(path[:]))
+                return
+
+            # Prunning
+
+            # Node
+            if open_bracket < n:
+                path.append('(')
+                backtrack(path, open_bracket + 1, close_bracket)
+                path.pop()
+
+            # Neighbors
+            if close_bracket < open_bracket:
+                path.append(')')
+                backtrack(path, open_bracket, close_bracket + 1)
+                path.pop()
+
+        backtrack([], 0, 0)
+        return result
+```
+
+### 8.4.5. Combination Sum
+
+- Step 1: Backtrack
+
+- Step 2: Prunning
+
+- Step 3: Node
+
+- Step 4: Neighbors
+
+- Step 5: Backtrack in loop item.
+
+```python
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+
+        def backtrack(index, path, currSum):
+            # Base case
+            if currSum == 0:
+                result.append(path[:])
+                return
+
+            # Prunning
+            if index == len(candidates) or currSum < 0:
+                return
+
+            # Neighbor
+            for i in range(index, len(candidates)):
+                # Node
+                path.append(candidates[i])
+                currSum -= candidates[i]
+                backtrack(i, path, currSum)
+
+                # Backtrack
+                path.pop()
+                currSum += candidates[i]
+
+        backtrack(0, [], target)
+        return result
+
+```
+
 # 9. BFS
 
 ![](/images/Coding-Interview/bfs-pattern.png)
+
+## 9.1. Level order in tree
+
+- Step 1: Base case
+
+- Step 2: Root
+
+- Step 3: Neighbors
+
+- Step 4: Level of the queue.
+
+- Step 5: Pop start
+
+```python
+from collections import deque
+
+class Solution:
+    def level_order_sum(self, root: TreeNode):
+        # Base case
+        if not root:
+            return []
+
+        # Root
+        queue = deque([root])
+        result = []
+
+        # Neighbors
+        while queue:
+            # Level Queue
+            level_size = len(queue)
+
+            curr_sum = 0
+            for _ in range(level_size):
+                # Pop Start
+                start = queue.popleft()
+                curr_sum += start.val
+
+                if start.left:
+                    queue.append(start.left)
+
+                if start.right:
+                    queue.append(start.right)
+
+            result.append(curr_sum)
+
+        return result
+```
+
+## 9.2. Level order in graph
+
+### 9.2.1. Adjancency List By Level
+
+- Step 1: Base case
+
+- Step 2: Visit node
+
+- Step 3: Visit neighbors
+
+- Step 4: Level
+
+- Step 5: Pop left
+
+```python
+from collections import deque
+
+def bfs(adjList, root):
+    # Base case
+
+    # Root
+    visited = set()
+    queue = deque([root])
+
+    # Neighbors
+    while queue:
+        # Popleft
+        start = queue.popleft()
+
+        print("Visited:", start)
+        visited.add(start)
+
+        # Neighbors
+        for neighbor in adjList[start]:
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor)
+
+adjList = {
+    "1": ["2", "4"],
+    "2": ["1", "3"],
+    "3": ["2", "4"],
+    "4": ["1", "3", "5"],
+    "5": ["4"]
+}
+
+bfs(adjList, "1")
+```
+
+### 9.2.2. Matrix Level-By-Level
+
+- Step 1: Base case
+
+- Step 2: Visit node
+
+- Step 3: Visit neighbors
+
+- Step 4: Level
+
+- Step 5: Pop left
+
+- Step 6: Neighbors
+
+- Step 7: Prunning
+
+- Step 8: Visit neighbors
+
+Notes: queue = deque([(r, c)]): The way to init a tuple
+
+```python
+from collections import deque
+
+def bfs(grid, r, c):
+    # Base case
+
+    # Node
+    visited = set()
+    # The way to init a tuple
+    queue = deque([(r, c)])
+
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    result = []
+
+    # Neighbors
+    while queue:
+        level_size = len(queue)
+        temp = []
+
+        for _ in range(level_size):
+            # Pop left
+            start_row, start_col = queue.popleft()
+            visited.add((start_row, start_col))
+            temp.append((start_row, start_col))
+
+            # Visited the neighbors
+            for dr, dc in directions:
+                n_row = start_row + dr
+                n_col = start_col + dc
+
+                # Prunning
+                if n_row < 0 or n_row >= len(grid) or n_col < 0 or n_col >= len(grid[0]):
+                    continue
+
+                if (n_row, n_col) in visited:
+                    continue
+
+                queue.append((n_row, n_col))
+                visited.add((n_row, n_col))
+
+        result.append(temp)
+
+    return result
+
+matrix = [
+    [0, 0, 0],
+    [0, 1, 1],
+    [0, 1, 0]
+]
+print(bfs(matrix, 0, 0))
+```
+
+## 9.4. Shortest path
+
+- Idea: it is a level of the graph.
+
+```python
+from collections import defaultdict
+from collections import deque
+
+class Solution:
+    def bus_routes(self, routes: List[List[int]], source: int, target: int):
+        # Init
+        graph = defaultdict(list)
+
+        for route in routes:
+            n = len(route)
+            for i in range(n):
+                for j in range(n):
+                    if route[i] != route[j] and route[j] not in graph[route[i]]:
+                        graph[route[i]].append(route[j])
+
+        # Node
+        visited = set()
+        queue = deque([source])
+        count = 0
+
+        # Neighbor
+        while queue:
+            # Level
+            level_size = len(queue)
+            for _ in range(level_size):
+                # Pop left
+                start = queue.popleft()
+                if start == target:
+                    return count
+
+                for neighbor in graph[start]:
+                    # Prunning
+                    if neighbor not in visited:
+                        queue.append(neighbor)
+                        visited.add(neighbor)
+            count += 1
+
+        return -1
+
+```
+
+## 9.5. BFS in multiple start points
+
+- Idea: BFS in multiple start points.
+
+```python
+from collections import deque
+
+class Solution:
+    def rotting_oranges(self, grid: List[List[str]]):
+        if not grid or not grid[0]:
+            return -1
+
+        row, col = len(grid), len(grid[0])
+        fresh_oranges = 0
+
+        # Node
+        visited = set()
+        queue = deque()
+        times = -1
+
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == 'R':
+                    queue.append((i, j))
+                    visited.add((i, j))
+                elif grid[i][j] == 'F':
+                    fresh_oranges += 1
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        # Neighbors
+        while queue:
+            # Level (Count)
+            level_size = len(queue)
+            for _ in range(level_size):
+                # Pop left
+                start_row, start_col = queue.popleft()
+
+                # Neighbors
+                for dr, dc in directions:
+                    n_row = start_row + dr
+                    n_col = start_col + dc
+
+                    # Prunning
+                    if n_row < 0 or n_row >= row or n_col < 0 or n_col >= col:
+                        continue
+
+                    if (n_row, n_col) in visited:
+                        continue
+
+                    if grid[n_row][n_col] != 'F':
+                        continue
+
+                    grid[n_row][n_col] = 'R'
+                    queue.append((n_row, n_col))
+                    visited.add((n_row, n_col))
+                    fresh_oranges -= 1
+            times += 1
+
+        return times if fresh_oranges == 0 else -1
+
+```
+
+## 9.5. Topology Sort
+
+Notes: Không phải visited mà indegree[i] = 0
+
+- Step 1: Build Indegree
+
+- Step 2: Add indegree = 0 to queue
+
+- Step 3: Node
+
+- Step 4: Neighbor, indegree -= 1, add indegree = 0 to queue
+
+- Step 5: Popleft
+
+```python
+from collections import defaultdict, deque
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]):
+        # Indegree
+        in_degrees = [0] * numCourses
+
+        # Adjancy List
+        adj_list = defaultdict(list)
+
+        for u, v in prerequisites:
+            in_degrees[v] += 1
+            adj_list[u].append(v)
+
+        # Node
+        queue = deque([u for u in range(numCourses) if in_degrees[u] == 0])
+        result = []
+
+        # Neighbor
+        while queue:
+            # Popleft
+            start = queue.popleft()
+            result.append(start)
+
+            for neighbor in adj_list[start]:
+                in_degrees[neighbor] -= 1
+                if in_degrees[neighbor] == 0:
+                    queue.append(neighbor)
+
+        return len(result) == numCourses
+```
+
+## 9.6. Dijkstra
+
+Dijkstra = BFS + thay deque to heapq + dist[i] to store start -> i => dist[neighbor] = dist[start] + weight
+
+- Step 1: Init pq = [(0, start)], dist[start] = 0
+
+- Step 2: Node
+
+- Step 3: Neighbor
+
+- Step 4: Update min distance to start -> i -> j -> end, push when dist[neighbor] = dist[start] + weight => Push neighbor to heap to continue calculate heapq.heappush(pq, (dist[neighbor], neighbor))
+
+```python
+import heapq
+from collections import defaultdict
+
+def dijkstra(graph, start):
+    # Init heap
+    dist = defaultdict(lambda: float('inf'))
+
+    # Node
+    pq = [(0, start)] # dist[start -> start] = 0
+    dist[start] = 0
+
+    # Neighbor
+    while pq:
+        curr_dist, start = heapq.heappop(pq)
+
+        # Prunning
+        if curr_dist > dist[start]:
+            continue
+
+        # Dist
+        for neighbor, weight in graph[start]:
+            if dist[neighbor] > dist[start] + weight:
+                dist[neighbor] = dist[start] + weight
+                heapq.heappush(pq, (dist[neighbor], neighbor))
+
+    return dist
+
+
+graph = {
+    'A': [('B', 5), ('C', 1)],
+    'B': [('A', 5), ('C', 2), ('D', 1)],
+    'C': [('A', 1), ('B', 2), ('D', 4), ('E', 8)],
+    'D': [('B', 1), ('C', 4), ('E', 3), ('F', 6)],
+    'E': [('C', 8), ('D', 3)],
+    'F': [('D', 6)]
+}
+
+start_node = 'A'
+distances = dijkstra(graph, start_node)
+
+for node in sorted(distances):
+    print(f"Distance from {start_node} to {node}: {distances[node]}")
+```
 
 # 10. Dynamic Programming
 
