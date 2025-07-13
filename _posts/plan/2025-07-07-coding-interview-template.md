@@ -1482,7 +1482,11 @@ class Solution:
 
 # 8. DFS
 
+![](/images/Coding-Interview/dfs-pattern.png)
+
 # 9. BFS
+
+![](/images/Coding-Interview/bfs-pattern.png)
 
 # 10. Dynamic Programming
 
