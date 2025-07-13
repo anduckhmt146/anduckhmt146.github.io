@@ -1359,9 +1359,126 @@ def nonOverlappingIntervals(intervals):
 
 ## 7.1. Merge Sort
 
+- Step 1: Base case, implement merge_sort_recursive(arr, left, right), merge_two_lists(l1, l2).
+
+- Step 2: Split Mid => 2 sorted halves, recursion in the same function.
+
+- Step 3: Merge 2 sorted halves
+
+```python
+def merge_two_lists(l1, l2):
+    result = []
+    i, j = 0, 0
+    while i < len(l1) and j < len(l2):
+        if l1[i] < l2[j]:
+            result.append(l1[i])
+            i += 1
+        else:
+            result.append(l2[j])
+            j += 1
+
+    result.extend(l1[i:])
+    result.extend(l2[j:])
+    return result
+
+def merge_sort_recursive(arr, left, right):
+    if left == right:
+        return [arr[left]]
+
+    mid = (left + right) // 2
+
+    l1 = merge_sort_recursive(arr, left, mid)
+    l2 = merge_sort_recursive(arr, mid + 1, right)
+
+    return merge_two_lists(l1, l2)
+
+
+def merge_sort(arr):
+    if not arr:
+        return []
+    return merge_sort_recursive(arr, 0, len(arr) - 1)
+
+
+arr = [1, 7, 4, 1, 10, 9, 2]
+print(merge_sort(arr))
+```
+
 ## 7.2. Quick Sort
 
+- Step 1: Find pivot => implement quick_sort_recursion(arr, left, right) and partition(arr, left, right)
+
+- Step 2: Init i = start, using j to run (left, right) => if arr[j] <= pivot => Swap arr[j] to left, increase i += 1.
+
+- Step 3: Final move pivot to the middle.
+
+- Step 4: Recursive sort for each pivot of subarray (pivot1 of arr1, pivot2 of arr2)
+  => if left < right:
+  => pivot_index = partition(arr, left, right)
+  => quick_sort_recursion(arr, left, pivot_index - 1)
+  => quick_sort_recursion(arr, pivot_index + 1, right)
+
+```python
+def partition(arr, left, right):
+    pivot = arr[right]
+    i = left - 1
+
+    for j in range(left, right):
+        # Swap to after pivot
+        # j đi sau i đi trước
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+    # Swap pivot
+    arr[i + 1], arr[right] = arr[right], arr[i + 1]
+    return i + 1
+
+def quick_sort_recursion(arr, left, right):
+    if left < right:
+        pivot_index = partition(arr, left, right)
+        quick_sort_recursion(arr, left, pivot_index - 1)
+        quick_sort_recursion(arr,  pivot_index + 1, right)
+
+
+def quick_sort(arr):
+    quick_sort_recursion(arr, 0, len(arr) - 1)
+
+arr = [1, 7, 4, 1, 10, 9, 2]
+quick_sort(arr)
+print(arr)
+```
+
 ## 7.3. Pow(x, n)
+
+- Step 1: Base case
+
+- Step 2: Divide => Idea: Because in some function, you can not calculate big modular from the start, calculate smaller and merge it.
+
+- Step 3: Conquer
+
+```python
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        def exponent(base, pow):
+            # Base case
+            if pow == 0:
+                return 1.0
+
+            # Divide
+            half = exponent(base, pow // 2)
+
+            # Conquer
+            if pow % 2 == 0:
+                return half * half
+            else:
+                return half * half * base
+
+        if n < 0:
+            x = 1 / x
+            n = -n
+
+        return exponent(x, n)
+```
 
 # 8. DFS
 

@@ -3609,7 +3609,6 @@ class Solution:
 
         return exponent(x, n)
 
-
 ```
 
 # 12. Dynamic Programming
