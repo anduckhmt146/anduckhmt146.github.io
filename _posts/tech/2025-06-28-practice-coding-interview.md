@@ -7094,3 +7094,81 @@ class Solution:
 
         return dp[-1]
 ```
+
+# 18. Greedy
+
+## 18.1. Greeds and Cookies
+
+- Using i and j in 2 array, only increase i when pass the condition.
+
+```python
+def findContentChildren(greeds, cookies):
+    greeds.sort()
+    cookies.sort()
+
+    count = 0
+    i, j = 0, 0
+    while i < len(greeds) and j < len(cookies):
+        # current cookie can satisfy current child
+        if cookies[j] >= greeds[i]:
+            count += 1
+            i += 1
+        j += 1
+
+    return count
+```
+
+## 18.2. Best Time to Buy and Sell Stock
+
+```python
+
+def maxProfit(prices):
+  if not prices:
+    return 0
+
+  min_price = prices[0]
+  max_profit = 0
+
+  for price in prices:
+    min_price = min(min_price, price)
+    max_profit = max(max_profit, price - min_price)
+
+  return max_profit
+```
+
+## 18.3. Gas Station
+
+```python
+def canCompleteCircuit(gas, cost):
+  if sum(gas) < sum(cost):
+    return -1
+
+  start, fuel = 0, 0
+  for i in range(len(gas)):
+    if fuel + gas[i] - cost[i] < 0:
+      # can't reach next station:
+      # try starting from next station
+      start, fuel = i + 1, 0
+    else:
+      # can reach next station:
+      # update remaining fuel
+      fuel += gas[i] - cost[i]
+
+  return start
+```
+
+## 18.4. Jump Game
+
+```python
+class Solution:
+    def canJump(self, nums: List[int]):
+        max_reach = 0
+
+        for i in range(len(nums)):
+            if i > max_reach:
+                return False
+            max_reach = max(max_reach, i + nums[i])
+
+        return True
+
+```
