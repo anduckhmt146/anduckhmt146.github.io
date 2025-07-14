@@ -6717,20 +6717,20 @@ Top Down = DFS + memo table
 ```python
 def climbStairs(n: int) -> int:
     memo = {}
-    
+
     def climb_helper(i: int) -> int:
         # Base case
         if i <= 1:
             return 1
-        
+
         # Memoization
         if i in memo:
             return memo[i]
-        
+
         # Node
         memo[i] = climb_helper(i - 1) + climb_helper(i - 2)
         return memo[i]
-    
+
     return climb_helper(n)
 ```
 
@@ -6764,14 +6764,14 @@ def stairs(n):
 - It has optimal substructure (it can be solved using recursion)
 - It has overlapping subproblems (the same recursive call is made multiple times)
 
-
 Idea:
 
 1. Top-down first:
 
 - Step 1: Write base case.
-    - If we have 0 houses, we can't collect any treasure, so dp(0) = 0.
-    - If we have 1 house, we can only collect the treasure from the first house, so dp(1) = treasure[0].
+
+  - If we have 0 houses, we can't collect any treasure, so dp(0) = 0.
+  - If we have 1 house, we can only collect the treasure from the first house, so dp(1) = treasure[0].
 
 - Step 2: Write a rob_helper(i).
 
@@ -6781,17 +6781,17 @@ Idea:
 def rob(treasure):
     if not treasure:
         return 0
-    
+
     def rob_helper(i):
         if i == 0:
             return 0
         if i == 1:
             return treasure[0]
-        
+
         skip = rob_helper(i - 1)
         take = rob_helper(i - 2) + treasure[i - 1]
-        return max(skip, take) 
-    
+        return max(skip, take)
+
     return rob_helper(len(treasure))
 ```
 
@@ -6816,7 +6816,7 @@ def rob(treasure):
         take = dp[i - 2] + treasure[i - 1]
         skip = dp[i - 1]
         dp[i] = max(take, skip)
-    
+
     return dp[len(treasure)]
 ```
 
@@ -6840,24 +6840,24 @@ Because we have N houses => We gain treasure at the (i - 1)th house.
 def rob(treasure):
     if not treasure:
         return 0
-    
+
     def rob_helper(i):
         # Base case
         if i == 0:
             return 0
         if i == 1:
             return treasure[0]
-            
+
         # Node
         take = rob_helper(i - 2) + treasure[i - 1]
         skip = rob_helper(i - 1)
-        
+
         # Result
         return max(take, skip)
-        
+
     n = len(treasure)
     return rob_helper(n)
-    
+
 treasure = [2, 7, 9, 3, 1]
 print(rob(treasure))  # Output: 12
 ```
@@ -6865,39 +6865,39 @@ print(rob(treasure))  # Output: 12
 2. Memoization:
 
 - Add memo to store the current result
-    => memo = {}
-    => if i in memo => return memo[i]
-    => memo[i] = max(take, skip)
+  => memo = {}
+  => if i in memo => return memo[i]
+  => memo[i] = max(take, skip)
 
 ```python
 def rob(treasure):
     if not treasure:
         return 0
-    
+
     memo = {}
-    
+
     def rob_helper(i):
         # Base case
         if i == 0:
             return 0
         if i == 1:
             return treasure[0]
-            
+
         # Memoization
         if i in memo:
             return memo[i]
-            
+
         # Node
         take = rob_helper(i - 2) + treasure[i - 1]
         skip = rob_helper(i - 1)
         memo[i] = max(take, skip)
-        
+
         # Result
         return memo[i]
-        
+
     n = len(treasure)
     return rob_helper(n)
-    
+
 treasure = [2, 7, 9, 3, 1]
 print(rob(treasure))  # Output: 12
 ```
@@ -6918,21 +6918,179 @@ Step 3: Calculate.
 def rob(treasure):
     if not treasure:
         return 0
-    
+
     # Init dp table
     n = len(treasure)
     dp = [0] * (n + 1)
-    
+
     # Base case
     dp[0] = 0
     dp[1] = treasure[0]
-    
+
     for i in range(2, n + 1):
         # Calculate
         dp[i] = max(dp[i - 1], dp[i - 2] + treasure[i - 1])
-        
+
     return dp[n]
-    
+
 treasure = [2, 7, 9, 3, 1]
 print(rob(treasure))  # Output: 12
+```
+
+## 17.5. Counting Bits
+
+```python
+class Solution:
+    def count_bits(self, n: int):
+        dp = [0] * (n + 1)
+
+        for i in range(1, n + 1):
+            dp[i] = dp[i // 2] + (i % 2)
+        return dp
+```
+
+## 17.6. Decode Ways
+
+- Previous 1-bit: d[i] += d[i - 1]
+
+- Previous 2-bit: d[i] += d[i - 2]
+
+```python
+class Solution:
+    def num_decodings(self, s: str):
+        if not s or s[0] == '0':
+            return 0
+
+        n = len(s)
+        dp = [0] * (n + 1)
+        dp[0], dp[1] = 1, 1
+
+        for i in range(2, n + 1):
+            digit = s[i - 1]
+            if int(digit) != 0:
+                dp[i] += dp[i - 1]
+
+            digit = s[i - 2:i]
+            if 10 <= int(digit) <= 26:
+                dp[i] += dp[i - 2]
+
+        return dp[n]
+
+```
+
+## 17.7. Maximal Square
+
+```python
+class Solution:
+    def maximal_square(self, matrix: List[List[int]]):
+        if not matrix:
+            return 0
+
+        r = len(matrix)
+        c = len(matrix[0])
+        dp = [[0] * (c + 1) for _ in range(r + 1)]
+        max_side = 0
+
+        for i in range(1, r + 1):
+            for j in range(1, c + 1):
+                if matrix[i - 1][j - 1] == 1:
+                    top = dp[i - 1][j]
+                    left = dp[i][j - 1]
+                    diag = dp[i - 1][j - 1]
+                    dp[i][j] = min(top, left, diag) + 1
+                    max_side = max(max_side, dp[i][j])
+
+        return max_side * max_side
+
+```
+
+## 17.8. Robot Unique Paths
+
+- Idea: Loop in top and left border
+
+```python
+class Solution:
+    def unique_paths(self, m: int, n: int) -> int:
+        # Initialize a 2D array with dimensions m x n
+        dp = [[0] * n for _ in range(m)]
+
+        # base case: there is only one way to reach any cell in the first row (moving only right)
+        for i in range(n):
+            dp[0][i] = 1
+
+        # Set base case: there is only one way to reach any cell in the first column (moving only down)
+        for j in range(m):
+            dp[j][0] = 1
+
+        # Fill the rest of the dp array
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+
+        return dp[m - 1][n - 1]
+```
+
+## 17.9. Longest Increasing Subsequence
+
+- Idea: dp[i] = max(dp[i], dp[j] + 1)
+
+```python
+class Solution:
+    def longest_increasing_subsequence(self, nums: List[int]):
+        if not nums:
+            return 0
+
+        n = len(nums)
+        dp = [1] * n
+
+        for i in range(1, n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+
+        return max(dp)
+```
+
+## 17.20. Word Break
+
+```python
+class Solution:
+    def word_break(self, s: str, wordDict: List[str]):
+        dp = [False] * (len(s) + 1)
+        dp[0] = True
+
+        for i in range(1, len(s) + 1):
+            for word in wordDict:
+                if i >= len(word) and dp[i - len(word)]:
+                    sub = s[i - len(word):i]
+                    if sub == word:
+                        dp[i] = True
+                        break
+
+        return dp[len(s)]
+
+```
+
+## 17.21. Job Scheduling
+
+```python
+from bisect import bisect_right
+from typing import List
+
+class Solution:
+    def job_scheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        # Sort jobs by end time
+        jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1])
+
+        # Extract end times for binary search
+        ends = [job[1] for job in jobs]
+
+        dp = [0] * (len(jobs) + 1)
+
+        for i in range(1, len(jobs) + 1):
+            start, end, p = jobs[i - 1]
+            idx = bisect_right(ends, start)
+            dp[i] = max(dp[i - 1], dp[idx] + p)
+
+        return dp[-1]
 ```
