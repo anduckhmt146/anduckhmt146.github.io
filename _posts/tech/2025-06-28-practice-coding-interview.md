@@ -6764,11 +6764,14 @@ def stairs(n):
 - It has optimal substructure (it can be solved using recursion)
 - It has overlapping subproblems (the same recursive call is made multiple times)
 
-Idea
+
+Idea:
 
 1. Top-down first:
 
 - Step 1: Write base case.
+    - If we have 0 houses, we can't collect any treasure, so dp(0) = 0.
+    - If we have 1 house, we can only collect the treasure from the first house, so dp(1) = treasure[0].
 
 - Step 2: Write a rob_helper(i).
 
@@ -6817,3 +6820,119 @@ def rob(treasure):
     return dp[len(treasure)]
 ```
 
+## 17.4. Rob Treasure Problem
+
+- Step 1: Init DFS Helper.
+
+- Step 2: Base case
+
+- Step 2: Memoization.
+
+- Step 3: Node
+
+- Step 4: Result
+
+Because we have N houses => We gain treasure at the (i - 1)th house.
+
+1. Top-down:
+
+```python
+def rob(treasure):
+    if not treasure:
+        return 0
+    
+    def rob_helper(i):
+        # Base case
+        if i == 0:
+            return 0
+        if i == 1:
+            return treasure[0]
+            
+        # Node
+        take = rob_helper(i - 2) + treasure[i - 1]
+        skip = rob_helper(i - 1)
+        
+        # Result
+        return max(take, skip)
+        
+    n = len(treasure)
+    return rob_helper(n)
+    
+treasure = [2, 7, 9, 3, 1]
+print(rob(treasure))  # Output: 12
+```
+
+2. Memoization:
+
+- Add memo to store the current result
+    => memo = {}
+    => if i in memo => return memo[i]
+    => memo[i] = max(take, skip)
+
+```python
+def rob(treasure):
+    if not treasure:
+        return 0
+    
+    memo = {}
+    
+    def rob_helper(i):
+        # Base case
+        if i == 0:
+            return 0
+        if i == 1:
+            return treasure[0]
+            
+        # Memoization
+        if i in memo:
+            return memo[i]
+            
+        # Node
+        take = rob_helper(i - 2) + treasure[i - 1]
+        skip = rob_helper(i - 1)
+        memo[i] = max(take, skip)
+        
+        # Result
+        return memo[i]
+        
+    n = len(treasure)
+    return rob_helper(n)
+    
+treasure = [2, 7, 9, 3, 1]
+print(rob(treasure))  # Output: 12
+```
+
+3. Bottom-up:
+
+- Covert memoization table in top-down to bottom-up.
+
+- Store data with (n + 1) elements
+
+Step 1: Init dp tables.
+
+Step 2: Base case for start calculate.
+
+Step 3: Calculate.
+
+```python
+def rob(treasure):
+    if not treasure:
+        return 0
+    
+    # Init dp table
+    n = len(treasure)
+    dp = [0] * (n + 1)
+    
+    # Base case
+    dp[0] = 0
+    dp[1] = treasure[0]
+    
+    for i in range(2, n + 1):
+        # Calculate
+        dp[i] = max(dp[i - 1], dp[i - 2] + treasure[i - 1])
+        
+    return dp[n]
+    
+treasure = [2, 7, 9, 3, 1]
+print(rob(treasure))  # Output: 12
+```
