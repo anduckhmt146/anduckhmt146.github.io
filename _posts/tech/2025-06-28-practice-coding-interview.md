@@ -6695,3 +6695,125 @@ class Solution:
 
         return count
 ```
+
+# 17. Dymamic Programming
+
+## 17.1. Top-down
+
+Top Down = DFS + memo table
+
+- Step 1: Basecase.
+
+- Step 2: Prunning.
+
+- Step 3: Memoization.
+
+- Step 4: Node.
+
+- Step 5: Neighbors.
+
+=> Bản chất vẫn đi tìm dp[n].
+
+```python
+def climbStairs(n: int) -> int:
+    memo = {}
+    
+    def climb_helper(i: int) -> int:
+        # Base case
+        if i <= 1:
+            return 1
+        
+        # Memoization
+        if i in memo:
+            return memo[i]
+        
+        # Node
+        memo[i] = climb_helper(i - 1) + climb_helper(i - 2)
+        return memo[i]
+    
+    return climb_helper(n)
+```
+
+## 17.2. Bottom-up
+
+- Build a table from dp[0] -> dp[n]
+
+- Step 1: Base case => what is needed for first build.
+
+- Step 2: Node.
+
+- Step 3: Condition.
+
+- Step 4: Neighbors
+
+```python
+def stairs(n):
+    if n <= 1:
+        return 1
+    dp = [0] * (n + 1)
+
+    dp[0] = 1
+    dp[1] = 1
+    for i in range(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+    return dp[n]
+```
+
+## 17.3. Dynamic Programming Problems
+
+- It has optimal substructure (it can be solved using recursion)
+- It has overlapping subproblems (the same recursive call is made multiple times)
+
+Idea
+
+1. Top-down first:
+
+- Step 1: Write base case.
+
+- Step 2: Write a rob_helper(i).
+
+- Step 3: Add memoization.
+
+```python
+def rob(treasure):
+    if not treasure:
+        return 0
+    
+    def rob_helper(i):
+        if i == 0:
+            return 0
+        if i == 1:
+            return treasure[0]
+        
+        skip = rob_helper(i - 1)
+        take = rob_helper(i - 2) + treasure[i - 1]
+        return max(skip, take) 
+    
+    return rob_helper(len(treasure))
+```
+
+2. Bottom-up DP:
+
+- Covert memoization table to bottom-up DP
+
+```python
+def rob(treasure):
+    if not treasure:
+        return 0
+
+    # initialize dp array
+    dp = [0] * (len(treasure) + 1)
+
+    # fill in base cases (dp[0] = 0 already)
+    dp[1] = treasure[0]
+
+    # iterate to fill in the rest of the array
+    for i in range(2, len(treasure) + 1):
+        # fill in dp[i] using the recurrence relation
+        take = dp[i - 2] + treasure[i - 1]
+        skip = dp[i - 1]
+        dp[i] = max(take, skip)
+    
+    return dp[len(treasure)]
+```
+
