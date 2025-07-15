@@ -2373,12 +2373,358 @@ for node in sorted(distances):
     print(f"Distance from {start_node} to {node}: {distances[node]}")
 ```
 
-# 10. Dynamic Programming
+# 10. Greedy
 
-# 11. Greedy
+![](/images/Coding-Interview/np-pattern.png)
+
+![](/images/Coding-Interview/greedy-pattern.png)
+
+## 10.1. Greeds & Cookies
+
+- Step 1: Init i, j.
+
+- Step 2: If cookies[j] >= greeds[i] => increase i += 1.
+
+- Step 3: Only increase j.
+
+- Step 4: Return count.
+
+```python
+def findContentChildren(greeds, cookies):
+    greeds.sort()
+    cookies.sort()
+
+    count = 0
+    i, j = 0, 0
+    while i < len(greeds) and j < len(cookies):
+        # current cookie can satisfy current child
+        if cookies[j] >= greeds[i]:
+            count += 1
+            i += 1
+        j += 1
+
+    return count
+```
+
+### 10.2. Buy and sell stock
+
+- Step 1: Loop in prices
+
+- Step 2: Update min_price.
+
+- Step 3: Calculate the max_profit.
+
+
+```python
+def maxProfit(prices):
+  if not prices:
+    return 0
+
+  min_price = prices[0]
+  max_profit = 0
+
+  for price in prices:
+    min_price = min(min_price, price)
+    max_profit = max(max_profit, price - min_price)
+
+  return max_profit
+```
+
+## 10.3. Gas Station
+
+- Step 1: Loop each item.
+
+- Step 2: If do not have enough cost for fuel => Go to the next station.
+
+- Step 3: Else fill the fuel and spend cost go to the next station.
+
+```python
+def canCompleteCircuit(gas, cost):
+  if sum(gas) < sum(cost):
+    return -1
+
+  start, fuel = 0, 0
+  for i in range(len(gas)):
+    if fuel + gas[i] - cost[i] < 0:
+      # can't reach next station:
+      # try starting from next station
+      start, fuel = i + 1, 0
+    else:
+      # can reach next station:
+      # update remaining fuel
+      fuel += gas[i] - cost[i]
+
+  return start
+```
+
+## 10.4. Jump Game
+
+- Step 1: Loop i item in array.
+
+- Step 2: max_reach = max(max_reach, i + nums[i])
+
+```python
+class Solution:
+    def canJump(self, nums: List[int]):
+        max_reach = 0
+
+        for i in range(len(nums)):
+            if i > max_reach:
+                return False
+            max_reach = max(max_reach, i + nums[i])
+
+        return True
+```
+
+# 11. Dynamic Programming
+
+![](/images/Coding-Interview/dynamic-pattern.png)
 
 # 12. Trie
 
+# 13. Bit Manipulation
+
+![](/images/Coding-Interview/bit-manipulation-pattern.png)
+
+## 13.1. Bounded Knapstack
+
+```python
+def knapsack(weights, values, capacity):
+    # Create 2-D dp array to carry i item with capacity
+    n = len(values)
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+
+    # Loop and update array
+    for i in range(1, n + 1):
+        for j in range(capacity + 1):
+            if weights[i - 1] > j:
+                dp[i][j] = dp[i - 1][j]
+            else:
+                # Lay hoac khong lay item i
+                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weights[i - 1]] + values[i - 1])
+
+    return dp[n][capacity]
+
+weights = [2, 3, 4, 5]
+values = [3, 4, 5, 6]
+capacity = 5
+
+print(knapsack(weights, values, capacity))
 ```
 
+## 13.2. Total Sum
+
+```python
+from typing import List
+
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        if (sum(nums) + target) % 2 != 0 or abs(target) > sum(nums):
+            return 0
+
+        # Find target_sum is postive, and other is negative
+        target_sum = (sum(nums) + target) // 2
+
+        # Trước sau gì cũng duyệt hết nên 1-D được rồi
+        # Count the way to choose num -> get the sum
+        dp = [0] * (target_sum + 1)
+        dp[0] = 1  # One way to make sum 0 (pick nothing)
+
+        for num in nums:
+            for j in range(target_sum, num - 1, -1):
+                dp[j] = dp[j] + dp[j - num]
+
+        return dp[target_sum]
+
+```
+
+## 13.3. Unbounded Knapstack
+
+```python
+def unbounded_knapsack(weights, values, capacity):
+    n = len(weights)
+
+    # Max value you can gain after catch i weights
+    # Cái kia tính tới phần tử i chứ unbounded thì chỉ cần tính theo weight
+    dp = [0] * (capacity + 1)
+    dp[0] = 0
+
+    # Go forward
+    for w in range(1, capacity + 1):
+        for i in range(n):
+            # Can get ith item, dp[w - weights[i]] là bỏ cùng 1 cái khối lượng đó (bản chất là bỏ cái cũ) + lấy thêm cái đó
+            if weights[i] <= w:
+                dp[w] = max(dp[w], dp[w - weights[i]] + values[i])
+
+    return dp[capacity]
+
+
+weights = [2, 3, 4]
+values = [40, 50, 100]
+capacity = 8
+
+print(unbounded_knapsack(weights, values, capacity))  # Output: 200
+```
+
+## 13.4. Coin Change
+
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        n = len(coins)
+
+        # Number of way to have amount i
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
+
+        for w in range(1, amount + 1):
+            for i in range(n):
+                if coins[i] <= w:
+                    dp[w] = min(dp[w], dp[w - coins[i]] + 1)
+
+        return dp[amount] if dp[amount] != float('inf') else -1
+
+```
+
+
+```python
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        # Init n of the amount
+        n = len(coins)
+
+        # Count way so init 0
+        dp = [0] * (amount + 1)
+        dp[0] = 1 # Do not get any coins
+
+        for coin in coins:
+            for w in range(coin, amount + 1):
+                dp[w] += dp[w - coin]
+
+        return dp[amount]
+```
+
+
+## 13.5. Subsequence
+
+```python
+class Solution:
+    def longestCommonSubsequence(self, s1: str, s2: str) -> int:
+        m, n = len(s1), len(s2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if s1[i - 1] == s2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+        return dp[m][n]
+```
+
+
+## 13.6. Palindrome
+
+```python
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        n = len(s)
+        # Create a 2D DP array initialized to 0
+        dp = [[0] * n for _ in range(n)]
+
+        # All substrings of length 1 are palindromes of length 1
+        for i in range(n):
+            dp[i][i] = 1
+
+        # Build the DP table
+        for length in range(2, n + 1):  # Substring lengths from 2 to n
+            for i in range(n - length + 1):
+                j = i + length - 1
+                if s[i] == s[j]:
+                    dp[i][j] = 2 + dp[i + 1][j - 1]
+                else:
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+
+        return dp[0][n - 1]
+```
+
+## 13.7. Robot Matrix
+
+```python
+class Solution:
+    def unique_paths(self, m: int, n: int) -> int:
+        # Initialize a 2D array with dimensions m x n
+        dp = [[0] * n for _ in range(m)]
+        
+        # base case: there is only one way to reach any cell in the first row (moving only right)
+        for i in range(n):
+            dp[0][i] = 1
+            
+        # Set base case: there is only one way to reach any cell in the first column (moving only down)
+        for j in range(m):
+            dp[j][0] = 1
+        
+        # Fill the rest of the dp array
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+        
+        return dp[m - 1][n - 1]
+```
+
+## 13.8. Maximum Profit Scheduling
+
+
+```python
+from bisect import bisect_right
+from typing import List
+
+class Solution:
+    def job_scheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        # Sort jobs by end time
+        jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1])
+
+        # Extract end times for binary search
+        ends = [job[1] for job in jobs]
+
+        dp = [0] * (len(jobs) + 1)
+
+        for i in range(1, len(jobs) + 1):
+            start, end, p = jobs[i - 1]
+            idx = bisect_right(ends, start)
+            dp[i] = max(dp[i - 1], dp[idx] + p)
+
+        return dp[-1]
+```
+
+## 13.9. Edit Distance
+
+```python
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        m, n = len(word1), len(word2)
+
+        # dp[i][j] = min operations to convert word1[0..i-1] to word2[0..j-1]
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        # Initialize base cases
+        for i in range(m + 1):
+            dp[i][0] = i  # delete all characters
+        for j in range(n + 1):
+            dp[0][j] = j  # insert all characters
+
+        # Fill DP table
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]  # no operation needed
+                else:
+                    dp[i][j] = 1 + min(
+                        dp[i - 1][j],     # delete
+                        dp[i][j - 1],     # insert
+                        dp[i - 1][j - 1]  # replace
+                    )
+
+        return dp[m][n]
 ```
