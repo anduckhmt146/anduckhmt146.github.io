@@ -2414,7 +2414,6 @@ def findContentChildren(greeds, cookies):
 
 - Step 3: Calculate the max_profit.
 
-
 ```python
 def maxProfit(prices):
   if not prices:
@@ -2476,17 +2475,30 @@ class Solution:
         return True
 ```
 
-# 11. Dynamic Programming
-
-![](/images/Coding-Interview/dynamic-pattern.png)
-
-# 12. Trie
-
-# 13. Bit Manipulation
+# 11. Bit Manipulation
 
 ![](/images/Coding-Interview/bit-manipulation-pattern.png)
 
+# 12. Trie
+
+# 13. Dynamic Programming
+
+![](/images/Coding-Interview/dynamic-pattern.png)
+
 ## 13.1. Bounded Knapstack
+
+- Step 1: Create a (n + 1) x (capacity + 1) matrix.
+
+- Step 2: If weight > capacity => No get it.
+
+- Step 3: Else => Get or not get.
+
+```python
+dp[i][j] = max(
+    dp[i - 1][j],  # Don't take item i
+    dp[i - 1][j - weights[i - 1]] + values[i - 1]  # Take item i once
+)
+```
 
 ```python
 def knapsack(weights, values, capacity):
@@ -2514,98 +2526,150 @@ print(knapsack(weights, values, capacity))
 
 ## 13.2. Total Sum
 
+- Step 1: Create a [target + 1] matrix => 1 state.
+
+- Step 2: Loop for num in nums
+
+- Step 3: dp[j] = dp[j] + dp[j - num]
+
 ```python
 from typing import List
 
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        if (sum(nums) + target) % 2 != 0 or abs(target) > sum(nums):
+        total = sum(nums)
+        if (total + target) % 2 != 0 or abs(target) > total:
             return 0
 
-        # Find target_sum is postive, and other is negative
-        target_sum = (sum(nums) + target) // 2
+        target_sum = (total + target) // 2
+        n = len(nums)
 
-        # Trước sau gì cũng duyệt hết nên 1-D được rồi
-        # Count the way to choose num -> get the sum
-        dp = [0] * (target_sum + 1)
-        dp[0] = 1  # One way to make sum 0 (pick nothing)
+        # dp[i][j] = number of ways to reach sum j using first i numbers
+        dp = [[0] * (target_sum + 1) for _ in range(n + 1)]
+        dp[0][0] = 1  # One way to reach sum 0 with 0 elements
 
-        for num in nums:
-            for j in range(target_sum, num - 1, -1):
-                dp[j] = dp[j] + dp[j - num]
+        for i in range(1, n + 1):
+            num = nums[i - 1]
+            for j in range(target_sum + 1):
+                if j < num:
+                    dp[i][j] = dp[i - 1][j]  # can't pick num
+                else:
+                    # Pick num or skip it
+                    dp[i][j] = dp[i - 1][j] + dp[i - 1][j - num]
 
-        return dp[target_sum]
+        return dp[n][target_sum]
 
 ```
 
 ## 13.3. Unbounded Knapstack
 
 ```python
-def unbounded_knapsack(weights, values, capacity):
+dp[i][j] = max(
+    dp[i - 1][j],  # Don't take item i
+    dp[i][j - weights[i - 1]] + values[i - 1]  # Take item i, and possibly take it again
+)
+
+```
+
+```python
+def unbounded_knapsack_2d(weights, values, capacity):
     n = len(weights)
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
 
-    # Max value you can gain after catch i weights
-    # Cái kia tính tới phần tử i chứ unbounded thì chỉ cần tính theo weight
-    dp = [0] * (capacity + 1)
-    dp[0] = 0
+    for i in range(1, n + 1):  # i = item index (1-based)
+        for w in range(capacity + 1):  # w = current capacity
+            if weights[i - 1] <= w:
+                # Option 1: take current item (stay at i)
+                # Option 2: don't take current item (move to i-1)
+                dp[i][w] = max(dp[i - 1][w], dp[i][w - weights[i - 1]] + values[i - 1])
+            else:
+                # Cannot take current item
+                dp[i][w] = dp[i - 1][w]
 
-    # Go forward
-    for w in range(1, capacity + 1):
-        for i in range(n):
-            # Can get ith item, dp[w - weights[i]] là bỏ cùng 1 cái khối lượng đó (bản chất là bỏ cái cũ) + lấy thêm cái đó
-            if weights[i] <= w:
-                dp[w] = max(dp[w], dp[w - weights[i]] + values[i])
+    return dp[n][capacity]
 
-    return dp[capacity]
-
-
+# Example usage
 weights = [2, 3, 4]
 values = [40, 50, 100]
 capacity = 8
+print(unbounded_knapsack_2d(weights, values, capacity))  # Output: 200
 
-print(unbounded_knapsack(weights, values, capacity))  # Output: 200
 ```
 
-## 13.4. Coin Change
+## 13.4. Coin Change Value
+
+- Step 1: Loop to i.
+
+- Step 2: Loop to target.
+
+- Step 3: If allow dup => get from dp[i][target], else if get not dup => dp[i - 1][target].
 
 ```python
+from typing import List
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         n = len(coins)
+        INF = float('inf')
 
-        # Number of way to have amount i
-        dp = [float('inf')] * (amount + 1)
-        dp[0] = 0
+        # dp[i][j] = min coins needed to make sum j using first i coins
+        dp = [[INF] * (amount + 1) for _ in range(n + 1)]
+        for i in range(n + 1):
+            dp[i][0] = 0  # 0 coins needed to make sum 0
 
-        for w in range(1, amount + 1):
-            for i in range(n):
-                if coins[i] <= w:
-                    dp[w] = min(dp[w], dp[w - coins[i]] + 1)
+        for i in range(1, n + 1):
+            coin = coins[i - 1]
+            for j in range(amount + 1):
+                if j < coin:
+                    dp[i][j] = dp[i - 1][j]  # can't use this coin
+                else:
+                    # Option 1: don't use the coin (dp[i-1][j])
+                    # Option 2: use the coin (stay at i for unbounded)
+                    dp[i][j] = min(dp[i - 1][j], dp[i][j - coin] + 1)
 
-        return dp[amount] if dp[amount] != float('inf') else -1
+        return dp[n][amount] if dp[n][amount] != INF else -1
 
 ```
 
+## 13.5. Coin Change Way to Pick (Biến cố độc lập)
 
 ```python
+from typing import List
+
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        # Init n of the amount
         n = len(coins)
 
-        # Count way so init 0
-        dp = [0] * (amount + 1)
-        dp[0] = 1 # Do not get any coins
+        # dp[i][j] = number of ways to make sum j using first i coins
+        dp = [[0] * (amount + 1) for _ in range(n + 1)]
 
-        for coin in coins:
-            for w in range(coin, amount + 1):
-                dp[w] += dp[w - coin]
+        # Base case: 1 way to make amount 0 (pick nothing)
+        for i in range(n + 1):
+            dp[i][0] = 1
 
-        return dp[amount]
+        for i in range(1, n + 1):
+            coin = coins[i - 1]
+            for j in range(amount + 1):
+                if j < coin:
+                    dp[i][j] = dp[i - 1][j]  # can't use coin
+                else:
+                    # Option 1: don't use this coin (dp[i-1][j])
+                    # Option 2: use this coin (stay at i, subtract value)
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - coin]
+
+        return dp[n][amount]
+
 ```
 
+## 13.7. Subsequence (Biến cố phụ thuộc)
 
-## 13.5. Subsequence
+- Step 1: Loop to i.
+
+- Step 2: Loop to target.
+
+- Step 3: If common character => dp[i][j] = dp[i - 1][j - 1] + 1
+
+- Step 4: If not => Skip i or skip j => max(dp[i - 1][j], dp[i][j - 1])
 
 ```python
 class Solution:
@@ -2623,8 +2687,23 @@ class Solution:
         return dp[m][n]
 ```
 
+## 13.8. Palindrome
 
-## 13.6. Palindrome
+- Step 1: Loop to i.
+
+- Step 2: Loop to target.
+
+- Step 3: If common character => dp[i][j] = 2 + dp[i + 1][j - 1]
+
+- Step 4: If not => Skip i or skip j => dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+
+Notes:
+
+Because: it depend on dp[i + 1][j - 1], dp[i + 1][j], dp[i][j - 1]
+
+- Case 1: s[i] == s[j]. If the two ends match, they can be part of the palindrome, so we include them and look inside: from i+1 to j-1.
+
+- Case 2: In s[i+1..j] (skip s[i]). Or in s[i..j-1] (skip s[j])
 
 ```python
 class Solution:
@@ -2633,48 +2712,56 @@ class Solution:
         # Create a 2D DP array initialized to 0
         dp = [[0] * n for _ in range(n)]
 
-        # All substrings of length 1 are palindromes of length 1
+        # Base case: single characters are palindromes of length 1
         for i in range(n):
             dp[i][i] = 1
 
-        # Build the DP table
-        for length in range(2, n + 1):  # Substring lengths from 2 to n
-            for i in range(n - length + 1):
-                j = i + length - 1
+        # Fill the DP table
+        for i in range(n - 1, -1, -1):           # i goes from n-1 to 0
+            for j in range(i + 1, n):            # j goes from i+1 to n-1
                 if s[i] == s[j]:
                     dp[i][j] = 2 + dp[i + 1][j - 1]
                 else:
                     dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
 
         return dp[0][n - 1]
+
 ```
 
-## 13.7. Robot Matrix
+## 13.9. Robot Matrix
+
+- Step 1: Fill top and left.
+
+- Step 2: Come from left or top => dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
 
 ```python
 class Solution:
     def unique_paths(self, m: int, n: int) -> int:
         # Initialize a 2D array with dimensions m x n
         dp = [[0] * n for _ in range(m)]
-        
+
         # base case: there is only one way to reach any cell in the first row (moving only right)
         for i in range(n):
             dp[0][i] = 1
-            
         # Set base case: there is only one way to reach any cell in the first column (moving only down)
         for j in range(m):
             dp[j][0] = 1
-        
+
         # Fill the rest of the dp array
         for i in range(1, m):
             for j in range(1, n):
                 dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
-        
+
         return dp[m - 1][n - 1]
 ```
 
-## 13.8. Maximum Profit Scheduling
+## 13.10. Maximum Profit Scheduling
 
+- Step 1: Sort by start_time.
+
+- Step 2: Find the next job after end.
+
+- Step 3: dp[i] = max(dp[i - 1], dp[idx] + p)
 
 ```python
 from bisect import bisect_right
@@ -2698,7 +2785,23 @@ class Solution:
         return dp[-1]
 ```
 
-## 13.9. Edit Distance
+## 13.11. Edit Distance
+
+- Step 1: dp[i][0] = i => Convert word i to the word2[j] with 0 characters
+
+- Step 2: dp[0][j] = i => Convert word i to the word2[j] with j characters
+
+- Step 3: if word1[i - 1] == word2[j - 1] => Do not do anything.
+
+- Step 4: Else => Insert, Delete, Replace
+
+```python
+    dp[i][j] = 1 + min(
+        dp[i - 1][j], # delete
+        dp[i][j - 1], # insert
+        dp[i - 1][j - 1] # replace
+    )
+```
 
 ```python
 class Solution:
@@ -2727,4 +2830,109 @@ class Solution:
                     )
 
         return dp[m][n]
+```
+
+## 13.12. Robber House
+
+1. Top-down:
+
+```python
+def rob(treasure):
+    if not treasure:
+        return 0
+
+    def rob_helper(i):
+        # Base case
+        if i == 0:
+            return 0
+        if i == 1:
+            return treasure[0]
+
+        # Node
+        take = rob_helper(i - 2) + treasure[i - 1]
+        skip = rob_helper(i - 1)
+
+        # Result
+        return max(take, skip)
+
+    n = len(treasure)
+    return rob_helper(n)
+
+treasure = [2, 7, 9, 3, 1]
+print(rob(treasure))  # Output: 12
+```
+
+2. Memoization:
+
+- Add memo to store the current result
+  => memo = {}
+  => if i in memo => return memo[i]
+  => memo[i] = max(take, skip)
+
+```python
+def rob(treasure):
+    if not treasure:
+        return 0
+
+    memo = {}
+
+    def rob_helper(i):
+        # Base case
+        if i == 0:
+            return 0
+        if i == 1:
+            return treasure[0]
+
+        # Memoization
+        if i in memo:
+            return memo[i]
+
+        # Node
+        take = rob_helper(i - 2) + treasure[i - 1]
+        skip = rob_helper(i - 1)
+        memo[i] = max(take, skip)
+
+        # Result
+        return memo[i]
+
+    n = len(treasure)
+    return rob_helper(n)
+
+treasure = [2, 7, 9, 3, 1]
+print(rob(treasure))  # Output: 12
+```
+
+3. Bottom-up:
+
+- Covert memoization table in top-down to bottom-up.
+
+- Store data with (n + 1) elements
+
+Step 1: Init dp tables.
+
+Step 2: Base case for start calculate.
+
+Step 3: Calculate.
+
+```python
+def rob(treasure):
+    if not treasure:
+        return 0
+
+    # Init dp table
+    n = len(treasure)
+    dp = [0] * (n + 1)
+
+    # Base case
+    dp[0] = 0
+    dp[1] = treasure[0]
+
+    for i in range(2, n + 1):
+        # Calculate
+        dp[i] = max(dp[i - 1], dp[i - 2] + treasure[i - 1])
+
+    return dp[n]
+
+treasure = [2, 7, 9, 3, 1]
+print(rob(treasure))  # Output: 12
 ```
