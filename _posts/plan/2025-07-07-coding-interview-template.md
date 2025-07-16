@@ -2503,6 +2503,15 @@ It is Kth Tree Problem.
 
 - Step 5: Delete
 
+Process: Kth Tree
+
+- Step 1: Loop in node.children
+- Step 2: Base case.
+- Step 3: Prunning.
+- Step 4: Node.
+- Step 5: Neighbors.
+- Step 6: Backtrack delete.
+
 ```python
 class TrieNode:
     def __init__(self):
@@ -2510,9 +2519,6 @@ class TrieNode:
         self.isEndOfWord = False
 
 class Solution:
-    def __init__(self):
-        self.root = TrieNode()  # Initialize root node in the constructor
-
     def create_trie(self, words):
         # === DO NOT MODIFY ===
         self.root = TrieNode()
@@ -2527,48 +2533,49 @@ class Solution:
                 node.children[char] = TrieNode()
             node = node.children[char]
         node.isEndOfWord = True
-
+    
     def search(self, word):
         """
         Search the trie for the given word.
 
-        Returns True if the word exists in the trie, False otherwise.
+        Returns True if the word exists in the trie, False otherwise
         """
         node = self.root
         for char in word:
             if char not in node.children:
                 return False
             node = node.children[char]
+
         return node.isEndOfWord
 
     def delete(self, word):
-        """
-        Deletes the given word from the Trie.
-
-        Returns None.
-        """
-        def delete_helper(node, index):
-            # Base case: we've reached the end of the word
+        def dfs_helper(node, index):
+            # Base case
             if index == len(word):
-                # Mark the node as not being the end of a word
+                if not node.isEndOfWord:
+                    return False
+
                 node.isEndOfWord = False
-                # Return True if the node should be deleted
                 return len(node.children) == 0
 
+            # Node
             child = node.children.get(word[index])
 
-            if child is None:
-                return False  # Word not found
+            # Prunning
+            if not child:
+                return False
 
-            should_delete_child = delete_helper(child, index + 1)
+            # Neighbor
+            should_deleted = dfs_helper(child, index + 1)
 
-            if should_delete_child:
+            # Backtrack
+            if should_deleted:
                 del node.children[word[index]]
 
-            # Return True if the current node should be deleted
             return not node.isEndOfWord and len(node.children) == 0
 
-        delete_helper(self.root, 0)
+        dfs_helper(self.root, 0)
+
 
     def trie(self, initialWords, commands):
         # === DO NOT MODIFY ===
@@ -2581,6 +2588,76 @@ class Solution:
             elif command == "delete":
                 self.delete(word)
         return output
+```
+
+## 12.2. Prefix Matching:
+
+- Step 1: Loop char in word.
+
+- Step 2: Go to the last prefix.
+
+- Step 3: DFS for the final word
+
+- Step 4: Key is char, Value is children.
+
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.isEndOfWord = False
+
+class Solution:
+    def create_trie(self, words):
+        # === DO NOT MODIFY ===
+        self.root = TrieNode()
+        for word in words:
+            self.insert(word)
+
+    def insert(self, word):
+        # === DO NOT MODIFY ===
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.isEndOfWord = True
+    
+    def prefix(self, word):
+        """
+        Return a list of all words in the trie that start with the given prefix.
+        """
+
+        # Step 1: Go to the last prefix
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return []
+            node = node.children[char]
+
+        # Step 2: DFS for the final word
+        res = []
+        def dfs(node, path):
+            # Base case
+            if node.isEndOfWord:
+                res.append(''.join(path[:]))
+
+            if len(node.children) == 0:
+                return
+
+            # Node
+            for char, child in node.children.items():
+                path.append(char)
+                dfs(child, path)
+                path.pop()
+
+        dfs(node, list(word))
+        return res
+
+    def trie(self, words, prefix):
+        # === DO NOT MODIFY ===
+        self.create_trie(words)
+        return self.prefix(prefix)
 ```
 
 # 13. Dynamic Programming
