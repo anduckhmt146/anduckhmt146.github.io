@@ -2479,7 +2479,94 @@ class Solution:
 
 ![](/images/Coding-Interview/bit-manipulation-pattern.png)
 
+## 11.1. Find the missing number
+
+- Step 1: XOR full.
+
+- Step 2: XOR num in array.
+
+- Step 3: XOR xor_full & xor_array
+
+```python
+def find_missing_number(nums, n):
+    xor_full = 0
+    xor_array = 0
+
+    # XOR all numbers from 1 to n
+    for i in range(1, n + 1):
+        xor_full ^= i
+
+    # XOR all elements in the array
+    for num in nums:
+        xor_array ^= num
+
+    # Missing number is the difference of the two XORs
+    return xor_full ^ xor_array
+
+
+# Example usage:
+nums = [1, 2, 4, 5, 6]  # Missing number is 3
+n = 6
+missing = find_missing_number(nums, n)
+print("Missing number is:", missing)
+
+```
+
+## 11.2. XOR in binary tree
+
+Idea recursion: Hiện tại ở node left -> chỉ nhìn 2 thằng con của nó thôi => abstract lên.
+
+- Step 1: XOR the left node => store value.
+
+- Step 2: XOR the right node => store value.
+
+- Step 3: XOR the root node => left _ right _ root.
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def xor_subtree(node):
+    if not node:
+        return 0
+
+    # Recursively compute XOR of left and right subtrees
+    left_xor = xor_subtree(node.left)
+    right_xor = xor_subtree(node.right)
+
+    # Update current node's value
+    node.val = node.val ^ left_xor ^ right_xor
+
+    # Return total XOR of this subtree to parent
+    return node.val
+
+# Build the tree
+root = TreeNode(5)
+root.left = TreeNode(3)
+root.right = TreeNode(8)
+root.left.left = TreeNode(1)
+root.left.right = TreeNode(4)
+
+# Apply XOR transformation
+xor_subtree(root)
+
+# Print the transformed tree (in-order)
+def print_inorder(node):
+    if node:
+        print_inorder(node.left)
+        print(node.val, end=" ")
+        print_inorder(node.right)
+
+print("Tree after XOR transformation (in-order):")
+print_inorder(root)
+```
+
 # 12. Trie
+
+![](/images/Coding-Interview/trie-pattern.png)
 
 ## 12.1. Implement
 
@@ -2533,7 +2620,7 @@ class Solution:
                 node.children[char] = TrieNode()
             node = node.children[char]
         node.isEndOfWord = True
-    
+
     def search(self, word):
         """
         Search the trie for the given word.
@@ -2604,7 +2691,6 @@ class Solution:
 for char, child in node.children.items()
 ```
 
-
 ```python
 class TrieNode:
     def __init__(self):
@@ -2626,7 +2712,7 @@ class Solution:
                 node.children[char] = TrieNode()
             node = node.children[char]
         node.isEndOfWord = True
-    
+
     def prefix(self, word):
         """
         Return a list of all words in the trie that start with the given prefix.
@@ -3118,4 +3204,126 @@ def rob(treasure):
 
 treasure = [2, 7, 9, 3, 1]
 print(rob(treasure))  # Output: 12
+```
+
+# 14. Prefix Sum
+
+![](/images/Coding-Interview/prefix-sum-pattern.png)
+
+## 14.1. Count Vowels in Substrings
+
+```python
+class Solution:
+    def vowelStrings(self, word: str, queries: List[List[int]]):
+        vowels = 'aoeui'
+
+        n = len(word)
+        prefix = [0] * (n + 1)
+
+        # Start from i = 1 to use prefix[i - 1]
+        for i in range(1, n + 1):
+            prefix[i] = prefix[i - 1] + (1 if word[i - 1] in vowels else 0)
+
+        result = []
+        for start, end in queries:
+            result.append(prefix[end + 1] - prefix[start])
+
+        return result
+```
+
+## 14.2. Subarray Sum Equals K
+
+Step 1: Find subarray.
+
+Step 2: Find [i, j] where prefix[j] - prefix[i] = k
+
+```python
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        prefix_sum = 0
+        count = 0
+        sum_count = {0: 1}  # Initialize with 0 sum having 1 count
+
+        for num in nums:
+            prefix_sum += num
+            # If (prefix_sum - k) exists in sum_count, it means we found subarrays summing to k
+            if prefix_sum - k in sum_count:
+                count += sum_count[prefix_sum - k]
+            # Update the count of current prefix sum
+            sum_count[prefix_sum] = sum_count.get(prefix_sum, 0) + 1
+
+        return count
+```
+
+# 15. Matrix
+
+![](/images/Coding-Interview/matrix-pattern.png)
+
+## 15.1. Spiral Matrix
+
+Step 1: Top Row
+
+Step 2: Right Column
+
+Step 3: Bottom Row
+
+Step 4: Left Column
+
+```python
+class Solution:
+    def spiral_order(self, matrix: List[List[int]]):
+        result = []
+        while matrix:
+            result += matrix.pop(0)
+            if matrix and matrix[0]:
+                for row in matrix:
+                    result.append(row.pop())
+            if matrix:
+                result += matrix.pop()[::-1]
+            if matrix and matrix[0]:
+                for row in matrix[::-1]:
+                    result.append(row.pop(0))
+        return result
+```
+
+## 15.2. Rotate Image
+
+```python
+class Solution:
+    def rotate_image(self, matrix: List[List[int]]):
+        n = len(matrix)
+
+        # Transpose the matrix
+        for i in range(n):
+            for j in range(i, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+        # Reverse each row
+        for i in range(n):
+            matrix[i] = matrix[i][::-1]
+        return matrix
+```
+
+## 15.3. Set Matrix Zeroes
+
+```python
+def setZeroes(matrix):
+    rows, cols = len(matrix), len(matrix[0])
+    zero_rows, zero_cols = set(), set()
+
+    for i in range(rows):
+        for j in range(cols):
+            if matrix[i][j] == 0:
+                zero_rows.add(i)
+                zero_cols.add(j)
+
+    for row in zero_rows:
+        for col in range(cols):
+            matrix[row][col] = 0
+
+    for col in zero_cols:
+        for row in range(rows):
+            matrix[row][col] = 0
+
+    return matrix
 ```
