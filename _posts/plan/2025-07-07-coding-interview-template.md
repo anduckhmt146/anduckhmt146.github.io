@@ -2600,6 +2600,10 @@ class Solution:
 
 - Step 4: Key is char, Value is children.
 
+```python
+for char, child in node.children.items()
+```
+
 
 ```python
 class TrieNode:
