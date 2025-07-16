@@ -2481,6 +2481,108 @@ class Solution:
 
 # 12. Trie
 
+## 12.1. Implement
+
+It is Kth Tree Problem.
+
+- Step 1: Nth Tree => not binary tree
+
+- Step 2: Insert/Update/Delete still O(L)
+
+- Step 3: Insert
+  => Loop char in word
+  => If char not in children => node.children[char] = TrieNode()
+  => Else: node = node.children[char]
+  => Out loop and node.isEndOfWord = True
+
+- Step 4: Search
+  => Loop char in word
+  => If char not in children => Return False
+  => Else: node = node.children[char]
+  => Out loop and node.isEndOfWord = True => Return True.
+
+- Step 5: Delete
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.isEndOfWord = False
+
+class Solution:
+    def __init__(self):
+        self.root = TrieNode()  # Initialize root node in the constructor
+
+    def create_trie(self, words):
+        # === DO NOT MODIFY ===
+        self.root = TrieNode()
+        for word in words:
+            self.insert(word)
+
+    def insert(self, word):
+        # === DO NOT MODIFY ===
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.isEndOfWord = True
+
+    def search(self, word):
+        """
+        Search the trie for the given word.
+
+        Returns True if the word exists in the trie, False otherwise.
+        """
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.isEndOfWord
+
+    def delete(self, word):
+        """
+        Deletes the given word from the Trie.
+
+        Returns None.
+        """
+        def delete_helper(node, index):
+            # Base case: we've reached the end of the word
+            if index == len(word):
+                # Mark the node as not being the end of a word
+                node.isEndOfWord = False
+                # Return True if the node should be deleted
+                return len(node.children) == 0
+
+            child = node.children.get(word[index])
+
+            if child is None:
+                return False  # Word not found
+
+            should_delete_child = delete_helper(child, index + 1)
+
+            if should_delete_child:
+                del node.children[word[index]]
+
+            # Return True if the current node should be deleted
+            return not node.isEndOfWord and len(node.children) == 0
+
+        delete_helper(self.root, 0)
+
+    def trie(self, initialWords, commands):
+        # === DO NOT MODIFY ===
+        self.create_trie(initialWords)
+
+        output = []
+        for command, word in commands:
+            if command == "search":
+                output.append(self.search(word))
+            elif command == "delete":
+                self.delete(word)
+        return output
+```
+
 # 13. Dynamic Programming
 
 ![](/images/Coding-Interview/dynamic-pattern.png)
