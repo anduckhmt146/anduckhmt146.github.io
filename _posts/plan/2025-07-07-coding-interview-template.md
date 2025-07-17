@@ -2604,7 +2604,6 @@ class Solution:
 for char, child in node.children.items()
 ```
 
-
 ```python
 class TrieNode:
     def __init__(self):
