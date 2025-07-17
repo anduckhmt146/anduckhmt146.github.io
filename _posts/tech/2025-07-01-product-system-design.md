@@ -213,3 +213,110 @@ When SELECT 1 billions records => What is lock db ?
 - A Write-Ahead Log is a sequential log file that records every intended modification to the database before the actual data is written.
 
 - Use to store history action of DBMS => Use for rollback, migration when change data capture,...
+
+# 5. Design a Local Delivery Service like Gopuff
+
+## 5.1. Entities:
+
+![](/images/System-Design/Product/Food-Delivery/food-delivery-entities.png)
+
+## 5.2. API Design
+
+
+![](/images/System-Design/Product/Food-Delivery/food-delivery-api-design.png)
+
+## 5.3. How will customers be able to query the availability of items within a fixed distance (e.g. 30 miles)?
+
+![](/images/System-Design/Product/Food-Delivery/query-fixed-distance.png)
+
+## 5.4. How can we extend the design so that we only return items which can be delivered within 1 hour?
+
+![](/images/System-Design/Product/Food-Delivery/place-order.png)
+
+## 5.5. How can we ensure users cannot order items which are unavailable? How do we avoid race conditions?
+
+"To avoid both race conditions and customers ordering out of stock inventory, we'll use a transaction on our Postgres database. In this transaction we'll:
+
+(1) Check the inventory items are still available at the locations we determined when we checked availability.
+(2) Decrement the inventory counts at those locations.
+(3) Create a new Order record with the associated items."
+
+## 5.6. How can we ensure availability lookups are fast and available?
+
+(1) We can use the prefix of the geohash of a location as the cache key so small changes in the location still hit the same fulfillment centers. 
+
+(2) Each nearby service instance can maintain a local cache of the fulfillment centers so that location search can be done without an external call. Since fulfillment centers aren't changing often, we can make the cache TTL long.
+
+(3) We can replicate our Postgres instance and have the availability service read from replicas. This may mean availability lookups are slightly stale, but we're ok with this."
+
+Idea: The location only store data for it, do not scan all table.
+
+![](/images/System-Design/Product/Food-Delivery/query-local-region.png)
+
+## 5.7. How do delivery systems efficiently aggregate inventory across multiple warehouse locations?
+
+- Sum quantities from nearby warehouses
+
+## 5.8. Travel time estimation services provide more accurate delivery zones than simple distance calculations
+
+- Travel time services account for real-world factors like traffic, road conditions, and geographic barriers, providing more accurate delivery feasibility than straight-line distance calculations that ignore these constraints.
+
+## 5.9. Which technique is MOST effective for preventing concurrent resource allocation conflicts?
+
+- Atomic transactions.
+
+## 5.10. Implement database read performance
+
+- Read replica: Use for master slave, write in master, read from slave. But replica can serve stale data.
+
+- Query Caching.
+
+- Index.
+
+- Write-ahead logging: keep track all actions of DBMS, use for migration data.
+
+![](/images/System-Design/Product/Food-Delivery/read-replica.png)
+
+## 5.11. Which algorithm accounts for Earth's curvature when calculating geographic distances?
+
+- The Haversine formula.
+
+## 5.12. Two-phase filtering 
+
+- Two-phase filtering first applies cheap local filters (like simple distance calculations) to reduce the candidate set before making expensive external API calls (like travel time estimation).
+
+- Step 1: Pre-computed radius filtering
+
+## 5.13. Paritition strategy
+
+- Round-robin distribution
+
+- Geographic sharding
+
+- Hash partitioning
+
+- Timestamp-based splitting
+
+## 5.14. What happens when cached inventory data becomes stale after concurrent orders?
+
+- Overselling inventory
+
+## 5.15. Which isolation level BEST prevents phantom reads in concurrent transactions?
+
+- Two read query -> Call different numbers of rows.
+
+- Only serializable solve phantom read.
+
+## 5.16. Eventual consistency and Partition Tolerance
+
+- Eventual consistency:	Parts may show different data briefly, but will match soon.
+
+- Partition Tolerance: Partition tolerance means a system can work even when some parts can't talk to each other => Using Data Replication or Local Cache.
+
+## 5.17. Reduce external service 
+
+- Batch Processing.
+
+- Result Caching.
+
+- Local pre-filtering.
