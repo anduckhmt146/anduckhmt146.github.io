@@ -534,3 +534,38 @@ Top 100 users from 0 to 99.
 ```bash
 ZRANGE booking_queue 0 99
 ```
+
+```bash
+-- KEYS[1] = ZSET key (e.g., "booking_queue")
+-- ARGV[1] = user_id
+-- ARGV[2] = score (e.g., timestamp)
+-- ARGV[3] = max size (e.g., 100)
+
+local zset = KEYS[1]
+local user = ARGV[1]
+local score = tonumber(ARGV[2])
+local max_size = tonumber(ARGV[3])
+
+-- Get current size
+local current_size = redis.call("ZCARD", zset)
+
+if current_size < max_size then
+    redis.call("ZADD", zset, score, user)
+    return "ADDED"
+else
+    -- Get the lowest score entry
+    local lowest = redis.call("ZRANGE", zset, 0, 0, "WITHSCORES")
+    local lowest_user = lowest[1]
+    local lowest_score = tonumber(lowest[2])
+
+    if score > lowest_score then
+        -- Remove the oldest
+        redis.call("ZREM", zset, lowest_user)
+        -- Add the new user
+        redis.call("ZADD", zset, score, user)
+        return "REPLACED"
+    else
+        return "REJECTED"
+    end
+end
+```
