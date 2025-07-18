@@ -377,3 +377,75 @@ Idea: The location only store data for it, do not scan all table.
 => Scale the redis, each instance 100k rps -> 100 instance can handle 10M rps.
 
 ![](/images/System-Design/Product/News/redis-replica.png)
+
+## 6.11. Why do news aggregators like Google News download and store their own copies of publisher thumbnails rather than linking directly to publisher images?
+
+- Publisher images can be slow to load, change URLs, or become unavailable, which would break the feed experience => Storing local copies ensures consistent load and latency.
+
+## 6.12. Cursor-based pagination & Offset-page Approach
+
+- Cursor-based pagination -> decrease down ID from the cursor.
+
+- Offset page -> Rerender when publishers have new data.
+
+## 6.13. Why might implementing webhooks from publishers be preferred over frequent RSS polling for breaking news delivery?
+
+- Webhooks provide immediate notification when content is published, reducing discovery latency from minutes to seconds.
+
+## 6.14. When implementing personalized news feeds, why might 'pre-computed user caches' be worse than 'dynamic feed assembly' despite being faster?
+
+- Pre-computed user caches require enormous additional memory and introduce complex cache invalidation logic
+
+## 6.15. Why do news aggregators implement Change Data Capture (CDC) instead of simple database polling for cache updates?
+
+- CDC triggers cache updates immediately when new articles are inserted, providing sub-second freshness.
+
+- Pooling require a high database load.
+
+## 6.16. During a major election, your Redis cache serving 100M users gets overwhelmed at 100k requests/second. What's the BEST immediate scaling solution?
+
+- Add read replicas.
+
+## 6.17. A system's database must serve 100,000 read requests per second. Which scaling approach handles this load most effectively?
+
+- Implement read replicas.
+
+## 6.18. A news publisher's RSS feed is down for 2 hours during breaking news. What's the BEST fallback strategy?
+
+- Context: 1 publisher source is lost => What do you do ?
+
+- Solution: Using Web Scraping technique if the RSS feeds is failed.
+
+## 6.19. What happens when cached data becomes stale in high-frequency update systems?
+
+- Users see outdated information
+
+## 6.20. All of the following improve content freshness
+
+- Real-time webhooks
+
+- Frequent polling
+
+- Change data capture
+
+## 6.21. Geographic data distribution reduces latency by serving content from nearby locations.
+
+- Yes
+
+## 6.22. During traffic spikes, which component typically becomes the bottleneck in read-heavy systems?
+
+- In read-heavy systems, the database or cache layer typically becomes the bottleneck first -> Data retrieval operations.
+
+- About server: it is basic routing, and load balacers can usually be scaled easily than data layer.
+
+## 6.24. Eventual consistency is acceptable for news feeds where availability matters more than perfect synchronization.
+
+- According to the CAP theorem, news aggregation systems often prioritize availability over strict consistency. 
+
+- Users prefer access to slightly outdated content rather than no content at all.
+
+## 6.25. When implementing category-based news feeds (Sports, Politics, Tech), which approach provides the best balance of performance and resource efficiency?
+
+- Cache metadata in regional caches (like feed:US) => Filtering from this key.
+
+- Pros:  This avoids the memory explosion of separate category caches (25 categories × 10 regions = 250 cache keys) => Reading 1,000 articles from Redis takes ~10ms, and in-memory filtering adds only 1-2ms.
