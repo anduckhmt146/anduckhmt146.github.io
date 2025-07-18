@@ -621,3 +621,39 @@ Full-text search engines
 ## 7.22. When designing for high availability, which system component should prioritize consistency over availability?
 
 - Payment processing must prioritize consistency to prevent double charges, financial discrepancies, and fraud.
+
+# 8. Design FB News Feed
+
+## 8.1. Non-functional Requirements
+
+![](/images/System-Design/Product/FB-Posts/non-functional-requirements.png)
+
+## 8.2. Entities
+
+![](/images/System-Design/Product/FB-Posts/entities.png)
+
+## 8.3. Users should be able to create posts
+
+![](/images/System-Design/Product/FB-Posts/create-posts.png)
+
+## 8.4. Users should be able to friend/follow people.
+
+![](/images/System-Design/Product/FB-Posts/follow-people.png)
+
+## 8.5. How do we handle users who are following a large number of users? (Push Model)
+
+- Push by create new record: UserID -> FollowID -> FeedID
+
+![](/images/System-Design/Product/FB-Posts/pulling-feeds.png)
+
+## 8.6. How do we handle users with a large number of followers?
+
+- Celebrity Problem: Pull Model.
+
+![](/images/System-Design/Product/FB-Posts/celebrity-pull-model.png)
+
+## 8.7. How can we handle heavy-read and unread of posts?
+
+- Using Redis for heavy-read posts.
+
+![](/images/System-Design/Product/FB-Posts/heavy-read-posts.png)
