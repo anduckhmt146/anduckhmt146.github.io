@@ -520,3 +520,17 @@ How would you design this to prevent users from losing seats during checkout?
 - Every N minutes, or based on the number of completed bookings, we use ZRANGE to pull users from the front of the queue and grant them access to the event details page in a controlled manner, throttling the number of concurrent bookings and preventing system overload. This approach ensures fairness by serving users in the order they arrived and provides scalability to handle surges in traffic.
 
 ![](/images/System-Design/Product/Ticketmaster/redis-sorted-set.png)
+
+Example:
+
+```bash
+ZADD booking_queue 1625380000 user1
+ZADD booking_queue 1625380001 user2
+ZADD booking_queue 1625380002 user3
+```
+
+Top 100 users from 0 to 99.
+
+```bash
+ZRANGE booking_queue 0 99
+```
