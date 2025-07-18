@@ -319,3 +319,305 @@ Idea: The location only store data for it, do not scan all table.
 - Result Caching.
 
 - Local pre-filtering.
+
+# 6. Design a News Aggregator (Example dev.to)
+
+## 6.1. Non-requirements
+
+![](/images/System-Design/Product/News/non-functional-requirements.png)
+
+## 6.2. Entities
+
+![](/images/System-Design/Product/News/entities.png)
+
+## 6.3. API Design
+
+![](/images/System-Design/Product/News/api-design.png)
+
+## 6.4. How will your system collect and store news articles from thousands of publishers worldwide via their RSS feeds?
+
+![](/images/System-Design/Product/News/rss-data-collection.png)
+
+## 6.5. How will your system show users a regional feed of news articles?
+
+![](/images/System-Design/Product/News/feed-region-service.png)
+
+## 6.6. Scroll through the feed 'infinitely'?
+
+- An optimal solution could use monotonically increasing article IDs (like ULIDs) as cursors, eliminating timestamp collisions entirely.
+
+- This makes pagination incredibly simple: we just query for articles with IDs less than the cursor value => Scroll from the highest ID to the lowest one. We just store the last article we saw client side as the cursor and pass it along with each API request.
+
+## 6.7. How do you ensure that users feeds load quickly (< 200ms)?
+
+- Using CDC (Change Data Capture) from database to Redis.
+
+- Update pre-computed value to Redis, using ZREVRANGE, maintain only the most recent 1,000-2,000 articles per region.
+
+![](/images/System-Design/Product/News/feeds-redis-cdc.png)
+
+## 6.8. How do we ensure articles appear in feeds within 30 minutes of publication? Even for publishers that don't have RSS feeds.
+
+- Integrate with Webhook of platforms.
+
+- Using 3 methods: frequent RSS polling, Web Scraper, Webhook.
+
+![](/images/System-Design/Product/News/webhook.png)
+
+## 6.9. How do you efficiently deliver thumbnail images for millions of news articles in user feeds?
+
+- Using thumbnail in region of the client-side.
+
+![](/images/System-Design/Product/News/cdn.png)
+
+## 6.10. How do you scale your cache infrastructure to handle 10M concurrent users requesting feeds?
+
+- With 10M concurrent users requesting feeds, a single cache instance can only handle ~100k requests per second, creating a massive bottleneck
+
+=> Scale the redis, each instance 100k rps -> 100 instance can handle 10M rps.
+
+![](/images/System-Design/Product/News/redis-replica.png)
+
+## 6.11. Why do news aggregators like Google News download and store their own copies of publisher thumbnails rather than linking directly to publisher images?
+
+- Publisher images can be slow to load, change URLs, or become unavailable, which would break the feed experience => Storing local copies ensures consistent load and latency.
+
+## 6.12. Cursor-based pagination & Offset-page Approach
+
+- Cursor-based pagination -> decrease down ID from the cursor.
+
+- Offset page -> Rerender when publishers have new data.
+
+## 6.13. Why might implementing webhooks from publishers be preferred over frequent RSS polling for breaking news delivery?
+
+- Webhooks provide immediate notification when content is published, reducing discovery latency from minutes to seconds.
+
+## 6.14. When implementing personalized news feeds, why might 'pre-computed user caches' be worse than 'dynamic feed assembly' despite being faster?
+
+- Pre-computed user caches require enormous additional memory and introduce complex cache invalidation logic
+
+## 6.15. Why do news aggregators implement Change Data Capture (CDC) instead of simple database polling for cache updates?
+
+- CDC triggers cache updates immediately when new articles are inserted, providing sub-second freshness.
+
+- Pooling require a high database load.
+
+## 6.16. During a major election, your Redis cache serving 100M users gets overwhelmed at 100k requests/second. What's the BEST immediate scaling solution?
+
+- Add read replicas.
+
+## 6.17. A system's database must serve 100,000 read requests per second. Which scaling approach handles this load most effectively?
+
+- Implement read replicas.
+
+## 6.18. A news publisher's RSS feed is down for 2 hours during breaking news. What's the BEST fallback strategy?
+
+- Context: 1 publisher source is lost => What do you do ?
+
+- Solution: Using Web Scraping technique if the RSS feeds is failed.
+
+## 6.19. What happens when cached data becomes stale in high-frequency update systems?
+
+- Users see outdated information
+
+## 6.20. All of the following improve content freshness
+
+- Real-time webhooks
+
+- Frequent polling
+
+- Change data capture
+
+## 6.21. Geographic data distribution reduces latency by serving content from nearby locations.
+
+- Yes
+
+## 6.22. During traffic spikes, which component typically becomes the bottleneck in read-heavy systems?
+
+- In read-heavy systems, the database or cache layer typically becomes the bottleneck first -> Data retrieval operations.
+
+- About server: it is basic routing, and load balacers can usually be scaled easily than data layer.
+
+## 6.24. Eventual consistency is acceptable for news feeds where availability matters more than perfect synchronization.
+
+- According to the CAP theorem, news aggregation systems often prioritize availability over strict consistency.
+
+- Users prefer access to slightly outdated content rather than no content at all.
+
+## 6.25. When implementing category-based news feeds (Sports, Politics, Tech), which approach provides the best balance of performance and resource efficiency?
+
+- Cache metadata in regional caches (like feed:US) => Filtering from this key.
+
+- Pros: This avoids the memory explosion of separate category caches (25 categories × 10 regions = 250 cache keys) => Reading 1,000 articles from Redis takes ~10ms, and in-memory filtering adds only 1-2ms.
+
+# 7. Design Ticketmaster
+
+## 7.1. Non-functional requirements
+
+- Consistency for booking events.
+
+- Availability for searching events.
+
+- Scalability for handle popular events.
+
+## 7.2. Entities
+
+![](/images/System-Design/Product/Ticketmaster/entities.png)
+
+## 7.3. API Design
+
+![](/images/System-Design/Product/Ticketmaster/api-design.png)
+
+## 7.4. How will users be able to view simple event details when clicking on an event? ie. name, description, location, date, etc.
+
+![](/images/System-Design/Product/Ticketmaster/event-service.png)
+
+## 7.5. How will users be able to search for events?
+
+![](/images/System-Design/Product/Ticketmaster/search-service.png)
+
+## 7.6. How will users be able to book specific seats for events? Each physical seat has exactly one ticket. Do not consider General Admission or section-based booking.
+
+![](/images/System-Design/Product/Ticketmaster/booking.png)
+
+## 7.7. Implement a two-phase booking process:
+
+1. Seat Reservation: Temporarily hold selected seats.
+2. Booking Confirmation: Finalize purchase within a time limit.
+
+How would you design this to prevent users from losing seats during checkout?
+
+- To implement the two-phase booking process and prevent users from losing seats during checkout, we’ll use a distributed lock system with Redis and a 10-minute TTL (Time to Live). When a user selects seats to reserve, the client sends a POST request to the Booking Service with the selected ticketIds. The Booking Service attempts to acquire locks for these seats in Redis, setting a TTL of 10 minutes for each lock. This reservation ensures that no other user can reserve or book the same seats during this period.
+
+- If the user completes the purchase within the 10-minute window, the Booking Service finalizes the booking by updating the ticket statuses to “booked”. If the user does not complete the purchase in time, the locks automatically expire due to the TTL, and the seats become available for others to reserve. This mechanism effectively prevents seat loss during checkout by exclusively holding seats for the user and automatically releasing them if the reservation times out.
+
+![](/images/System-Design/Product/Ticketmaster/distributed-lock.png)
+
+## 7.8. How can your design scale to support up to 10M concurrent users reading event data? Focus on optimizing the database and read flow for this high volume of requests.
+
+- Read from cache => Read replicas, because Database engine need time to query.
+
+![](/images/System-Design/Product/Ticketmaster/cache.png)
+
+## 7.9. How can you improve search to handle complex queries more efficiently. If you think your design already handles this well, explain how.
+
+- When search it return data from Elastic Search, rather than the database.
+
+![](/images/System-Design/Product/Ticketmaster/elastic-search.png)
+
+## 7.10. How can you make the seat map on the event page automatically refresh to display the latest seat availability in real time?
+
+- We can implement Server-Sent Events (SSE). When a user views the seat map on the event page, the client establishes an SSE connection to the Booking Service. The server then pushes updates to the client whenever there’s a change in seat availability—such as seats being reserved or booked by other users. On the client, we'll receive these updates and block off the seats in the seat map accordingly.
+
+- As we scale, we may not be able to fit all connections for a single event on a single Booking Service instance. In this case, we can introduce pub/sub to broadcast changes or add a dispatcher that utilizes Zookeeper or a similar service to know which server to send updates to.
+
+![](/images/System-Design/Product/Ticketmaster/sse.png)
+
+## 7.11. How would you implement a virtual waiting room that queues users for popular events and grants access based on their queue position?
+
+- We can implement a virtual waiting room using Redis' Sorted Sets data structure. When users attempt to access the event page during peak times, they are redirected to a waiting room, and their session IDs are added to a Redis Sorted Set with their timestamp as the score, ensuring first-come-first-served order.
+
+- Every N minutes, or based on the number of completed bookings, we use ZRANGE to pull users from the front of the queue and grant them access to the event details page in a controlled manner, throttling the number of concurrent bookings and preventing system overload. This approach ensures fairness by serving users in the order they arrived and provides scalability to handle surges in traffic.
+
+![](/images/System-Design/Product/Ticketmaster/redis-sorted-set.png)
+
+Example:
+
+```bash
+ZADD booking_queue 1625380000 user1
+ZADD booking_queue 1625380001 user2
+ZADD booking_queue 1625380002 user3
+```
+
+Top 100 users from 0 to 99.
+
+```bash
+ZRANGE booking_queue 0 99
+```
+
+```bash
+-- KEYS[1] = ZSET key (e.g., "booking_queue")
+-- ARGV[1] = user_id
+-- ARGV[2] = score (e.g., timestamp)
+-- ARGV[3] = max size (e.g., 100)
+
+local zset = KEYS[1]
+local user = ARGV[1]
+local score = tonumber(ARGV[2])
+local max_size = tonumber(ARGV[3])
+
+-- Get current size
+local current_size = redis.call("ZCARD", zset)
+
+if current_size < max_size then
+    redis.call("ZADD", zset, score, user)
+    return "ADDED"
+else
+    -- Get the lowest score entry
+    local lowest = redis.call("ZRANGE", zset, 0, 0, "WITHSCORES")
+    local lowest_user = lowest[1]
+    local lowest_score = tonumber(lowest[2])
+
+    if score > lowest_score then
+        -- Remove the oldest
+        redis.call("ZREM", zset, lowest_user)
+        -- Add the new user
+        redis.call("ZADD", zset, score, user)
+        return "REPLACED"
+    else
+        return "REJECTED"
+    end
+end
+```
+
+## 7.12. Redis faster than Disk-based access
+
+- Because Redis is in-memory access.
+
+- DBMS is Disk-based access
+
+## 7.13. Which consistency model prevents concurrent processes from allocating the same resource?
+
+- Strong Consistency
+
+## 7.14. Which approach works BEST for efficient partial text matching in search queries?
+
+Full-text search engines
+
+- SQL Like: full table scans.
+
+- Elastic Search: Inverted Index, Fuzzy Matching.
+
+## 7.15. Distributed locks prevent multiple processes from accessing shared resources simultaneously.
+
+- Yes
+
+## 7.16. A system needs to prevent double resource allocation, which database property is most essential?
+
+- Transactions ensure that operations like checking availability and marking resources as allocated happen atomically.
+
+=> Preventing race conditions where multiple users could claim the same resource simultaneously.
+
+## 7.17. Horizontal Scale
+
+- Stateless service.
+
+## 7.18. Which technology enables real-time server-to-client data streaming without client polling?
+
+- SSE.
+
+## 7.19. What happens when a distributed lock's TTL expires before the operation completes?
+
+- Lock becomes available to other processes
+
+## 7.20. Which strategy works BEST for managing millions of simultaneous users during high-demand events?
+
+- Implement virtual waiting queues
+
+## 7.21. Inverted indexes improve full-text search performance by mapping words to documents.
+
+- True
+
+## 7.22. When designing for high availability, which system component should prioritize consistency over availability?
+
+- Payment processing must prioritize consistency to prevent double charges, financial discrepancies, and fraud.
