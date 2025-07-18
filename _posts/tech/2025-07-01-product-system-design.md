@@ -222,7 +222,6 @@ When SELECT 1 billions records => What is lock db ?
 
 ## 5.2. API Design
 
-
 ![](/images/System-Design/Product/Food-Delivery/food-delivery-api-design.png)
 
 ## 5.3. How will customers be able to query the availability of items within a fixed distance (e.g. 30 miles)?
@@ -320,3 +319,61 @@ Idea: The location only store data for it, do not scan all table.
 - Result Caching.
 
 - Local pre-filtering.
+
+# 6. Design a News Aggregator (Example dev.to)
+
+## 6.1. Non-requirements
+
+![](/images/System-Design/Product/News/non-functional-requirements.png)
+
+## 6.2. Entities
+
+![](/images/System-Design/Product/News/entities.png)
+
+## 6.3. API Design
+
+![](/images/System-Design/Product/News/api-design.png)
+
+## 6.4. How will your system collect and store news articles from thousands of publishers worldwide via their RSS feeds?
+
+![](/images/System-Design/Product/News/rss-data-collection.png)
+
+## 6.5. How will your system show users a regional feed of news articles?
+
+![](/images/System-Design/Product/News/feed-region-service.png)
+
+## 6.6. Scroll through the feed 'infinitely'?
+
+- An optimal solution could use monotonically increasing article IDs (like ULIDs) as cursors, eliminating timestamp collisions entirely.
+
+-  This makes pagination incredibly simple: we just query for articles with IDs less than the cursor value => Scroll from the highest ID to the lowest one. We just store the last article we saw client side as the cursor and pass it along with each API request.
+
+## 6.7. How do you ensure that users feeds load quickly (< 200ms)?
+
+- Using CDC (Change Data Capture) from database to Redis.
+
+- Update pre-computed value to Redis, using ZREVRANGE, maintain only the most recent 1,000-2,000 articles per region.
+
+![](/images/System-Design/Product/News/feeds-redis-cdc.png)
+
+## 6.8. How do we ensure articles appear in feeds within 30 minutes of publication? Even for publishers that don't have RSS feeds.
+
+- Integrate with Webhook of platforms.
+
+- Using 3 methods: frequent RSS polling, Web Scraper, Webhook.
+
+![](/images/System-Design/Product/News/webhook.png)
+
+## 6.9. How do you efficiently deliver thumbnail images for millions of news articles in user feeds?
+
+- Using thumbnail in region of the client-side.
+
+![](/images/System-Design/Product/News/cdn.png)
+
+## 6.10. How do you scale your cache infrastructure to handle 10M concurrent users requesting feeds?
+
+- With 10M concurrent users requesting feeds, a single cache instance can only handle ~100k requests per second, creating a massive bottleneck
+
+=> Scale the redis, each instance 100k rps -> 100 instance can handle 10M rps.
+
+![](/images/System-Design/Product/News/redis-replica.png)
