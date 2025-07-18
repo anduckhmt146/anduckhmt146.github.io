@@ -242,7 +242,7 @@ When SELECT 1 billions records => What is lock db ?
 
 ## 5.6. How can we ensure availability lookups are fast and available?
 
-(1) We can use the prefix of the geohash of a location as the cache key so small changes in the location still hit the same fulfillment centers. 
+(1) We can use the prefix of the geohash of a location as the cache key so small changes in the location still hit the same fulfillment centers.
 
 (2) Each nearby service instance can maintain a local cache of the fulfillment centers so that location search can be done without an external call. Since fulfillment centers aren't changing often, we can make the cache TTL long.
 
@@ -280,7 +280,7 @@ Idea: The location only store data for it, do not scan all table.
 
 - The Haversine formula.
 
-## 5.12. Two-phase filtering 
+## 5.12. Two-phase filtering
 
 - Two-phase filtering first applies cheap local filters (like simple distance calculations) to reduce the candidate set before making expensive external API calls (like travel time estimation).
 
@@ -308,11 +308,11 @@ Idea: The location only store data for it, do not scan all table.
 
 ## 5.16. Eventual consistency and Partition Tolerance
 
-- Eventual consistency:	Parts may show different data briefly, but will match soon.
+- Eventual consistency: Parts may show different data briefly, but will match soon.
 
 - Partition Tolerance: Partition tolerance means a system can work even when some parts can't talk to each other => Using Data Replication or Local Cache.
 
-## 5.17. Reduce external service 
+## 5.17. Reduce external service
 
 - Batch Processing.
 
@@ -346,7 +346,7 @@ Idea: The location only store data for it, do not scan all table.
 
 - An optimal solution could use monotonically increasing article IDs (like ULIDs) as cursors, eliminating timestamp collisions entirely.
 
--  This makes pagination incredibly simple: we just query for articles with IDs less than the cursor value => Scroll from the highest ID to the lowest one. We just store the last article we saw client side as the cursor and pass it along with each API request.
+- This makes pagination incredibly simple: we just query for articles with IDs less than the cursor value => Scroll from the highest ID to the lowest one. We just store the last article we saw client side as the cursor and pass it along with each API request.
 
 ## 6.7. How do you ensure that users feeds load quickly (< 200ms)?
 
@@ -440,7 +440,7 @@ Idea: The location only store data for it, do not scan all table.
 
 ## 6.24. Eventual consistency is acceptable for news feeds where availability matters more than perfect synchronization.
 
-- According to the CAP theorem, news aggregation systems often prioritize availability over strict consistency. 
+- According to the CAP theorem, news aggregation systems often prioritize availability over strict consistency.
 
 - Users prefer access to slightly outdated content rather than no content at all.
 
@@ -448,7 +448,7 @@ Idea: The location only store data for it, do not scan all table.
 
 - Cache metadata in regional caches (like feed:US) => Filtering from this key.
 
-- Pros:  This avoids the memory explosion of separate category caches (25 categories × 10 regions = 250 cache keys) => Reading 1,000 articles from Redis takes ~10ms, and in-memory filtering adds only 1-2ms.
+- Pros: This avoids the memory explosion of separate category caches (25 categories × 10 regions = 250 cache keys) => Reading 1,000 articles from Redis takes ~10ms, and in-memory filtering adds only 1-2ms.
 
 # 7. Design Ticketmaster
 
@@ -515,7 +515,7 @@ How would you design this to prevent users from losing seats during checkout?
 
 ## 7.11. How would you implement a virtual waiting room that queues users for popular events and grants access based on their queue position?
 
-- We can implement a virtual waiting room using Redis' Sorted Sets data structure. When users attempt to access the event page during peak times, they are redirected to a waiting room, and their session IDs are added to a Redis Sorted Set with their timestamp as the score, ensuring first-come-first-served order. 
+- We can implement a virtual waiting room using Redis' Sorted Sets data structure. When users attempt to access the event page during peak times, they are redirected to a waiting room, and their session IDs are added to a Redis Sorted Set with their timestamp as the score, ensuring first-come-first-served order.
 
 - Every N minutes, or based on the number of completed bookings, we use ZRANGE to pull users from the front of the queue and grant them access to the event details page in a controlled manner, throttling the number of concurrent bookings and preventing system overload. This approach ensures fairness by serving users in the order they arrived and provides scalability to handle surges in traffic.
 
@@ -569,3 +569,55 @@ else
     end
 end
 ```
+
+## 7.12. Redis faster than Disk-based access
+
+- Because Redis is in-memory access.
+
+- DBMS is Disk-based access
+
+## 7.13. Which consistency model prevents concurrent processes from allocating the same resource?
+
+- Strong Consistency
+
+## 7.14. Which approach works BEST for efficient partial text matching in search queries?
+
+Full-text search engines
+
+- SQL Like: full table scans.
+
+- Elastic Search: Inverted Index, Fuzzy Matching.
+
+## 7.15. Distributed locks prevent multiple processes from accessing shared resources simultaneously.
+
+- Yes
+
+## 7.16. A system needs to prevent double resource allocation, which database property is most essential?
+
+- Transactions ensure that operations like checking availability and marking resources as allocated happen atomically.
+
+=> Preventing race conditions where multiple users could claim the same resource simultaneously.
+
+## 7.17. Horizontal Scale
+
+- Stateless service.
+
+## 7.18. Which technology enables real-time server-to-client data streaming without client polling?
+
+- SSE.
+
+## 7.19. What happens when a distributed lock's TTL expires before the operation completes?
+
+- Lock becomes available to other processes
+
+## 7.20. Which strategy works BEST for managing millions of simultaneous users during high-demand events?
+
+- Implement virtual waiting queues
+
+## 7.21. Inverted indexes improve full-text search performance by mapping words to documents.
+
+- True
+
+## 7.22. When designing for high availability, which system component should prioritize consistency over availability?
+
+- Payment processing must prioritize consistency to prevent double charges, financial discrepancies, and fraud.
