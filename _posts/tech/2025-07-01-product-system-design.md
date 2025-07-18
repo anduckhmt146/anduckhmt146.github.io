@@ -449,3 +449,74 @@ Idea: The location only store data for it, do not scan all table.
 - Cache metadata in regional caches (like feed:US) => Filtering from this key.
 
 - Pros:  This avoids the memory explosion of separate category caches (25 categories × 10 regions = 250 cache keys) => Reading 1,000 articles from Redis takes ~10ms, and in-memory filtering adds only 1-2ms.
+
+# 7. Design Ticketmaster
+
+## 7.1. Non-functional requirements
+
+- Consistency for booking events.
+
+- Availability for searching events.
+
+- Scalability for handle popular events.
+
+## 7.2. Entities
+
+![](/images/System-Design/Product/Ticketmaster/entities.png)
+
+## 7.3. API Design
+
+![](/images/System-Design/Product/Ticketmaster/api-design.png)
+
+## 7.4. How will users be able to view simple event details when clicking on an event? ie. name, description, location, date, etc.
+
+![](/images/System-Design/Product/Ticketmaster/event-service.png)
+
+## 7.5. How will users be able to search for events?
+
+![](/images/System-Design/Product/Ticketmaster/search-service.png)
+
+## 7.6. How will users be able to book specific seats for events? Each physical seat has exactly one ticket. Do not consider General Admission or section-based booking.
+
+![](/images/System-Design/Product/Ticketmaster/booking.png)
+
+## 7.7. Implement a two-phase booking process:
+
+1. Seat Reservation: Temporarily hold selected seats.
+2. Booking Confirmation: Finalize purchase within a time limit.
+
+How would you design this to prevent users from losing seats during checkout?
+
+- To implement the two-phase booking process and prevent users from losing seats during checkout, we’ll use a distributed lock system with Redis and a 10-minute TTL (Time to Live). When a user selects seats to reserve, the client sends a POST request to the Booking Service with the selected ticketIds. The Booking Service attempts to acquire locks for these seats in Redis, setting a TTL of 10 minutes for each lock. This reservation ensures that no other user can reserve or book the same seats during this period.
+
+- If the user completes the purchase within the 10-minute window, the Booking Service finalizes the booking by updating the ticket statuses to “booked”. If the user does not complete the purchase in time, the locks automatically expire due to the TTL, and the seats become available for others to reserve. This mechanism effectively prevents seat loss during checkout by exclusively holding seats for the user and automatically releasing them if the reservation times out.
+
+![](/images/System-Design/Product/Ticketmaster/distributed-lock.png)
+
+## 7.8. How can your design scale to support up to 10M concurrent users reading event data? Focus on optimizing the database and read flow for this high volume of requests.
+
+- Read from cache => Read replicas, because Database engine need time to query.
+
+![](/images/System-Design/Product/Ticketmaster/cache.png)
+
+## 7.9. How can you improve search to handle complex queries more efficiently. If you think your design already handles this well, explain how.
+
+- When search it return data from Elastic Search, rather than the database.
+
+![](/images/System-Design/Product/Ticketmaster/elastic-search.png)
+
+## 7.10. How can you make the seat map on the event page automatically refresh to display the latest seat availability in real time?
+
+- We can implement Server-Sent Events (SSE). When a user views the seat map on the event page, the client establishes an SSE connection to the Booking Service. The server then pushes updates to the client whenever there’s a change in seat availability—such as seats being reserved or booked by other users. On the client, we'll receive these updates and block off the seats in the seat map accordingly.
+
+- As we scale, we may not be able to fit all connections for a single event on a single Booking Service instance. In this case, we can introduce pub/sub to broadcast changes or add a dispatcher that utilizes Zookeeper or a similar service to know which server to send updates to.
+
+![](/images/System-Design/Product/Ticketmaster/sse.png)
+
+## 7.11. How would you implement a virtual waiting room that queues users for popular events and grants access based on their queue position?
+
+- We can implement a virtual waiting room using Redis' Sorted Sets data structure. When users attempt to access the event page during peak times, they are redirected to a waiting room, and their session IDs are added to a Redis Sorted Set with their timestamp as the score, ensuring first-come-first-served order. 
+
+- Every N minutes, or based on the number of completed bookings, we use ZRANGE to pull users from the front of the queue and grant them access to the event details page in a controlled manner, throttling the number of concurrent bookings and preventing system overload. This approach ensures fairness by serving users in the order they arrived and provides scalability to handle surges in traffic.
+
+![](/images/System-Design/Product/Ticketmaster/redis-sorted-set.png)
