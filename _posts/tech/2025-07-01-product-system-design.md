@@ -657,3 +657,64 @@ Full-text search engines
 - Using Redis for heavy-read posts.
 
 ![](/images/System-Design/Product/FB-Posts/heavy-read-posts.png)
+
+## 8.8. Fan-out on write means aggregating data at read time when a user requests their feed.
+
+- Fan-out on write means pre-aggregating data when posts are created (at write time).
+
+- While fan-out on read means aggregating data when users request their feed (at read time).
+
+## 8.9. Key-value stores can scale infinitely regardless of how requests are distributed across the keyspace.
+
+- Key-value stores require even load distribution across partitions to scale effectively.
+
+- If certain keys get much more traffic (hot keys), those partitions become bottlenecks, limiting scalability.
+
+![](/images/System-Design/Product/FB-Posts/offset-pagination.png)
+
+![](/images/System-Design/Product/FB-Posts/cursor-pagination.png)
+
+## 8.10. Secondary indexes in databases are primarily used to improve write performance rather than enable different query patterns.
+
+- Secodary Index: Support read, but longer write.
+
+## 8.11. What is the most effective approach to handle hot keys in a distributed cache system?
+
+- Implement redundant caching where multiple nodes can serve the same popular keys
+
+## 8.12. For modeling follow relationships in a social network using a key-value store, what is the most efficient approach for supporting both 'who does user X follow' and 'who follows user X' queries?
+
+- Create a table with composite keys and a secondary index with reversed keys
+
+- Idea: Using composite keys (follower:following) with a secondary index that reverses the key order (following:follower) allows efficient querying of both access patterns in a single table structure, which is optimal for key-value stores.
+
+![](/images/System-Design/Product/FB-Posts/composite-key.png)
+
+- Efficient lookups: All queries are direct key-prefix scans (ideal for key-value stores).
+
+🔑 Partition Key & Sort Key
+
+- Partition Key: Determines which physical partition (node/shard) the item is stored on.
+- Sort Key: Determines the order of items within a partition.
+
+## 8.13. What is the primary benefit of maintaining precomputed feeds for users in a social media system?
+
+- Cache is pre-computed.
+
+## 8.14. In the context of the CAP theorem, a social media feed system that tolerates up to 1 minute of post staleness is prioritizing which combination?
+
+- Availability and Partition tolerance
+
+## 8.15. In a hybrid fan-out strategy for social feeds, what is the most practical approach for handling celebrity accounts with millions of followers?
+
+- Skipping fan-out for celebrity accounts (not writing to millions of feeds) and instead merging their recent posts during read operations is more efficient than trying to update millions of precomputed feeds.
+
+## 8.16. Why are stateless services easier to scale horizontally compared to stateful services?
+
+- Any instance can handle any request without needing to maintain session data
+
+- Idea: Horizontal Scaling.
+
+## 8.17. When using message queues to handle posts from users with varying follower counts, what is a key consideration for queue design?
+
+- Posts from users with few followers require little work (updating few feeds), while posts from users with millions of followers require massive work. The queue system needs to account for this variable workload to avoid bottlenecks.
