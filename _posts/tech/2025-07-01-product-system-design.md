@@ -222,7 +222,6 @@ When SELECT 1 billions records => What is lock db ?
 
 ## 5.2. API Design
 
-
 ![](/images/System-Design/Product/Food-Delivery/food-delivery-api-design.png)
 
 ## 5.3. How will customers be able to query the availability of items within a fixed distance (e.g. 30 miles)?
@@ -243,7 +242,7 @@ When SELECT 1 billions records => What is lock db ?
 
 ## 5.6. How can we ensure availability lookups are fast and available?
 
-(1) We can use the prefix of the geohash of a location as the cache key so small changes in the location still hit the same fulfillment centers. 
+(1) We can use the prefix of the geohash of a location as the cache key so small changes in the location still hit the same fulfillment centers.
 
 (2) Each nearby service instance can maintain a local cache of the fulfillment centers so that location search can be done without an external call. Since fulfillment centers aren't changing often, we can make the cache TTL long.
 
@@ -281,7 +280,7 @@ Idea: The location only store data for it, do not scan all table.
 
 - The Haversine formula.
 
-## 5.12. Two-phase filtering 
+## 5.12. Two-phase filtering
 
 - Two-phase filtering first applies cheap local filters (like simple distance calculations) to reduce the candidate set before making expensive external API calls (like travel time estimation).
 
@@ -309,11 +308,11 @@ Idea: The location only store data for it, do not scan all table.
 
 ## 5.16. Eventual consistency and Partition Tolerance
 
-- Eventual consistency:	Parts may show different data briefly, but will match soon.
+- Eventual consistency: Parts may show different data briefly, but will match soon.
 
 - Partition Tolerance: Partition tolerance means a system can work even when some parts can't talk to each other => Using Data Replication or Local Cache.
 
-## 5.17. Reduce external service 
+## 5.17. Reduce external service
 
 - Batch Processing.
 
