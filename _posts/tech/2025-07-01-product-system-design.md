@@ -1302,3 +1302,43 @@ Use for payment system, rail-hailing system.
 - Most workflow systems provide a way to ensure an activity runs exactly once ... for a very specific definition of "run".
 
 - The solution is to make the activity idempotent. This means that the activity can be called multiple times with the same inputs and get the same result.
+
+### 10.3.9. What is the primary challenge that multi-step processes address in distributed systems?
+
+- Coordinating multiple services reliably across failures and retries
+
+### 10.3.10. What is the key principle behind event sourcing?
+
+- Store a sequence of events that represent what happened
+
+### 10.3.11. In event sourcing architecture, what triggers the next step in a workflow?
+
+- Workers consuming events from the event store => change state.
+
+### 10.3.12. Workflow systems eliminate the need for building custom infrastructure for state management and orchestration.
+
+- Workflow systems and durable execution engines provide the benefits of event sourcing and state management => without requiring you to build the infrastructure yourself.
+
+### 10.3.13. In Temporal workflows, what is the key requirement for workflows vs activities?
+
+- Workflows must be deterministic (same inputs and history produce same decisions) to enable replay-based recovery.
+
+- Activities must be idempotent (can be called multiple times with same result) but won't be retried once they succeed.
+
+### 10.3.14. Temporal uses a history database to remember activity results during workflow replay.
+
+- Each activity run is recorded in a history database.
+
+- If a workflow runner crashes, another runner can replay the workflow and use the history to remember what happened with each activity invocation.
+
+#### 10.3.15. How do managed workflow systems like AWS Step Functions differ from durable execution engines like Temporal?
+
+- They use declarative definitions (JSON/YAML) instead of code
+
+#### 10.3.16. How do workflow systems handle external events like waiting for user input?
+
+- Workflows use signals to wait for external events efficiently.
+
+### 10.3.17. Apache Airflow is better suited for event-driven, long-running user-facing workflows than scheduled batch workflows
+
+- Apache Airflow excels at scheduled batch workflows like ETL and data pipelines, do not use for user-facing workflows.
