@@ -745,7 +745,7 @@ Full-text search engines
 
 ## 10.1. Real-time Updates
 
-### Network Protocol
+### 10.1.1. Network Protocol
 
 - Network Layer (Layer 3):
 
@@ -795,7 +795,7 @@ Backend servers (web servers, APIs, etc.)
 
 ```
 
-### Client Updates
+### 10.1.2. Client Updates
 
 **1. Simple Polling**
 
@@ -898,7 +898,7 @@ const config = {
 
 ![](/images/System-Design/Patterns/real-time-protocol.png)
 
-### Server Pull/Push
+### 10.1.3. Server Pull/Push
 
 1. Pulling with Simple Polling
 
@@ -934,3 +934,286 @@ When to use:
 Cons:
 
 - The Pub/Sub service becomes a single point of failure and bottleneck.
+
+### 10.1.4. WebSockets require every intermediary (load balancers, proxies) between client and server to support the upgrade handshake.
+
+- Yes
+
+### 10.1.5. Which load balancer type (per the OSI model) is generally preferred when terminating long-lived WebSocket connections?
+
+- L4 balancers operate at the TCP layer and preserve the single underlying connection, avoiding issues some L7 proxies have with WebSocket stickiness.
+
+### 10.1.6. Consistent hashing reduces connection churn when scaling endpoint servers up or down.
+
+- True because it auto sharding to another nodes in ring architecture.
+
+- Only the keys mapping to the portion of the hash ring owned by added/removed nodes move, so most clients stay put.
+
+### 10.1.7. In a pub/sub architecture, which component is responsible for routing published messages to all active subscribers?
+
+- Message Queue.
+
+### 10.1.8. WebRTC always guarantees a direct peer-to-peer path between browsers without relays.
+
+- Success: STUN: Help a client find its public IP address and port as seen from the internet (outside its NAT) - Session Traversal Utilities for NAT
+
+- Failed (Fallback): TURN: Relay data between peers when direct connection isn't possible - Traversal Using Relays around NAT
+
+- When NAT traversal fails, TURN relays forward traffic, so not all flows are purely peer-to-peer.
+
+### 10.1.9. Using a "least connections" strategy at the load balancer helps distribute WebSocket clients more evenly across endpoint servers.
+
+- Yes
+
+### 10.1.10. When would you MOST LIKELY choose consistent hashing over a pub/sub approach on the server side?
+
+- If per-client state is heavy, pinning that user to one server (via hashing) avoids expensive state transfer and cache misses => Fixed some client state to server to save resources.
+
+### 10.1.11. SSE streams can be buffered by misconfigured proxies, delaying updates to clients even though the server flushes chunks immediately.
+
+- Proxies that don't support Transfer-Encoding: chunked may wait for the full response before forwarding, defeating streaming semantics.
+
+## 10.2. Dealing with Contention
+
+### 10.2.1. Transaction
+
+```sql
+BEGIN TRANSACTION;
+
+-- Debit Alice's account
+UPDATE accounts SET balance = balance - 100 WHERE user_id = 'alice';
+
+-- Credit Bob's account
+UPDATE accounts SET balance = balance + 100 WHERE user_id = 'bob';
+
+COMMIT; -- Both operations succeed together
+```
+
+Transaction
+
+```sql
+BEGIN TRANSACTION;
+
+-- Check and reserve the seat
+UPDATE concerts
+SET available_seats = available_seats - 1
+WHERE concert_id = 'weeknd_tour'
+  AND available_seats >= 1;
+
+-- Create the ticket record
+INSERT INTO tickets (user_id, concert_id, seat_number, purchase_time)
+VALUES ('user123', 'weeknd_tour', 'A15', NOW());
+
+COMMIT;
+```
+
+### 10.2.2. Pessimistic Locking
+
+- "Pessimistic" about conflicts - assuming they will happen and preventing them.
+
+When a transaction or thread wants to access a resource (like a row in a table), it locks it before reading or writing. Other transactions/threads must wait until the lock is released.
+
+Types of Locks:
+
+- Read Lock (Shared Lock): Others can also read, but not write.
+
+- Write Lock (Exclusive Lock): Others can't read or write.
+
+```sql
+BEGIN;
+
+SELECT * FROM accounts WHERE id = 101 FOR UPDATE;
+
+-- Do some update here
+UPDATE accounts SET balance = balance - 100 WHERE id = 101;
+
+COMMIT;
+optimi
+```
+
+### 10.2.3. Optimistic locking
+
+Update success
+
+```sql
+UPDATE accounts
+SET balance = 900, version = 4
+WHERE id = 1 AND version = 3;
+```
+
+Update failed
+
+```sql
+UPDATE accounts
+SET balance = 800, version = 4
+WHERE id = 1 AND version = 3;
+```
+
+### 10.2.4. Isolation Levels
+
+- READ UNCOMMITTED: Can see uncommitted changes from other transactions (rarely used)
+
+- READ COMMITTED: Can only see committed changes (default in PostgreSQL)
+
+- REPEATABLE READ: Same data read multiple times within a transaction stays consistent (default in MySQL)
+
+- SERIALIZABLE: Strongest isolation, transactions appear to run one after another
+
+The defaults of either READ COMMITTED or REPEATABLE READ => still allows our concert ticket race condition because both Alice and Bob can read "1 seat available" simultaneously before updating.
+
+Solution: Using SERIALIZABLE
+
+```sql
+-- Set isolation level for this transaction
+BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+UPDATE concerts
+SET available_seats = available_seats - 1
+WHERE concert_id = 'weeknd_tour'
+  AND available_seats >= 1;
+
+-- Create the ticket record
+INSERT INTO tickets (user_id, concert_id, seat_number, purchase_time)
+VALUES ('user123', 'weeknd_tour', 'A15', NOW());
+
+COMMIT;
+```
+
+![](/images/System-Design/Patterns/isolation-levels.png)
+
+With SERIALIZABLE, the database automatically detects conflicts and aborts one transaction if they would interfere with each other.
+
+### 10.2.5. Optimistic Concurrency Control
+
+```sql
+-- Alice reads: concert has 1 seat, version 42
+-- Bob reads: concert has 1 seat, version 42
+
+-- Alice tries to update first:
+BEGIN TRANSACTION;
+UPDATE concerts
+SET available_seats = available_seats - 1, version = version + 1
+WHERE concert_id = 'weeknd_tour'
+  AND version = 42;  -- Expected version
+
+INSERT INTO tickets (user_id, concert_id, seat_number, purchase_time)
+VALUES ('alice', 'weeknd_tour', 'A15', NOW());
+COMMIT;
+
+-- Alice's update succeeds, seats = 0, version = 43
+
+-- Bob tries to update:
+BEGIN TRANSACTION;
+UPDATE concerts
+SET available_seats = available_seats - 1, version = version + 1
+WHERE concert_id = 'weeknd_tour'
+  AND version = 42;  -- Stale version!
+
+-- Bob's update affects 0 rows - conflict detected, transaction rolls back
+```
+
+### 10.2.6. Multiple nodes
+
+#### Two-phrase commit
+
+- Step 1: Prepare, transaction stays open, waiting for coordinator's decision
+
+```sql
+-- Database A during prepare phase
+BEGIN TRANSACTION;
+SELECT balance FROM accounts WHERE user_id = 'alice' FOR UPDATE;
+-- Check if balance >= 100
+UPDATE accounts SET balance = balance - 100 WHERE user_id = 'alice';
+-- Transaction stays open, waiting for coordinator's decision
+
+-- Database B during prepare phase
+BEGIN TRANSACTION;
+SELECT * FROM accounts WHERE user_id = 'bob' FOR UPDATE;
+-- Verify account exists and is active
+UPDATE accounts SET balance = balance + 100 WHERE user_id = 'bob';
+-- Transaction stays open, waiting for coordinator's decision
+```
+
+- Step 2: Coordinator commit.
+
+#### Distributed Locks
+
+- Redis with TTL
+
+- Database columns: Add status, expiration column.
+
+- ZooKeeper/etcd: Use coordination service to distribued lock. Both systems use consensus algorithms (Raft for etcd, ZAB for ZooKeeper) to maintain consistency across multiple nodes.
+
+#### Saga Pattern
+
+- Step 1 - Debit $100 from Alice's account in Database A, commit immediately
+
+- Step 2 - Credit $100 to Bob's account in Database B, commit immediately
+
+- Step 3 - Send confirmation notifications and adjust rollup or commit.
+
+![](/images/System-Design/Patterns/transaction-pattern.png)
+
+Cons:
+
+- During saga execution, the system is temporarily inconsistent. After Step 1 completes, Alice's account is debited but Bob's account isn't credited yet.
+
+- Other processes might see Alice's balance as $100 lower during this window. If someone checks the total money in the system, it appears to have decreased temporarily.
+
+### When to use
+
+Here are some bang on examples of when you might need to use contention patterns:
+
+- Multiple users competing for limited resources: concert tickets, auction bidding, flash sale inventory, or matching drivers with riders
+
+- Prevent double-booking or double-charging in scenarios: payment processing, seat reservations, or meeting room scheduling.
+
+- Ensure data consistency under high concurrency for operations: account balance updates, inventory management, or collaborative editing
+
+- Handle race conditions in distributed systems: where the same operation might happen simultaneously across multiple servers and where the outcome is sensitive to the order of operations.
+
+When not to use:
+
+- Read-heavy workloads: Handle write conflicts -> Impact read performance.
+
+### 10.2.7. How do you prevent deadlocks with pessimistic locking?
+
+- Alice wants to transfer $100 to Bob, while Bob simultaneously wants to transfer $50 to Alice.
+
+- Transaction A locks Alice's account first, then tries to lock Bob's account.
+
+- Transaction B locks Bob's account first, then tries to lock Alice's account. Both transactions wait forever for the other to release their lock.
+
+![](/images/System-Design/Patterns/deadlock.png)
+
+Solution:
+
+- Sort the resources you need to lock by some deterministic key like user ID, database primary key, or even memory address.
+
+- If you need to lock users 123 and 456, always lock 123 first even if your business logic processes 456 first.
+
+- Use database timeout for fallback => Most modern databases also have automatic deadlock detection that kills one transaction when cycles are detected.
+
+### 10.2.8. What if your coordinator service crashes during a distributed transaction in 2-Phrase Commit ?
+
+![](/images/System-Design/Patterns/2pc-crash.png)
+
+Production systems handle this with coordinator failover and transaction recovery
+
+=> When a new coordinator starts up, it reads persistent logs to determine which transactions were in-flight and completes them.
+
+### 10.2.9. How do you handle the ABA problem with optimistic concurrency
+
+- Update the review_count for user know the problem.
+
+```sql
+-- Use review count as the "version" since it always increases
+UPDATE restaurants
+SET avg_rating = 4.1, review_count = review_count + 1
+WHERE restaurant_id = 'pizza_palace'
+  AND review_count = 100;  -- Expected current count
+```
+
+### 10.2.10. What about performance when everyone wants the same resource
+
+![](/images/System-Design/Patterns/messsage-queue.png)
