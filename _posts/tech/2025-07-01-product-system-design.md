@@ -1248,3 +1248,57 @@ WHERE restaurant_id = 'pizza_palace'
 ### 10.2.17. What is the main advantage of keeping contended data in a single database?
 
 - ACID transaction.
+
+## 10.3. Multi-step Processes
+
+### 10.3.1. Order Messy State in real-world
+
+![](/images/System-Design/Patterns/order-messy-state.png)
+
+### 10.3.2. Single Server Orchestration
+
+![](/images/System-Design/Patterns/single-server-orchestration.png)
+
+- Cons: It have to manually config event state and handle failure in each service.
+
+### 10.3.3. Event Sourcing
+
+![](/images/System-Design/Patterns/event-sourcing-pattern.png)
+
+- Implement event sourcing patterns.
+
+### 10.3.4. Workflow Management
+
+![](/images/System-Design/Patterns/workflow-management-pattern.png)
+
+- Manage state of transaction.
+
+- Query transaction by time.
+
+Use for payment system, rail-hailing system.
+
+![](/images/System-Design/Patterns/workflow-rail-hailing-system.png)
+
+### 10.3.5. How will you handle updates to the workflow ?
+
+- Workflow Versioning.
+
+- Workflow Migrations
+
+### 10.3.6. How do we keep the workflow state size in check
+
+- First, we should try to minimize the size of the activity input and results.
+
+- Second, we can keep our workflows lean by periodically recreating them. If you have a long-running workflow with lots of history, you can periodically recreate the workflow from the beginning, passing only the required inputs to the new workflow to keep going.
+
+### 10.3.7. How do we deal with external events
+
+- External systems send signals through the workflow engine's API. The workflow suspends efficiently - no polling, no resource consumption.
+
+- This pattern handles human tasks, webhook callbacks, and integration with external systems.
+
+### 10.3.8. How can we ensure X step runs exactly once
+
+- Most workflow systems provide a way to ensure an activity runs exactly once ... for a very specific definition of "run".
+
+- The solution is to make the activity idempotent. This means that the activity can be called multiple times with the same inputs and get the same result.
