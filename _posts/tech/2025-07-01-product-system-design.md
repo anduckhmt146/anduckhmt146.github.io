@@ -718,3 +718,219 @@ Full-text search engines
 ## 8.17. When using message queues to handle posts from users with varying follower counts, what is a key consideration for queue design?
 
 - Posts from users with few followers require little work (updating few feeds), while posts from users with millions of followers require massive work. The queue system needs to account for this variable workload to avoid bottlenecks.
+
+# 9. Design Tinder
+
+## 9.1. Functional Requirements
+
+![](/images/System-Design/Product/Tinder/functional-requirements.png)
+
+## 9.2. Non-functional Requirements
+
+![](/images/System-Design/Product/Tinder/non-functional-requirements.png)
+
+## 9.3. Entities
+
+- Actor of your system, discover later.
+
+![](/images/System-Design/Product/Tinder/entities.png)
+
+## 9.4. API Design
+
+- Each demand (requirement) => 1 Endpoint
+
+![](/images/System-Design/Product/Tinder/api-design.png)
+
+# 10. Patterns
+
+## 10.1. Real-time Updates
+
+### Network Protocol
+
+- Network Layer (Layer 3):
+
+  - Assigns IP addresses (IPv4 or IPv6) to devices.
+  - Splits large packets into smaller ones if needed.
+
+- Transport Layer (Layer 4):
+
+  - TCP: connection-oriented protocol: before you can send data, you need to establish a connection with the other side.
+
+  - UDP: connectionless protocol: you can send data to any other IP address on the network without any prior setup.
+
+  - TCP tracks every byte sent and requires ACKs to confirm receipt. If packets get lost, TCP retransmits them. UDP simply doesn’t do this, TCP ensures data arrives in order.
+
+- Application Layer (Layer 7): At the final layer are the application protocols like DNS, HTTP, Websockets, WebRTC => DNS can choose to use TCP or UDP.
+
+---
+
+TCP Connection
+
+- When user make connections using TCP -> Three-way handshanking + Make requests + Finish.
+
+- When a user makes REST requests like GET, POST, or PUT, the underlying transport protocol is typically TCP, can use **keep-alive** for sessions.
+
+---
+
+Load Balancers
+
+- Layer 4 Load Balancers: AWS Network Load Balancer => Load to IP layer
+
+- Layer 7 Load Balancers: API Gateway => Load HTTP requests.
+
+- It works together
+
+```bash
+User Request --> Layer 4 Load Balancer --> Layer 7 Load Balancer --> Backend Server
+```
+
+```bash
+Internet
+   ↓
+Layer 4 Load Balancer (e.g., AWS Network Load Balancer)
+   ↓
+Layer 7 Load Balancer (e.g., AWS Application Load Balancer, NGINX)
+   ↓
+Backend servers (web servers, APIs, etc.)
+
+```
+
+### Client Updates
+
+**1. Simple Polling**
+
+Cons:
+
+- Can cause unnecessary network traffic (lots of requests with no new data).
+
+- Higher latency for real-time updates because client only checks periodically.
+
+```javascript
+async function poll() {
+  const response = await fetch('/api/updates');
+  const data = await response.json();
+  processData(data);
+}
+
+// Poll every 2 seconds
+setInterval(poll, 2000);
+```
+
+**2. Long Polling**
+
+- Server only requests when it have more data -> Else it hold the requests, client do not need to make requests.
+
+  - Step 1: Client makes HTTP request to server
+  - Step 2: Server holds request open until new data is available
+  - Step 3: Server responds with data
+  - Step 4: Client immediately makes new request
+  - Step 5: Process repeats
+
+- In simple polling, the client checks for new data only at fixed intervals (e.g., every 5 seconds). If new data arrives just after a check, the client has to wait until the next interval to find out — causing a delay that can be several seconds.
+
+- In long polling, the client sends a request and the server holds this request open until new data is available.
+
+When the data arrives, the server immediately responds.
+
+- The client then instantly sends a new request to listen for more updates.
+
+- Because the server responds as soon as new data is available, the delay between data creation and client notification is minimized—usually just the network latency and processing time.
+
+Cons:
+
+- More complex to implement.
+
+- Holding many open connections can strain the server.
+
+---
+
+Different Long Polling and Web Socket
+
+- Long polling: HTTP request/response cycle.
+
+- Web Socket: Persistent, full-duplex TCP
+
+**3. Server-Sent Events (SSE)**
+
+Cons:
+
+- Limited browser support EventSource.
+
+- One-way communication only: Server to Client.
+
+**4. WebSocket: The Full-Duplex Champion**
+
+Cons:
+
+- More complex to implement.
+- Requires special infrastructure.
+- Stateful connections, can make load balancing and scaling more complex.
+
+**5. WebRTC: The Peer-to-Peer Solution**
+
+Use for video calling, peer-to-peer connection.
+
+1. Peers discover each other through signaling server.
+
+2. Exchange connection info (ICE candidates)
+
+3. Establish direct peer connection, using STUN/TURN if needed
+
+4. Stream audio/video or send data directly
+
+WebSocket — When to Use
+
+- Client-server communication: WebSocket creates a persistent, full-duplex connection between a client and a server.
+
+WebRTC — When to Use
+
+- Peer-to-peer communication: WebRTC enables direct, low-latency peer-to-peer connections between browsers/devices.
+
+```javascript
+const config = {
+  iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+};
+```
+
+- STUN server: Helps peers find their public IP addresses to connect through NATs/firewalls.
+
+- TURN server: Relays media/data if a direct peer-to-peer connection can’t be established (e.g., due to restrictive NATs).
+
+![](/images/System-Design/Patterns/real-time-protocol.png)
+
+### Server Pull/Push
+
+1. Pulling with Simple Polling
+
+Cons:
+
+- High latency.
+- Excess DB load when updates are infrequent and polling is frequent.
+
+2. Pushing via Consistent Hashes
+
+- Each server -> Each client fixed.
+
+Zookeepers is used to store metadata of clients and servers.
+
+![](/images/System-Design/Patterns/zookeeper.png)
+
+Cons:
+
+- Complex to implement correctly
+
+- Requires coordination service (like Zookeeper)
+
+- All servers need to maintain routing information
+
+When to use:
+
+- WebSocket: stateful
+
+- Consistent hashing is ideal when you need to maintain persistent connections (WebSocket/SSE) and your system needs to scale dynamically, state 'on', 'off'.
+
+3. Pushing via Pub/Sub
+
+Cons:
+
+- The Pub/Sub service becomes a single point of failure and bottleneck.
