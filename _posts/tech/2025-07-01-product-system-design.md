@@ -1217,3 +1217,34 @@ WHERE restaurant_id = 'pizza_palace'
 ### 10.2.10. What about performance when everyone wants the same resource
 
 ![](/images/System-Design/Patterns/messsage-queue.png)
+
+### 10.2.11. What does the SQL 'FOR UPDATE' clause accomplish?
+
+- Exclusive lock: write.
+
+- Shared lock: read.
+
+### 10.2.12. Pessimistic locking more efficient when conflicts are frequent.
+
+- Optimistic concurrency control works best when conflicts are rare, multiple conflicts => multiple retries.
+- Frequent conflicts mean lots of retries. making pessimistic locking more efficient.
+
+### 10.2.13. In two-phase commit, transactions can stay open across network calls.
+
+- This is actually a dangerous aspect of 2PC - open transactions hold locks during network coordination, which can cause problems if the coordinator crashes.
+
+### 10.2.14. What is the standard solution for preventing deadlocks with pessimistic locking?
+
+- Always acquire locks in a consistent order
+
+### 10.2.15. Which approach works best for handling the 'hot partition' problem where everyone wants the same resource?
+
+- Implement queue-based serialization
+
+### 10.2.16. When should you choose pessimistic locking over optimistic concurrency control?
+
+- Optimistic approaches that require rollback => Reduce the rollback rates.
+
+### 10.2.17. What is the main advantage of keeping contended data in a single database?
+
+- ACID transaction.
