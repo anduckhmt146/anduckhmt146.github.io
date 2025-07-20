@@ -1641,6 +1641,97 @@ TABLE post_analytics (
 
 - Reduce throughput per component
 
+### 10.5.20. LSM Tree (Log-Structured Merge-tree)
+
+– Built for heavy write volume.
+
+- Appends in memory then merges on disk. Point reads cost extra hops.
+
 ## 10.6. Handling Large Blobs
+
+### 10.6.1. Pre-signed url:
+
+- Use for clients temporary, scoped credentials to interact directly with storage.
+
+### 10.6.2. Simple Direct Upload
+
+- content-length-range: Set min/max file sizes to prevent someone uploading 10GB when you expect 10MB
+
+- content-type: Ensure that profile picture endpoint only accepts images, not videos
+
+### 10.6.3. Simple Direct Download
+
+- Blob storage signatures (like S3 presigned URLs): are validated by the storage service using your cloud credentials. The storage service has your secret key and can verify that you generated the signature.
+
+- CDN signatures (like CloudFront signed URLs): are validated by the CDN edge servers using public/private key cryptography.
+
+### 10.6.4. Resumable Uploads for Large Files
+
+![](/images/System-Design/Patterns/chunk-upload.png)
+
+### 10.6.5. State Synchronization Challenges
+
+Use database to track it
+
+```sql
+CREATE TABLE files (
+    id              UUID PRIMARY KEY,
+    user_id         UUID NOT NULL,
+    filename        VARCHAR(255),
+    size_bytes      BIGINT,
+    content_type    VARCHAR(100),
+    storage_key     VARCHAR(500),  -- s3://bucket/user123/files/abc-123.pdf
+    status          VARCHAR(50),   -- 'pending', 'uploading', 'completed', 'failed'
+    created_at      TIMESTAMP,
+    updated_at      TIMESTAMP
+);
+```
+
+1. Race conditions: The database might show 'completed' before the file actually exists in storage
+
+2. Orphaned files: The client might crash after uploading but before notifying you, leaving files in storage with no database record
+
+3. Malicious clients: Users could mark uploads as complete without actually uploading anything
+
+4. Network failures: The completion notification might fail to reach your servers
+
+![](/images/System-Design/Patterns/metadata-upload.png)
+
+### 10.6.6. What if the upload fails at 99%?
+
+- When files exceed 100MB, you should use chunked uploads - S3 multipart uploads (5MB+ parts), GCS resumable uploads (any chunk size), or Azure block blobs (4MB+ blocks).
+
+- When a connection drops, the client doesn't start over. Instead, it queries which parts already uploaded; using ListParts in S3, checking the resumable session status in GCS, or listing committed blocks in Azure.
+
+- If parts 1-19 succeeded but part 20 failed, the client resumes from part 20.
+
+### 10.6.7. How do you prevent abuse
+
+- Run virus scans, content validation, and any other checks before moving files to the public bucket.
+
+- Only after these checks pass do you move the file to its final location and update the database status to "available."
+
+### 10.6.8. How do you handle metadata
+
+- The storage key is your connection point. Use a consistent pattern like uploads/{user_id}/{timestamp}/{uuid} that includes useful info but prevents collisions.
+
+- Add metadata with: who uploaded it, what it's for, processing instructions
+
+- Generate the hash key.
+
+### 10.6.9. How do you ensure downloads are fast
+
+- CDNs solve the geography problem by caching content at edge locations worldwide.
+
+- The solution is range requests - HTTP's ability to download specific byte ranges of a file bytes=0-10485759 (first 10MB)
+
+```bash
+GET /large-file.zip
+Range: bytes=0-10485759  (first 10MB)
+```
+
+- Resumes download feature: Modern browsers and download managers handle this automatically if your storage and CDN support range requests
+
+- The pragmatic approach: serve everything through CDN with appropriate cache headers. Ensure range requests work for large files. Let the CDN and browser handle the optimization.
 
 ## 10.7. Managing Long Running Tasks
