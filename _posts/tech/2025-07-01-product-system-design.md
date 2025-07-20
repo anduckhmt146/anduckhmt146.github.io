@@ -1463,6 +1463,184 @@ Meanwhile, you might only post one photo per day - a single write operation.
 
 ## 10.5. Scaling Writes
 
+### 10.5.1. Problem
+
+- Bursty, high-throughput writes with lots of contention is a problem.
+
+### 10.5.2. Solution
+
+- Vertical Scaling and Write Optimization
+
+- Sharding and Partitioning
+
+- Handling Bursts with Queues and Load Shedding
+
+- Batching and Hierarchical Aggregation
+
+### 10.5.3. Vertical Scaling and Database types (Different Write Strategy)
+
+- Vertical Scaling
+
+- Database Choices: Cassandra write-heavy database, handle 10k rps rather than 1000 rps of DBMS.
+
+- Cassandra achieves superior write throughput through its append-only commit log architecture, instead of updating data in place.
+
+Database types:
+
+- Time-series databases
+
+- Log-structured databases
+
+- Column stores
+
+Others:
+
+- Disable expensive features like foreign key constraints, complex triggers, or full-text search indexing during high-write periods
+
+- Tune write-ahead logging - databases like PostgreSQL can batch multiple transactions before flushing to disk
+
+- Reduce index overhead - fewer indexes mean faster writes, though you'll pay for it on reads
+
+### 10.5.4. Why we do not use Horizontal Scaling for write-heavy database
+
+- Writes need to be consistent across all nodes.
+
+- In a distributed setup, synchronizing writes across nodes introduces latency and increases the chance of conflicts.
+
+- Horizontal Scaling for read-heavy.
+
+### 10.5.5. Sharding and Partitioning
+
+#### Horizontal Sharding
+
+- Selecting a Good Partitioning Key
+
+![](/images/System-Design/Patterns/select-partition-key.png)
+
+#### Vertical Sharding
+
+- Split by table view, some table heavy-write, some table heavy-read, other append-once, time-series
+
+For Post content we'll use traditional B-tree indexes and is optimized for read performance
+For Post metrics we might use in-memory storage or specialized counters for high-frequency updates
+For Post analytics we can use time-series optimized storage or database with column-oriented compression
+
+```sql
+-- Core post content (write-once, read-many)
+TABLE post_content (
+    post_id BIGINT PRIMARY KEY,
+    user_id BIGINT,
+    content TEXT,
+    media_urls TEXT[],
+    created_at TIMESTAMP
+);
+
+-- Engagement metrics (high-frequency writes)
+TABLE post_metrics (
+    post_id BIGINT PRIMARY KEY,
+    like_count INTEGER DEFAULT 0,
+    comment_count INTEGER DEFAULT 0,
+    share_count INTEGER DEFAULT 0,
+    view_count INTEGER DEFAULT 0,
+    last_updated TIMESTAMP
+);
+
+-- Analytics data (append-only, time-series)
+TABLE post_analytics (
+    post_id BIGINT,
+    event_type VARCHAR(50),
+    timestamp TIMESTAMP,
+    user_id BIGINT,
+    metadata JSONB
+);
+```
+
+- For Post content: we'll use traditional B-tree indexes and is optimized for read performance
+
+- For Post metrics: we might use in-memory storage or specialized counters for high-frequency updates
+
+- For Post analytics: we can use time-series optimized storage or database with column-oriented compression
+
+### 10.5.6. Handling Bursts with Queues and Load Shedding
+
+#### Write Queues for Burst Handling
+
+- This approach provides a few benefits, but the most important is burst absorption: the queue acts as a buffer, smoothing out traffic spikes.
+
+#### Load Shedding Strategies
+
+- When your system is overwhelmed, you need to decide which writes to accept and which to reject.
+
+- This is called load shedding, and it's better than letting everything fail.
+
+![](/images/System-Design/Patterns/load_shedding.png)
+
+### 10.5.7. Batching and Hierarchical Aggregation
+
+- Batching and preprocessing immediately.
+
+![](/images/System-Design/Patterns/batching.png)
+
+### 10.5.8. Streaming Problems (Write Heavy)
+
+![](/images/System-Design/Patterns/hierachy-broadcast.png)
+
+### 10.5.9. What happens when you have a hot key that's too popular for even a single shard
+
+- Split All Keys to multiple shards
+
+![](/images/System-Design/Patterns/split-keys-shards.png)
+
+### 10.5.10. How do you handle resharding when you need to add more shards?
+
+- Take the system offline, rehash all data, and move it to new shards.
+
+- Production systems use gradual migration which targets writes to both location background => gradually migration.
+
+### 10.5.11. When choosing a partitioning key for sharding, what should be the primary goal?
+
+- Balancing is good.
+
+- Do not any sharding exceed the average performace.
+
+### 10.5.12. What is the main difference between horizontal and vertical partitioning?
+
+- Both split to multiple servers
+
+- Horizontal splits rows, vertical splits columns
+
+### 10.5.13. Write queues are always the best solution for handling traffic bursts.
+
+- Write timestamp client, because queue my delay.
+
+### 10.5.14. When might load shedding be preferable to queuing for handling write bursts?
+
+- When writes are frequently updated (like location updates)
+
+- Have multiple event, lost some events is not considerable.
+
+### 10.5.15. Gracefully shutdown
+
+- Handle all batching requests before shut down.
+
+### 10.5.16. What is the primary purpose of hierarchical aggregation in write scaling?
+
+- Hierarchical aggregation processes data in stages, reducing volume at each step.
+
+- It's used for high-volume data where you need aggregated views rather than individual events.
+
+### 10.5.17. When resharding a database, the dual-write phase ensures no data is lost during migration.
+
+- During resharding, you write to both old and new shards but read with preference for the new shard.
+
+### 10.5.18. Splitting hot keys dynamically requires both readers and writers to agree on which keys are hot.
+
+- If writers spread writes across multiple sub-keys but readers don't check all sub-keys, you have inconsistent data.
+
+### 10.5.19 (Hay). What is the fundamental principle behind all write scaling strategies?
+
+- Reduce throughput per component
+
 ## 10.6. Handling Large Blobs
 
 ## 10.7. Managing Long Running Tasks
