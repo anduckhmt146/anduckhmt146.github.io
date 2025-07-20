@@ -1734,4 +1734,209 @@ Range: bytes=0-10485759  (first 10MB)
 
 - The pragmatic approach: serve everything through CDN with appropriate cache headers. Ensure range requests work for large files. Let the CDN and browser handle the optimization.
 
-## 10.7. Managing Long Running Tasks
+### 10.6.10. What is the primary problem with proxying large files through application servers?
+
+- Application servers become bottlenecks with no added value
+
+### 10.6.11. Generate presigned urls
+
+- Presigned urls are generated entirely in your application's memory using your cloud credentials - no network call to storage is needed.
+
+### 10.6.12. What should you include in presigned URLs to prevent abuse?
+
+- Content-length-range and content-type restrictions
+
+### 10.6.13. With chunked uploads, the storage service tracks which parts uploaded successfully.
+
+- The storage service maintains state about completed parts using session IDs, allowing clients to query which parts need to be retried.
+
+### 10.6.14. What is the main challenge with state synchronization in direct uploads?
+
+- Since uploads bypass your servers, your database metadata can become out of sync with what actually exists in blob storage, requiring event notifications and reconciliation.
+
+### 10.6.15. How do cloud storage services help with state synchronization?
+
+- Storage services publish events (S3 to SNS/SQS, GCS to Pub/Sub) when files are uploaded, letting your system update database status reliably.
+
+### 10.6.16. CDN signatures are validated by the storage service using public/private key cryptography
+
+### 10.6.17. At what file size should you typically consider using direct uploads instead of proxying through servers?
+
+- Around 100MB
+
+- Direct Upload: Return presigned url for client, client upload to S3.
+
+- Proxy through server: Upload -> Server -> S3.
+
+### 10.6.18. After multipart upload completion, object storage combine all the multi-parts to a file
+
+- Once multipart upload completes, the storage service combines all parts into a single object - the individual chunks no longer exist from the storage perspective.
+
+### 10.6.19 (Hay). When should you NOT use direct uploads in a system design?
+
+- Need for real-time content validation during upload
+
+- You can control direct upload from client
+
+### 10.6.20. Range requests enable resumable downloads for large files.
+
+- Yes
+
+## 10.7. Managing Long Running Tasks (Async Worker)
+
+### 10.7.1. Problem
+
+- When user generate the PDF report => The whole process takes at least 45 seconds => blocking in the UI.
+
+- With synchronous processing, the user's browser sits waiting for 45 seconds. Most web servers and load balancers enforce timeout limits around 30-60 seconds, so the request might not even complete.
+
+### 10.7.2. Solution
+
+- Split it to 2 parts: We're generating your report + We'll notify you when it's ready
+
+![](/images/System-Design/Patterns/manage-long-running-tasks.png)
+
+### 10.7.3. When to use
+
+- The moment you hear "video transcoding", "image processing", "PDF generation", "sending bulk emails", or "data exports" that's your cue.
+
+### 10.7.4. Handling Failures
+
+- What happens if the worker crashes while working the job? => The job will be retried by another worker.
+
+- Typically, you'll have a heartbeat mechanism that periodically checks in with the queue to let it know that the worker is still alive.
+
+- The interval of the heartbeat is a key design decision.
+
+Message queue:
+
+- SQS: visibility timeout.
+
+- RabbitMQ: heartbeat interval.
+
+- Kafka: session timeout.
+
+### 10.7.5. Handling Repeated Failures
+
+Question: What happens if a job keeps failing? Maybe there's a bug in your code or bad input data that crashes the worker every time.
+
+Solution: Add to dead letter queue
+
+Message queue:
+
+- SQS: redrive policy.
+
+- RabbitMQ: dead letter exchange.
+
+### 10.7.6. Preventing Duplicate Work
+
+Question: A user gets impatient and clicks 'Generate Report' three times. Now you have three identical jobs in the queue. How do you prevent doing the same work multiple times ?
+
+Solution: Use idempotency keys (hash the deterministic IDs from input data)
+
+![](/images/System-Design/Patterns/idempotency.png)
+
+### 10.7.7. Managing Queue Backpressure
+
+Question: It's Black Friday and suddenly you're getting 10x more jobs than usual. Your workers can't keep up. The queue grows to millions of pending jobs. What do you do?
+
+- When queue is full => blocking the tasks.
+
+Solution: Use backpressure => Add the depth limits and reject new jobs when the queue are full => "System Busy" response, rather than accepting work that you can't handle.
+
+### 10.7.8. Handling Mixed Workloads
+
+Question: Some of your PDF reports take 5 seconds, but end-of-year reports take 5 hours. They're all in the same queue. What problems does this cause?
+
+Problem:
+
+- Long jobs block short ones. A user requesting a simple report waits hours behind someone's massive year-end export
+
+Solution:
+
+- Split multiple queues due to job type and expected duration
+
+```bash
+queues:
+  fast:
+    max_duration: 60s
+    worker_count: 50
+    instance_type: t3.medium
+
+  slow:
+    max_duration: 6h
+    worker_count: 10
+    instance_type: c5.xlarge
+```
+
+### 10.7.9. Orchestrating Job Dependencies
+
+Question: What if generating a report requires three steps: fetch data, generate PDF, then email it. How do you handle jobs that depend on other jobs
+
+Solution: Using workflow machine.
+
+```json
+{
+  "workflow_id": "report_123",
+  "step": "generate_pdf",
+  "previous_steps": ["fetch_data"],
+  "context": {
+    "user_id": 456,
+    "data_s3_url": "s3://bucket/data.json"
+  }
+}
+```
+
+### 10.7.10. In the async worker pattern, the web server's job is to perform the actual heavy processing work.
+
+- Web Servers is only receive the jobs.
+
+### 10.7.11. Redis with Bull/BullMQ
+
+- It is in-memory queue, allow: delayed, stalled, completed, failed,...
+
+### 10.7.12. What is the main advantage of separating web servers from worker processes?
+
+- Independent scaling based on specific needs
+
+### 10.7.13. Serverless functions are ideal for processing jobs that take several hours to complete.
+
+- No, because serverless functions have execution time limits (typically 15 minutes)
+
+### 10.7.14. What is a Dead Letter Queue (DLQ) used for?
+
+- A DLQ isolates jobs that fail repeatedly (after 3-5 retries) to prevent poison messages => retry 3 - 5 failed to DLQ.
+
+### 10.7.15. How do you prevent duplicate work when a user clicks 'Generate Report' multiple times?
+
+- Prevent duplicates => Use Idempotency keys
+
+### 10.7.16. When implementing backpressure, you should reject new jobs when the queue depth exceeds a threshold.
+
+- Yes
+
+### 10.7.17. What metric should you monitor for autoscaling workers?
+
+- Queue depth is the key metric for worker autoscaling - by the time CPU is high, your queue is already backed up
+
+### 10.7.18. How should you handle mixed workloads where some jobs take 5 seconds and others take 5 hours?
+
+- Separate queues by job type or duration
+
+### 10.7.19. For complex workflows with job dependencies, what should you consider using?
+
+- Workflow orchestrators like AWS Step Functions or Temporal
+
+### 10.7.20. When should you proactively suggest async workers in a system design interview?
+
+- Operations that take seconds to minutes (video transcoding, image processing, PDF generation, bulk emails) are clear signals for async processing.
+
+### 10.7.21. The async worker pattern introduces eventual consistency since work isn't done when the API returns.
+
+- This is a key tradeoff - users might see stale data until background processing completes, but they get immediate response and better overall system performance.
+
+### 10.7.22. What is the main benefit of using Kafka for job queues compared to Redis?
+
+- Kafka's append-only log allows message replay, fan-out to multiple consumers, and maintains strict ordering
+
+=> Kafka strict ordering guarantees.
