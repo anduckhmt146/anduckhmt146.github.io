@@ -1940,3 +1940,17 @@ Solution: Using workflow machine.
 - Kafka's append-only log allows message replay, fan-out to multiple consumers, and maintains strict ordering
 
 => Kafka strict ordering guarantees.
+
+# 11. Advanced Data Structure
+
+## 11.1. Bloom Filter (Yes or No)
+
+- Tests if an element is possibly in a set
+
+## 11.2. Count-Min Sketch (Frequency)
+
+- Approximates frequency counts of items
+
+## 11.3. Hyperloglog (Number of unique item)
+
+- Estimates the cardinality (number of unique items)
