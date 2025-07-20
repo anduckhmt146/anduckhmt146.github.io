@@ -1342,3 +1342,127 @@ Use for payment system, rail-hailing system.
 ### 10.3.17. Apache Airflow is better suited for event-driven, long-running user-facing workflows than scheduled batch workflows
 
 - Apache Airflow excels at scheduled batch workflows like ETL and data pipelines, do not use for user-facing workflows.
+
+## 10.4. Scaling Reads
+
+### 10.4.1. Problem
+
+Consider an Instagram feed. When you open the app, you're immediately hit with dozens of photos, each requiring multiple database queries to fetch the image metadata, user information, like counts, and comment previews. That's potentially 100+ read operations just to load your feed.
+
+Meanwhile, you might only post one photo per day - a single write operation.
+
+=> It's not code problem, it's physics problems about CPU, data, and disk I/O is bounded
+
+### 10.4.2. Solution
+
+1. Optimize read performance within your database
+
+2. Scale your database horizontally
+
+3. Add external caching layers
+
+### 10.4.3. Optimize read performance within your database
+
+- Indexing.
+
+- Hardware Upgrades.
+
+- Denormalization Strategies.
+
+- Materialized views: Precomputing expensive aggregations
+
+### 10.4.4. Scale your database horizontally
+
+- Read Replicas.
+
+- Database Sharding
+
+- Geographic sharding.
+
+### 10.4.5. Add External Caching Layers
+
+- Application-Level Caching: Redis, Memcache.
+
+- CDN.
+
+### 10.4.6. Do not apply for write-heavy system
+
+### 10.4.7. What happens when your queries start taking longer as your dataset grows ?
+
+- Add index.
+
+- Using EXPLAIN to check.
+
+### 10.4.8. How do you handle millions of concurrent reads for the same cached data - Hotpots Problem ?
+
+- Request coalescing: Query data for first requests and add to memcache.
+
+- Distributed load: feed:taylor-swift:1, feed:taylor-swift:2 => in multiple reading shards.
+
+### 10.4.9. What happens when multiple requests try to rebuild an expired cache entry simultaneously?
+
+- When that hour passes and the entry expires, all 100,000 requests suddenly see a cache miss in the same instant.
+
+=> Your database, sized to handle maybe 1,000 queries per second during normal cache misses, suddenly gets hit with 100,000 identical queries.
+
+- Solution:
+
+  - Distributed Cache: Only first requests hit the database => Lock other requests, consider it will peak the server.
+
+  - Stale-while-revalidate: This refreshes cache entries before they expire, but not all at once.
+
+### 10.4.10. How do you handle cache invalidation when data updates need to be immediately visible?
+
+- Write-through caching: Change the value of cache when updating.
+
+- Delete item in cache, after a time => query db and update cache.
+
+- CDN Caching: More complexity, using TTLs in edge caching.
+
+### 10.4.11. Modern hardware and database engines handle write well-designed multiple indexes efficiently.
+
+### 10.4.12. What is the main trade-off when using denormalization for read scaling?
+
+- Increased storage for faster reads
+
+- Denormalization trades storage space for read speed by storing redundant data to avoid expensive joins.
+
+### 10.4.13. What is the key challenge with read replicas in leader-follower replication?
+
+- Replication lag causing potentially stale reads
+
+### 10.4.14. Synchronous replication ensures consistency but introduces latency, while asynchronous replication is faster but potentially serves stale data.
+
+- Yes
+
+### 10.4.15. When does functional sharding make sense for read scaling?
+
+- When different business domains have different access patterns
+
+### 10.4.16. Why do most applications benefit significantly from caching?
+
+- Access patterns are highly skewed - popular content gets requested repeatedly
+
+### 10.4.17. CDNs only make sense for data accessed by multiple users.
+
+### 10.4.18. How should cache TTL be determined?
+
+- Based on non-functional requirements, such as: search results should be no more than 30 seconds stale
+
+### 10.4.19. What is the key benefit of request coalescing for handling hot keys?
+
+- Request coalescing ensures that even if millions of users want the same data simultaneously, your backend only receives N requests - one per application server doing the coalescing.
+
+### 10.4.20. What is the 'stale-while-revalidate' pattern for cache stampede prevention?
+
+- Serving old data while refreshing in the background
+
+### 10.4.21. Cache versioning avoids invalidation complexity by changing cache keys when data updates, making old entries naturally unreachable.
+
+- Yes
+
+## 10.5. Scaling Writes
+
+## 10.6. Handling Large Blobs
+
+## 10.7. Managing Long Running Tasks
