@@ -765,6 +765,27 @@ Full-text search engines
 
 ## 9.9. How would you design the system to ensure that swipe actions are processed both consistently and rapidly, so that when a user likes someone who has already liked them—even if only moments before—they are immediately notified of the match?
 
+![](/images/System-Design/Product/Tinder/swipe-cache.png)
+
+## 9.10. How can we ensure low latency for feed/stack generation?
+
+![](/images/System-Design/Product/Tinder/elastic-search-feed.png)
+
+## 9.11. How can the system avoid showing user profiles that the user has previously swiped on?
+
+- For users with relatively small swipe histories: Using cache to filter out.
+
+- For users with larger swipe histories: Using bloom filter to check if a profile has likely been swiped on.
+
+- One trade-off with bloom filters is that they can produce false positives but never false negatives.
+
+- Bloom Filters: If the users have swiped on => must be never show => pass requirements, but maybe filter out some users have not swiped on.
+
+=> If the Bloom filter says the element is NOT in the set, then it's definitely not => print(bf.might_contain("grape")) == False, it is definately not have in the set.
+=> If the bloom filter says yes, maybe yes or no.
+
+![](/images/System-Design/Product/Tinder/bloom-filter.png)
+
 # 10. Patterns
 
 ## 10.1. Real-time Updates
