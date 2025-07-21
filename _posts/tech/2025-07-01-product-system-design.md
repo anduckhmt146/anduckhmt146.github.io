@@ -2130,13 +2130,13 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 
 ![](/images/System-Design/Product/Payment-System/security-public-private-key.png)
 
-## 12.20. How would you ensure that no transaction data is ever lost and maintain complete auditability for compliance?
+## 12.10. How would you ensure that no transaction data is ever lost and maintain complete auditability for compliance?
 
 Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
 
 ![](/images/System-Design/Product/Payment-System/kafka-payment.png)
 
-## 12.21. How would you ensure transaction safety and financial integrity despite the inherently asynchronous nature of external payment networks?
+## 12.11. How would you ensure transaction safety and financial integrity despite the inherently asynchronous nature of external payment networks?
 
 - To ensure transaction safety despite asynchronous payment networks, we'll implement an event sourcing architecture with reconciliation.
 
@@ -2144,7 +2144,7 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 
 ![](/images/System-Design/Product/Payment-System/reconcilation.png)
 
-## 12.22. How would you scale the payment system to handle 10,000+ transactions per second?
+## 12.12. How would you scale the payment system to handle 10,000+ transactions per second?
 
 Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
 
@@ -2157,3 +2157,65 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 - Data retention policy.
 
 ![](/images/System-Design/Product/Payment-System/scale-10M-transactions.png)
+
+## 12.13. Idempotent operations ensure repeated requests produce the same final state.
+
+- True
+
+## 12.14. Payment systems must handle the inherently asynchronous nature of external payment networks like Visa and Mastercard.
+
+- Yes
+
+## 12.15. Which technique BEST prevents duplicate charges when external service calls may time out?
+
+- Idempotency keys on client requests
+
+## 12.16. A payment processor must absorb 10,000 transactions per second spikes. Which scaling pattern distributes load horizontally with minimal coordination?
+
+- Stateless microservices behind a load balancer
+
+## 12.17. Message queues offering at-least-once delivery can result in duplicate message processing after consumer failures.
+
+- If a consumer crashes before acknowledging a message, the broker re-delivers it to another consumer.
+
+## 12.18. Which security technique limits a merchant's PCI DSS scope by never exposing card data to their servers?
+
+- Tokenization with client-side encryption.
+
+## 12.19. What happens when a duplicate idempotency key is received for an already successful charge?
+
+- The original result is returned without a new charge
+
+## 12.20. Marking a transaction as 'pending verification' after a network timeout avoids overcharging customers.
+
+- Yes
+
+- Deferred verification acknowledges uncertainty instead of assuming failure.
+
+- Preventing merchants from retrying prematurely and creating duplicate charges while the processor reconciles the real outcome.
+
+## 12.21. Event sourcing allows rebuilding current payment state by replaying immutable events.
+
+- Storing every state-changing event in an append-only log lets systems materialize fresh views at any time, aiding auditing, recovery, and debugging.
+
+## 12.22. In an event-driven payment system with reconciliation, what enables correlating internal attempts with external payment network events?
+
+- Recording attempt details before calling payment networks.
+
+- The reconciliation service can later correlate external events from payment networks with our internal attempts to resolve any discrepancies.
+
+## 12.23. A merchant receives a 'payment.succeeded' webhook. Which property ensures they can safely retry webhook processing after a crash?
+
+- Idempotent webhook handler on the merchant server => guaranteeing at-least-once delivery semantics without duplicating fulfillment actions.
+
+## 12.24. Which approach BEST ensures no payment transaction data is ever lost while maintaining audit compliance?
+
+- CDC automatically captures all database changes at the database level and feeds them to an immutable event stream (like Kafka), guaranteeing no audit data is lost regardless of application bugs
+
+## 12.25. When a payment request to an external network times out, what should a payment system do to ensure transaction safety ?
+
+- Mark the payment as 'pending verification' and reconcile later => queries the payment network to determine what actually happened, preventing double-charging.
+
+## 12.26. Change Data Capture (CDC) operates at the database level, guaranteeing that application bugs cannot skip audit logging.
+
+- CDC monitors the database's write-ahead log or oplog, capturing every committed change automatically => do not depend on application level.
