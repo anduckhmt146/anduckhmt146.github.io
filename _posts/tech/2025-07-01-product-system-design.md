@@ -2219,3 +2219,35 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 ## 12.26. Change Data Capture (CDC) operates at the database level, guaranteeing that application bugs cannot skip audit logging.
 
 - CDC monitors the database's write-ahead log or oplog, capturing every committed change automatically => do not depend on application level.
+
+# 13. Design Robinhood
+
+## 13.1. Functional Requirements
+
+- Users can see live prices of stocks
+
+- Users can create orders for stocks
+
+- Users can see their orders for stocks
+
+## 13.2. Non-functional requirements
+
+- Low latency price updates.
+
+- High consistency for orders.
+
+- Minimize exchange API connections.
+
+## 13.3. Entities
+
+![](/images/System-Design/Product/Robinhood/entities.png)
+
+## 13.4. API Design
+
+![](/images/System-Design/Product/Robinhood/api-design.png)
+
+## 13.5. How will users be able to see live prices of stocks?
+
+Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
+
+![](/images/System-Design/Product/Robinhood/symbol-real-time.png)
