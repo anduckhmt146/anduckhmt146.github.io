@@ -2282,4 +2282,4 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 
 4. Respond to the client that the order was successful.
 
-- If the system fails to submit an order to the exchange, we can record the order as "failed". If the system fails right before submitting an order, then it will be in a "pending" state. We could easily run a periodic job to mark "pending" orders as "failed", as these never made it to the exchange. T
+- If the system fails to submit an order to the exchange, we can record the order as "failed". If the system fails right before submitting an order, then it will be in a "pending" state. We could easily run a periodic job to mark "pending" orders as "failed", as these never made it to the exchange.
