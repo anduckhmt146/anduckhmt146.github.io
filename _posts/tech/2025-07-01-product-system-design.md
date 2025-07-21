@@ -846,7 +846,7 @@ Full-text search engines
 
 - Yes
 
-## 9.25. Why do dating apps use geospatial indexes instead of simple latitude/longitude range queries?
+## 9.25 (Hay). Why do dating apps use geospatial indexes instead of simple latitude/longitude range queries?
 
 - Range queries don't account for Earth's curvature
 
