@@ -818,7 +818,7 @@ Full-text search engines
 
 ## 9.19. Why do dating apps partition swipe data by sorted user ID pairs (e.g., 'user123:user456')?
 
-- By creating partition keys from sorted user IDs, systems ensure that swipes between any two users (A→B and B→A) always land in the same database partition. 
+- By creating partition keys from sorted user IDs, systems ensure that swipes between any two users (A→B and B→A) always land in the same database partition.
 
 - This enables single-partition transactions for atomic match detection, avoiding the complexity and performance overhead of distributed transactions.
 
@@ -856,9 +856,9 @@ Full-text search engines
 
 ## 9.26. Using Redis for match detection and Cassandra for durable swipe storage creates consistency challenges that require careful coordination.
 
-- This dual-storage approach gains Redis's atomic operations for real-time matching.Cassandra's durability for historical data, but creates a consistency gap. 
+- This dual-storage approach gains Redis's atomic operations for real-time matching.Cassandra's durability for historical data, but creates a consistency gap.
 
-- If Redis fails after detecting a match but before Cassandra persists the swipe, the match could be lost. 
+- If Redis fails after detecting a match but before Cassandra persists the swipe, the match could be lost.
 
 # 10. Patterns
 
@@ -2073,3 +2073,87 @@ Solution: Using workflow machine.
 ## 11.3. Hyperloglog (Number of unique item)
 
 - Estimates the cardinality (number of unique items)
+
+# 12. Payment System
+
+## 12.1. Functional Requirements:
+
+- Merchants should be able to initiate payment requests (charge a customer for a specific amount).
+
+- Users should be able to pay for products with credit/debit cards.
+
+- Merchants should be able to view status updates for payments (e.g., pending, success, failed).
+
+## 12.2. Non-funtional requirements
+
+![](/images/System-Design/Product/Payment-System/non-functional-requirements.png)
+
+## 12.3. Entities:
+
+![](/images/System-Design/Product/Payment-System/entities.png)
+
+## 12.4. API Design:
+
+![](/images/System-Design/Product/Payment-System/api-design.png)
+
+## 12.5. How will merchants be able to initiate payment requests?
+
+![](/images/System-Design/Product/Payment-System/create-order.png)
+
+## 12.6. How will users be able to pay for products with credit/debit cards?
+
+![](/images/System-Design/Product/Payment-System/visa.png)
+
+## 12.7. How will merchants be able to view status updates for payments?
+
+Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
+
+- Implement query transaction API, with status: 'created', 'processing', 'succeeded', or 'failed'
+
+## 12.8. How would you ensure secure authentication for merchants using the payment system?
+
+Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
+
+- To ensure secure merchant authentication, we'll implement API key management with request signing.
+
+- Each merchant gets both a public API key for identification and a private secret key for generating time-bound signatures.
+
+=> Merchant use private key to hash the requests, public key Zalopay to encrypt it => Zalopay engine use private key to decode the payload + merchant key to resolve it.
+
+## 12.9. How would you secure customer credit card information while in transit?
+
+Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
+
+- Our JavaScript SDK immediately encrypts card details using Zalopay public key before data leaves the customer's browser.
+
+- After processing, only store tokens as payment methods, never the card details => Merchant use the token for next payment.
+
+![](/images/System-Design/Product/Payment-System/security-public-private-key.png)
+
+## 12.20. How would you ensure that no transaction data is ever lost and maintain complete auditability for compliance?
+
+Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
+
+![](/images/System-Design/Product/Payment-System/kafka-payment.png)
+
+## 12.21. How would you ensure transaction safety and financial integrity despite the inherently asynchronous nature of external payment networks?
+
+- To ensure transaction safety despite asynchronous payment networks, we'll implement an event sourcing architecture with reconciliation.
+
+- Implement reconcile workers to make sure transaction work.
+
+![](/images/System-Design/Product/Payment-System/reconcilation.png)
+
+## 12.22. How would you scale the payment system to handle 10,000+ transactions per second?
+
+Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
+
+- Horizontal scaling with load balancers distributing traffic across stateless service instances.
+
+- For Kafka, our event log, we'll set up multiple partitions (3-5) to handle our throughput needs, payment_intent_id to ensure ordering.
+
+- Our database, handling around 1,000 write operations per second (an order of magnitude smaller than our event log), can be managed with a well-optimized PostgreSQL instance with read replicas for distributing read operations.
+
+- Data retention policy.
+
+![](/images/System-Design/Product/Payment-System/scale-10M-transactions.png)
