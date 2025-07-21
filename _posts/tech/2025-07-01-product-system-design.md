@@ -786,6 +786,80 @@ Full-text search engines
 
 ![](/images/System-Design/Product/Tinder/bloom-filter.png)
 
+## 9.12. Redis is single-threaded. Atomic operations prevent race conditions when multiple processes access shared resources concurrently.
+
+- True, Single-threaded do not need to worry about conflicts.
+
+## 9.13. Which data structure efficiently handles 2D proximity searches for location-based queries?
+
+- Geospatial Index
+
+## 9.14. Write-optimized databases like Cassandra sacrifice immediate consistency for higher write throughput.
+
+- Write-optimized databases typically use append-only structures (like commit logs) and eventual consistency models to maximize write performance.
+
+## 9.15. Write buffer size optimization improves write performance by batching disk writes, but doesn't directly improve read performance.
+
+- Yes
+
+## 9.16. Bloom filters can produce false positives but never false negatives when testing set membership.
+
+- Yes
+
+## 9.17. Why do systems use Lua scripts in Redis for atomic operations like swipe matching?
+
+- Lua scripts in Redis execute atomically on the server side => ensure it happen as a single atomic unit.
+
+- This prevents race conditions where two users might swipe simultaneously and miss detecting a match.
+
+## 9.18. Pre-computing and caching data reduces query latency at the cost of potentially serving stale information.
+
+- Yes
+
+## 9.19. Why do dating apps partition swipe data by sorted user ID pairs (e.g., 'user123:user456')?
+
+- By creating partition keys from sorted user IDs, systems ensure that swipes between any two users (A→B and B→A) always land in the same database partition. 
+
+- This enables single-partition transactions for atomic match detection, avoiding the complexity and performance overhead of distributed transactions.
+
+## 9.20. Bloom filters are ideal for preventing users from seeing profiles they've already swiped on because they never produce false negatives.
+
+- Show the items that have not existed => Bloom Filters.
+
+## 9.21 (Hay). In systems with high write loads, which consistency model is typically chosen and why?
+
+- Eventual consistency, have bandwidth and resource for write.
+
+## 9.22. Client-side caching can reduce server load but requires careful invalidation strategies to maintain data accuracy.
+
+- Yes
+
+## 9.23. Cache Staleness strategy
+
+- Time-based TTL.
+
+- Periodic background refresh.
+
+- Event-driven cache invalidation.
+
+## 9.24. Consistent hashing minimizes data redistribution when nodes are added or removed from a distributed system.
+
+- Yes
+
+## 9.25. Why do dating apps use geospatial indexes instead of simple latitude/longitude range queries?
+
+- Range queries don't account for Earth's curvature
+
+- Range queries only work in flat rectangle, not work for curve of the Earth.
+
+- Geospatial indexes like R-trees account for true geographic distance calculations.
+
+## 9.26. Using Redis for match detection and Cassandra for durable swipe storage creates consistency challenges that require careful coordination.
+
+- This dual-storage approach gains Redis's atomic operations for real-time matching.Cassandra's durability for historical data, but creates a consistency gap. 
+
+- If Redis fails after detecting a match but before Cassandra persists the swipe, the match could be lost. 
+
 # 10. Patterns
 
 ## 10.1. Real-time Updates
