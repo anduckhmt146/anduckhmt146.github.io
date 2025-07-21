@@ -2251,3 +2251,35 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
 
 ![](/images/System-Design/Product/Robinhood/symbol-real-time.png)
+
+## 13.6. How will users be able to create orders for stocks?
+
+![](/images/System-Design/Product/Robinhood/create-order.png)
+
+## 13.7. How will users be able to see their orders for stocks?
+
+![](/images/System-Design/Product/Robinhood/history.png)
+
+## 13.8. How would the system ensure real-time price updates?
+
+- Using SSE, Websocket.
+
+![](/images/System-Design/Product/Robinhood/sse.png)
+
+## 13.9. How would the system manage a large volume of price updates sent to a large number of users?
+
+![](/images/System-Design/Product/Robinhood/broadcast_pubsub.png)
+
+## 13.10. How would you ensure high order consistency?
+
+- This ensures that order updates are atomic and also that the system guarantees read-your-writes consistency. This also guarantees that all orders for a user are on a single partition => workflow machine.
+
+1. Store an order in the order database with "pending" as the status. It's important that this is stored first because we reliably document the order intent. If we didn't store this first, then the client could create an order on the exchange, the system could fail, and then our system has no way of knowing there's an outstanding order.
+
+2. Submit the order to the exchange. Get back externalOrderId immediately (the order submission is synchronous).
+
+3. Write externalOrderId to our key-value database and update the order in the order database with status as "submitted" and externalOrderId as the ID received from the DB.
+
+4. Respond to the client that the order was successful.
+
+- If the system fails to submit an order to the exchange, we can record the order as "failed". If the system fails right before submitting an order, then it will be in a "pending" state. We could easily run a periodic job to mark "pending" orders as "failed", as these never made it to the exchange. T
