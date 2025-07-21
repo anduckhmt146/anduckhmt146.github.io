@@ -741,6 +741,30 @@ Full-text search engines
 
 ![](/images/System-Design/Product/Tinder/api-design.png)
 
+- View and Actions
+
+## 9.5. How will users be able to create a profile and set their preferences?
+
+![](/images/System-Design/Product/Tinder/create-profile.png)
+
+## 9.6. How will users be able to get a stack of recommended matches based on their preferences?
+
+![](/images/System-Design/Product/Tinder/view-preferences.png)
+
+## 9.7. How will the system register and process user swipes (right/left) to express interest in other users, showing a match if you swipe right (like) on someone who already liked you?
+
+- Using Cassandra for heavy-write.
+
+![](/images/System-Design/Product/Tinder/swipe-service.png)
+
+## 9.8. The other user needs to know that they have a new match as well, how will your system notify them?
+
+- Using: Apple Push Notification Service (APNs) for iOS or Firebase Cloud Messaging (FCM) for Android
+
+![](/images/System-Design/Product/Tinder/push-notification.png)
+
+## 9.9. How would you design the system to ensure that swipe actions are processed both consistently and rapidly, so that when a user likes someone who has already liked them—even if only moments before—they are immediately notified of the match?
+
 # 10. Patterns
 
 ## 10.1. Real-time Updates
