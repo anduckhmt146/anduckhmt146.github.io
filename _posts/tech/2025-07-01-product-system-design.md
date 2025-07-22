@@ -2510,3 +2510,63 @@ Using:
 ## 15.11. How would the system handle running test cases?
 
 - We'd need to define the serialization strategy for each data structure and ensure that the test harness for each language can deserialize the input and compare the output to the expected output.
+
+## 15.12. Containers provide process isolation from the host operating system.
+
+- Yes, this isolation prevents processes in one container from affecting the host system or other containers.
+
+## 15.13. Resource limits can prevent untrusted code from consuming unlimited system resources.
+
+- Yes
+
+## 15.14. Which technique prevents infinite loops in user-submitted code?
+
+- Execution timeouts
+
+## 15.15. Timestamps that need to be trusted should be generated on the server not the client.
+
+- Client-provided timestamps can be easily manipulated or incorrect due to clock skew.
+
+## 15.16. Which is NOT a secure way to handle user authentication?
+
+- URL parameters are visible in browser history, server logs, and can be easily intercepted or shared inadvertently.
+
+## 15.17. Message queues primarily help systems handle which challenge?
+
+- Load spikes
+
+## 15.18. Which approach works BEST for CPU-intensive code execution at scale?
+
+- Asynchronous processing allows systems to handle CPU-intensive tasks without blocking other operations.
+
+## 15.19. Caching reduces database load by storing frequently accessed data in memory.
+
+- Yes
+
+## 15.20. Which Redis data structure can enable efficient real-time leaderboard updates?
+
+- Sorted set
+
+## 15.21. Load balancers distribute traffic across multiple servers to prevent bottlenecks.
+
+- Yes
+
+## 15.22. What is the MOST important factor when running untrusted user code?
+
+- Security isolation is paramount when executing untrusted code to prevent malicious or buggy code from compromising the host system, accessing sensitive data, or affecting other users
+
+## 15.23. What is the primary advantage of containers over virtual machines for code execution?
+
+- Lower resource overhead
+
+## 15.24. When processing millions of database queries per second, which optimization helps most?
+
+- In-memory caching
+
+## 15.25. Systems can prioritize availability over consistency for non-critical features like leaderboards.
+
+- Yes
+
+## 15.26. What is the most important consideration when running user-inputted code?
+
+- Security isolation is the paramount concern when executing untrusted user code.
