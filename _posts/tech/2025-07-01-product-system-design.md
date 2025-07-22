@@ -2283,3 +2283,87 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 4. Respond to the client that the order was successful.
 
 - If the system fails to submit an order to the exchange, we can record the order as "failed". If the system fails right before submitting an order, then it will be in a "pending" state. We could easily run a periodic job to mark "pending" orders as "failed", as these never made it to the exchange.
+
+# 14. Design Uber
+
+## 14.1. Functional Requirements
+
+- Riders should be able to input a start location and a destination and get a fare estimate
+
+- Riders should be able to request a ride based on the estimated fare
+
+- Drivers should be able to accept/decline a request and navigate to pickup/drop-off
+
+## 14.2. Non-functional requirements
+
+![](/images/System-Design/Product/Uber/non-functional-requirements.png)
+
+## 14.3. What are the core entities of the system?
+
+![](/images/System-Design/Product/Uber/entities.png)
+
+## 14.4. API Design
+
+![](/images/System-Design/Product/Uber/api-design.png)
+
+## 14.5. How would you give users a estimated fare based on their start location and destination?
+
+Notes: Client -> API Gateway -> Service -> Database (Every functional requirements => can be implement with this patterns)
+
+- he service then calls a third-party mapping API to obtain route information, including distance and estimated travel time => estimated travel time.
+
+![](/images/System-Design/Product/Uber/estimate-costs.png)
+
+## 14.5. How will riders be able to request a ride based on the estimated fare?
+
+- Components, Method, Patterns.
+
+- The client initiates a POST request to the /rides endpoint, including the fareId that was returned during fare estimation in the request body.
+
+- The service first validates that the fare estimate exists and is still accurate. It then creates a new Ride entity in the database with a status of 'requested'
+
+=> Not have driver_id
+
+![](/images/System-Design/Product/Uber/book-a-ride.png)
+
+## 14.6. How does your system match riders to the best driver for their ride?
+
+- When a ride is requested, we trigger the Matching Service. This service queries a Location Database to find nearby available drivers.
+
+- Drivers periodically update their locations by sending POST requests to a /drivers/location endpoint.
+
+- The Matching Service uses this data to perform a proximity search => Send a ride that they can confirm or deny.
+
+![](/images/System-Design/Product/Uber/driver-matching.png)
+
+## 14.7. How does your system notify matched drivers and allow them to accept/decline rides?
+
+- Once a driver is matched to a ride request, the Matching Service sends a message to a Notification Service.
+
+- This service sends a push notification to the driver's mobile app about the new ride request.
+
+![](/images/System-Design/Product/Uber/notification-service.png)
+
+## 14.8. How can you handle the high write throughput from drivers sending location updates every couple seconds and efficiently perform proximity searches for matching?
+
+- We can use Redis with its geospatial indexing capabilities to efficiently handle high write throughput and perform proximity searches.
+
+- We use Redis's GEOSEARCH command together with the WITHDIST option
+
+![](/images/System-Design/Product/Uber/location-realtime.png)
+
+## 14.9. How do we guarantee each driver receives at most one ride request at a time?
+
+- We can use Redis to implement a distributed lock system
+
+- When a ride request is sent to a driver, the Ride Matching Service creates a lock in Redis with the driver's ID as the key and a 10-second TTL.
+
+![](/images/System-Design/Product/Uber/driver-lock.png)
+
+## 14.10. How can we ensure no ride requests are dropped during peak demand periods?
+
+- We can introduce Kafka as a buffer to increase durability.
+
+- When a ride request needs matching, it's added to a Kafka topic partitioned by geographic region.
+
+![](/images/System-Design/Product/Uber/kafka-message-queue-matching.png)
