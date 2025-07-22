@@ -2570,3 +2570,17 @@ Using:
 ## 15.26. What is the most important consideration when running user-inputted code?
 
 - Security isolation is the paramount concern when executing untrusted user code.
+
+# 16. Design Distributed Cache
+
+## 16.1. Requirements
+
+- Users should be able to set, get, and delete key-value pairs.
+
+- Users should be able to configure the expiration time for key-value pairs.
+
+- Data should be evicted according to Least Recently Used (LRU) policy.
+
+# 17. Design Web Crawler
+
+# 18. Design a Job Scheduler

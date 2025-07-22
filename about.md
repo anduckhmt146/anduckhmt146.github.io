@@ -24,7 +24,7 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 ## 2. Personality, Enneagram, Attachment Theory, Zodiac?
 
-1. **Personality type (MBTI):** Assertive ENFP, Ne-Te Loop Preference.
+1. **Personality type (MBTI):** Assertive ENTP.
 
 2. **Enneagram:** 5w4 - The Visionary, The Iconoclast
 
