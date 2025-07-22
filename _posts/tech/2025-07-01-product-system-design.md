@@ -2367,3 +2367,63 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 - When a ride request needs matching, it's added to a Kafka topic partitioned by geographic region.
 
 ![](/images/System-Design/Product/Uber/kafka-message-queue-matching.png)
+
+## 14.11. In-memory databases provide faster access than disk storage.
+
+- Yes
+
+## 14.12. Which data structure efficiently partitions 2D space for proximity searches?
+
+- Quad-trees recursively partition 2D space into quadrants,
+
+- B-trees are for 1D data
+
+## 14.13. Which technique reduces database write load during high-frequency updates?
+
+- Batch processing aggregates multiple updates into single write operations, significantly reducing database load.
+
+## 14.14. What component routes requests and handles authentication in microservices?
+
+- API Gateway
+
+## 14.15. Geographic sharding reduces latency by distributing data closer to users.
+
+- Yes
+
+## 14.16. How do systems prevent dropped requests during traffic spikes?
+
+- Using queue.
+
+## 14.17. Strong consistency prevents double-booking of shared resources.
+
+- Yes
+
+## 14.18. Which scaling approach provides better fault tolerance?
+
+- Horizontal scaling
+
+## 14.19. Message queues with offset commits ensure no data loss during failures.
+
+- Offset commits: in message queues like Kafka track processing progress.
+
+- If a consumer fails, unprocessed messages remain in the queue for retry, ensuring reliable delivery and no data loss.
+
+## 14.20. What is one way mobile applications receive real-time notifications from servers?
+
+- Push notification services like APN/FCM
+
+## 14.21. What is one way systems can efficiently store and query geographic coordinates?
+
+- Geohashing: encodes latitude/longitude into strings that preserve spatial locality - nearby locations have similar hash prefixes.
+
+## 14.22. In a geographically sharded system, proximity searches near shard boundaries require querying multiple shards to get complete results.
+
+- When searching for nearby drivers or locations near the edge of a geographic shard (like city boundaries), the closest results might be in adjacent shards.
+
+- To ensure completeness, the system must query multiple shards and aggregate results - this is called a scatter-gather pattern.
+
+## 14.23. What happens when geographic shards become unbalanced?
+
+- Unbalanced shards create hot spots where some servers are overloaded while others are underutilized.
+
+=> This degrades performance through increased latency and potential timeouts on overloaded shards.
