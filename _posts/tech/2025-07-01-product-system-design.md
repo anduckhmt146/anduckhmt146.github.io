@@ -2427,3 +2427,86 @@ Notes: Client -> API Gateway -> Service -> Database (Every functional requiremen
 - Unbalanced shards create hot spots where some servers are overloaded while others are underutilized.
 
 => This degrades performance through increased latency and potential timeouts on overloaded shards.
+
+# 15. Design Leetcode
+
+## 15.1. Functional Requirements
+
+- Users should be able to view a list of coding problems.
+
+- Users should be able to view a given problem, code a solution in multiple languages.
+
+- Users should be able to submit their solution and get instant feedback.
+
+- Users should be able to view a live leaderboard for competitions.
+
+![](/images/System-Design/Product/Leetcode/non-functional-requirements.png)
+
+## 15.2. Entities
+
+![](/images/System-Design/Product/Leetcode/entities.png)
+
+## 15.3. API Design
+
+```bash
+GET /problems/:id?language={language} -> Problem
+
+POST /problems/:id/submit -> Submission
+{
+  code: string,
+  language: string
+}
+
+GET /leaderboard/:competitionId?page=1&limit=100 -> Leaderboard
+```
+
+## 15.4. Users should be able to view a list of coding problems
+
+![](/images/System-Design/Product/Leetcode/view-list-problems.png)
+
+## 15.5. Users should be able to view a given problem and code a solution
+
+![](/images/System-Design/Product/Leetcode/code-problems.png)
+
+## 15.6. Users should be able to submit their solution and get instant feedback
+
+- Run code in serverless environment.
+
+![](/images/System-Design/Product/Leetcode/serverless.png)
+
+## 15.7. Users should be able to view a live leaderboard for competitions
+
+- In a NoSQL DB like DynamoDB, you'd need to have the partition key be the competitionId. Then you'd pull all items into memory and group and sort.
+
+## 15.8. How will the system support isolation and security when running user code?
+
+Security
+
+- Docker for isolation
+- Read only filesystem (writes to tmp)
+- CPU and memory bounds
+- Explicit timeout per execution
+- VPC for network controls
+- No system calls (seccomp)
+
+![](/images/System-Design/Product/Leetcode/security.png)
+
+## 15.9. How would you make fetching the leaderboard more efficient?
+
+- Redis sorted set with periodic polling.
+
+Using:
+
+- ZADD competition:leaderboard
+
+- ZREVRANGE competition:leaderboard:{competitionId} 0 N-1 WITHSCORES
+
+![](/images/System-Design/Product/Leetcode/leaderboard.png)
+
+## 15.10. How would the system scale to support competitions with 100,000 users?
+
+![](/images/System-Design/Product/Leetcode/worker-queue.png)
+
+## 15.11. How would the system handle running test cases?
+
+- We'd need to define the serialization strategy for each data structure and ensure that the test harness for each language can deserialize the input and compare the output to the expected output.
