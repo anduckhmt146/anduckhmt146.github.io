@@ -2902,4 +2902,130 @@ Problems: DNS Resolver overload.
 
 - They are moved to a dead letter queue
 
-# 18. Design a Job Scheduler
+# 18. Salary Negotiation
+
+## 18.1. Recruiter has a approved salary, above than first offer
+
+- If you accept immediately, you have almost certainly not reached the "best and final" offer.
+
+- Try to find another allowed offer.
+
+## 18.2. Silence can signal disinterest
+
+- Deal to show that you are find it interest.
+
+- Deal to shows enthusiasm and loyalty.
+
+## 18.3. Not negotiating undermines your future leverage
+
+- Your starting point shapes future raises.
+
+- Negotiation is about more than this offer. It's about anchoring your value for the long run.
+
+## 18.4. What would jeopardize my offer?
+
+### Talking Numbers Too Soon
+
+- Get more information before talks about the offers.
+
+### Inconsistent Storytelling
+
+- Peg your decisions to a data-backed narrative and stick to it.
+
+### Negotiating with the Hiring Manager
+
+- The hiring manager has already championed you
+
+- Use HR to protect you, voice about your offers.
+
+## Ignoring Non-Cash Levers
+
+- Think about benefits, profits above the money.
+
+## Accepting too quickly
+
+- Kindly express your excitement and gratitude, but ask to take time to process and digest the offer
+
+## 18.5. The Offer Negotiation (step-by-step) & How We Can Help
+
+### Step 1: Passing Interviews
+
+### Step 2: Team Matching
+
+### Step 3: Moving to Offers
+
+### Step 4: Recruiter Compensation Call
+
+- Because HR have a pressure to finish the offers on-time => Make them become friends.
+
+### Step 5: Verbal Offer
+
+- Base Salary.
+
+- Equity.
+
+- A sign-on bonus
+
+### Step 6: Counter Offer
+
+- Use markers like current compensation, competitive offers, even equity or bonuses left behind to drive your offer higher => Show that you are do not comfortable with a lower number.
+
+### Written Offer
+
+- It is much easier to make changes BEFORE the written offer letter is signed.
+
+# 19. Knowing Who You're Talking To
+
+## 19.1. Hiring Manager
+
+=> Make they trust you.
+
+- The more certain the hiring manager feels about you, the more they will be willing to exercise any influence they have with finance.
+
+Feel Free to Ask: Questions about roles and responsibilities, scope and influence, or even current and future roadmap. Keep it specific to day-to-day and career focus.
+
+## 19.2. Recruiter
+
+- They have KPIs attached to the number of closed candidates in a given quarter, half, or year; they are also judged on their offer-to-close ratio
+
+=> They protect the candidates => Get their trust.
+
+## 19.3. Finance Team
+
+- They fallback on market data and established pay bands.
+
+=> Use the salary, payroll to convince them.
+
+# 20. Compensation Breakdown
+
+### 20.1. Base Salary
+
+- Fixed cost of the company + benefits (stocks, facilities)
+
+## 20.2. Equity
+
+- Stocks
+
+- Equities is a broader term that includes all types of ownership interest in publicly traded companies
+
+## 20.3. Sign-On Bonus
+
+- Bonus, Relocation fee or insurance inadequacies
+
+## 20.4. Performance Bonus
+
+- Performance Bonus is a yearly sum earned on top of base salary.
+
+# 21. How to Negotiate
+
+## 21.1. Assess Your Position
+
+- Know who you are in the market => What is your value.
+
+## 21.2. Introduce a Competitor
+
+- Use your old company as a competitor.
+
+## 21.3. Tell a Consistent Story
+
+- Tell a consistent story for recruitment => recruitment will deal with finance team.
