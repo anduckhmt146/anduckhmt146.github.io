@@ -2581,6 +2581,117 @@ Using:
 
 - Data should be evicted according to Least Recently Used (LRU) policy.
 
+## 16.2. Non-functional requirements
+
+- The system should be highly available. Eventual consistency is acceptable.
+
+- The system should support low latency operations (< 10ms for get and set requests).
+
+- The system should be scalable to support the expected 1TB of data and 100k requests per second
+
+## 16.3. Core Entities
+
+- Key.
+
+- Value.
+
+## 16.4. API Design
+
+```bash
+POST /:key
+{
+  "value": "..."
+}
+
+GET /:key -> {value: "..."}
+
+DELETE /:key
+```
+
+## 16.5. Users should be able to set, get, and delete key-value pairs
+
+![](/images/System-Design/Product/Distributed-Cache/set-cache.png)
+
+## 16.6. Users should be able to configure the expiration time for key-value pairs
+
+- Running the background process to clen cache, called Janitors
+
+![](/images/System-Design/Product/Distributed-Cache/janitors.png)
+
+## 16.7. Data should be evicted according to LRU policy
+
+- When cache is full, we need to implement LRU Strategy for storage.
+
+![](/images/System-Design/Product/Distributed-Cache/lru.png)
+
+## 16.8. How do we ensure our cache is highly available and fault tolerant?
+
+![](/images/System-Design/Product/Distributed-Cache/peer-to-peer.png)
+
+## 16.9. How do we ensure our cache is scalable?
+
+- Let's start with throughput. 1 node 20,000 requests per second => we would need at least 100,000 / 20,000 = 5 nodes to handle our throughput requirements.
+
+- For storage requirement, 1 node 32GB RAM can use 24GB for cache data => 1024GB / 24GB = 43 nodes just for storage.
+
+- Choose the max value to use is 43 nodes => around to 50 nodes.
+
+## 16.10. How can we ensure an even distribution of keys across our nodes?
+
+- We can use distributed hashing.
+
+![](/images/System-Design/Product/Distributed-Cache/consisten-hashing.png)
+
+## 16.11. What happens if you have a hot key that is being read from a lot? (Heavy-read)
+
+Some hot keys:
+
+- Hot reads: Keys that receive an extremely high volume of read requests, like a viral tweet's data that millions of users are trying to view simultaneously.
+
+- Hot writes: Keys that receive many concurrent write requests, like a counter tracking real-time votes.
+
+![](/images/System-Design/Product/Distributed-Cache/hot-keys.png)
+
+Patterns:
+
+```bash
+- user:123#1 -> Node A stores a copy
+- user:123#2 -> Node B stores a copy
+- user:123#3 -> Node C stores a copy
+```
+
+Challenges;
+
+- The main challenge is keeping all copies in sync when data changes => manual management.
+
+## 16.12. What happens if you have a hot key that is being written to a lot? (Heavy-write)
+
+- Key sharding takes a different approach to handling hot writes by splitting a single hot key into multiple sub-keys distributed across different nodes => Counting problem.
+
+- For example, a hot counter key "views:video123" might be split into 10 shards: "views:video123:1" through "views:video123:10"
+
+- When a write arrives, the system randomly selects one of these shards to update.
+
+=> When reading the total value, the system simply needs to sum the values from all shards.
+
+Challenges:
+
+- The primary challenge with key sharding is the increased complexity of read operations, which now need to aggregate data from multiple shards.
+
+## 16.23. How do we ensure our cache is performant?
+
+- But as we grow our system into a large, distributed cache spanning dozens or even hundreds of nodes => It’s about how quickly clients can find the right node and aggreated data better.
+
+Solution:
+
+- Request batching
+
+- Consistent Hashing.
+
+- Connection Pooling.
+
+![](/images/System-Design/Product/Distributed-Cache/replicas.png)
+
 # 17. Design Web Crawler
 
 # 18. Design a Job Scheduler
