@@ -2692,6 +2692,68 @@ Solution:
 
 ![](/images/System-Design/Product/Distributed-Cache/replicas.png)
 
+## 16.24. Which data structure combination enables efficient LRU cache implementation?
+
+- Hash table and doubly linked list
+
+## 16.25. All of the following improve system performance through TTL mechanisms EXCEPT:
+
+- Guaranteed data consistency
+
+## 16.26. In-memory storage provides faster access than disk-based storage systems.
+
+- Yes
+
+## 16.27. Which approach BEST handles hot keys receiving excessive read traffic?
+
+- Create copies of hot keys across nodes
+
+## 16.28. Consistent hashing minimizes key remapping when nodes are added or removed.
+
+- Consistent hashing arranges keys and nodes on a circular space, ensuring only keys between the new/removed node and its successor need remapping.
+
+## 16.29. When prioritizing availability over consistency in distributed caches, which replication approach works best?
+
+- Asynchronous replication from primary
+
+## 16.30. Connection pooling reduces network latency by eliminating connection establishment overhead.
+
+- Yes
+
+## 16.31. What does write batching accomplish in high-throughput systems?
+
+- Reduces individual operation overhead
+
+## 16.32. What happens when a cache node fails in an asynchronously replicated system?
+
+- Write failed, data stale => but continue to read old data.
+
+## 16.33. Distributed cache eviction policies must consider memory constraints to prevent system overload and maintain performance.
+
+- Yes
+
+## 16.34. For a viral content key receiving millions of reads per second, which strategy provides the most effective load distribution?
+
+- Creating multiple copies with random suffix selection
+
+## 16.35. Which approach BEST handles scaling distributed cache storage to multiple terabytes?
+
+- Horizontal sharding across many nodes
+
+## 16.36. Asynchronous replication improves write availability compared to synchronous replication approaches.
+
+- Asynchronous replication allows writes to complete immediately without waiting for replica confirmation, maintaining availability even when replicas are slow or unreachable
+
+- Synchronous replication blocks writes until all replicas confirm, reducing availability during network issues.
+
+## 16.37. When should background cleanup processes run to optimize system performance?
+
+- Solution: When should background cleanup processes run to optimize system performance?
+
+- Background cleanup should run during low-traffic periods to avoid competing with user requests for CPU and memory resources.
+
+- It can also be triggered by memory pressure thresholds, balancing cleanup efficiency with system responsiveness to user traffic.
+
 # 17. Design Web Crawler
 
 # 18. Design a Job Scheduler
