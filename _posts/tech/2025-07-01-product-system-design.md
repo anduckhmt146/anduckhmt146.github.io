@@ -2756,4 +2756,150 @@ Solution:
 
 # 17. Design Web Crawler
 
+## 17.1. Functional Requirements
+
+- Crawl the web starting from a given set of seed URLs.
+
+- Extract text data from each web page and store the text for later processing.
+
+## 17.2. Non-functional requirements
+
+![](/images/System-Design/Product/Web-Crawler/non-functional-requirements.png)
+
+## 17.3. System Interface
+
+![](/images/System-Design/Product/Web-Crawler/system-interface.png)
+
+## 17.4. Create a simple outline of the data flow of the system. This is just a numbered list of steps showing how we get from the input to the output.
+
+- Extract text in the website.
+
+- Extract text in the hyperlink of the website.
+
+![](/images/System-Design/Product/Web-Crawler/data-flow.png)
+
+## 17.5. What is a simple, high-level design for the system that allows us to start from seed urls and crawl the web?
+
+- Step 1: Using a temp queue for storing url.
+
+- Step 2: Pre-processing text push to S3.
+
+![](/images/System-Design/Product/Web-Crawler/frontier.png)
+
+## 17.6. How can you ensure the system retries URLs that failed to download?
+
+- Since SQS natively supports retries through its "visibility timeout", we can set this timeout to something like 30 second
+
+=> It doesn't consume the message, another crawler will pick it up again.
+
+![](/images/System-Design/Product/Web-Crawler/sqs-consume-failed.png)
+
+## 17.7. How can you ensure politeness and adhere to robots.txt?
+
+- When a URL is first pulled, we'll make a request to Redis to see if the robots.txt has already been pulled.
+
+A robots.txt file is used to guide web crawlers (also known as bots or spiders) on which parts of a website they should or should not access.
+
+![](/images/System-Design/Product/Web-Crawler/redis-counter.png)
+
+## 17.8. How can you avoid crawling duplicate content across different URLs?
+
+- To avoid processing the same page repeatedly, we can store URL metadata in a separate database.
+
+- If the page has already been processed before by virtue of the existing hash, we'll skip processing it again.
+
+![](/images/System-Design/Product/Web-Crawler/handle-duplicates.png)
+
+## 17.9. How would you implement parallelization to ensure the system could efficiently crawl 10 billion pages in under 5 days? Think deeply about any bottlenecks.
+
+![](/images/System-Design/Product/Web-Crawler/increase-cron-jobs.png)
+
+1. We aren't wasting resources when the queue is too small
+
+2. We can increase our crawl velocity as we go deeper into the crawl.
+
+## 17.10. How would you modify the system to ensure the extracted text data remains up-to-date? Consider that we now require the data to be fresh and regularly updated.
+
+- Add a re-crawl cron job.
+
+- We may want to set a floor (say, one a quarter) where we crawl every page and then for "hot" pages which change a lot we can increase the frequency.
+
+![](/images/System-Design/Product/Web-Crawler/re-cron-job.png)
+
+## 17.11. Pipeline architectures improve fault tolerance by isolating failures to individual stages.
+
+- Yes
+
+## 17.12. Which pattern ensures work is not lost when distributed workers fail unexpectedly?
+
+- At-least-once delivery guarantees that messages will be processed even if workers fail => make sure 100% message in kafka have been consumed.
+
+- The system retains messages until successful processing is confirmed, ensuring no work is lost due to failures.
+
+## 17.13. Which is benefit of implementing rate limiting?
+
+- Prevents system overload
+
+- Reduces thundering herd effects: multiple jobs run the same time.
+
+## 17.14. Exponential backoff reduces system load by increasing delays between retry attempts.
+
+- Increases wait times between retries (1s, 2s, 4s, 8s...), which reduces load on failing systems and gives them time to recover.
+
+## 17.15. Which SQS feature allows messages to become available again when workers fail during processing?
+
+- Visibility timeout
+
+- Dead letter queue: message consume many times but not success => add to dead letter queue.
+
+## 17.16. Which approach works BEST for detecting duplicate content across different URLs?
+
+- Using Content hashing: creates unique fingerprints of page content
+
+## 17.17. A system processes millions of network requests per second. Which factor limits throughput?
+
+- Network bandwidth
+
+## 17.18. Bloom filters can produce false positives but never false negatives.
+
+- Yes
+
+## 17.19. Which technique prevents DNS resolution from becoming a system bottleneck?
+
+Problems: DNS Resolver overload.
+
+- DNS caching stores resolved IP addresses locally, eliminating repeated lookups for the same domains
+
+=> Query IP in local browser/cache first, move to DNS later.
+
+## 17.20. Robots.txt files specify both allowed pages and crawl delay requirements.
+
+- Yes.
+
+## 17.21. Which does prevent synchronized behavior in distributed rate limiting?
+
+- Add Random jitter: Add random deplay for the requests.
+
+- Using sliding windows
+
+- Implement backoff strategies.
+
+## 17.22. What happens when a SQS queue's visibility timeout expires during processing?
+
+- Message becomes visible to other workers
+
+## 17.23. Which strategy BEST prevents crawlers from getting stuck in infinite loops?
+
+- Maximum crawl depth => Do not query hyperlinks forever.
+
+## 17.24. Bandwidth limitations typically determine crawler throughput in I/O intensive web crawling systems.
+
+- Drawbacks: I/O Bound and network bandwidth.
+
+- Advantages: CPU and memory not the problems.
+
+## 17.25. What should happen to messages that fail processing repeatedly in messaging systems?
+
+- They are moved to a dead letter queue
+
 # 18. Design a Job Scheduler
