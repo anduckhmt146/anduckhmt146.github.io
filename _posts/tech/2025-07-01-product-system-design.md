@@ -3029,3 +3029,305 @@ Feel Free to Ask: Questions about roles and responsibilities, scope and influenc
 ## 21.3. Tell a Consistent Story
 
 - Tell a consistent story for recruitment => recruitment will deal with finance team.
+
+# 22. Behaviral Interview
+
+## 22.1. Conflict Resolution
+
+- Disagreed with leaders/collegers.
+
+- What do you priority.
+
+## 22.2. Perseverance
+
+- You had to push through setbacks
+
+- You refused to give up despite challenges
+
+## 22.3. Adaptability
+
+- Everything changed unexpectedly.
+
+- You worked outside your comfort zone.
+
+- You had to be flexible with your approach.
+
+## 22.4. Growth
+
+- You made significant mistakes
+
+- You received tough feedback and learning from feedback.
+
+## 22.5. Collaboration
+
+- You built bridges between groups.
+
+- You helped others succeed
+
+## 22.6. Results
+
+- Performance Imrpovement.
+
+- You get kudos from your managers and peers.
+
+- You created something net-new
+
+- You created a tool that solved a problem for you or your team
+
+- You released something which users loved
+
+# 23. Conflict Resolution
+
+1.  Did you clearly identify who was involved and what they wanted?
+
+2.  Did you explain what caused the conflict at its core?
+
+3.  Did you describe your specific role (participant, mediator, observer)?
+
+4.  Did you demonstrate active listening and empathy?
+
+5.  Did you explain how the conflict was resolved?
+
+6.  Did you reflect on what you learned?
+
+7.  Did you focus on facts rather than emotions?
+
+8.  Did you try to understand the other person's perspective?
+
+9.  Did you take initiative to help resolve the conflict?
+
+10. Did you help find middle ground?
+
+11. Did you use data to support your position?
+
+12. Did you focus on strategic approaches to resolution?
+
+13. Did you demonstrate influence and consensus-building?
+
+14. Did you achieve measurable business outcomes?
+
+15. Did you address conflicts affecting multiple teams/departments?
+
+16. Did you influence senior stakeholders effectively?
+
+17. Did you identify and address systemic causes?
+
+18. Did you have an effective mental model of your counterparty?
+
+19. Did you focus on resolving interpersonal conflicts within your team and improving team dynamics?
+
+20. Did you help coach team members to navigate their own conflicts (vs triangulating them)?
+
+21. Did you reach a conclusion which built trust and respect between parties while also keeping the organization's goals in mind?
+
+# 24. Perseverance
+
+1.  Did you clearly define the challenge or obstacle faced?
+
+2.  Did you explain why perseverance was required (complexity, failures, resistance)?
+
+3.  Did you demonstrate repeated efforts and refusal to give up?
+
+4.  Did you show how you adapted your approach based on feedback?
+
+5.  Did you highlight determination and resourcefulness?
+
+6.  Did you focus on the process, not just the outcome?
+
+7.  Did you demonstrate self-awareness about strengths/weaknesses?
+
+8.  Did you highlight specific actions taken to overcome the challenge?
+
+9.  Did you focus on concrete steps rather than just general effort?
+
+10. Did you show how you adapted your approach based on results and feedback?
+
+11. Did you demonstrate initiative in finding solutions?
+
+12. Did you effectively communicate progress and setbacks?
+
+13. Did you tackle a complex, long-term challenge with significant business consequences?
+
+14. Did you demonstrate data-driven decision making and resourcefulness?
+
+15. Did you show leadership in guiding others through difficulties?
+
+16. Did you address challenges requiring long-term commitment and strategic thinking?
+
+17. Did you maintain momentum despite significant obstacles?
+
+18. Did you offer sufficient context so that a 3rd party could understand the depth of the challenge?
+
+19. Did you demonstrate organizational influence and resilience?
+
+20. Did you describe a challenge you faced in managing your team (e.g., performance issues, resource constraints)?
+
+21. Did you show how you supported your team members through difficult situations?
+
+# 25. Adaptability
+
+1. Did you clearly describe what changed or what disruption occurred?
+
+2. Did you explain why adaptation was necessary?
+
+3. Did you demonstrate quick assessment and decision-making?
+
+4. Did you show how you adjusted your plans or approach?
+
+5. Did you demonstrate flexibility and open-mindedness?
+
+6. Did you explain how your adaptability affected the outcome?
+
+7. Did you reflect on lessons learned about handling change?
+
+8. Did you show willingness to learn new approaches?
+
+9. Did you maintain productivity despite changes?
+
+10. Did you effectively reprioritize tasks when needed?
+
+11. Did you clearly communicate changes to the team?
+
+12. Did you help others adapt to changes?
+
+13. Did you lead the team's response to major, unexpected changes?
+
+14. Did you demonstrate rapid decision-making and effective communication?
+
+15. Did you show how you influenced team adaptation?
+
+16. Did you lead adaptation across multiple teams?
+
+17. Did you anticipate and mitigate potential resistance?
+
+18. Did you offer a clear framework for making a decision and moving forward?
+
+19. Did you demonstrate strategic thinking in managing organizational change?
+
+20. Did you adjust your management style to meet different needs?
+
+21. Did you effectively manage change within your team?
+
+22. Did you support team members through transitions?
+
+23. Did you align with the organization's goals, even if they weren't your top priority?
+
+# 26. Growth Mindset
+
+1. Did you describe a challenge, failure, setback, or critical feedback received?
+
+2. Did you demonstrate willingness to learn from mistakes?
+
+3. Did you show how you actively sought and used feedback?
+
+4. Did you explain specific steps taken to learn new skills?
+
+5. Did you highlight self-reflection and honest assessment?
+
+6. Did you describe how you applied new learning?
+
+7. Did you emphasize commitment to continuous learning?
+
+8. Did you show a positive attitude towards challenges?
+
+9. Did you describe a specific instance of seeking feedback?
+
+10. Did you show how you applied that feedback concretely?
+
+11. Did you proactively seek learning opportunities to address skill gaps?
+
+12. Did you take initiative in your own development?
+
+13. Did you help others learn and grow?
+
+14. Did you describe a significant failure/setback as a catalyst for growth?
+
+15. Did you demonstrate how you applied learning to achieve later success?
+
+16. Did you show leadership in promoting learning culture?
+
+17. Did you identify and address critical organizational skill gaps?
+
+18. Did you champion a culture of learning and improvement?
+
+19. Did you demonstrate strategic thinking about development?
+
+20. Did you foster a growth mindset within your team?
+
+21. Did you demonstrate continuous learning as a manager?
+
+22. Did you effectively develop and mentor team members?
+
+# 27. Leadership
+
+1. Did you describe a situation where you took initiative and guided others?
+
+2. Did you explain how you influenced and motivated others?
+
+3. Did you highlight your decision-making process?
+
+4. Did you take responsibility for outcomes?
+
+5. Did you demonstrate ability to inspire and support team members?
+
+6. Did you explain how you built consensus?
+
+7. Did you show effective delegation and feedback?
+
+8. Did you reflect on your leadership style and learnings?
+
+9. Did you describe a situation with significant organizational impact?
+
+10. Did you demonstrate influence without direct authority?
+
+11. Did you show how you built and maintained high-performing teams?
+
+12. Did you influence the strategic direction of major initiatives?
+
+13. Did you build and maintain relationships with key stakeholders?
+
+14. Did you demonstrate strategic thinking and negotiation skills?
+
+15. Did you focus on coaching, mentoring, and developing team members?
+
+16. Did you create a positive and productive team environment?
+
+17. Did you demonstrate effective people management skills?
+
+# 28. Collaboration & Teamwork
+
+1. Did you describe a situation where you worked effectively as part of a team?
+
+2. Did you highlight your contributions while acknowledging others?
+
+3. Did you explain how you communicated and collaborated?
+
+4. Did you show how you handled disagreements constructively?
+
+5. Did you demonstrate ability to share knowledge and support colleagues?
+
+6. Did you explain how you adapted to different work styles?
+
+7. Did you describe the team's overall success?
+
+8. Did you reflect on what you learned about teamwork?
+
+9. Did you describe your specific contributions to the team?
+
+10. Did you show how you communicated with team members?
+
+11. Did you help resolve team conflicts?
+
+12. Did you contribute to improving team dynamics?
+
+13. Did you foster cross-functional collaboration for strategic goals?
+
+14. Did you break down silos across organizational boundaries?
+
+15. Did you demonstrate ability to influence across functions?
+
+16. Did you facilitate collaboration within and between teams?
+
+17. Did you create structures for effective teamwork?
+
+18. Did you show evidence of uncovering the root cause of collaboration issues?
