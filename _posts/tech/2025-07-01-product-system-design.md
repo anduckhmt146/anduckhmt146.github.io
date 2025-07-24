@@ -3331,3 +3331,73 @@ Feel Free to Ask: Questions about roles and responsibilities, scope and influenc
 17. Did you create structures for effective teamwork?
 
 18. Did you show evidence of uncovering the root cause of collaboration issues?
+
+# 29. Task Scheduler (Bill Problem)
+
+## 29.1. Context
+
+- Task: A task is the abstract concept of work to be done.
+- Job: A job is an instance of a task.
+
+## 29.2. Functional Requirements
+
+- Users should be able to schedule jobs to be executed immediately, at a future date, or on a recurring schedule (ie. "every day at 10:00 AM").
+
+- Users should be able monitor the status of their jobs.
+
+## 29.3. Non-Functional Requirements
+
+- The system should be highly available (availability > consistency).
+- The system should execute jobs within 2s of their scheduled time.
+- The system should be scalable to support up to 10k jobs per second.
+- The system should ensure at-least-once execution of jobs.
+
+## 29.4. Entities
+
+- Task: Represents a task to be executed.
+
+- Job: Represents an instance of a task to be executed at a given time with a given set of parameters.
+
+- Schedule: Represents a schedule for when a job should be executed, either a CRON expression or a specific DateTime.
+
+- User: Represents a user who can schedule jobs and view the status of their jobs.
+
+![](/images/System-Design/Product/Job-Scheduler/entities.png)
+
+## 29.5. Data Flow
+
+1. A user schedules a job by providing the task to be executed, the schedule for when the task should be executed, and the parameters needed to execute the task.
+
+2. The job is persisted in the system.
+
+3. The job is picked up by a worker and executed at the scheduled time. If the job fails, it is retried with exponential backoff.
+
+4. Update the job status in the system.
+
+## 29.6. Users should be able to schedule jobs to be executed immediately, at a future date, or on a recurring schedule
+
+![](/images/System-Design/Product/Job-Scheduler/schedule-jobs.png)
+
+## 29.7. Users should be able monitor the status of their jobs.
+
+![](/images/System-Design/Product/Job-Scheduler/monitor-jobs.png)
+
+## 29.8. How can we ensure the system executes jobs within 2s of their scheduled time?
+
+- Delayed message delivery: When on-time, the jobs is executed
+
+![](/images/System-Design/Product/Job-Scheduler/delayed-queue.png)
+
+## 29.9. How can we ensure the system is scalable to support up to 10k jobs per second?
+
+![](/images/System-Design/Product/Job-Scheduler/worker-pubsub.png)
+
+## 29.10. How can we ensure at-least-once execution of jobs?
+
+- SQS Visibility Timeout: Else, another consumer will consume this queue.
+
+- Visibility timeout: visibility timeout is the time period a message becomes invisible to other consumers after being received by one
+
+- Usage: prevents multiple consumers from processing the same message at the same time.
+
+- Delay queues: a message is hidden when it is first added to queue, until the time it is visibility.
