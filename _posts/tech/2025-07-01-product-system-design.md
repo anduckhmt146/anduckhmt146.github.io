@@ -3401,3 +3401,89 @@ Feel Free to Ask: Questions about roles and responsibilities, scope and influenc
 - Usage: prevents multiple consumers from processing the same message at the same time.
 
 - Delay queues: a message is hidden when it is first added to queue, until the time it is visibility.
+
+## 29.11. Worker failure detection systems must balance detection speed against false positive rates.
+
+- Fast failure detection => network delays.
+
+- Slow detection => delays recovery.
+
+## 29.12. What is the primary purpose of visibility timeouts in message queues?
+
+- Visibility timeouts make messages invisible to other workers when consumed => then automatically make them visible again if not deleted within the timeout period.
+
+=> This mechanism detects worker failures without requiring explicit health checks or coordination.
+
+## 29.13. Which property makes message queues suitable for handling traffic spikes in distributed systems?
+
+- Buffering and decoupling producers from consumers
+
+=> Allowing producers to continue sending messages even when consumers are temporarily overwhelmed.
+
+## 29.14. Separating job definitions from execution instances enables efficient recurring task management.
+
+- For recurring tasks, the template stays constant while new execution records are created for each occurrence, avoiding data duplication and enabling efficient querying.
+
+## 29.15. Which architecture BEST achieves sub-second job execution precision at scale?
+
+Two-phase: periodic querying plus priority queue
+
+- Periodic database queries (every few minutes) load upcoming jobs into a priority queue
+
+- Execute jobs with sub-second precision without overwhelming the database.
+
+## 29.16. Time-based database partitioning optimizes queries for recently scheduled jobs.
+
+- Yes. Time-based partitioning places jobs scheduled around the same time in the same partition.
+
+- Since job schedulers primarily query for upcoming jobs, this strategy ensures most queries hit only 1-2 partitions.
+
+## 29.17. When a worker processing a 5-minute job crashes after 30 seconds, what determines retry timing?
+
+- The message queue's visibility timeout
+
+- If set to 60 seconds, other workers can pick up the job within 60 seconds of the original worker's failure and try again.
+
+## 29.18 (Hay). In an at-least-once execution model, job operations should be idempotent to avoid duplicate side-effects.
+
+- At-least-once delivery means jobs may execute more than once due to retries or failures
+
+- This prevents issues like **double-billing** or inconsistent state when jobs are retried.
+
+## 29.19. What does exponential backoff prevent in job retry systems?
+
+- Exponential backoff increases delay between retries (1s, 2s, 4s, 8s...), preventing failing jobs from overwhelming system resources
+
+## 29.20. What happens when a worker fails to renew its job lease before expiration?
+
+- Lease-based coordination prevents multiple workers from processing the same job simultaneously.
+
+- Other workers can claim the job
+
+## 29.21. Job scheduling systems requiring 2-second execution precision should not rely solely on database polling mechanisms.
+
+- Database polling every 2 seconds at scale would be inefficient and imprecise due to query latency, processing time, and network delays.
+
+=> Using period polling + priority queue.
+
+## 29.22. What is the primary advantage of separating recurring job definitions from their execution instances?
+
+- Enables efficient querying of upcoming jobs
+
+=> Querying execution instances rather than processing all job definitions.
+
+## 29.23. Which approach BEST handles scaling job processing to 10,000 jobs per second?
+
+- Container-based async worker pool with auto-scaling groups
+
+## 29.24. Two-phase scheduling architectures trade database query frequency for execution timing precision.
+
+- Pooling
+
+- Priority queue
+
+=> Limit the total jobs.
+
+## 29.25. When background job sync operations consume excessive database resources, which optimization works best?
+
+- Read replicas allow sync operations to query separate database instances without impacting primary database performance.
