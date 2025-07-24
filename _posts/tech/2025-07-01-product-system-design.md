@@ -3487,3 +3487,15 @@ Two-phase: periodic querying plus priority queue
 ## 29.25. When background job sync operations consume excessive database resources, which optimization works best?
 
 - Read replicas allow sync operations to query separate database instances without impacting primary database performance.
+
+# 30. Design Yelp
+
+# 31. Design Strava
+
+# 32. Design Ad Click Aggregator
+
+# 33. Design Harmful Content
+
+# 34. Design Bot Detection
+
+# 35. Design Video Recommendations
