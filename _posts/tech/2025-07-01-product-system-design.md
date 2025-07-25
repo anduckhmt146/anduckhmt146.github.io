@@ -3494,8 +3494,99 @@ Two-phase: periodic querying plus priority queue
 
 # 32. Design Ad Click Aggregator
 
-# 33. Design Harmful Content
+# 33. Machine Learning System Design
 
-# 34. Design Bot Detection
+## 33.1. Types of design
 
-# 35. Design Video Recommendations
+1. ML Infra Design
+
+- Create a feature store for a large-scale ML platform.
+- Design a model serving system that can handle millions of requests per second.
+
+2. Applied ML System Design
+
+- Design a recommendation system for an e-commerce platform
+
+- Build a fraud detection system for a financial service
+
+3. AI/ML Research Engineering
+
+- Implementing and optimizing research papers
+
+4. AI/ML Research
+
+- Deep learning architectures and their mathematical foundations
+
+## 33.2. Interview Assessment
+
+Step 1: Navigation Problem, find the right metrics.
+
+Step 2: Input Data, Features, and Labels => improve by feedback loop, have stronger hypotheses about what data is important
+
+Step 3: Model Design
+
+Step 4: Integration and Evaluation
+
+# 34. ML Framework
+
+## 34.1. Clarify the Problem
+
+For example, if you're asked to design a recommendation system for an e-commerce platform
+
+=> You might ask about the size of the product catalog, the number of daily active users, where the recommendations will be shown, what the latency requirements are, and whether there exists a current system in place.
+
+## 34.2. Establish a Business Objective
+
+- The key is to be specific about what success looks like from a business perspective.
+
+- In most ML teams, and especially in big companies, teams will spend years working on optimizing a fairly narrow business objective.
+
+## 34.3. Decide on an ML Objective
+
+- For our e-commerce recommendation system, the ML objective might be to build a ranking model that predicts the probability of a user purchasing a product given their browsing history and other contextual information
+
+## 34.4. High-level Design
+
+![](/images/System-Design/Patterns/multi-ml-models.png)
+
+## 34.5. Data and Features
+
+1. Training Data: Consider what existing data you have access to and whether you need to collect new data.
+
+2. Features: Next, identify the features that will be most predictive for your model
+
+Notes: Features have value, data is only raw.
+
+3. Encoding and Representations
+
+- For categorical features, you might use one-hot encoding or embeddings.
+
+- For text data, you could use bag-of-words, word embeddings, or transformer models.
+
+## 34.6. Modeling
+
+1.  Benchmark Models
+
+2.  Model Selection
+
+3.  Model Architecture
+
+## 34.7. Benchmark
+
+### 34.7.1. Monitoring and Maintenance
+
+### 34.7.2. Inference Considerations
+
+## 34.8. Deep dives
+
+### 34.8.1. Handling Edge Cases
+
+### 34.8.2. Scaling Considerations
+
+### 34.8.3. Monitoring and Maintenance
+
+# 35. Design Harmful Content
+
+# 36. Design Bot Detection
+
+# 37. Design Video Recommendations
