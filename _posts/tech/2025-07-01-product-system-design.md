@@ -3585,8 +3585,72 @@ Notes: Features have value, data is only raw.
 
 ### 34.8.3. Monitoring and Maintenance
 
-# 35. Design Harmful Content
+# 35. Benchmark ML Models
 
-# 36. Design Bot Detection
+## 35.1. Business Objective
 
-# 37. Design Video Recommendations
+- What does the business gain ?
+
+- How does that action impact the business?
+
+## 35.2. Product Metrics
+
+- User retention rate
+
+- Time to label
+
+- User satisfaction scores
+
+## 35.3. ML Metrics
+
+- Precision: When the model says something is harmful content, how often is it right?
+
+- Recall: What percentage of all harmful content does the model catch?
+
+- PR-AUC: How well does the model balance precision and recall across different thresholds?
+
+- F1 Score: A single number balancing how many positives we catch vs. how accurate our positive predictions are ?
+
+- ROC-AUC: "How well does the model distinguish between classes across different thresholds?
+
+- Ranking Metrics
+
+  - NDCG (Normalized Discounted Cumulative Gain)
+
+  - MAP (Mean Average Precision)
+
+  - MRR (Mean Reciprocal Rank)
+
+- Image Generation Metrics
+
+  - FID (Fréchet Inception Distance)
+
+  - CLIP Score
+
+- Text Generation Metrics
+
+  - Perplexity
+
+  - BLEU/ROUGE/BERTScore
+
+## 35.4. Evaluation Methodology
+
+- Offline: Build a held-out set of (query, doc, graded-relevance) triples. Compute NDCG@k, MRR, latency, and cost.
+
+- Online: Deploy in shadow (rank but don't serve) to check latency & safety.
+
+## 35.5. Address Challenges
+
+### 35.5.1. Query Ambiguity
+
+### 35.5.2. Long-Tail & Sparse Judgments
+
+### 35.5.3. Freshness & Recency
+
+### 35.5.4. Feedback Loops
+
+# 36. Design Harmful Content
+
+# 37. Design Bot Detection
+
+# 38. Design Video Recommendations
