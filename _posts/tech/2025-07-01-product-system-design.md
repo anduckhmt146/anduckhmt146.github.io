@@ -3490,6 +3490,56 @@ Two-phase: periodic querying plus priority queue
 
 # 30. Design Yelp
 
+## 30.1. Requirements
+
+- Users should be able to search for businesses by name, location (lat/long), and category
+
+- Users should be able to view businesses (and their reviews)
+
+- Users should be able to leave reviews on businesses (mandatory 1-5 star rating and optional text)
+
+## 30.2. Non-functional requirements
+
+![](/images/System-Design/Product/Yelp/non-functional.png)
+
+## 30.3. Entities
+
+![](/images/System-Design/Product/Yelp/entities.png)
+
+## 30.4. API Design
+
+![](/images/System-Design/Product/Yelp/api-design.png)
+
+## 30.5. How will users be able to search for businesses?
+
+![](/images/System-Design/Product/Yelp/search-business.png)
+
+## 30.6. How will users be able to view a businesses details and reviews?
+
+![](/images/System-Design/Product/Yelp/view-business-details.png)
+
+## 30.7. How will users be able to leave reviews on businesses?
+
+![](/images/System-Design/Product/Yelp/view-business-details.png)
+
+## 30.8. How would you efficiently calculate and update the average rating for businesses to ensure it's readily available in search results and still accurate up to the minute?
+
+![](/images/System-Design/Product/Yelp/rating.png)
+
+## 30.9. How would you modify your system to ensure that a user can only leave one review per business?
+
+- Using composite key: businessId and userId
+
+## 30.10. How can you improve search to handle complex queries more efficiently?
+
+![](/images/System-Design/Product/Yelp//elastic-search.png)
+
+## 30.11. How would you modify your system to allow searching by predefined location names such as cities (e.g., 'San Francisco') or neighborhoods (e.g., 'Mission District')? Assume you have a finite list of supported location names.
+
+- We'll use a pre-computed location matching system. These polygons accurately represent the geographical areas of each location
+
+- When a user searches for a location, we simply match against these pre-computed location strings.
+
 # 31. Design Strava
 
 # 32. Design Ad Click Aggregator
