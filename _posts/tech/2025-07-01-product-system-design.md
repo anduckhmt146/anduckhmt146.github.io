@@ -3660,6 +3660,68 @@ Two-phase: periodic querying plus priority queue
 
 ![](/images/System-Design/Product/Strava/leaderboard-redis-sorted-set.png)
 
+## 31.13. Local device buffering reduces network bandwidth consumption compared to real-time server updates.
+
+- Local device buffering => save bandwidth.
+
+## 31.14. All of the following improve offline functionality
+
+- Background sync mechanisms
+
+- Periodic data persistence
+
+- Local data caching
+
+## 31.15. Local buffering reduces the number of network requests to servers.
+
+- Yes
+
+## 31.16. Which approach BEST handles millions of high-frequency write operations per second?
+
+- In-memory buffering with batch writes
+
+## 31.17. Storing calculated results like user totals or rankings requires additional storage but eliminates expensive real-time aggregation queries
+
+- Yes
+
+## 31.18. When updates occur predictably every few seconds, which communication pattern works best?
+
+- Polling at update intervals
+
+## 31.19. Time-based database sharding optimizes queries for recent data access patterns.
+
+- This matches user behavior where current activities are accessed more frequently than historical data from years ago.
+
+## 31.20. Which storage approach optimizes cost while maintaining performance for aging data? (Based on access and storage)
+
+- Data tiering with hot/warm/cold levels
+
+## 31.21. Database read replicas primarily improve which aspect of system performance?
+
+- Read throughput
+
+## 31.22. Activity tracking applications can function completely offline by storing GPS coordinates locally until network connectivity returns.
+
+- Applications can record location data, calculate distances using algorithms like Haversine formula.
+
+- Sync accumulated data when connectivity is restored, enabling full offline functionality.
+
+## 31.23. For athlete leaderboards updated frequently, which approach balances real-time updates with system efficiency?
+
+- Redis sorted sets with incremental updates.
+
+## 31.24. Which pattern BEST enables friends to track live workout progress with minimal system complexity?
+
+- Polling updates at predictable intervals
+
+## 31.25. Batch processing reduces system resource consumption compared to processing individual operations immediately.
+
+- Yes
+
+## 31.26. Redis sorted sets enable efficient leaderboard operations because they provide which time complexity for rank retrieval?
+
+- O(logN): for ranking.
+
 # 32. Design Ad Click Aggregator
 
 # 33. Machine Learning System Design
