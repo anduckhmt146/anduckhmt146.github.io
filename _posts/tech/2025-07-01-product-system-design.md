@@ -4006,3 +4006,67 @@ Notes: Features have value, data is only raw.
 # 37. Design Bot Detection
 
 # 38. Design Video Recommendations
+
+# 39. Design Online Aunction
+
+# 40. Design Price Tracking Service
+
+# 41. Design FB Live Comments
+
+## 41.1. Functional Requirements
+
+- Viewers can post comments on a Live video feed
+
+- Viewers can see comments made before they joined the live feed
+
+- Viewers can see new comments being posted while they are watching the live video
+
+## 41.2. Non-functional requirements
+
+![](/images/System-Design/Product/FB-Live-Comment/non-functional-requirements.png)
+
+## 41.3. Entities
+
+![](/images/System-Design/Product/FB-Live-Comment/entities.png)
+
+## 41.4. API Design
+
+![](/images/System-Design/Product/FB-Live-Comment/api-design.png)
+
+- SSE Endpoint: sse://receiveComment(message, user)
+
+## 41.5. How will viewers be able to post comments on a Live video feed?
+
+![](/images/System-Design/Product/FB-Live-Comment/post-comments.png)
+
+## 41.6. How will viewers see comments made before they joined the live feed, even if there were tens of thousands of them?
+
+- Fetch last comment by cursor-based pagination.
+
+![](/images/System-Design/Product/FB-Live-Comment/cursor-based.png)
+
+## 41.7. How will viewers see new comments being posted while they are watching the live video?
+
+- Every 3 seconds, the client checks for new comments that arrived after their last seen timestamp.
+
+- We can improve this later with WebSockets or Server-Sent Events for better real-time performance and scalability.
+
+![](/images/System-Design/Product/FB-Live-Comment/new-comment.png)
+
+## 41.8. How can we ensure comments are broadcasted to viewers in real-time? Don't worry about scale yet. Consider just one live video.
+
+To achieve true real-time comment delivery, we should replace our polling mechanism with Server-Sent Events (SSE).
+
+![](/images/System-Design/Product/FB-Live-Comment/sse.png)
+
+## 41.9. How will the system scale to support millions of concurrent viewers per live video?
+
+- To handle real-time comment distribution at scale, we’ve introduced a Realtime Messaging Service that works alongside Redis pub/sub.
+
+- Applying broadcast pattern: Redis Pub/Sub + SSE.
+
+![](/images/System-Design/Product/FB-Live-Comment/broadcast-pubsub.png)
+
+# 42. Design FP Post Search
+
+# 43. Design Youtube Top K
