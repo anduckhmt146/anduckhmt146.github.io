@@ -3722,7 +3722,69 @@ Two-phase: periodic querying plus priority queue
 
 - O(logN): for ranking.
 
-# 32. Design Ad Click Aggregator
+# 32. Design Ad Click Aggregator (Ads Tracking)
+
+## 32.1. Business Objective
+
+- A system that counts how many times ads placed on a website are clicked by users
+
+- This provides advertisers with aggregated click metrics over time to see how effective their ads are.
+
+## 32.2. Functional Requirements
+
+- Users can click on an ad and be redirected to the advertiser's website.
+
+- Advertisers can query ad click metrics over time with a minimum granularity of 1 minute.
+
+## 32.3. Non-functional requirements
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/non-functional-requirements.png)
+
+## 32.4. Entities
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/entities.png)
+
+## 32.5. Input/Output:
+
+- Input: Ad click data from users.
+
+- Output: Ad click metrics for advertisers.
+
+## 32.6. Data flow
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/data-flow.png)
+
+## 32.7. Design a full, but simple, high-level design of the system that can capture and store ad click data and allow advertisers to query ad click metrics.
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/ads-placement-click-processor.png)
+
+## 32.8. How would you scale the system to handle 100k clicks per second without dropping any?
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/message-queue.png)
+
+## 32.9. How would you implement idempotent click tracking to prevent duplicate counts? You can assume all users are logged in.
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/idempotent.png)
+
+## 32.10. How can you ensure low latency responses for advertiser queries, especially for aggregations over large time ranges?
+
+- Using pre-computed aggregation DB.
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/aggregation-db.png)
+
+## 32.11. How would you handle 'hot partitions' for writes, where popular ads from big campaigns get clicked on a lot, potentially overwhelming parts of the system?
+
+- Hotpot problems.
+
+- Split multiple partition in Kafka: ads_123:1, ads_123:2,...ads_123:10.
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/partition-kafka.png)
+
+## 32.12. How would you evolve your system to allow advertisers to query for click data in near real-time (<5s)?
+
+- Integrate with Kinesis and Flink for process faster, due to paralel computing.
+
+![](/images/System-Design/Product/Ad-Click-Aggregator/flink.png)
 
 # 33. Machine Learning System Design
 
