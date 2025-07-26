@@ -3532,7 +3532,7 @@ Two-phase: periodic querying plus priority queue
 
 ## 30.10. How can you improve search to handle complex queries more efficiently?
 
-![](/images/System-Design/Product/Yelp//elastic-search.png)
+![](/images/System-Design/Product/Yelp/elastic-search.png)
 
 ## 30.11. How would you modify your system to allow searching by predefined location names such as cities (e.g., 'San Francisco') or neighborhoods (e.g., 'Mission District')? Assume you have a finite list of supported location names.
 
@@ -3540,7 +3540,125 @@ Two-phase: periodic querying plus priority queue
 
 - When a user searches for a location, we simply match against these pre-computed location strings.
 
+## 30.12. What occurs when optimistic locking detects concurrent modifications?
+
+- Transaction rolls back
+
+## 30.13. When implementing a constraint that users can only leave one review per business, which approach provides the strongest data integrity guarantee?
+
+- Use a unique database constraint on (user_id, business_id)
+
+## 30.14. B-tree indexes efficiently handle two-dimensional geographic range queries.
+
+- False, use R-trees or quadtrees
+
+## 30.15. When designing a system that needs to handle location-based searches, text searches, and category filtering simultaneously, what is the primary limitation of using traditional B-tree indexes?
+
+- B-tree indexes are optimized for single-dimension queries but struggle with multi-dimensional spatial data
+
+## 30.16. Using a cron job to periodically update business average ratings provides real-time accuracy for users viewing search results.
+
+- When a user leaves a new review, the average rating won't be updated until the next scheduled cron job runs
+
+- For real-time accuracy, synchronous updates or near-real-time processing would be required.
+
+## 30.17. A system processes 1000 reads per write. Which architecture pattern fits best?
+
+- Read replicas with caching
+
+## 30.18. Using a message queue to handle review submissions is necessary when the system processes 100,000 review writes per day.
+
+- 100,000 writes per day equals approximately 1 write per second => Do not need to use message queue to low bandwidth.
+
+## 30.19. All these techniques prevent inconsistent aggregate calculations
+
+- Database transactions
+
+- Optimistic locking
+
+- Atomic operations
+
+- Periodic batch updates: can lead to stale data.
+
+## 30.20. When queries filter by text, location, and category simultaneously, what works best?
+
+- Inverted indexes: text.
+
+- Spatial indexes: location (R-Tree, QuadTree).
+
+- B-trees indexes: categories.
+
+## 30.21. PostGIS extension allows PostgreSQL to efficiently handle geospatial queries without requiring a separate search service like Elasticsearch.
+
+- Yes.
+
 # 31. Design Strava
+
+## 31.1. Context:
+
+- Fitness Tracking App
+
+## 31.2. Functional Requirements
+
+![](/images/System-Design/Product/Strava/functional-requirements.png)
+
+## 31.3. Non-functional Requirements
+
+![](/images/System-Design/Product/Strava/non-functional-requirements.png)
+
+## 31.4. Entities
+
+![](/images/System-Design/Product/Strava/entities.png)
+
+## 31.5. API Design
+
+![](/images/System-Design/Product/Strava/api-design.png)
+
+## 31.6. How will users be able to start, pause, stop, and save their runs and rides?
+
+![](/images/System-Design/Product/Strava/start-stop-rides.png)
+
+## 31.7. How can users view live statistics from their current activity while running/cycling?
+
+- The client app leverages the device's GPS to record the user's location at intervals (e.g., every 5 seconds) and send these updates to the server which adds new rows to our Route table for each new coordinate.
+
+![](/images/System-Design/Product/Strava/gps.png)
+
+## 31.8. For a long bike ride in particular, recalculating the total distance based on the route can get expensive. How can you make this more efficient?
+
+- To efficiently update the total distance, we'll use an incremental approach.
+
+- Calculate multiple distance each time users send location updated => can calculate in the client-side.
+
+=> Only calculate increment distance
+
+![](/images/System-Design/Product/Strava/calculate-increment-distance.png)
+
+## 31.9. How will users be able to view details about their own completed activities as well as the activities of their friends?
+
+- The Activity Service queries the database for activities with state 'COMPLETE', filtering by the user's ID or their friends'.
+
+![](/images/System-Design/Product/Strava/share-friends.png)
+
+## 31.10. How will your system support tracking activities while the users device is offline?
+
+- To prevent data loss, it periodically persists this data to the device's local storage (e.g., every 10 seconds).
+
+- This way, if the device turns off for any reason we can recover from device storage.
+
+![](/images/System-Design/Product/Strava/local-storage-offline.png)
+
+## 31.11. How can we support up-to-date sharing of activities with friends while the activity is in progress, not just after completion?
+
+- Friends' apps can implement a polling mechanism, requesting updates at the same interval, perhaps with a slight intentional delay to buffer the data.
+
+=> Do not need to use server-side event.
+
+![](/images/System-Design/Product/Strava/track-friends-location.png)
+
+## 31.12. How can we expose an up-to-date leaderboard of top athletes globally based on the total distance covered?
+
+![](/images/System-Design/Product/Strava/leaderboard-redis-sorted-set.png)
 
 # 32. Design Ad Click Aggregator
 
