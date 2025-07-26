@@ -3786,6 +3786,66 @@ Two-phase: periodic querying plus priority queue
 
 ![](/images/System-Design/Product/Ad-Click-Aggregator/flink.png)
 
+## 32.13. LSM-based storage systems optimize for write performance over read performance.
+
+- LSM (Log-Structured Merge): writing data sequentially to logs before merging => Because linear read required O(N^2).
+
+## 32.14. Which processing model provides the lowest latency for real-time analytics?
+
+- Stream processing
+
+## 32.15. Checkpointing becomes less valuable when stream processing uses very small aggregation windows.
+
+- With small aggregation windows (like 1 minute), the overhead of checkpointing state may exceed the cost of re-processing lost data from the stream.
+
+## 32.16. Which best describes Apache Flink?
+
+- A real-time stream processing engine
+
+## 32.17. Idempotent operations can be executed multiple times without changing the result.
+
+- True
+
+## 32.18. A system needs sub-second analytics on streaming data. Which approach is most suitable?
+
+- Real-time stream processing: processing data as it arrives.
+
+## 32.19. What causes hot partitions in distributed systems?
+
+- Uneven data distribution: Hot partitions occur when data is unevenly distributed across nodes, causing some partitions to handle disproportionately more load than others.
+
+## 32.20. Time-based windowing in stream processing groups events by temporal boundaries.
+
+- Time-based windowing groups streaming events into fixed time intervals (like 1-minute windows), enabling temporal aggregations and analytics.
+
+## 32.21. What happens when map-reduce jobs process data in parallel across multiple nodes?
+
+- Processing time decreases
+
+## 32.22. Which is NOT a characteristic of eventual consistency models?
+
+- Can not immediate consistency
+
+## 32.23. Distributed systems achieve fault tolerance by replicating data across multiple nodes.
+
+- Yes.
+
+## 32.24. Which strategy BEST prevents hot spots when partitioning high-frequency data?
+
+- Adding random suffixes to hot keys => multiple partitions.
+
+## 32.25. When real-time and batch processing produce different results, which approach ensures correctness?
+
+- Reconciliation with authoritative batch results
+
+- Batch processing typically has more complete data and fewer real-time constraints > might be more accuracy.
+
+## 32.26. Kafka can function as both a message queue and a streaming platform.
+
+- Message Queue: Producer, Consumer.
+
+- Streaming Platform: Kafka Streams, like Flink
+
 # 33. Machine Learning System Design
 
 ## 33.1. Types of design
