@@ -4252,3 +4252,49 @@ To achieve true real-time comment delivery, we should replace our polling mechan
 - Cold documents come to S3, hot documents load versioning to database.
 
 ![](/images/System-Design/Product/Google-Docs/cold-start.png)
+
+# 45. Design Youtube
+
+## 45.1. Functional Requirements
+
+- Users can upload videos.
+
+- Users can watch (stream) videos.
+
+## 45.2. Non-functional requirements
+
+![](/images/System-Design/Product/Youtube/non-functional-requirements.png)
+
+## 45.3. Entities
+
+![](/images/System-Design/Product/Youtube/entities.png)
+
+## 45.4. API Design
+
+![](/images/System-Design/Product/Youtube/api-design.png)
+
+## 45.5. How will users be able to upload videos?
+
+![](/images/System-Design/Product/Youtube/pre-signed-url.png)
+
+## 45.6. How will users be able to watch (stream) videos?
+
+![](/images/System-Design/Product/Youtube/download-video.png)
+
+## 45.7. Users may have poor or fluctuating network connections. How would you design your system to ensure that video streaming continues smoothly under these conditions?
+
+- Video Processing Service: 240p, 360p, 480p, 720p, and 1080p => multiple chunk to download by bandwidth.
+
+![](/images/System-Design/Product/Youtube/transcode-videos.png)
+
+## 45.8. Uploading large video files can be challenging due to network interruptions. Explain how your design allows users to resume an interrupted upload without starting over from scratch.
+
+![](/images/System-Design/Product/Youtube/reconcile-metadata.png)
+
+## 45.9. How would you design your system to allow users to resume watching a video from where they left off, even if they switch devices?
+
+- To allow users to resume playback on different devices, the client application periodically sends the current playback position to the Video Service via the API Gateway.
+
+=> Continue to playback position in metadata.
+
+![](/images/System-Design/Product/Youtube/watch-continue-videos.png)
