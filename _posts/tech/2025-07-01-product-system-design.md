@@ -4188,3 +4188,67 @@ To achieve true real-time comment delivery, we should replace our polling mechan
 => A 100-word post might trigger 100+ separate index writes.
 
 # 43. Design Youtube Top K
+
+# 44. Design Google Docs
+
+## 44.1. Functional Requirements
+
+- Users should be able to create new documents.
+
+- Multiple users (limit 100) should be able to edit the same document concurrently.
+
+- Users should be able to view each other's changes in real-time.
+
+- Users should be able to see the cursor position and presence of other users.
+
+## 44.2. Non-functional Requirements
+
+![](/images/System-Design/Product/Google-Docs/non-functional-requirements.png)
+
+## 44.3. Entities
+
+![](/images/System-Design/Product/Google-Docs/entities.png)
+
+## 44.4. API Design
+
+![](/images/System-Design/Product/Google-Docs/api-design.png)
+
+- Use Web Socket: ws/docs/{docID}
+
+## 44.5. How will users be able to create new documents?
+
+![](/images/System-Design/Product/Google-Docs/create-documents.png)
+
+## 44.6. How can we extend the design so that multiple users can edit the same document concurrently (especially when they are making changes simultaneously)?
+
+- Using websocket and versioning.
+
+![](/images/System-Design/Product/Google-Docs/web_socket_versioning.png)
+
+## 44.7. How will users be able to view each other's changes in real-time?
+
+- For users to view each others' changes, we'll need to have a way to broadcast each (transformed) edit to all connected users.
+
+=> Apply broadcasting patterns.
+
+![](/images/System-Design/Product/Google-Docs/broadcast.png)
+
+## 44.8. How can we enable users to see the cursor position and presence (whether they're connected or not) of other users?
+
+- Users will frequently send updates to their cursor position (no need to send if it doesn't change!) to the Document Service which will update the struct for that user and broadcast to all connected users => Else offline.
+
+![](/images/System-Design/Product/Google-Docs/online-status.png)
+
+## 44.9. How do we scale to millions of connections from our users?
+
+- Using Zookeeper to manage all the connections.
+
+![](/images/System-Design/Product/Google-Docs/zookeeper.png)
+
+## 44.10. How can we optimize document storage?
+
+- Apply cold-hot patterns.
+
+- Cold documents come to S3, hot documents load versioning to database.
+
+![](/images/System-Design/Product/Google-Docs/cold-start.png)
