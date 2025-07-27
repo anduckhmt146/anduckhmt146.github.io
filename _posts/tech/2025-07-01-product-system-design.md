@@ -4250,6 +4250,86 @@ Solution: Applying sliding window for timeframe in counting
 
 ![](/images/System-Design/Product/Youtube-Top-K/divide-and-conquer.png)
 
+## 43.10. Skip List
+
+```bash
+Level 2:       2 ───────────────→ 10
+Level 1:       2 ─────→ 6 ─────→ 10
+Level 0: 2 → 4 → 6 → 8 → 10
+```
+
+Example: Search for 8
+
+- At Level 2: 2 → 10 → STOP (10 > 8), go down one level
+
+- At Level 1: 2 → 6 → 10 → STOP (6 < 8 < 10), go down one level
+
+- At Level 0: 6 → 8 → FOUND
+
+## 43.11. Heap data structures maintain elements in sorted order efficiently.
+
+- Yes
+
+## 43.12. Streaming algorithms can maintain exact top-K results using only O(K) memory regardless of total stream size.
+
+- Yes. Redis sorted set pre-computed value to O(K) queue.
+
+## 43.13. Which technique distributes load across multiple servers?
+
+- Sharding.
+
+## 43.14. Database connection pooling reduces latency by maintaining persistent connections to the database.
+
+- Yes
+
+## 43.15. What is the most memory-efficient approach for maintaining top-K elements in a streaming data system?
+
+- Use a min-heap of size K and replace the minimum when a larger element arrives.
+
+- When a new element arrives that's larger than the heap's minimum, we replace the minimum with the new element.
+
+## 43.16. What is the primary trade-off of data replication?
+
+- Network overhead
+
+- Consistency complexity
+
+- Increased storage cost
+
+## 43.17. Sharding eliminates single points of failure in distributed systems.
+
+- Load balancing, coordinators are still single point of failure.
+
+## 43.18. When a node fails, which approach enables fastest recovery?
+
+- Snapshot restoration
+
+## 43.19. Limit of vertical scaling
+
+- CPU Bottleneck: The process can't fully use all 16 cores (e.g., due to lock contention, or language limitations like Node.js’s single-threaded nature) => Scale max but the CPU only have 16 threads and single-threaded processing.
+
+- Network bandwith
+
+- Amdahl’s Law: Upgrading from 16 to 32 cores gives only 10–20% improvement => Scale too much and it peak to the limit of hardware => declare max speed-up, because the heat of the CPU, trade-off the engineering and physical hardware.
+
+## 43.20. When implementing a two-pointer technique for sliding time windows, what is the optimal data structure for maintaining window boundaries?
+
+- Deque (double-ended queue) for O(1) front/back operations
+
+## 43.21. When designing a real-time analytics system that processes streaming data with strict latency requirements, which approach provides the BEST balance between consistency and availability?
+
+- Asynchronous replication with eventual consistency and local reads.
+
+## 43.22. Precomputation always reduces query latency at the cost of storage.
+
+- Precomputed results may become stale, require complex invalidation.
+
+## 43.23 (Hay). What is the primary challenge when horizontally scaling stateful stream processors that maintain running aggregations?
+
+- When scaling stateful stream processors horizontally, the main challenge is redistributing accumulated state (like counters, heaps, or time windows) across new nodes.
+
+=> Have counter, heap, time windows, it is stateful.
+
 # 44. Design Google Docs
 
 ## 44.1. Functional Requirements
