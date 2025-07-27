@@ -4137,4 +4137,54 @@ To achieve true real-time comment delivery, we should replace our polling mechan
 
 ![](/images/System-Design/Product/FB-Post-Search/cold-index.png)
 
+## 42.13. Inverted indexes enable efficient keyword searches by mapping terms to document lists.
+
+- Yes
+
+## 42.14. When processing millions of like updates per second, which approach reduces write load?
+
+- Batching updates over time windows
+
+## 42.15. Caching identical search queries reduces load on the primary search system.
+
+- Yes
+
+## 42.16. Which approach works BEST for systems with frequent read operations?
+
+- Read-through caching
+
+## 42.17. Set intersection helps find documents matching multiple search criteria.
+
+- True
+
+## 42.18. A system processes one million updates per second. Which storage approach handles this load most efficiently?
+
+- In-memory with periodic snapshots
+
+## 42.19. Redis sorted sets maintain elements in order while allowing efficient score updates.
+
+- Yes
+
+## 42.20. What happens when a cache's TTL expires during high traffic?
+
+- Backend experiences request spike
+
+## 42.21. N-gram indexing increases storage requirements but improves phrase search performance.
+
+- Yes
+
+## 42.22. Two-stage architectures trade initial accuracy for improved overall system performance.
+
+- Query data by search in the first-step, allow query approximately in client-side in the second step.
+
+## 42.23. When an inverted search index grows beyond the memory capacity of a node, which approach maintains query performance?
+
+- Hot-cold data separation
+
+## 42.24 (Hay). What causes write amplification when indexing text documents?
+
+- Each word creates separate index entries
+
+=> A 100-word post might trigger 100+ separate index writes.
+
 # 43. Design Youtube Top K
