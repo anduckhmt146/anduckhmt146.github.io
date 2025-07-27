@@ -4557,3 +4557,71 @@ Example: Search for 8
 => Continue to playback position in metadata.
 
 ![](/images/System-Design/Product/Youtube/watch-continue-videos.png)
+
+# 46. Design Instagram
+
+## 46.1. Functional requirements
+
+- Users should be able to create posts featuring photos, videos, and a simple caption
+
+- Users should be able to follow other users
+
+- Users should be able to see a chronological feed of posts from the users they follow
+
+## 46.2. Non-functional requirements
+
+![](/images/System-Design/Product/Instagram/non-functional-requirements.png)
+
+## 46.3. Entities
+
+![](/images/System-Design/Product/Instagram/entities.png)
+
+## 46.4. API Design
+
+![](/images/System-Design/Product/Instagram/api-design.png)
+
+## 46.5. How will users create posts with photos or videos?
+
+![](/images/System-Design/Product/Instagram/create-posts.png)
+
+## 46.6. How will users follow other users?
+
+![](/images/System-Design/Product/Instagram/follow-service.png)
+
+## 46.7. How will users see a chronological feed of posts from users they follow?
+
+![](/images/System-Design/Product/Instagram/push-model.png)
+
+## 46.8. How would you scale the feed generation to support users who follow thousands of accounts while maintaining low latency?
+
+![](/images/System-Design/Product/Instagram/pull-model.png)
+
+## 46.9. How would you handle the upload of large media files efficiently, particularly videos that could be up to 4GB in size?
+
+![](/images/System-Design/Product/Instagram/pre-signed-url-client-side.png)
+
+## 46.10. How would you ensure fast media delivery to users globally, with photos and videos rendering quickly regardless of a user's location?
+
+![](/images/System-Design/Product/Instagram/cdn.png)
+
+## 46.11. Which is NOT a characteristic of in-memory data stores?
+
+- AOF: Append-only file, each change snapshot 1 time.
+
+- Snapshot: save in dumb.rdb, 1 hour or 100 keys changed.
+
+## 46.12. Fan-out on write pushes updates to all relevant destinations when data is created or modified.
+
+- Yes
+
+## 46.13. When generating a social media feed from followed accounts, which approach minimizes read latency for most users?
+
+- Precompute feeds when content is posted.
+
+## 46.14. When generating a social media feed from followed accounts, which approach minimizes read latency for most users?
+
+- Precomputing feeds (fan-out on write) during content creation eliminates the need to aggregate data from multiple sources at read time.
+
+## 46.15. When designing Instagram's media upload system for files up to 4GB, what is the primary architectural decision that enables both upload reliability and direct client-to-storage efficiency?
+
+- Using pre-signed URLs with multipart uploads to allow direct client-to-S3 transfers
