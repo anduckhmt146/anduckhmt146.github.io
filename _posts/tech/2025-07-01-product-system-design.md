@@ -4009,7 +4009,69 @@ Notes: Features have value, data is only raw.
 
 # 39. Design Online Aunction
 
-# 40. Design Price Tracking Service
+# 40. Design Price Tracking Service (CamelCamelCamel)
+
+## 40.1. Functional Requirements
+
+- Users should be able to view price history for Amazon products (via website or Chrome extension)
+
+- Users should be able to subscribe to price drop notifications with thresholds (via website or Chrome extension)
+
+## 40.2. Non-functional requirements
+
+![](/images/System-Design/Product/CamelCamelCamel/non-functional-requirements.png)
+
+## 40.3. Entities
+
+![](/images/System-Design/Product/CamelCamelCamel/entities.png)
+
+## 40.4. API Design
+
+![](/images/System-Design/Product/CamelCamelCamel/api-design.png)
+
+## 40.5. How will the system update the prices of products? Assume Amazon has no API available.
+
+![](/images/System-Design/Product/CamelCamelCamel/crawler.png)
+
+## 40.6. How will users be able to view the price history of a given product?
+
+![](/images/System-Design/Product/CamelCamelCamel/history.png)
+
+## 40.7 (Hay). How will users be able to subscribe to price drop notifications and get notified when a product's price drops below a certain threshold?
+
+- Solution: Using notification cron + SSE
+
+![](/images/System-Design/Product/CamelCamelCamel/notification-cron-job.png)
+
+## 40.8 (Hay). How can we promptly know if any of the 500 million products on Amazon had a price change? Can the chrome extension help
+
+- The most effective approach leverages our Chrome extension for crowd-sourced price change detection
+
+- People/Staff use extensions and browse the website, it will send data to price updated service.
+
+![](/images/System-Design/Product/CamelCamelCamel/price-update-extensions.png)
+
+## 40.9 (Hay). Amazon adds thousands of new products daily. How can we ensure we're tracking their prices?
+
+- Just like with price updates, we'll use our Chrome extension for real-time product discovery.
+
+- When user browse the Amazon, it send data to price update service.
+
+![](/images/System-Design/Product/CamelCamelCamel/new-products.png)
+
+## 40.10 (Hay). How do we notify users as soon as we know a price has changed?
+
+![](/images/System-Design/Product/CamelCamelCamel/cdc-prices.png)
+
+## 40.11. How can we ensure price history graphs load quickly, even when aggregating data over the past year?
+
+Solution: Time-scale DB.
+
+- We can us TimescaleDB for optimized time-series queries that can aggregate price data in real-time with sub-second performance.
+
+=> Using time_bucket precomputed aggregations and partition by time.
+
+![](/images/System-Design/Product/CamelCamelCamel/time-scale-db.png)
 
 # 41. Design FB Live Comments
 
