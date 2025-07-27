@@ -4189,6 +4189,67 @@ To achieve true real-time comment delivery, we should replace our polling mechan
 
 # 43. Design Youtube Top K
 
+## 43.1. Functional requirements
+
+- Clients should be able to query the top K videos (max 1000) for a given time period.
+
+- Time periods should be limited to 1 {hour, day, month} and all-time.
+
+## 43.2. Non-functional requirements
+
+![](/images/System-Design/Product/Youtube-Top-K/non-functional-requirements.png)
+
+## 43.3. Entities
+
+- Video
+
+- View
+
+- Time Window
+
+## 43.4. API Design
+
+```bash
+GET /views/top?window={WINDOW}&k={K}
+Response:
+{
+    "videos": [
+        {
+            "videoId": // ...
+            "views": // ...
+        }
+    ]
+}
+```
+
+## 43.5. How to get top K video
+
+- Solution: Using Heap and Counter
+
+![](/images/System-Design/Product/Youtube-Top-K/top-k-heap.png)
+
+## 43.6. Enhance Reliability Lists
+
+![](/images/System-Design/Product/Youtube-Top-K/snapshot.png)
+
+## 43.7. Scaling writes
+
+- Idea: Each traffic go to 1 node, applying ring architecture because if a node failed, the requests go to the nearest replacement node.
+
+![](/images/System-Design/Product/Youtube-Top-K/consistent-hashing.png)
+
+## 43.8. Handling Time Windows
+
+Solution: Applying sliding window for timeframe in counting
+
+![](/images/System-Design/Product/Youtube-Top-K/sliding-window-timeframe.png)
+
+## 43.9. Large number of incoming requests
+
+- Solution: Divide to count in multiple instances + Merge the result => Divide and Conquer technique.
+
+![](/images/System-Design/Product/Youtube-Top-K/divide-and-conquer.png)
+
 # 44. Design Google Docs
 
 ## 44.1. Functional Requirements
