@@ -4073,6 +4073,62 @@ Solution: Time-scale DB.
 
 ![](/images/System-Design/Product/CamelCamelCamel/time-scale-db.png)
 
+## 40.12. Which database type optimizes time-based data aggregations?
+
+- Time-series database
+
+- Using CDC: Binlog (MySQL), Write-Ahead Log(PostgreSQL).
+
+## 40.13 (Hay). Consensus-based validation requires multiple independent sources to confirm data accuracy.
+
+- Consensus validation works by requiring multiple independent parties to agree on data before accepting it as valid
+
+## 40.14. When crawling resources are limited, which strategy maximizes user value?
+
+- Prioritize by user interest signals
+
+## 40.15 (Hay). When external APIs impose strict rate limits, which strategy helps systems scale effectively?
+
+- When external APIs have rate limits (like 1 request per second), adding more servers doesn't help since each server faces the same constraint.
+
+=> Implement intelligent request prioritization.
+
+## 40.16. Crowdsourced data collection scales naturally with user adoption.
+
+- Yes
+
+## 40.17. Which approach balances fast notifications with data accuracy?
+
+- Trust-but-verify with quick validation
+
+## 40.18. Which is a reason to separate time-series data from operational data?
+
+- Different scaling requirements
+
+- Distinct access patterns
+
+- Specialized optimization needs
+
+## 40.19. Event-driven notification systems eliminate expensive database scans for change detection.
+
+- Yes
+
+## 40.20. When browser extensions report conflicting prices, which validation approach works best?
+
+- This trust-but-verify approach handles conflicting user data by quickly checking another authoritative source
+
+## 40.21 (Hay). TimescaleDB is a time-series extension for PostgreSQL
+
+- TimescaleDB can provide specialized time-series performance while maintaining PostgreSQL compatibility.
+
+- PostgreSQL >> MySQL: If your application is complex, use PostgreSQL (geography index, timescale db, vector db)
+
+- Use MySQL for simple application: CMS, blogs.
+
+## 40.22 (Hay). For serving historical price charts with sub-500ms latency, which approach performs best?
+
+- Real-time aggregation queries
+
 # 41. Design FB Live Comments
 
 ## 41.1. Functional Requirements
