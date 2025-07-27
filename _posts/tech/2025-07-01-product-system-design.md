@@ -4069,4 +4069,72 @@ To achieve true real-time comment delivery, we should replace our polling mechan
 
 # 42. Design FP Post Search
 
+## 42.1. Functional Requirements
+
+- Users should be able to create and like posts
+
+- Users should be able to search posts by keyword
+
+- Users should be able to get search results sorted by recency or like count
+
+## 42.2. Non-functional requirements
+
+![](/images/System-Design/Product/FB-Post-Search/non-functional-requirements.png)
+
+## 42.3. Entities
+
+![](/images/System-Design/Product/FB-Post-Search/entities.png)
+
+## 42.4. API Design
+
+![](/images/System-Design/Product/FB-Post-Search/api-design.png)
+
+## 42.5. How will users create posts and like them?
+
+![](/images/System-Design/Product/FB-Post-Search/create-like-posts.png)
+
+## 42.6. How to search posts by keywords ?
+
+![](/images/System-Design/Product/FB-Post-Search/search-posts.png)
+
+## 42.7. How to sort posts by recently and like count ?
+
+![](/images/System-Design/Product/FB-Post-Search/sort-by-like-counts.png)
+
+## 42.8. How can we scale the keyword search to support trillions of posts?
+
+- We'll create a separate "Ingestion" service which will be triggered when a post is created or a like happens
+
+- Split to keywords and add to ElasticSearch.
+
+![](/images/System-Design/Product/FB-Post-Search/tokenization.png)
+
+## 42.9 (Hay). How will the system handle queries with multiple keywords (e.g. "taylor AND swift")?
+
+- Instead of indexing only singular words, we'll also index the bigrams.
+
+- Search by bigrams first, each word later.
+
+![](/images/System-Design/Product/FB-Post-Search/bigram.png)
+
+## 42.10 (Hay, Cache common search in CDN). How can we ensure searches queries are still fast in the case of many results (like "taylor swift")?
+
+- Solution: Cache some common search query in CDN by region.
+
+- We can use an LRU eviction strategy to ensure our CDN contains only the most popular search queries.
+
+![](/images/System-Design/Product/FB-Post-Search/cache-common-search.png)
+
+## 42.11 (Hay). How can we make ingestion scalable and fast with millions of posts and billions of likes?
+
+- Search first => Query like in list return, allow approximately correct.
+
+![](/images/System-Design/Product/FB-Post-Search/pre-filter-like.png)
+
+## 42.12 (Hay). How can we optimize the storage requirements of the system?
+
+- Apply cold/warm/hot search index in S3 for storage.
+
+![](/images/System-Design/Product/FB-Post-Search/cold-index.png)
+
 # 43. Design Youtube Top K
