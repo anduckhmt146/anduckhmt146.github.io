@@ -4007,7 +4007,107 @@ Notes: Features have value, data is only raw.
 
 # 38. Design Video Recommendations
 
-# 39. Design Online Aunction
+# 39. Design Online Aunction Platform (eBay)
+
+## 39.1. Functional Requirements
+
+- Users should be able to post an item for auction with a starting price and end date.
+
+- Users should be able to bid on an item, where bids are accepted if they are higher than the current highest bid.
+
+- Users should be able to view an auction, including the current highest bid.
+
+## 39.2. Non-functional requirements
+
+![](/images/System-Design/Product/eBay/non-functional-requirements.png)
+
+## 39.3. Entities
+
+![](/images/System-Design/Product/eBay/entities.png)
+
+## 39.4. API Design
+
+![](/images/System-Design/Product/eBay/api-design.png)
+
+## 39.5. How will users be able to post an item for auction?
+
+![](/images/System-Design/Product/eBay/create-auction.png)
+
+## 39.6. How will users be able to place bids on items?
+
+![](/images/System-Design/Product/eBay/bid-price.png)
+
+## 39.7. How will users be able to view an auction, including the current highest bid?
+
+- Polling the endpoint, or using Websocket, SSE.
+
+![](/images/System-Design/Product/eBay/polling-price.png)
+
+## 39.8. How can we ensure strong consistency for bids?
+
+- Using Optimistic lock.
+
+![](/images/System-Design/Product/eBay/optimistic-lock.png)
+
+## 39.9. How can we ensure that the system is fault tolerant and durable, so that no bids are lost even in case of failures?
+
+- To track the message is not lost => using message queue.
+
+![](/images/System-Design/Product/eBay/message-queue.png)
+
+## 39.10. How can we ensure that the system displays the current highest bid in real-time to all 100M+ users that may be viewing auctions?
+
+- Solution: SSE + Pub/sub.
+
+![](/images/System-Design/Product/eBay/sse_pubsub.png)
+
+## 39.11. How can we scale the database to handle 50K concurrent writes and 50TB of data a year while maintaining the consistency of bids?
+
+- To handle 50K concurrent writes and 50TB annual data growth, we'll shard the database across multiple instances using auction ID as the shard key.
+
+- We don't need to worry about "hot auctions" because bids cost money.
+
+![](/images/System-Design/Product/eBay/sharding.png)
+
+## 39.12. Message queues ensure durability by persisting messages to disk storage.
+
+- Yes
+
+## 39.13. Which concurrency control method avoids holding database locks?
+
+- Optimistic concurrency control => Retry after failed with next version (application logic).
+
+## 39.14. Overwriting records destroys audit trails and historical information.
+
+- Preserving historical data by appending rather than updating enables debugging, auditing, and dispute resolution.
+
+- Always consider immutable append-only designs for critical data.
+
+## 39.15. Atomic compare-and-swap operations prevent lost updates in concurrent systems.
+
+- Compare-and-swap atomically checks a value hasn't changed before updating it.
+
+## 39.16. What occurs when optimistic concurrency control detects conflicting updates?
+
+- When conflicts are detected, requiring the application to retry with current data.
+
+## 39.17. Storing the maximum bid amount directly in the auction table eliminates the need for distributed transactions when updating bid data.
+
+- Yes
+
+## 39.18 (Hay). When designing a bidding system that needs to handle concurrent bid submissions, which approach provides the BEST balance of consistency and performance?
+
+- Store the maximum bid directly in the auction table with optimistic concurrency control
+
+## 39.19. In an auction system using Server-Sent Events (SSE) to broadcast real-time bid updates, what happens when a new bid is processed by Server A but users watching the same auction are connected to Server B?
+
+- Subscriber receive broadcast message in only channel that they subcribed.
+
+- Users connected to Server B will not receive the update unless additional coordination infrastructure is implemented
+
+## 39.20. Using an external cache like Redis to store maximum bid amounts requires distributed transactions to maintain consistency between the cache and database.
+
+- Yes => Need to maintain consistency from cache and database.
 
 # 40. Design Price Tracking Service (CamelCamelCamel)
 
