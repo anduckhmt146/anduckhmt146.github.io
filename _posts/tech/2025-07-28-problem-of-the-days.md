@@ -40,3 +40,11 @@ class Solution:
 # 2. 2D Prefix Matrix
 
 ![](/images/Coding-Problems/2d-prefix-magic.png)
+
+# 3. Rotate Matrix
+
+- Run from the bottom of the column to row
+
+- Continue in another column
+
+![](/images/Coding-Problems/rotate-matrix-magic.png)
