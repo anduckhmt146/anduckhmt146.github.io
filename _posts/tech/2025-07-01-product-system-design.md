@@ -4781,3 +4781,67 @@ Example: Search for 8
 - We'll need to create a new Clients table to keep track of clients by user id by devices.
 
 ![](/images/System-Design/Product/WhatsApp/multiple-devices.png)
+
+## 47.10. WebSockets maintain persistent bi-directional connections between clients and servers.
+
+- Yes
+
+## 47.11. Acknowledgment patterns in message systems benefits.
+
+- Enables retry logic
+
+- Prevents message loss
+
+- Confirms message delivery
+
+## 47.12. Eventual consistency guarantees convergence of replicas when updates stop.
+
+- In eventually consistent systems, if no new writes arrive, all replicas will eventually reach the same state.
+
+- Although reads may see stale data in the meantime.
+
+## 47.13. Which technique helps distribute load evenly when servers are added or removed?
+
+- Consistent Hashing
+
+- Add/Delete any nodes => we distributed traffic to another nearest node.
+
+## 47.14. What is the MOST challenging aspect of scaling stateful WebSocket connections?
+
+- Connection routing
+
+## 47.15. A messaging system must guarantee delivery to offline users. Which pattern works best?
+
+- The Inbox pattern stores undelivered messages in persistent storage until recipients come online and acknowledge receipt.
+
+## 47.16. Database to store structured query, blob store in blob storage e.g. S3
+
+- Yes
+
+## 47.17. What happens when WebSocket users connect to different servers but need to communicate?
+
+- Solution: Messages need routing between servers.
+
+- When users are on different servers, the system needs routing mechanisms like pub/sub or direct server-to-server communication to deliver messages across server boundaries.
+
+## 47.18. Which approach BEST ensures message delivery in systems with intermittent connectivity?
+
+- Persistent storage combined with acknowledgment patterns ensures messages survive server restarts and network issues.
+
+## 47.19. Persistent connections patterns
+
+- Pub/Sub routing
+
+- Consistent hashing
+
+- Connection pooling
+
+## 47.20. A system processes millions of location updates per second. Which storage approach works best?
+
+- In-memory with batch writes to disk.
+
+## 47.21. Pub/Sub systems guarantee message delivery even when no subscribers are listening.
+
+Solution: Most pub/sub systems provide 'at most once' delivery, meaning messages are lost if no subscribers are listening.
+
+- False
