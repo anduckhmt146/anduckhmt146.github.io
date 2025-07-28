@@ -4725,3 +4725,59 @@ Example: Search for 8
 ## 46.15. When designing Instagram's media upload system for files up to 4GB, what is the primary architectural decision that enables both upload reliability and direct client-to-storage efficiency?
 
 - Using pre-signed URLs with multipart uploads to allow direct client-to-S3 transfers
+
+# 47. Design WhatsApp
+
+## 47.1. Functional Requirements
+
+- Users should be able to start group chats with multiple participants (limit 100).
+
+- Users should be able to send/receive messages.
+
+- Users should be able to receive messages sent while they are not online (up to 30 days).
+
+- Users should be able to send/receive media in their messages.
+
+![](/images/System-Design/Product/WhatsApp/non-functional-requirements.png)
+
+## 47.2. Entities
+
+![](/images/System-Design/Product/WhatsApp/entities.png)
+
+## 47.3. API Design
+
+- Use Websocket for clients to connect to server. We need to specify both the commands that are sent to the server and those received by the client.
+
+![](/images/System-Design/Product/WhatsApp/web-socket.png)
+
+## 47.4. Create chats and add participants
+
+![](/images/System-Design/Product/WhatsApp/create-chats-ws.png)
+
+- We'll include a GSI so that we can look up participants by chatId or chatIds by participant.
+
+## 47.5. Update the design to allow users to send and receive messages.
+
+![](/images/System-Design/Product/WhatsApp/send-receive-message-ws.png)
+
+## 47.6. Extend the design to allow users to receive messages later if their client is offline
+
+- When user online => first time, broadcast the messate to the client or fetch API.
+
+- While chat, using websocket to handle send/receive message.
+
+![](/images/System-Design/Product/WhatsApp/offline.png)
+
+## 47.7. How can we send/receive media attachments in messages?
+
+![](/images/System-Design/Product/WhatsApp/client-side-upload-ws.png)
+
+## 47.8. How can we enable billions of simultaneous users?
+
+![](/images/System-Design/Product/WhatsApp/redis-pubsub-user-id.png)
+
+## 47.9. What do we do to handle multiple clients for a given user?
+
+- We'll need to create a new Clients table to keep track of clients by user id by devices.
+
+![](/images/System-Design/Product/WhatsApp/multiple-devices.png)
