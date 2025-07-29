@@ -60,3 +60,19 @@ class Solution:
 - Bottom-up: dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2])
 
 ![](/images/Coding-Problems/climb-stair-magic.png)
+
+# 5. Sort an Array
+
+- Heap Sort
+
+- Merge Sort
+
+- Quick Sort
+
+# 6. Word Ladder
+
+- Idea: BFS.
+
+- Time Complexity: O(N^2 x M (list))
+
+![](/images/Coding-Problems/word-ladder-magic.png)
