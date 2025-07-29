@@ -48,3 +48,15 @@ class Solution:
 - Continue in another column
 
 ![](/images/Coding-Problems/rotate-matrix-magic.png)
+
+# 4. Min Cost Climbing Stairs
+
+- DP theo cost(i - 1), and cost(i - 2) + cost[i]
+
+- Top down: cost[i] + min(dfs(i + 1), dfs(i + 2))
+
+- Backward: for i in range(len(cost) - 3, -1, -1) => cost[i] += min(cost[i + 1], cost[i + 2])
+
+- Bottom-up: dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2])
+
+![](/images/Coding-Problems/climb-stair-magic.png)
