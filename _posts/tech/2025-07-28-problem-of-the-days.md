@@ -76,3 +76,7 @@ class Solution:
 - Time Complexity: O(N^2 x M (list))
 
 ![](/images/Coding-Problems/word-ladder-magic.png)
+
+# 7. Delete Node in a BST
+
+![](/images/Coding-Problems/min-of-the-right-subtree-magic.png)
