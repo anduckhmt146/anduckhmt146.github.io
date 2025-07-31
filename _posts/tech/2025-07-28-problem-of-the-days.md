@@ -80,3 +80,13 @@ class Solution:
 # 7. Delete Node in a BST
 
 ![](/images/Coding-Problems/min-of-the-right-subtree-magic.png)
+
+# 8. Minimum Interval to Include Each Query
+
+- Sort by length interval.
+
+![](/images/Coding-Problems/minimum-interval-magic.png)
+
+# 9. Partition Labels
+
+![](/images/Coding-Problems/partition-labels.png)
