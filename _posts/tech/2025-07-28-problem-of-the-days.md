@@ -90,3 +90,15 @@ class Solution:
 # 9. Partition Labels
 
 ![](/images/Coding-Problems/partition-labels.png)
+
+# 10. Combination Sum 2
+
+![](/images/Coding-Problems/combination-sum-2-magic.png)
+
+![](/images/Coding-Problems/combination-sum-2-implement.png)
+
+# 11. Climb Stairs
+
+![](/images/Coding-Problems/climbing-stairs-magic.png)
+
+![](/images/Coding-Problems/climbing-stairs-dp.png)
