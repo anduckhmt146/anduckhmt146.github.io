@@ -102,3 +102,7 @@ class Solution:
 ![](/images/Coding-Problems/climbing-stairs-magic.png)
 
 ![](/images/Coding-Problems/climbing-stairs-dp.png)
+
+# 12. Design Twitter
+
+![](/images/Coding-Problems/twitter-magic.png)
