@@ -137,3 +137,13 @@ class Solution:
         else:
             return root
 ```
+
+# 17. Unique Binary Search Trees
+
+Note: dp[4] = dp[3] x dp[0] + dp[2] x dp[1] + dp[1] x dp[2] + dp[0] x dp[3]
+
+# 18. Unique Binary Search Trees 2
+
+Idea: Accumulate result of all tree in res
+
+![](/images/Coding-Problems/generate-BST-2-magic.png)
