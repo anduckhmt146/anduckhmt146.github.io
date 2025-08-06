@@ -106,3 +106,34 @@ class Solution:
 # 12. Design Twitter
 
 ![](/images/Coding-Problems/twitter-magic.png)
+
+# 13. Construct tree from preorder and inorder
+
+![](/images/Coding-Problems/construct-tree-magic.png)
+
+![](/images/Coding-Problems/construct-tree-magic-2.png)
+
+# 14. Is Valid BST
+
+![](/images/Coding-Problems/is-valid-BST-magic.png)
+
+# 15. Construct tree from preorder and postorder
+
+![](/images/Coding-Problems/construct-pre-post-order-magic.png)
+
+# 16. Lowest Common Ancestor in Binary Search Tree
+
+![](/images/Coding-Problems/lca-magic.png)
+
+```python
+class Solution:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        if not root or not p or not q:
+            return None
+        if (max(p.val, q.val) < root.val):
+            return self.lowestCommonAncestor(root.left, p, q)
+        elif (min(p.val, q.val) > root.val):
+            return self.lowestCommonAncestor(root.right, p, q)
+        else:
+            return root
+```
