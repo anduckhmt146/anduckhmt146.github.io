@@ -28,11 +28,9 @@ I am a Software Engineer, Junior + or Middle Level with more than 1 year of expe
 
 2. **Enneagram:** 5w4 - The Visionary, The Iconoclast
 
-3. **Attachment Theory:** Fearful-Avoidant.
+3. **Zodiac:** I'm a Sun and Jupier in Gemini, Venus in Cancer, Ascendant in Capricorn.
 
-4. **Zodiac:** I'm a Sun and Jupier in Gemini, Venus in Cancer, Ascendant in Capricorn.
-
-5. **Human Design**: The Manifesting Generator.
+4. **Human Design**: The Manifesting Generator.
 
 ## 3. Strengths & Weaknesses
 
