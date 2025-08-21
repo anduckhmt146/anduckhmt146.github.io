@@ -107,6 +107,6 @@ categories: tech
 
 ## 5.5. Minimize attack surface
 
-- Do not expose admin aPI on public network.
+- Do not expose admin API on public network.
 
 - Always route to API gateways.
