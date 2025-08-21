@@ -110,3 +110,51 @@ categories: tech
 - Do not expose admin API on public network.
 
 - Always route to API gateways.
+
+## 5.6. Separation of Duties
+
+- No single person or component has complete control.
+
+## 5.7. Don't trust user input
+
+- Never trust the input from client-side.
+
+## 5.8. Keep it simple
+
+- Using OAuth2 instead of building a custom token system.
+
+- Avoid over-engineering security features => Keep it simple.
+
+## 5.9. Auditability and Logging
+
+- Log access to critical endpoints, permission escalations and login attempts.
+
+## 5.10. Open Design
+
+- Do not depend on the security layer, using well-reviewed libraries and protocols.
+
+## 5.11. Security Threat Modeling
+
+- We can use: STRIDE, DREAD for threat modeling.
+
+## 5.12. Principles
+
+- Authentication: Username & Password, MFA, OAuth.
+
+- Authorization: RBAC, GBAC, PBAC, ACL, Scopes.
+
+- Encryption: Symmetric, Asymmetric, Hashing, Digital Signatures.
+
+- Compliance: GDPR, HIPAA, SOC 2.
+
+## 5.13. Execution
+
+- Frontend: Cookie constent UX.
+
+- API Gateway: Enforce geo-IP restriction, throttle suspicious access.
+
+- Backend: Encrypt sensive fields, audit logs.
+
+- Data Layer: Use KMS, environment flag.
+
+- Infrastructure: Use infrastructure as code for auditing.
