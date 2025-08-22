@@ -350,3 +350,15 @@ categories: tech
 - Memory & CPU Profilling: Prometheus, spot memory leaks, bottlenecks, CPU-hogging routines.
 
 - Caching responses: using memcached, redis, return HTTP code 304, HTTP not modified redirection.
+
+## 8.6. Database Performance
+
+- Indexing: use index after where, join, order by,... Use composite indexes when approriate.
+
+- Query optimization: Use EXPLAIN or EXPLAIN ANALYZE to profile query, avoid N + 1 query problems in ORM (fix by join), replace subquery with join if faster => Optimize to from N + 1 query to 2 query (join + select)
+
+- Connection Management: Using max connection pool, using read replicas for scaling reads.
+
+- Sharding & Partitioning: Split large tables to smaller units, ditrbute write load across shards.
+
+- Materialized Views & Denormalization: Precompute complex joins or aggregations to a virtual table (use view to provide security / restricted access, hide certain columns or rows), view stores real-time data, material views stores stale data, eventual consistency.
