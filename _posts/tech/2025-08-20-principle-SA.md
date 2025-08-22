@@ -158,3 +158,195 @@ categories: tech
 - Data Layer: Use KMS, environment flag.
 
 - Infrastructure: Use infrastructure as code for auditing.
+
+- Compliance: use compliance checks tool, e.g. AWS Config, GCP Security Command Center.
+
+# 6. Design Scalability
+
+## 6.1. Context
+
+- It doesn't mean add more servers, it designs that handle more users, more data, more complexity.
+
+## 6.2. Scaling
+
+- Vertical Scaling: monolithic applications, not a distributed system => Moore’s Law.
+
+- Horizontal Scaling: unlimited scaling, stateless system.
+
+- Load balancing: Round robin, least connections, IP hash.
+
+- Caching: client-side cache, CDN (edge cache), mem-cache, distributed cache.
+
+- Sharding: Range-based, Hash-based, Geo-based.
+
+## 6.3. Microservices && Domain-driven Design
+
+- Indentify the bounded context, e.g. Driver Management and Ride Matching are seperate bounded context.
+
+- Use the same Ubiquitous language: Transaction, Authorization, Refund.
+
+- Aggregate the Entities: Customer, RideDetails, PaymentInfo.
+
+- Apply ACL for inter-service communication.
+
+## 6.4. Event-driven
+
+- Technology: Kafka, RabbitMQ (AMQP, Scheduling Queue), Pub/Sub System.
+
+- Using Kafka when you need real-time message processing, share messages in group.
+
+- Using RabbitMQ when you want to have message routing mechanism, share message for each consumer.
+
+- Using cloud native pub/sub for event-driven systems.
+
+## 6.5. Serverless
+
+- A login with AWS Lambda + API Gateway + DynamoDB.
+
+- Schedule tasks, DynamoDB -> S3 Storage.
+
+- Use serverless: event-driven, short-lived jobs.
+
+## 6.6. Eventually Consistency
+
+- Each replicas have data but not sync together.
+
+- Asynchronus Messaging.
+
+- Idempotency.
+
+- Outbox Pattern.
+
+- Saga Patterns.
+
+- Event Sourcing.
+
+# 7. Design Operation
+
+## 7.1. Devops
+
+- Design for CI/CD: canary deployments, blue-green deployments, rolling updates.
+
+- Using IaC (Infrastructure as code) to manage networks, servers, databases.
+
+- Using secrets for environment variables.
+
+## 7.2. Observability
+
+- Logging
+
+  - Log levels: info, debug, warn, error, fatal
+  - Aggregation: Elastic Search, Kibana.
+  - Info: requestID, userID, traceID.
+
+- Monitoring: Metrics, Dashboards, Alerts
+
+  - Infrastructure: CPU, memory, disk, network.
+  - Application: requests rate, number of requests, latencies.
+  - Business: Orders processed, sign-up, conversions.
+  - Dashboards: Grafana, Data dog.
+  - Alerts: SLO-based alerts (e.g. 95% of API responses should be < 300ms)
+
+- Distributed Tracing
+
+  - Trace context propagation: using X-Request-ID.
+  - Tools: OpenTelemetry, Jaeger, AWS X-Ray.
+  - Trace: DB Call, API Call, External services.
+
+- Goals: Ensure and trace RCA, SLAs
+
+## 7.3. Handle Failure
+
+- Retries: wait 1s -> 2s -> 4s while retries, set max attempts.
+
+- Circuit Breakers: Do not to route the traffic to failed services, isolate the failure.
+
+- Backpressure: slowing down the requests
+  - Using message queues.
+  - Return HTTP Status code 429
+  - Leaky Bucket, sliding window, queue threshold.
+  - Load shedding: dropping non-critical traffic
+
+## 7.4. Reliability: SLOs, SLIs, and Error Budgets
+
+- SLO: Service level objectives = SLI + Error Budgets
+
+- SLI: measurements of the system
+
+  - % of successful requests.
+  - % of requests under 200ms.
+  - Number of requests per second.
+  - % of failed API calls.
+  - % of data not lost.
+
+- SLO: reliability goals with the skateholders in a period of time.
+
+- Error budgets: allowable amount of failures in given periods.
+
+## 7.5. Diagram to codebase
+
+- Translate the architecture to maintainable code.
+
+- Enforcing Boundaries: Modular Monorepos, ADRs, ArchUnit
+
+  - Modular Monorepos: Multi modules as services in the same repo, can be deployed independently.
+  - ADR: short document about how the architecture decisions has made.
+  - ArchUnit: Use to write test about the dependencies of a module.
+
+- Validation: Static validation (structure code), runtime validation, dependency validation, infrastructure conformance.
+
+# 8. Design Performance
+
+## 8.1. Caching
+
+- Client-side caching: Using HTTP Cache-control, Cache static resources e.g. image, scripts.
+
+- Edge Caching: APIs with GET cachable responses or static content in CDN.
+
+- Application/Database caching: Redis, memcache, frequently queried data.
+
+## 8.2. CDN
+
+- Reduce latency by serveing content from closest geographically servers.
+
+- Prevent DDoS attack.
+
+## 8.3. Async Processing
+
+- Email/SMS.
+
+- Data transformation.
+
+- Video/Image Processing.
+
+- Background analytics.
+
+- Using graceful fallbacks: to make sure handle all requests
+
+## 8.4. Frontend Performance
+
+- Minimize critical rendering path: load critical resources first, lazy load for images and non-critical content.
+
+- Bundle optimization: tree-shaking unused JavaScript, code-splitting with tools like Webpack or Vite, compress assets using Gzip.
+
+- Image Optimization: Serve webp format, compress images, using responsive image techniques (dynamic load images by devices, srcset, picture)
+
+- Reduce HTTP requests: combile css/js files where appropriate, cache assets with proper headers.
+
+- Leverage browser caching and CDNs
+
+- Monitor and Analyze: Google Lighthouse, Sentry, monitor FCP, TTI, LCP.
+
+## 8.5. Backend Performance
+
+- Optimize algorithms and logic: reduce loops and data structures, avoid blocking in async environments.
+
+- Reduce network overhead: compress API responses, pagination, avoid over-fetching using GraphQL (only fetch the necessary fields).
+
+- Connection Polling: manage HTTP and DB connection with pools, adjust thread pool size based on system capacity.
+
+- Async & Parallel processing: using non-blocking I/O, offload heavy tasks to queue and worker threads.
+
+- Memory & CPU Profilling: Prometheus, spot memory leaks, bottlenecks, CPU-hogging routines.
+
+- Caching responses: using memcached, redis, return HTTP code 304, HTTP not modified redirection.
