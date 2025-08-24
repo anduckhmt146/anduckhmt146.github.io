@@ -54,3 +54,13 @@ categories: plan
 - In relationships: Do not good at emotional in relationship => But can attracting romantic interests and atmosphere fun and challenging.
 
 - At work: Want to traveling to other side of the world to complete the task.
+
+## 6. Adaptable in changing environments
+
+- Positive: absorbs the change and move forward, no drama, no whinning.
+
+- Negative: They easily switching opinions for other things.
+
+- In relationships: They can go overseas, regret leaving friends and family behind, they adapable when it come to a life changes: marriage, buying a house or kids.
+
+- At work: They make such good consultants => because they welcome change of scenary and opportunity to meet new people, make new connections.
