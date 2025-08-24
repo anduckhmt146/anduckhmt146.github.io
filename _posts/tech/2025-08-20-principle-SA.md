@@ -362,3 +362,70 @@ categories: tech
 - Sharding & Partitioning: Split large tables to smaller units, ditrbute write load across shards.
 
 - Materialized Views & Denormalization: Precompute complex joins or aggregations to a virtual table (use view to provide security / restricted access, hide certain columns or rows), view stores real-time data, material views stores stale data, eventual consistency.
+
+- Ccaching in Redis or memcached, using write-through or cache-aside patterns
+
+- Monitor: MySQL slow query log, pg_stat_statements, alert for high CPU, table scans.
+
+## 8.9. Build PaSS product
+
+- Frontend: Bundle size was 3MB, after optimization => reduced 1MB using code-splitting and lazy load.
+
+- Backend: Response time droped from 1.2s -> 200ms using caching user profile and optimize database queries.
+
+- Database: Replace subquery with JOIN, add indexes => droped query time from 500ms to 50ms.
+
+- Monitoring/Benchmark to profilling metrics:
+
+  - Latency (P50, P95, P99 => 99% of requests under the latency threshold, 1% can be higher)
+  - Throughput (reqs/s)
+  - Resource ultilization: CPU, memory, disk I/O.
+  - Startup time: services.
+  - Netowkr round-trip time: RTT
+  - Testing: load test - test the performance in a scenario, stress test - test the maximum breaking points.
+  - RabbitMQ: allow to configure messages with routing key "error" go only to error_queue, fanout to many queues,... Kafka can do it but can not built-in function.
+  - RabbitMQ: low latency, Kafka: high-throughput.
+
+# 9. Design with AI
+
+- Predictive scaling.
+
+- Proactive learning from logs.
+
+# 10. Technical Choice:
+
+- Frontend: React + Next.js SPA.
+
+- Backend: Golang.
+
+- Auth: OAuth2 with multi-tenant token scopes.
+
+- Database: PostgresSQL.
+
+- Cache: Redis.
+
+- Queue: RabbitMQ, Kafka.
+
+- Infras: Deploy using Kubernetes + Helm, GitOp.
+
+- Observability: Grafana, Loki, Prometheus.
+
+- Payment Integration: Stripe.
+
+- Search: Elastic Search.
+
+- Encryption: TLS, Data encrypted, Rate limiting.
+
+- Data Layer: Event Sourcing.
+
+- Fraud Detection: AI service.
+
+=> Each service you can declare the other techstack.
+
+# 11. How a software architect do
+
+- Balance authority and enablement: document the changes, reasonale.
+
+- Balance innovation with delivery: Take innovations and manage risks, write POC with time-box.
+
+- Work with teams: Agile daily meeting, very details about making decisions.
