@@ -34,3 +34,23 @@ categories: plan
 - In relationships: Allow partners to win in a relationship => if they love them, but how far they are willing to go in relationship.
 
 - At work: If they have a change to make decision, your think out of the box and go beyond the unknown can change the world.
+
+## 4. Thinks very creatively
+
+- Positive: Ideas and also make sense to turn into reality.
+
+- Negative: Difficult cooking chicken on the stove or ironing clothes.
+
+- In relationships: focus attention long enough -> surpirses his or her partner.
+
+- At work: Difficult to see project to start to finish, because there is so much they are capable of discovering.
+
+## 5. Adventurous and outgoing
+
+- Positive: ENTP prefer to be among people they can chat and argue with.
+
+- Negative: Reject tradtions => Need sense and responsibility.
+
+- In relationships: Do not good at emotional in relationship => But can attracting romantic interests and atmosphere fun and challenging.
+
+- At work: Want to traveling to other side of the world to complete the task.
