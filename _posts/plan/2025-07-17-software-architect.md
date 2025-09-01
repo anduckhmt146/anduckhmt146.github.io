@@ -95,3 +95,59 @@ Here is plan for software architect template
 10. Learning curve.
 
 11. Readability.
+
+# 4. Datastore
+
+- Both User Interface and Datastore must depend on the Business Logic.
+
+# 5. Data Model
+
+- The main idea behind DDD is to create a model in the software that closely follows the specification written in the ubiquitous language => make your code easy to understand.
+
+- Using CQRS + Event Store to make interface clean.
+
+# 6. Latency
+
+1. Client Latency
+
+- Lightweight framework: React/Redux.
+
+- Minify your JavaScript code.
+
+- Embrace ayschronusly.
+
+- Building SPA app: load all assets once, and reply on AJAX calls to server to operate => apply lazy load.
+
+- Perform CPU-intensive: operate in server side.
+
+2. Network latency:
+
+- Large number of transmissions between client and server.
+
+- Slow handshake.
+
+- Slow connection speed.
+
+Solutions:
+
+- Bundle scripts as few as possible, using webpack + tree handshaking + minify the scripts.
+
+- Bundle style sheets as few files as possible.
+
+- For responsive design, scale the images dynamically, do not load new image.
+
+- Serve all static resources in CDN.
+
+- Minimize the number of API endpoints, make sure multiple of functions can be called with round-trip.
+
+- Apply API call in geographic regions.
+
+- Leverage local storage to persist infrequently changing of data.
+
+Server latency:
+
+- Computational latency.
+
+- Database latency.
+
+- Sychronization latency.
