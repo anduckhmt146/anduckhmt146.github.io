@@ -41,3 +41,21 @@ Example: root = [2, 1, 3]
 - def getRandom(self) -> int:
 
   - Use random to get value by index in list.
+
+## 3. Shortest Way to Form String
+
+- Time Complexity: O(len(source) × len(target)).
+
+- Idea 1: source = "abc", target = "abcbc"
+
+=> Loop through target => And each time loop through source to count the character
+
+=> Example: abcbc => Find first abc in source, find bc in source => Count 2.
+
+- Idea 2: source = "abc", target = "acdbc"
+
+=> Find ac in source, d not in source => Return -1.
+
+- Idea 3: source = "xyz", target = "xzyxz"
+
+=> Find xz in source, find y in source, find xz in source => Count 3
