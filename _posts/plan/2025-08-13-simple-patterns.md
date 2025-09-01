@@ -1,64 +1,43 @@
 ---
 layout: post
 title: DSA Pattern and Toolkit Cheetsheet
-date: 2025-08-13
-categories: private
+date: 2025-09-01
+categories: plan
 ---
 
-# 1. Toolkit
+# 1. Problems
 
-## 1.1. Two Pointer
+## 1. Serialize and Deserialize BST
 
-## 1.2. Sliding Window
+Example: root = [2, 1, 3]
 
-## 1.3. Linked List
+- serialize(self, root: Optional[TreeNode]) -> str
+  => Build BST: "2 1 3"
 
-## 1.4. Stack
+- def deserialize(self, data: str) -> Optional[TreeNode]:
+  => From "2 1 3"
+  Step 1: Using upper and lower bound, at 2 (-inf, 2), (2, +inf) => Root is 2.
+  Step 2: At 1, (-inf, 1), (1, 2) in the subleft tree.
+  Step 3: At 3, (2, 3), (3, +inf) in the subright tree.
 
-## 1.5. CPU Scheduling
+## 2. Insert Delete GetRandom O(1)
 
-## 1.6. Merge Interval
+- def **init**(self):
 
-## 1.7. Divide and Conquer
+  - self.dict = {} # value -> index in list
+  - self.list = [] # stores values => use for random store.
 
-## 1.8. DFS
+- def insert(self, val: int) -> bool:
 
-## 1.9. BFS
+  - insert to a hash map => list = [1,2], dict = {1:0, 2:1}
 
-## 1.10. Greedy
+- def remove(self, val: int) -> bool:
 
-## 1.11. Trie
+  - Swap the last index of dict into the key of val in hashmap => Val, index.
+  - rs.remove(1) => # swap last(2) with 1, list=[2], dict={2:0} => self.list[idx] = last_val and self.dict[last_val] = idx
+  - list.pop().
+  - del self.dict[val]
 
-## 1.12. Dynamic Programming
+- def getRandom(self) -> int:
 
-# 2. Patterns
-
-## 2.1. Tree
-
-## 2.2. Linked List
-
-## 2.3. Hash Map
-
-## 2.4. Binary Search
-
-## 2.5. Heap
-
-## 2.6. String
-
-## 2.7. Trie
-
-## 2.8. Array
-
-## 2.9. Stack/Queue
-
-## 2.10. Backtracking
-
-## 2.11. Graph
-
-## 2.12. Bit Manipulation
-
-## 2.13. Dynamic Programming
-
-## 2.14. Greedy
-
-## 2.15. Math
+  - Use random to get value by index in list.
