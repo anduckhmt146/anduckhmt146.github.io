@@ -89,3 +89,37 @@ categories: plan
 - F1 Score: Harmonic mean of Precision and Recall, If Precision = 75% and Recall = 83%, then F1 ≈ 79%.
 
 - Support: 70 healthy, 30 sick → Support for "healthy" = 70, Support for "sick" = 30.
+
+# 4. Building Content Moderation System
+
+## 4.1. Decision Tree (Text/Structure Data)
+
+- The model is work well for text but not image/audio.
+
+- Model: DecisionTreeClassifier, RandomForestClassifier.
+
+## 4.2. CNN (Image Data)
+
+- Split the image to small parts, analyze them and stick everything together.
+
+- Encoder: AutoFeatureExtractor, AutoModelForImageClassification
+
+- Model: google/vit-base-patch16-224.
+
+## 4.3. RNN (Sequential Data)
+
+- Remember past input to make sense the current one.
+
+- Encoder: AutoTokenizer
+
+- Model: AutoModelForCausalLM("gpt2"), know how to continue the sentences.
+
+## 4.4. Transformer (NLP and Vision)
+
+- Using tensorflow, transformer.
+
+- Encoder: BertTokenizer, bert-based-uncased.
+
+- Model: TFBertModel, bert-base-uncased.
+
+![](/images/HuggingFace/models.png)
