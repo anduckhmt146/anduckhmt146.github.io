@@ -403,7 +403,7 @@ categories: plan
 
 - REL01-BP05: Automate quota management
 
-- REL01-BP06: Ensure that a suﬃcient gap exists between the current quotas and the maximum usage to accommodate failover
+- REL01-BP06: Ensure that a sufficient gap exists between the current quotas and the maximum usage to accommodate failover
 
 ### REL 2: How do you plan your network topology? (network)
 
@@ -554,6 +554,104 @@ categories: plan
 - REL13-BP05: Automate recovery
 
 # 4. Performance Efficiency
+
+## 4.1. Design principles
+
+- Democratize advanced technologies: delegating complex tasks to cloud vendor instead of asking IT team to learn about hosting and running new technology.
+
+- Go global in minutes
+
+- Use serverless architectures: do not need to maintain physical server, just run the source code.
+
+- Experiment more often
+
+- Consider mechanical sympathy: consider patterns when doing with data access.
+
+## 4.2. Questions
+
+**Architecture selection:**
+
+### PERF 1: How do you select appropriate cloud resources and architecture patterns for your workload? (select cloud architect)
+
+- PERF01-BP01: Learn about and understand available cloud services and features
+
+- PERF01-BP02: Use guidance from your cloud provider or an appropriate partner to learn about architecture patterns and best practices.
+
+- PERF01-BP03: Factor cost into architectural decisions.
+
+- PERF01-BP04: Evaluate how trade-offs impact customers and architecture efficiency
+
+- PERF01-BP05: Use policies and reference architectures
+
+- PERF01-BP06: Use benchmarking to drive architectural decisions
+
+- PERF01-BP07: Use a data-driven approach for architectural choices
+
+**Compute and hardware:**
+
+### PERF 2: How do you select and use compute resources in your workload? (select compute resource)
+
+- PERF02-BP01: Select the best compute options for your workload
+
+- PERF02-BP02: Understand the available compute configuration and features
+
+- PERF02-BP03: Collect compute-related metrics
+
+- PERF02-BP04: Configure and right-size compute resources
+
+- PERF02-BP05: Scale your compute resources dynamically
+
+- PERF02-BP06: Use optimized hardware-based compute accelerators
+
+**Data management:**
+
+### PERF 3: How do you store, manage, and access data in your workload? (select database, store, query, access)
+
+- PERF03-BP01: Use a purpose-built data store that best supports your data access and storage requirements
+
+- PERF03-BP02: Evaluate available configuration options for data store
+
+- PERF03-BP03: Collect and record data store performance metrics
+
+- PERF03-BP04: Implement strategies to improve query performance in data store
+
+- PERF03-BP05: Implement data access patterns that utilize caching
+
+**Networking and content delivery:**
+
+### PERF 4: How do you select and configure networking resources in your workload? (select networking, CDN)
+
+- PERF04-BP01: Understand how networking impacts performance
+
+- PERF04-BP02: Evaluate available networking features
+
+- PERF04-BP03: Choose appropriate dedicated connectivity or VPN for your workload
+
+- PERF04-BP04: Use load balancing to distribute traffic across multiple resources
+
+- PERF04-BP05: Choose network protocols to improve performance
+
+- PERF04-BP06: Choose your workload's location based on network requirements
+
+- PERF04-BP07: Optimize network configuration based on metrics
+
+**Process and culture:**
+
+### PERF 5: What process do you use to support more performance efficiency for your workload? (select process, KPIs, metrics)
+
+- PERF05-BP01: Establish key performance indicators (KPIs) to measure workload health and performance
+
+- PERF05-BP02: Use monitoring solutions to understand the areas where performance is most critical.
+
+- PERF05-BP03: Define a process to improve workload performance
+
+- PERF05-BP04: Load test your workload
+
+- PERF05-BP05: Use automation to proactively remediate performance-related issues
+
+- PERF05-BP06: Keep your workload and services up-to-date
+
+- PERF05-BP07: Review metrics at regular intervals
 
 # 5. Cost Optimization
 
