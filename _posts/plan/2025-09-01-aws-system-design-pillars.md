@@ -802,3 +802,101 @@ categories: plan
 - COST11-BP01: Perform automation for operations: automation instead of doing manually.
 
 # 6. Sustainability
+
+## 6.1. Design principles
+
+- Understand your impact
+
+- Establish sustainability goals
+
+- Maximize utilization
+
+- Anticipate and adopt new, more efficient hardware and software offerings
+
+- Use managed services
+
+- Reduce the downstream impact of your cloud workloads
+
+## 6.2. Questions
+
+**Region selection:**
+
+### SUS 1: How do you select Regions for your workload? (region)
+
+- SUS01-BP01: Choose Region based on both business requirements and sustainability goals
+
+**Alignment to demand:**
+
+### SUS 2: How do you align cloud resources to your demand? (save resources)
+
+- SUS02-BP01 Scale workload infrastructure dynamically
+
+- SUS02-BP02: Align SLAs with sustainability goals
+
+- SUS02-BP03: Stop the creation and maintenance of unused assets
+
+- SUS02-BP04: Optimize geographic placement of workloads based on their networking requirements
+
+- SUS02-BP05: Optimize team member resources for activities performed
+
+- SUS02-BP06: Implement buffering or throttling to flatten the demand curve
+
+**Software and architecture:**
+
+### SUS 3: How do you take advantage of software and architecture patterns to support your sustainability goals? (how to use patterns)
+
+- SUS03-BP01: Optimize software and architecture for asynchronous and scheduled jobs
+
+- SUS03-BP02: Remove or refactor workload components with low or no use
+
+- SUS03-BP03: Optimize areas of code that consume the most time or resources
+
+- SUS03-BP04: Optimize impact on devices and equipment
+
+- SUS03-BP05: Use software patterns and architectures that best support data access and storage patterns
+
+**Data management:**
+
+### SUS 4: How do you take advantage of data management policies and patterns to support your sustainability goals? (data management)
+
+- SUS04-BP01: Implement a data classification policy
+
+- SUS04-BP02: Use technologies that support data access and storage patterns
+
+- SUS04-BP03: Use policies to manage the lifecycle of your datasets
+
+- SUS04-BP04: Use elasticity and automation to expand block storage or file system
+
+- SUS04-BP05: Remove unneeded or redundant data
+
+- SUS04-BP06: Use shared file systems or storage to access common data
+
+- SUS04-BP07: Minimize data movement across networks
+
+- SUS04-BP08: Back up data only when difficult to recreate
+
+**Hardware and services:**
+
+### SUS 5: How do you select and use cloud hardware and services in your architecture to support your sustainability goals? (cloud hardware and services)
+
+- SUS05-BP01: Use the minimum amount of hardware to meet your needs
+
+- SUS05-BP02: Use instance types with the least impact
+
+- SUS05-BP03: Use managed services
+
+- SUS05-BP04: Optimize your use of hardware-based compute accelerators
+
+**Process and culture:**
+
+### SUS 6: How do your organizational processes support your sustainability goals? (process)
+
+- SUS06-BP01: Communicate and cascade your sustainability goals
+
+- SUS06-BP02: Adopt methods that can rapidly introduce sustainability improvements
+
+- SUS06-BP03: Keep your workload up-to-date
+
+- SUS06-BP04: Increase utilization of build environments
+
+- SUS06-BP05: Use managed device farms for testing
