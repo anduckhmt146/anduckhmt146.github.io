@@ -655,4 +655,150 @@ categories: plan
 
 # 5. Cost Optimization
 
+## 5.1. Design principles
+
+- Implement Cloud Financial Management
+
+- Adopt a consumption model: pay only the computing resources, increase or decrease usage depend on business requirements.
+
+- Measure overall eﬃciency
+
+- Stop spending money on undiﬀerentiated heavy lifting: do not need to manage hardware.
+
+- Analyze and attribute expenditure: analyze accurately the usage and cost of the system
+
+## 5.2. Questions
+
+**Practice Cloud Financial Management:**
+
+### COST 1: How do you implement cloud financial management?
+
+- COST01-BP01: Establish ownership of cost optimization
+
+- COST01-BP02: Establish a partnership between finance and technology
+
+- COST01-BP03: Establish cloud budgets and forecasts
+
+- COST01-BP04: Implement cost awareness in your organizational processes
+
+- COST01-BP05: Report and notify on cost optimization
+
+- COST01-BP06: Monitor cost proactively
+
+- COST01-BP07: Keep up-to-date with new service releases
+
+- COST01-BP08: Create a cost-aware culture
+
+- COST01-BP09: Quantify business value from cost optimization
+
+**Expenditure and usage awareness:**
+
+### COST 2: How do you govern usage? (rule to use)
+
+- COST02-BP01: Develop policies based on your organization requirements
+
+- COST02-BP02: Implement goals and targets
+
+- COST02-BP03: Implement an account structure
+
+- COST02-BP04: Implement groups and roles
+
+- COST02-BP05: Implement cost controls
+
+- COST02-BP06: Track project lifecycle
+
+### COST 3: How do you monitor usage and cost? (monitor cost)
+
+- COST03-BP01: Configure detailed information sources
+
+- COST03-BP02: Add organization information to cost and usage
+
+- COST03-BP03: Identify cost attribution categories
+
+- COST03-BP04: Establish organization metrics
+
+- COST03-BP05: Configure billing and cost management tools
+
+- COST03-BP06: Allocate costs based on workload metrics
+
+### COST 4: How do you decommission resources? (clean resources)
+
+- COST04-BP01: Track resources over their lifetime
+
+- COST04-BP02: Implement a decommissioning process
+
+- COST04-BP03: Decommission resources
+
+- COST04-BP04: Decommission resources automatically
+
+- COST04-BP05: Enforce data retention policies
+
+**Cost-eﬀective resources:**
+
+### COST 5: How do you evaluate cost when you select services? (evaluate cost)
+
+- COST05-BP01: Identify organization requirements for cost
+
+- COST05-BP02: Analyze all components of the workload
+
+- COST05-BP03: Perform a thorough analysis of each component
+
+- COST05-BP04: Select software with cost-effective licensing
+
+- COST05-BP05: Select components of this workload to optimize cost in line with organization priorities
+
+- COST05-BP06: Perform cost analysis for diﬀerent usage over time
+
+### COST 6: How do you meet cost targets when you select resource type, size and number? (how to meet cost target)
+
+- COST06-BP01: Perform cost modeling
+
+- COST06-BP02: Select resource type, size, and number based on data
+
+- COST06-BP03: Select resource type, size, and number automatically based on metrics
+
+- COST06-BP04: Consider using shared resources
+
+### COST 7: How do you use pricing models to reduce cost? (how to reduce cost in all components)
+
+- COST07-BP01: Perform pricing model analysis
+
+- COST07-BP02: Choose Regions based on cost
+
+- COST07-BP03: Select third-party agreements with cost-efficient terms
+
+- COST07-BP04: Implement pricing models for all components of this workload
+
+- COST07-BP05: Perform pricing model analysis at the management account level
+
+### COST 8: How do you plan for data transfer charges (data transfer)
+
+- COST08-BP01: Perform data transfer modeling
+
+- COST08-BP02: Select components to optimize data transfer cost
+
+- COST08-BP03: Implement services to reduce data transfer costs
+
+**Manage demand and supply resources:**
+
+### COST 9: How do you manage demand, and supply resources? (Manage demand and supply resources)
+
+- COST09-BP01: Perform an analysis on the workload demand
+
+- COST09-BP02: Implement a buﬀer or throttle to manage demand
+
+- COST09-BP03: Supply resources dynamically
+
+**Optimize over time:**
+
+### COST 10: How do you evaluate new services? (review resource)
+
+- COST10-BP01: Develop a workload review process
+
+- COST10-BP02: Review and analyze this workload regularly
+
+### COST 11: How do you evaluate the cost of effort? (review efforts)
+
+- COST11-BP01: Perform automation for operations: automation instead of doing manually.
+
 # 6. Sustainability
