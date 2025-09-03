@@ -604,3 +604,47 @@ Example:
 - Content Moderation: Identifying inappropriate content in multimedia.
 
 **Model: Salesforce/blip-image-captioning-base**
+
+# 18. Audio Processing
+
+## 18.1. Speech Recognition
+
+- Virtual Assistants
+
+- Transciption services.
+
+- Accesibility tools
+
+=> Translate speech to text
+
+Model: openai/whisper-base
+
+## 18.2. Text-to-speech
+
+- Accesibility Tools
+
+- Interactive System: Add voice input to chatbots.
+
+- Entertainment: generate audio for games.
+
+Model: suno/bark-small
+
+## 18.3. Audio Classification
+
+- Environment sounds: apply in filter noise in Airpod.
+
+- Music Genre classification: classify songs by their genres.
+
+- Speech emotion recognition: detect emotions from speech.
+
+Model: MIT/ast-finetuned-audioset-10-10-0.4593
+
+## 18.4. Voice CLoning
+
+- Personal assistants: creating assistants with user-specific voices.
+
+- Entertainment: replica voices for media or games.
+
+- Accesibility: Enhance voice restruction for users with speech impairment.
+
+Model: tts = TTS("tts_models/en/vctk/vits", gpu=device=="cuda")
