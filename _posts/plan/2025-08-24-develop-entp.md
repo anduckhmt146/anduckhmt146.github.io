@@ -64,3 +64,55 @@ categories: plan
 - In relationships: They can go overseas, regret leaving friends and family behind, they adapable when it come to a life changes: marriage, buying a house or kids.
 
 - At work: They make such good consultants => because they welcome change of scenary and opportunity to meet new people, make new connections.
+
+## 7. Freedom is everything
+
+- Core = Choice + Autonomy
+
+- You want ability to choose when it is no longer fits.
+
+**So Why Do You Panic at the Finish Line?**
+
+- When finish it is no longer open-ended.
+
+## 8. Commitment try
+
+- Tips: Instead of “forever,” commit to experiments. (Try 30 days, 90 days, a single season.)
+
+- Build in review points so your brain knows it has an “out” if needed.
+
+## 9. Debate: You argue to find out what's true
+
+- Too much people, disagreement = disapproval.
+
+- To you, disadgreement = engagement, and curiousity.
+
+=> debate = intellectual play.
+
+- Tips: Ask before you dive in and name your process why you debate. When reach the limit, know your audiences.
+
+## 10. Shiny Object Syndrome
+
+- Tips: Something news is shiner but not better
+
+- Write:
+  - Write shiny ideas to paper until the shiny object loses when it's out of your head.
+  - Break projects with samller phrases.
+  - Use accountability.
+  - Reward boring progress (film + coffee)
+
+## 11. Starting is Fun. So Is Starting.
+
+- Happy place = Momentum + Imagination = Fuel
+
+- Most people failed at the middle.
+
+- Tips:
+
+1. Start small + Finish fast.
+
+2. Post early = feedback, don't wait until the end to share.
+
+3. Name the "midpoint crash" before it hits.
+
+4. Use reward system for yourself, thinking: Finish when your ideas live out of your head => The world needs that.
