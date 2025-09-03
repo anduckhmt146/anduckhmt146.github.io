@@ -518,3 +518,21 @@ Example:
 - question = "What does Hugging Face create?"
 
 => Answer: "tool"
+
+## 16.4. Retrieval Augmented Generation (RAG)
+
+### 16.4.1. Context
+
+- Use to dynamically fetch relevant information in Internet, or multiple datasources in run time.
+
+### 16.4.2. Features
+
+- Retrieve Context Dynamically: Automatically fetch relevant information when responding to queries
+
+- Generate Synthesized Information: Combine retrieved content with generative AI for better contextual answers.
+
+- Scale to Larger Knowledge Bases: Process and handle vast document collections effectively.
+
+- Maintain Conversational Context: Enable follow-up questions while maintaining the thread of the conversation.
+
+- Update Dynamically: Keep knowledge bases updated to ensure relevance over time.
