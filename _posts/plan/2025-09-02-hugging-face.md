@@ -536,3 +536,71 @@ Example:
 - Maintain Conversational Context: Enable follow-up questions while maintaining the thread of the conversation.
 
 - Update Dynamically: Keep knowledge bases updated to ensure relevance over time.
+
+# 17. Computer Vision
+
+## 17.1. Image Classification
+
+- Facial Recognition
+
+- Product categories by image
+
+- Medical imaging.
+
+## 17.2. Architecture
+
+1. VIT (Vision Transformer)
+
+2. Object Detection:
+
+- YOLO: fast for each speedn and efficiency.
+- Faster R-CNN: high accurracy but more computational resource.
+- SSD (Single shot multibox detector): balance speed and accuracy.
+
+3. Image Generation:
+
+- GANs (Generative Adversarial Networks): create realistic image.
+- Diffusion models: transform noise into detailed image, make the image cleaner.
+- DALL-E: combing vision and NLP => Gen image and textual description.
+
+4. Multi-modal models.
+
+- Image Captioning: Generating captions for image.
+- Visual Question Answering (VQA): Answer questions based on image context.
+- CLIP (Contrstive Language-Image Pretraining): matching text with image for retrieval and understanding tasks.
+
+## 17.3. ViT (Vision Transformer)
+
+- Classify 10 images using ViT.
+
+**Model: google/vit-base-patch16-224**
+
+## 17.4. Object Detection
+
+- Autonomous Vehicles: Detecting pedestrians, vehicles, and obstacles
+
+- Retail and Inventory: Manage inventory.
+
+- Security: Manage unauthorized activities.
+
+**Model: facebook/detr-resnet-50**
+
+## 17.5. Image Generation
+
+- Art and Design: Generating creative artwork.
+
+- Content Creation: Producing images for marketing or entertainment.
+
+- Synthetic Data: Generating training data for machine learning.
+
+**Model: CompVis/stable-diffusion-v1-4, diffusers library**
+
+## 17.6. Multi-Modal Models
+
+- Image Captioning: Generating descriptive captions for images.
+
+- Visual Question Answering (VQA): Answering questions about images.
+
+- Content Moderation: Identifying inappropriate content in multimedia.
+
+**Model: Salesforce/blip-image-captioning-base**
