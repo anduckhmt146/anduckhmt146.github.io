@@ -297,3 +297,224 @@ Use cases: Multilingual content creation and translation.
 - Specialization Adds Value: Models like google/gemma-2-2b-jpn-it excel in niche domains, proving the importance of task-specific tuning.
 
 - Efficiency is Key: Smaller models, such as Qwen/Qwen2.5-7B, balance performance and resource usage, making them suitable for edge applications.
+
+# 14. Deployment and Scaling
+
+## 14.1. Deployment
+
+- Direct API deployment.
+
+- Containered deployment.
+
+- Cloud deployment: AWS SageMaker, Google Vertex AI.
+
+- On-premise deployment
+
+## 14.2. Production Deployment
+
+- Deploy to virtual machine or containerization.
+
+## 14.3. Deploying Models with Serverless Architectures
+
+- Deploy model to AWS SageMaker.
+
+- Deploy AWS Lambda function
+
+## 14.4. Accelerating Inference with GPUs
+
+- Increase the speed of inference time.
+
+- Change the model to ONNX format, to deploy to GPU Nvidia, install NVIDIA Triton
+
+## 14.5. Use case product:
+
+- Customer support chatbots.
+
+- Real-time social media monitoring.
+
+- Financial risk analysis.
+
+# 15. Optimize model performance
+
+## 15.1. Quantization:
+
+- Reduce from 32-bit precision to 16-bit, 8-bit
+
+## 15.2. Model Pruning
+
+- Prunning without losing significant loss of accuracy.
+
+## 15.3. Distillation
+
+- Use larger model (Teacher) to train a smaller model (student)
+
+## 15.4. Distributed Training
+
+- Data paralellism: processed in multiple GPUs, and result are aggregated.
+
+- Model parallelism: Split across multiple devices, and each device handling a subset of the layers.
+
+## 15.5. Cloud Solution
+
+- AWS SageMaker
+
+- Google Vertex AI.
+
+## 15.6. Monitoring
+
+- Horizontal Scaling: K8s.
+
+- Monitoring Tool: Grafana.
+
+- Auto scaling: CPU/GPU ultilization.
+
+## 15.7. Model Prunning
+
+- Remove weights: remove in smaller features, assuming they contribute less to the model predictions.
+
+- Remove layers in model architecture.
+
+- Dynamic prunning based on runtime conditions.
+
+# 16. NLP
+
+## 16.1. Text Classification
+
+### 16.1.1. Use cases
+
+- Sentiment Analysis: Determine comment is positive, negative or neutral.
+
+- Spam detection: detect an email is spam or not.
+
+- Topic categorization: classify news is politics, sports or technology.
+
+### 16.1.2. Data Processing
+
+1. Text processing
+
+- Tokenization: breaking text into smaller chunk/units.
+
+- Cleaning: clean noise data.
+
+- Normalization: standard it to a consistent format.
+
+2. Feature extraction
+
+- Embedding text to vector.
+
+- Capturing sematic meaning and contexual relationships.
+
+- Using techniques like: TF-IDF, Word2Vec, BERT Embedding.
+
+### 16.1.3. Model selections
+
+- Choose models pre-trained on similar domains.
+- Consider computational requirements and latency.
+- Balance accurancy with resource contraints.
+
+### 16.1.4. Sample models
+
+- Model: distilbert-base-uncased-finetuned-sst-2-english
+
+## 16.2. Named Entity Recognization (NER)
+
+### 16.2.1. Use cases
+
+- Information extraction: Extract structured data from unstructured text.
+
+- Search engines: enhance search results with relevant entities.
+
+### 16.2.3. References use case
+
+- Persons (PER): name of individuals.
+
+- Organization (ORG): companies, institutions, agencies.
+
+- Locations (LOC): Cities, countries, geographic features.
+
+- Date/Time expressions (DATE): Temporal references
+
+- Quantities (QUANTITY): Numerical expressions, measurements
+
+- Miscellaneous (MISC): Other named entities
+
+### 16.2.4. Data Processing
+
+1. Text processing
+
+- Tokenization and sentence segmentation
+
+- Part-of-speech tagging
+
+- Dependency parsing
+
+2. Entity Detection
+
+- Boundary detection
+
+- Entity classification.
+
+- Contextual understanding
+
+### 16.2.5. Sample models
+
+- Model: dbmdz/bert-large-cased-finetuned-conll03-english
+
+- Example: text = "Barack Obama was born in Hawaii and became the 44th President of the United States."
+
+=> Extracted Information: Person (Barack Obama), Location (Hawaii, United States), and Potentially numbers (44th)
+
+### 16.2.6. Use cases
+
+- Creates a class for analyzing news articles
+
+- Implements confidence thresholds for entity filtering
+
+- Tracks entity frequencies across multiple articles
+
+- Categorizes entities by type
+
+- Provides summary statistics
+
+- Handles multiple articles in a batch
+
+- Uses type hints for better code clarity
+
+- Implements error handling and entity validation
+
+## 16.3. Question Answering
+
+### 16.3.1. Use cases
+
+- Chatbots: provide accurate answers to user queries based on context.
+
+- Customer support: answer for common questions.
+
+- Information retrieval: find specific information in documents.
+
+- Educational Tools: Supporting learning with Q & A.
+
+### 16.3.2. Data processing
+
+- Question Processing
+
+  - Question understanding.
+  - Query formulation
+  - Answer type prediction
+
+- Context analysis
+  - Text pre-processing
+  - Relevant passasge idenfitication.
+  - Answer extraction.
+
+### 16.3.3. Sample models
+
+- Model: distilbert-base-cased-distilled-squad
+
+Example:
+
+- context = "Hugging Face is a company that creates tools for machine learning."
+
+- question = "What does Hugging Face create?"
+
+=> Answer: "tool"
