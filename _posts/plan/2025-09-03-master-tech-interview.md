@@ -19,7 +19,7 @@ categories: plan
 
 - Sep: Advanced Backend + 6 đề practice Cloud Practitioner.
 
-- Oct: Overview slide SAA + Advanced System Design.
+- Oct: Overview slide SAA + Advanced System Design + Well-architectured.
 
 - Nov: 6 đề practice SAA.
 
