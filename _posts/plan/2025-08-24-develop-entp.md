@@ -75,6 +75,8 @@ categories: plan
 
 - When finish it is no longer open-ended.
 
+Tips: You are living with Possibility but not Predictability.
+
 ## 8. Commitment try
 
 - Tips: Instead of “forever,” commit to experiments. (Try 30 days, 90 days, a single season.)
@@ -116,3 +118,33 @@ categories: plan
 3. Name the "midpoint crash" before it hits.
 
 4. Use reward system for yourself, thinking: Finish when your ideas live out of your head => The world needs that.
+
+## 12. "Deadlines" of ENTP
+
+ENTP brain measures time by: ideas, energy spikes and moods.
+
+1. If it’s exciting? You’ll hyperfocus for hours.
+
+2. If it’s boring? Five minutes feels like five days.
+
+3. If it’s urgent and interesting? You’ll crush it at 2am.
+
+4. If it’s urgent but dull? You’ll reorganize your email folders instead.
+
+You’re not lazy. You’re not irresponsible.
+
+=> You just operate on momentum, not maintenance.
+
+=> Work in short and high-intensity bursts with short tasks.
+
+## 13. Time isn't real - but your burnout is
+
+1. Schedule recovery time.
+
+2. You get bored doing nothing, start another things.
+
+3. Catch the burnout signal.
+
+4. Learning to say "not now" without guilt.
+
+5. You're learning to work with cycles, not againist them.
