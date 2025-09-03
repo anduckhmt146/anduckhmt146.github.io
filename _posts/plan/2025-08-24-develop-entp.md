@@ -148,3 +148,25 @@ You’re not lazy. You’re not irresponsible.
 4. Learning to say "not now" without guilt.
 
 5. You're learning to work with cycles, not againist them.
+
+## 14. Charm, chaos and oversharing
+
+- Layer 1: Banter
+
+- Layer 2: Idea explosion
+
+- Layer 3: Existential fears and childhood trauma.
+
+=> Why you overshare ? Because you value truth over polish.
+
+- Charm: high-voltage form of sincerity.
+
+- Tips:
+  - Pause before the punchline: say to connect or cover something up.
+  - Match pace, not just envergy: some people open slowly, if you blow the doors too soon, they shut them again.
+  - If you go to deep, too fast => reset the stone and disarm awkwardness.
+  - Find a safe welcome, where the chaos are welcome.
+  - Let silence happen
+  - Learn where to shine, where to soften, and where to just be.
+
+=> But not everyone deserves front-row seats to your inner world. And not every room is built for your full volume.
