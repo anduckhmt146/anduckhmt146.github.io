@@ -708,3 +708,52 @@ Model: tts = TTS("tts_models/en/vctk/vits", gpu=device=="cuda")
 ### 20.10. SNLI (Stanford Natural Language Inference)
 
 - SNLI is a dataset for natural language inference, categorizing sentence pairs as entailment, contradiction, or neutral.
+
+# 21. Hugging Face Space
+
+- Hugging Face Spaces are cloud-hosted environments where you can deploy and showcase machine learning models, applications, and demos.
+
+- Demo frontend: Streamlit, Gradio
+
+- Backend: Docker
+
+# 22. Hugging Face Inference API
+
+- Provide easy to use API to demo it => but it charge the token usage.
+
+=> You can create access token free.
+
+- Tasks:
+  - Text classification
+  - Summarization
+  - Translation
+  - Question answering
+  - Image classification
+  - Object detection
+  - Audio transcription
+
+# 23. Deploy Model to Hugging Face Inference API
+
+## 23.1. Batch Processing
+
+- Process multiple inputs in a single request:
+
+## 23.2. Deploy model to hugging face
+
+- Fine-tune models on your dataset, upload them to the Hugging Face Hub, and access them via the Inference API.
+
+## 23.3. Integration with Web Applications
+
+- Integrate with web application using Flask.
+
+## 23.4. Sample projects
+
+1. Building a Text Summarization App
+
+2. Multi-Model Pipelines: multiple models together to perform complex tasks.
+
+3. Batch Inference: reduce network calls.
+
+4. Create a Python Lambda function to use the Hugging Face Inference API.
+
+5. Monitoring and Logging API Calls
