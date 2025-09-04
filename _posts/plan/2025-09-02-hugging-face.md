@@ -648,3 +648,63 @@ Model: MIT/ast-finetuned-audioset-10-10-0.4593
 - Accesibility: Enhance voice restruction for users with speech impairment.
 
 Model: tts = TTS("tts_models/en/vctk/vits", gpu=device=="cuda")
+
+# 19. Create dataset
+
+## 19.1. Create datasets
+
+## 19.2. Preprocessing and Transforming datasets
+
+## 19.3. Normalize datasets
+
+- normalized_value = (x - min(x))/ (max(x) - min(x))
+
+## 19.4. Upload datasets
+
+## 19.5. Visualizae datasets
+
+# 20. Top datasets in Hugging Face
+
+### 20.1. GLUE
+
+- GLUE is a benchmark dataset designed to evaluate the performance of NLP models on a variety of language understanding tasks, including sentiment analysis, sentence similarity, and natural language inference.
+
+### 20.2. IMDB Reviews
+
+- Customer Feedback Analysis: Analyzing product reviews.
+
+- Content Moderation: Identifying offensive or negative reviews.
+
+- Sentiment Analysis: Building models to classify text as positive or negative.
+
+### 20.3. SQuAD (Stanford Question Answering Dataset)
+
+- SQuAD is a dataset for training and evaluating question-answering models.
+
+### 20.4. MNIST (Modified National Institute of Standards and Technology)
+
+- MNIST is a collection of handwritten digits commonly used for image classification.
+
+### 20.5. CIFAR-10
+
+- CIFAR-10 contains images categorized into 10 classes, such as airplanes, cats, and cars.
+
+### 20.6. Common Voice
+
+- Common Voice is a crowd-sourced dataset of speech recordings for various languages.
+
+### 20.7. LibriSpeech
+
+- LibriSpeech contains audiobook recordings in English, widely used for ASR.
+
+### 20.8. COCO (Common Objects in Context)
+
+- COCO provides richly annotated images for object detection, segmentation, and captioning.
+
+### 20.9. WikiText
+
+- WikiText contains high-quality text extracted from Wikipedia articles.
+
+### 20.10. SNLI (Stanford Natural Language Inference)
+
+- SNLI is a dataset for natural language inference, categorizing sentence pairs as entailment, contradiction, or neutral.
