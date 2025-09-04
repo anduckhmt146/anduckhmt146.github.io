@@ -757,3 +757,77 @@ Model: tts = TTS("tts_models/en/vctk/vits", gpu=device=="cuda")
 4. Create a Python Lambda function to use the Hugging Face Inference API.
 
 5. Monitoring and Logging API Calls
+
+# 24. Diffusers
+
+- Diffusion models work by gradually adding noise to data (forward diffusion) and then learning to reverse this process (reverse diffusion).
+
+# 25. Low-Rank Adaptation (LoRA) + Diffusions
+
+- A **training technique** to fine-tune large models like Diffusers
+
+## 25.1. SDXL Base Lightning
+
+- Reduces inference time by up to 3-4x
+
+- Maintains quality comparable to base SDXL
+
+## 25.2. Pixel Art XL
+
+- Converting images into pixel art style
+
+## 25.3. LCM LoRA
+
+- Fast inference with Latent Consistency Models
+
+## 25.4. ToonYou
+
+- Anime/cartoon style conversion
+
+## 25.5. Juggernaut XL
+
+- Enhanced detail and realism
+
+## 25.6. Toy Face
+
+- Toy/plastic figure style conversion
+
+## 25.7. Detail Tweaker XL
+
+- Enhanced image detail and clarity
+
+## 25.8. DreamShaper XL
+
+- Overall quality improvement
+
+## 25.9. Add Detail
+
+- Detail enhancement for specific areas
+
+## 25.10. Realistic Vision
+
+- Photorealistic image generation
+
+# 26. KolorsTryOn and Flux:
+
+- Flux is a series of advanced text-to-image models
+
+- Model to support full-body image of yourself after trying on clothes.
+
+# 27. SOTA
+
+- This is a model has set a new record or is among the best available for solving a specific problem => great of the time model.
+
+## 27.1. Llama Models
+
+- Developed by Meta.
+
+- Suitable: text generation, translation.
+
+## 27.2. Mistral
+
+- Developed by Mistral AI team.
+
+- Suitable: Question-answering, text generation.
+
+## 27.3. Qwen and Coding Models
