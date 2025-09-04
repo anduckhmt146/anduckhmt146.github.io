@@ -831,3 +831,5 @@ Model: tts = TTS("tts_models/en/vctk/vits", gpu=device=="cuda")
 - Suitable: Question-answering, text generation.
 
 ## 27.3. Qwen and Coding Models
+
+- Suitable: Coding algorithms
