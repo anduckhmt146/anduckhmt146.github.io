@@ -5,6 +5,8 @@ date: 2025-09-02
 categories: plan
 ---
 
+Source code: https://github.com/jkmaina/huggingface_book
+
 # 1. Machine Learning
 
 ## 1.1. Supervised Learning
@@ -833,3 +835,137 @@ Model: tts = TTS("tts_models/en/vctk/vits", gpu=device=="cuda")
 ## 27.3. Qwen and Coding Models
 
 - Suitable: Coding algorithms
+
+# 28. Domain-specific models
+
+## 28.1. Instruction-Pretrained/Finance-Llama3-8B
+
+- Application: Credit Risk Assessment for Loan Applications
+
+## 28.2. Instruction-Pretrained/Medicine-Llama3-8B - Specialized AI for Healthcare
+
+- Application: Diagnostic Support, Research Summarization, Patient Education, Medical Training
+
+## 28.3. Law-AI/InLegalBERT - Specialized AI for Legal Applications
+
+- Application: Legal Document Classification, Legal Question Answering.
+
+## 28.4. Chronos-Bolt-Base
+
+- Demand Forecasting
+
+- Financial Predictions
+
+- Anomaly Detection
+
+- Climate and Weather Analysis
+
+- Multivariate Forecasting
+
+# 29. JavaScript and Transformer
+
+- Library JavaScript: transformer.js, allow to call with model in Hugging Face by model name.
+
+- Use case:
+
+  - Text classification: 'distilbert-base-uncased-finetuned-sst-2-english'.
+
+  - Question and answer: 'deepset/roberta-base-squad2'
+
+# 30. Text to video models
+
+## 30.1. THUDM/CogVideoX-5b
+
+- Model to train text to video.
+
+## 30.2. ByteDance/AnimateDiff-Lightning
+
+- Generating animated sequences from textual prompts with a focus on character and object motion.
+
+## 30.3. genmo/mochi-1-preview
+
+- A text-to-video model that emphasizes stylized and creative video outputs, blending artistic styles with descriptive prompts.
+
+# 31. Leaderboards
+
+## 31.1. Text Classification
+
+- Task: Classify text into predefined categories.
+
+- Metrics: Accuracy, F1 score.
+
+- Top Models:
+  - distilbert-base-uncased-finetuned-sst-2-english
+  - roberta-large-mnli
+
+## 31.2. Question Answering
+
+- Task: Answer questions based on a given context.
+
+- Metrics: Exact Match (EM), F1 score.
+
+- Top Models:
+  - deepset/roberta-base-squad2
+  - bert-large-uncased-whole-word-masking-finetuned-squad
+
+## 31.3. Summarization
+
+- Task: Generate concise summaries for long documents.
+
+- Metrics: ROUGE-L, BLEU.
+
+- Top Models:
+  - facebook/bart-large-cnn
+  - t5-small
+
+## 31.4. Machine Translation
+
+- Task: Translate text between languages.
+
+- Metrics: BLEU, METEOR.
+
+- Top Models:
+
+  - Helsinki-NLP/opus-mt-en-fr
+  - facebook/wmt19-de-en
+
+# 32. How Leaderboards Are Evaluated
+
+1. Datasets Models are evaluated on standardized datasets, such as:
+
+- GLUE: For text classification.
+- SQuAD: For question answering.
+- CNN/Daily Mail: For summarization.
+
+2.  Metrics Each leaderboard specifies metrics that reflect model performance:
+
+- Accuracy: Percentage of correct predictions.
+- F1 Score: Harmonic mean of precision and recall.
+- BLEU: Measures translation quality.
+- ROUGE: Evaluates summary relevance.
+
+3.  Evaluation Protocols
+
+- Reproducibility: Models must be evaluated in a consistent environment.
+
+- Fair Comparison: Benchmarks ensure fair comparisons across models.
+
+# 33. Enterprise Options on Hugging Face
+
+- Interence Endpoints: Scalability, Security.
+
+- Private models.
+
+- AI workflows: AI Workflows provide a structured approach to building and deploying machine learning pipelines.
+
+- Collaboration tools.
+
+- Enterprise support.
+
+# 34. Open-source models
+
+- Open-Source Models and Datasets
+
+- Collaborative Tools
+
+- Funding with NVDIA, Microsoft, Google.
