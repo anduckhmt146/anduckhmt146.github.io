@@ -313,9 +313,25 @@ example.com. IN SOA ns1.exampledns.com. admin.example.com. (
 
 ### 3.1.4. Subdomains
 
+- A subdomain is an additional part of our main domain name. It is commonly used to logically separate a website into sections.
+
+- Each subdomain can have its own DNS records, independent of the root domain.
+
 ### 3.1.5. DNS Zones
 
+- A domain (like example.com) can be split into multiple zones, or all records can live in one zone.
+
+- You can delegate a subdomain to a different zone.
+
+=> Manage in different authoritative name servers.
+
 ### 3.1.6. DNS Caching
+
+- A DNS cache (sometimes called a DNS resolver cache) is a temporary database, maintained by a computer's operating system that contains records of all the recent visits and attempted visits to websites and other internet domains.
+
+- The Domain Name System implements a time-to-live (TTL) on every DNS record.
+
+=> Store in local computer.
 
 ### 3.1.7. Reverse DNS
 
