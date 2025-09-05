@@ -503,9 +503,59 @@ Result;
 
 ## 3.2. Load Balancer
 
-## 3.3. CDN
+We can add load balancer to multiple layers of the system.
 
-## 3.4. Proxy
+![](/images/System-Design/Concepts/load-balancer.png)
+
+### 3.2.1. Workload distribution
+
+- Host-based: Distributes requests based on the requested hostname.
+
+- Path-based: Using the entire URL to distribute requests as opposed to just the hostname.
+
+- Content-based: Parameter of the requests.
+
+### 3.2.2. Layers
+
+- Network layer: Load balancing in layer 4, only route traffic by host-based and path-based routing.
+
+- Application layer: Load balancing in layer 7, can route traffic by content-based routing.
+
+### 3.3.3. Type of load balancing
+
+- Software
+
+- Hardware
+
+- DNS
+
+### 3.3.4. Routing algorithms
+
+- Round-robin: rotation distributed to application servers.
+
+- Weighted round-robin: round by weights.
+
+- Least connection: route to the least connection traffic.
+
+- Least response time: route to the fewest response time and active connections.
+
+- Least bandwidth: route to server with least bandwidth.
+
+- Hashing: distributed requests by hash key.
+
+### 3.3.5. Load balancer is a single-point-of-failure ?
+
+Solution: Apply active-passive strategy for load balancers.
+
+![](/images/System-Design/Concepts/load-balancer-active-passive.png)
+
+## 3.3. API Gateway
+
+- Client -> API Gateway -> Load Balancer -> Service.
+
+## 3.4. CDN
+
+## 3.5. Proxy
 
 # 4. System Design Dive Deep
 
