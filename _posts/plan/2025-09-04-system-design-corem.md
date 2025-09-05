@@ -499,6 +499,8 @@ Result;
 
 - If IP do not have DNS => it map the IP to NXDOMAIN.
 
+- IP can split by geographic area.
+
 ## 3.2. Load Balancer
 
 ## 3.3. CDN
