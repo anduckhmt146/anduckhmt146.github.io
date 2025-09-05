@@ -221,6 +221,104 @@ Availability (Total) = 1 - (1 - Availability (Foo)) * (1 - Availability (Bar))
 
 => Maximize throughput with acceptable latency.
 
+## 2.6. Scalability
+
+1. **Vertical scaling:**
+
+- Pros: simple to implement
+
+- Cons: Single points of failure.
+
+2. **Horizontal scaling:**
+
+- Pros: Better fault tolerance
+
+- Cons: Data inconsistency
+
+## 2.7. Storage
+
+### 2.7.1. Disk (RAID)
+
+RAID (Redundant Array of Independent Disks) is a way storing same data in HDDs (hard-disks) and SSDs to protect data in drive failure.
+
+=> Backup replica data.
+
+Categorize by RAID types:
+
+1. RAID 0: Data is split into blocks and written across both drives.
+
+Example: If you save a file:
+
+- Block A → Drive 1
+
+- Block B → Drive 2
+
+- Block C → Drive 1
+
+- Block D → Drive 2
+
+=> Fault tolerance: ❌ If one drive dies → all data lost.
+
+2. RAID 1: Every file is copied to both drives.
+
+Example: If you save a file:
+
+- File A → Drive 1
+
+- File A (copy) → Drive 2
+
+=> Fault tolerance: ✅ If Drive 1 dies, Drive 2 still has everything.
+
+3. RAID 5: Data is striped across drives, but one drive stores parity (XOR math). Parity rotates between drives.
+
+Example:
+
+- Drive 1: Data A | Parity C
+
+- Drive 2: Data B | Data C
+
+- Drive 3: Parity AB | Data D
+
+=> Fault tolerance: ✅ If any 1 drive fails, parity can rebuild the missing data.
+
+4. RAID 6: Like RAID 5, but two drives worth of parity are spread across all disks.
+
+Example:
+
+- Drive 1: Data A | Parity 1
+
+- Drive 2: Data B | Parity 2
+
+- Drive 3: Data C | Parity 1
+
+- Drive 4: Data D | Parity 2
+
+=> Fault tolerance: ✅✅ Can survive 2 drive failures.
+
+5. RAID 10: First, data is mirrored in pairs.
+
+File A → Drive 1 + Drive 2
+
+File B → Drive 3 + Drive 4
+
+Then striped across pairs.
+
+Example:
+
+- If Drive 1 fails, Drive 2 has the copy.
+
+- If Drive 3 fails, Drive 4 has the copy.
+
+**Usage:**
+
+✅ In practice:
+
+- Home PCs / Gaming: RAID 0 or no RAID
+
+- Small businesses: RAID 1 or RAID 5
+
+- Enterprise storage: RAID 5, 6, or 10 (depending on performance vs. safety needs)
+
 # 3. System Design Components
 
 ## 3.1. DNS
@@ -364,6 +462,12 @@ Result;
 - Use cases: Email servers check and see if an email message came from a valid server before bringing it onto their network
 
 - If IP do not have DNS => it map the IP to NXDOMAIN.
+
+## 3.2. Load Balancer
+
+## 3.3. CDN
+
+## 3.4. Proxy
 
 # 4. System Design Dive Deep
 
