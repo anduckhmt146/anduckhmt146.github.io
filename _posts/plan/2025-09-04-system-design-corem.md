@@ -319,6 +319,42 @@ Example:
 
 - Enterprise storage: RAID 5, 6, or 10 (depending on performance vs. safety needs)
 
+### 2.7.2. Volumes
+
+Volume is a fixed amount of storage on a disk or tape.
+
+1. **File storage:**
+
+- File storage is a solution to store data as files and present it to its final users as a hierarchical directories structure.
+
+2. **Block storage:**
+
+- Block storage divides data into blocks (chunks) and stores them as separate pieces.
+
+- When a user or application requests data from a block storage system, the underlying storage system reassembles the data blocks and presents the data to the user or application
+
+=> Block storage must be store in the single node.
+
+3. **Object Storage:**
+
+- Object storage, which is also known as object-based storage, breaks data files up into pieces called objects => can store in multiple network system.
+
+=> Object storage can be store in multiple nodes.
+
+## 2.8. Network
+
+### 2.8.1. NAS
+
+- NAS (Network Attached Storage): A centralized storage system connected to a network that provides file-level access to multiple clients.
+
+=> Like a big external hard drive connected to your office network
+
+### 2.8.2. HDFS
+
+- HDFS (Hadoop Distributed File System): a distributed file system designed for storing and processing huge datasets (TB–PB scale) across clusters of commodity hardware => manage files.
+
+=> Like a huge warehouse where files are cut into chunks and spread across many storage units, with backups.
+
 # 3. System Design Components
 
 ## 3.1. DNS
