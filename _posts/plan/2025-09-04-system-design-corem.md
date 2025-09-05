@@ -175,7 +175,179 @@ Availability (Total) = Availability (Foo) * Availability (Bar)
 Availability (Total) = 1 - (1 - Availability (Foo)) * (1 - Availability (Bar))
 ```
 
+## 2.3. Consistency and Availability
+
+1. **CAP Theory:**
+
+- Consistency: read receive most recent write or error.
+
+- Availability: request must receive response.
+
+- Partition Tolerance: the system continue to operate despite a partitioning failed by network error.
+
+2. **CP - consistency and partition tolerance:**
+
+- Waiting a response from parititoned node => timeout error.
+
+- Use cases: MySQL DBMS.
+
+- **Notes:** Have timeout error => Must be C.
+
+3. **AP - availability and partition tolerance**
+
+- Response can return from any node => data might not be the latest.
+
+- Use cases: Eventually consistency system.
+
+4. **CA - consistency and availability:**
+
+- Due to the network is unreliable, so we can not make sure partition tolerant work on-time.
+
+- CA only happens in single-node.
+
+## 2.4. Performance vs scalability
+
+- If you have a performance problem, your system is slow for a single user.
+
+- If you have a scalability problem, your system is fast for a single user but slow under heavy load.
+
+=> Performace is latency for a user, scalability is latency for heavy-load.
+
+## 2.5. Latency vs throughput
+
+- Latency is the time to perform some action or to produce some result.
+
+- Throughput is the number of such actions or results per unit of time.
+
+=> Maximize throughput with acceptable latency.
+
 # 3. System Design Components
+
+## 3.1. DNS
+
+- Hierachical and decentralized naming system.
+
+![](/images/System-Design/Concepts/DNS.png)
+
+### 3.1.1. Resolver Process
+
+- Step 1: Query to Root server first => (.com, .net, .org,...) => Send it to TLD nameserver.
+
+- Step 2: TLD nameserver resolve by .com, .net => generate top-level domains (.com, .org, .edu) and country code top-level domains (.us, .uk,...) => Send it to Authoritative DNS server.
+
+- Step 3: Authoritative DNS server resolve in nearest geography resolve it in DNS A record, CNAME record => return IP address, else fallback to NXDOMAIN message.
+
+### 3.1.2. Query Type
+
+1. **Recursive:**
+
+- If it has the result cached → returns it.
+- If not → it contacts other DNS servers on your behalf (root → TLD → authoritative).
+- It only returns the final answer (or an error) to you.
+- Pros: Simple for the client (only one request).
+- Cons: More load on the recursive resolver.
+
+2. **Iterative:**
+
+- It asks a root server → gets referral to TLD server.
+- It asks the TLD server → gets referral to authoritative server.
+- It asks the authoritative server → finally gets the IP.
+- Pros: Client has more control.
+- Cons: More requests to multiple DNS server.
+
+3. **Non-recursive**
+
+- Query from local cache.
+
+- Static IP: config static.
+
+- Dynamic IP: using DHCP.
+
+- Every DNS response includes a TTL (set by the domain owner in their authoritative DNS), your resolver caches it for at most 300 seconds (5 min).
+
+- Worst case: connections fail until TTL expires.
+
+### 3.1.3. Record Types
+
+- A (Address record): hold IPv4 of a domain.
+
+- AAAA (IP Version 6 Address record): hold IPv6 of a domain.
+
+- CNAME (Canonical Name): This domain name is just another name for that domain.
+
+```bash
+www.example.com CNAME example.com.
+```
+
+- MX (Mail exchanger record): which mail server(s) are responsible for receiving email for a domain.
+
+- TXT (Text Record): this is a DNS record used to store arbitrary text information about a domain.
+
+- NS (Name Server records): Specifies the authoritative name servers for a domain.
+
+```bash
+example.com.   IN NS   ns1.exampledns.com.
+example.com.   IN NS   ns2.exampledns.com.
+```
+
+- SOA (Start of Authority): Defines important administrative information for a DNS zone.
+
+```bash
+example.com. IN SOA ns1.exampledns.com. admin.example.com. (
+               2025090501 ; serial
+               7200       ; refresh
+               3600       ; retry
+               1209600    ; expire
+               86400 )    ; minimum TTL
+```
+
+- SRV (Service Location record): Specifies the location (hostname + port) of specific services (e.g., SIP, XMPP, LDAP).
+
+- PTR (Reverse-lookup Pointer record): Maps an IP address → domain name (reverse DNS lookup).
+
+```bash
+10.2.0.192.in-addr.arpa.   IN PTR   mail.example.com.
+```
+
+- CERT (Certificate record): Stores cryptographic certificates (PKIX, PGP, SPKI) in DNS.
+
+### 3.1.4. Subdomains
+
+### 3.1.5. DNS Zones
+
+### 3.1.6. DNS Caching
+
+### 3.1.7. Reverse DNS
+
+- Normally, DNS resolution goes:
+
+```bash
+domain → IP (via A/AAAA records).
+```
+
+- Reverse DNS does the opposite:
+
+```bash
+IP → domain (via PTR records).
+```
+
+- Look up in PTR (Reverse-lookup Pointer record)
+
+```bash
+192.0.2.10 -> 10.2.0.192.in-addr.arpa
+
+10.2.0.192.in-addr.arpa. IN PTR mail.example.com
+```
+
+Result;
+
+```bash
+192.0.2.10 -> mail.example.com
+```
+
+- Use cases: Email servers check and see if an email message came from a valid server before bringing it onto their network
+
+- If IP do not have DNS => it map the IP to NXDOMAIN.
 
 # 4. System Design Dive Deep
 
