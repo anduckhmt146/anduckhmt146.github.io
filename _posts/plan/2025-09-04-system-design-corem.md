@@ -63,7 +63,15 @@ categories: plan
 
 3. The API Gateway: Your System's Fortified Front Door
 
-# 5. M - Measure
+# 5. E - Evaluate the Trade-offs
+
+1. There are always have trade-offs.
+
+2. Using a Trade-off Matrix to Justify Your Decisions
+
+3. The CAP theory
+
+# 6. M - Measure
 
 1. Logging
 
