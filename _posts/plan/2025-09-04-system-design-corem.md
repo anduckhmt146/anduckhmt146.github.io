@@ -1,11 +1,11 @@
 ---
 layout: post
-title: C.R.O.E.M System Design
+title: System Design C.O.R.E.M and Cloud Principles
 date: 2025-09-04
 categories: plan
 ---
 
-# 1. Why to use C.O.R.E.M
+# 1. C.O.R.E.M Principle
 
 - C: Constrain
 
@@ -17,7 +17,7 @@ categories: plan
 
 - M: Measure
 
-# 2. C - Contrain
+## 1.1. C - Contrain
 
 - Scope, Scale, Security.
 
@@ -25,7 +25,7 @@ categories: plan
 
 - Empathy-driven design.
 
-# 3. O - Outline high-level blueprint
+## 1.2. O - Outline high-level blueprint
 
 - Data
 
@@ -33,9 +33,9 @@ categories: plan
 
 - Services: service boundary
 
-# 4. R - Refine for Reality:
+## 1.3. R - Refine for Reality:
 
-## 4.1. Scaling
+### 1.3.1. Scaling
 
 1. Load Balancing: Your First Step to Scaling
 
@@ -47,7 +47,7 @@ categories: plan
 
 5. Database Scaling Part 2: Sharding and Federation
 
-## 4.2. Handling Exception
+### 1.3.2. Handling Exception
 
 1. Message Queues: Decoupling Your Services for High Availability
 
@@ -55,7 +55,7 @@ categories: plan
 
 3. The Circuit Breaker Pattern: Preventing Cascading Failures
 
-## 4.3. Security
+### 1.3.3. Security
 
 1. Authentication vs. Authorization: Who Are You and What Can You Do?
 
@@ -63,7 +63,7 @@ categories: plan
 
 3. The API Gateway: Your System's Fortified Front Door
 
-# 5. E - Evaluate the Trade-offs
+## 1.4. E - Evaluate the Trade-offs
 
 1. There are always have trade-offs.
 
@@ -71,7 +71,7 @@ categories: plan
 
 3. The CAP theory
 
-# 6. M - Measure
+## 1.5. M - Measure
 
 1. Logging
 
@@ -80,3 +80,13 @@ categories: plan
 3. Tracing.
 
 4. Dashboards and Alerting
+
+## 1.6. Detail Interview Questions
+
+# 2. System Design Components
+
+# 3. System Design Principles
+
+# 4. Cloud Components
+
+# 5. Well-architected Cloud Principle
