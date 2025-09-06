@@ -579,6 +579,34 @@ Solution: Apply active-passive strategy for load balancers.
 
 ## 3.5. Proxy
 
+- Client -> Proxy -> Make requests to server
+
+- Use to hide the IP of the server when calling to third-party server.
+
+- Notes: Nginx can be used to implement proxy or API gateway => Just a different of purpose.
+
+## 3.5.1. Types
+
+1. **Forward Proxy (VPN)**
+
+- Client -> Proxy -> Server
+
+- The proxy is in client-side
+
+- Purpose: Hidden IP of client
+
+- Example: VPN
+
+2. **Reverse Proxy**
+
+- Client -> Proxy -> Server1, Server2, Server3
+
+- The proxy is in server side
+
+- Purpose: Hidden IP of server
+
+- Example: Load Balancer
+
 # 4. System Design Dive Deep
 
 # 5. Cloud Components
