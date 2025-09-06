@@ -796,6 +796,51 @@ Example: 9q8yy9mf and 9q8yy9vx is closer than they share the prefix 9q8yy9.
 
 ## 3.11. Message Queue
 
+1. **Strategy:**
+
+- Push or Pull Delivery:
+
+  - Pull means continuously querying the queue for new messages.
+  - Push means that a consumer is notified when a message is available
+
+- FIFO (First-In-First-Out) Queues
+
+- Schedule or Delay Delivery: schedule or delay time to receive message.
+
+- At-Least-Once Delivery
+
+- Exactly-Once Delivery
+
+- Dead-letter Queues
+
+- Ordering: Keep it in order.
+
+- Poison-pill Messages: can be received, but not processed => signal the consumer to end its work and never waiting for new messages => end the socket in a client/server model.
+
+- Security: encrypt message over the network.
+
+- Task Queues: queue for high computation-intensive jobs.
+
+2. **Backpressure:**
+
+- Rejected to receive message when queue is full => Return HTTP 503 to the client.
+
+3. **Exponent backoff:**
+
+This is retry strategy for client-side by increasing the times.
+
+For example:
+
+- 1st retry → wait 1 second
+
+- 2nd retry → wait 2 seconds
+
+- 3rd retry → wait 4 seconds
+
+- 4th retry → wait 8 seconds
+
+- 5th retry → wait 16 seconds
+
 ### 3.11.1. Message Brokers
 
 ### 3.11.2. Enterprise Service Bus (ESB)
