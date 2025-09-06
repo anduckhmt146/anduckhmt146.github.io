@@ -890,7 +890,7 @@ Notes: To be clearly, OIDC and SAML use to implement SSO
 
 - SAML: XML.
 
-### 3.12.4. Use cases login with Google (OAuth Design)
+## 3.13. Use cases login with Google (OAuth Design)
 
 - Resource Owner: You
 
@@ -904,9 +904,76 @@ Notes: To be clearly, OIDC and SAML use to implement SSO
 
 => It means that Merchant App oauth with Google, and you are resource owner.
 
-## 3.12.5. Encryption
+Question: How to implement it ?
 
-### 3.12.6. SSL
+Answer: Move to the diagram with the context
+
+![](/images/System-Design/Concepts/OAuth2.png)
+
+## 3.14. Hashing / Encryption
+
+1. **Hashing:**
+
+- One-way function: you can’t get the original data back.
+
+- Types: SHA-256 (256 bits), MD5 (128 bits) => some algorithm for hasing.
+
+- Use cases:
+
+  - Password storage (store only hash, not plain password).
+  - File integrity check (compare hash before/after download).
+  - Digital signatures.
+
+2. **Encryption:**
+
+- Two-way function: you can encrypt (lock) and decrypt (unlock).
+
+- Types:
+
+  - Symmetric encryption (same key for encrypt + decrypt): AES, DES.
+  - Asymmetric encryption (public/private key pair): RSA, ECC.
+
+- Use cases:
+  - Private communication.
+
+3. Why Hashing Cannot Roll Back but encryption can ?
+
+Anwser:
+
+=> Information Loss. Both inputs are very different lengths, but hashes are always 256 bits (in SHA-256).
+
+=> Encryption can revese by bit shifting using private key and public key.
+
+4. HMAC encryption ?
+
+- Verify the checksum.
+
+- HMAC-SHA256("secret-key", "hello")
+  = f7bc83f430538424b13298e6aa6fb143ef4d59a14946175997479dbc2d1a3cd8
+
+=> Same input + same key = same hash
+
+Cons: Hashmap do not hide the message, RSA is long time encrytion.
+
+- Usecase: Use to verify payload in payment system.
+
+## 3.15. Use case: Money Transfer
+
+1. **Encryption → Confidentiality**
+
+Your account number, balance, PIN, and transaction details must be hidden from attackers.
+
+=> Encryption (AES, RSA, TLS) is used to secure the channel (HTTPS/TLS).
+
+2. **Hashing → Integrity + Authentication**
+
+Add hashmap to HMAC payload used to:
+
+- To ensure data hasn’t been tampered with.
+
+- To verify messages are genuine.
+
+=> HMAC used for verify the integrity of the payload.
 
 # 4. System Design Dive Deep
 
