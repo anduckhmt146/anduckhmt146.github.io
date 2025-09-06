@@ -549,6 +549,12 @@ Solution: Apply active-passive strategy for load balancers.
 
 ![](/images/System-Design/Concepts/load-balancer-active-passive.png)
 
+### 3.3.6. Features
+
+- Health check.
+
+- Sticky session.
+
 ## 3.3. API Gateway
 
 - Client -> API Gateway -> Load Balancer -> Service.
