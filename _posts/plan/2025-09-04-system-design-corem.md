@@ -585,7 +585,7 @@ Solution: Apply active-passive strategy for load balancers.
 
 - Notes: Nginx can be used to implement proxy or API gateway => Just a different of purpose.
 
-## 3.5.1. Types
+### 3.5.1. Types
 
 1. **Forward Proxy (VPN)**
 
@@ -606,6 +606,90 @@ Solution: Apply active-passive strategy for load balancers.
 - Purpose: Hidden IP of server
 
 - Example: Load Balancer
+
+## 3.6. Caching
+
+### 3.6.1. CPU Cache & Memory
+
+![](/images/System-Design/Concepts/CPU-Cache.webp)
+
+- L1: stored in each CPU (per-core), store the frequent access data.
+
+- L2: stored in each CPU (per-code), store in a less frequent access data.
+
+- L3: shared by general all CPUs => store a large data of general keys.
+
+=> Register > L1 > L2 > L3 > ... > Ln > RAM.
+
+Notes: Register store variables when calculate in CPU, but not cache.
+
+### 3.6.2. Types
+
+- A hot cache: fastest possible access, data is retrieved from L1.
+
+- A cold cache: slowest possible access, data is retrived in the last caching layer, e.g. L3 or more.
+
+- A warm cache: the data is found in L2.
+
+### 3.6.3. Cache Strategy
+
+1. **Write-through:** write in both cache and database
+
+- Pros: high consistency
+
+- Cons: higher latency in write.
+
+2. **Cache-aside:** client requests application, application fetch cache, if not found it query database and update cache.
+
+- Pros: Balance latency.
+
+- Cons: May have stale data.
+
+3. **Read-through:** same cache-aside, but cache pull database but not application
+
+- Pros: Balance latency.
+
+- Cons: May have stale data.
+
+4. **Write-back cache:** write cache first, asynchronously write database later
+
+- Pros: reduce latency.
+
+- Cons: Risk of loss data.
+
+5. **Write-around cache:** write database, not write cache, warm up later.
+
+- Pros: reduce latency
+
+- Cons: cache miss or stale data.
+
+### 3.6.4. Policy
+
+- FIFO
+
+- LIFO
+
+- LRU: Least recently used.
+
+- MRU: Most recently used.
+
+- LFU: Least frequently used.
+
+- RR: Random replacement
+
+### 3.6.5. Distributed Cache (usually cluster, less global cache)
+
+Use cache cluster for center distributed cache with multiple nodes.
+
+- Pros: consistency cache
+
+- Cons: grow beyond the memory limits.
+
+**Notes:**
+
+- Multiple nodes: cluster
+
+- Global cache: shared cache.
 
 # 4. System Design Dive Deep
 
