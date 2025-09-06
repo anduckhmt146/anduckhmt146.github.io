@@ -555,6 +555,8 @@ Solution: Apply active-passive strategy for load balancers.
 
 - Sticky session.
 
+- Auto scaling.
+
 ## 3.3. API Gateway
 
 - Client -> API Gateway -> Load Balancer -> Service.
