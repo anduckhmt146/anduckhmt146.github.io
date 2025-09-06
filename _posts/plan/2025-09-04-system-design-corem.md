@@ -555,6 +555,28 @@ Solution: Apply active-passive strategy for load balancers.
 
 ## 3.4. CDN
 
+### 3.4.1. How does CDN work ?
+
+- In a CDN, the origin server contains the original versions of the content of the edge servers.
+
+![](/images/System-Design/Concepts/CDN.png)
+
+- Use IP-based geolocation from users requests => Find it in DNS authorization server with nearest location (Singapore).
+
+### 3.4.2. CDN Types
+
+1. **Push CDNs:**
+
+- Update new content when users update the resources in origin object servers
+
+=> Same as write-through strategy.
+
+2. **Pull CDNs:**
+
+- Client query CDN -> If CDN do not have data, it fetch the data in origin objects servers -> Update the CDN.
+
+=> Same as cache-aside strategy.
+
 ## 3.5. Proxy
 
 # 4. System Design Dive Deep
