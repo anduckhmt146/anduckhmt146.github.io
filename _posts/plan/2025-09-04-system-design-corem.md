@@ -794,7 +794,21 @@ Example: 9q8yy9mf and 9q8yy9vx is closer than they share the prefix 9q8yy9.
 
 - Enable to search point in two-dimensional range.
 
+### 3.10.2. Database Federation
+
+- Each requests to multiple database differently, but not only 1 database as datawarehouse.
+
+For example:
+
+- A MySQL database for customer accounts
+
+- A MongoDB database for user activity logs
+
+- A Postgres database for orders
+
 ## 3.11. Message Queue
+
+### 3.11.1. Message Queue
 
 1. **Strategy:**
 
@@ -841,9 +855,67 @@ For example:
 
 - 5th retry → wait 16 seconds
 
-### 3.11.1. Message Brokers
+### 3.11.2. Message Broker
 
-### 3.11.2. Enterprise Service Bus (ESB)
+1. **Context:**
+
+- A Message Broker is middleware that routes, transforms, and delivers messages between producers and consumers.
+
+=> Message Brokers is general concepts rather than message queue.
+
+2. **Type:**
+
+- **Point-to-Point messaging:** one-to-one relationship from sender to receiver.
+
+- **Publish-Subscribe messaging:** one-to-many relationship.
+
+### 3.11.3. Enterprise Service Bus (ESB) - Design Pattern
+
+- An Enterprise Service Bus (ESB) is an architectural pattern whereby a centralized software component performs integrations between applications.
+
+### 3.11.4. Microservices, Monolithics and SOA
+
+- Easy to answer, but need to compare pros and cons.
+
+### 3.11.5. Event-Driven Architecture (EDA)
+
+- Event producers: Publishes an event to the router.
+
+- Event routers: Filters and pushes the events to consumers.
+
+- Event consumers: Uses events to reflect changes in the system.
+
+### 3.11.6. Event-Driven Architecture (EDA)
+
+- Sagas
+
+- Publish-Subscribe
+
+- Event Sourcing: store data as event store to manage.
+
+- Command and Query Responsibility Segregation (CQRS)
+
+### 3.11.7. Kafka
+
+![](/images/System-Design/Concepts/kafka.png)
+
+- Topic: channel, 1 topic have multiple partitions.
+
+- Brokers: multiple brokers (server) => the more brokers you have, the more data you can store, the more clients you can serve
+
+- Partitions: an ordered, immutable sequence of messages that is continually appended to.
+
+### 3.11.8. RabbitMQ
+
+![](/images/System-Design/Concepts/rabbitmq.png)
+
+- RabbitMQ have different structure than Kafka.
+
+Include:
+
+- Exchange: Direct, Topic, Fanout.
+
+- Queue: multiple queues, e.g. Queue 1, Queue 2, Q3, Q4,...
 
 ## 3.12. Security
 
@@ -1019,6 +1091,12 @@ Add hashmap to HMAC payload used to:
 - To verify messages are genuine.
 
 => HMAC used for verify the integrity of the payload.
+
+## 3.16. SSL
+
+- Using asymetric encryption during handshaking phrase.
+
+- After handshanking phrase => Using symetric encryption.
 
 # 4. System Design Dive Deep
 
