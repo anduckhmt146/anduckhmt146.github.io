@@ -1102,7 +1102,7 @@ Add hashmap to HMAC payload used to:
 
 ## 4.1. Index
 
-- To do
+- What, Use case, Pros, Cons
 
 ## 4.2. Storage
 
@@ -1197,6 +1197,14 @@ Add hashmap to HMAC payload used to:
 - To do
 
 ## 4.25. Service Discovery and Request Routing
+
+- To do
+
+## 4.26. Microservice, Monolithics, SOA, Event Driven.
+
+- To do
+
+## 4.27. REST API, GraphQL, gRPC API
 
 - To do
 
