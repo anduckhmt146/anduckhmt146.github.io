@@ -723,19 +723,190 @@ Use cache cluster for center distributed cache with multiple nodes.
 
 - Global cache: shared cache.
 
-## 3.9. Security
+## 3.9. Reliability
 
-### 3.9.1. Geohashing
+### 3.9.1. Thundering Herd
 
-## 3.10. Database optimization
+- Multiple processes and threads is trigger for events
 
-### 3.10.1. Database and DBMS
+=> But only some of this proceses and threads works, and other threads are wasting resources.
+
+Example: Linux, IOCP is work effectively than select/poll.
+
+### 3.9.2. Circuit breaker
+
+- Have 3 states: Closed, Open, Half-open.
+
+- When a part of the system failed, it can isolate it and can not break the system.
+
+- Use cases: If a gateway of payment down, say "Payment system temporarily unavailable, please try again later."
+
+### 3.9.3. Rate Limiting
+
+1. **Types:**
+
+- Leaky bucket: FIFO, and after a time a bucket is leaked
+
+=> Manage requests for total requests to all service.
+
+- Token bucket: the bucket requests after a period of time
+
+=> Manage requests for total requests to all service.
+
+- Fixed Window: Each request increase the counter for the window.
+
+- Sliding log: track time-stamp log for the requests.
+
+- Sliding Window: Fixed Window + Sliding log
+
+=> Manage requests for rate limiting requests per IP.
+
+2. **Cons:**
+
+- Inconsistencies: Multiple nodes request to global rate limit => if rate limits per each node => users can make multiple requests to global rate limit.
+
+=> Solution: Sticky session: 1 consumer -> 1 node.
+
+- Race Conditions: error when "get-and-set" approach => race contidion.
+
+=> Solution: Using distributed lock + "set-and-get" approach to increase the counter.
+
+## 3.10. Database
+
+### 3.10.1. Geohashing & Quadtrees
+
+1. **Geohashing:**
+
+- Store location in database.
+
+- Find the nearest neighbors through simple string comparisons.
+
+Geohash length:
+
+1 -> 5000 km x 5000 km
+2 -> 1250 km x 1250 km
+3 -> 156 km x 156 km
+...
+
+Example: 9q8yy9mf and 9q8yy9vx is closer than they share the prefix 9q8yy9.
+
+2. **Quadtrees:**
+
+- Enable to search point in two-dimensional range.
 
 ## 3.11. Message Queue
 
 ### 3.11.1. Message Brokers
 
 ### 3.11.2. Enterprise Service Bus (ESB)
+
+## 3.12. Security
+
+### 3.12.1. OAuth2
+
+1. **Components:**
+
+- Resource Server: Merchant application, or the server that client requests to.
+
+- Authorization Server: the server receive client + requests access from resource server => create access token.
+
+- Resource Owner: tool to grant resources for oauth token.
+
+- Scopes: the scope that resource owner grant.
+
+- Access token: gen from scopes and client.
+
+2. **How does OAuth 2.0 work:**
+
+![](/images/System-Design/Concepts/OAuth2.png)
+
+- Step 1: Client access resource server => Make request to authorization server, send the scopes + fallback endpoint to send access token.
+
+- Step 2: The Authorization server verify the scopes and client are permitted.
+
+- Step 3: The Authorization Server call to resource owner to grant access.
+
+- Step 4: The Authorization Server redirects the access token to fallback URL, and refresh token.
+
+- Step 5: The Access token to access the resource server
+
+3. **When to use OAuth2:**
+
+Example:
+
+Step 1: You log into a fitness app and let it pull your step data from your Google Fit account.
+
+Step 2: You don’t give the fitness app your Google username/password. Instead, you approve it via OAuth2.
+
+=> In case merchant app Zalopay, you do not want to give username, password of Zalopay account to merchant app.
+
+=> So you ask, do Zalopay trust user with username based on Zalopay OAuth service ?
+
+## 3.12.2. OpenID Connect (OAuth2 underneath for Google Authentication)
+
+1. **OpenID providers:**
+
+- OIDC: authenticate protocols for the web.
+
+=> We use OpenID provider to check it.
+
+- Google → accounts.google.com
+
+- Microsoft Azure AD / Entra ID → login.microsoftonline.com
+
+- Apple → Sign in with Apple
+
+- Auth0 (Identity-as-a-Service)
+
+2. How it provides ?
+
+OIDC adds authentication, OAuth2 for authorizations => OIDC add some information to the token.
+
+- sub → unique user ID
+
+- name, email, picture → profile claims
+
+- iss (issuer), aud (audience), exp (expiration)
+
+=> Google: OAuth2 + OpenID
+
+### 3.12.3. SSO
+
+Single Sign-On (SSO): One login, many apps.
+
+Different technologies can provide SSO:
+
+- OIDC (modern web/mobile apps).
+
+- SAML (common in enterprises).
+
+- Kerberos (Windows/AD environments).
+
+- CAS, Shibboleth, etc.
+
+Notes: To be clearly, OIDC and SAML use to implement SSO
+
+- OIDC: OAuth2
+
+- SAML: XML.
+
+### 3.12.4. Use cases login with Google (OAuth Design)
+
+- Resource Owner: You
+
+- Authorization Server: Google Accounts Server.
+
+- Resource Server: Google UserInfo API.
+
+- Scopes: Merchant App asking for.
+
+- Access Token: Token issues by Google
+
+=> It means that Merchant App oauth with Google, and you are resource owner.
+
+## 3.12.5. Encryption
+
+### 3.12.6. SSL
 
 # 4. System Design Dive Deep
 
