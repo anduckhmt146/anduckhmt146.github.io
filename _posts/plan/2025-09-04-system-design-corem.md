@@ -699,6 +699,20 @@ Use cache cluster for center distributed cache with multiple nodes.
 
 - Global cache: shared cache.
 
+## 3.9. Security
+
+### 3.9.1. Geohashing
+
+## 3.10. Database optimization
+
+### 3.10.1. Database and DBMS
+
+## 3.11. Message Queue
+
+### 3.11.1. Message Brokers
+
+### 3.11.2. Enterprise Service Bus (ESB)
+
 # 4. System Design Dive Deep
 
 # 5. Cloud Components
