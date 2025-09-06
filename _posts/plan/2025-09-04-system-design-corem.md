@@ -83,6 +83,30 @@ categories: plan
 
 ## 1.6. Detail Interview Questions
 
+### 1.6.1. Gather information
+
+- To do
+
+### 1.6.2. API Design
+
+- To do
+
+### 1.6.3. High-level design
+
+- To do
+
+### 1.6.4. Data Schema
+
+- To do
+
+### 1.6.5. Deep dive (Refine)
+
+- To do
+
+### 1.6.6. Communication Tips
+
+- To do
+
 # 2. System Design Principles
 
 ## 2.1. Consistency Patterns
@@ -714,6 +738,106 @@ Use cache cluster for center distributed cache with multiple nodes.
 ### 3.11.2. Enterprise Service Bus (ESB)
 
 # 4. System Design Dive Deep
+
+## 4.1. Index
+
+- To do
+
+## 4.2. Storage
+
+- To do
+
+## 4.3. Real-time data update
+
+- To do
+
+## 4.4. Concurrency control
+
+- To do
+
+## 4.5. Sharding
+
+- To do
+
+## 4.6. Distributed Transaction
+
+- To do
+
+## 4.7. Asynchronous Processing
+
+- To do
+
+## 4.8. Batch and Stream Processing
+
+- To do
+
+## 4.9. Lambda Architecture
+
+- To do
+
+## 4.10. Thundering Herd and Caching
+
+- To do
+
+## 4.11. Conflict Resolution
+
+- To do
+
+## 4.12. Timeout
+
+- To do
+
+## 4.13. Exponential Backoff
+
+- To do
+
+## 4.14. Buffering
+
+- To do
+
+## 4.15. Sampling
+
+- To do
+
+## 4.16. ID Generator
+
+- To do
+
+## 4.17. Compression
+
+- To do
+
+## 4.18. RabbitMQ, Kafka, Pub/sub
+
+- To do
+
+## 4.19. Pass Only Needed Data
+
+- To do
+
+## 4.20. Fail to Open
+
+- To do
+
+## 4.21. Cold Storage
+
+- To do
+
+## 4.22. Networking
+
+- To do
+
+## 4.23. Monitoring
+
+- To do
+
+## 4.24. Full-Text Search
+
+- To do
+
+## 4.25. Service Discovery and Request Routing
+
+- To do
 
 # 5. Cloud Components
 
