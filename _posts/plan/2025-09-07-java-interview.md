@@ -150,3 +150,13 @@ Annotations in Java are metadata (extra information) added to code.
 - Immutable objects are those objects whose state can not be changed once created.
 
 => Thread safe, because it do not change state of immutable objects.
+
+# 2. Memory Management
+
+# 3. Collections
+
+# 4. Java Concurrency
+
+# 5. Hibernate
+
+# 6. Spring (follow the learning docs)
