@@ -2742,7 +2742,7 @@ Notes: Real-time database using NoSQL => Because it can scale horizontally.
 
 - Fencing token for distributed lock.
 
-- Snowflake machine ID generation when initially booted.
+- Snowflake machine ID generation when initially booted, example: [timestamp | machine ID | sequence].
 
 3. **Pros:**
 
