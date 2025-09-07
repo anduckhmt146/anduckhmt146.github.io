@@ -2435,3 +2435,21 @@ Longer latency vs single DB transaction.
 - Lower throughput than Kafka.
 
 - Scaling requires clustering or sharding
+
+# 14. Type of Database
+
+# 15. Concurrency Control & Transaction
+
+# 16. Batch and Stream Processing
+
+# 17. Lambda Architecture
+
+# 18. Distributed Transaction
+
+# 19. ID Generator
+
+# 20. Compression
+
+# 21. Full-text search
+
+# 22. Conflict Resolution
