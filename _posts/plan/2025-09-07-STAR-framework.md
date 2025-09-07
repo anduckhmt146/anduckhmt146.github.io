@@ -39,18 +39,18 @@ categories: plan
 
 # 2. 🌟 STAR Framework – Fill-in-the-Blanks Template
 
-1. Situation
+## Situation
 
 At [company/organization/school], I was working on [project/task]. The situation was [describe context, challenge, or problem briefly].
 
-2. Task
+## Task
 
 My responsibility was to [explain your role]. The goal/objective was to [what needed to be achieved or solved].
 
-3. Action
+## Action
 
 To address this, I [step 1 you took]. I also [step 2 you took]. Additionally, I [step 3 or collaboration/leadership action].
 
-4. Result
+## Result
 
 As a result, [explain the outcome]. This led to [quantifiable result or recognition]. From this experience, I learned [personal or professional takeaway].
