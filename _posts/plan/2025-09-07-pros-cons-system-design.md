@@ -2664,7 +2664,30 @@ Notes: Real-time database using NoSQL => Because it can scale horizontally.
 
 # 16. Batch and Stream Processing
 
+## 16.1. Batch Processing
+
+- Pre-computed in local before submit to database.
+
+## 16.2. Stream Processing
+
+- At field timestamp to retry when failure.
+
+- **Idea:**
+
+  - Watermark: I’ve received all events up to time T, you can safely compute results now.”
+  - Checkpoint: Periodically saving the state of the computation.
+
 # 17. Lambda Architecture
+
+- Batch Layer: Stores all raw data, precomputes accurate views.
+
+- Speed Layer (Streaming): Processes new events quickly.
+
+- Serving Layer: Combines both outputs for queries.
+
+=> Split to pipeline to handle batch vs stream processing seperately.
+
+![](/images/System-Design/Concepts/Lambda_Architecture.png)
 
 # 18. Distributed Transaction
 
@@ -2763,3 +2786,19 @@ Notes: Real-time database using NoSQL => Because it can scale horizontally.
 # 21. Full-text search
 
 # 22. Conflict Resolution
+
+# 23. Index
+
+1. **Primary index:**
+
+- Built on primary key.
+
+- It is a table when each record -> a block of B-Tree.
+
+- a block of B-tree -> contains multiples records.
+
+2. **Secondary index:**
+
+- It points to the primary index.
+
+![](/images/System-Design/Concepts/index.png)
