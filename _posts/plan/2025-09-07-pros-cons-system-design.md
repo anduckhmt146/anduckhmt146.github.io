@@ -2438,6 +2438,228 @@ Longer latency vs single DB transaction.
 
 # 14. Type of Database
 
+## 14.1. Relational Database (RDBMS)
+
+1. **What it is:**
+
+- Tables + Rows + Columns, Schema, SQL-based query.
+
+2. **Use case:**
+
+- Banking, ERP, CRM system.
+
+3. **Pros:**
+
+- Strong ACID.
+
+- Rich query support.
+
+4. **Cons:**
+
+- Vertical scaling limit.
+
+- Data must be in the defined schema.
+
+## 14.2. Document Store
+
+1. **What it is:**
+
+- Store JSON/BSON (encoded of JSON) documents
+
+2. **Use case:**
+
+- Content Management, Catalogs
+
+3. **Pros:**
+
+- Flexible Schema
+
+- Horizontal Scaling
+
+4. **Cons:**
+
+- Weaker ACID.
+
+- Joins query is complex.
+
+## 14.3. Column Store
+
+1. **What it is:**
+
+- Store data in column instead of rows.
+
+2. **Use case:**
+
+- Analytics Dashboard, OLAP, data warehouse.
+
+3. **Pros:**
+
+- Fast aggregrations.
+
+- Same-type data in row.
+
+- Optimize read-heavy workloads.
+
+4. **Cons:**
+
+- Not good for OLTP (write-heavy).
+
+- Update schema harder.
+
+## 14.4. Object Store
+
+1. **What it is:**
+
+- Store binary object with metadata.
+
+=> Query object storage by metadata.
+
+2. **Use case:**
+
+- Media storage, data lakes, CDN.
+
+3. **Pros:**
+
+- Unlimited scale.
+
+- Cheap storage.
+
+- Access by HTTP API.
+
+4. **Cons:**
+
+- Higher latency than databases.
+
+- Weak querying.
+
+## 14.5. Wide Column Store
+
+1. **What it is:**
+
+- Rows + dynamic Columns NoSQL (Cassandra, HBase)
+
+Notes: Real-time database using NoSQL => Because it can scale horizontally.
+
+2. **Use case:**
+
+- IoT, Time-series database.
+
+3. **Pros:**
+
+- Scale horizontally.
+
+- Good for write-heavy workloads.
+
+4. **Cons:**
+
+- Querying is limited.
+
+- Need to define schema.
+
+**Notes:**
+
+- Read-heavy: SQL + Cache.
+- Write-heavy: Cassandra, time-series DB, Kafka.
+
+## 14.6. Reverse Index Store
+
+1. **What it is:**
+
+- Used for dB to optimize full-text search (ElasticSearch, Solr).
+
+2. **Use case:**
+
+- Search engine, log analytics, document search.
+
+3. **Pros:**
+
+- Very fast search queries.
+
+- Handles unstructure text.
+
+- Rich query DSL (domain-specific language):
+  - Fuzzy search: search "aplepe" -> matches "apple".
+  - Relevance scoring: using AI model like TF-IDF, to search "database scaling" -> “Distributed databases”
+  - Ranking / Boosting: ["title^3", "description"] => search more in title x3 time, compared to field description.
+
+4. **Cons:**
+
+- High resource usage (RAM, disk).
+
+- Eventual consistency issues (sync to build new index).
+
+## 14.7. In-Memory Store
+
+1. **What it is:**
+
+- Stores data in RAM for ultra-fast access (Redis, Memcached).
+
+2. **Use case:**
+
+- Caching, real-time leaderboards, session storage.
+
+3. **Pros:**
+
+- Extremely fast.
+
+- Rich data structure.
+
+- Support pub-sub, streams (return data while it is executed but not completed)
+
+4. **Cons:**
+
+- Volatile (unless persistence enabled).
+
+- Limited by RAM size.
+
+## 14.8. Geo-Spatial Databases
+
+1. **What it is:**
+
+- DBs specialized in spatial data & queries (PostGIS).
+
+2. **Use case:**
+
+- Maps, ride-haling, logistics application.
+
+3. **Pros:**
+
+- Native support for geospatial queries.
+
+- Optimized index: R-tree, Quad-tree
+
+4. **Cons:**
+
+- Smaller ecosystem and community.
+
+- Complex data modeling.
+
+- Can be slower for non-spatial queries (other query do not related to the geographic: point, address, longitude, latitude data)
+
+## 14.9. ZooKeeper
+
+1. **What it is:**
+
+- A coordination service for distributed systems, stores small configs, metadata.
+
+2. **Use case:**
+
+- Config management, service discovery.
+
+3. **Pros:**
+
+- Strong consistency.
+
+- Distributed coordination.
+
+- Used with Kafka, Hadoop, Hbase
+
+4. **Cons:**
+
+- A single point of failure.
+
+- Operational overhead.
+
 # 15. Concurrency Control & Transaction
 
 # 16. Batch and Stream Processing
@@ -2447,6 +2669,94 @@ Longer latency vs single DB transaction.
 # 18. Distributed Transaction
 
 # 19. ID Generator
+
+## 19.1. UUID
+
+1. **What it is:**
+
+- Combines timestamp + randomness => 36-character string.
+
+2. **Use case:**
+
+- Order of ID is non-issues.
+
+3. **Pros:**
+
+- Without duplication
+
+4. **Cons:**
+
+- Not order.
+
+- 180 bits is too large.
+
+## 19.2. Auto Increment
+
+1. **What it is:**
+
+- Generate in order by DBMS like MySQL.
+
+2. **Use case:**
+
+- Small scale appication.
+
+3. **Pros:**
+
+- Guarantee ordering.
+
+- Simple to create and uniqueness.
+
+4. **Cons:**
+
+- Not horizontally scalable since you only have one instance.
+
+- Not fault-tolerant since you have one instance to generate ID.
+
+## 19.3. Auto Increment Multiple Machines
+
+1. **What it is:**
+
+- Increase throughput with multiple databases.
+
+- One server generate odd numbers, and the other server generates even numbers.
+
+2. **Use case:**
+
+- Medium scale system.
+
+3. **Pros:**
+
+- Simple to implement to add more machines.
+
+4. **Cons:**
+
+- Imagine adding a third machine; you would need to reconfigure the servers to generate in multiples of 3.
+
+## 19.4. Strongly Consistent and Fault
+
+1. **What it is:**
+
+- ZooKeeper can generate guaranteed monotonically increasing integer numbers using zxid.
+
+2. **Use case:**
+
+- Fencing token for distributed lock.
+
+- Snowflake machine ID generation when initially booted.
+
+3. **Pros:**
+
+- Ordered and unique.
+
+- Fault Tolerant.
+
+- 64-bit number.
+
+4. **Cons:**
+
+- Due to the leader-follower quorum to guarantee strongly consistent ordering, the throughput is lower.
+
+- Complexity to maintain a ZooKeeper cluster.
 
 # 20. Compression
 
