@@ -319,8 +319,26 @@ The ExecutorService interface have 3 implementations:
 
 - ForkJoinPool: dealing with recursive algorithm tasks.
 
+## 4.8. What Is the Meaning of a Synchronized Keyword in the Definition of a Method
+
+- If the function is already acquired by another thread, the former thread will enter the BLOCKED state => and wait until another thread is released.
+
+=> Make sure the thread is executed in order.
+
+## 4.9. Deadlock, Livelock, and Starvation
+
+- **Deadlock:** 2 thread lock each other => In modern DBMS, after the timeout it will release the lock.
+
+- **Livelock:** such threads are alive and not blocked, but still, do not make any progress because they overwhelm each other with useless work.
+
+- **Starvation**: wait too long to be executed.
+
+## 4.10. Fork/Join Framework
+
+- Fork/Join: try to steal jobs for busy threads.
+
 # 5. Hibernate
 
-# 6. Spring (follow the learning docs)
+# 6. Functional Programming
 
-# 7. Functional Programming
+# 7. Spring (follow the learning docs)
