@@ -153,6 +153,74 @@ Annotations in Java are metadata (extra information) added to code.
 
 # 2. Memory Management
 
+## 2.1. What Is Garbage Collection and What Are Its Advantages?
+
+- Looking at heap => Detect what object is used, which are not, detect unused object.
+
+- An in-used object: maintain a pointer to that object.
+
+- An un-used object, unreferenced object: can be reclaimed.
+
+=> Developer do not need to deallocate object like C.
+
+Notes: When the garbage collector thread is running, other threads are stopped.
+
+## 2.2. What Are Stack and Heap? What Is Stored in Each of These Memory Structures, and How Are They Interrelated?
+
+- Stack: local varibales, references to the object to heap to execute method. Every thread hs its own stack.
+
+- Heap: Address of an object.
+
+Notes: Garbage Collection -> look in the heap.
+
+## 2.3. How Generational Garbage Collection Works
+
+Heap including:
+
+- Young Generation: newly created objects
+
+- Old or Tenured Generation: The old generation hosts objects that have lived in memory longer than a certain "age".
+
+- Permanent Generation: platform library classes and methods may be stored here.
+
+🔹 How Does GC Work?
+
+1. **Reachability Analysis:**
+
+- GC checks which objects are reachable from "GC roots".
+
+- GC roots = local variables, active threads, static fields, JNI references.
+
+- If an object cannot be reached → it’s garbage.
+
+2. **Mark and Sweep Algorithm (simplified):**
+
+- Mark: GC starts from GC roots and marks all reachable objects.
+
+- Sweep: Objects not marked are deleted, memory reclaimed.
+
+3. **Compact:**
+
+- After sweeping, heap may have “holes” (fragmentation).
+
+- GC compacts memory by moving objects together, improving allocation efficiency.
+
+Notes: GC only reclaimed the object if it does not have any references on it.
+
+## 2.4. What about the finalize function
+
+- When an object becomes eligible for garbage collection, the GC has to run the finalize method on it.
+
+## 2.5. What Happens When There Is Not Enough Heap Space
+
+- It will throws OutOfMemoryError
+
+## 2.6. What Is a Stringbuilder and What Are Its Use Cases?
+
+- StringBuilder: to build a string, because String is immuatable.
+
+- If you want modify a string in single-thread => use StringBuilder, if you want to modify string in multi-thread => using StringBuffer.
+
 # 3. Collections
 
 # 4. Java Concurrency
@@ -160,3 +228,5 @@ Annotations in Java are metadata (extra information) added to code.
 # 5. Hibernate
 
 # 6. Spring (follow the learning docs)
+
+# 7. Functional Programming
