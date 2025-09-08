@@ -223,6 +223,22 @@ Notes: GC only reclaimed the object if it does not have any references on it.
 
 # 3. Collections
 
+## 3.1. Describe the Collections Type Hierarchy.
+
+Notes: Iterale < Collection < (List, Set, Queue, Map)
+
+1. The Iterable interface represents any collection that can be iterated using the for-each loop.
+
+2. The Collection interface inherits from Iterable and adds generic methods for checking if an element is in a collection, adding and removing elements from the collection, determining its size
+
+3. List > Collection
+
+4. Set > Collection
+
+5. Queue > Collection
+
+6. Map > Collection
+
 # 4. Java Concurrency
 
 # 5. Hibernate
