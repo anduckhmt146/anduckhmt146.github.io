@@ -341,4 +341,49 @@ The ExecutorService interface have 3 implementations:
 
 # 6. Functional Programming
 
-# 7. Spring (follow the learning docs)
+## 6.1. What is a stream
+
+- A stream is a sequence of elements supporting sequential and parallel aggregate operations
+
+![](/images/System-Design/Concepts/stream_java.png)
+
+# 7. Java Machine
+
+## 7.1. What is bytecode
+
+- Java bytecode is the instruction set of Java virtual machine => same like MIPS.
+
+## 7.2. JVM, JRE, JDK
+
+- JVM: Java virtual machine, including just-in-time compiler.
+
+- JRE: JVM + libraries.
+
+- JDK: JVM + libraries + Debuggers.
+
+![](/images/System-Design/Concepts/JVM-JRE-JDK.png)
+
+## 7.3. Class loader
+
+1. Load core Java file.
+
+2. Load libaries: JRE, EXT, Lib.
+
+3. Load classpath: .jar, .war
+
+Notes:
+
+- .class file = Java bytecode + structure
+
+- Java byte code
+
+```java
+getstatic
+ldc
+invokevirtual
+return
+```
+
+# 8. Spring (follow the learning docs)
+
+Docs: [https://anduckhmt146.site/java-spring/](https://anduckhmt146.site/java-spring/)
