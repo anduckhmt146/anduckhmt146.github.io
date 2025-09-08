@@ -5,6 +5,8 @@ date: 2025-09-07
 categories: plan
 ---
 
+Docs: [https://www.amazon.jobs/content/en/our-workplace/leadership-principles](https://www.amazon.jobs/content/en/our-workplace/leadership-principles)
+
 # 1. Customer obsession (do not code until know the real customer demands)
 
 - We won't write lines of code until we do the working backwards documents
