@@ -239,7 +239,85 @@ Notes: Iterale < Collection < (List, Set, Queue, Map)
 
 6. Map > Collection
 
+## 3.2. Map Interface
+
+1. LinkedHashMap: used to look up with O(1).
+
+2. TreeMap: lookup O(logN) => Design for sort with Comparator.
+
+3. ConcurrentHashMap: thread-safe implement map for concurrency of updates.
+
+## 3.3. LinkedList and ArrayList
+
+1. ArrayList: List interface based on array.
+
+2. LinkedList: doubly-linked list.
+
+## 3.4. What Is the Difference Between Fail-Fast and Fail-Safe Iterators?
+
+1. **Fail-fast:** HashMap, ArrayList, and other non-thread-safe collections => throw ConcurrentModificationException as soon as they detect a concurrent modification.
+
+2. **Fail-safe:** thread-safe collections such as ConcurrentHashMap, CopyOnWriteArrayList => Only 1 thread modify at the same time.
+
+## 3.5. How to use Comparator with Collections
+
+- Use can edit and add conditions to class Comparable and Comparator Interfaces to Sort Collections
+
 # 4. Java Concurrency
+
+## 4.1. What Is the Difference Between a Process and a Thread?
+
+- Process: do not share common memory.
+
+- Threads: can share common memory
+
+=> We can have multi-thread conflict and thread-safe.
+
+## 4.2. How Can You Create a Thread Instance and Run It?
+
+- In Java, you can create a Thread and run by thread.start().
+
+## 4.3. Different States of a Thread
+
+- NEW
+
+- RUNNABLE
+
+- BLOCKED
+
+- WAITING
+
+- TIME_WAITING.
+
+- TERMINATED.
+
+## 4.4. Runable and Callale Thread
+
+- Run is a runable thread.
+
+- Callable run when it is called, return a value.
+
+## 4.5. What Is a Daemon Thread
+
+- A daemon thread is a background thread that does not prevent the JVM from exiting => infinitive threads.
+
+- Use cases: Background monitoring (metrics, heartbeats).
+
+## 4.6. What Is the Thread’s Interrupt Flag?
+
+- Call thread.interrupt() to interrupt on the thread object.
+
+## 4.7. Executor and Executorservice
+
+- Executor and ExecutorService are two related interfaces of java.util.concurrent framework => manage thread pool.
+
+The ExecutorService interface have 3 implementations:
+
+- ThreadPoolExecutor: executing tasks using a pool of threads
+
+- ScheduledThreadPoolExecutor: allow task scheduling.
+
+- ForkJoinPool: dealing with recursive algorithm tasks.
 
 # 5. Hibernate
 
