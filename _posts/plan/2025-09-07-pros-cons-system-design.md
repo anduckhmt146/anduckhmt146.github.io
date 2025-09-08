@@ -2802,3 +2802,17 @@ Notes: Real-time database using NoSQL => Because it can scale horizontally.
 - It points to the primary index.
 
 ![](/images/System-Design/Concepts/index.png)
+
+# 24. When to use debounce, throttles
+
+1. **Concepts:**
+
+⁠- Debounce: delay
+
+- Throttle: rate-limiting.
+
+2. **Use cases:**
+
+- ⁠Slider controls something expensive (e.g., API call, DB query, image rendering) => Debounce.
+
+- Slider controls something animation (e.g., volume, brightness, game character speed) => Throttles.
