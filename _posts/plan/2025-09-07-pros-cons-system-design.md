@@ -2803,7 +2803,9 @@ Notes: Real-time database using NoSQL => Because it can scale horizontally.
 
 ![](/images/System-Design/Concepts/index.png)
 
-# 24. When to use debounce, throttles
+# 24. Frontend Optimization
+
+## 24.1. When to use debounce, throttles
 
 1. **Concepts:**
 
@@ -2816,3 +2818,21 @@ Notes: Real-time database using NoSQL => Because it can scale horizontally.
 - ⁠Slider controls something expensive (e.g., API call, DB query, image rendering) => Debounce.
 
 - Slider controls something animation (e.g., volume, brightness, game character speed) => Throttles.
+
+- Debounce: After inactivity
+
+- Throttle: At fixed intervals
+
+## 24.2. Webpack, Rollup
+
+- Webpack, Rollup: bundle chunk, remove unnecessary code.
+
+- Babel: convert ES6 to ES5
+
+- Optimize image responsive in multiple devices: using srcset, instead of fetching a large image and then scale it by size => load small resolution image for mobile => srcset so you’re not sending a 4K image to someone on 3G.
+
+- The Infinite Scroll Nightmare: how do you avoid crashing the browser when you have thousands of DOM nodes? => Using pagination for expand more.
+
+## 24.3. Mobile Devices
+
+- It's have CPU and GPU devices.

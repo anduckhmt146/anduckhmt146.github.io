@@ -263,6 +263,26 @@ Notes: Iterale < Collection < (List, Set, Queue, Map)
 
 - Use can edit and add conditions to class Comparable and Comparator Interfaces to Sort Collections
 
+## 3.6. ArrayList and LinkedList
+
+- Use ArrayList when you need fast random access and most operations are append.
+
+- Use LinkedList when you need fast insertions/deletions (especially at ends or when you already have an iterator pointing to the right spot).
+
+## 3.7. HashSet vs TreeSet vs LinkedHashSet
+
+- HashSet is basically a HashMap with only keys (all values are a constant dummy object) => HashSet is a set.
+
+- LinkedHashSet = HashSet + maintains insertion order via linked list.
+
+- TreeSet = a sorted set, backed by TreeMap.
+
+## 3.8. HashMap and TreeMap
+
+- HashMap: a key-value maps.
+
+- TreeMap: manage the order of the key.
+
 # 4. Java Concurrency
 
 ## 4.1. What Is the Difference Between a Process and a Thread?
@@ -338,6 +358,75 @@ The ExecutorService interface have 3 implementations:
 - Fork/Join: try to steal jobs for busy threads.
 
 # 5. Hibernate
+
+## 5.1. What is ORM in Hibernate?
+
+- Mapping from object data stored to relational database.
+
+## 5.2. Hibernate over JDBC
+
+- JDBC: Write SQL manually.
+
+- ORM: Maps Java classes (entities) to database tables.
+
+## 5.3. Hibernate framework?
+
+Hibernate core interfaces are:
+
+- Configuration
+- SessionFactory
+- Session
+- Criteria
+- Query
+- Transaction
+
+## 5.4. What is a Session in Hibernate?
+
+- A session is an object that maintains the connection between Java object application and database.
+
+## 5.5. What is a SessionFactory?
+
+- SessionFactory provides an instance of Session.
+
+- It is a factory class that gives the Session objects based on the configuration parameters in order to establish the connection to the database.
+
+## 5.6. What is the difference between first level cache and second level cache?
+
+- First Level Cache: cache in a session.
+
+- Second Level Cache: can be shared with multiple sessions.
+
+## 5.7. Can you explain the concept behind Hibernate Inheritance Mapping?
+
+There are different inheritance mapping strategies available:
+
+- Single Table Strategy
+- Table Per Class Strategy
+- Mapped Super Class Strategy
+- Joined Table Strategy
+
+## 5.7. What is N+1 SELECT problem in Hibernate?
+
+- Fetch all list at the first time => Lazy loading strategy => 1 query.
+
+- N query to load each times.
+
+## 5.8. How to solve N+1 SELECT problem in Hibernate?
+
+- Pre-fetch the records in batches which helps us to reduce the problem of N+1 to (N/K) + 1 where K refers to the size of the batch.
+
+- Subselect the fetching strategy
+
+## 5.9. What is Single Table Strategy?
+
+- The inheritance data hierarchy is stored in the single table by making use of a discriminator column which determines to what class the record belongs.
+
+## 5.10. Can you tell something about Named SQL Query
+
+- Use name to query
+
+=> name = "findIBEmployeeByFullName",  
+ query = "from InterviewBitEmployee e where e.fullName = :fullName"
 
 # 6. Functional Programming
 
@@ -431,3 +520,33 @@ Docs: [https://anduckhmt146.site/java-spring/](https://anduckhmt146.site/java-sp
 - Checked Exception: extends the class Exception.
 
 - Unchecked Exception: extends the class RuntimeException.
+
+# 10. File Handling & I/O in Java
+
+## 10.1. I/O Streams Basic
+
+- Type: Byte stream (reads/writes raw bytes).
+
+- Use case: Binary data (images, videos, PDFs, audio).
+
+## 10.2. Reader and Writer Class
+
+- Type: Character stream (reads/writes characters, 16-bit Unicode).
+
+- Use case: Text files (supports proper encoding).
+
+## 10.3. BufferedReader and Buffered Writer
+
+- Type: Character streams with buffer.
+
+- Use case: Efficient reading/writing of text, reading lines.
+
+## 10.4. Serialization and Deserialization
+
+- Type: Object stream (converts entire objects to/from bytes).
+
+- Use case: Saving objects to files, transferring objects across network.
+
+# 11. Java 8
+
+# 12. Java 9 - 17
