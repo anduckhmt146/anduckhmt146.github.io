@@ -387,3 +387,47 @@ return
 # 8. Spring (follow the learning docs)
 
 Docs: [https://anduckhmt146.site/java-spring/](https://anduckhmt146.site/java-spring/)
+
+# 9. Exception Handling
+
+## 9.1. Errors vs Exceptions
+
+- Errors represent unrecoverable conditions like hardware failures or resource exhaustion => OutOfMemoryError, StackOverFlowError
+
+- Exceptions: can be throwable by business logic
+
+=> Exceptions for localized failures, errors in JVM-level.
+
+## 9.2. Checked vs Unchecked Exceptions
+
+1. Checked Exceptions: Compiler forces you to self handle before compile => Example reading a file without IOException, the code won't compile.
+
+2. Unchecked Exceptions: inherit in RuntimeException => do not require try catch, null or divide by 0
+
+## 9.3. Try-Catch-Finally Block
+
+- Try: success.
+
+- Catch: crash or exception => go to catch.
+
+- Finnally: always execute
+
+## 9.4. Multiple Catch and Nested Try
+
+- Multicatch
+
+=> Catch 1: EOFException ex
+
+=> Catch 2: FileNotFoundException ex
+
+## 9.5. Throw vs Throws
+
+- throw: use to throw exception right now.
+
+- throws: extends a class
+
+## 9.6. Creating Custom Exceptions
+
+- Checked Exception: extends the class Exception.
+
+- Unchecked Exception: extends the class RuntimeException.
