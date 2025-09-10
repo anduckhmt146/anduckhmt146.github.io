@@ -9,17 +9,224 @@ categories: plan
 
 ## 1.1. What are the OOPs concepts?
 
-- Inheritance: child class inheritance a public, protected function of parent class => extends.
+1. Inheritance: child class inheritance a public, protected function of parent class => extends.
 
-- Encapsulation: Call setter and getter rather than know the implementation
+```java
+class Animal {
+    private String name;
 
-- Polymorphism: same class and method but override different behavior.
+    // Parent constructor
+    public Animal(String name) {
+        this.name = name;
+        System.out.println("Animal constructor called. Name = " + name);
+    }
 
-- Abstraction class & Interface: provide blueprint for other class to know.
+    public void eat() {
+        System.out.println(name + " is eating");
+    }
 
-  - Abstract methods (no body → must be implemented by subclasses).
+    protected void sleep() {
+        System.out.println(name + " is sleeping");
+    }
+}
 
-  - Concrete methods (with body → reusable by subclasses).
+class Dog extends Animal {  // Inheritance
+    private String breed;
+
+    // Child constructor must call parent constructor using super()
+    public Dog(String name, String breed) {
+        super(name); // calls Animal(String name)
+        this.breed = breed;
+        System.out.println("Dog constructor called. Breed = " + breed);
+    }
+
+    public void bark() {
+        System.out.println(breed + " is barking");
+    }
+}
+
+public class InheritanceExample {
+    public static void main(String[] args) {
+        // Create Dog object
+        Dog d = new Dog("Buddy", "Golden Retriever");
+
+        d.eat();   // inherited public method
+        d.sleep(); // inherited protected method
+        d.bark();  // child’s own method
+    }
+}
+
+```
+
+2. Encapsulation: Call setter and getter rather than know the implementation
+
+```java
+class Person {
+    private String name;  // hidden
+    private int age;
+
+    // Getter and Setter (Encapsulation)
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        }
+    }
+}
+
+public class EncapsulationExample {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.setName("John");   // using setter
+        p.setAge(25);
+        System.out.println(p.getName() + " is " + p.getAge() + " years old");
+    }
+}
+
+```
+
+3. Polymorphism: same class and method but override different behavior.
+
+```java
+class Shape {
+    public void draw() {
+        System.out.println("Drawing a shape");
+    }
+}
+
+class Circle extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle");
+    }
+}
+
+class Square extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a square");
+    }
+}
+
+public class PolymorphismExample {
+    public static void main(String[] args) {
+        Shape s1 = new Circle();  // runtime polymorphism
+        Shape s2 = new Square();
+
+        s1.draw(); // Drawing a circle
+        s2.draw(); // Drawing a square
+    }
+}
+
+```
+
+4. Abstraction class & Interface: provide blueprint for other class to know.
+
+- Abstract methods (no body → must be implemented by subclasses).
+
+- Concrete methods (with body → reusable by subclasses).
+
+Example abstract class
+
+```java
+abstract class Vehicle {
+    abstract void start();  // abstract method → must be implemented
+
+    public void stop() {    // concrete method → reusable
+        System.out.println("Vehicle stopped");
+    }
+}
+
+class Car extends Vehicle {
+    @Override
+    void start() {
+        System.out.println("Car started with key");
+    }
+}
+
+```
+
+5. Interface:
+
+```java
+interface Flyable {
+    void fly(); // abstract method
+}
+
+class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println("Bird is flying");
+    }
+}
+```
+
+6. Overloading: Params different behave different
+
+```java
+class Calculator {
+    // Method 1
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    // Method 2 (overloaded: different parameter count)
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // Method 3 (overloaded: different parameter types)
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+
+public class OverloadingExample {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(2, 3));        // calls first method
+        System.out.println(calc.add(2, 3, 4));     // calls second method
+        System.out.println(calc.add(2.5, 3.5));    // calls third method
+    }
+}
+```
+
+- Override: override the implement of the functions => run-time polymorphism
+
+```java
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class OverridingExample {
+    public static void main(String[] args) {
+        Animal a1 = new Animal();
+        Animal a2 = new Dog();  // Upcasting
+
+        a1.sound(); // Animal makes a sound
+        a2.sound(); // Dog barks (runtime polymorphism)
+    }
+}
+
+```
 
 ## 1.2. Access Modifers
 
@@ -106,6 +313,53 @@ categories: plan
 - It ensures that only one thread can execute a synchronized block/method at a time for a given object.
 
 - It’s used to prevent race conditions (when multiple threads try to modify shared data simultaneously).
+
+Example:
+
+```java
+class Counter {
+    private int count = 0;
+
+    // synchronized method
+    public synchronized void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+public class SyncExample {
+    public static void main(String[] args) throws InterruptedException {
+        Counter counter = new Counter();
+
+        // Create two threads incrementing counter
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.increment();
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.increment();
+            }
+        });
+
+        t1.start();
+        t2.start();
+
+        // Wait for both threads to finish
+        t1.join();
+        t2.join();
+
+        System.out.println("Final count: " + counter.getCount()); // Expected: 2000
+    }
+}
+```
+
+👉 Without synchronized, you might see inconsistent results (e.g., < 2000) due to race conditions.
 
 ## 1.13. Java 8 features
 
@@ -338,6 +592,40 @@ The ExecutorService interface have 3 implementations:
 - ScheduledThreadPoolExecutor: allow task scheduling.
 
 - ForkJoinPool: dealing with recursive algorithm tasks.
+
+**Example:** Declare threadpools with 3 threads.
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ExecutorExample {
+    public static void main(String[] args) {
+        // Create a fixed thread pool with 3 threads
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        // Submit 5 tasks
+        for (int i = 1; i <= 5; i++) {
+            int taskId = i;
+            executor.submit(() -> {
+                System.out.println("Task " + taskId + " is running by " + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(1000); // simulate work
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                System.out.println("Task " + taskId + " is finished by " + Thread.currentThread().getName());
+            });
+        }
+
+        // Shut down executor after finishing tasks
+        executor.shutdown();
+    }
+}
+
+```
+
+Notes: Instead of manually starting threads, Java provides ExecutorService for better thread management.
 
 ## 4.8. What Is the Meaning of a Synchronized Keyword in the Definition of a Method
 
