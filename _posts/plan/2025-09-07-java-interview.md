@@ -282,6 +282,8 @@ public class OverridingExample {
 
 - atomic: use for counter, fast counters, accumulators, reference updates.
 
+Notes: volatile → thread-safe for visibility-only problems (flags, single writes, publish/subscribe values).NOT thread-safe for atomic updates or compound actions.
+
 ## 1.8. Object finalization
 
 - Called by the garbage collector
@@ -962,3 +964,134 @@ Docs: [https://anduckhmt146.site/java-spring/](https://anduckhmt146.site/java-sp
 # 11. Java 8
 
 # 12. Java 9 - 17
+
+# 13. JVM Architecture
+
+## 13.1. Just-in-time compiler Java
+
+- Just-In-Time Compiler (JIT) used to convert Hotpots Java bytecode -> binary code of computer => Optimize by cache hotpots code that execute multiple times => faster.
+
+## 13.2. Garbage Collection (GC)
+
+GC automatically frees memory by removing objects that are no longer referenced.
+
+Common algorithms:
+
+- Mark and Sweep → finds reachable objects and deletes unreferenced ones.
+
+- Generational GC → divides heap into Young (Eden + Survivor) and Old generations for efficiency.
+
+## 13.3. Java Memory Model (JMM) Overview
+
+1. volatile
+
+- Guarantee: Visibility + ordering (but not atomicity).
+
+- Meaning: When one thread writes a volatile variable, other threads immediately see the new value.
+
+2. synchronized
+
+- Guarantee: Visibility + atomicity + ordering.
+
+- Meaning: Ensures that only one thread can access the block at a time and changes are visible to all threads.
+
+3. final
+
+- Guarantee: Safe publication of immutable objects.
+
+- Meaning: Once a final field is set in a constructor, other threads see the correctly constructed object (no partially initialized state).
+
+## 13.4. Stack vs Heap Memory
+
+Stack (per thread):
+
+- Stores method frames (local variables, call info).
+
+- Fast, managed automatically (pop/push).
+
+Heap (shared):
+
+- Stores objects, arrays, class instances.
+
+- Managed by GC.
+
+## 13.5. JVM Architecture Basics (Hay)
+
+Notes: Java used both interpreter and compiler.
+
+- ClassLoader: loads .class files into memory.
+
+- Runtime Data Areas:
+
+  - Method Area (class info, static vars)
+  - Heap (objects)
+  - Stack (method frames)
+  - PC Register (per thread)
+  - Native Method Stack
+
+- Execution Engine:
+
+  - Interpreter (executes bytecode)
+  - JIT Compiler (converts hot code to native machine code)
+
+- Garbage Collector: frees memory.
+
+## 13.6. Strong, Weak, Soft, Phantom References
+
+1. Strong Reference (default)
+
+```java
+Object obj = new Object(); // strong reference
+```
+
+=> As long as there’s a strong reference, GC will never collect the object. Most references in Java are strong by default.
+
+=> For normal program data (business objects, configs, etc.), you don’t want them disappearing unexpectedly.
+
+2. Soft Reference
+
+```java
+Created with new SoftReference<>(object).
+```
+
+=> GC will collect if memory is low, but otherwise keeps the object.
+
+3. Weak Reference
+
+- GC removes if no strong refs exist (used in caches).
+
+4. Phantom Reference
+
+- Used for cleanup before object is reclaimed.
+
+## 13.7. Garbage Collection in Java (detail focus)
+
+- Minor GC: cleans Young Generation (short-lived objects).
+
+- Major GC / Full GC: cleans Old Generation (long-lived objects).
+
+Collectors:
+
+- Serial GC: single-threaded, good for small apps.
+
+- Parallel GC: multiple threads, good for throughput.
+
+- CMS (Concurrent Mark Sweep): minimizes pause times.
+
+- G1 (Garbage First): modern default, balances throughput + low pause.
+
+## 13.8. Memory Leaks in Java
+
+- Even with GC, leaks happen if objects are referenced but unused
+
+- Causes:
+
+  - Static fields holding big objects.
+
+  - Unclosed resources (sockets, DB connections).
+
+- Solutions:
+
+  - Use tools like VisualVM/JConsole to detect leaks.
+
+  - Set unused references to null (not reference)
