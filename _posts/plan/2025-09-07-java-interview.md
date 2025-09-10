@@ -645,6 +645,108 @@ Notes: Instead of manually starting threads, Java provides ExecutorService for b
 
 - Fork/Join: try to steal jobs for busy threads.
 
+## 4.11. Wait, Notify, NotifyAll
+
+**Method:**
+
+- wait(): lock, the current thread stays there until some other thread calls notify() or notifyAll() on the same object.
+
+- notify() → Wakes up one thread that is waiting on the same object’s monitor.
+
+- notifyAll() → Wakes up all threads waiting on the same object’s monitor.
+
+```java
+class SharedData {
+    private boolean available = false;
+
+    public synchronized void produce() {
+        while (available) { // already produced, wait
+            try { wait(); } catch (InterruptedException e) {}
+        }
+        System.out.println("Produced item");
+        available = true;
+        notify(); // notify consumer
+    }
+
+    public synchronized void consume() {
+        while (!available) { // nothing to consume, wait
+            try { wait(); } catch (InterruptedException e) {}
+        }
+        System.out.println("Consumed item");
+        available = false;
+        notify(); // notify producer
+    }
+}
+
+public class WaitNotifyExample {
+    public static void main(String[] args) {
+        SharedData data = new SharedData();
+
+        Thread producer = new Thread(() -> {
+            for (int i = 0; i < 3; i++) data.produce();
+        });
+
+        Thread consumer = new Thread(() -> {
+            for (int i = 0; i < 3; i++) data.consume();
+        });
+
+        producer.start();
+        consumer.start();
+    }
+}
+
+```
+
+## 4.12. Runnable
+
+- An interface (java.lang.Runnable) representing a task with no return value.
+
+```java
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Running in thread: " + Thread.currentThread().getName());
+    }
+}
+
+public class RunnableExample {
+    public static void main(String[] args) {
+        Thread t = new Thread(new MyRunnable());
+        t.start();
+    }
+}
+
+```
+
+## 4.13. Callable
+
+- Same as callback => return future value.
+
+```java
+import java.util.concurrent.*;
+
+class MyCallable implements Callable<Integer> {
+    @Override
+    public Integer call() throws Exception {
+        System.out.println("Callable running in: " + Thread.currentThread().getName());
+        return 42; // return result
+    }
+}
+
+public class CallableExample {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<Integer> future = executor.submit(new MyCallable());
+
+        // get() blocks until result is available
+        System.out.println("Result: " + future.get());
+
+        executor.shutdown();
+    }
+}
+
+```
+
 # 5. Hibernate
 
 ## 5.1. What is ORM in Hibernate?
@@ -737,6 +839,28 @@ There are different inheritance mapping strategies available:
 - JRE: JVM + libraries.
 
 - JDK: JVM + libraries + Debuggers.
+
+1. JVM (Java Virtual Machine)
+
+- What it is: A virtual machine that runs Java bytecode.
+
+- Role: Converts .class files (bytecode) into machine-specific instructions.
+
+- Platform independence: Write once, run anywhere → same .class runs on Windows, Linux, Mac (as long as JVM exists).
+
+2. JRE (Java Runtime Environment)
+
+- What it is: A package containing the JVM + libraries + other components needed to run Java programs.
+
+- Contains: JVM, Core libraries (java.lang, java.util, etc.), Other runtime files
+
+- Does NOT contain: Development tools (compiler, debugger).
+
+3. JDK (Java Development Kit)
+
+- What it is: A full package for Java developers.
+
+- Contains: JRE (which contains JVM), Development tools (compiler javac, debugger, JavaDoc, etc.)
 
 ![](/images/System-Design/Concepts/JVM-JRE-JDK.png)
 
