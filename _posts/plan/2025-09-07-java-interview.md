@@ -1096,7 +1096,25 @@ Collectors:
 
   - Set unused references to null (not reference)
 
-# 14. Bean
+## 13.9. Do GC auto clear new Object()
+
+- GC auto clear the memory when set object = null or object = new reference -> clean old reference.
+
+```java
+public class GCDemo {
+    public static void main(String[] args) {
+        MyObject o1 = new MyObject(); // created, referenced
+        o1 = null;                    // no reference → eligible for GC
+
+        MyObject o2 = new MyObject();
+        MyObject o3 = new MyObject();
+        o2 = o3;   // the object previously referenced by o2 is now unreferenced → eligible for GC
+    }
+}
+
+```
+
+# 14. Bean, Spring MVC, Spring Reactive Programming (WebFlux)
 
 ## 14.1. Bean Scopes
 
@@ -1191,3 +1209,160 @@ Collectors:
   - object creation
 
 - Weaving: Merge aspect and non-aspect in compile time.
+
+## 14.9. DispatcherServlet, Spring MVC, Spring WebFlux
+
+1. Servlet Container & DispatcherServlet:
+
+- It is the central dispatcher in Spring MVC => Orchestration to routing requests.
+
+- Steps:
+
+  - Request comes to web app → servlet container forwards it to DispatcherServlet.
+
+  - DispatcherServlet looks up a suitable Handler Mapping to find the right controller.
+
+  - Invokes the Controller method (often annotated with @RequestMapping, @GetMapping, etc.).
+
+  - Controller returns a ModelAndView or data object.
+
+  - DispatcherServlet delegates to a ViewResolver (e.g., Thymeleaf, JSP) or returns JSON/XML directly.
+
+**Notes:**
+
+- Servlet Container: Java EE (Jakarta EE) application server (like Tomcat, Jetty, Undertow).
+
+- DispatcherServlet: Spring provided.
+
+2. Spring MVC (Servlet-based, synchronous)
+
+- Built on top of the Servlet API (Tomcat, Jetty, etc.).
+
+- Request-per-thread model:
+
+  - Each HTTP request → one thread from servlet container thread pool.
+
+  - The thread is blocked until response is ready.
+
+Notes: Multi-threads based on thread pool of Servlet container.
+
+3. @Async and @Callable for Async Programming with Spring MVC
+
+- Using @Async to call two services or databases in parallel call two services or databases in parallel
+
+```java
+@Service
+public class MyService {
+    @Async
+    public CompletableFuture<String> task1() {
+        // simulate delay
+        return CompletableFuture.completedFuture("Task1 done");
+    }
+
+    @Async
+    public CompletableFuture<String> task2() {
+        return CompletableFuture.completedFuture("Task2 done");
+    }
+}
+
+```
+
+4. Spring WebFlux (not MVC, it is event loop)
+
+- High concurrency (e.g., chat apps, IoT, streaming APIs).
+
+- Microservices that talk to other async/non-blocking services (DBs, queues, APIs).
+
+- Real-time applications.
+
+5. Spring MVC handle requests
+
+Flow:
+
+1. Client sends request → Servlet container (Tomcat, Jetty).
+
+2. Container assigns a thread from its pool to handle this request.
+
+3. Request is passed to DispatcherServlet.
+
+4. DispatcherServlet looks up a controller (e.g., @RestController method).
+
+5. Controller runs → often calls blocking I/O (DB query, REST API, file read).
+
+6. While waiting, the thread is blocked.
+
+7. Controller returns a response object (e.g., String, ResponseEntity).
+
+8. DispatcherServlet renders it (via HttpMessageConverter, ViewResolver).
+
+9. Response sent back to client.
+
+Thread is released to the pool.
+
+👉 Model: One request = One thread (until done).
+👉 Problem: If many requests wait on slow I/O, threads get exhausted.
+
+6. Spring WebFlux (Reactive, Non-blocking)
+
+Notes: Mono and Flux return a Callback => to wait and continue call to execute when the data is completed.
+
+Idea: Callback and Event loop for concurrency programming.
+
+Flow:
+
+1. Client sends request → Netty (or reactive-enabled Tomcat/Jetty).
+
+2. Request is passed to DispatcherHandler (WebFlux’s equivalent of DispatcherServlet).
+
+3. DispatcherHandler looks up a controller.
+
+4. Controller returns a Publisher (Mono<T> or Flux<T>).
+
+5. Instead of blocking, WebFlux registers callbacks for when the data is ready.
+
+6. The event loop continues handling other requests using the same thread.
+
+7. When data arrives, the pipeline continues (map, filter, flatMap, etc.).
+
+DispatcherHandler writes the response asynchronously to the client.
+
+👉 Model: One thread = Many concurrent requests (thanks to event loop).
+👉 Benefit: Handles high concurrency with fewer threads (good for real-time apps, streaming, microservices).
+
+## 14.10. Why Java develop reactive or stream processing ?
+
+- Idea: Event loop and Callback Architecture.
+
+1. Without Reactive Streams (blocking)
+
+```java
+List<User> users = userService.findAll(); // blocks until DB query finishes
+```
+
+2. With Reactive Streams (non-blocking, streaming)
+
+```java
+Flux<User> users = userService.findAll(); // returns immediately
+users.filter(u -> u.isActive())
+     .map(User::getName)
+     .subscribe(System.out::println);
+
+```
+
+=> Blocking and return by stream, not fetch all data in the first load.
+
+# 15. Spring Security
+
+- Client -> Multiple Filter layers before reaching -> Dispatcher Serverlet -> Controller.
+
+Interceptors:
+
+- AuthenticationManager / ProviderManager / AuthenticationProvider
+
+- UsernamePasswordAuthenticationFilter
+
+- BasicAuthenticationFilter
+
+# 16. Spring Cloud
+
+- Eureka: Service Discovery, HTTP client
