@@ -1095,3 +1095,99 @@ Collectors:
   - Use tools like VisualVM/JConsole to detect leaks.
 
   - Set unused references to null (not reference)
+
+# 14. Bean
+
+## 14.1. Bean Scopes
+
+- Singleton: Single instance throughout the application.
+
+- Prototype: A new instance is created for each request.
+
+- Request: A new instance is created for each HTTP request.
+
+- Session: A new instance is created for each user session.
+
+=> Default is Singleton
+
+## 14.2. Bean Lifecycle
+
+1. Instantiation: Spring creates the bean instance (using constructor or factory method).
+
+2. Injects dependencies: into the bean’s fields/setters/constructor.
+
+3. Add @PostConstruct to make sure the bean it is init successfully.
+
+4. Bean Usage: injection of beans for application-wide use.
+
+5. Add @PreDestroy to check reference before destroy a Bean.
+
+## 14.3. Bean define
+
+- XML Configuration Files: Centralized lengthy configurations, but wordy and less maintainable compared to annotations
+
+## 14.4. Spring Framework
+
+- Modular Design
+
+- Dependency Injection
+
+- Aspect-oriented programming
+
+- Transaction management
+
+- Data access
+
+- Model-View-Controller(MVC)
+
+- Web development
+
+- Testing
+
+- Spring Cloud
+
+## 14.5. ApplicationContext
+
+- ApplicationContext is the Spring IoC container (advanced version of BeanFactory)
+
+- It is responsible for:
+
+- Creating beans (instantiation)
+
+- Wiring dependencies (dependency injection)
+
+- Managing lifecycle (init & destroy callbacks)
+
+- Providing advanced features: AOP, internationalization, event publishing, profiles, etc.
+
+- Common Implementations
+
+  - ClassPathXmlApplicationContext: loads beans from XML.
+
+  - AnnotationConfigApplicationContext: loads beans from Java @Configuration classes.
+
+## 14.6. Component Scan
+
+- Look at the packages (e.g. com.example.app) => Tell what components to register to the beans
+
+## 14.7. Profiles
+
+- Profiles allow configuration for applications differently in different environments, such as
+  - Development
+  - Staging
+  - Production
+
+## 14.8. Spring AOP
+
+- Aspect: A building block bundles together cross-cutting concerns.
+
+  - Advice: The code that is executed before, after, or around a method invocation.
+  - Pointcut: Condition triggering the tasks(advice).
+
+- Join point: when the advice execute.
+
+  - method calls
+  - field access
+  - object creation
+
+- Weaving: Merge aspect and non-aspect in compile time.
