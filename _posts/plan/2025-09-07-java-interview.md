@@ -1019,6 +1019,8 @@ Heap (shared):
 
 Notes: Java used both interpreter and compiler.
 
+- Compiler: javac compile .java to .class
+
 - ClassLoader: loads .class files into memory.
 
 - Runtime Data Areas:
@@ -1366,3 +1368,347 @@ Interceptors:
 # 16. Spring Cloud
 
 - Eureka: Service Discovery, HTTP client
+
+---
+
+# 1. Concurrency Java & Multithreading (uu tien 2)
+
+- How concurrency in java work ?
+
+- Thread-safe: synchronized, volatile, Lock, AtomicXXX, ConcurrentHashMap, synchronizedMap
+
+---
+
+1. volatile: Changes made by one thread are immediately visible to others, can not use by counter (10 -> 11, 12)
+
+2. synchronized: You want both atomicity and visibility => block when another thread complete.
+
+3. AtomicInteger: Giống Persimisstic Lock => Do not lock like synchronized but check current value in mem -> retry until match new value.
+
+4. ConcurrentHashMap
+
+   - Reads: non-blocking (volatile semantics).
+
+   - Writes: use CAS or synchronized at bucket level, not global lock.
+
+   - Multiple writers can update different buckets simultaneously.
+
+5. synchronizedMap: Single global lock -> lock full the Map.
+
+6. HashTable (thread-safe): block full the map
+
+7. HashMap (not-threadsafe): Better performance in single-threaded use.
+
+8. ArrayList, LinkedList, HashMap, HashSet, TreeMap, TreeSet, PriorityQueue, StringBuilder, Stream: do not thread-safe
+
+---
+
+- Thread, Runnable, Callable
+
+1. Thread: Represents a unit of execution in Java.
+
+2. Runnable pass to thread => void execution.
+
+3. Callable: Pass to thread => return value
+
+---
+
+- ExecutorService, ForkJoinPool, CompletableFuture
+
+1. ExecutorService: Thread pool manager → handles thread lifecycle for you.
+
+2. ForkJoinPool: Uses work-stealing algorithm (idle threads “steal” tasks from busy ones).
+
+3. CompletableFuture (Like Stream, like callback)
+
+```java
+CompletableFuture.supplyAsync(() -> {
+    // background task
+    System.out.println("Fetching data...");
+    return "data-from-API";
+})
+.thenApply(data -> {
+    // process the result
+    return data.toUpperCase();
+})
+.thenAccept(result -> {
+    // final consumer
+    System.out.println("Result: " + result);
+});
+```
+
+---
+
+- Producer–Consumer, Deadlock, Livelock, Starvation, ThreadLocal.
+
+1. Deadlock: thread wait or each other
+
+2. Livelock: thread live but can not call to each other.
+
+3. Starvation: wait long time to execute.
+
+---
+
+👉 Gợi ý trả lời: không chỉ giải thích keyword, mà nên đưa use case thực tế trong dự án (VD: xử lý giao dịch song song, batch job).
+
+# 2. Garbage Collector (uu tien 1)
+
+- How garbage collector work ?
+
+The JVM divides memory into heap generations:
+
+- Young Generation (Eden + Survivor) → most new objects. Minor GC runs frequently.
+
+- Old Generation (Tenured) → long-lived objects. Major/Full GC less frequent.
+
+- Metaspace (Java 8+) → class metadata.
+
+GC algorithms:
+
+1. Serial GC → single-threaded, simple apps => Algorithm: Mark → Sweep → Compact.
+
+---
+
+- Uses a single thread for garbage collection.
+
+- While GC runs → your entire application pauses (Stop-The-World).
+
+---
+
+2. Parallel GC → multi-threaded, throughput-focused => Algorithm: Mark → Sweep → Compact (like Serial) => multithread
+
+---
+
+- Uses multiple threads to perform GC in parallel.
+
+- Still has Stop-The-World pauses, but cleaning is faster because many workers are helping.
+
+---
+
+3.  CMS (deprecated) → low-latency but fragmentation issues => Algorithm: Mark (mostly concurrent) → Sweep (concurrent).
+
+---
+
+=>
+
+CMS (Concurrent Mark-Sweep) goes through these steps:
+
+Mark: Finds which objects are still alive.
+
+Sweep: Deletes the garbage objects (frees memory).
+
+What it does NOT do:
+
+CMS does not move the remaining (alive) objects together in memory.
+
+--
+
+It just frees scattered spaces where garbage was.
+
+4. G1 GC (default from Java 9) → region-based, predictable pause times => Region-based + compaction (incremental or concurrent) => compact by region
+
+---
+
+=> Chia vùng + dọn nhà (thằng này 1 thôi)
+
+Heap divided into regions (instead of fixed Young/Old spaces).
+
+Each region can be Eden, Survivor, or Old, but roles can change dynamically.
+
+GC collects the regions with the most garbage first (hence the name Garbage First).
+
+Concurrent marking finds live objects across the heap.
+
+---
+
+5. ZGC, Shenandoah (Java 11/17) → ultra-low latency, concurrent compaction.
+
+---
+
+=> Chia vùng + nhiều thằng arrange nhà.
+
+Heap divided into regions (instead of fixed Young/Old spaces).
+
+Each region can be Eden, Survivor, or Old, but roles can change dynamically.
+
+GC collects the regions with the most garbage first (hence the name Garbage First).
+
+Concurrent marking finds live objects across the heap.
+
+---
+
+## 2.1. 🗑️ Heap Generations (classic model: Serial, Parallel, CMS)
+
+1. Young Generation
+
+2. Old Generation (Tenured)
+
+3. Permanent Generation (PermGen) [Java 7 and earlier]
+
+## 2.2. 🌱 Heap in Modern GCs
+
+1. G1 GC
+
+- Heap divided into regions (1–32 MB each).
+
+- Regions can dynamically be Eden, Survivor, or Old.
+
+- This removes rigid separation → more flexible.
+
+2. ZGC / Shenandoah
+
+- Heap also divided into regions (but designed for concurrent relocation).
+
+- They avoid fragmentation because compaction happens concurrently.
+
+## 2.3. Tool
+
+- JConsole
+
+# 3. Bean Life Cycle (uu tien 3)
+
+IoC Container: quản lý bean lifecycle.
+
+AOP: logging, transaction, security.
+
+Spring Boot AutoConfiguration: dựa trên @EnableAutoConfiguration.
+
+Spring Transaction: propagation + isolation levels.
+
+- How bean life cycle ?
+
+1. Container Started: The Spring IoC container is initialized.
+
+2. Bean Instantiated: The container creates an instance of the bean.
+
+3. Dependencies Injected: The container injects the dependencies into the bean.
+
+4. Custom init() method: If the bean implements InitializingBean or has a custom initialization method specified via @PostConstruct or init-method.
+
+5. Bean is Ready: The bean is now fully initialized and ready to be used.
+
+6. Custom utility method: This could be any custom method you have defined in your bean.
+
+7. Custom destroy() method: If the bean implements DisposableBean or has a custom destruction method specified via @PreDestroy or destroy-method, it is called when the container is shutting down => custom destroy.
+
+---
+
+Spring AOP
+
+- Aspect: A building block bundles together cross-cutting concerns.
+
+  - Advice: The code that is executed before, after, or around a method invocation.
+  - Pointcut: Condition triggering the tasks(advice).
+
+- Join point: when the advice execute.
+
+  - method calls
+  - field access
+  - object creation
+
+- Weaving: Merge aspect and non-aspect in compile time.
+
+1. Logging
+
+```java
+@Aspect
+@Component
+public class LoggingAspect {
+    @Before("execution(* com.example.service.*.*(..))")
+    public void logBefore(JoinPoint jp) {
+        System.out.println("Method called: " + jp.getSignature());
+    }
+```
+
+# 4. How stream work (uu tien 4)
+
+- How stream work ?
+
+1. A Stream is a pipeline of data processing operations on a collection (or other data source). Inspired by functional programming.
+
+2. Doesn’t store data → works on the data source (Collection, Array, I/O).
+
+3. Contains 3 parts:
+
+- Source → intermediate ops (map/filter/...) → terminal op (collect/forEach/reduce/...).
+
+=> Streams don’t process data until a terminal op is called.
+
+=> Write more clean
+
+# 5. Hibernate ORM (ORM library) basics: session lifecycle, lazy loading (uu tien 5)
+
+- How hibernate work ?
+
+## 5.1. N + 1 problem
+
+- You query for a list of parent entities (→ 1 query).
+
+- For each parent, Hibernate lazily loads its child entities (→ N queries)
+
+**1 depts -> N employees**
+
+## 5.2. Lazy Loading in Hibernate
+
+=> Because Hibernate delays (is lazy about) loading associated entities until you actually use them.
+
+```java
+Department dept = session.get(Department.class, 1);
+System.out.println(dept.getName());         // Only loads Department
+
+System.out.println(dept.getEmployees());    // Triggers SQL for Employees
+```
+
+=> Only load when needed.
+
+## 5.3. Session lifecycle
+
+- A Session is a single-threaded object provided by Hibernate to interact with the database.
+
+- Responsible for:
+
+  - Managing entity state (Transient, Persistent, Detached).
+
+  - Query execution (HQL, SQL, Criteria).
+
+  - Transaction boundaries.
+
+  - First-level cache.
+
+- State Meaning:
+
+  - Transient Not associated with session/DB new Entity()
+
+  - Persistent Managed by session, in 1st-level cache session.save(entity)
+
+  - Detached Was persistent, but session closed After session.close()
+
+  - Removed Marked for deletion session.delete(entity)
+
+# 6. Transactional (uu tien 6)
+
+- How transactional work ?
+
+=> It’s an annotation in Spring that tells the framework to run a method inside a database transaction.
+
+Method call intercepted by Spring AOP proxy.
+
+Transaction starts before method executes.
+
+- If method executes successfully → commit.
+
+- If method throws a runtime exception (unchecked) → rollback.
+
+# 7. Java 8, Java 17 co gi moi ?
+
+1. Java 8
+
+- Lambda Expressions: A lambda is essentially an anonymous function (no name, inline).
+
+- Stream APIs: A pipeline for processing data (like SQL for collections).
+
+- CompletableFuture: When data or API return value => process and continue to map data.
+
+2. Java 17
+
+- New garbarge collector
