@@ -228,3 +228,188 @@ In relationships, your brain is brilliant — but your heart is what earns the i
 => Emotions Don’t Make You Less Rational — They Make You More Whole
 
 You don’t have to choose between being sharp and being soft. You can be both.
+
+## 17. Existential Crisis
+
+- Your mind is always changed to find who you are => because your mind is wired for exploration.
+
+- Grounding Yourself Without Giving Up Growth
+
+1. Create a Core Identity Menu
+
+2. Journal the “You” of Today
+
+3. Journal the “You” of Today
+
+4. You’re a living system. Your identity is real even if it’s evolving.
+
+5. Check for Burnout Dressed as Reinvention
+
+=> You can not find yourself, you only build yourself => you don't need to be "done", you need to be aware.
+
+## 18. When "Enough" Isn’t Interesting Anymore
+
+- You’re just wired for motion over maintenance.
+
+=> The ENTP Energy Loop: Want → Create → Win → Bored
+
+1. You equate success with stagnation.
+
+2. You are energized by problems, not plateaus => When things run smoothly, your mind searches for new dragons to slay—even if you have to invent one.
+
+3. You confuse fulfillment with friction => You feel most alive in the chase, not the arrival.
+
+4. You see more potential everywhere => There are dozens of other "enoughs" waiting to be explored.
+
+The cycle looks like this: Excitement > Obsession > Achievement > Boredom > Guilt > Escape > Repeat.
+
+1. Boredom from emotional avoidance
+
+2. Genuine expansion from dopamine-seeking detours
+
+Practice:
+
+1. Redefine "More" => Instead of more projects, try more depth.
+
+2. Turn maintenance into a game => ENTPs need variety—even in routine.
+
+3. Can you find the “new” in what you already have?
+
+4. Journal about it when you are achieving something.
+
+5. Satisfaction doesn’t have to be forever — it can just be a moment of wholeness => Enough only for now.
+
+6. Finding meaning not just in motion—but in presence => Finding meaning not just in motion—but in presence. You’ll always want more. But sometimes, the more you’re seeking...is already here.
+
+## 19. The Myth of Wasted Potential
+
+- You’re Not Behind. You’re Becoming.
+
+1. You’re so talented, if only you could…
+2. You’re brilliant, but you don’t follow through.
+3. You could do anything—so why haven’t you done everything?
+
+You internalize this like a curse:
+
+1. I'm capable… and yet somehow, still not enough.
+
+=> Your brain doesn’t register reality—it registers options.
+
+=> And every option not taken can feel like a failure… even if you chose joy, growth, or rest instead.
+
+2. To others, being multi-talented is impressive. To you, it can feel paralyzing.
+
+3. You feel guilt—like you’re "wasting" the gift.
+
+4. Like you should always be doing more, becoming more, proving more.
+
+=> You’re Not a Project, You’re a Person
+
+Notes:
+
+And ironically, the more you stress about maximizing it, the more frozen you become:
+
+- Too many options = indecision
+
+- Too much pressure = burnout
+
+- Too much shame = disconnection
+
+=> You need a better relationship with yourself.
+
+What to do:
+
+1. Stop Measuring Yourself By What You Could Have Done
+
+2. Let Go of the “One True Path” Myth: There is no single "right" version of your life.
+
+3. Thinking, healing, learning, recovering—these are real efforts, even if they don’t fit on a LinkedIn update.
+
+4. Maybe success isn’t about finishing one big thing. Maybe it’s about living a stimulating, creative, and impactful life—on your own terms.
+
+5. "I’m becoming.", "I’m evolving.", "I’m building depth instead of speed."
+
+Notes:
+
+=> ENTPs often struggle with the pressure to live up to their “limitless potential.”
+
+=> Potential isn’t a standard you must meet—it’s a possibility you explore.
+
+=> Success doesn’t have to look like completion—it can look like connection, creativity, and impact.
+
+=> You were never supposed to fit the mold. You were meant to reshape it.
+
+=> You don’t owe the world proof of your worth. You are the proof.
+
+## 20. Authenticity Without Apocalypse
+
+- You want to be radically authentic => But you also have a habit of dropping truth bombs that detonate relationships, routines, and reputations.
+
+=> But you also don’t want to burn down everything you’ve built just to feel real for 10 minutes.
+
+Your mind is wired to:
+
+1. Analyze inconsistencies
+2. Notice what’s unspoken
+3. Call out BS
+4. Break structures to make room for truth
+
+Authenticity often feels like:
+
+- Tearing off masks
+
+- Rejecting groupthink
+
+- Exploding comfort zones in the name of freedom
+
+=> You want to liberate myself.
+
+## 20.1. The “Burn-It-Down” Reflex
+
+- They feel trapped in inauthentic roles
+- They’ve overcommitted to something that no longer resonates
+- They’ve silenced themselves for too long and snap instead of speak
+- They confuse discomfort with dishonesty
+
+## 20.2. Authentic
+
+- Authentic: "warning a mask", "dropping grenades" AND "QUIET CLARIFY".
+
+1. Check the Urge to Perform Honesty
+
+- You want impact, not just expression.
+
+2. Time the Truth
+
+=> Every truth has a tempo.
+
+3. Practice Partial Disclosure
+
+- You don’t have to say everything to say something true.
+
+4. Let Yourself Evolve Without Explaining It
+
+- Sometimes, your inner change doesn’t need to be narrated—it just needs to be lived.
+
+5. Don’t Mistake Shock Value for Impact
+
+- You can tell the truth with skill, with grace, and without bulldozing someone else’s foundation.
+
+## 20.3. Preactice
+
+- Not:
+
+- Saying everything, all the time
+
+- Broadcasting your every shift in identity
+
+- Breaking up with people or projects just because they feel a little stale today
+
+But:
+
+- Living in alignment with your current values
+
+- Allowing yourself to change your mind without apology
+
+- Being honest in ways that invite connection—not isolation
+  Ashe, Warren. The ENTP Survival Guide (MBTI Survival Guide Book 14) (p. 83). Kindle Edition.
