@@ -2582,21 +2582,21 @@ Notes: IAM Policies are separated from the other entities above because they are
 
 ## 6.3. IAM Key Details:
 
-- IAM Services is a global services that is not limited by regions.
+1. IAM Services is a global services that is not limited by regions.
 
-- The root account with complete admin access is the account used to sign up for AWS => Create new user accounts is created later and send to email.
+2. The root account with complete admin access is the account used to sign up for AWS => Create new user accounts is created later and send to email.
 
-- New users accounts have no permissions => least privileges => permissions must be intentionally granted.
+3. New users accounts have no permissions => least privileges => permissions must be intentionally granted.
 
-- Access key ID + Secret -> grant the first time for them to programmatic access, created only once, if they lost simply create new key => Access key only to used in AWS CLI + SDK.
+4. Access key ID + Secret -> grant the first time for them to programmatic access, created only once, if they lost simply create new key => Access key only to used in AWS CLI + SDK.
 
-- Integrate with SSO (AWS SSO with Google, Azure AD, Okta) -> You can reuse existing identities in AWS.
+5. Integrate with SSO (AWS SSO with Google, Azure AD, Okta) -> You can reuse existing identities in AWS.
 
-- IAM Roles can be used for services (EC2) and humans (Alice, Bob).
+6. IAM Roles can be used for services (EC2) and humans (Alice, Bob).
 
-- IAM users can belong to many groups => But do not have subgroups in a IAM groups.
+7. IAM users can belong to many groups => But do not have subgroups in a IAM groups.
 
-- Tags in IAM Policies -> Define the resources that Alice (tagged Project=ProjectA) can only start/stop EC2 instances with the same tag or Bob (tagged Project=ProjectB) can only start/stop EC2 instances with his project tag = Subgroups.
+8. Tags in IAM Policies -> Define the resources that Alice (tagged Project=ProjectA) can only start/stop EC2 instances with the same tag or Bob (tagged Project=ProjectB) can only start/stop EC2 instances with his project tag = Subgroups.
 
 **⚙️ Step 1: Tag the IAM Users (Principals)**
 
@@ -2680,3 +2680,141 @@ Example:
 - Account-wide CSV report of all IAM users.
 
 => All IAM users in account
+
+# 7. Simple Storage Service (S3)
+
+## 7.1. S3 Simplified
+
+- Store in object storage.
+
+1. The data you want to store, store by address.
+
+2. Expand amount of metadata.
+
+3. A unique identifier so that data can be retrieved.
+
+- Data uploaded into S3 is spread accross multiple files and facilities => upper bound 5TB per file, can upload as much files as you want.
+
+=> S3 buckets required unique namespace as metadata to find it.
+
+## 7.2. S3 Key Details
+
+1. Objects (files or directories) => saved in S3 with key, value, versionID, metadata => also contain with acess control lists for object itself.
+
+2. Data consistency model in S3 => Only read access (GET) after PUT requests, now it apply for DELETE requests.
+
+3. High availability 99.999999999% (11 9s) for storage classes.
+
+4. Features:
+
+- Tiered storage and pricing variability.
+
+- Life cycle management for expire older content.
+
+- Versioning for version control.
+
+- Encryption for privacy.
+
+- MFA deletes to prevent malicious removal.
+
+- Access control list and bucket policies to secure the data.
+
+5. S3 charged by:
+
+- Storage size
+
+- Number of requests.
+
+- Storage management pricing (known as tiers).
+
+- Data tranfer out.
+
+- Tranfer acceleration (S3 to CDN CloudFront).
+
+- Cross region replication (more HA offered by default).
+
+6. S3 policies (bucket policies & IAM policies) are stored at the bucket or identity level, not per object
+
+=> Bucket policy secure data in bucket level, access control lists secure data in object level.
+
+7. By default, a newly created buckets are private.
+
+8. S3 can be configured to create access logs => Monitor who access what inside S3.
+
+9. We can share only a object rather than a bucket.
+
+10. There are 3 different ways to share S3 buckets across AWS accounts:
+
+- IAM + bucket policies to share entire buckets.
+- ACL + bucket policies to share objects.
+- For access via console and terminal, used cross-account IAM roles.
+
+11. S3 is great for static website => need index.html and error.html file.
+
+12. Wehn update load new files and have versioning enabled => They will not inherit properties of previous version.
+
+## 7.3. S3 Storage Classes
+
+1. **S3 Standard:** 99.99% availability with 11 9s durbility => store in multiple data centers, withstand with the failure of 2 concurent data centers.
+
+2. **S3 Infrequently Accessed (IA):** cheaper than S3 Standard, you are charged for retrieval when needed.
+
+3. **S3 One Zone Infrequently Access**: do not require high availability => Cheaper than IA, because the lack of HA.
+
+4. **S3 Intelligent Tiering:** Use ML/AI to determine the most cost-effective storage class, automatically moves data to the appropriate tier.
+
+5. **S3 Glacier:** low-cost storage class for data archiving => retrrieval time from minutes to hours.
+
+- Expedited: 1 - 5 minutes.
+
+- Standard: 3 - 5 hours.
+
+- Bulk: 5 - 12 hours, cheapest
+
+6. **S3 Deep Glacier:** The lowest cost S3 storage, retrieval can take 12 hours.
+
+**Notes:**
+
+- S3 Standard use HDD/SSD, Gracier used magnetic tape libraries.
+
+- Default S3 have 3 availability zones.
+
+## 7.4. S3 Encryption
+
+1. **Encryption in transit:** Use SSL/TLS from transfer from server A to server B.
+
+2. **Encryption At Rest:** encrypt when store in server, can be encrypt by server-side and client-side.
+
+- Server-side encrypt: encrypt when store to disk, decrypt when you access.
+
+- Client-side encrypt: You encrypt the object on your own.
+
+You can encrypt server-side using following ways:
+
+- **SSE-S3:** Fully managed by Amazon S3.
+
+- **SSE-KMS:** Managed in AWS KMS (Key Management Service).
+
+- **SSE-C:** You provide your own keys with each request.
+
+## 7.5. S3 Versioning
+
+## 7.6. S3 Lifecycle Management
+
+## 7.7. S3 Cross Region Replication
+
+## 7.8. S3 Transfer Acceleration
+
+## 7.9. S3 Event Notications
+
+## 7.10. S3 and ElasticSearch
+
+## 7.11. Maximizing S3 Read/Write Performance
+
+## 7.12. S3 Server Access Logging
+
+## 7.13. S3 Multipart Upload
+
+## 7.14. S3 Pre-signed URLs
+
+## 7.15. S3 Select
