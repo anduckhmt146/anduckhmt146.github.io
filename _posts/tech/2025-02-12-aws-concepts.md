@@ -2850,9 +2850,31 @@ Notes: expiration = automatic deletion
 
 ## 7.7. S3 Cross Region Replication
 
+Replicate from one-region to another region: Bucket A (us-east-1) -> Bucket B (ap-southeast-1).
+
+1. Cross regitioning replication works if versioning is enabled.
+
+2. Only new uploads to original bucket are replicated => all subsequent updates are replicated.
+
+3. When you replicate from one bucket to another => you can change storage tier and ownership if you want.
+
+4. When files are deleted in the original bucket => do not sync the deleted to the replicas.
+
 ## 7.8. S3 Transfer Acceleration
 
+1. Send data to CloudFront CDN rather than download from the origin.
+
+2. Or you can uplodate directly to edge location instead of bucket itself -> sync backbone later.
+
 ## 7.9. S3 Event Notications
+
+- S3 notification allow you to receive and send notification when certain events happened in the bucket
+
+1. **Amazon SNS:** manage delivery and send of messages by subcribing endpoints or clients.
+
+2. **Amazon SQS:** storing message as message queue.
+
+3. **AWS Lambda**: after user upload the object, run the lambda function.
 
 ## 7.10. S3 and ElasticSearch
 
