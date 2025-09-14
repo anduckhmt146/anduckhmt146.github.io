@@ -2509,3 +2509,53 @@ Response times:
 - **Service limit increases:** Default service quota (or limit) increases can be opened by all customers
 
 - **Technical support:** Technical support cases can only be opened by customers on the Developer, Business, Enterprise plans
+
+---
+
+# 5. Dive deep Associate Software Architect AWS
+
+## 5.1. Exam Weight
+
+1. **Design Resilient (30%)**
+
+- Design a multi-tier architecture.
+
+- Design highly available and fault-tolerance.
+
+- Design decoupling mechanism.
+
+- Choose appropriate resilient storage.
+
+2. **Design High-Performance (28%)**
+
+- Identify elastic and scalable compute service.
+
+- Identify elastic and scalable storage service.
+
+- Identify elastic and scalable networking service.
+
+- Identify elastic and scalable database service.
+
+3. **Design Security (24%)**
+
+- Design for secure access.
+
+- Design secure application tiers.
+
+- Choose data security services.
+
+4. **Design Cost-optimized (18%)**
+
+- Design cost-effective storage.
+
+- Design cost-effective compute service.
+
+- Design cost-optimized network service.
+
+## 5.2. FAQs in tab Products in docs
+
+- Docs: [https://aws.amazon.com/](https://aws.amazon.com/)
+
+# 6. Identity Access Management (IAM)
+
+## 6.1. IAM Simplified
