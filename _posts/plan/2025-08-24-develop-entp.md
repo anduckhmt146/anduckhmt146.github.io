@@ -364,14 +364,14 @@ Authenticity often feels like:
 
 => You want to liberate myself.
 
-## 20.1. The “Burn-It-Down” Reflex
+### 20.1. The “Burn-It-Down” Reflex
 
 - They feel trapped in inauthentic roles
 - They’ve overcommitted to something that no longer resonates
 - They’ve silenced themselves for too long and snap instead of speak
 - They confuse discomfort with dishonesty
 
-## 20.2. Authentic
+### 20.2. Authentic
 
 - Authentic: "warning a mask", "dropping grenades" AND "QUIET CLARIFY".
 
@@ -395,7 +395,7 @@ Authenticity often feels like:
 
 - You can tell the truth with skill, with grace, and without bulldozing someone else’s foundation.
 
-## 20.3. Preactice
+### 20.3. Practice
 
 - Not:
 
@@ -413,3 +413,67 @@ But:
 
 - Being honest in ways that invite connection—not isolation
   Ashe, Warren. The ENTP Survival Guide (MBTI Survival Guide Book 14) (p. 83). Kindle Edition.
+
+## 21. Multipassionate, not Messy
+
+- You're not chaotic => You're curious.
+
+- You’re not scattered => You’re multipassionate.
+
+- You’re not indecisive => You’re expansive.
+
+### 21.1. Why ENTPs Struggle with "One Thing" Pressure
+
+- You thrive in breadth, not just depth.
+
+- You’re energized by the new, the unknown, the challenge
+
+To others, that can look like:
+
+- Abandonment
+- Lack of focus
+- Never finishing anything
+
+The Multipassion Cycle:
+
+1. Spark of inspiration
+
+2. Obsessive deep-dive
+
+3. Initial momentum
+
+4. Skill growth
+
+5. Existential boredom
+
+=> You don’t fear hard work—you fear stagnation.
+
+### 21.2. Harness multipassion without meltdown
+
+1. Rebrand "Scattered" as "Syntropic"
+
+- You are gathering pieces
+
+2. Use Containers, Not Chains
+
+- You just need a system to rotate and revisit (90-day creative seasons) => Not a one forever.
+
+=> One "deep" project, one "light" experiment at a time.
+
+3. Track themes, not titles
+
+- Your passion looks different -> But it the same in your voice, your vision, your problem-solving.
+
+4. Make peace with nonlinear progress
+
+=> Buff max by energy.
+
+5. Stop apologizing for what lights you up
+
+- Explain why you started a new thing.
+
+=> You're not falling because you haven't not settled down for one thing
+
+=> You're succeeding at being fully, unapologetically engaged with life.
+
+## 22. Your brain's a jetpack - Now build the landing gear
