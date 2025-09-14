@@ -2799,7 +2799,54 @@ You can encrypt server-side using following ways:
 
 ## 7.5. S3 Versioning
 
+1. When versioning is enabled, S3 stores all versions of an object including all writes and even deletes.
+
+2. Used to backup content.
+
+3. Same as Git.
+
+4. Once versioning is enabled on a bucket -> cannot disabled, only suspended.
+
+5. Versioning: allow you to set rules to expire, mingrate data based on version.
+
+6. Versoning required MFA when delete a version.
+
 ## 7.6. S3 Lifecycle Management
+
+1. Automate move objects between storage tiers.
+
+2. Used to conjunction with versioning.
+
+3. Life cycle rule to use both current and previous versions of an object.
+
+```json
+{
+  "Rules": [
+    {
+      "ID": "MoveLogsToGlacierAndExpire",
+      "Filter": {
+        "Prefix": "logs/"
+      },
+      "Status": "Enabled",
+      "Transitions": [
+        {
+          "Days": 30,
+          "StorageClass": "STANDARD_IA"
+        },
+        {
+          "Days": 90,
+          "StorageClass": "GLACIER"
+        }
+      ],
+      "Expiration": {
+        "Days": 730
+      }
+    }
+  ]
+}
+```
+
+Notes: expiration = automatic deletion
 
 ## 7.7. S3 Cross Region Replication
 
