@@ -2559,3 +2559,124 @@ Response times:
 # 6. Identity Access Management (IAM)
 
 ## 6.1. IAM Simplified
+
+- Config control intergrated with all AWS services in level of permissions.
+
+- Integrate with MFA.
+
+- Support PCI DSS for payment card industry
+
+## 6.2 IAM Entities
+
+- **Users:** any individual end users, e.g employee, SA, CTO,...
+
+- **Groups:** collection of users shared permissions.
+
+- **Roles:** Any software services needs to be granted permissions to do it job => AWS Lambda needing write permission to S3.
+
+---
+
+Notes: IAM Policies are separated from the other entities above because they are not an IAM Identity
+
+- **Policies:**: IAM Policies used to describe the entities roles.
+
+## 6.3. IAM Key Details:
+
+- IAM Services is a global services that is not limited by regions.
+
+- The root account with complete admin access is the account used to sign up for AWS => Create new user accounts is created later and send to email.
+
+- New users accounts have no permissions => least privileges => permissions must be intentionally granted.
+
+- Access key ID + Secret -> grant the first time for them to programmatic access, created only once, if they lost simply create new key => Access key only to used in AWS CLI + SDK.
+
+- Integrate with SSO (AWS SSO with Google, Azure AD, Okta) -> You can reuse existing identities in AWS.
+
+- IAM Roles can be used for services (EC2) and humans (Alice, Bob).
+
+- IAM users can belong to many groups => But do not have subgroups in a IAM groups.
+
+- Tags in IAM Policies -> Define the resources that Alice (tagged Project=ProjectA) can only start/stop EC2 instances with the same tag or Bob (tagged Project=ProjectB) can only start/stop EC2 instances with his project tag = Subgroups.
+
+**⚙️ Step 1: Tag the IAM Users (Principals)**
+
+- Go to IAM → Users → Alice → Tags
+
+  - Add tag: Key = Project, Value = ProjectA
+
+- Go to IAM → Users → Bob → Tags
+
+  - Add tag: Key = Project, Value = ProjectB
+
+**⚙️ Step 2: Tag the EC2 Instances (Resources)**
+
+- Go to EC2 → Instances → Tags
+
+- For instances belonging to Alice’s project:
+
+  - Add tag: Key = Project, Value = ProjectA
+
+- For instances belonging to Bob’s project:
+
+  - Add tag: Key = Project, Value = ProjectB
+
+Sample:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["ec2:StartInstances", "ec2:StopInstances"],
+      "Resource": "arn:aws:ec2:us-east-1:123456789012:instance/*",
+      "Condition": {
+        "StringEquals": {
+          "aws:ResourceTag/Project": "${aws:PrincipalTag/Project}"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": "ec2:DescribeInstances",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+## 6.4. Priority Levels in IAM
+
+1. Explicit Deny: denies access to particular resource.
+
+2. Explicit Allow: allows access to particular resource so long as there is not an associated Explicit Deny.
+
+3. Default Deny (or Implicit Deny): access instead must be granted.
+
+Example:
+
+1. **Group policy:**
+
+- Allow s3:\* on arn:aws:s3:::project-bucket/\* (developers can do everything in S3)
+
+2. **Company policy:**
+
+- Explicitly Deny s3:DeleteObject everywhere
+
+=> Used it to overwrite the resource policies.
+
+## 6.5. IAM Security Tools
+
+1. **IAM Access Advisor (user level)**
+
+- Which services an IAM user or role is allowed to access (based on policies)
+
+=> Identify unused permissions → apply least privilege.
+
+=> Single user/role
+
+2. **IAM Credential Report**
+
+- Account-wide CSV report of all IAM users.
+
+=> All IAM users in account
