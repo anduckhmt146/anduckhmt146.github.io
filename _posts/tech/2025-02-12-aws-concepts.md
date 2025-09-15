@@ -3066,3 +3066,29 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 - Snowball (regular): data transfer only, no compute.
 
 - Snowmobile: massive-scale data transfer (up to 100 PB), no compute, physically a truck/container.
+
+# 10. Storage Gateway
+
+## 10.1. Storage Gateway Simplified
+
+1. Used to connect from on-primes to cloud.
+
+2. Three types: File Gateway, Volume Gateway, Tape Gateway.
+
+## 10.2. Storage Gateway Key Details
+
+1. Physical device or VM image downloaded onto a host in an on-prem data center => bridge to send and receive data from AWS.
+
+2. Storage Gateway can be stored in Linux Machine and Window Machines.
+
+3. Three types of Storage Gateways:
+
+- **File Gateway:** File system mount on S3, operates by NFS and SMB.
+
+- **Volume Gateway:** virtual hard disk on the cloud => block storage, operates by iSCSI.
+
+- **Tape Gateway**: Backup to the cloud, for Amazon S3 Glacier or Glacier Deep Archive.
+
+**Notes:** Block Storage => Random Access, Tape Gateway => Load the tap before read/write.
+
+## 10.3. Stored Volumes vs. Cached Volumes:
