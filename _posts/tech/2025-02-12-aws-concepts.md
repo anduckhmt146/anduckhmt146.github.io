@@ -3057,4 +3057,12 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 1. Snowball Edge: Storage + Compute device (you can start EC2 in snowball edge) => Your workloads run locally, so you don’t need internet => Mini AWS data center at the edge => Up to 100 TB
 
-2. Snowmobile: Up to 100 PB per truck => Truck container real.
+2. Snowmobile: Up to 100 PB per truck => Truck container real => Truck container
+
+**Notes:**
+
+- Snowball Edge: data transfer + edge computing. You can run compute workloads locally on the device => Processing data locally reduces the amount of data.
+
+- Snowball (regular): data transfer only, no compute.
+
+- Snowmobile: massive-scale data transfer (up to 100 PB), no compute, physically a truck/container.
