@@ -2908,6 +2908,69 @@ Notes: Server Access Logs are not real time, it deliver by batching 5 - 60 minut
 
 ## 7.13. S3 Multipart Upload
 
+1. Multipart upload allows you upload a single object as a set of parts => you can upload objects indepedently in any order.
+
+2. Mulipart uploads is recommended to upload file over 100MB, and force for 5GB.
+
+3. If a transmission of any parts failed => you can retransmit the part without affecting other parts. After all parts of your objects are uploaded, Amazon S3 assembles these parts and creates the object.
+
+4. Why to use multipart upload:
+
+- When you have the size of the final object.
+- Improve throughtput.
+- Multipart have ability to pause and resume object uploads.
+- Quick recovery from network issues.
+
+5. You can use byte-range fetchs by the download.
+
+=> If there's a failure during the download, they can just to download by specific byte range and not the whole object.
+
+=> Modern browser auto know how to request a byte range.
+
+Example:
+
+Range: bytes=0-499999
+
+Range: bytes=500000-999999
+
+... and so on.
+
 ## 7.14. S3 Pre-signed URLs
 
+1. All S3 object are private by default => bucket owner can share the private objects temporarily without changing the permissions to the public.
+
+2. By creating pre-signed URL, you can grant time-limited permission to download private S3 objects.
+
+3. When you create pre-signed URL, you must do the following:
+
+- Provide security credentitals.
+
+- Specify the bucket.
+
+- Specify the object key.
+
+- Specify HTTP method.
+
+- Specify the expiration time.
+
+4. The pre-signed URL only valid only in the specified duration and who received the pre-signed url within the duration can access the object => Client only need pre-signed url to upload image and you can have multiple clients.
+
+5. Used for client upload rather than server.
+
 ## 7.15. S3 Select
+
+1. S3 Select used to pull out any the data yoy need from an object, which can reduce the cost of application need to access S3.
+
+2. S3 Select enables application to offload the heavy lifting of filtering and accessing data inside objects to the Amazon S3.
+
+3. For example, if you have data of 200 retailer stores
+
+- Without S3 Select, you would download the entire CSV file to get the data you need.
+
+- With S3 Select, you can use SQL expression to return data from the store you're interested in.
+
+4. By select the data that you want, S3 Select can improve the performance of most application that frequently access data.
+
+5. You can use S3 Select for Gracier.
+
+Notes: Amazon S3 Select is a feature that lets you run SQL-like queries directly on the contents of objects in S3, without needing to download and process the entire file.
