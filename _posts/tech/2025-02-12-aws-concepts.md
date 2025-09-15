@@ -2866,7 +2866,7 @@ Replicate from one-region to another region: Bucket A (us-east-1) -> Bucket B (a
 
 2. Or you can uplodate directly to edge location instead of bucket itself -> sync backbone later.
 
-## 7.9. S3 Event Notications
+## 7.9. S3 Event Notifications
 
 - S3 notification allow you to receive and send notification when certain events happened in the bucket
 
@@ -2878,9 +2878,33 @@ Replicate from one-region to another region: Bucket A (us-east-1) -> Bucket B (a
 
 ## 7.10. S3 and ElasticSearch
 
+1. Use S3 to store log files, ElasticSearch provides full search capacities for logs can be used to search through data stored in S3 buckets.
+
+2. After logs recieved in S3, trigger event lambda to write it to ElasticSearch.
+
 ## 7.11. Maximizing S3 Read/Write Performance
 
+1. Naming with sequential date-based prefix => S3 automatically partition to improve read/write query performance.
+
+2. If S3 have high GET requests => consider using AWS CloudFront => lower latency and highger data transfer rate (cache for S3) + reduce query cost to S3.
+
 ## 7.12. S3 Server Access Logging
+
+1. Server access logging: store every requests you made to the bucket => audit and security, aware of S3 bill.
+
+2. By default, logging is disabled => When enabled it store into a bucket of the same AWS region with source bucket.
+
+3. Each access log provides detail: who, what, when make requests => requester, bucket name, request time, request action, response status, error code.
+
+4. What it do:
+
+- S3 periodically collects access log records of the bucket you want to monitor.
+
+- S3 then consoliates those records into a log files.
+
+- S3 finally uploads the log files into a secondary monitoring bucket as log objects.
+
+Notes: Server Access Logs are not real time, it deliver by batching 5 - 60 minutes.
 
 ## 7.13. S3 Multipart Upload
 
