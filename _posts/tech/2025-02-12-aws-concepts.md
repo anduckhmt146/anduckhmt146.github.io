@@ -3052,3 +3052,9 @@ Notes: Same as USB with hard-drive
 => You can make the same transfer about a week using multiple Snowballs.
 
 Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
+
+## 9.3. Snowball Edge and Snowmobile:
+
+1. Snowball Edge: Storage + Compute device (you can start EC2 in snowball edge) => Your workloads run locally, so you don’t need internet => Mini AWS data center at the edge => Up to 100 TB
+
+2. Snowmobile: Up to 100 PB per truck => Truck container real.
