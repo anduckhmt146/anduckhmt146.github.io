@@ -2974,3 +2974,81 @@ Range: bytes=500000-999999
 5. You can use S3 Select for Gracier.
 
 Notes: Amazon S3 Select is a feature that lets you run SQL-like queries directly on the contents of objects in S3, without needing to download and process the entire file.
+
+# 8. CloudFront
+
+## 8.1. CloudFront Simplified
+
+Contain 3 components:
+
+- Edge locations: The global network of data centers where CloudFront caches content.
+
+- Origins: Where S3 fetch data when have not cached, it's the source of truth.
+
+- Distributions: Where to get your content (the origin), How to deliver it to users (HTTP, HTTPs) => Adapter to serve content.
+
+## 8.2. CloudFront Key Details:
+
+1. When content is cached, it is called by TTL in seconds.
+
+2. If needed, CloudFront can serve the entire websites.
+
+3. Requests always routed and cached into nearest CDN for the user, progapagting the CDN nodes to make best performance for future requests.
+
+4. There are 2 types of distributions:
+
+- Web distribution: website, cached items.
+- RTMP (Real-time messaging protocol): streaming content, adobe.
+
+5. Edge locations: can be written, and return value back to the origin later.
+
+6. Cached content: can be manually invalidated or cleared beyond TTL.
+
+7. You can invalidate the distribution => loaded directly to the origin.
+
+8. You can set up failover for the origin -> 1 origin group with 2 origin inside, CDN automatically switch between to the secondary origin if the primary origin failed.
+
+9. AWS CloudFront delivers content from edge location and offers Dedicated IP Custom SSL => Static IP + SSL certificate is tied directly to that IP => AWS CloudFront give you a free DNS.
+
+10. You can enable log in AWS CloudFront:
+
+- Enable CloudFront access logs.
+- Capture requests send to CloudFront API.
+
+11. An Origin Access Identity (OAI): Used for CloudFront to fetch data from S3 (prviate mode).
+
+## 8.3. CloudFront Signed URLs and Signed Cookies
+
+1. CloudFront: signed URL and signed cookie => Allow you use to restrict the content in the Internet. As an example, users who have paid a fee, should be access private content.
+
+2. When to used signed URL and signed cookie
+
+- Signed URLs: A URL with an embedded signature + expiration timestamp => Use to 1 file.
+
+- Signed Cookie: A cookie that contains a signature + expiration timestamp, set in the browser => Use to multiple files.
+
+# 9. Snowball
+
+## 9.1. Snowball Simplified:
+
+- Used to store peta-byte scale data transport solution in LAN network.
+
+- It use large disk to store data
+
+Notes: Same as USB with hard-drive
+
+![](/images/System-Design/AWS/snowball.png)
+
+## 9.2. Snowball Key Details
+
+1. When you need a secure and quick data transfer ranging in terabytes to petabytes into AWS.
+
+2. If you don't want to make expensive upgrades to network infrastructure => do not want to spend money to high-speed internet connections.
+
+3. Rule: If you takes more than one week to upload your data into AWS using existing internet connection, used Snowball.
+
+4. For example, if you have 100MB connection to transfer 100TB of data => You take more than 100 days to tranfer all data to Internet with that connection.
+
+=> You can make the same transfer about a week using multiple Snowballs.
+
+Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
