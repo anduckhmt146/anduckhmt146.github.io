@@ -3089,6 +3089,26 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 - **Tape Gateway**: Backup to the cloud, for Amazon S3 Glacier or Glacier Deep Archive.
 
-**Notes:** Block Storage => Random Access, Tape Gateway => Load the tap before read/write.
+**Notes:**
 
-## 10.3. Stored Volumes vs. Cached Volumes:
+1. Block Storage (fixed-sized block) => Random Access
+
+2. Tape Gateway (full sequential) => Load the tap before read/write.
+
+- Metadata: is still stored metadata: ownership, permissions, timestamp => Push to S3 to manange: versioning, lifecycle management, bucket policies, cross-region replication => Apply to S3.
+
+- Volume Gateway: using iSCSI block protocol => Backup to AWS EBS as snapshot (S3 only store object, EBS store block) => EBS is S3 version for block storage (OS boot and system files + database)
+
+- Tape Gateway: store sequential data
+
+- Virtual Tape Library: Stores data on disk or cloud cache first -> much faster write speed than physical tape.
+
+## 10.3. Stored Volumes vs. Cached Volumes
+
+- **Stored Volumes:** Primary data is stored locally on-premises, store all data on-prems serve faster => Asynchronously sync to S3.
+
+=> Best when: You need low-latency local access and offsite backups.
+
+- **Cached Volumes** Primary data is stored in Amazon S3 => Only recently accessed data (cache) is kept locally for fast access.
+
+=> Best when: You need low-latency for frequently used data, but want to scale storage in S3.
