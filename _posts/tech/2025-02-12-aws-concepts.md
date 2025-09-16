@@ -3112,3 +3112,55 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 - **Cached Volumes** Primary data is stored in Amazon S3 => Only recently accessed data (cache) is kept locally for fast access.
 
 => Best when: You need low-latency for frequently used data, but want to scale storage in S3.
+
+# 11. Elastic Compute Cloud (EC2)
+
+## 11.1. EC2 Simplified:
+
+- EC2 can be scale up and down quickly in the cloud.
+
+- EC2 its configuration at launch as a copy of Amazon Image Machine (AMI)
+
+=> EC2 pay as you go, pay for what you use, pay less when you reserve capacity
+
+- When running, you are charged by: CPU, memory, storage, networking.
+
+- When stop, you are charged by: EBS storage
+
+=> The OS need block device to boot the OS.
+
+**Example:** When you open a 1GB file, it do not load full 1GB file => it load 4KB by block into RAM to read it.
+
+## 11.2. EC2 Key Details:
+
+1. AMI (Amazon Machine Image) is basically a template + Instance Type -> defines the hardware (CPU, RAM) => Same AMI (Linux) can have multiple instances t3.micro, m6i.large, p4d.24xlarge.
+
+2. Mutiple AMI instances from 1 template: 1 AMI can have multiple instances.
+
+3. Dedicate Host: You have the option to have dedicated tenancy in your instance => You can have exclusive access to physical hardware in AWS data center.
+
+4. EC2 VMs: you can importing your VMs into AWS using VMware ESX, VMware Workstation, Microsoft Hyper-V, or Citrix Xen.
+
+5. Placement Group: When you launch instances, AWS place instance in different hardware across different locations => Placement Group is group all instances in the same Availability Zone.
+
+6. User data: When EC2 start, you have option to pass user data to the instance starts => configuration tasks or scripts.
+
+7. Elastic IP: Persistent public IP address to the same instance, or to refer to an external DNS hostname.
+
+8. EC2 RDS: can be used to self-manage a SQL database.
+
+9. Personal AMI: can be used as template to launch new instances.
+
+10. Instance status check: health check EC2 server.
+
+11. System Status Check: monitor health of underlying hypervisor => restart EC2 it will start up with new hypervisor.
+
+## 11.3. EC2 Instance Pricing:
+
+## 11.4. Standard Reserved vs. Convertible Reserved vs. Scheduled Reserved:
+
+## 11.5. EC2 Instance Lifecycle:
+
+## 11.6. EC2 Security:
+
+## 11.7. EC2 Placement Groups:
