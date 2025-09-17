@@ -3113,6 +3113,8 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 => Best when: You need low-latency for frequently used data, but want to scale storage in S3.
 
+---
+
 # 11. Elastic Compute Cloud (EC2)
 
 ## 11.1. EC2 Simplified:
@@ -3219,6 +3221,70 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 3. Unique name: Each placement group name must be unique.
 
-4. Move instances: You can move existing instance to another group => when it is in the stopped state. You can move instance using CLI, SDK but not console
+4. Move instances: You can move existing instance to another group => when it is in the stopped state. You can move instance using CLI, SDK but not console.
 
 5. Or you can take snapshot of the existing instances => convert into an AMI, launch it in placement group that you want.
+
+# 12. Elastic Block Store (EBS)
+
+## 12.1. EBS Simplified
+
+- EBS: cloud-based virtual hard disk.
+
+- Can be used as storage with frequent updates: system drive for an instance, storage of database application.
+
+=> EBS is only disk, we load data from disk to RAM to process.
+
+## 12.2. EBS Key Details
+
+1. EBS volumes persist independently from EC2 instances.
+
+2. Each EBS volume can replicated with multiple Availability Zones to protect both component failures.
+
+3. There are 5 types of EBS storage:
+
+1) SSD: General purpose.
+
+2) IOPS: Fast speed.
+
+3) Throughput Optimized Hard Disk Drive: Large data loads.
+
+4) Cold Hard Disk Drive: less frequently access workloads.
+
+5) Magnetic
+
+4. EBS Volumes have 99.999%, 5 9s SLA.
+
+5. EBS and EC2 is in the same availability zone, AMI is reference to an EBS.
+
+6. EBS volume: can be attached to 1 EC2 at a time => To prevent conflict => seperate disk.
+
+7. EBS snapshots in S3 are stored as objects, but when restored, AWS rehydrates them back into block storage volumes.
+
+8. Notes: EBS you see as virtual disk in cloud => But in real world it is in a real disk.
+
+9. Notes: About EBS snapshot, it stores actual block data (but stored as objects), plus metadata needed to reconstruct a full volume later.
+
+10. After you create a volume => You can attached it to any EC2 that you want.
+
+11. Point-in-time snapshot: An EBS snapshot changed in time
+
+12. Notes: AMI (Root volume template, Launch permissions, Block device mapping) (Metadata) + EC2 instance type (vCPU count, RAM, Network bandwidth) + EBS (disk storage, snapshot)
+
+13. AMI as a template to launch an instance. What a pre-made AMI contains => Root disk image (OS + preinstalled packages), Block device mappings (what EBS volumes to attach), Permissions (who can use it).
+
+14. EBS containts: AMI + real users files.
+
+15. Categories to choose AMI: OS, CPU Architecture (32-bit, 64-bit), some OS run in only 64 bit, Region, Launch permissions (who can launch instances from AMI), Root device storage (EBS, Boot disk) => Store disk, load RAM.
+
+16. You can copy AMIs to new region, but when copy to new region it do not copy permissions from AMI to new AMI.
+
+17. You can changed EBS volumes when needed on the fly.
+
+## 12.3. SSD vs HDD
+
+## 12.4. EBS Snapshots
+
+## 12.5. EBS Root Device Storage
+
+## 12.6. EBS Encryption
