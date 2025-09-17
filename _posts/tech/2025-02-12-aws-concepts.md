@@ -3157,10 +3157,68 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 ## 11.3. EC2 Instance Pricing:
 
+1. **On-demand instances:** pay-as-you-go, no long-term commitment.
+
+2. **Reversed instances:** 1-3 years contract terms.
+
+3. **Spot instances:** can be revoked if AWS do not have enough compute engine.
+
 ## 11.4. Standard Reserved vs. Convertible Reserved vs. Scheduled Reserved:
+
+1. **Standard Reserved Instances**: 75% off of on-demand instances, cannot be moved between regions and changed the instance type => Fixed instance => only in 1 region or availability zone => Because each region have different tax price.
+
+2. **Convertible Reserved Instances**: 54% off on-demand methods, can change regions and instance type.
+
+=> After exchanging a Convertible RI: your new charges are recalculated based on the on-demand price of the new instance type/region, minus the RI discount.
+
+3. **Scheduled Reserved Instances:** you only run in the schedule time, for example: in education during in school hours.
 
 ## 11.5. EC2 Instance Lifecycle:
 
+1. **pending:** is starting in the first time => not billing.
+
+2. **running:** running when used => billing.
+
+3. **stopping:** prepare to stop => not bill in preparing to stop, billed if it is prepared to hibernate (sleep).
+
+4. **stopped:** stopped => not billed.
+
+5. **shutting-down:** prepare to terminated => not billed.
+
+6. **terminated:** is deleted => not billed.
+
+=> Only billed when run and sleep.
+
 ## 11.6. EC2 Security:
 
+1. AWS EC2 Responsible: When deploy EC2 instance, you are responsible for guest operating system + installed application + AWS-provided firewall.
+
+2. Turn on terminated mode protect: You can turn on this to prevent terminate EC2.
+
+3. Encryption ssh: EC2 used public key and private key to encrypt data.
+
+4. Encrypt volume: You can encrypt the device volume (system files, applications) where you install the underlying OS => Or you can encrypt the EBS.
+
+5. When an EC2 is terminated:
+
+- Deleted the root EBS volume (always attacted to the EC2)
+
+- Do not delete other attached EBS.
+
 ## 11.7. EC2 Placement Groups:
+
+1. The more you care about risk, the more you want to isolates instances from each other.
+
+2. There are 3 types of placement groups:
+
+1) **Clustered Placement Groups (all instances in 1 placement group):** put all instances in a single availability zone.
+
+2) **Spread Placement Groups (Partition by 1):** EC2 in a group is in different racks, seperate power source and network => isolated failure => each availability zone have 1 instance.
+
+3) **Partitioned Placement Groups (Partition by 3 - 4 or more instances):** Same with Spread Placement Groups, but you can have 3-4 instances in a group.
+
+3. Unique name: Each placement group name must be unique.
+
+4. Move instances: You can move existing instance to another group => when it is in the stopped state. You can move instance using CLI, SDK but not console
+
+5. Or you can take snapshot of the existing instances => convert into an AMI, launch it in placement group that you want.
