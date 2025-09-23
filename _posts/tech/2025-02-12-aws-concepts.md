@@ -3283,7 +3283,15 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 ## 12.3. SSD vs HDD
 
+- HDD: Uses spinning magnetic disks (platters) to read/write data with a mechanical arm => Đĩa real => Cheap large storage
+
+- SSD: Uses flash memory (no moving parts) to store data, like a big USB stick => Flash Memory => Optimize speed, durability, and silence
+
 ## 12.4. EBS Snapshots
+
+1. EBS Snapshot: point in time copies of disk current state.
+
+2. EBS Region: store in the region where it was created.
 
 ## 12.5. EBS Root Device Storage
 
