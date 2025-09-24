@@ -3338,3 +3338,31 @@ Notes:
 - Instance Store: Store in instance.
 
 ## 12.6. EBS Encryption
+
+1. EBS auto encryption: encrypt the resource and secure your own key management.
+
+2. AWS Key Management Service (AWS KMS): store keys to encrypted volumes and snapshots.
+
+3. You can encrypt root device (Instance store) + secondary volumes.
+
+- Data at rest inside the volume
+
+- All data moving between the volume and the instance
+
+- All snapshots created from the volume
+
+- All volumes created from those snapshots
+
+Notes:
+
+- EBS store in hard disk (HDD/SSD).
+
+- EBS Snapshots store in S3.
+
+4. ASE-256 Algorithm: used to encrypt snapshots.
+
+5. Create a EBS snapshot -> Encrypt it -> Create AMI -> EC2 (encrypt with Instance Store).
+
+Notes: 
+
+- EBS used to create AMI.
