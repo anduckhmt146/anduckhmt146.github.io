@@ -3293,6 +3293,44 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 2. EBS Region: store in the region where it was created.
 
+3. Snapshot: In the first snapshot, it copy entire value => Else it copy only changes like Git.
+
+4. Snapshot asynchronously: it is sync up asynchronously so the volume can be used as normal.
+
+5. Stop the instance: when create a future root device.
+
+6. Move EC2 to another availability zone: take another snapshot.
+
+7. When create AMI from snapshot: use highware-assisted to General Purpose SSD -> Throughput Optimized HDD.
+
+8. Old instance -> Snapshot -> Image (AMI) -> New instance
+
+9. Remove EBS in instance: You cannot delete a snapshot of an EBS Volume that is used as the root device of a registered AMI. To delete an EBS Snapshot attached to a registered AMI, first remove the AMI, then the snapshot can be deleted.
+
 ## 12.5. EBS Root Device Storage
+
+1. AMI root volumes: EBS-backend and Instance Store-backed (a temporary hard drive that lives and dies with the instance).
+
+2. When you delete an EC2 instance that was using an Instance Store-backed root volume, your root volume will also deleted.
+
+3. If you use an EBS-backed root volume, the root volume will not be terminated with its EC2 instance when the instance is brought offine.
+
+4. EBS-backed Volumes are launched from an AWS EBS snapshot.
+
+5. Instance Store-backed Volumes are launched from an AWS S3 stored template.
+
+6. When to use one over the other?
+
+- Use EBS for DB data, critical logs, and application configs.
+
+- Use instance storage for in-process data, noncritical logs, and transient application state => Cache memory.
+
+- Use S3 for data shared between systems like input datasets and processed results, or for static data needed by each new system when launched.
+
+Notes:
+
+- EFS is belong to multiple instances.
+
+- EBS is map to 1 instance.
 
 ## 12.6. EBS Encryption
