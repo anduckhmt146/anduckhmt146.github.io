@@ -3426,3 +3426,41 @@ Notes:
 8. Elastic Fabric Adapter: high-performance network interface for EC2 instances.
 
 9. VPC Flow log: capture information about the IP traffic going to and from a network interface.
+
+# 14. Security Groups
+
+## 14.1. Security Groups Simplified
+
+- Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2.
+
+- Like a virtual firewall in EC2 layer, at instance level not subnet level.
+
+## 14.2. Security Groups Key Details
+
+1. NACLs: inbound and outbound of the subnet, security groups is in the instance.
+
+2. Security Groups (ports): list of **ports** used in EC2 instances, NACLs is list of **IPs** can be connected with this host.
+
+3. Security Groups are stateful: Whenever you create an inbound rule, an outbound rule is created immediately => Keep connections.
+
+4. NACLs: stateless, do not remember to keep connections.
+
+5. **Allow-only model**: You can only config ALLOW traffic (inbound and outbound) => Default is denied, NACLs support both ALLOW and DENY.
+
+6. Security Groups in only 1 VPC: Cannot share security groups between multiple VPCs => Security Groups is attached to 1 IP.
+
+7. Security Groups are regional: can span AZs, but can't be cross-region.
+
+8. Outbound rules: exist if you need to connect your server to a different service such as an API endpoint or a DB backend.
+
+9. Inbound rules: enable the ALLOW rule for the correct port though so that tra c can leave EC2 and enter the other AWS service.
+
+10. Multiple security groups: in a EC2.
+
+11. Multiple EC2s: at a security groups.
+
+12. ou can allow traffic into your instance either from one IP (/32), a whole range of IPs (CIDR block), or from all resources inside another Security Group.
+
+13. You cannot block speci c IP addresses with Security Group (default blocked).
+
+14. You can increase your Security Group limit
