@@ -3363,6 +3363,66 @@ Notes:
 
 5. Create a EBS snapshot -> Encrypt it -> Create AMI -> EC2 (encrypt with Instance Store).
 
-Notes: 
+Notes:
 
 - EBS used to create AMI.
+
+# 13. Elastic Network Interfaces (ENI)
+
+## 13.1. ENI Simplified
+
+- Virtual network card.
+
+- A network card also called Network Interface Card – NIC, LAN card, or network adapter is hardware that allows a computer, server, or other device to connect to a network.
+
+- When you move a network interface from one instance to another, network traffic is redirect to new instance.
+
+## 13.2. ENI Key Details:
+
+1. ENI: low-budget, high-availability network solutions
+
+2. Enhanced Network ENI: high network throughput, higher bandwidth, higher packet per second (PPS) performance.
+
+3. Adding more ENIs won’t necessarily speed up your network throughput, but Enhanced Networking ENI will.
+
+4. Enhanced Network ENI: do not charged, but only work on some EC2s instance types.
+
+5. You can attach a network interface to an EC2 instance in the following ways:
+
+- When it's running (hot attach)
+
+- When it's stopped (warm attach)
+
+- When the instance is being launched (cold attach).
+
+6. ENI Interfaces: IP Address, Elastic IP Address, MAC Address. A host can have multiple ENIs => **Multiple IPv4 can point to a host.**
+
+Suppose your EC2 has 2 ENIs:
+
+- ENI-1 (eth0): IP 10.0.1.10
+
+- ENI-2 (eth1): IP 10.0.2.20
+
+Inside the OS:
+
+- You can run Nginx on 10.0.1.10:80 (listening only on ENI-1’s IP).
+
+- You can run Apache on 10.0.2.20:80 (listening only on ENI-2’s IP).
+
+- Or you can run one process that listens on 0.0.0.0:80 → which means it accepts on all ENIs and all IPs.
+
+Notes:
+
+- If you’re on Wi-Fi → the Wi-Fi card (NIC) is assigned an IP.
+
+- If you plug in Ethernet → the Ethernet card (NIC) is assigned an IP.
+
+- If both are active, your machine can have 2 IPs (one per NIC).
+
+7. When to use IPv4 and when to use IPv6 ?
+
+- IPv4 and IPv6 can (and usually do) point to the same computer if it’s configured with both.
+
+8. Elastic Fabric Adapter: high-performance network interface for EC2 instances.
+
+9. VPC Flow log: capture information about the IP traffic going to and from a network interface.
