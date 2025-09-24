@@ -3333,4 +3333,8 @@ Notes:
 
 - EBS is map to 1 instance.
 
+- EBS: network-attached disk
+
+- Instance Store: Store in instance.
+
 ## 12.6. EBS Encryption
