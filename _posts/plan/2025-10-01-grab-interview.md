@@ -10,7 +10,11 @@ categories: plan
 1. String Without AAA or BBB — Medium — 37.7%
 🔗 https://leetcode.com/problems/string-without-aaa-or-bbb
 
-Edge case: (a = 7, b = 1) => Try: "aabaaaba" → still has "aaa".
+- Edge case: (a = 7, b = 1) => Try: "aabaaaba" → still has "aaa".
+
+- Time Complexity = O(a + b)
+
+- Space Complexity = O(a + b) (for the output string).
 
 ```python
 class Solution:
@@ -43,6 +47,33 @@ class Solution:
 
 2. Partition Array into Disjoint Intervals — Medium — 45.4%
 🔗 https://leetcode.com/problems/partition-array-into-disjoint-intervals
+
+
+Idea:
+
+- max_left[i] <= min_right[i+1] => then we can partition at position i.
+
+- left_max = the maximum value that must be included in the left partition (so far).
+
+If we see a new value nums[i] that is smaller than this left_max, it means:
+
+If we cut the partition before i, that small number would end up in the right part,
+but then right would contain an element < left_max, which breaks the rule.
+
+```python
+def partitionDisjoint(nums):
+    left_max = nums[0]
+    max_so_far = nums[0]
+    partition_idx = 0
+    
+    for i in range(1, len(nums)):
+        max_so_far = max(max_so_far, nums[i])
+        if nums[i] < left_max:   # must extend left partition
+            partition_idx = i
+            left_max = max_so_far
+    return partition_idx + 1
+
+```
 
 3. Minimum Cost For Tickets — Medium — 60.5%
 🔗 https://leetcode.com/problems/minimum-cost-for-tickets
