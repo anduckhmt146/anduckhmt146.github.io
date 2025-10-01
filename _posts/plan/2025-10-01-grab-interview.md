@@ -10,6 +10,37 @@ categories: plan
 1. String Without AAA or BBB — Medium — 37.7%
 🔗 https://leetcode.com/problems/string-without-aaa-or-bbb
 
+Edge case: (a = 7, b = 1) => Try: "aabaaaba" → still has "aaa".
+
+```python
+class Solution:
+    def strWithout3a3b(self, a: int, b: int) -> str:
+        # 🔹 Edge case: impossible scenario
+        if a > 2 * (b + 1) or b > 2 * (a + 1):
+            return ""   # or raise Exception("No valid string can be formed")
+        
+        res = []
+        while a > 0 or b > 0:
+            if a > b:
+                # Prefer 'a', but avoid "aaa"
+                if len(res) >= 2 and res[-1] == res[-2] == 'a':
+                    res.append('b')
+                    b -= 1
+                else:
+                    res.append('a')
+                    a -= 1
+            else:
+                # Prefer 'b', but avoid "bbb"
+                if len(res) >= 2 and res[-1] == res[-2] == 'b':
+                    res.append('a')
+                    a -= 1
+                else:
+                    res.append('b')
+                    b -= 1
+        return "".join(res)
+
+```
+
 2. Partition Array into Disjoint Intervals — Medium — 45.4%
 🔗 https://leetcode.com/problems/partition-array-into-disjoint-intervals
 
