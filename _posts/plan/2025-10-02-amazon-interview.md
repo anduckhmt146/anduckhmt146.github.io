@@ -207,7 +207,7 @@ categories: plan
 
 15. Take ownership for project that noticed a process inefficiency: onboarding process for new employees is time-comsuming => conduct analysis of the current project => proposed a streamlined onboading program and automating several administrative tasks => implement changes, colloborated with HR to update training materials + feedback loops to improve the process => The onboarding time reduced 40%, our new employees were granted more quickly.
 
-# 3. Reflection
+# 3. Stories
 
 1. Receive feedback from EM to design and implement onelink.
 
@@ -238,3 +238,283 @@ categories: plan
 14. Dive deep in mobile code, trace log to find issues => deep dive.
 
 15. Explain for non-tech members.
+
+# 4. Questions
+
+## 4.1. Bias for action
+
+1. Can you give an example of a time when you took swift action to resolve a problem?
+
+2. Describe a situation where taking immediate action led to a significant improvement or success.
+
+3. How do you prioritize tasks when faced with multiple urgent issues?
+
+4. Tell me about a time when you made a decision with limited information. What was the outcome?
+
+5. How do you balance the need for quick action with the potential risks of making a hasty decision?
+
+6. Can you provide an example of a time when you had to act quickly to seize a business opportunity?
+
+7. Describe a situation where you encouraged your team to take immediate action. How did you handle any resistance?
+
+8. How do you ensure that quick decisions are still aligned with long-term goals?
+
+9. Can you describe a time when a delay in action led to negative consequences? How did you address it?
+
+10. How do you manage the pressure of making quick decisions in a high-stakes environment?
+
+11. Tell me about a time when taking action before having all the answers was necessary. What did you learn from it?
+
+12. How do you encourage a culture of taking initiative and acting quickly within your team?
+
+13. Describe a time when you had to make a quick decision that was initially unpopular. How did you handle it?
+
+14. How do you evaluate the potential impact of a decision when you need to act quickly?
+
+15. Can you give an example of how you managed to turn a quick decision into a strategic advantage?
+
+## 4.2. Deliver result
+
+1. Can you provide an example of a project where you successfully delivered results under a tight deadline?
+
+2. Describe a time when you faced significant obstacles but still achieved your goals.
+
+3. How do you ensure that you meet or exceed your targets?
+
+4. Tell me about a time when you had to deliver results with limited resources.
+
+5. How do you handle situations where you’re not meeting your goals?
+
+6. Describe a time when you had to manage competing priorities to achieve results.
+
+7. Can you give an example of how you motivated your team to achieve a challenging objective?
+
+8. How do you measure the success of a project or initiative?
+
+9. Tell me about a time when you had to pivot your strategy to deliver results.
+
+10. Describe a situation where you had to align a team or department to achieve a common goal.
+
+11. How do you prioritize tasks when working on multiple projects to ensure timely delivery?
+
+12. Can you provide an example of a time when you exceeded your performance targets?
+
+13. How do you stay focused and maintain momentum when working towards long-term goals?
+
+14. Describe a time when you had to deliver results in a high-pressure situation.
+
+15. How do you ensure quality while working towards aggressive deadlines?
+
+## 4.3. Learn and be curious
+
+1. Can you provide an example of a time when you actively sought out new knowledge to improve your work performance?
+
+2. Describe a situation where your curiosity led you to discover a problem or opportunity that others had overlooked.
+
+3. How do you stay current with developments in your industry or field?
+
+4. Tell me about a time when you learned something new that was outside of your comfort zone. How did you apply that knowledge?
+
+5. How do you approach learning when faced with a topic or technology you are unfamiliar with?
+
+6. Can you give an example of a time when you used curiosity to solve a complex problem?
+
+7. Describe an instance when you took the initiative to learn about a different department or role within your organization.
+
+8. How do you handle situations where you encounter a problem that you don’t know how to solve?
+
+9. Give an example of a time when your willingness to learn led to a new idea or innovation.
+
+10. How do you encourage a culture of learning and curiosity within your team?
+
+11. Can you describe a time when you learned from a failure or mistake and how you applied that lesson?
+
+12. How do you ensure that your learning is aligned with your career goals and objectives?
+
+13. Describe a time when you discovered a new tool or technique that improved your team's efficiency.
+
+14. How do you balance the need for continuous learning with your current responsibilities?
+
+15. Can you provide an example of a time when you helped others to learn and grow?
+
+## 4.4. Dive deep
+
+1. Can you provide an example of a time when you needed to investigate a complex issue thoroughly?
+
+2. Describe a situation where your attention to detail uncovered a problem that others had missed.
+
+3. How do you approach gathering and analyzing data when making a decision?
+
+4. Tell me about a time when you had to understand a process or system in detail to improve it.
+
+5. Describe how you handle situations where you need to solve a problem with limited information.
+
+6. Can you give an example of how your deep understanding of a subject led to a significant improvement or innovation?
+
+7. How do you ensure that your analysis and findings are accurate and reliable?
+
+8. Tell me about a time when you had to dive deep into customer feedback to address a specific concern.
+
+9. How do you prioritize which areas to investigate when solving a complex problem?
+
+10. Can you describe a situation where you had to challenge existing assumptions to uncover a deeper issue?
+
+11. How do you ensure you’re not missing important details when analyzing data or a problem?
+
+12. Describe a time when you used deep analysis to identify a root cause of a recurring issue.
+
+13. How do you keep yourself updated on industry trends and best practices to dive deep into relevant issues?
+
+14. Can you provide an example of how you used deep knowledge of a process to implement a successful change?
+
+15. How do you communicate complex findings from your deep analysis to stakeholders who may not be familiar with the details?
+
+## 4.5. Earn trust
+
+1. Can you provide an example of a time when you built trust with a new team or stakeholder?
+
+2. Describe a situation where you had to rebuild trust after a mistake. How did you handle it?
+
+3. How do you ensure that you are transparent and honest in your communications with your team?
+
+4. Tell me about a time when you had to handle a conflict or disagreement in a way that maintained trust.
+
+5. How do you handle situations where you must deliver difficult feedback while maintaining trust?
+
+6. Can you provide an example of a time when you had to gain the trust of a skeptical stakeholder?
+
+7. How do you demonstrate reliability and follow-through in your work?
+
+8. Describe a time when you had to be honest about a problem or limitation. How did you approach it?
+
+9. How do you build trust with team members who have different working styles or perspectives?
+
+10. Can you give an example of how you handled a situation where you had to make a tough decision that affected your team?
+
+11. How do you approach building trust with clients or customers?
+
+12. Describe a situation where you had to collaborate with others to achieve a goal. How did you ensure trust was maintained?
+
+13. How do you manage to stay transparent and trustworthy even under high-pressure situations?
+
+14. Can you give an example of how you’ve helped someone else build trust within a team or organization?
+
+15. How do you ensure that your actions align with the values and principles of your organization?
+
+## 4.6. Ownership
+
+1. Can you describe a time when you took ownership of a project that was outside of your usual responsibilities? How did you ensure its success?
+
+2. Tell me about a situation where you identified a problem or area for improvement in your team or organization. What steps did you take to address it?
+
+3. How do you balance taking ownership with empowering your team members to take responsibility? Can you provide an example?
+
+4. Describe a time when you had to make a decision that would have a long-term impact. How did you approach it, and what was the outcome?
+
+5. Have you ever had to take ownership of a mistake? How did you handle the situation, and what did you learn from it?
+
+6. What does the principle of ownership mean to you in a professional context? Can you give an example of how you’ve applied this principle in your current or previous roles?
+
+7. How do you stay motivated to take ownership of your work, even when the tasks are challenging or outside your comfort zone?
+
+8. Can you provide an example of a time when you took ownership of a challenging situation that others avoided?
+
+9. Tell me about a time when you had to take ownership of a project with limited resources. How did you manage it?
+
+10. Describe a time when you took ownership of a process that was not working efficiently. What steps did you take to improve it?
+
+11. Have you ever taken ownership of a project that failed? What did you learn from the experience?
+
+12. Can you share an example of when you had to take ownership of a problem that required cross-functional collaboration?
+
+13. How have you demonstrated ownership in a situation where you disagreed with the direction provided by your superiors?
+
+14. Tell me about a time when you had to make a difficult decision with limited information. How did you take ownership of the decision-making process, and what was the result?
+
+15. Can you give an example of a time when you noticed a process inefficiency? How did you take ownership of addressing it, and what improvements did you achieve?
+
+# 5. Mapping
+
+## 5.1. Bias for Action
+
+- Story 2: Do not testing deploy service to production → caused restart service + dump 1B logs in production.
+  → Q1, Q3, Q4, Q9, Q11
+  (took immediate action / had to act with limited info / consequences of delay)
+
+- Story 4: Hot fix incident during CDN downtime → fund loss, Redis OOM, DB read in Tet holiday.
+  → Q1, Q2, Q3, Q10, Q11
+  (swift action under pressure to mitigate issue)
+
+- Story 7: Priority task for campaign of company to match "Scan with Miss Universe".
+  → Q2, Q3, Q6
+  (acting quickly on business priorities)
+
+- Story 13: DDoS + onelink can’t load in platform.
+  → Q1, Q2, Q4, Q10
+  (rapid response to critical production issues)
+
+## 5.2. Deliver Results
+
+- Story 6: Build template boilerplate code with BOM + CI/CD for team reuse.
+  → Q1, Q3, Q4, Q8, Q11, Q15
+  (delivering results that benefit team efficiency)
+
+- Story 9: Consolidate 3 mini apps into 1 tool → reduce cost + ops cost.
+  → Q1, Q2, Q6, Q8, Q10
+  (delivering measurable business impact)
+
+- Story 8: Query number of authorized members → reconcile with office.
+  → Q1, Q3, Q4
+  (timely execution of business-critical reporting)
+
+## 5.3. Learn and Be Curious
+
+- Story 14: Dive deep in mobile code, trace logs to find issues.
+  → Q1, Q2, Q4, Q6
+  (investigating and learning new technical details to solve problems)
+
+- Story 10: Design custom dashboard for fraud detection onelink.
+  → Q1, Q2, Q6, Q9, Q13
+  (learning new tools/techniques for business insights)
+
+## 5.4. Dive Deep
+
+- Story 14: Dive deep in mobile code, trace logs to find issues.
+  → Q1, Q2, Q3, Q4, Q6, Q12, Q15
+  (technical investigation / deep analysis to resolve root cause)
+
+- Story 3: Request SSH to query data, process jobs.
+  → Q1, Q3, Q4
+  (digging into raw data to validate or solve issues)
+
+- Story 11: Autofill mini app in config, download mini app config, monitor trends.
+  → Q1, Q2, Q3, Q4
+  (analyzing operational metrics and system configs in detail)
+
+## 5.5. Earn Trust
+
+- Story 5: Build internal tools but difficult for ops team → received feedback.
+  → Q2, Q4, Q5, Q8
+  (handling feedback, maintaining trust while improving systems)
+
+- Story 15: Explain for non-tech members.
+  → Q3, Q4, Q8, Q11
+  (communicating complex info transparently to earn trust)
+
+- Story 12: Write documents and guidelines support.
+  → Q3, Q7, Q15
+  (building trust via clear documentation and guidance)
+
+## 5.6. Ownership
+
+- Story 1: Receive feedback from EM to design & implement onelink.
+  → Q1, Q2, Q6, Q8, Q9
+  (taking ownership of a major feature end-to-end)
+
+- Story 2 & 4: (Production incidents)
+  → Q5, Q8, Q11
+  (taking responsibility for mistakes, fixing issues, and learning)
+
+- Story 6, 9, 10: (Boilerplate, mini-app consolidation, dashboard)
+  → Q1, Q2, Q9, Q10, Q12, Q15
+  (owning projects that affect cross-functional teams and long-term impact)
