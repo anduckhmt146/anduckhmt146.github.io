@@ -36,3 +36,11 @@ categories: plan
 => Other 30 mins, they use to struggle you => Focus on thinking process, and completed it is important => Practice optimization skills.
 
 # 4. System Design Interview
+
+# 5. Lesson learned
+
+- Sky Mavis Interview: Be careful in implement, dry run the source code, do not easily to conclude when the problem is similar.
+
+- Senior Grab Interview: Clarify problem more detailed, explain reason for clearly.
+
+- Middle Grab Interview: Optimize the code to O(N).
