@@ -3461,6 +3461,6 @@ Notes:
 
 12. ou can allow traffic into your instance either from one IP (/32), a whole range of IPs (CIDR block), or from all resources inside another Security Group.
 
-13. You cannot block speci c IP addresses with Security Group (default blocked).
+13. You cannot block specific IP addresses with Security Group (default blocked).
 
 14. You can increase your Security Group limit
