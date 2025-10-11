@@ -37,6 +37,41 @@ categories: plan
 
 # 4. System Design Interview
 
+## 4.1. High-level design:
+
+- Functional requirements: Core features (send message, post tweet, search user, etc.).
+
+- Non-functional requirements: Scale, latency, throughput, availability, consistency.
+
+- Traffic estimates and capacity planning: Requests/sec, storage size, growth projections.
+
+- Architecture components:
+
+  - Load balancers
+  - Backend servers
+  - Databases (SQL vs NoSQL, sharding, replication)
+  - Caches, queues, CDNs, pub/sub
+
+- Data flows: Read path vs write path, how requests move through the system
+
+- Trade-offs: CAP theorem, eventual vs strong consistency, cost vs scalability.
+
+## 4.2. Low-level design:
+
+- Object-oriented modeling: Classes, objects, interfaces, relationships
+
+- Design patterns: Factory, Strategy, Observer, Singleton, etc.
+
+- APIs and methods: Clear function signatures, parameters, return types
+
+- Data models: Table schemas, indexes, relationships, how queries are optimized
+
+- Component interactions: Sequence diagrams, how modules talk to each other
+
+- Edge cases and validations: Error handling, retries, testing considerations
+
+- Maintainability: Clean abstractions, modularity, extensibility
+
 # 5. Lesson learned
 
 - Sky Mavis Interview: Be careful in implement, dry run the source code, do not easily to conclude when the problem is similar.
