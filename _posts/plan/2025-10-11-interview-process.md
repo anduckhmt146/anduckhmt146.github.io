@@ -35,7 +35,7 @@ categories: plan
 
 => Other 30 mins, they use to struggle you => Focus on thinking process, and completed it is important => Practice optimization skills.
 
-=> At least 2 solutions.
+=> At least 2 - 3 solutions.
 
 # 4. System Design Interview
 
