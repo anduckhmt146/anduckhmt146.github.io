@@ -44,3 +44,23 @@ categories: plan
 - Senior Grab Interview: Clarify problem more detailed, explain reason for clearly.
 
 - Middle Grab Interview: Optimize the code to O(N).
+
+# 6. Resumes
+
+- Used to impress the recruiter.
+
+- Write it shortly in each bullet and focus more in impacts.
+
+# 7. Hiring Manager
+
+- Decide whether to fill the headcount.
+
+# 8. How to search jobs
+
+- When you email a real human and they don’t respond, that hurts: you put yourself out there, someone made a value judgment about you, and you lost.
+
+=> You need to sale yourself.
+
+- Build personal brands or open-sources.
+
+- Email EM or Linkedin Sale Navigator for opportunities.
