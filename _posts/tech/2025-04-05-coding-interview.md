@@ -2,7 +2,7 @@
 layout: post
 title: 'DSA Pattern - Data Structure Concepts'
 date: 2025-04-05
-categories: tech
+categories: private
 ---
 
 # 1. Two Pointers
