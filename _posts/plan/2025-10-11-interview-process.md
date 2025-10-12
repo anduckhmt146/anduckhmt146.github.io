@@ -74,6 +74,20 @@ categories: plan
 
 - Maintainability: Clean abstractions, modularity, extensibility
 
+## 4.3. Notes
+
+- Error 1: Do not ask the requirements, e.g. number of active users, scalability.
+
+- Error 2: Do not talk in order of logic, e.g. talk about high-level design first, talk database design later => You need systematic logic to strange system.
+
+- Error 3: Estimate 1000 images, each image 1 MB => Need to store 1TB => So we need sharding.
+
+- Error 4: Detail each fields in table, what fields should be index.
+
+- Error 5: Each level different, require the structure to answer different -> Why to choose the technology rather than other technology.
+
+- Error 6: Use the techstack that the interviewer know.
+
 # 5. Lesson learned
 
 - Sky Mavis Interview: Be careful in implement, dry run the source code, do not easily to conclude when the problem is similar.
