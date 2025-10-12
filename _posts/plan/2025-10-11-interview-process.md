@@ -88,6 +88,26 @@ categories: plan
 
 - Error 6: Use the techstack that the interviewer know.
 
+- Error 7: Show knowledge about Redis, Kafka, Event-Driven Design, Serverless.
+
+- Tips to learn:
+
+  - High-level design research about architecture patterns: Microservices, Distributed System, Event-driven, Serverless.
+
+  - Read each components.
+
+  - Database Design, API Design, Sequence Flow.
+
+=> Senior and Mid is same process, different knowledge dive deep, Senior ask for How Redis fast, How Kafka fast rather than Mid Level.
+
+- Error 8: Choose the architecture that you know best => Show the trade-offs about that you know about this architecture.
+
+- Error 9: Migrate system => You change its components, rollout later.
+
+## 4.4. Senior+
+
+- Focus soft skills: leadership, ownership, skateholders, communication and convinction cross-team.
+
 # 5. Lesson learned
 
 - Sky Mavis Interview: Be careful in implement, dry run the source code, do not easily to conclude when the problem is similar.
