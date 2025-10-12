@@ -104,6 +104,74 @@ categories: plan
 
 - Error 9: Migrate system => You change its components, rollout later.
 
+- Error 10: Operational Mindset -> Deploy, rollback, versioning, monitor.
+
+- Error 11: Technical adjustment when the requirements changed.
+
+- Error 12: Technical fundamentals is not changed but trade-offs are unlimited.
+
+- Error 13: Link the design with pass experiences => show that you have real experience but not copying from another posts.
+
+## 4.4. Mock Interviews
+
+1. Functional requirements: based on skateholders.
+
+2. Non-functional requirements: RPS, QPS, number of users, latency (400ms P99), availability (master-slave)
+
+3. API Design: POST (driver), GET (user)
+
+- Endpoint
+
+- Authenticate
+
+- Request: timestamp to later request
+
+- Response
+
+- API version
+
+4. Database Design: 
+
+- Do not need to store history
+
+- Used field last_update_time to do not overwrite update.
+
+- Do not have relationship, used NoSQL Database: DynamoDB, MongoDB,..
+
+5. High-level design:
+
+- Client App: what it have.
+
+- API Design: What it do.
+
+- Location Service: What it do.
+
+- Location DB: What is store.
+
+=> Handle write-heavy: Using queue, route by driver_id.
+
+=> Notes: Check non-functional requirements.
+
+=> Notes: Use cache to update the latest location from cache but not query db.
+
+6. Failure case
+
+- Retry.
+
+- Back propgation.
+
+- Skip it all.
+
+7. Total requests:
+
+- Shard by region.
+
+8. Network:
+
+- Using Websocket.
+
+- Compare HTTP Pooling.
+
 ## 4.4. Senior+
 
 - Focus soft skills: leadership, ownership, skateholders, communication and convinction cross-team.
