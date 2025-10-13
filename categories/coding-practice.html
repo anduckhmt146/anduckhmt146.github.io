@@ -62,7 +62,7 @@ layout: default
     // Step 1: Filter posts by category
     posts.forEach((post) => {
       const postCategory = post.getAttribute('data-category');
-      if (postCategory === 'coding-interview') {
+      if (postCategory === 'coding-practice') {
         filteredPosts.push(post);
       } else {
         post.style.display = 'none';
@@ -97,11 +97,11 @@ layout: default
 </script>
 
 <div class="posts">
-  {% assign filtered_posts = site.posts | where: "categories", "coding-interview" %} {% for
+  {% assign filtered_posts = site.posts | where: "categories", "coding-practice" %} {% for
   post in filtered_posts %}
   <article
     class="post"
-    data-category="coding-interview"
+    data-category="coding-practice"
     style="
       background-color: white;
       border-radius: 10px;
