@@ -5,6 +5,8 @@ date: 2025-10-13
 categories: leadership
 ---
 
+Some stories prepared for Amazon leadership principles.
+
 # Amazon - Behavioral Interview
 
 # **🌟 STAR Framework – Fill-in-the-Blanks Template**
