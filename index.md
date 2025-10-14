@@ -4,7 +4,7 @@ title: About me
 permalink: /
 ---
 
-Hello, reader. Here is blog to share some knowledge about my career with a dream to become Software Engineer at FAANG.
+Hello, reader. Here is blog to share some knowledge about my career with a dream to become a Software Engineer at FAANG.
 
 ## 1. Let's talk about career
 
@@ -28,7 +28,6 @@ I am a Software Engineer, in a Middle - Senior Level with more than 2 year of ex
 
 3. **Zoodiac:** Gemini - June.
 
-
 ## 3. Strengths & Weaknesses
 
 I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development.
@@ -48,7 +47,6 @@ I am a dreamer, an analytical over-thinker, and an over-achiever, who is constan
   - Tend to overanalyze and control situations logically, need to respect others' emotions.
 
   - Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repeatable, boring tasks.
-
 
 ## 4. What is this blog about?
 

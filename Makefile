@@ -10,4 +10,12 @@ migrate:
 	HASH=$$(openssl rand -hex 4) && \
 	FILENAME="$${DATE}-$${HASH}.md" && \
 	touch "$$FILENAME" && \
-	echo "✅ Created file: plan/$$FILENAME"
+	echo "---" >> "$$FILENAME" && \
+	echo "layout: post" >> "$$FILENAME" && \
+	echo "title: Neetcode 150 - " >> "$$FILENAME" && \
+	echo "date: $${DATE}" >> "$$FILENAME" && \
+	echo "categories: coding-practice" >> "$$FILENAME" && \
+	echo "---" >> "$$FILENAME" && \
+	echo "" >> "$$FILENAME" && \
+	echo "✅ Created file: _posts/coding-practice/$${FILENAME}"
+
