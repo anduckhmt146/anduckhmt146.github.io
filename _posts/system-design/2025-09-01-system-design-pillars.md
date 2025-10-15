@@ -1,8 +1,8 @@
 ---
 layout: post
-title: System Design - Pillars
+title: System Design - Properties
 date: 2025-09-01
-categories: plan
+categories: system-design
 ---
 
 # 1. Principle Design

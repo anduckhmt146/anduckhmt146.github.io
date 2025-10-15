@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Java Interview
+title: Java Core/Spring Interview
 date: 2025-09-07
-categories: plan
+categories: system-design
 ---
 
 # 1. Java Language

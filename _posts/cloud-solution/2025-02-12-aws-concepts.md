@@ -2,7 +2,7 @@
 layout: post
 title: 'AWS Concepts'
 date: 2025-03-30
-categories: tech
+categories: cloud-solution
 ---
 
 Here is the concepts of AWS that I learned for AWS Certified Cloud Practitioner.
@@ -3459,7 +3459,7 @@ Notes:
 
 11. Multiple EC2s: at a security groups.
 
-12. ou can allow traffic into your instance either from one IP (/32), a whole range of IPs (CIDR block), or from all resources inside another Security Group.
+12. You can allow traffic into your instance either from one IP (/32), a whole range of IPs (CIDR block), or from all resources inside another Security Group.
 
 13. You cannot block specific IP addresses with Security Group (default blocked).
 

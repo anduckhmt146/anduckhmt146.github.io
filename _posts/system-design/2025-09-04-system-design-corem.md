@@ -1,8 +1,8 @@
 ---
 layout: post
-title: System Design C.O.R.E.M and Cloud Principles
+title: System Design - Components
 date: 2025-09-04
-categories: plan
+categories: system-design
 ---
 
 # 1. C.O.R.E.M Principle
