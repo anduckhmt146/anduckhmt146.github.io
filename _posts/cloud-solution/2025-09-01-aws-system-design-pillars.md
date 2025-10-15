@@ -2,8 +2,10 @@
 layout: post
 title: 6 Pillars AWS System Design
 date: 2025-09-01
-categories: plan
+categories: cloud-solution
 ---
+
+Here is some notes for 6 pillars of AWS Software Architect.
 
 # 1. Operational Excellence
 

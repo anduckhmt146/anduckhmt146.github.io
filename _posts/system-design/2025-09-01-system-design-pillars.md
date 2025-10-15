@@ -5,6 +5,8 @@ date: 2025-09-01
 categories: system-design
 ---
 
+Here is some notes for properties of System Design.
+
 # 1. Principle Design
 
 ![](/images/Software-Architect/Principles/principle.png)

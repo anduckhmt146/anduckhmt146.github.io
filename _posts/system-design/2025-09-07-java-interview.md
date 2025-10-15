@@ -5,6 +5,8 @@ date: 2025-09-07
 categories: system-design
 ---
 
+Here is some notes for interview with Java Core, Java Spring.
+
 # 1. Java Language
 
 ## 1.1. What are the OOPs concepts?

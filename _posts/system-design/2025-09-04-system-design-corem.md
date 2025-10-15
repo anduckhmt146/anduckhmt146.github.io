@@ -5,6 +5,8 @@ date: 2025-09-04
 categories: system-design
 ---
 
+Here is some notes for components of System Design.
+
 # 1. C.O.R.E.M Principle
 
 - C: Constrain

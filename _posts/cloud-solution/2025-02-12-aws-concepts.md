@@ -5,7 +5,7 @@ date: 2025-03-30
 categories: cloud-solution
 ---
 
-Here is the concepts of AWS that I learned for AWS Certified Cloud Practitioner.
+Here is the concepts of AWS that I learned for AWS Certified Cloud Practitioner + AWS Associate Software Architect.
 
 # 1. Cloud Computing
 
