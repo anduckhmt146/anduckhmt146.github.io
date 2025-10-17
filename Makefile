@@ -5,7 +5,7 @@ deploy:
 
 
 migrate:
-	cd _posts/coding-practice && \
+	cd _posts/$(folder) && \
 	DATE=$$(date +%F) && \
 	HASH=$$(openssl rand -hex 4) && \
 	FILENAME="$${DATE}-$${HASH}.md" && \
