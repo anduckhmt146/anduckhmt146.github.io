@@ -12,7 +12,7 @@ migrate:
 	touch "$$FILENAME" && \
 	echo "---" >> "$$FILENAME" && \
 	echo "layout: post" >> "$$FILENAME" && \
-	echo "title: Neetcode 150 - " >> "$$FILENAME" && \
+	echo "title: Framework Thinking - Neetcode 150 - " >> "$$FILENAME" && \
 	echo "date: $${DATE}" >> "$$FILENAME" && \
 	echo "categories: coding-practice" >> "$$FILENAME" && \
 	echo "---" >> "$$FILENAME" && \
