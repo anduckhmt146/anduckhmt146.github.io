@@ -14,7 +14,7 @@ migrate:
 	echo "layout: post" >> "$$FILENAME" && \
 	echo "title: Framework Thinking - Neetcode 150 - " >> "$$FILENAME" && \
 	echo "date: $${DATE}" >> "$$FILENAME" && \
-	echo "categories: coding-practice" >> "$$FILENAME" && \
+	echo "categories: $(folder)" >> "$$FILENAME" && \
 	echo "---" >> "$$FILENAME" && \
 	echo "" >> "$$FILENAME" && \
 	echo "✅ Created file: _posts/coding-practice/$${FILENAME}"
