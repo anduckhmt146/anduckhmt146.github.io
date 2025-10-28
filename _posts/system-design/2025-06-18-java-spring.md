@@ -2,7 +2,7 @@
 layout: post
 title: Deep dive language - Java Spring
 date: 2025-06-18
-categories: tech
+categories: system-design
 ---
 
 Here is a some notes to deep dive in Java Spring
