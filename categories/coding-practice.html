@@ -67,6 +67,25 @@ layout: default
     border-color: #007bff;
     outline: none;
   }
+
+  .no-results {
+    text-align: center;
+    margin: 50px auto;
+    color: #6c757d;
+    font-size: 18px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 40px 20px;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .no-results span {
+    display: block;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
 </style>
 
 <div class="search-container">
@@ -127,6 +146,12 @@ layout: default
   {% endfor %}
 </div>
 
+<!-- "No results" placeholder -->
+<div id="no-results" class="no-results" style="display: none">
+  <span>😕</span>
+  No items found.
+</div>
+
 <!-- Pagination -->
 <div class="pagination" id="pagination"></div>
 
@@ -139,6 +164,8 @@ layout: default
     const posts = Array.from(document.querySelectorAll('.post'));
     const paginationContainer = document.getElementById('pagination');
     const searchInput = document.getElementById('search-input');
+    const noResults = document.getElementById('no-results');
+    const postsContainer = document.querySelector('.posts');
 
     let filteredPosts = posts.filter(
       (post) => post.getAttribute('data-category') === 'coding-practice'
@@ -161,6 +188,15 @@ layout: default
 
       // Hide all posts first
       posts.forEach((post) => (post.style.display = 'none'));
+
+      if (searchedPosts.length === 0) {
+        // No results found
+        noResults.style.display = 'block';
+        paginationContainer.innerHTML = '';
+        return;
+      } else {
+        noResults.style.display = 'none';
+      }
 
       // Show filtered posts for this page
       searchedPosts.forEach((post, index) => {
