@@ -61,13 +61,12 @@ layout: default
   }
 
   .post h1 a {
-    color: #007bff;
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   .post h1 a:hover {
-    color: #0056b3;
+    color: #007bff;
   }
 
   .post .entry {
@@ -119,7 +118,6 @@ layout: default
     background: #fff;
     border-radius: 16px;
     padding: 60px 30px;
-    max-width: 500px;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
   }
 
@@ -241,7 +239,7 @@ layout: default
   document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const currentPage = parseInt(urlParams.get('page')) || 1;
-    const postsPerPage = 5;
+    const postsPerPage = 4;
 
     const posts = Array.from(document.querySelectorAll('.post'));
     const paginationContainer = document.getElementById('pagination');
