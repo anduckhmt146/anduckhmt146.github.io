@@ -1,8 +1,8 @@
 ---
 layout: post
-title: System Design - Practice
+title: RAG Chatbot - AWS System Design
 date: 2025-06-29
-categories: tech
+categories: cloud-solution
 ---
 
 Here is some designs of system design concepts
@@ -23,7 +23,7 @@ Here is some designs of system design concepts
 
 ![](/images/System-Design/Domain/serverless_register.png)
 
-## 2.2. Invetory Traking
+## 2.2. Inventory Traking
 
 ![](/images/System-Design/Domain/inventory_tracking.png)
 

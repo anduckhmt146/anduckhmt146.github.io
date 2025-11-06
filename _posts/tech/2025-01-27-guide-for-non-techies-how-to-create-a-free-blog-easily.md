@@ -2,7 +2,7 @@
 layout: post
 title: 'Guide for Non-Techies: How to create a FREE blog easily (No server, No database, can be access 24/7)'
 date: 2025-01-27
-categories: tech
+categories: cloud-solution
 ---
 
 Guide for Non-Techies How to Create a Free Blog Easily

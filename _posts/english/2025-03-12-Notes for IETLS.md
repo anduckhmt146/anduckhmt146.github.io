@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Notes for IELTS
+title: Notes for learning English skills - DOL IELTS
 date: 2025-04-07
-categories: plan
+categories: mindset-psychology
 ---
 
 Objective: Practice skills and habits of using English.

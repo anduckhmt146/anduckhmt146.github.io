@@ -2,7 +2,7 @@
 layout: post
 title: Scalability
 date: 2025-04-17
-categories: backend
+categories: system-design
 ---
 
 [Scalability] Làm sao để tối ưu hệ thống khi có 1 triệu user truy cập cùng 1 lúc ?

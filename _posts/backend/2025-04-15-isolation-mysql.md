@@ -2,7 +2,7 @@
 layout: post
 title: 4 Isolation Level MySQL
 date: 2025-04-15
-categories: backend
+categories: system-design
 ---
 
 Here is 4 types of isolation level MySQL when handle concurrency processing in database.

@@ -2,7 +2,7 @@
 layout: post
 title: Coding Interview Template
 date: 2025-07-07
-categories: plan
+categories: coding-practice
 ---
 
 Here is the template for coding interview patterns

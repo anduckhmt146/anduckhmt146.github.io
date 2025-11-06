@@ -2,7 +2,7 @@
 layout: post
 title: Event Driven Architecture
 date: 2025-04-17
-categories: backend
+categories: system-design
 ---
 
 [Event-Driven Architecture] Làm thế nào EDA giúp hệ thống scale và xử lý bất đồng bộ hiệu quả ?

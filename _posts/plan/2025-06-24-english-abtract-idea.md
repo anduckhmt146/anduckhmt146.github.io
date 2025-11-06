@@ -2,7 +2,7 @@
 layout: post
 title: High-level Abstract Idea - Learning English
 date: 2025-06-24
-categories: plan
+categories: mindset-psychology
 ---
 
 Here is some high-level thinking when learning English.

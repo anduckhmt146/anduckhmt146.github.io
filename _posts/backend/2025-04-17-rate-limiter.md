@@ -2,7 +2,7 @@
 layout: post
 title: Rate Limiter
 date: 2025-04-17
-categories: backend
+categories: system-design
 ---
 
 Rate limiting is a crucial design pattern used in distributed systems to control the rate of incoming requests or traffic to a service. It helps protect services from being overwhelmed, ensures fair resource usage, and maintains system stability.

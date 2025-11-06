@@ -2,7 +2,7 @@
 layout: post
 title: Tớ tìm kiếm gì ở bản thân vào năm 23 tuổi ?
 date: 2025-06-14
-categories: plan
+categories: mindset-psychology
 ---
 
 "Sống một cuộc sống của 1 đứa luôn theo đuổi lý tưởng, cầu toàn, tham vọng, không chấp nhận thực tại tầm thường là điều chưa bao giờ dễ dàng".
