@@ -36,6 +36,11 @@
         --quote-text: #000000;
         --nav-link-color: #000000;
         --active-color: #007bff;
+
+        /* ✅ Fixed nav colors */
+        --nav-link-color: #111; /* Black for light mode */
+        --nav-icon-color: #111;
+        --nav-hover-color: #000;
       }
 
       body {
@@ -156,36 +161,37 @@
         }
       }
 
-      .navbar {
-        display: grid;
-        grid-template-columns: repeat(
-          4,
-          minmax(180px, 1fr)
-        ); /* equal width cols */
-        justify-items: center; /* center each item within the cell */
-        justify-content: center; /* center the entire grid container */
-        gap: 2rem 3rem;
-        padding: 1.5rem 0;
-      }
-
       .nav-link {
         text-decoration: none;
         font-size: 1.2rem;
         font-weight: 600;
-        color: #e6e6e6;
+        color: var(--nav-link-color);
         display: flex;
         align-items: center;
         gap: 0.4rem;
         transition: all 0.2s ease;
       }
 
-      .nav-link:hover {
-        color: #fff;
-        transform: translateY(-2px);
-        border-bottom: 2px solid #fff;
+      .nav-link i {
+        color: var(--nav-icon-color);
+        font-size: 1.3rem;
       }
 
-      /* Mobile responsive: 2 per row */
+      .nav-link:hover {
+        color: var(--nav-hover-color);
+        transform: translateY(-2px);
+        border-bottom: 2px solid var(--nav-hover-color);
+      }
+
+      .navbar {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(180px, 1fr));
+        justify-items: center;
+        justify-content: center;
+        gap: 2rem 3rem;
+        padding: 1.5rem 0;
+      }
+
       @media (max-width: 700px) {
         .navbar {
           grid-template-columns: repeat(2, minmax(140px, 1fr));
