@@ -48,53 +48,35 @@ layout: default
     align-items: center;
     justify-content: center;
   }
+
+  .search-container {
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  .search-container input {
+    padding: 10px 15px;
+    width: 60%;
+    max-width: 400px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+
+  .search-container input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const currentPage = parseInt(urlParams.get('page')) || 1;
-    const postsPerPage = 5;
-
-    const posts = document.querySelectorAll('.post');
-    let filteredPosts = [];
-
-    // Step 1: Filter posts by category
-    posts.forEach((post) => {
-      const postCategory = post.getAttribute('data-category');
-      if (postCategory === 'coding-practice') {
-        filteredPosts.push(post);
-      } else {
-        post.style.display = 'none';
-      }
-    });
-
-    // Step 2: Apply pagination
-    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-    const offset = (currentPage - 1) * postsPerPage;
-
-    filteredPosts.forEach((post, index) => {
-      post.style.display =
-        index >= offset && index < offset + postsPerPage ? 'block' : 'none';
-    });
-
-    // Step 3: Generate pagination dynamically
-    const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = '';
-
-    if (totalPages >= 1) {
-      for (let i = 1; i <= totalPages; i++) {
-        const button = document.createElement('button');
-        button.textContent = i;
-        button.onclick = () => (window.location.href = `?page=${i}`);
-        if (i === currentPage) {
-          button.classList.add('active');
-        }
-        paginationContainer.appendChild(button);
-      }
-    }
-  });
-</script>
+<div class="search-container">
+  <input
+    type="text"
+    id="search-input"
+    placeholder="Search posts..."
+    aria-label="Search posts" />
+</div>
 
 <div class="posts">
   {% assign filtered_posts = site.posts | where: "categories", "coding-practice"
@@ -102,6 +84,8 @@ layout: default
   <article
     class="post"
     data-category="coding-practice"
+    data-title="{{ post.title | escape }}"
+    data-excerpt="{{ post.excerpt | strip_html | escape }}"
     style="
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -125,7 +109,6 @@ layout: default
             display: inline-block;
             padding: 5px 10px;
             background-color: #007bff;
-
             color: white;
             text-decoration: none;
             border-radius: 15px;
@@ -137,7 +120,7 @@ layout: default
           {{ post.categories }}
         </a>
       </p>
-      <p class="date">{{post.date | date: "%B %d, %Y"}}</p>
+      <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
     </div>
 
     <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
@@ -147,3 +130,69 @@ layout: default
 
 <!-- Pagination -->
 <div class="pagination" id="pagination"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPage = parseInt(urlParams.get('page')) || 1;
+    const postsPerPage = 5;
+
+    const posts = Array.from(document.querySelectorAll('.post'));
+    const paginationContainer = document.getElementById('pagination');
+    const searchInput = document.getElementById('search-input');
+
+    let filteredPosts = posts.filter(
+      (post) => post.getAttribute('data-category') === 'coding-practice'
+    );
+
+    // Function to render posts and pagination
+    function renderPosts(page = 1, searchTerm = '') {
+      searchTerm = searchTerm.toLowerCase();
+
+      // Filter by search term
+      const searchedPosts = filteredPosts.filter((post) => {
+        const title = post.getAttribute('data-title').toLowerCase();
+        const excerpt = post.getAttribute('data-excerpt').toLowerCase();
+        return title.includes(searchTerm) || excerpt.includes(searchTerm);
+      });
+
+      // Pagination
+      const totalPages = Math.ceil(searchedPosts.length / postsPerPage);
+      const offset = (page - 1) * postsPerPage;
+
+      // Hide all posts first
+      posts.forEach((post) => (post.style.display = 'none'));
+
+      // Show filtered posts for this page
+      searchedPosts.forEach((post, index) => {
+        if (index >= offset && index < offset + postsPerPage) {
+          post.style.display = 'block';
+        }
+      });
+
+      // Render pagination buttons
+      paginationContainer.innerHTML = '';
+
+      if (totalPages > 1) {
+        for (let i = 1; i <= totalPages; i++) {
+          const button = document.createElement('button');
+          button.textContent = i;
+          button.onclick = () => {
+            renderPosts(i, searchInput.value);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          };
+          if (i === page) button.classList.add('active');
+          paginationContainer.appendChild(button);
+        }
+      }
+    }
+
+    // Initial render
+    renderPosts(currentPage);
+
+    // Live search
+    searchInput.addEventListener('input', () => {
+      renderPosts(1, searchInput.value);
+    });
+  });
+</script>
