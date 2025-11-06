@@ -22,6 +22,10 @@
       title="{{ site.name }} - {{ site.description }}"
       href="{{ site.baseurl }}/feed.xml" />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
 
     <style>
@@ -159,34 +163,34 @@
       }
 
       .navbar {
-        display: flex;
-        flex-wrap: wrap; /* Allow wrapping on small screens */
-        justify-content: center; /* Center the menu */
-        gap: 1.5rem; /* Space between items */
-        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(4, auto); /* 4 items per row */
+        justify-content: center;
+        gap: 2rem 4rem; /* spacing: row gap , column gap */
+        padding: 1.5rem 0;
       }
 
       .nav-link {
         text-decoration: none;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
         color: #e6e6e6;
-        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
         transition: all 0.2s ease;
       }
 
       .nav-link:hover {
-        color: #ffffff;
+        color: #fff;
         transform: translateY(-2px);
         border-bottom: 2px solid #fff;
       }
 
-      /* optional: reduce spacing for mobile */
-      @media (max-width: 600px) {
+      /* Mobile responsive: 2 per row */
+      @media (max-width: 700px) {
         .navbar {
-          gap: 0.8rem;
-        }
-        .nav-link {
-          font-size: 1rem;
+          grid-template-columns: repeat(2, auto);
         }
       }
     </style>
@@ -230,38 +234,42 @@
           </div>
 
           <nav class="navbar">
-            <a href="{{ site.baseurl }}/about" class="nav-link">About me</a>
+            <a href="{{ site.baseurl }}/about" class="nav-link">
+              <i class="fa-solid fa-user"></i> About me
+            </a>
             <a
               href="{{ site.baseurl }}/categories/coding-practice"
-              class="nav-link"
-              >Coding Interview</a
-            >
+              class="nav-link">
+              <i class="fa-solid fa-code"></i> Coding Interview
+            </a>
             <a
               href="{{ site.baseurl }}/categories/system-design"
-              class="nav-link"
-              >System Design</a
-            >
+              class="nav-link">
+              <i class="fa-solid fa-diagram-project"></i> System Design
+            </a>
             <a
               href="{{ site.baseurl }}/categories/cloud-solution"
-              class="nav-link"
-              >Cloud Solution</a
-            >
-            <a href="{{ site.baseurl }}/categories/leadership" class="nav-link"
-              >Leadership</a
-            >
+              class="nav-link">
+              <i class="fa-solid fa-cloud"></i> Cloud Solution
+            </a>
+            <a href="{{ site.baseurl }}/categories/leadership" class="nav-link">
+              <i class="fa-solid fa-users-gear"></i> Leadership
+            </a>
             <a
               href="{{ site.baseurl }}/categories/mindset-psychology"
-              class="nav-link"
-              >Mindset</a
-            >
+              class="nav-link">
+              <i class="fa-solid fa-brain"></i> Mindset
+            </a>
             <a
               href="https://eggplant-sternum-78b.notion.site/Daily-Reflections-29d77827b775804c89a0dff759b6cc16"
-              class="nav-link"
-              >Daily</a
-            >
-            <a href="{{ site.baseurl }}/categories/pinned-docs" class="nav-link"
-              >Pinned Docs</a
-            >
+              class="nav-link">
+              <i class="fa-regular fa-calendar-check"></i> Daily
+            </a>
+            <a
+              href="{{ site.baseurl }}/categories/pinned-docs"
+              class="nav-link">
+              <i class="fa-solid fa-thumbtack"></i> Pinned Docs
+            </a>
           </nav>
         </header>
       </div>
