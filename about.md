@@ -4,7 +4,7 @@ title: About me
 permalink: /about
 ---
 
-Hello, reader. Here is blog to share some knowledge about my career with a dream to become a Software Engineer at FAANG.
+Hello, reader. Here is the blog to share some knowledge about my career with a dream to become a Software Engineer at FAANG.
 
 ## 1. Let's talk about career
 
