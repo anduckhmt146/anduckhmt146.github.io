@@ -157,6 +157,38 @@
           font-size: 1rem;
         }
       }
+
+      .navbar {
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+        justify-content: center; /* Center the menu */
+        gap: 1.5rem; /* Space between items */
+        padding: 1rem 0;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        font-size: 1.1rem;
+        color: #e6e6e6;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: #ffffff;
+        transform: translateY(-2px);
+        border-bottom: 2px solid #fff;
+      }
+
+      /* optional: reduce spacing for mobile */
+      @media (max-width: 600px) {
+        .navbar {
+          gap: 0.8rem;
+        }
+        .nav-link {
+          font-size: 1rem;
+        }
+      }
     </style>
   </head>
 
@@ -197,43 +229,36 @@
             <button id="theme-toggle" class="theme-toggle">🌙 Dark Mode</button>
           </div>
 
-          <nav>
+          <nav class="navbar">
             <a href="{{ site.baseurl }}/about" class="nav-link">About me</a>
-
             <a
               href="{{ site.baseurl }}/categories/coding-practice"
               class="nav-link"
               >Coding Interview</a
             >
-
             <a
               href="{{ site.baseurl }}/categories/system-design"
               class="nav-link"
               >System Design</a
             >
-
             <a
               href="{{ site.baseurl }}/categories/cloud-solution"
               class="nav-link"
               >Cloud Solution</a
             >
-
             <a href="{{ site.baseurl }}/categories/leadership" class="nav-link"
               >Leadership</a
             >
-
             <a
               href="{{ site.baseurl }}/categories/mindset-psychology"
               class="nav-link"
               >Mindset</a
             >
-
             <a
               href="https://eggplant-sternum-78b.notion.site/Daily-Reflections-29d77827b775804c89a0dff759b6cc16"
               class="nav-link"
-              >Daily Reflections</a
+              >Daily</a
             >
-
             <a href="{{ site.baseurl }}/categories/pinned-docs" class="nav-link"
               >Pinned Docs</a
             >
