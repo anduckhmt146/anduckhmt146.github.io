@@ -3,72 +3,191 @@ layout: default
 ---
 
 <style>
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    list-style: none;
-    padding: 0;
-  }
-
-  .pagination button,
-  .pagination span {
-    padding: 10px 15px;
-    margin: 0 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f8f9fa;
-    color: #6c757d;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-size: 16px;
-  }
-
-  .pagination button:hover {
-    background-color: #007bff;
-    color: white;
-  }
-
-  .pagination .active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
-    pointer-events: none;
-  }
-
-  .pagination .disabled {
-    background-color: #e9ecef;
-    color: #6c757d;
-    pointer-events: none;
-  }
-
-  .pagination .page-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  /* Search Box */
   .search-container {
+    max-width: 700px;
+    margin: 40px auto 20px auto;
     text-align: center;
-    margin: 30px 0;
   }
 
   .search-container input {
-    padding: 10px 15px;
     width: 100%;
+    padding: 14px 18px;
     font-size: 16px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: border-color 0.3s ease;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    background-color: var(--bg-color);
+    color: var(--text-color);
   }
 
   .search-container input:focus {
     border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
     outline: none;
+  }
+
+  /* Posts Container */
+  .posts {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .post {
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.25s ease;
+    color: var(--text-color);
+  }
+
+  .post:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .post h1 {
+    font-size: 22px;
+    margin: 0 0 10px 0;
+  }
+
+  .post h1 a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.2s ease;
+  }
+
+  .post h1 a:hover {
+    color: #007bff;
+  }
+
+  .post .entry {
+    color: var(--text-color);
+    opacity: 0.85;
+    margin-bottom: 15px;
+  }
+
+  .post .date {
+    color: #888;
+    font-size: 14px;
+  }
+
+  .read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .read-more:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  /* Category Tag */
+  .post a[href*='/categories/'] {
+    background-color: #007bff;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    transition: background-color 0.3s ease;
+  }
+
+  .post a[href*='/categories/']:hover {
+    background-color: #0056b3;
+  }
+
+  /* No Results Box */
+  .no-results {
+    text-align: center;
+    margin: 80px auto;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 18px;
+    border-radius: 16px;
+    padding: 60px 30px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--quote-bg);
+    transition: all 0.3s ease;
+  }
+
+  .no-results span {
+    display: block;
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 50px 0;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 100px;
+  }
+
+  .pagination button {
+    padding: 10px 16px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+  }
+
+  .pagination button:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .pagination .active {
+    background-color: #007bff !important;
+    color: #fff !important;
+    border-color: #007bff !important;
+    pointer-events: none;
+  }
+
+  .pagination .disabled {
+    background-color: #f1f1f1;
+    color: #aaa;
+    pointer-events: none;
+  }
+
+  /* Dark mode adjustments */
+  body.dark-mode .post {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+  }
+
+  body.dark-mode .search-container input {
+    background-color: #1a1a1a;
+    border-color: #333;
+    color: #f5f5f5;
+  }
+
+  body.dark-mode .pagination button {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    border-color: #333;
   }
 </style>
 
+<!-- 🔍 Search Bar -->
 <div class="search-container">
   <input
     type="text"
@@ -77,6 +196,7 @@ layout: default
     aria-label="Search posts" />
 </div>
 
+<!-- 📝 Post List -->
 <div class="posts">
   {% assign filtered_posts = site.posts | where: "categories", "cloud-solution"
   %} {% for post in filtered_posts %}
@@ -84,14 +204,7 @@ layout: default
     class="post"
     data-category="cloud-solution"
     data-title="{{ post.title | escape }}"
-    data-excerpt="{{ post.excerpt | strip_html | escape }}"
-    style="
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      margin-bottom: 10px;
-      transition: all 0.3s ease;
-    ">
+    data-excerpt="{{ post.excerpt | strip_html | escape }}">
     <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
     <div class="entry">{{ post.excerpt }}</div>
 
@@ -101,21 +214,8 @@ layout: default
         justify-content: space-between;
         align-items: center;
       ">
-      <p style="font-size: 14px; margin-top: 10px; color: #333">
-        <a
-          href="{{ site.baseurl }}/categories/{{ post.categories }}"
-          style="
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 15px;
-            font-size: 12px;
-            text-align: center;
-          "
-          onmouseover="this.style.opacity=0.8"
-          onmouseout="this.style.opacity=1">
+      <p style="font-size: 14px; margin-top: 10px">
+        <a href="{{ site.baseurl }}/categories/{{ post.categories }}">
           {{ post.categories }}
         </a>
       </p>
@@ -127,7 +227,13 @@ layout: default
   {% endfor %}
 </div>
 
-<!-- Pagination -->
+<!-- 😕 No Results -->
+<div id="no-results" class="no-results" style="display: none">
+  <span>😕</span>
+  No items found.
+</div>
+
+<!-- 🔢 Pagination -->
 <div class="pagination" id="pagination"></div>
 
 <script>
@@ -139,39 +245,42 @@ layout: default
     const posts = Array.from(document.querySelectorAll('.post'));
     const paginationContainer = document.getElementById('pagination');
     const searchInput = document.getElementById('search-input');
+    const noResults = document.getElementById('no-results');
 
     let filteredPosts = posts.filter(
       (post) => post.getAttribute('data-category') === 'cloud-solution'
     );
 
-    // Function to render posts and pagination
+    // ✅ Render posts with pagination + search
     function renderPosts(page = 1, searchTerm = '') {
       searchTerm = searchTerm.toLowerCase();
 
-      // Filter by search term
       const searchedPosts = filteredPosts.filter((post) => {
         const title = post.getAttribute('data-title').toLowerCase();
         const excerpt = post.getAttribute('data-excerpt').toLowerCase();
         return title.includes(searchTerm) || excerpt.includes(searchTerm);
       });
 
-      // Pagination
       const totalPages = Math.ceil(searchedPosts.length / postsPerPage);
       const offset = (page - 1) * postsPerPage;
 
-      // Hide all posts first
       posts.forEach((post) => (post.style.display = 'none'));
 
-      // Show filtered posts for this page
+      if (searchedPosts.length === 0) {
+        noResults.style.display = 'block';
+        paginationContainer.innerHTML = '';
+        return;
+      } else {
+        noResults.style.display = 'none';
+      }
+
       searchedPosts.forEach((post, index) => {
         if (index >= offset && index < offset + postsPerPage) {
           post.style.display = 'block';
         }
       });
 
-      // Render pagination buttons
       paginationContainer.innerHTML = '';
-
       if (totalPages > 1) {
         for (let i = 1; i <= totalPages; i++) {
           const button = document.createElement('button');
@@ -186,12 +295,9 @@ layout: default
       }
     }
 
-    // Initial render
     renderPosts(currentPage);
-
-    // Live search
-    searchInput.addEventListener('input', () => {
-      renderPosts(1, searchInput.value);
-    });
+    searchInput.addEventListener('input', () =>
+      renderPosts(1, searchInput.value)
+    );
   });
 </script>
