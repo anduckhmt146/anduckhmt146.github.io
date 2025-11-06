@@ -3,87 +3,170 @@ layout: default
 ---
 
 <style>
+  /* General Page Layout */
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #fafbfc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  .search-container {
+    max-width: 600px;
+    margin: 40px auto 20px auto;
+    text-align: center;
+  }
+
+  .search-container input {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  }
+
+  .search-container input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+    outline: none;
+  }
+
+  /* Posts Container */
+  .posts {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .post {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.25s ease;
+  }
+
+  .post:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .post h1 {
+    font-size: 22px;
+    margin: 0 0 10px 0;
+  }
+
+  .post h1 a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .post h1 a:hover {
+    color: #0056b3;
+  }
+
+  .post .entry {
+    color: #555;
+    margin-bottom: 15px;
+  }
+
+  .post .date {
+    color: #888;
+    font-size: 14px;
+  }
+
+  .read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .read-more:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  /* Category Tag */
+  .post a[href*='/categories/'] {
+    background-color: #007bff;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    transition: background-color 0.3s ease;
+  }
+
+  .post a[href*='/categories/']:hover {
+    background-color: #0056b3;
+  }
+
+  /* No Results Box */
+  .no-results {
+    text-align: center;
+    margin: 80px auto;
+    color: #6c757d;
+    font-size: 18px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 60px 30px;
+    max-width: 500px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  }
+
+  .no-results span {
+    display: block;
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+
+  /* Pagination */
   .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin: 30px 0 50px 0;
     list-style: none;
     padding: 0;
   }
 
-  .pagination button,
-  .pagination span {
-    padding: 10px 15px;
+  .pagination button {
+    padding: 10px 16px;
     margin: 0 5px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f8f9fa;
-    color: #6c757d;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #555;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-size: 16px;
+    transition: all 0.3s ease;
+    font-size: 15px;
   }
 
   .pagination button:hover {
     background-color: #007bff;
-    color: white;
+    color: #fff;
   }
 
   .pagination .active {
     background-color: #007bff;
-    color: white;
+    color: #fff;
     border-color: #007bff;
     pointer-events: none;
   }
 
   .pagination .disabled {
-    background-color: #e9ecef;
-    color: #6c757d;
+    background-color: #f1f1f1;
+    color: #aaa;
     pointer-events: none;
-  }
-
-  .pagination .page-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .search-container {
-    text-align: center;
-    margin: 30px 0;
-  }
-
-  .search-container input {
-    padding: 10px 15px;
-    width: 100%;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: border-color 0.3s ease;
-  }
-
-  .search-container input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-
-  .no-results {
-    text-align: center;
-    margin: 50px auto;
-    color: #6c757d;
-    font-size: 18px;
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 10px;
-    padding: 40px 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  .no-results span {
-    display: block;
-    font-size: 32px;
-    margin-bottom: 10px;
   }
 </style>
 
