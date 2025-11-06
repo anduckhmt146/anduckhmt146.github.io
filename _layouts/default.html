@@ -343,11 +343,7 @@
 
         // Helper: update button text depending on theme + device
         function updateButtonText(isDark) {
-          if (isMobile()) {
-            toggleBtn.textContent = isDark ? '☀️' : '🌙';
-          } else {
-            toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-          }
+          toggleBtn.textContent = isDark ? '☀️' : '🌙';
         }
 
         // Apply initial theme
