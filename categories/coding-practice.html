@@ -247,13 +247,12 @@ layout: default
     const searchInput = document.getElementById('search-input');
     const noResults = document.getElementById('no-results');
 
-    let filteredPosts = posts.filter(
+    const filteredPosts = posts.filter(
       (post) => post.getAttribute('data-category') === 'coding-practice'
     );
 
     function renderPagination(totalPages, page, searchTerm) {
       paginationContainer.innerHTML = '';
-
       if (totalPages <= 1) return;
 
       const createButton = (
@@ -275,50 +274,44 @@ layout: default
         return button;
       };
 
-      // First page
+      // « First
       paginationContainer.appendChild(createButton('«', 1, page === 1));
-
-      // Calculate pagination range
-      const range = 2; // how many numbers to show before/after current
-      let start = Math.max(2, page - range);
-      let end = Math.min(totalPages - 1, page + range);
-
-      // Adjust if near edges
-      if (page <= range + 2) end = Math.min(totalPages - 1, range * 2 + 2);
-      if (page >= totalPages - (range + 1))
-        start = Math.max(2, totalPages - (range * 2 + 1));
 
       // Always show first page
       paginationContainer.appendChild(createButton('1', 1, false, page === 1));
 
-      // Left ellipsis
-      if (start > 2) {
+      // If current page > 3, show ellipsis
+      if (page > 3) {
         const dots = document.createElement('button');
         dots.textContent = '...';
         dots.classList.add('disabled');
         paginationContainer.appendChild(dots);
       }
 
-      // Page numbers in range
-      for (let i = start; i <= end; i++) {
-        paginationContainer.appendChild(createButton(i, i, false, page === i));
+      // Show current -1, current, current +1 if in range
+      for (let i = page - 1; i <= page + 1; i++) {
+        if (i > 1 && i < totalPages) {
+          paginationContainer.appendChild(
+            createButton(i, i, false, page === i)
+          );
+        }
       }
 
-      // Right ellipsis
-      if (end < totalPages - 1) {
+      // If current page < totalPages - 2, show ellipsis
+      if (page < totalPages - 2) {
         const dots = document.createElement('button');
         dots.textContent = '...';
         dots.classList.add('disabled');
         paginationContainer.appendChild(dots);
       }
 
-      // Last page
+      // Always show last page
       if (totalPages > 1)
         paginationContainer.appendChild(
           createButton(totalPages, totalPages, false, page === totalPages)
         );
 
-      // Next / Last button
+      // » Last
       paginationContainer.appendChild(
         createButton('»', totalPages, page === totalPages)
       );
