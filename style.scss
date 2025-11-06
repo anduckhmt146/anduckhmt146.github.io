@@ -285,6 +285,47 @@ nav {
   }
 }
 
+/*************************/
+/* 🌙 Dark Mode: .posts fix */
+/*************************/
+
+body.dark-mode .posts > .post {
+  background-color: #1a1a1a; // Dark surface color
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1.5em;
+  margin-bottom: 20px;
+  color: #f0f0f0; // Bright readable text
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Improve text readability inside posts */
+body.dark-mode .posts > .post h1,
+body.dark-mode .posts > .post h2,
+body.dark-mode .posts > .post h3,
+body.dark-mode .posts > .post h4,
+body.dark-mode .posts > .post h5,
+body.dark-mode .posts > .post h6 {
+  color: #ffffff;
+}
+
+body.dark-mode .posts > .post p {
+  color: #e0e0e0;
+}
+
+body.dark-mode .posts > .post .date {
+  color: #aaaaaa;
+}
+
+body.dark-mode .posts > .post .read-more {
+  color: #89c2ff;
+}
+
+body.dark-mode .posts > .post .read-more:hover {
+  color: #a8d2ff;
+}
+
 .wrapper-footer {
   margin-top: 50px;
   border-top: 1px solid #ddd;
