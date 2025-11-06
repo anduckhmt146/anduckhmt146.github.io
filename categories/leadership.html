@@ -247,11 +247,76 @@ layout: default
     const searchInput = document.getElementById('search-input');
     const noResults = document.getElementById('no-results');
 
-    let filteredPosts = posts.filter(
+    const filteredPosts = posts.filter(
       (post) => post.getAttribute('data-category') === 'leadership'
     );
 
-    // ✅ Render posts with pagination + search
+    function renderPagination(totalPages, page, searchTerm) {
+      paginationContainer.innerHTML = '';
+      if (totalPages <= 1) return;
+
+      const createButton = (
+        text,
+        targetPage,
+        disabled = false,
+        active = false
+      ) => {
+        const button = document.createElement('button');
+        button.textContent = text;
+        if (disabled) button.classList.add('disabled');
+        if (active) button.classList.add('active');
+        if (!disabled && !active) {
+          button.onclick = () => {
+            renderPosts(targetPage, searchTerm);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          };
+        }
+        return button;
+      };
+
+      // « First
+      paginationContainer.appendChild(createButton('«', 1, page === 1));
+
+      // Always show first page
+      paginationContainer.appendChild(createButton('1', 1, false, page === 1));
+
+      // If current page > 3, show ellipsis
+      if (page > 3) {
+        const dots = document.createElement('button');
+        dots.textContent = '...';
+        dots.classList.add('disabled');
+        paginationContainer.appendChild(dots);
+      }
+
+      // Show current -1, current, current +1 if in range
+      for (let i = page - 1; i <= page + 1; i++) {
+        if (i > 1 && i < totalPages) {
+          paginationContainer.appendChild(
+            createButton(i, i, false, page === i)
+          );
+        }
+      }
+
+      // If current page < totalPages - 2, show ellipsis
+      if (page < totalPages - 2) {
+        const dots = document.createElement('button');
+        dots.textContent = '...';
+        dots.classList.add('disabled');
+        paginationContainer.appendChild(dots);
+      }
+
+      // Always show last page
+      if (totalPages > 1)
+        paginationContainer.appendChild(
+          createButton(totalPages, totalPages, false, page === totalPages)
+        );
+
+      // » Last
+      paginationContainer.appendChild(
+        createButton('»', totalPages, page === totalPages)
+      );
+    }
+
     function renderPosts(page = 1, searchTerm = '') {
       searchTerm = searchTerm.toLowerCase();
 
@@ -280,19 +345,7 @@ layout: default
         }
       });
 
-      paginationContainer.innerHTML = '';
-      if (totalPages > 1) {
-        for (let i = 1; i <= totalPages; i++) {
-          const button = document.createElement('button');
-          button.textContent = i;
-          button.onclick = () => {
-            renderPosts(i, searchInput.value);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          };
-          if (i === page) button.classList.add('active');
-          paginationContainer.appendChild(button);
-        }
-      }
+      renderPagination(totalPages, page, searchTerm);
     }
 
     renderPosts(currentPage);
