@@ -63,12 +63,6 @@
         font-weight: bold;
       }
 
-      .nav-link {
-        text-decoration: none;
-        color: var(--nav-link-color);
-        margin-right: 10px;
-      }
-
       .wrapper-masthead {
         margin-bottom: 0px;
       }
@@ -164,9 +158,13 @@
 
       .navbar {
         display: grid;
-        grid-template-columns: repeat(4, auto); /* 4 items per row */
-        justify-content: center;
-        gap: 2rem 4rem; /* spacing: row gap , column gap */
+        grid-template-columns: repeat(
+          4,
+          minmax(180px, 1fr)
+        ); /* equal width cols */
+        justify-items: center; /* center each item within the cell */
+        justify-content: center; /* center the entire grid container */
+        gap: 2rem 3rem;
         padding: 1.5rem 0;
       }
 
@@ -190,7 +188,7 @@
       /* Mobile responsive: 2 per row */
       @media (max-width: 700px) {
         .navbar {
-          grid-template-columns: repeat(2, auto);
+          grid-template-columns: repeat(2, minmax(140px, 1fr));
         }
       }
     </style>
@@ -263,7 +261,7 @@
             <a
               href="https://eggplant-sternum-78b.notion.site/Daily-Reflections-29d77827b775804c89a0dff759b6cc16"
               class="nav-link">
-              <i class="fa-regular fa-calendar-check"></i> Daily
+              <i class="fa-regular fa-calendar-check"></i> Daily Reflections
             </a>
             <a
               href="{{ site.baseurl }}/categories/pinned-docs"
