@@ -1,3 +1,6 @@
+---
+---
+
 //
 // IMPORTS
 //
@@ -18,7 +21,6 @@ body {
   background: $white;
   font: 18px/1.4 $helvetica;
   color: $darkGray;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -37,6 +39,7 @@ h6 {
   font-family: $helveticaNeue;
   color: $darkerGray;
   font-weight: bold;
+
   line-height: 1.7;
   margin: 1em 0 15px;
   padding: 0;
@@ -76,7 +79,7 @@ a {
   cursor: pointer;
   &:hover,
   &:active {
-    color: darken($blue, 10%);
+    color: $blue;
   }
 }
 
@@ -140,12 +143,14 @@ img {
   background: $lightGray;
 }
 
-// Clearfix
+// Nicolas Gallagher's micro clearfix hack
+// http://nicolasgallagher.com/micro-clearfix-hack/
 .clearfix:before,
 .clearfix:after {
   content: ' ';
   display: table;
 }
+
 .clearfix:after {
   clear: both;
 }
@@ -153,6 +158,10 @@ img {
 /*********************/
 /* LAYOUT / SECTIONS */
 /*********************/
+
+//
+// .masthead
+//
 
 .wrapper-masthead {
   margin-bottom: 50px;
@@ -176,7 +185,8 @@ img {
   @include mobile {
     float: none;
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
   }
 
   img {
@@ -216,7 +226,7 @@ img {
 
 nav {
   float: right;
-  margin-top: 23px;
+  margin-top: 23px; // @TODO: Vertically middle align
   font-family: $helveticaNeue;
   font-size: 18px;
 
@@ -241,17 +251,18 @@ nav {
   }
 }
 
+//
+// .main
+//
+
 .posts > .post {
-  padding: 1.5em;
-  margin-bottom: 20px;
-  border: 1px solid $lightGray;
-  border-radius: 8px;
-  background-color: $white;
-  transition: background-color 0.3s, border-color 0.3s;
+  padding-bottom: 2em;
+  border-bottom: 1px solid $lightGray;
 }
 
 .posts > .post:last-child {
-  margin-bottom: 0;
+  padding-bottom: 1em;
+  border-bottom: none;
 }
 
 .post {
@@ -286,116 +297,7 @@ footer {
   text-align: center;
 }
 
-/*************************/
-/* 🌙 DARK MODE OVERRIDES */
-/*************************/
-
-body.dark-mode {
-  background-color: #0f0f0f;
-  color: #f5f5f5;
-}
-
-body.dark-mode .masthead {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode .site-name {
-  color: #ffffff;
-}
-
-body.dark-mode .site-description {
-  color: #bbbbbb;
-}
-
-body.dark-mode nav a {
-  color: #e0e0e0;
-}
-
-body.dark-mode nav a:hover,
-body.dark-mode nav .active {
-  color: #4da3ff;
-}
-
-body.dark-mode .posts > .post {
-  background-color: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f0f0f0;
-}
-
-body.dark-mode .post blockquote {
-  border-left: 2px solid rgba(255, 255, 255, 0.2);
-  color: #dddddd;
-}
-
-body.dark-mode .read-more,
-body.dark-mode .date,
-body.dark-mode .category,
-body.dark-mode .views {
-  color: #cccccc;
-}
-
-body.dark-mode .read-more:hover {
-  color: #4da3ff;
-}
-
-body.dark-mode .wrapper-footer {
-  background-color: #1a1a1a;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode footer {
-  color: #999999;
-}
-
-body.dark-mode a {
-  color: #89c2ff;
-}
-
-body.dark-mode a:hover {
-  color: #a8d2ff;
-}
-
-body.dark-mode pre,
-body.dark-mode code {
-  background-color: #222;
-  color: #e8e8e8;
-  border-radius: 6px;
-}
-
-body.dark-mode table {
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #e0e0e0;
-}
-
-body.dark-mode hr {
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode .quote-box {
-  background-color: #1a1a1a;
-  color: #ffffff !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  line-height: 1.7;
-  font-style: italic;
-  padding: 16px 12px;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  font-size: 1.05rem;
-}
-
-body.dark-mode .quote-box a,
-body.dark-mode .quote-box span,
-body.dark-mode .quote-box p {
-  color: #ffffff !important;
-  text-decoration: none;
-}
-
-/*************************/
-/* IMPORTS */
-/*************************/
-
+// Settled on moving the import of syntax highlighting to the bottom of the CSS
+// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import 'highlights';
 @import 'svg-icons';
