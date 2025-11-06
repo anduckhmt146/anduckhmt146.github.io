@@ -331,13 +331,32 @@ body.dark-mode .posts > .post .read-more:hover {
   bottom: 0;
   left: 0;
   width: 100%;
-  border-top: 1px solid #ddd;
-  background-color: #f2f2f2;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(242, 242, 242, 0.75); /* light transparent */
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  z-index: 100;
+}
+
+/* Dark mode friendly */
+@media (prefers-color-scheme: dark) {
+  .wrapper-footer {
+    background-color: rgba(20, 20, 20, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .wrapper-footer footer {
+    color: #e6e6e6;
+  }
 }
 
 footer {
-  padding: 20px 0;
+  padding: 16px 0;
   text-align: center;
+  font-size: 15px;
+  color: #444;
+  transition: color 0.3s ease;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
