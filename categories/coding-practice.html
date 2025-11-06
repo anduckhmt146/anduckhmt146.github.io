@@ -4,7 +4,7 @@ layout: default
 
 <style>
   .search-container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 40px auto 20px auto;
     text-align: center;
   }
@@ -106,7 +106,6 @@ layout: default
     margin: 80px auto;
     color: #6c757d;
     font-size: 18px;
-    background: #fff;
     border-radius: 16px;
     padding: 60px 30px;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
@@ -231,7 +230,7 @@ layout: default
   document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const currentPage = parseInt(urlParams.get('page')) || 1;
-    const postsPerPage = 4;
+    const postsPerPage = 5;
 
     const posts = Array.from(document.querySelectorAll('.post'));
     const paginationContainer = document.getElementById('pagination');
