@@ -113,12 +113,35 @@
         color: #ffffff;
       }
 
-      /* Fix quote box in both modes */
+      /* Quote box (light & dark mode consistent) */
       .quote-box {
         background-color: var(--quote-bg);
         color: var(--quote-text);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        line-height: 1.6;
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        line-height: 1.7;
+        font-style: italic;
+        padding: 16px 12px;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 1.05rem;
+      }
+
+      /* Explicit text color to avoid link inheritance */
+      .quote-box a,
+      .quote-box span,
+      .quote-box p {
+        color: inherit !important;
+      }
+
+      /* Dark mode quote adjustments */
+      body.dark-mode .quote-box {
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.15);
       }
 
       .dark-mode .quote-box {
