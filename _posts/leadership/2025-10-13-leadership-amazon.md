@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Behaviral Interview Story - Amazon
+title: Behavioural Interview Story - Amazon
 date: 2025-10-13
 categories: leadership
 ---

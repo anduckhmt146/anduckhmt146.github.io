@@ -3030,7 +3030,7 @@ Feel Free to Ask: Questions about roles and responsibilities, scope and influenc
 
 - Tell a consistent story for recruitment => recruitment will deal with finance team.
 
-# 22. Behaviral Interview
+# 22. Behavioural Interview
 
 ## 22.1. Conflict Resolution
 
