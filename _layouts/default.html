@@ -40,7 +40,12 @@
         /* ✅ Fixed nav colors */
         --nav-link-color: #111; /* Black for light mode */
         --nav-icon-color: #111;
-        --nav-hover-color: #000;
+        --nav-hover-color: #007bff;
+      }
+
+      body.dark-mode {
+        --text-color: #ffffff;
+        --nav-icon-color: #ffffff; /* Dark mode icon color */
       }
 
       body {
@@ -174,7 +179,7 @@
 
       .nav-link i {
         color: var(--nav-icon-color);
-        font-size: 1.3rem;
+        transition: color 0.25s ease;
       }
 
       .nav-link:hover {
