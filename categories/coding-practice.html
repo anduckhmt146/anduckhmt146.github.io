@@ -251,7 +251,79 @@ layout: default
       (post) => post.getAttribute('data-category') === 'coding-practice'
     );
 
-    // ✅ Render posts with pagination + search
+    function renderPagination(totalPages, page, searchTerm) {
+      paginationContainer.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      const createButton = (
+        text,
+        targetPage,
+        disabled = false,
+        active = false
+      ) => {
+        const button = document.createElement('button');
+        button.textContent = text;
+        if (disabled) button.classList.add('disabled');
+        if (active) button.classList.add('active');
+        if (!disabled && !active) {
+          button.onclick = () => {
+            renderPosts(targetPage, searchTerm);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          };
+        }
+        return button;
+      };
+
+      // First page
+      paginationContainer.appendChild(createButton('«', 1, page === 1));
+
+      // Calculate pagination range
+      const range = 2; // how many numbers to show before/after current
+      let start = Math.max(2, page - range);
+      let end = Math.min(totalPages - 1, page + range);
+
+      // Adjust if near edges
+      if (page <= range + 2) end = Math.min(totalPages - 1, range * 2 + 2);
+      if (page >= totalPages - (range + 1))
+        start = Math.max(2, totalPages - (range * 2 + 1));
+
+      // Always show first page
+      paginationContainer.appendChild(createButton('1', 1, false, page === 1));
+
+      // Left ellipsis
+      if (start > 2) {
+        const dots = document.createElement('button');
+        dots.textContent = '...';
+        dots.classList.add('disabled');
+        paginationContainer.appendChild(dots);
+      }
+
+      // Page numbers in range
+      for (let i = start; i <= end; i++) {
+        paginationContainer.appendChild(createButton(i, i, false, page === i));
+      }
+
+      // Right ellipsis
+      if (end < totalPages - 1) {
+        const dots = document.createElement('button');
+        dots.textContent = '...';
+        dots.classList.add('disabled');
+        paginationContainer.appendChild(dots);
+      }
+
+      // Last page
+      if (totalPages > 1)
+        paginationContainer.appendChild(
+          createButton(totalPages, totalPages, false, page === totalPages)
+        );
+
+      // Next / Last button
+      paginationContainer.appendChild(
+        createButton('»', totalPages, page === totalPages)
+      );
+    }
+
     function renderPosts(page = 1, searchTerm = '') {
       searchTerm = searchTerm.toLowerCase();
 
@@ -280,19 +352,7 @@ layout: default
         }
       });
 
-      paginationContainer.innerHTML = '';
-      if (totalPages > 1) {
-        for (let i = 1; i <= totalPages; i++) {
-          const button = document.createElement('button');
-          button.textContent = i;
-          button.onclick = () => {
-            renderPosts(i, searchInput.value);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          };
-          if (i === page) button.classList.add('active');
-          paginationContainer.appendChild(button);
-        }
-      }
+      renderPagination(totalPages, page, searchTerm);
     }
 
     renderPosts(currentPage);
