@@ -1,34 +1,63 @@
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-  integrity="sha512-..."
+  integrity="sha512-3hXjQxAd0KXqI8YZBvHbFQK2P7XG1bRaQyD3FfWm0A+6rflEJp9K7yQKQbq3QkkQ4FsY5EMK0b3Mre6MtdF8EA=="
   crossorigin="anonymous"
   referrerpolicy="no-referrer" />
 
-{% if site.footer-links.email %}
-<a href="mailto:{{ site.footer-links.email }}" aria-label="Email">
-  <i class="fa-solid fa-envelope"></i>
-</a>
-{% endif %} {% if site.footer-links.facebook %}
-<a
-  href="https://www.facebook.com/{{ site.footer-links.facebook }}"
-  aria-label="Facebook">
-  <i class="fa-brands fa-facebook"></i>
-</a>
-{% endif %} {% if site.footer-links.github %}
-<a href="https://github.com/{{ site.footer-links.github }}" aria-label="GitHub">
-  <i class="fa-brands fa-github"></i>
-</a>
-{% endif %} {% if site.footer-links.instagram %}
-<a
-  href="https://instagram.com/{{ site.footer-links.instagram }}"
-  aria-label="Instagram">
-  <i class="fa-brands fa-instagram"></i>
-</a>
-{% endif %} {% if site.footer-links.tiktok %}
-<a
-  href="https://www.tiktok.com/@{{ site.footer-links.tiktok }}"
-  aria-label="TikTok">
-  <i class="fa-brands fa-tiktok"></i>
-</a>
-{% endif %}
+<style>
+  .footer-icons {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .footer-icons a {
+    margin: 0 10px;
+    color: #555;
+    font-size: 28px;
+    transition: color 0.3s, transform 0.2s ease;
+  }
+
+  .footer-icons a:hover {
+    color: #0077b5;
+    transform: scale(1.15);
+  }
+</style>
+
+<div class="footer-icons">
+  {% if site.footer-links.email %}
+  <a href="mailto:{{ site.footer-links.email }}" aria-label="Email">
+    <i class="fa-solid fa-envelope"></i>
+  </a>
+  {% endif %} {% if site.footer-links.facebook %}
+  <a
+    href="https://www.facebook.com/{{ site.footer-links.facebook }}"
+    aria-label="Facebook">
+    <i class="fa-brands fa-facebook"></i>
+  </a>
+  {% endif %} {% if site.footer-links.github %}
+  <a
+    href="https://github.com/{{ site.footer-links.github }}"
+    aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  {% endif %} {% if site.footer-links.instagram %}
+  <a
+    href="https://instagram.com/{{ site.footer-links.instagram }}"
+    aria-label="Instagram">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+  {% endif %} {% if site.footer-links.tiktok %}
+  <a
+    href="https://www.tiktok.com/@{{ site.footer-links.tiktok }}"
+    aria-label="TikTok">
+    <i class="fa-brands fa-tiktok"></i>
+  </a>
+  {% endif %} {% if site.footer-links.linkedin %}
+  <a
+    href="https://www.linkedin.com/in/{{ site.footer-links.linkedin }}"
+    aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+  {% endif %}
+</div>
