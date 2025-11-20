@@ -330,8 +330,13 @@ This requires:
 ### Architecture and Components:
 
 - Whenever a video is uploaded or updated, the system pushes the new/updated metadata to a search indexing service (e.g., Elasticsearch, Solr, or a custom system).
+
 - This process might be asynchronous—meaning a short delay between upload and availability in search results.
+
 - **Inverted Index**: Each word maps to a list of video IDs where it appears, enabling fast lookups.
+
 - The Search Service queries the inverted index with relevant filters (e.g., language, upload date).
+
 - A scoring/ranking algorithm sorts results by relevance, which might incorporate additional signals like popularity or watch time.
+
 - If the user is logged in, search could factor in watch history, subscriptions, or topic preferences.
