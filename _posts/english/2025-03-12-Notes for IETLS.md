@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Notes for learning English skills - DOL IELTS
-date: 2025-04-07
+title: Learning English skills - DOL IELTS
+date: 2025-11-23
 categories: mindset-psychology
 ---
 
