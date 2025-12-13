@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Notes for learning English skills - DOL IELTS
-date: 2025-04-07
+title: Learning English skills - DOL IELTS
+date: 2025-11-23
 categories: mindset-psychology
 ---
 
@@ -1543,3 +1543,24 @@ Quay lại trả lời theo bài 1
 - Mở rộng theo chiều rộng để bổ sung nghĩa cho D, C hoặc E.
 
 ![Horizonal Idea IELTS](/images/horizonal_ielts_idea.jpeg)
+
+
+## 3.4. Template
+
+### 3.4.1. Template explain idea
+
+- Topic
+
+- Description
+
+- Cause
+
+- Effect
+
+- Example 1 (Action 1)
+
+- Example 2. (Action 2)
+
+### 3.4.2. Template for topic.
+
+- When it come to A, B, C => based on gender, age.
