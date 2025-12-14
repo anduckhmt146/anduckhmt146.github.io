@@ -2,7 +2,7 @@
 layout: post
 title: 'DSA: Whiteboard Coding Patterns'
 date: 2025-02-14
-categories: tech
+categories: coding-practice
 ---
 
 Here is boilerplate template code that helps you shortcut thinking, reuse repeatable code, save your time, let you focus more on problem-solving while implementing algorithms in coding interview.
