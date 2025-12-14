@@ -1,9 +1,8 @@
 ---
 layout: post
-title: "DSA: Coding Interview Patterns"
-date: 2025-01-29
+title: 'DSA: Whiteboard Coding Patterns'
+date: 2025-02-14
 categories: tech
-
 ---
 
 Here is boilerplate template code that helps you shortcut thinking, reuse repeatable code, save your time, let you focus more on problem-solving while implementing algorithms in coding interview.
@@ -38,8 +37,6 @@ Here is boilerplate template code that helps you shortcut thinking, reuse repeat
     }   
 </style>
 
-
-
 <details>
 <summary><h1>1. Basic Data Structure</h1></summary>
 
@@ -58,7 +55,6 @@ for i, num in enumerate(nums):
 </code>
 </pre>
 </details>
-
 
 <h2>1.2. Linked List</h2>
 
@@ -106,7 +102,6 @@ print("After insertion:", doubly_list)   # Output: dllist([0, 1, 2, 3])
 </pre>
 </details>
 
-
 <h2>1.3. Stack</h2>
 
 <details>
@@ -134,7 +129,6 @@ is_empty = len(stack) == 0
 </pre>
 </details>
 
-
 <h2>1.4. Queue</h2>
 
 <details>
@@ -161,7 +155,6 @@ print(q.empty())  # Output: False
 </code>
 </pre>
 </details>
-
 
 <h2>1.5. Priority Queue</h2>
 
@@ -220,7 +213,6 @@ for key, value in hash_map.items():
 </code>
 </pre>
 </details>
-
 
 <h2>1.7. Set</h2>
 
@@ -394,7 +386,6 @@ BFS is better at:
     <li>Finding nodes close/closest to the root</li>
 </ul>
 
- 
 DFS is better at:
 
 <ul>
@@ -560,7 +551,6 @@ BFS is better at:
     <li>Graph of unknown size</li>
 </ul>
 
-
 DFS is better at:
 
 <ul>
@@ -610,6 +600,7 @@ bfs('A')
 </pre>
 
 <b>Notes:</b> Because you loop all the graph nodes, so time complexity is O(N).
+
 </details>
 
 <h3>BFS (Matrix)</h3>
@@ -907,7 +898,8 @@ print(f"Shortest path from {start} to {end}:", shortest_path(graph, start, end))
 </code>
 </pre>
 
-<b>Notes:</b> 
+<b>Notes:</b>
+
 <ul>
     <li><b>Time Complexity:</b> O(E + V) (Edges + Vertices)</li>
     <li><b>Space Complexity:</b> O(V) (Vertices)</li>
@@ -971,7 +963,8 @@ if __name__ == "__main__":
 </code>
 </pre>
 
-<b>Notes:</b> 
+<b>Notes:</b>
+
 <ul>
     <li><b>Time Complexity:</b> O((V + E) * log(V))</li>
     <li><b>Space Complexity:</b> O(V)</li>
@@ -1032,7 +1025,8 @@ print("Topological Order:", result)
 </code>
 </pre>
 
-<b>Notes:</b> 
+<b>Notes:</b>
+
 <ul>
     <li><b>Time Complexity:</b> O(V + E)</li>
     <li><b>Space Complexity:</b> O(V + E)</li>
@@ -1096,7 +1090,8 @@ print("Total MST Weight:", mst_weight)
 </code>
 </pre>
 
-<b>Notes:</b> 
+<b>Notes:</b>
+
 <ul>
     <li><b>Time Complexity:</b> O(ElogV)</li>
     <li><b>Space Complexity:</b> O(V + E)</li>
@@ -1405,7 +1400,6 @@ print(next_greater)
 </details>
 </details>
 
-
 <details>
 <summary><h2>3.5. Heap</h2></summary>
 
@@ -1623,7 +1617,6 @@ print("All valid paths from start to end (with sum <= 7):", ans)
 </code>
 </pre>
 </details>
-
 
 <h3>Backtracking (Aggregation)</h3>
 
