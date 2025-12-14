@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'DSA: Whiteboard Coding Patterns'
-date: 2025-02-14
+date: 2025-12-14
 categories: coding-practice
 ---
 
