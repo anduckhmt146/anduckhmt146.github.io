@@ -10,13 +10,13 @@ Hello, reader. Here is the blog to share some knowledge about my career with a d
 
 I am a Software Engineer, in a Middle - Senior Level with more than 2 year of experience working in industry, ability to work as a Fullstack Developer, specializing in Backend Engineering and Software Architect.
 
-- **Education**: Bachelor's Degree of Honors Program (Advanced Program for the top 40 students) in Computer Science at Bach Khoa University, Ho Chi Minh City. Ranked among the top 10 highest GPAs in the Computer Science faculty during my graduation year.
+- **Education**: Bachelor's Degree of Honors Program (Advanced Program for the top 40 students) in Computer Science at Bach Khoa University, Ho Chi Minh City.
 
 - **Languages:** Golang, Java, React, JavaScript, TypeScript.
 
 - **Techstack:** MySQL, NoSQL, Redis, Kafka, Grafana, RESTful API, gRPC API.
 
-- **Architecture & System Design:** Microservices, Event-driven Architecture, Serverless, System Design, AWS Cloud.
+- **Technology:** AI LLMs, Microservices, Event-driven Architecture, Serverless, System Design, AWS Cloud.
 
 - **Background knowledge:** Networking, Operating Systems, DSA, OOP Design, Database Design.
 

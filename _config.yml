@@ -9,7 +9,7 @@ name: Nguyễn Đức An
 description: Software Engineer, Philosophy & Psychology Interest
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://raw.githubusercontent.com/anduckhmt146/resource/refs/heads/master/public/assets/z7109042926104_2a49d0d7054ea799e41427f0b7a3376e.jpg
+avatar: https://scontent.fsgn8-3.fna.fbcdn.net/v/t39.30808-6/615474714_1605092927177527_8478741570337437594_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGFIRi5FBIbn6yhhnga11eodirwPWnkNxJ2KvA9aeQ3EgMgZ9gaBv3P5BypyKGLbbPymhzz6V2hayQz_5qEyb5n&_nc_ohc=H1cgT1o26icQ7kNvwGYVG2F&_nc_oc=Adl_-LHM6LLvyDzoaNTFdG6vFifD-mrVwGMQznPfSbWn9OpFVMfZ-R4FA-h0xmtmEIc&_nc_zt=23&_nc_ht=scontent.fsgn8-3.fna&_nc_gid=ifqYk345uSi_hn-RRMpy_w&oh=00_AfpWALFcCtrZBlq_g2E3Plwd5XMC1Jdrx41FoJIEgrBKaA&oe=69702A9B
 
 #
 # Flags below are optional
@@ -26,11 +26,10 @@ footer-links:
   linkedin: anduckhmt146
   pinterest:
   rss: # just type anything here for a working RSS icon
-  twitter: 
+  twitter:
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
-
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
@@ -47,7 +46,7 @@ url:
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
-baseurl: ""
+baseurl: ''
 
 #
 # !! You don't need to change any of the configuration flags below !!
@@ -73,7 +72,7 @@ kramdown:
 
 # Set the Sass partials directory, as we're using @imports
 sass:
-  style: "expanded" # You might prefer to minify using :compressed
+  style: 'expanded' # You might prefer to minify using :compressed
 
 # Use the following plug-ins
 gems:
