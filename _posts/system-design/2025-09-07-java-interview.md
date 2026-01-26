@@ -891,7 +891,7 @@ return
 
 # 8. Spring (follow the learning docs)
 
-Docs: [https://anduckhmt146.site/java-spring/](https://anduckhmt146.site/java-spring/)
+Docs: [https://anduckhmt1406.site/java-spring/](https://anduckhmt1406.site/java-spring/)
 
 # 9. Exception Handling
 
@@ -1026,7 +1026,6 @@ Notes: Java used both interpreter and compiler.
 - ClassLoader: loads .class files into memory.
 
 - Runtime Data Areas:
-
   - Method Area (class info, static vars)
   - Heap (objects)
   - Stack (method frames)
@@ -1034,7 +1033,6 @@ Notes: Java used both interpreter and compiler.
   - Native Method Stack
 
 - Execution Engine:
-
   - Interpreter (executes bytecode)
   - JIT Compiler (converts hot code to native machine code)
 
@@ -1089,13 +1087,11 @@ Collectors:
 - Even with GC, leaks happen if objects are referenced but unused
 
 - Causes:
-
   - Static fields holding big objects.
 
   - Unclosed resources (sockets, DB connections).
 
 - Solutions:
-
   - Use tools like VisualVM/JConsole to detect leaks.
 
   - Set unused references to null (not reference)
@@ -1183,7 +1179,6 @@ public class GCDemo {
 - Providing advanced features: AOP, internationalization, event publishing, profiles, etc.
 
 - Common Implementations
-
   - ClassPathXmlApplicationContext: loads beans from XML.
 
   - AnnotationConfigApplicationContext: loads beans from Java @Configuration classes.
@@ -1202,12 +1197,10 @@ public class GCDemo {
 ## 14.8. Spring AOP
 
 - Aspect: A building block bundles together cross-cutting concerns.
-
   - Advice: The code that is executed before, after, or around a method invocation.
   - Pointcut: Condition triggering the tasks(advice).
 
 - Join point: when the advice execute.
-
   - method calls
   - field access
   - object creation
@@ -1221,7 +1214,6 @@ public class GCDemo {
 - It is the central dispatcher in Spring MVC => Orchestration to routing requests.
 
 - Steps:
-
   - Request comes to web app → servlet container forwards it to DispatcherServlet.
 
   - DispatcherServlet looks up a suitable Handler Mapping to find the right controller.
@@ -1243,7 +1235,6 @@ public class GCDemo {
 - Built on top of the Servlet API (Tomcat, Jetty, etc.).
 
 - Request-per-thread model:
-
   - Each HTTP request → one thread from servlet container thread pool.
 
   - The thread is blocked until response is ready.
@@ -1388,7 +1379,6 @@ Interceptors:
 3. AtomicInteger: Giống Persimisstic Lock => Do not lock like synchronized but check current value in mem -> retry until match new value.
 
 4. ConcurrentHashMap
-
    - Reads: non-blocking (volatile semantics).
 
    - Writes: use CAS or synchronized at bucket level, not global lock.
@@ -1598,12 +1588,10 @@ Spring Transaction: propagation + isolation levels.
 Spring AOP
 
 - Aspect: A building block bundles together cross-cutting concerns.
-
   - Advice: The code that is executed before, after, or around a method invocation.
   - Pointcut: Condition triggering the tasks(advice).
 
 - Join point: when the advice execute.
-
   - method calls
   - field access
   - object creation
@@ -1668,7 +1656,6 @@ System.out.println(dept.getEmployees());    // Triggers SQL for Employees
 - A Session is a single-threaded object provided by Hibernate to interact with the database.
 
 - Responsible for:
-
   - Managing entity state (Transient, Persistent, Detached).
 
   - Query execution (HQL, SQL, Criteria).
@@ -1678,7 +1665,6 @@ System.out.println(dept.getEmployees());    // Triggers SQL for Employees
   - First-level cache.
 
 - State Meaning:
-
   - Transient Not associated with session/DB new Entity()
 
   - Persistent Managed by session, in 1st-level cache session.save(entity)

@@ -49,7 +49,7 @@ All you need to do is write simple Markdown files (similar to Notion’s syntax)
   - I recommend Namecheap for its excellent customer support and user-friendly interface.
 - **Search for Your Desired Domain**
   - Enter the name of the domain you want to buy.
-  - For example, if I want a domain for my account "anduckhmt146," the system might suggest options like: **anduckhmt146.com, anduckhmt146.net, anduckhmt146.site**, etc.
+  - For example, if I want a domain for my account "anduckhmt146," the system might suggest options like: **anduckhmt146.com, anduckhmt146.net, anduckhmt1406.site**, etc.
 - **Choose Your Domain**
   - Select the domain that fits your needs.
   - Keep in mind:
@@ -96,7 +96,7 @@ Remember to update fields, such as field layout with value “post”, and field
 
 # 4. Output 😂
 
-Link: [https://anduckhmt146.site/](https://anduckhmt146.site/)
+Link: [https://anduckhmt1406.site/](https://anduckhmt1406.site/)
 
 ![image.png](/images/Guide%20for%20Non-Techies%20How%20to%20Create%20a%20Free%20Blog%20Ea%20187de13133de8036a0c9eb2ec3428942/image%207.png)
 
