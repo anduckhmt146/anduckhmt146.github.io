@@ -205,6 +205,69 @@
         border-bottom: 2px solid var(--nav-hover-color);
       }
 
+      /* PDF viewer modal */
+      .pdf-modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .pdf-modal-overlay.is-open {
+        display: flex;
+      }
+      .pdf-modal {
+        background: var(--bg-color);
+        border-radius: 12px;
+        max-width: 95vw;
+        max-height: 95vh;
+        width: 900px;
+        height: 85vh;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+      }
+      .pdf-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      body.dark-mode .pdf-modal-header {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+      }
+      .pdf-modal-header h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: var(--text-color);
+      }
+      .pdf-modal-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-color);
+        padding: 4px 8px;
+        line-height: 1;
+      }
+      .pdf-modal-close:hover {
+        opacity: 0.8;
+      }
+      .pdf-modal-body {
+        flex: 1;
+        min-height: 0;
+      }
+      .pdf-modal-body iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0 0 12px 12px;
+      }
+
       .navbar {
         display: grid;
         grid-template-columns: repeat(3, minmax(180px, 1fr));
@@ -263,13 +326,9 @@
                 justify-content: center;
               ">
               <button id="theme-toggle" class="theme-toggle">🌙 Dark</button>
-              <a
-                href="https://media.licdn.com/dms/document/media/v2/D562DAQET67FRlfDyTQ/profile-treasury-document-pdf-analyzed/B56ZrNFACYKsAo-/0/1764377233552?e=1768435200&v=beta&t=yhXR3dRpYr4OqnEoYq1hD7yUNKDUvqcbsFofH3PG3sM"
-                target="_blank"
-                class="theme-toggle"
-                style="text-decoration: none">
+              <button id="pdf-review-btn" class="theme-toggle" type="button" title="Review document">
                 📄
-              </a>
+              </button>
             </div>
           </div>
 
@@ -321,6 +380,19 @@
     <div class="quote-box">
       Ambition kills laziness, Intellect kills anger, Confidence kills doubt,
       Peace kills jealousy, and Dream kills fear.
+    </div>
+
+    <!-- PDF viewer modal -->
+    <div id="pdf-modal-overlay" class="pdf-modal-overlay" aria-hidden="true">
+      <div class="pdf-modal">
+        <div class="pdf-modal-header">
+          <h3>CV / Resume</h3>
+          <button type="button" class="pdf-modal-close" id="pdf-modal-close" aria-label="Close">×</button>
+        </div>
+        <div class="pdf-modal-body">
+          <iframe id="pdf-viewer-iframe" src="" title="CV PDF"></iframe>
+        </div>
+      </div>
     </div>
 
     <div id="main" role="main" class="container">{{ content }}</div>
@@ -386,6 +458,37 @@
         window.addEventListener('resize', () => {
           const isDark = document.body.classList.contains('dark-mode');
           updateButtonText(isDark);
+        });
+
+        // PDF review modal
+        const pdfBtn = document.getElementById('pdf-review-btn');
+        const pdfOverlay = document.getElementById('pdf-modal-overlay');
+        const pdfIframe = document.getElementById('pdf-viewer-iframe');
+        const pdfClose = document.getElementById('pdf-modal-close');
+        const pdfUrl = '{{ site.baseurl }}/cv/Backend_Software_Engineer_Nguyen_Duc_An.pdf';
+
+        if (pdfBtn && pdfOverlay) {
+          pdfBtn.addEventListener('click', () => {
+            pdfIframe.src = pdfUrl;
+            pdfOverlay.classList.add('is-open');
+            pdfOverlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+          });
+        }
+        function closePdfModal() {
+          pdfOverlay.classList.remove('is-open');
+          pdfOverlay.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          pdfIframe.src = '';
+        }
+        if (pdfClose) pdfClose.addEventListener('click', closePdfModal);
+        if (pdfOverlay) {
+          pdfOverlay.addEventListener('click', (e) => {
+            if (e.target === pdfOverlay) closePdfModal();
+          });
+        }
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && pdfOverlay.classList.contains('is-open')) closePdfModal();
         });
       });
     </script>
