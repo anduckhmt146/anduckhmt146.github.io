@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>
@@ -51,7 +51,9 @@
       body {
         background-color: var(--bg-color);
         color: var(--text-color);
-        transition: background-color 0.3s, color 0.3s;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
         margin: 0;
         font-family: Arial, sans-serif;
       }
@@ -135,7 +137,9 @@
         font-size: 0.9rem;
         margin-left: 10px;
         color: inherit;
-        transition: background-color 0.3s, color 0.3s;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
       }
 
       .theme-toggle:hover {
@@ -326,7 +330,11 @@
                 justify-content: center;
               ">
               <button id="theme-toggle" class="theme-toggle">🌙 Dark</button>
-              <button id="pdf-review-btn" class="theme-toggle" type="button" title="Review document">
+              <button
+                id="pdf-review-btn"
+                class="theme-toggle"
+                type="button"
+                title="Review document">
                 📄
               </button>
             </div>
@@ -335,6 +343,14 @@
           <nav class="navbar">
             <a href="{{ site.baseurl }}/about" class="nav-link">
               <i class="fa-solid fa-user"></i> About me
+            </a>
+            <a href="{{ site.baseurl }}/categories/planning" class="nav-link">
+              <i class="fa-solid fa-lightbulb"></i> Writing
+            </a>
+            <a
+              href="https://eggplant-sternum-78b.notion.site/Daily-Reflections-29d77827b775804c89a0dff759b6cc16"
+              class="nav-link">
+              <i class="fa-regular fa-calendar-check"></i> Daily Reflections
             </a>
             <a
               href="{{ site.baseurl }}/categories/coding-practice"
@@ -360,17 +376,9 @@
               <i class="fa-solid fa-brain"></i> Mindset
             </a>
             <a
-              href="https://eggplant-sternum-78b.notion.site/Daily-Reflections-29d77827b775804c89a0dff759b6cc16"
-              class="nav-link">
-              <i class="fa-regular fa-calendar-check"></i> Daily Reflections
-            </a>
-            <a
               href="{{ site.baseurl }}/categories/pinned-docs"
               class="nav-link">
               <i class="fa-solid fa-thumbtack"></i> Pinned Docs
-            </a>
-            <a href="{{ site.baseurl }}/categories/planning" class="nav-link">
-              <i class="fa-solid fa-lightbulb"></i> Writing
             </a>
           </nav>
         </header>
@@ -387,7 +395,13 @@
       <div class="pdf-modal">
         <div class="pdf-modal-header">
           <h3>CV / Resume</h3>
-          <button type="button" class="pdf-modal-close" id="pdf-modal-close" aria-label="Close">×</button>
+          <button
+            type="button"
+            class="pdf-modal-close"
+            id="pdf-modal-close"
+            aria-label="Close">
+            ×
+          </button>
         </div>
         <div class="pdf-modal-body">
           <iframe id="pdf-viewer-iframe" src="" title="CV PDF"></iframe>
@@ -427,7 +441,7 @@
         const toggleBtn = document.getElementById('theme-toggle');
         const storedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia(
-          '(prefers-color-scheme: dark)'
+          '(prefers-color-scheme: dark)',
         ).matches;
 
         // Determine current theme
@@ -465,7 +479,8 @@
         const pdfOverlay = document.getElementById('pdf-modal-overlay');
         const pdfIframe = document.getElementById('pdf-viewer-iframe');
         const pdfClose = document.getElementById('pdf-modal-close');
-        const pdfUrl = '{{ site.baseurl }}/cv/Backend_Software_Engineer_Nguyen_Duc_An.pdf';
+        const pdfUrl =
+          '{{ site.baseurl }}/cv/Backend_Software_Engineer_Nguyen_Duc_An.pdf';
 
         if (pdfBtn && pdfOverlay) {
           pdfBtn.addEventListener('click', () => {
@@ -488,7 +503,8 @@
           });
         }
         document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && pdfOverlay.classList.contains('is-open')) closePdfModal();
+          if (e.key === 'Escape' && pdfOverlay.classList.contains('is-open'))
+            closePdfModal();
         });
       });
     </script>
