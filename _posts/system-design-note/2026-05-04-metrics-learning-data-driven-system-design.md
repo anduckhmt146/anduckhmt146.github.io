@@ -5,6 +5,9 @@ date: 2026-05-04
 categories: system-design-note
 ---
 
+There’s a secret: when you want to persuade a business, nothing is more compelling than solid metrics—they’re hard to dispute and form the strongest basis for meaningful debate. 
+
+An experienced software engineer understands the best skill is knowing how to read dashboards and metrics in infrastructures, and using that data to make the right improvements in a system.
 
 # 1. Temporal Dashboard Metrics
 
