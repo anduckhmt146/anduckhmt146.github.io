@@ -451,7 +451,7 @@
         ).matches;
 
         // Determine current theme
-        let currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+        let currentTheme = storedTheme || 'dark';
 
         // Helper: check if current screen is mobile
         const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
