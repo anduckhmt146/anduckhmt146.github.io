@@ -74,7 +74,7 @@ layout: default
   firebase.initializeApp(firebaseConfig);
 </script>
 
-<!-- <script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     var pagePath = window.location.pathname;
     var viewsRef = firebase.database().ref('views' + pagePath);
@@ -96,7 +96,7 @@ layout: default
       }
     );
   });
-</script> -->
+</script>
 
 <article class="post">
   <h2>{{ page.title }}</h2>
@@ -105,7 +105,7 @@ layout: default
 
   <div class="date">{{ page.date | date: "%B %e, %Y" }}</div>
 
-  <div class="views"></div>
+  <!-- <div class="views"></div> -->
 
   <div style="margin-bottom: 100px"></div>
 
