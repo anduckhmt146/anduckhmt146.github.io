@@ -35,4 +35,5 @@ migrate:
 	} >> "$$FILENAME" && \
 	echo "✔ Created file: _posts/$(folder)/$$FILENAME"
 
-
+opinion:
+	make migrate folder=opinion
