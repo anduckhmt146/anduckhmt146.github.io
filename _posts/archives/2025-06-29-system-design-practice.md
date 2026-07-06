@@ -2,7 +2,7 @@
 layout: post
 title: AWS Sample Diagram Design
 date: 2025-06-29
-categories: cloud-solution
+categories: archives
 ---
 
 Here is some designs of system design concepts

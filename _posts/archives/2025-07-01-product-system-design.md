@@ -2,7 +2,7 @@
 layout: post
 title: Product System Design - Hello Interview
 date: 2025-07-01
-categories: cloud-solution
+categories: archives
 ---
 
 Here is some note for product system design.

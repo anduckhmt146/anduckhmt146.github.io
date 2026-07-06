@@ -198,11 +198,11 @@ layout: default
 
 <!-- 📝 Post List -->
 <div class="posts">
-  {% assign filtered_posts = site.posts | where: "categories", "cloud-solution"
+  {% assign filtered_posts = site.posts | where: "categories", "archives"
   %} {% for post in filtered_posts %}
   <article
     class="post"
-    data-category="cloud-solution"
+    data-category="archives"
     data-title="{{ post.title | escape }}"
     data-excerpt="{{ post.excerpt | strip_html | escape }}">
     <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
@@ -248,7 +248,7 @@ layout: default
     const noResults = document.getElementById('no-results');
 
     const filteredPosts = posts.filter(
-      (post) => post.getAttribute('data-category') === 'cloud-solution'
+      (post) => post.getAttribute('data-category') === 'archives'
     );
 
     function renderPagination(totalPages, page, searchTerm) {

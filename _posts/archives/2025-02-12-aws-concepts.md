@@ -2,7 +2,7 @@
 layout: post
 title: 'AWS Concepts'
 date: 2025-03-30
-categories: cloud-solution
+categories: archives
 ---
 
 Here is the concepts of AWS that I learned for AWS Certified Cloud Practitioner + AWS Associate Software Architect.

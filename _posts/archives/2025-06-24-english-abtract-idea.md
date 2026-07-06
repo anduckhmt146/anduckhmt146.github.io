@@ -2,7 +2,7 @@
 layout: post
 title: Learning English
 date: 2025-06-24
-categories: cloud-solution
+categories: archives
 ---
 
 Here is some high-level thinking when learning English.

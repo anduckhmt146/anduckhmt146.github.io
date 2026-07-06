@@ -2,7 +2,7 @@
 layout: post
 title: AWS Applications
 date: 2025-06-23
-categories: cloud-solution
+categories: archives
 ---
 
 Here is some techniques when implementing services in AWS

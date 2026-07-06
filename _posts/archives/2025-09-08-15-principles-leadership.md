@@ -2,7 +2,7 @@
 layout: post
 title: 15 Leadership Principles Amazon
 date: 2025-09-07
-categories: cloud-solution
+categories: archives
 ---
 
 Docs: [https://www.amazon.jobs/content/en/our-workplace/leadership-principles](https://www.amazon.jobs/content/en/our-workplace/leadership-principles)
