@@ -6,7 +6,9 @@ permalink: /
 
 Hello, reader. Here is the blog to share some knowledge about my career and my dream as a Software Engineer.
 
-## 1. Persona me - Be Clarity, Curious, Confident, Charming and Humanity
+# 1. Persona me
+
+Be Clarity, Curious, Confident, Charming and Humanity
 
 I have experience as a Software Engineer, driven by curiosity and analytical thinking to explore ideas, user usecases, technologies to seek truth problems. My favourage topic is designing distributed systems with availability and consistency challenges, proposing decisions based on reasons, trade-offs, data-driven facts and intentionally motivation to make things better.
 
