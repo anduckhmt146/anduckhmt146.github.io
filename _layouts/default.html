@@ -1,359 +1,354 @@
 <!doctype html>
 <html>
-  <head>
-    <title>
-      {% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{
-      site.description }}
-    </title>
 
-    {% include meta.html %}
+<head>
+  <title>
+    {% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{
+    site.description }}
+  </title>
 
-    <!--[if lt IE 9]>
+  {% include meta.html %}
+
+  <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ site.baseurl }}/style.css" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="{{ site.name }} - {{ site.description }}"
-      href="{{ site.baseurl }}/feed.xml" />
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}"
+    href="{{ site.baseurl }}/feed.xml" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
 
-    <style>
-      :root {
-        --bg-color: #ffffff;
-        --text-color: #000000;
-        --quote-bg: #f0f0f0;
-        --quote-text: #000000;
-        --nav-link-color: #000000;
-        --active-color: #007bff;
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --quote-bg: #f0f0f0;
+      --quote-text: #000000;
+      --nav-link-color: #000000;
+      --active-color: #007bff;
 
-        /* ✅ Fixed nav colors */
-        --nav-link-color: #111; /* Black for light mode */
-        --nav-icon-color: #111;
-        --nav-hover-color: #007bff;
-      }
+      /* ✅ Fixed nav colors */
+      --nav-link-color: #111;
+      /* Black for light mode */
+      --nav-icon-color: #111;
+      --nav-hover-color: #007bff;
+    }
 
-      body.dark-mode {
-        --text-color: #ffffff;
-        --nav-icon-color: #ffffff; /* Dark mode icon color */
-      }
+    body.dark-mode {
+      --text-color: #ffffff;
+      --nav-icon-color: #ffffff;
+      /* Dark mode icon color */
+    }
 
-      body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        transition:
-          background-color 0.3s,
-          color 0.3s;
-        margin: 0;
-        font-family: Arial, sans-serif;
-      }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition:
+        background-color 0.3s,
+        color 0.3s;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
+    .avatar {
+      max-width: 90px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .active {
+      color: var(--active-color);
+      font-weight: bold;
+    }
+
+    .wrapper-masthead {
+      margin-bottom: 0px;
+    }
+
+    /* Improve text contrast and quotes in dark mode */
+    body.dark-mode {
+      --bg-color: #0f0f0f;
+      --text-color: #f5f5f5;
+      --quote-bg: #1e1e1e;
+      --quote-text: #f5f5f5;
+      --nav-link-color: #f0f0f0;
+      --active-color: #4da3ff;
+    }
+
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode h4,
+    body.dark-mode h5 {
+      color: #ffffff;
+    }
+
+    /* Quote box (light & dark mode consistent) */
+    .quote-box {
+      background-color: var(--quote-bg);
+      color: var(--quote-text);
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      line-height: 1.7;
+      font-style: italic;
+      padding: 16px 12px;
+      width: 700px;
+      margin: 20px auto;
+      border-radius: 15px;
+    }
+
+    /* Explicit text color to avoid link inheritance */
+    .quote-box a,
+    .quote-box span,
+    .quote-box p {
+      color: inherit !important;
+    }
+
+    /* Dark mode quote adjustments */
+    body.dark-mode .quote-box {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .dark-mode .quote-box {
+      background-color: var(--quote-bg);
+      color: var(--quote-text);
+    }
+
+    /* Toggle button */
+    .theme-toggle {
+      background: none;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-left: 10px;
+      color: inherit;
+      transition:
+        background-color 0.3s,
+        color 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    @media (max-width: 768px) {
       .avatar {
-        max-width: 90px;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-right: 15px;
+        max-width: 80px;
       }
 
-      .active {
-        color: var(--active-color);
-        font-weight: bold;
-      }
-
-      .wrapper-masthead {
-        margin-bottom: 0px;
-      }
-
-      /* Improve text contrast and quotes in dark mode */
-      body.dark-mode {
-        --bg-color: #0f0f0f;
-        --text-color: #f5f5f5;
-        --quote-bg: #1e1e1e;
-        --quote-text: #f5f5f5;
-        --nav-link-color: #f0f0f0;
-        --active-color: #4da3ff;
-      }
-
-      body.dark-mode h1,
-      body.dark-mode h2,
-      body.dark-mode h3,
-      body.dark-mode h4,
-      body.dark-mode h5 {
-        color: #ffffff;
-      }
-
-      /* Quote box (light & dark mode consistent) */
-      .quote-box {
-        background-color: var(--quote-bg);
-        color: var(--quote-text);
-        border: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        line-height: 1.7;
-        font-style: italic;
-        padding: 16px 12px;
-        width: 700px;
-        margin: 20px auto;
-        border-radius: 15px;
-      }
-
-      /* Explicit text color to avoid link inheritance */
-      .quote-box a,
-      .quote-box span,
-      .quote-box p {
-        color: inherit !important;
-      }
-
-      /* Dark mode quote adjustments */
-      body.dark-mode .quote-box {
-        background-color: #1a1a1a;
-        color: #ffffff;
-        border-color: rgba(255, 255, 255, 0.15);
-      }
-
-      .dark-mode .quote-box {
-        background-color: var(--quote-bg);
-        color: var(--quote-text);
-      }
-
-      /* Toggle button */
-      .theme-toggle {
-        background: none;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 6px 10px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        margin-left: 10px;
-        color: inherit;
-        transition:
-          background-color 0.3s,
-          color 0.3s;
-      }
-
-      .theme-toggle:hover {
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-
-      @media (max-width: 768px) {
-        .avatar {
-          max-width: 80px;
-        }
-
-        nav {
-          width: 300px;
-          margin: 10px auto;
-        }
-
-        .navbar {
-          justify-items: right;
-        }
-
-        .nav-link {
-          width: 150px;
-          display: block;
-        }
-
-        .site-name a {
-          font-size: 1.5rem;
-        }
-        .site-description {
-          font-size: 0.8rem;
-        }
-        .quote-box {
-          width: 95%;
-          font-size: 1rem;
-        }
-      }
-
-      .nav-link {
-        text-decoration: none;
-        font-weight: 600;
-        color: var(--nav-link-color);
-        align-items: center;
-        gap: 0.4rem;
-        text-align: center;
-        transition: all 0.2s ease;
-      }
-
-      .nav-link i {
-        color: var(--nav-icon-color);
-        transition: color 0.25s ease;
-      }
-
-      .nav-link:hover i {
-        color: var(--nav-hover-color);
-      }
-
-      .nav-link.active {
-        color: var(--active-color);
-      }
-
-      .nav-link.active i {
-        color: var(--active-color);
-      }
-
-      .nav-link:hover {
-        color: var(--nav-hover-color);
-        transform: translateY(-2px);
-        border-bottom: 2px solid var(--nav-hover-color);
-      }
-
-      /* PDF viewer modal */
-      .pdf-modal-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 9999;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-      .pdf-modal-overlay.is-open {
-        display: flex;
-      }
-      .pdf-modal {
-        background: var(--bg-color);
-        border-radius: 12px;
-        max-width: 95vw;
-        max-height: 95vh;
-        width: 900px;
-        height: 85vh;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        display: flex;
-        flex-direction: column;
-      }
-      .pdf-modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 16px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      }
-      body.dark-mode .pdf-modal-header {
-        border-bottom-color: rgba(255, 255, 255, 0.1);
-      }
-      .pdf-modal-header h3 {
-        margin: 0;
-        font-size: 1.1rem;
-        color: var(--text-color);
-      }
-      .pdf-modal-close {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: var(--text-color);
-        padding: 4px 8px;
-        line-height: 1;
-      }
-      .pdf-modal-close:hover {
-        opacity: 0.8;
-      }
-      .pdf-modal-body {
-        flex: 1;
-        min-height: 0;
-      }
-      .pdf-modal-body iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 0 0 12px 12px;
+      nav {
+        width: 300px;
+        margin: 10px auto;
       }
 
       .navbar {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(180px, 1fr));
-        justify-items: center;
-        justify-content: center;
-        gap: 1rem;
-        padding: 1.5rem 0;
+        justify-items: right;
       }
 
-      @media (max-width: 700px) {
-        .navbar {
-          grid-template-columns: repeat(2, minmax(140px, 1fr));
-        }
+      .nav-link {
+        width: 150px;
+        display: block;
       }
-    </style>
-  </head>
 
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <div
-            style="
+      .site-name a {
+        font-size: 1.5rem;
+      }
+
+      .site-description {
+        font-size: 0.8rem;
+      }
+
+      .quote-box {
+        width: 95%;
+        font-size: 1rem;
+      }
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--nav-link-color);
+      align-items: center;
+      gap: 0.4rem;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link i {
+      color: var(--nav-icon-color);
+      transition: color 0.25s ease;
+    }
+
+    .nav-link:hover i {
+      color: var(--nav-hover-color);
+    }
+
+    .nav-link.active {
+      color: var(--active-color);
+    }
+
+    .nav-link.active i {
+      color: var(--active-color);
+    }
+
+    .nav-link:hover {
+      color: var(--nav-hover-color);
+      transform: translateY(-2px);
+      border-bottom: 2px solid var(--nav-hover-color);
+    }
+
+    /* PDF viewer modal */
+    .pdf-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .pdf-modal-overlay.is-open {
+      display: flex;
+    }
+
+    .pdf-modal {
+      background: var(--bg-color);
+      border-radius: 12px;
+      max-width: 95vw;
+      max-height: 95vh;
+      width: 900px;
+      height: 85vh;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pdf-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .pdf-modal-header {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .pdf-modal-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--text-color);
+    }
+
+    .pdf-modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-color);
+      padding: 4px 8px;
+      line-height: 1;
+    }
+
+    .pdf-modal-close:hover {
+      opacity: 0.8;
+    }
+
+    .pdf-modal-body {
+      flex: 1;
+      min-height: 0;
+    }
+
+    .pdf-modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .navbar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      justify-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem 0;
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper-masthead">
+    <div class="container">
+      <header class="masthead clearfix">
+        <div style="
               display: flex;
               justify-content: space-between;
               align-items: center;
             ">
-            <div
-              style="
+          <div style="
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
               ">
-              <a href="{{ site.baseurl }}">
-                <img src="{{ site.avatar }}" class="avatar" />
-              </a>
-              <div
-                class="site-info"
-                style="
+            <a href="{{ site.baseurl }}">
+              <img src="{{ site.avatar }}" class="avatar" />
+            </a>
+            <div class="site-info" style="
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
                 ">
-                <h1 class="site-name">
-                  <a href="{{ site.baseurl }}">{{ site.name }}</a>
-                </h1>
-                <p class="site-description">{{ site.description }}</p>
-              </div>
+              <h1 class="site-name">
+                <a href="{{ site.baseurl }}">{{ site.name }}</a>
+              </h1>
+              <p class="site-description">{{ site.description }}</p>
             </div>
+          </div>
 
-            <!-- 🌙 Toggle Button -->
-            <div
-              style="
+          <!-- 🌙 Toggle Button -->
+          <div style="
                 display: flex;
                 align-items: center;
                 justify-content: center;
               ">
-              <button id="theme-toggle" class="theme-toggle">🌙 Dark</button>
-              <button
-                id="pdf-review-btn"
-                class="theme-toggle"
-                type="button"
-                title="Review document">
-                📄
-              </button>
-            </div>
+            <button id="theme-toggle" class="theme-toggle">🌙 Dark</button>
+            <button id="pdf-review-btn" class="theme-toggle" type="button" title="Review document">
+              📄
+            </button>
           </div>
+        </div>
 
-          <nav class="navbar">
-            <a href="{{ site.baseurl }}/about" class="nav-link">
-              <i class="fa-solid fa-user"></i> About me
-            </a>
-            <a href="{{ site.baseurl }}/categories/opinion" class="nav-link">
-              <i class="fa-solid fa-lightbulb"></i> Opinion
-            </a>
-            <a
-              href="{{ site.baseurl }}/categories/system-design-note"
-              class="nav-link">
-              <i class="fa-solid fa-chart-line"></i> System Design Notes
-            </a>
-            <!-- <a
+        <nav class="navbar">
+          <a href="{{ site.baseurl }}/about" class="nav-link">
+            <i class="fa-solid fa-user"></i> About me
+          </a>
+          <a href="{{ site.baseurl }}/categories/opinion" class="nav-link">
+            <i class="fa-solid fa-lightbulb"></i> Opinion
+          </a>
+          <a href="{{ site.baseurl }}/categories/system-design-note" class="nav-link">
+            <i class="fa-solid fa-chart-line"></i> System Design Notes
+          </a>
+          <!-- <a
               href="https://eggplant-sternum-78b.notion.site/Daily-Reflections-29d77827b775804c89a0dff759b6cc16"
               class="nav-link">
               <i class="fa-regular fa-calendar-check"></i> Daily Reflections
@@ -386,148 +381,167 @@
               class="nav-link">
               <i class="fa-solid fa-thumbtack"></i> Pinned Docs
             </a> -->
-          </nav>
-        </header>
+        </nav>
+      </header>
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <p>
+      Grill your weaknesses, be an ultra-learning, follow:
+      <a href="https://gist.github.com/hlfshell/240d79b124a02a0faad864c1199604b6#file-ultralearning-md">
+        Ultra-learning, Scott H. Young
+      </a>
+    </p>
+
+    <h3>Technical Skills</h3>
+    <ul>
+      <li>Intuitive Curious: understand high-level idea from Figma and System Design.</li>
+      <li>Coding Skills: Latter solution is better than previous solution.</li>
+      <li>System Design: Design high-level solution + verified each requirement and enhanced questions and facts
+        (metrics, current system).</li>
+    </ul>
+
+    <h3>Grill weaknesses</h3>
+    <ul>
+      <li>Meta thinking first: Draw high-level idea map before doing anything.</li>
+      <li>Retain long-term knowledge: store facts, feedback, concepts, active retrieve it in long-term knowledge base.
+      </li>
+      <li>Present for impact: stimulate to explain your thinking for other people follow Feynman Technique, use body
+        language and focus to main point to grab user attention.</li>
+      <li>Improve relationships: enhance outreach to open communicate with strangers, value connections, and make
+        service for community.</li>
+    </ul>
+
+    <h3>Communicate Skills</h3>
+    <ul>
+      <li>Communicate: focus on 3 sentences, including information that others need.</li>
+      <li>Implementation Skills: Understand full flow, not only tickets.</li>
+    </ul>
+
+    <h3>Principles</h3>
+    <ul>
+      <li>Fact is what happening. Proposal comes with trade-offs and reasons.</li>
+      <li>Needs are about survival. Wants are about desires.</li>
+    </ul>
+  </div>
+
+
+
+  <!-- PDF viewer modal -->
+  <div id="pdf-modal-overlay" class="pdf-modal-overlay" aria-hidden="true">
+    <div class="pdf-modal">
+      <div class="pdf-modal-header">
+        <h3>CV / Resume</h3>
+        <button type="button" class="pdf-modal-close" id="pdf-modal-close" aria-label="Close">
+          ×
+        </button>
+      </div>
+      <div class="pdf-modal-body">
+        <iframe id="pdf-viewer-iframe" src="" title="CV PDF"></iframe>
       </div>
     </div>
+  </div>
 
-    <div class="quote-box">
-      <ul>
-        
-        <li>Intuitive Curious: understand high-level idea from Figma and System Design.</li>
+  <div id="main" role="main" class="container">{{ content }}</div>
 
-        <li>Coding Skills: Latter solution is better than previous solution.</li>
-
-        <li>System Design: Design high-level solution + verified each requirement and enhanced questions and facts (metrics, current system).</li>
-
-        <li>Communicate: focus on 3 sentences, including information that others need.</li>
-
-        <li>Implementation Skills: Understand full flow, not only tickets.</li>
-
-        <li>Fact is what happening. Proposal comes with trade-offs and reasons.</li>
-
-        <li>Needs are about survival. Wants are about desires.</li>
-
-      </ul>
+  <div class="wrapper-footer">
+    <div class="container">
+      <footer class="footer">{% include svg-icons.html %}</footer>
     </div>
+  </div>
 
-    <!-- PDF viewer modal -->
-    <div id="pdf-modal-overlay" class="pdf-modal-overlay" aria-hidden="true">
-      <div class="pdf-modal">
-        <div class="pdf-modal-header">
-          <h3>CV / Resume</h3>
-          <button
-            type="button"
-            class="pdf-modal-close"
-            id="pdf-modal-close"
-            aria-label="Close">
-            ×
-          </button>
-        </div>
-        <div class="pdf-modal-body">
-          <iframe id="pdf-viewer-iframe" src="" title="CV PDF"></iframe>
-        </div>
-      </div>
-    </div>
+  {% include analytics.html %}
 
-    <div id="main" role="main" class="container">{{ content }}</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const currentPath = window.location.pathname;
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">{% include svg-icons.html %}</footer>
-      </div>
-    </div>
+      document.querySelectorAll('.nav-link').forEach((link) => {
+        const linkPath = link
+          .getAttribute('href')
+          .replace('{{ site.baseurl }}', '');
 
-    {% include analytics.html %}
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const currentPath = window.location.pathname;
-
-        document.querySelectorAll('.nav-link').forEach((link) => {
-          const linkPath = link
-            .getAttribute('href')
-            .replace('{{ site.baseurl }}', '');
-
-          if (currentPath === '/' || currentPath === '') {
-            if (linkPath === '/about') {
-              link.classList.add('active');
-            }
-          } else if (currentPath.includes(linkPath) && linkPath !== '/') {
+        if (currentPath === '/' || currentPath === '') {
+          if (linkPath === '/about') {
             link.classList.add('active');
           }
-        });
-
-        // 🌙 Dark mode logic
-        const toggleBtn = document.getElementById('theme-toggle');
-        const storedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia(
-          '(prefers-color-scheme: dark)',
-        ).matches;
-
-        // Determine current theme
-        let currentTheme = storedTheme || 'dark';
-
-        // Helper: check if current screen is mobile
-        const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-
-        // Helper: update button text depending on theme + device
-        function updateButtonText(isDark) {
-          toggleBtn.textContent = isDark ? '☀️' : '🌙';
+        } else if (currentPath.includes(linkPath) && linkPath !== '/') {
+          link.classList.add('active');
         }
-
-        // Apply initial theme
-        if (currentTheme === 'dark') {
-          document.body.classList.add('dark-mode');
-        }
-        updateButtonText(currentTheme === 'dark');
-
-        // Handle toggle click
-        toggleBtn.addEventListener('click', () => {
-          document.body.classList.toggle('dark-mode');
-          const isDark = document.body.classList.contains('dark-mode');
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-          updateButtonText(isDark);
-        });
-
-        window.addEventListener('resize', () => {
-          const isDark = document.body.classList.contains('dark-mode');
-          updateButtonText(isDark);
-        });
-
-        // PDF review modal
-        const pdfBtn = document.getElementById('pdf-review-btn');
-        const pdfOverlay = document.getElementById('pdf-modal-overlay');
-        const pdfIframe = document.getElementById('pdf-viewer-iframe');
-        const pdfClose = document.getElementById('pdf-modal-close');
-        const pdfUrl =
-          '{{ site.baseurl }}/cv/Backend_Software_Engineer_Nguyen_Duc_An.pdf';
-
-        if (pdfBtn && pdfOverlay) {
-          pdfBtn.addEventListener('click', () => {
-            pdfIframe.src = pdfUrl;
-            pdfOverlay.classList.add('is-open');
-            pdfOverlay.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-          });
-        }
-        function closePdfModal() {
-          pdfOverlay.classList.remove('is-open');
-          pdfOverlay.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-          pdfIframe.src = '';
-        }
-        if (pdfClose) pdfClose.addEventListener('click', closePdfModal);
-        if (pdfOverlay) {
-          pdfOverlay.addEventListener('click', (e) => {
-            if (e.target === pdfOverlay) closePdfModal();
-          });
-        }
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && pdfOverlay.classList.contains('is-open'))
-            closePdfModal();
-        });
       });
-    </script>
-  </body>
+
+      // 🌙 Dark mode logic
+      const toggleBtn = document.getElementById('theme-toggle');
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+
+      // Determine current theme
+      let currentTheme = storedTheme || 'dark';
+
+      // Helper: check if current screen is mobile
+      const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+      // Helper: update button text depending on theme + device
+      function updateButtonText(isDark) {
+        toggleBtn.textContent = isDark ? '☀️' : '🌙';
+      }
+
+      // Apply initial theme
+      if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+      updateButtonText(currentTheme === 'dark');
+
+      // Handle toggle click
+      toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateButtonText(isDark);
+      });
+
+      window.addEventListener('resize', () => {
+        const isDark = document.body.classList.contains('dark-mode');
+        updateButtonText(isDark);
+      });
+
+      // PDF review modal
+      const pdfBtn = document.getElementById('pdf-review-btn');
+      const pdfOverlay = document.getElementById('pdf-modal-overlay');
+      const pdfIframe = document.getElementById('pdf-viewer-iframe');
+      const pdfClose = document.getElementById('pdf-modal-close');
+      const pdfUrl =
+        '{{ site.baseurl }}/cv/Backend_Software_Engineer_Nguyen_Duc_An.pdf';
+
+      if (pdfBtn && pdfOverlay) {
+        pdfBtn.addEventListener('click', () => {
+          pdfIframe.src = pdfUrl;
+          pdfOverlay.classList.add('is-open');
+          pdfOverlay.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+      function closePdfModal() {
+        pdfOverlay.classList.remove('is-open');
+        pdfOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        pdfIframe.src = '';
+      }
+      if (pdfClose) pdfClose.addEventListener('click', closePdfModal);
+      if (pdfOverlay) {
+        pdfOverlay.addEventListener('click', (e) => {
+          if (e.target === pdfOverlay) closePdfModal();
+        });
+      }
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && pdfOverlay.classList.contains('is-open'))
+          closePdfModal();
+      });
+    });
+  </script>
+</body>
+
 </html>
