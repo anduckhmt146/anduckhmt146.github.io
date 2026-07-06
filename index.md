@@ -8,13 +8,13 @@ Hello, reader. Here is the blog to share some knowledge about my career and my d
 
 # 1. Persona me
 
-Be Clarity, Curious, Confident, Charming and Humanity
-
 I have experience as a Software Engineer, driven by curiosity and analytical thinking to explore ideas, user usecases, technologies to seek truth problems. My favourage topic is designing distributed systems with availability and consistency challenges, proposing decisions based on reasons, trade-offs, data-driven facts and intentionally motivation to make things better.
 
 Beyond technology, I want to become a style of leader focusing on motivating new youngsters and helping teams achieve meaningful work that we can proud of and remember in our careers.
 
 My long-term dream is to explore diverse cultures around the world, challenge myself to pass a global top-tier big tech company, and build products that create meaningful value and positively impact people at a global scale.
+
+**Be Clarity, Curious, Confident, Charming and Humanity**
 
 # 2. Education & Working
 
