@@ -86,6 +86,21 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  # Include unncessary build folder
+  - categories/backend.html
+  - categories/book.html
+  - categories/cloud-solution.html
+  - categories/coding-practice.html
+  - categories/human-brains.html
+  - categories/leadership.html
+  - categories/mbti.html
+  - categories/mindset-psychology.html
+  - categories/pinned-docs.html
+  - categories/plan.html
+  - categories/private.html
+  - categories/psychology.html
+  - categories/system-design.html
+  - categories/tech.html
 
 collections:
   categories:
