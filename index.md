@@ -10,21 +10,21 @@ Hello, reader. Here is the blog to share some knowledge about my career and my d
 
 ## 1. Persona me - Be Clarity, Curious, Confident, Charming and Humanity
 
-- I have experience as a Software Engineer, driven by curiosity and analytical thinking to explore ideas, user usecases, technologies to seek truth problems. My favourage topic is designing distributed systems with availability and consistency challenges, proposing decisions based on reasons, trade-offs, data-driven facts and intentionally motivation to make things better.
+I have experience as a Software Engineer, driven by curiosity and analytical thinking to explore ideas, user usecases, technologies to seek truth problems. My favourage topic is designing distributed systems with availability and consistency challenges, proposing decisions based on reasons, trade-offs, data-driven facts and intentionally motivation to make things better.
 
-- Beyond technology, I want to become a style of leader focusing on motivating new youngsters and helping teams achieve meaningful work that we can proud of and remember in our careers.
+Beyond technology, I want to become a style of leader focusing on motivating new youngsters and helping teams achieve meaningful work that we can proud of and remember in our careers.
 
-- My long-term dream is to explore diverse cultures around the world, challenge myself to pass a global top-tier big tech company, and build products that create meaningful value and positively impact people at a global scale.
+My long-term dream is to explore diverse cultures around the world, challenge myself to pass a global top-tier big tech company, and build products that create meaningful value and positively impact people at a global scale.
 
 # 2. Education & Working
 
-- **Education**: Honors Program in Computer Science at Bach Khoa University, HCMC.
+**Education**: Honors Program in Computer Science at Bach Khoa University, HCMC.
 
-- **Product Domain**: Zalopay (Mini App Platform, Event Tracking/Social Ads Platform), Axon (Record Management Platform)
+**Product Domain**: Zalopay (Mini App Platform, Event Tracking/Social Ads Platform), Axon (Record Management Platform)
 
 ## 3. MBTI, Enneagram - A glance of explore myself
 
-- Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself with MBTI is ENTP-A, 5w4 / The Visionary, Explorer, Analytical, Ambivert, Ultra-learner.
+Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself with MBTI is ENTP-A, 5w4 / The Visionary, Explorer, Analytical, Ambivert, Ultra-learner.
 
 ## 4. Strengths & Weaknesses
 
