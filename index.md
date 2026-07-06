@@ -4,31 +4,29 @@ title: About me
 permalink: /
 ---
 
-Hello, reader. Here is the blog to share some knowledge about my career with a dream to become a Software Engineer at FAANG.
+Hello, reader. Here is the blog to share some knowledge about my career and my dream as a Software Engineer.
 
-## 1. Let's talk about career
+## 1. Persona me
 
-I am a Software Engineer, in a Middle - Senior Level with more than 2 year of experience working in industry, ability to work as a Fullstack Developer, specializing in Backend Engineering and Software Architect.
+- I have experience as a Software Engineer, driven by curiosity and analytical thinking to explore ideas, user usecases, technologies to seek truth problems. My favourage topic is designing distributed systems with availability and consistency challenges, proposing decisions based on reasons, trade-offs, data-driven facts and intentionally motivation to make things better.
 
-- **Education**: Bachelor's Degree of Honors Program (Advanced Program for the top 40 students) in Computer Science at Bach Khoa University, Ho Chi Minh City.
+- Beyond technology, I want to become a style of leader focusing on motivating new youngsters and helping teams achieve meaningful work that we can proud of and remember in our careers.
 
-- **Languages:** Golang, Java, React, JavaScript, TypeScript.
+- My long-term dream is to explore diverse cultures around the world, challenge myself to pass a global top-tier big tech company, and build products that create meaningful value and positively impact people at a global scale.
 
-- **Techstack:** MySQL, NoSQL, Redis, Kafka, Grafana, RESTful API, gRPC API.
+> Be Clarity, Curious, Confident, Charming and Humanity
 
-- **Technology:** AI LLMs, Microservices, Event-driven Architecture, Serverless, System Design, AWS Cloud.
+# 2. Education & Working
 
-- **Background knowledge:** Networking, Operating Systems, DSA, OOP Design, Database Design.
+- **Education**: Honors Program in Computer Science at Bach Khoa University, HCMC.
 
-## 2. Personality
+- **Product Domain**: Zalopay (Mini App Platform, Event Tracking/Social Ads Platform), Axon (Record Management Platform)
 
-1. **Personality type (MBTI):** Assertive ENTP.
+## 3. Personality
 
-2. **Enneagram:** 5w4 - The Visionary / Ambivert / Innovative.
+- Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself with MBTI is ENTP-A, 5w4 / The Visionary, Explorer, Analytical, Ambivert, Ultra-learner.
 
-3. **Zoodiac:** Gemini - June.
-
-## 3. Strengths & Weaknesses
+## 4. Strengths & Weaknesses
 
 I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development.
 
@@ -48,11 +46,11 @@ I am a dreamer, an analytical over-thinker, and an over-achiever, who is constan
 
   - Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repeatable, boring tasks.
 
-## 4. What is this blog about?
+## 5. What is this blog about?
 
 It's a space where my knowledge and opinions come together, offering perspectives shaped by curiosity, reflection, and the lessons life has taught me. Here, I explore topics including Technology, Philosophy and Psychology.
 
-## 5. Contact:
+## 6. Contact:
 
 - **Facebook:** [https://www.facebook.com/anduckhmt146/](https://www.facebook.com/anduckhmt146/)
 
