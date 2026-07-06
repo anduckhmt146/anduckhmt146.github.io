@@ -552,7 +552,11 @@
           .getAttribute('href')
           .replace('{{ site.baseurl }}', '');
 
-        if (currentPath.includes(linkPath) && linkPath !== '/') {
+        if (linkPath === '/') {
+          if (currentPath === '/' || currentPath === '{{ site.baseurl }}/') {
+            link.classList.add('active');
+          }
+        } else if (currentPath.startsWith(linkPath)) {
           link.classList.add('active');
         }
       });
