@@ -34,7 +34,7 @@ Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and 
 
 With young me, I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development.
 
-In the current grow stage, with self-reflection, I improve my clarity thinking + structured order actions to move from overthinker to deep thinker, retain long-term memory with facts and knowledge, try to be a ultra-learner.
+In the current grow stage, with self-reflection, I improve my clarity thinking + structured order actions to move from overthinker to deep thinker, retain long-term memory with facts and knowledge, try to be an ultra-learner.
 
 - **Strengths:**
 
