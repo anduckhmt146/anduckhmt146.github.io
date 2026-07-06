@@ -22,7 +22,9 @@ My long-term dream is to explore diverse cultures around the world, challenge my
 
 ## 3. MBTI, Enneagram - A glance of explore myself
 
-Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself with MBTI is ENTP-A, 5w4 / The Visionary, Explorer, Analytical, Ambivert, Ultra-learner.
+Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself as:
+
+My MBTI is ENTP-A, 5w4 / The Visionary, Explorer, Observer, Ambivert, Ultra-learner.
 
 ## 4. Strengths & Weaknesses
 
