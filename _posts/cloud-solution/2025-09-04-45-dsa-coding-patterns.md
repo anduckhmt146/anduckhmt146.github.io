@@ -2,7 +2,7 @@
 layout: post
 title: '42 Coding Interview Pattern'
 date: 2025-05-25
-categories: tech
+categories: cloud-solution
 ---
 
 Here is 42 coding interview patterns would help you think clearer about DSA.

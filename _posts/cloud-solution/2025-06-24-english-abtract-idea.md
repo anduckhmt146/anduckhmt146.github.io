@@ -1,8 +1,8 @@
 ---
 layout: post
-title: High-level Abstract Idea - Learning English
+title: Learning English
 date: 2025-06-24
-categories: mindset-psychology
+categories: cloud-solution
 ---
 
 Here is some high-level thinking when learning English.

@@ -2,7 +2,7 @@
 layout: post
 title: Behavioral Interview
 date: 2025-06-14
-categories: tech
+categories: cloud-solution
 ---
 
 Here is some behavioral interview questions to learn about: Leadership, Ownership, Teamwork, Communication, Conflict Resolution,... as Software Engineer.

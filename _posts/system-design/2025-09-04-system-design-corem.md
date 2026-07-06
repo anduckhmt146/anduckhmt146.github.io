@@ -2,7 +2,7 @@
 layout: post
 title: System Design - Components
 date: 2025-09-04
-categories: system-design
+categories: cloud-solution
 ---
 
 Here is some notes for components of System Design.

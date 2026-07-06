@@ -90,7 +90,6 @@ exclude:
   # Exclude unncessary build folder
   - _posts/backend/
   - _posts/book/
-  - _posts/cloud-solution/
   - _posts/coding-practice/
   - _posts/human-brains/
   - _posts/leadership/
@@ -104,7 +103,6 @@ exclude:
   - _posts/tech/
   - categories/backend.html
   - categories/book.html
-  - categories/cloud-solution.html
   - categories/coding-practice.html
   - categories/human-brains.html
   - categories/leadership.html

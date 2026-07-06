@@ -2,7 +2,7 @@
 layout: post
 title: Behavioural Interview Story - Amazon
 date: 2025-10-13
-categories: leadership
+categories: cloud-solution
 ---
 
 Some stories prepared for Amazon leadership principles.

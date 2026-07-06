@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RAG Chatbot - AWS System Design
+title: AWS Sample Diagram Design
 date: 2025-06-29
 categories: cloud-solution
 ---
