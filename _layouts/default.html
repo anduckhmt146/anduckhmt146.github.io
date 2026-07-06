@@ -402,7 +402,6 @@
                 align-items: center;
                 justify-content: center;
               ">
-            <button id="theme-toggle" class="theme-toggle">🌙 Dark</button>
             <button id="pdf-review-btn" class="theme-toggle" type="button" title="Review document">
               📄
             </button>
@@ -561,42 +560,9 @@
         }
       });
 
-      // 🌙 Dark mode logic
-      const toggleBtn = document.getElementById('theme-toggle');
-      const storedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia(
-        '(prefers-color-scheme: dark)',
-      ).matches;
-
-      // Determine current theme
-      let currentTheme = storedTheme || 'dark';
-
-      // Helper: check if current screen is mobile
-      const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-
-      // Helper: update button text depending on theme + device
-      function updateButtonText(isDark) {
-        toggleBtn.textContent = isDark ? '☀️' : '🌙';
-      }
-
-      // Apply initial theme
-      if (currentTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-      }
-      updateButtonText(currentTheme === 'dark');
-
-      // Handle toggle click
-      toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        const isDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        updateButtonText(isDark);
-      });
-
-      window.addEventListener('resize', () => {
-        const isDark = document.body.classList.contains('dark-mode');
-        updateButtonText(isDark);
-      });
+      // Force dark mode only
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
 
       // PDF review modal
       const pdfBtn = document.getElementById('pdf-review-btn');
@@ -614,21 +580,26 @@
           document.body.style.overflow = 'hidden';
         });
       }
+
       function closePdfModal() {
         pdfOverlay.classList.remove('is-open');
         pdfOverlay.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
         pdfIframe.src = '';
       }
+
       if (pdfClose) pdfClose.addEventListener('click', closePdfModal);
+
       if (pdfOverlay) {
         pdfOverlay.addEventListener('click', (e) => {
           if (e.target === pdfOverlay) closePdfModal();
         });
       }
+
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && pdfOverlay.classList.contains('is-open'))
+        if (e.key === 'Escape' && pdfOverlay.classList.contains('is-open')) {
           closePdfModal();
+        }
       });
     });
   </script>
