@@ -42,7 +42,7 @@ In the current grow stage, with self-reflection, I improve my clarity thinking +
 
   - About knowledge, with a broad, horizontal understanding of everything in the world, my curiosity about new experiences helps me keep an open mindset, allowing me to share knowledge in various topics and engage in deep conversations.
 
-  - I've been through a lot refections & instropections to deal with my negative feelings in life, which has given me the ability to understand yourself and empathize with others.
+  - I've been through a lot refections & instropections to deal with my negative feelings in life, which has given me the ability to understand myself and empathize with others.
 
 - **Weaknesses:**
 
