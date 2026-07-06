@@ -8,7 +8,9 @@ Hello, reader. Here is the blog to share some knowledge about my career and my d
 
 # 1. Persona me
 
-I have experience as a Software Engineer, driven by curiosity and analytical thinking to explore ideas, user usecases, technologies to seek truth problems. My favourage topic is designing distributed systems with availability and consistency challenges, proposing decisions based on reasons, trade-offs, data-driven facts and intentionally motivation to make things better.
+I have experience as a Software Engineer, driven by curiosity and analytical thinking to explore ideas, user usecases, technologies to seek truth problems. 
+
+My favourage topic is designing distributed systems with availability and consistency challenges, proposing decisions based on reasons, trade-offs, data-driven facts and intentionally motivation to make things better.
 
 Beyond technology, I want to become a style of leader focusing on motivating new youngsters and helping teams achieve meaningful work that we can proud of and remember in our careers.
 
