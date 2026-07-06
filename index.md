@@ -24,7 +24,7 @@ My long-term dream is to explore diverse cultures around the world, challenge my
 
 **Product Domain**: Zalopay (Mini App Platform, Event Tracking/Social Ads Platform), Axon (Record Management Platform)
 
-# 3. MBTI, Enneagram - A glance of explore myself
+# 3. MBTI, Enneagram - A glance of exploring myself
 
 Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself as:
 
