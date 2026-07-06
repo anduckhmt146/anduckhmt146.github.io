@@ -28,7 +28,9 @@ Hello, reader. Here is the blog to share some knowledge about my career and my d
 
 ## 4. Strengths & Weaknesses
 
-I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development.
+With young me, I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development.
+
+In the current grow stage, with self-reflection, I improve my clarity thinking + structured order actions to move from overthinker to deep thinker, retain long-term memory with facts and knowledge, try to be a ultra-learner.
 
 - **Strengths:**
 
