@@ -116,7 +116,6 @@ exclude:
   - categories/system-design.html
   - categories/tech.html
   - docs/java
-  - 
 
 collections:
   categories:
