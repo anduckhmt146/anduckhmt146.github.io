@@ -87,20 +87,20 @@ exclude:
   - README.md
   - CNAME
   # Include unncessary build folder
-  - categories/backend.html
-  - categories/book.html
-  - categories/cloud-solution.html
-  - categories/coding-practice.html
-  - categories/human-brains.html
-  - categories/leadership.html
-  - categories/mbti.html
-  - categories/mindset-psychology.html
-  - categories/pinned-docs.html
-  - categories/plan.html
-  - categories/private.html
-  - categories/psychology.html
-  - categories/system-design.html
-  - categories/tech.html
+  - _posts/backend
+  - _posts/book
+  - _posts/cloud-solution
+  - _posts/coding-practice
+  - _posts/human-brains
+  - _posts/leadership
+  - _posts/mbti
+  - _posts/mindset-psychology
+  - _posts/pinned-docs
+  - _posts/plan
+  - _posts/private
+  - _posts/psychology
+  - _posts/system-design
+  - _posts/tech
 
 collections:
   categories:
