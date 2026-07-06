@@ -56,7 +56,7 @@ In the current grow stage, with self-reflection, I improve my clarity thinking +
 
 It's a space where my knowledge and opinions come together, offering perspectives shaped by curiosity, reflection, and the lessons life has taught me. Here, I explore topics including Technology, Philosophy and Psychology.
 
-# 6. Contact:
+# 6. Contact
 
 - **Facebook:** [https://www.facebook.com/anduckhmt146/](https://www.facebook.com/anduckhmt146/)
 
