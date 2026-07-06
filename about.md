@@ -22,7 +22,7 @@ Hello, reader. Here is the blog to share some knowledge about my career and my d
 
 - **Product Domain**: Zalopay (Mini App Platform, Event Tracking/Social Ads Platform), Axon (Record Management Platform)
 
-## 3. Personality
+## 3. MBTI, Enneagram - A glance of explore myself
 
 - Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself with MBTI is ENTP-A, 5w4 / The Visionary, Explorer, Analytical, Ambivert, Ultra-learner.
 
