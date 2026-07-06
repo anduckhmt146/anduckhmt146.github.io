@@ -2,8 +2,6 @@
 layout: page
 title: About me
 permalink: /
-redirect_from:
-  - /about/
 ---
 
 Hello, reader. Here is the blog to share some knowledge about my career and my dream as a Software Engineer.
