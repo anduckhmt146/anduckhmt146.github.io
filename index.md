@@ -22,13 +22,13 @@ My long-term dream is to explore diverse cultures around the world, challenge my
 
 **Product Domain**: Zalopay (Mini App Platform, Event Tracking/Social Ads Platform), Axon (Record Management Platform)
 
-## 3. MBTI, Enneagram - A glance of explore myself
+# 3. MBTI, Enneagram - A glance of explore myself
 
 Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself as:
 
 My MBTI: ENTP-A, 5w4 / The Visionary, Analytical Explorer, Observer, Ambivert, Ultra-learner.
 
-## 4. Strengths & Weaknesses
+# 4. Strengths & Weaknesses
 
 With young me, I am a dreamer, an analytical over-thinker, and an over-achiever, who is constantly striving for growth, whether it's mental, philosophical, or career development.
 
@@ -50,11 +50,11 @@ In the current grow stage, with self-reflection, I improve my clarity thinking +
 
   - Confidently, I believe in my potential to accomplish anything, yet I often struggle to take the first step and have difficulty sticking to plans that involve repeatable, boring tasks.
 
-## 5. What is this blog about?
+# 5. What is this blog about?
 
 It's a space where my knowledge and opinions come together, offering perspectives shaped by curiosity, reflection, and the lessons life has taught me. Here, I explore topics including Technology, Philosophy and Psychology.
 
-## 6. Contact:
+# 6. Contact:
 
 - **Facebook:** [https://www.facebook.com/anduckhmt146/](https://www.facebook.com/anduckhmt146/)
 
