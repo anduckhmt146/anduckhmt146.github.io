@@ -2,7 +2,7 @@
 layout: post
 title: Principle Software Architect
 date: 2025-08-20
-categories: system-design-note
+categories: system-design-notes
 ---
 
 # 1. Principle Design

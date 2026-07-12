@@ -2,7 +2,7 @@
 layout: post
 title: 6 Pillars AWS System Design
 date: 2025-09-01
-categories: system-design-note
+categories: system-design-notes
 ---
 
 Here is some notes for 6 pillars of AWS Software Architect.
