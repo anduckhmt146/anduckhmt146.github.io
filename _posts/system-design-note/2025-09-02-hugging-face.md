@@ -2,7 +2,7 @@
 layout: post
 title: Hugging Face - AI
 date: 2025-09-02
-categories: archives
+categories: system-design-note
 ---
 
 Source code: https://github.com/jkmaina/huggingface_book
