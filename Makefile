@@ -35,5 +35,24 @@ migrate:
 	} >> "$$FILENAME" && \
 	echo "✔ Created file: _posts/$(folder)/$$FILENAME"
 
+blog:
+	@cd _posts/$(folder) && \
+	DATE=$$(date +%F) && \
+	HASH=$$(openssl rand -hex 4) && \
+	TITLE="$(title)" && \
+	FILENAME="$${DATE}-$${HASH}.md" && \
+	touch "$$FILENAME" && \
+	{ \
+	  echo "---"; \
+	  echo "layout: post"; \
+	  echo "title: $$TITLE"; \
+	  echo "date: $${DATE}"; \
+	  echo "categories: $(folder)"; \
+	  echo "---"; \
+	  echo ""; \
+	  echo "Here is solutions for $$TITLE."; \
+	} >> "$$FILENAME" && \
+	echo "✔ Created file: _posts/$(folder)/$$FILENAME"
+
 opinion:
 	make migrate folder=opinion
