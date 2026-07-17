@@ -2,7 +2,7 @@
 layout: post
 title: Java Core/Spring Interview
 date: 2025-09-07
-categories: system-design
+categories: archives
 ---
 
 Here is some notes for interview with Java Core, Java Spring.
