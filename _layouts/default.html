@@ -17,6 +17,9 @@
       type="text/css"
       href="{{ site.baseurl }}/style.css" />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/css/lightbox.min.css" />
+    <link
       rel="alternate"
       type="application/rss+xml"
       title="{{ site.name }} - {{ site.description }}"
@@ -776,6 +779,19 @@
           if (e.key === 'Escape' && pdfOverlay.classList.contains('is-open')) {
             closePdfModal();
           }
+        });
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.post .entry img').forEach((img) => {
+          const link = document.createElement('a');
+          link.href = img.src;
+          link.setAttribute('data-lightbox', 'post-images');
+
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
         });
       });
     </script>
