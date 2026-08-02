@@ -18,7 +18,7 @@
       href="{{ site.baseurl }}/style.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/css/lightbox.min.css" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.css" />
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -782,17 +782,31 @@
         });
       });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.post .entry img').forEach((img) => {
-          const link = document.createElement('a');
-          link.href = img.src;
-          link.setAttribute('data-lightbox', 'post-images');
+      document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelector('.post .entry');
 
-          img.parentNode.insertBefore(link, img);
-          link.appendChild(img);
-        });
+        if (images) {
+          new Viewer(images, {
+            inline: false,
+            toolbar: {
+              zoomIn: true,
+              zoomOut: true,
+              oneToOne: true,
+              reset: true,
+              prev: true,
+              play: false,
+              next: true,
+              rotateLeft: true,
+              rotateRight: true,
+              flipHorizontal: true,
+              flipVertical: true,
+            },
+            navbar: true,
+            title: true,
+          });
+        }
       });
     </script>
   </body>
