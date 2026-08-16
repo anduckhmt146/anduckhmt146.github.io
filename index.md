@@ -28,7 +28,7 @@ My long-term dream is to explore diverse cultures around the world, challenge my
 
 Based on the test [sakinorva.net](https://sakinorva.net/functions?lang=eng) and learning about cognitive functions for year, I see myself as:
 
-**My MBTI: ENTP-A, 5w4** / The Visionary, Analytical Explorer, Ambivert
+**My MBTI: ENTP-A, 8w7** / The Visionary, Analytical Explorer, Challenger, Ambivert
 
 # 4. A glance of exploring myself
 
