@@ -49,11 +49,11 @@ I learned that meeting deadlines should never come at the expense of quality —
 
 ## 2.1. Bias for action
 
-1. Took swift action to resolve problem: qucikly assembled a reponse team, indentified root cause => implement temporary work-around to minimize downtime => communicate with customer to manage expectations.
+1. Took swift action to resolve problem: qucikly assembled a response team, identified root cause => implement temporary work-around to minimize downtime => communicate with customer to manage expectations.
 
 2. Taking immediate action led significant improvement (Note): discover a major quaility issue close in the launch date => decide halt the production line and relocate resources to address the issue immediately => correct the problem and meet quality standards.
 
-3. Priority tasks with multiple urgent issues: using matrix to categorize each issue based on potential consequences and required response time => address highest-priority items first while delegating or scheduling lower-priority taks later.
+3. Priority tasks with multiple urgent issues: using matrix to categorize each issue based on potential consequences and required response time => address highest-priority items first while delegating or scheduling lower-priority tasks later.
 
 4. Made decision with limited information: choose alternative vendor => And it work.
 
@@ -61,9 +61,9 @@ I learned that meeting deadlines should never come at the expense of quality —
 
 6. Act quickly to seize business opportunity: to find the feature above the competitors.
 
-7. Encourage team to take immedate action: live new features and outlining a clear rollback plan and benefits of user feedbacks.
+7. Encourage team to take immediate action: live new features and outlining a clear rollback plan and benefits of user feedbacks.
 
-8. Quick decision still aligned with long-term goals: strategic objective and used them for decision-making => invole key stakeholders in decision process to gain different perspectives => balancing immediate action with strategic vision
+8. Quick decision still aligned with long-term goals: strategic objective and used them for decision-making => involve key stakeholders in decision process to gain different perspectives => balancing immediate action with strategic vision
 
 9. Delay led to negative consequences (Note): delay to address critical bugs => led to user complains and negative impact on customer satisfaction => took immediately to fix it and implementing a testing process => communicate transparency about the resolution to restore trust and improve our support processes.
 
@@ -75,7 +75,7 @@ I learned that meeting deadlines should never come at the expense of quality —
 
 13. Quick decision that was initial unpopular: I made the quick decision to reallocate funds from one department to another to address an urgent need => analyze what decision would benefits in the long-term => affect departments.
 
-14. Evaluate potential impact of the decision when making decision: most critial factors and potential outcomes => consider short-term and long-term effects, relevant skateholders => to inform my decision.
+14. Evaluate potential impact of the decision when making decision: most critical factors and potential outcomes => consider short-term and long-term effects, relevant skateholders => to inform my decision.
 
 15. Turn quick decision into strategic advantage
 
@@ -115,19 +115,19 @@ I learned that meeting deadlines should never come at the expense of quality —
 
 1. Seek out new knowledge to improve work performance: online course to learn data science and AI, apply new methods to our analytic processes.
 
-2. Curiousity to discover a problem that others overlook: Curiousity led me dive deeper into our support ticket data => find opporunities and patterns to improve the feature.
+2. Curiosity to discover a problem that others overlook: Curiosity led me dive deeper into our support ticket data => find opporunities and patterns to improve the feature.
 
 3. Stay current with developments in industry: reading industry journals + attending webinars + participaing professional networks => follow thought leaders on social media and online forums to exchange ideas and insights.
 
 4. Learn outside comfort zone: Used a new project management tool => learn the software through tutorials and practice.
 
-5. Approach to learn topic or technology you unfamiliar with: break the topic into managable parts, used online courses, articles, specific learning goals and regularly practical application and discussions with colleagues.
+5. Approach to learn topic or technology you unfamiliar with: break the topic into manageable parts, used online courses, articles, specific learning goals and regularly practical application and discussions with colleagues.
 
-6. Curiousity to solve complex problem: Explore native supply chain models and technologies => reduced costs by 15%.
+6. Curiosity to solve complex problem: Explore native supply chain models and technologies => reduced costs by 15%.
 
 7. Learn different department: understand marketing in product development => shadowed a colleague in the marketing department for a few weeks => the valuable insights about how marketing strategies are formulated and how they influence the product features.
 
-8. Encouter problem don't know how to solve: Gather as much as information as possible to understand context => seek advice from colleagues and experts => research potential solutions to test them with real projects.
+8. Encounter problem don't know how to solve: Gather as much as information as possible to understand context => seek advice from colleagues and experts => research potential solutions to test them with real projects.
 
 9. Willing to learn new idea and innovation: learn about new automation tools => Have an idea to build a chatbot to handle common queries => significantly improving overall customer satisfaction.
 
@@ -177,13 +177,13 @@ I learned that meeting deadlines should never come at the expense of quality —
 
 ## 2.5. Earn trust
 
-1. Build trust with new team and skateholder: priority each member's strengths and chllenges => one-to-one meeting to listen their concerns and offered support where needed => transparent goals and consistently following thorugh on my commitments => buit trust and established environment.
+1. Build trust with new team and skateholder: priority each member's strengths and chllenges => one-to-one meeting to listen their concerns and offered support where needed => transparent goals and consistently following through on my commitments => built trust and established environment.
 
 2. Build trust after a mistake (Note): Delay a project => Take immediately responsibility and communicated openly with team about the mistake => proposed a revised timeline and worked extra hour to correct the issue => rebuild trust and learned from experience.
 
 3. Transparent and honest when communicate with team: providing clear and regulate updates on project status => encourage open dialogue and make my self available for questions and feedback.
 
-4. Handle conflict and disagree to maintained trust (Note): resource allocation => faciliate a meeting where everyone could voice their concerns and proposed a compromise that address key issues and both sides => listen to maintain trust and help them reach mutually agreeable solution.
+4. Handle conflict and disagree to maintained trust (Note): resource allocation => facilitate a meeting where everyone could voice their concerns and proposed a compromise that address key issues and both sides => listen to maintain trust and help them reach mutually agreeable solution.
 
 5. Deliver feedback while maintaining trust (Note): feedback are constructive + offer actionable suggestion for improvement.
 
@@ -205,13 +205,13 @@ I learned that meeting deadlines should never come at the expense of quality —
 
 14. Help other to build trust within a team: help them to understand the team dynamics => improve communication and collaboration => using contribution to show and build trust.
 
-15. Ensure actions align with values and priciples of business (Note)
+15. Ensure actions align with values and principles of business (Note)
 
 ## 2.6. Ownership
 
 1. Do the job outside the scopes: see the customer feedback loop was inefficient => colab with customer service team to gather more insights => reduce time to implement customer-driven changes 30%.
 
-2. Find improvement in team: code review prcess was slowing down the release of the feature => propose new scheduled pairing junior and senior ones => introduced automated tools to catch baisc errors before code reviews => led to 20% faster release cycle.
+2. Find improvement in team: code review process was slowing down the release of the feature => propose new scheduled pairing junior and senior ones => introduced automated tools to catch basic errors before code reviews => led to 20% faster release cycle.
 
 3. Balance taking ownership and empowering team members: leading by example, made it clear that they had full responsibility for their tasks but I was always available for support => each team member contributing significantly to the outcome.
 
@@ -219,9 +219,9 @@ I learned that meeting deadlines should never come at the expense of quality —
 
 5. Take ownership of a mistake, handle and learn from it: approved a discount that led a loss on a major contract => take ownership, inform my manager, propose a solutuon => work closely with finance team to offset the loss of selling and cross-selling opportuinites => lesson to double-checking approvals and value of transparent communication.
 
-6. Ownership principles: take full reponsibility to outcomes of my work and thinking about long-term impact => See the customer retention rates were dropping => rather than waiting for instructions => identify the key pain points, developed strategy to improve customer engagement and follow-up questions => increase 15% over the next quarter.
+6. Ownership principles: take full responsibility to outcomes of my work and thinking about long-term impact => See the customer retention rates were dropping => rather than waiting for instructions => identify the key pain points, developed strategy to improve customer engagement and follow-up questions => increase 15% over the next quarter.
 
-7. Motivated to take ownership, even the task are challenging and outside of comfort zone: focus on big picture and the impact of my work to company and its customers => take new challenge because of the company's growth => commit to learn quicky, seeking advice from experts, focus on the end goal => grow professionally and contribule meaningfully.
+7. Motivated to take ownership, even the task are challenging and outside of comfort zone: focus on big picture and the impact of my work to company and its customers => take new challenge because of the company's growth => commit to learn quickly, seeking advice from experts, focus on the end goal => grow professionally and contribule meaningfully.
 
 8. Take ownership that other avoids: disruption from key supplier failing to deliver materials on time => contact alternative supplier + negotiateed deliver terms + coordinated with logistic teams to minimize delay => avoid production downtime.
 
@@ -233,11 +233,11 @@ I learned that meeting deadlines should never come at the expense of quality —
 
 12. Take ownership for project that require cross-functional collaboration: launching new internal tool that required input from multiple departments, including IT, HR, Finance => setting up cross-functional meeting + clear communicaiton + align everyone to project goals => launch the tool on time within budget.
 
-13. Take ownership for project that you disagree with the direction provided by your superiors: disagree with short-term approach for a critical project, because in long-term strategy would better serve our customers => Ownership by resarch and present data-drivent alternative + communicate findings to my supervisor + framing my feedback through overall success rather than personal preference => Took full ownership for its implementation, developed an action plan, coordinated with team to keep the project stayed on track => sustainable and successful outcome.
+13. Take ownership for project that you disagree with the direction provided by your superiors: disagree with short-term approach for a critical project, because in long-term strategy would better serve our customers => Ownership by research and present data-drivent alternative + communicate findings to my supervisor + framing my feedback through overall success rather than personal preference => Took full ownership for its implementation, developed an action plan, coordinated with team to keep the project stayed on track => sustainable and successful outcome.
 
 **Notes:** If you want to details, describe the name of the project in the first + output metrics in the ends.
 
-14. Take ownership for project that you are limited information: major marketing cmapaign without market research => gathering all information from relevant skateholders, including the sales and finance teams => weighted the potential risks and benefits => test key elements on smaller scale but fully commiting => launch successful and strong ROI => make complex decision and manage uncertain effectively.
+14. Take ownership for project that you are limited information: major marketing cmapaign without market research => gathering all information from relevant skateholders, including the sales and finance teams => weighted the potential risks and benefits => test key elements on smaller scale but fully committing => launch successful and strong ROI => make complex decision and manage uncertain effectively.
 
 15. Take ownership for project that noticed a process inefficiency: onboarding process for new employees is time-comsuming => conduct analysis of the current project => proposed a streamlined onboading program and automating several administrative tasks => implement changes, colloborated with HR to update training materials + feedback loops to improve the process => The onboarding time reduced 40%, our new employees were granted more quickly.
 
@@ -298,7 +298,7 @@ During the “Scan with Miss Universe” campaign, several teams requested last-
 4. Tell me about a time when you made a decision with limited information. What was the outcome?
 
 Situation:
-One morning, Onelink suddenly became unreachable. Dashboards were flooded with traffic, and we didn’t know yet whether it was a spike from a new campaign or an external attack. Our monitoring system couldn’t distinguish the cause immediately => Prevent rate-limting first, becasue you do not log => But you view user agent in gateway from SRE and know it is bot.
+One morning, Onelink suddenly became unreachable. Dashboards were flooded with traffic, and we didn’t know yet whether it was a spike from a new campaign or an external attack. Our monitoring system couldn’t distinguish the cause immediately => Prevent rate-limting first, because you do not log => But you view user agent in gateway from SRE and know it is bot.
 
 Task:
 As the on-call engineer, I had to decide whether to throttle traffic — which could block real users — or to wait for full confirmation, which risked prolonged downtime.

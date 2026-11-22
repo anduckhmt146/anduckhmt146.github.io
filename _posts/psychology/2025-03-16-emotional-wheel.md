@@ -133,8 +133,8 @@ I am always overthink and overanalyze everything in every minute of a day, often
 
 - **Hurt:** đau đớn
 
-  - Embarrased: lúng túng
-  - Disapointed: thất vọng
+  - Embarrassed: lúng túng
+  - Disappointed: thất vọng
 
 - **Depressed:** trầm cảm
 

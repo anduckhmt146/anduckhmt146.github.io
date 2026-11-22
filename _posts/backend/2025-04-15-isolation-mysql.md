@@ -35,7 +35,7 @@ Step 3: When transaction 1 has committed, transaction 2 read data it will displa
 
 Step 1: If transaction 1 has committed, if transaction 2 has not committed, this still read the old data
 
-Step 2: When transaction 2 has comitted, it still read new data
+Step 2: When transaction 2 has committed, it still read new data
 
 Usage:
 
@@ -49,7 +49,7 @@ Usage:
 
 Step 1: When the transaction 1 is executed, the transaction 2 can not executed.
 
-Step 2: After transaction 1 has comitted, the transaction 2 could be executed.
+Step 2: After transaction 1 has committed, the transaction 2 could be executed.
 
 ![](/images/seralizable.png)
 

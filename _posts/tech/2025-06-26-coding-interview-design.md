@@ -97,7 +97,7 @@ print(decrypt("dnotq"))
 
 ### 2.1. Clarify Requirements
 
-- Count the frequence of the sentence:
+- Count the frequency of the sentence:
 
 ```python
 text = 'It was the best of times, it was the worst of times.'
@@ -142,7 +142,7 @@ sorted_items = sorted(counter.items(), key=lambda x: x[0])
 
 - Sorted receive: (Item, and Lambda function to sort)
 
-- Priority sort by frequence first, alphabet later: key = lambda x: (-x[1], x[0])
+- Priority sort by frequency first, alphabet later: key = lambda x: (-x[1], x[0])
 
 ```python
 from typing import List, Tuple
@@ -873,7 +873,7 @@ class Solution:
 
 ### 15.1. Requirements
 
-- Maximum of the ship capacity -> load all the pakage in D days.
+- Maximum of the ship capacity -> load all the package in D days.
 
 ### 15.2. Idea & Example (Idea High-level is important, important freely)
 

@@ -15,7 +15,7 @@ Here is some notes for components of System Design.
 
 - R: Refine for reality.
 
-- E: Eveluate the trade-offs about 6 pillars.
+- E: Evaluate the trade-offs about 6 pillars.
 
 - M: Measure
 
@@ -115,13 +115,13 @@ Here is some notes for components of System Design.
 
 1. **Weak consistency:**
 
-- After write, reads may or may not see it, no guarantee when to see it, only when the system try to make new requests => maybe the system serves stale data indefinately.
+- After write, reads may or may not see it, no guarantee when to see it, only when the system try to make new requests => maybe the system serves stale data indefinitely.
 
 - Example: Memcached, it work in real-time use cases: VoIP, video chat, real-time multilayer games.
 
 2. **Eventual consistency:**
 
-- After write, reads will eventually see it (typically within miliseconds). Data is replicas asynchronusly.
+- After write, reads will eventually see it (typically within milliseconds). Data is replicas asynchronously.
 
 - Example: Read replicas, DNS.
 
@@ -151,13 +151,13 @@ Here is some notes for components of System Design.
 
 1. **Master-slave replication:**
 
-- Master: client write to master => sync data **asychronously** to slaves.
+- Master: client write to master => sync data **asynchronously** to slaves.
 - Slaves: serve only read for client.
 - If the master goes down, the system allow **read-only** mode in slaves => Until a slave is promoted to a new master.
 
 2. **Master-master replication:**
 
-- Master: client write to master => sync data **asychronously** to other master.
+- Master: client write to master => sync data **asynchronously** to other master.
 - If a master goes down, the system can operate both read and write operations.
 - Cons: Violate ACID pricinple, conflict resolution.
 
@@ -237,7 +237,7 @@ Availability (Total) = 1 - (1 - Availability (Foo)) * (1 - Availability (Bar))
 
 - If you have a scalability problem, your system is fast for a single user but slow under heavy load.
 
-=> Performace is latency for a user, scalability is latency for heavy-load.
+=> Performance is latency for a user, scalability is latency for heavy-load.
 
 ## 2.5. Latency vs throughput
 
@@ -385,7 +385,7 @@ Volume is a fixed amount of storage on a disk or tape.
 
 ## 3.1. DNS
 
-- Hierachical and decentralized naming system.
+- Hierarchical and decentralized naming system.
 
 ![](/images/System-Design/Concepts/DNS.png)
 
@@ -661,7 +661,7 @@ Notes: Register store variables when calculate in CPU, but not cache.
 
 - A hot cache: fastest possible access, data is retrieved from L1.
 
-- A cold cache: slowest possible access, data is retrived in the last caching layer, e.g. L3 or more.
+- A cold cache: slowest possible access, data is retrieved in the last caching layer, e.g. L3 or more.
 
 - A warm cache: the data is found in L2.
 
@@ -731,7 +731,7 @@ Use cache cluster for center distributed cache with multiple nodes.
 
 - Multiple processes and threads is trigger for events
 
-=> But only some of this proceses and threads works, and other threads are wasting resources.
+=> But only some of this processes and threads works, and other threads are wasting resources.
 
 Example: Linux, IOCP is work effectively than select/poll.
 
@@ -1035,7 +1035,7 @@ Answer: Move to the diagram with the context
 
 - One-way function: you can’t get the original data back.
 
-- Types: SHA-256 (256 bits), MD5 (128 bits) => some algorithm for hasing.
+- Types: SHA-256 (256 bits), MD5 (128 bits) => some algorithm for hashing.
 
 - Use cases:
 
@@ -1057,7 +1057,7 @@ Answer: Move to the diagram with the context
 
 3. Why Hashing Cannot Roll Back but encryption can ?
 
-Anwser:
+Answer:
 
 => Information Loss. Both inputs are very different lengths, but hashes are always 256 bits (in SHA-256).
 
@@ -1072,7 +1072,7 @@ Anwser:
 
 => Same input + same key = same hash
 
-Cons: Hashmap do not hide the message, RSA is long time encrytion.
+Cons: Hashmap do not hide the message, RSA is long time encryption.
 
 - Usecase: Use to verify payload in payment system.
 
@@ -1096,9 +1096,9 @@ Add hashmap to HMAC payload used to:
 
 ## 3.16. SSL
 
-- Using asymetric encryption during handshaking phrase.
+- Using asymmetric encryption during handshaking phrase.
 
-- After handshanking phrase => Using symetric encryption.
+- After handshanking phrase => Using symmetric encryption.
 
 # 4. System Design Dive Deep
 

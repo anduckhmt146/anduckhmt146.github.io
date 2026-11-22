@@ -31,7 +31,7 @@ Here is some notes for properties of System Design.
 
 - Focus on business core.
 
-- Use bounded contexts to seperate domains.
+- Use bounded contexts to separate domains.
 
 ## 3.4. Event Driven Architecture:
 
@@ -81,7 +81,7 @@ Here is some notes for properties of System Design.
 
 - Encryption at rest and transit: KMS, TLS.
 
-- Real-time fraud detection using asynchronus processing.
+- Real-time fraud detection using asynchronous processing.
 
 - Event sourcing and auto logging.
 
@@ -183,7 +183,7 @@ Here is some notes for properties of System Design.
 
 ## 6.3. Microservices && Domain-driven Design
 
-- Indentify the bounded context, e.g. Driver Management and Ride Matching are seperate bounded context.
+- Identify the bounded context, e.g. Driver Management and Ride Matching are separate bounded context.
 
 - Use the same Ubiquitous language: Transaction, Authorization, Refund.
 
@@ -213,7 +213,7 @@ Here is some notes for properties of System Design.
 
 - Each replicas have data but not sync together.
 
-- Asynchronus Messaging.
+- Asynchronous Messaging.
 
 - Idempotency.
 
@@ -303,7 +303,7 @@ Here is some notes for properties of System Design.
 
 - Client-side caching: Using HTTP Cache-control, Cache static resources e.g. image, scripts.
 
-- Edge Caching: APIs with GET cachable responses or static content in CDN.
+- Edge Caching: APIs with GET cacheable responses or static content in CDN.
 
 - Application/Database caching: Redis, memcache, frequently queried data.
 
@@ -355,7 +355,7 @@ Here is some notes for properties of System Design.
 
 ## 8.6. Database Performance
 
-- Indexing: use index after where, join, order by,... Use composite indexes when approriate.
+- Indexing: use index after where, join, order by,... Use composite indexes when appropriate.
 
 - Query optimization: Use EXPLAIN or EXPLAIN ANALYZE to profile query, avoid N + 1 query problems in ORM (fix by join), replace subquery with join if faster => Optimize to from N + 1 query to 2 query (join + select)
 
@@ -373,9 +373,9 @@ Here is some notes for properties of System Design.
 
 - Frontend: Bundle size was 3MB, after optimization => reduced 1MB using code-splitting and lazy load.
 
-- Backend: Response time droped from 1.2s -> 200ms using caching user profile and optimize database queries.
+- Backend: Response time dropped from 1.2s -> 200ms using caching user profile and optimize database queries.
 
-- Database: Replace subquery with JOIN, add indexes => droped query time from 500ms to 50ms.
+- Database: Replace subquery with JOIN, add indexes => dropped query time from 500ms to 50ms.
 
 - Monitoring/Benchmark to profilling metrics:
 
@@ -402,7 +402,7 @@ Here is some notes for properties of System Design.
 
 - Auth: OAuth2 with multi-tenant token scopes.
 
-- Database: PostgresSQL.
+- Database: PostgreSQL.
 
 - Cache: Redis.
 

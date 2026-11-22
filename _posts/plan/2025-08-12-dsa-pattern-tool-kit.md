@@ -25,7 +25,7 @@ categories: plan
 
 - Dynamic size:
 
-  - Prunning k disticts.
+  - Prunning k districts.
 
   - Min/Max in range k.
 

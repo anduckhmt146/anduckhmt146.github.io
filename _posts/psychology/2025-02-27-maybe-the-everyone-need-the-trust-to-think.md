@@ -5,7 +5,7 @@ date: 2025-02-27
 categories: private
 ---
 
-As me, a Ne-dom user, everytime, I overwhelmed by a tons of ideas in my head, overthinking too much about perfection with a lot of ideas and distractions, lost in my head, I can not find the one thing to trust and focus on.
+As me, a Ne-dom user, every time, I overwhelmed by a tons of ideas in my head, overthinking too much about perfection with a lot of ideas and distractions, lost in my head, I can not find the one thing to trust and focus on.
 
 This makes me feel lacking in confidence and causes me to miss out on many moments in life.eg
 

@@ -200,7 +200,7 @@ We are using message queue as an orchestrator.
 
 ![](/images/choreography-pattern.png)
 
-**Advantagous**:
+**Advantageous**:
 
 - Operational Excellence
 
@@ -228,7 +228,7 @@ You can implement the proxy as a state machine that includes the following state
 
 - **Half-Open:** A limited number of requests from the application are allowed to pass through and invoke the operation. If these requests are successful, the circuit breaker assumes that the fault that caused the failure is fixed, and the circuit breaker switches to the Closed state. The failure counter is reset. If any request fails, the circuit breaker assumes that the fault is still present, so it reverts to the Open state. It restarts the time-out timer so that the system can recover from the failure.
 
-**Advantagous**:
+**Advantageous**:
 
 - **Reliability:** This pattern helps prevent a faulting dependency from overloading. Use this pattern to trigger graceful degradation in the workload. Couple circuit breakers with automatic recovery to provide self-preservation and self-healing.
 
@@ -263,7 +263,7 @@ The following scenarios are secondary use cases for the Claim-Check pattern:
 
 - **Complex routing scenarios:** Messages traversing multiple components can cause performance bottlenecks due to serialization, deserialization, encryption, and decryption tasks. Use the Claim-Check pattern to prevent direct message processing by intermediary components.
 
-**Advantagous**:
+**Advantageous**:
 
 - Reliability
 

@@ -1064,7 +1064,7 @@ class Solution:
 
 - Compare in both left and right max
 
-Specical case: [2,4,6]
+Special case: [2,4,6]
 
 ```python
 class Solution:
@@ -1319,7 +1319,7 @@ print(employeeFreeTime(schedule))
 
 - Rule 2: Ví dụ với input nhỏ trước (Lấy ví dụ cái nhỏ nhất trước)
 
-- Rule 3: Không dùng external varibles, chỉ dùng parameter truyền vào recursive function => làm sao cái parameter đó nó càng gần base case hơn.
+- Rule 3: Không dùng external variables, chỉ dùng parameter truyền vào recursive function => làm sao cái parameter đó nó càng gần base case hơn.
 
 - Rule 4: luôn assump là cái bước trước đó đúng => dùng cái đó chứng minh bước sau
 
@@ -3186,7 +3186,7 @@ class Solution:
 
 - If the value is rottens continue to BFS.
 
-- Find the intitial rottens index first, only change fresh to rotten oranges.
+- Find the initial rottens index first, only change fresh to rotten oranges.
 
 ```python
 from collections import deque
@@ -6696,7 +6696,7 @@ class Solution:
         return count
 ```
 
-# 17. Dymamic Programming
+# 17. Dynamic Programming
 
 ## 17.1. Top-down
 

@@ -16,7 +16,7 @@ Source code: https://github.com/jkmaina/huggingface_book
 - Example:
   - Predict house prices.
   - Classify email is spam or not.
-  - Recoginize handwritten digits.
+  - Recognize handwritten digits.
 
 ## 1.2. Unsupervised Learning.
 
@@ -24,7 +24,7 @@ Source code: https://github.com/jkmaina/huggingface_book
 
 - Example:
   - Classify customer to segments.
-  - Detect anomolies in financial transaction.
+  - Detect anomalies in financial transaction.
   - Reduce dimensions of data for easier visualization.
 
 ## 1.3. Reinforcement Learning
@@ -68,13 +68,13 @@ Source code: https://github.com/jkmaina/huggingface_book
 
 ## 3.2. Preprocessing tools
 
-- StandardScaler: scale missing data to average, standar deviation.
+- StandardScaler: scale missing data to average, standard deviation.
 
 - MinMaxScaler: Change numbers to fit within a range.
 
 - OneHotEncoder: Covert text data into numbers by change it to a column 0 or 1.
 
-## 3.3. Paramameters:
+## 3.3. Parameters:
 
 - param_grid: n_estimators, max_depth, min_samples_split for Grid Search.
 
@@ -236,7 +236,7 @@ Source code: https://github.com/jkmaina/huggingface_book
 
 Architect: transformer (NLP, Computer Vision) + 70 billion parameters.
 
-Use cases: Exeptional for text generation and intruction-following tasks, chatbot.
+Use cases: Exceptional for text generation and intruction-following tasks, chatbot.
 
 2. Qwen/Qwen2.5-72B
 
@@ -248,7 +248,7 @@ Use cases: Machine Translation, text summarization.
 
 Architect: Transformer + 32 billion parameters
 
-Use cases: Sumarization, Question answerng, conversational AI.
+Use cases: Summarization, Question answerng, conversational AI.
 
 4. Qwen/Qwen2.5-14B
 
@@ -352,7 +352,7 @@ Use cases: Multilingual content creation and translation.
 
 ## 15.4. Distributed Training
 
-- Data paralellism: processed in multiple GPUs, and result are aggregated.
+- Data parallelism: processed in multiple GPUs, and result are aggregated.
 
 - Model parallelism: Split across multiple devices, and each device handling a subset of the layers.
 
@@ -404,7 +404,7 @@ Use cases: Multilingual content creation and translation.
 
 - Embedding text to vector.
 
-- Capturing sematic meaning and contexual relationships.
+- Capturing semantic meaning and contextual relationships.
 
 - Using techniques like: TF-IDF, Word2Vec, BERT Embedding.
 
@@ -412,7 +412,7 @@ Use cases: Multilingual content creation and translation.
 
 - Choose models pre-trained on similar domains.
 - Consider computational requirements and latency.
-- Balance accurancy with resource contraints.
+- Balance accuracy with resource constraints.
 
 ### 16.1.4. Sample models
 
@@ -506,7 +506,7 @@ Use cases: Multilingual content creation and translation.
 
 - Context analysis
   - Text pre-processing
-  - Relevant passasge idenfitication.
+  - Relevant passasge identification.
   - Answer extraction.
 
 ### 16.3.3. Sample models
@@ -556,7 +556,7 @@ Example:
 2. Object Detection:
 
 - YOLO: fast for each speedn and efficiency.
-- Faster R-CNN: high accurracy but more computational resource.
+- Faster R-CNN: high accuracy but more computational resource.
 - SSD (Single shot multibox detector): balance speed and accuracy.
 
 3. Image Generation:
@@ -615,7 +615,7 @@ Example:
 
 - Transciption services.
 
-- Accesibility tools
+- Accessibility tools
 
 => Translate speech to text
 
@@ -623,7 +623,7 @@ Model: openai/whisper-base
 
 ## 18.2. Text-to-speech
 
-- Accesibility Tools
+- Accessibility Tools
 
 - Interactive System: Add voice input to chatbots.
 
@@ -647,7 +647,7 @@ Model: MIT/ast-finetuned-audioset-10-10-0.4593
 
 - Entertainment: replica voices for media or games.
 
-- Accesibility: Enhance voice restruction for users with speech impairment.
+- Accessibility: Enhance voice restruction for users with speech impairment.
 
 Model: tts = TTS("tts_models/en/vctk/vits", gpu=device=="cuda")
 

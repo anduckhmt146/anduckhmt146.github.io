@@ -37,7 +37,7 @@ Hybrid cloud:
 
 - **On-demand self service:**
 
-  - Users can provision recources and use them without human interaction from the service provider
+  - Users can provision resources and use them without human interaction from the service provider
 
 - **Broad network access**
 
@@ -66,7 +66,7 @@ Hybrid cloud:
 
   - Reduced total cost of ownership (TCO) & operational expense (OPEX)
 
-- **Benefit from massive economies of scale:** Volumne discounts are passed on to you, which provides pay-as-you-go prices
+- **Benefit from massive economies of scale:** Volume discounts are passed on to you, which provides pay-as-you-go prices
 
   - Prices are reduced as AWS is more efficient due to large scale
 
@@ -86,11 +86,11 @@ Hybrid cloud:
 
 - **Cost-effectiveness:** pay as you go, for what you use
 
-- **Scalability:** accomodate larger loads by makng hardware stronger or adding additional nodes
+- **Scalability:** accommodate larger loads by makng hardware stronger or adding additional nodes
 
 - **Elasticity:** ability to scale out and scale in when needed
 
-- **High-availability and fault-tolerance:** build accross data centers
+- **High-availability and fault-tolerance:** build across data centers
 
 - **Agility:** rapidly develop, test and launch software applications
 
@@ -160,7 +160,7 @@ Hybrid cloud:
 
 ## 2.3. Tour of the AWS console (Global Scope, Local Scope)
 
-AWS has Global Services (4 servies: IAM, CDN, DNS, WAF)
+AWS has Global Services (4 services: IAM, CDN, DNS, WAF)
 
 - Identity and Access Management (IAM)
 
@@ -251,7 +251,7 @@ EC2 allows you to rent and manage virtual servers in the cloud. AWS virtual serv
 
 **Methods:**
 
-- AWS Mangement Console.
+- AWS Management Console.
 
 - SSH Shell.
 
@@ -2330,7 +2330,7 @@ Certificate Manager helps you provision and manage SSL/TLS certificates
 
 ### 1. Managed Services
 
-Dùng để quản lý AWS Infrastructure nhưng cho role Mangement.
+Dùng để quản lý AWS Infrastructure nhưng cho role Management.
 
 Managed Services helps you efficiently operate your AWS Infrastructure
 
@@ -2378,7 +2378,7 @@ In Real World
 
 ### 4. Marketplace
 
-Dùng để bán solution softwares => bán sản phẩm trên AWS.
+Dùng để bán solution software => bán sản phẩm trên AWS.
 
 Marketplace
 
@@ -2560,7 +2560,7 @@ Response times:
 
 ## 6.1. IAM Simplified
 
-- Config control intergrated with all AWS services in level of permissions.
+- Config control integrated with all AWS services in level of permissions.
 
 - Integrate with MFA.
 
@@ -2693,13 +2693,13 @@ Example:
 
 3. A unique identifier so that data can be retrieved.
 
-- Data uploaded into S3 is spread accross multiple files and facilities => upper bound 5TB per file, can upload as much files as you want.
+- Data uploaded into S3 is spread across multiple files and facilities => upper bound 5TB per file, can upload as much files as you want.
 
 => S3 buckets required unique namespace as metadata to find it.
 
 ## 7.2. S3 Key Details
 
-1. Objects (files or directories) => saved in S3 with key, value, versionID, metadata => also contain with acess control lists for object itself.
+1. Objects (files or directories) => saved in S3 with key, value, versionID, metadata => also contain with access control lists for object itself.
 
 2. Data consistency model in S3 => Only read access (GET) after PUT requests, now it apply for DELETE requests.
 
@@ -2727,9 +2727,9 @@ Example:
 
 - Storage management pricing (known as tiers).
 
-- Data tranfer out.
+- Data transfer out.
 
-- Tranfer acceleration (S3 to CDN CloudFront).
+- Transfer acceleration (S3 to CDN CloudFront).
 
 - Cross region replication (more HA offered by default).
 
@@ -2751,11 +2751,11 @@ Example:
 
 11. S3 is great for static website => need index.html and error.html file.
 
-12. Wehn update load new files and have versioning enabled => They will not inherit properties of previous version.
+12. When update load new files and have versioning enabled => They will not inherit properties of previous version.
 
 ## 7.3. S3 Storage Classes
 
-1. **S3 Standard:** 99.99% availability with 11 9s durbility => store in multiple data centers, withstand with the failure of 2 concurent data centers.
+1. **S3 Standard:** 99.99% availability with 11 9s durbility => store in multiple data centers, withstand with the failure of 2 concurrent data centers.
 
 2. **S3 Infrequently Accessed (IA):** cheaper than S3 Standard, you are charged for retrieval when needed.
 
@@ -2809,7 +2809,7 @@ You can encrypt server-side using following ways:
 
 5. Versioning: allow you to set rules to expire, mingrate data based on version.
 
-6. Versoning required MFA when delete a version.
+6. Versioning required MFA when delete a version.
 
 ## 7.6. S3 Lifecycle Management
 
@@ -2870,7 +2870,7 @@ Replicate from one-region to another region: Bucket A (us-east-1) -> Bucket B (a
 
 - S3 notification allow you to receive and send notification when certain events happened in the bucket
 
-1. **Amazon SNS:** manage delivery and send of messages by subcribing endpoints or clients.
+1. **Amazon SNS:** manage delivery and send of messages by subscribing endpoints or clients.
 
 2. **Amazon SQS:** storing message as message queue.
 
@@ -2880,7 +2880,7 @@ Replicate from one-region to another region: Bucket A (us-east-1) -> Bucket B (a
 
 1. Use S3 to store log files, ElasticSearch provides full search capacities for logs can be used to search through data stored in S3 buckets.
 
-2. After logs recieved in S3, trigger event lambda to write it to ElasticSearch.
+2. After logs received in S3, trigger event lambda to write it to ElasticSearch.
 
 ## 7.11. Maximizing S3 Read/Write Performance
 
@@ -2908,20 +2908,20 @@ Notes: Server Access Logs are not real time, it deliver by batching 5 - 60 minut
 
 ## 7.13. S3 Multipart Upload
 
-1. Multipart upload allows you upload a single object as a set of parts => you can upload objects indepedently in any order.
+1. Multipart upload allows you upload a single object as a set of parts => you can upload objects independently in any order.
 
-2. Mulipart uploads is recommended to upload file over 100MB, and force for 5GB.
+2. Multipart uploads is recommended to upload file over 100MB, and force for 5GB.
 
 3. If a transmission of any parts failed => you can retransmit the part without affecting other parts. After all parts of your objects are uploaded, Amazon S3 assembles these parts and creates the object.
 
 4. Why to use multipart upload:
 
 - When you have the size of the final object.
-- Improve throughtput.
+- Improve throughput.
 - Multipart have ability to pause and resume object uploads.
 - Quick recovery from network issues.
 
-5. You can use byte-range fetchs by the download.
+5. You can use byte-range fetches by the download.
 
 => If there's a failure during the download, they can just to download by specific byte range and not the whole object.
 
@@ -3015,7 +3015,7 @@ Contain 3 components:
 - Enable CloudFront access logs.
 - Capture requests send to CloudFront API.
 
-11. An Origin Access Identity (OAI): Used for CloudFront to fetch data from S3 (prviate mode).
+11. An Origin Access Identity (OAI): Used for CloudFront to fetch data from S3 (private mode).
 
 ## 8.3. CloudFront Signed URLs and Signed Cookies
 
@@ -3047,7 +3047,7 @@ Notes: Same as USB with hard-drive
 
 3. Rule: If you takes more than one week to upload your data into AWS using existing internet connection, used Snowball.
 
-4. For example, if you have 100MB connection to transfer 100TB of data => You take more than 100 days to tranfer all data to Internet with that connection.
+4. For example, if you have 100MB connection to transfer 100TB of data => You take more than 100 days to transfer all data to Internet with that connection.
 
 => You can make the same transfer about a week using multiple Snowballs.
 
@@ -3095,7 +3095,7 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 2. Tape Gateway (full sequential) => Load the tap before read/write.
 
-- Metadata: is still stored metadata: ownership, permissions, timestamp => Push to S3 to manange: versioning, lifecycle management, bucket policies, cross-region replication => Apply to S3.
+- Metadata: is still stored metadata: ownership, permissions, timestamp => Push to S3 to manage: versioning, lifecycle management, bucket policies, cross-region replication => Apply to S3.
 
 - Volume Gateway: using iSCSI block protocol => Backup to AWS EBS as snapshot (S3 only store object, EBS store block) => EBS is S3 version for block storage (OS boot and system files + database)
 
@@ -3137,7 +3137,7 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 1. AMI (Amazon Machine Image) is basically a template + Instance Type -> defines the hardware (CPU, RAM) => Same AMI (Linux) can have multiple instances t3.micro, m6i.large, p4d.24xlarge.
 
-2. Mutiple AMI instances from 1 template: 1 AMI can have multiple instances.
+2. Multiple AMI instances from 1 template: 1 AMI can have multiple instances.
 
 3. Dedicate Host: You have the option to have dedicated tenancy in your instance => You can have exclusive access to physical hardware in AWS data center.
 
@@ -3215,7 +3215,7 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 1) **Clustered Placement Groups (all instances in 1 placement group):** put all instances in a single availability zone.
 
-2) **Spread Placement Groups (Partition by 1):** EC2 in a group is in different racks, seperate power source and network => isolated failure => each availability zone have 1 instance.
+2) **Spread Placement Groups (Partition by 1):** EC2 in a group is in different racks, separate power source and network => isolated failure => each availability zone have 1 instance.
 
 3) **Partitioned Placement Groups (Partition by 3 - 4 or more instances):** Same with Spread Placement Groups, but you can have 3-4 instances in a group.
 
@@ -3257,7 +3257,7 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 5. EBS and EC2 is in the same availability zone, AMI is reference to an EBS.
 
-6. EBS volume: can be attached to 1 EC2 at a time => To prevent conflict => seperate disk.
+6. EBS volume: can be attached to 1 EC2 at a time => To prevent conflict => separate disk.
 
 7. EBS snapshots in S3 are stored as objects, but when restored, AWS rehydrates them back into block storage volumes.
 
@@ -3313,7 +3313,7 @@ Notes: Speed - LAN (10 Gbps Ethernet) 10x WAN (1 Gbps internet)
 
 2. When you delete an EC2 instance that was using an Instance Store-backed root volume, your root volume will also deleted.
 
-3. If you use an EBS-backed root volume, the root volume will not be terminated with its EC2 instance when the instance is brought offine.
+3. If you use an EBS-backed root volume, the root volume will not be terminated with its EC2 instance when the instance is brought offline.
 
 4. EBS-backed Volumes are launched from an AWS EBS snapshot.
 

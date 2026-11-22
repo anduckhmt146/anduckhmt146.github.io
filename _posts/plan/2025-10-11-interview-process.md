@@ -9,7 +9,7 @@ categories: plan
 
 - They only want to acquise as much as candidates as possible.
 
-- They are only payed when you accepted the offer.
+- They are only paid when you accepted the offer.
 
 - So if you have another offer, or request higher salary they do not accept because the higher risk that you do not accept their offers.
 
@@ -25,7 +25,7 @@ categories: plan
 
 # 3. Live Coding
 
-- 2 mins -> clarify requirements, input/output/contrains.
+- 2 mins -> clarify requirements, input/output/constraints.
 
 - 3 mins -> Come up with draft solutions, why do you do in steps: why sorting, why looping, why variables.
 
@@ -158,7 +158,7 @@ categories: plan
 
 - Retry.
 
-- Back propgation.
+- Back propagation.
 
 - Skip it all.
 

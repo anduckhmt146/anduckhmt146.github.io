@@ -86,7 +86,7 @@ Key characteristics:
 - Higher memory usage
 - More complex implementation
 
-It limits the traffic by the gap between the final log and current timestamp, it is accurate to detect anomolies. But the **drawback** is we need to store **all the logs** when querying.
+It limits the traffic by the gap between the final log and current timestamp, it is accurate to detect anomalies. But the **drawback** is we need to store **all the logs** when querying.
 
 # 5. Sliding Window Counter
 

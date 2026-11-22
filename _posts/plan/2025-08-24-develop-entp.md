@@ -49,7 +49,7 @@ categories: plan
 
 - Positive: ENTP prefer to be among people they can chat and argue with.
 
-- Negative: Reject tradtions => Need sense and responsibility.
+- Negative: Reject traditions => Need sense and responsibility.
 
 - In relationships: Do not good at emotional in relationship => But can attracting romantic interests and atmosphere fun and challenging.
 
@@ -87,7 +87,7 @@ Tips: You are living with Possibility but not Predictability.
 
 - Too much people, disagreement = disapproval.
 
-- To you, disadgreement = engagement, and curiousity.
+- To you, disadgreement = engagement, and curiosity.
 
 => debate = intellectual play.
 
@@ -99,7 +99,7 @@ Tips: You are living with Possibility but not Predictability.
 
 - Write:
   - Write shiny ideas to paper until the shiny object loses when it's out of your head.
-  - Break projects with samller phrases.
+  - Break projects with smaller phrases.
   - Use accountability.
   - Reward boring progress (film + coffee)
 

@@ -51,7 +51,7 @@ As a result, [explain the outcome]. This led to [quantifiable result or recognit
 20. Describe a situation where you made an important business decision without consulting your manager → When high peak campaign, the Redis is crash and I decide to change it to memcaching to prevent it point to database.
 21. Tell me about a time where you were the first one to take action on something → drop rate onelink and research dive deep in mobile.
 22. Tell me about a time when you had a disagreement with a colleague or manager → Forward to Appsflyer and sync to other platforms, my manager say about cost but I am convince him for reusability and easy to operation.
-23. Tell me about a time when you had a conflict with a colleague → I want to have /v2 endpoint, he want to use the old endpoint but I want to backward compatible with old endpoint, you know Zalopay is a mobile application so that we can not change the code in old version when submiting to the store, we roll out by percentage, although we have about 10% of users impact by the change but I still want to backward compatible
+23. Tell me about a time when you had a conflict with a colleague → I want to have /v2 endpoint, he want to use the old endpoint but I want to backward compatible with old endpoint, you know Zalopay is a mobile application so that we can not change the code in old version when submitting to the store, we roll out by percentage, although we have about 10% of users impact by the change but I still want to backward compatible
 24. Describe a time you needed to do something ad-hoc for short-term business needs rather than long-term design → work around scanQR event to track event scanQR for Miss Universe
 25. Tell me about an interesting metric that you designed to identify and eventually improve something → top K mini app used in Zalopay, so that we can cache in local resource when build mobile native app before submitting to store.
 26. Tell me about a time when you were 75% through a project and had to pivot strategy → 75% development done of Tracking Hub when forward to Tiktok, then we recognized requirements to track the Campaign in Meta too ⇒ adjust to change fire into Appsflyer and sync to both platform.
@@ -263,7 +263,7 @@ Task:
 Action:
 
 - Investigated the root cause using service logs and identified the code that can caused **an unhandled parsing exception** triggered the crash loop.
-- Added **exception handling** around to gracefully skip malformed messages while logging them for later review, return error to the fail-safe machanism.
+- Added **exception handling** around to gracefully skip malformed messages while logging them for later review, return error to the fail-safe mechanism.
 - Implemented a **dead-letter queue (DLQ)** to capture failed messages instead of discarding them.
 - Added **unit and integration tests** to cover different data formats and error scenarios.
 - Documented the incident in our post-mortem and shared key takeaways with the team.
@@ -360,7 +360,7 @@ Situation:
 
 Task:
 
-- As the on-call engineer, I needed to **quickly decide how to protect system stability** while minimizing the risk of blocking real user requests. After view the log about user agent in API gateway, it still use the same format like user agent from users (Mozila Firefox,…)
+- As the on-call engineer, I needed to **quickly decide how to protect system stability** while minimizing the risk of blocking real user requests. After view the log about user agent in API gateway, it still use the same format like user agent from users (Mozilla Firefox,…)
 - The challenge was to make a decision **under uncertainty**, with incomplete visibility into the nature of the traffic.
 
 Action:

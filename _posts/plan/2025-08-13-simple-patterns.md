@@ -109,6 +109,6 @@ Notes:
 
 - def add_sentence(self, sentence: str, count: int): Use trie to traverse and search the node, when come to each node update the list of sentences.
 
-- def search(self, prefix: str): Search prefix to the end of the prefix, find sentences with the last chracter of the prefix => Filter the last top 3 by heap.
+- def search(self, prefix: str): Search prefix to the end of the prefix, find sentences with the last character of the prefix => Filter the last top 3 by heap.
 
 - def input(self, c: str): When find the '#', add sentences to the tree.

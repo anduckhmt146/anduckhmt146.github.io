@@ -41,13 +41,13 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Rush the testing phrase => cause bug.
 
-- What to do: Take responsibility immediately, work dilligently to fix the bug, review code carefully, analyze root causes, reploy hot fix solution.
+- What to do: Take responsibility immediately, work diligently to fix the bug, review code carefully, analyze root causes, reploy hot fix solution.
 
 - Fix within 3 hours, communicate with team and client => know the value of testing phrase.
 
 ## 5. Describe a time when you led a team. What was the outcome?
 
-- Lead team 5 members to develop a feature in six-month timeframe, requires skills: coordintae with other departments, managing timelimes and ensure team motivated and productive.
+- Lead team 5 members to develop a feature in six-month timeframe, requires skills: coordinate with other departments, managing timelimes and ensure team motivated and productive.
 
 - What to do: Start kickoff meeting align project goals and timelines, clear communication channel, monitor progress, encourage team members to voice their ideas and concerns, implement flexible working hours, split tasks based on their ability.
 
@@ -55,13 +55,13 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ## 6. Tell me about a time you worked well under pressure.
 
-- Subcribe significant bug in the evenining, need to fix urgenly.
+- Subscribe significant bug in the evenining, need to fix urgenly.
 
-- I am reponsibility to be assigned to fix the bug, it must be a tight deadline set by client, the issue need to be resolve within 48 hours.
+- I am responsibility to be assigned to fix the bug, it must be a tight deadline set by client, the issue need to be resolve within 48 hours.
 
 - What to do: identity the source of the bug, analyst root cause, broke down tasks to smaller chunks and set mini-deadlines for each subtask. Communicatoe with my team, updating progress and seeking input when necessary, contact with client if have more affects in production.
 
-- After long hours working, we fix the bug and pleased the client => show ability to work under pressure, and clear communcation with team, split big tasks to managable parts => earn trust from client, enhance resilience and technical skills.
+- After long hours working, we fix the bug and pleased the client => show ability to work under pressure, and clear communication with team, split big tasks to manageable parts => earn trust from client, enhance resilience and technical skills.
 
 ## 7. Provide an example of a time when you had to make a difficult decision.
 
@@ -93,7 +93,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - My manager provide me a critical feedback about the performance of ineffiencieies code that I had written => I need to response constructively to critical feedback.
 
-- What to do: Request details to understand the specific concerns => review the code, find solution to optimize performance, implement more effcient algorithms, reducing unnecessary complexity.
+- What to do: Request details to understand the specific concerns => review the code, find solution to optimize performance, implement more efficient algorithms, reducing unnecessary complexity.
 
 - The code improve that application performance, receiving positive feedback from manager and the client => need to response for the possive feedback.
 
@@ -109,7 +109,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ## 12. Tell me about a time when you had to prioritize your tasks quickly.
 
-- In starup company, we have multiple projects simultaneously. We have one particular week where the demands peaked unexpectedly.
+- In startup company, we have multiple projects simultaneously. We have one particular week where the demands peaked unexpectedly.
 
 - In the middle of developing new feature of main product, at the same time, a critical bug was reported in another project => enhance scope of tasks => I need to address urgent bug and working ongoing development project.
 
@@ -123,7 +123,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - My task to ensure the application scalable with high traffic without performance degradation.
 
-- What to do: Prepare load testing, detect the vulnerability such as optimize database queries, implement effecient caching, utilize load balancing, auto scaling,...
+- What to do: Prepare load testing, detect the vulnerability such as optimize database queries, implement efficient caching, utilize load balancing, auto scaling,...
 
 - The feature after launch and monitoring result reach the baseline => enhance software engineer skills.
 
@@ -133,7 +133,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - My task in understand client's concerns, understand their specific issues with the product => find a solution would satisfy them.
 
-- What to do: Initiate a meeting with client to discuss concern in detail, active lisnening their feedback, recoginize the gap between their expectation and what we misunderstand in project planning phrase => we need to proposed a series of modifications for the software => set up weekly progress meetings with the client to ensure they were continually updated and their feedback was integrated into the development process.
+- What to do: Initiate a meeting with client to discuss concern in detail, active lisnening their feedback, recognize the gap between their expectation and what we misunderstand in project planning phrase => we need to proposed a series of modifications for the software => set up weekly progress meetings with the client to ensure they were continually updated and their feedback was integrated into the development process.
 
 - The modification and additional features were well-received by the client => make them satisfied, enhance relationship with client and led to further business opportunities with them.
 
@@ -153,7 +153,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - My task was to manage my increased workload effectively, ensuring that all projects I was involved in progressed without compromising on quality or deadlines.
 
-- What to do: prioritize tasks baed on project deadlines and importance, focus most critical tasks during my most productive working hours of the day. For larger projects, I broke down tasks to smaller, managable chunks and set mini-deadlines to keep myself on track, apply Pomodoro technique to enhance resilience.
+- What to do: prioritize tasks based on project deadlines and importance, focus most critical tasks during my most productive working hours of the day. For larger projects, I broke down tasks to smaller, manageable chunks and set mini-deadlines to keep myself on track, apply Pomodoro technique to enhance resilience.
 
 - Result: through careful planning and time management, I successfully meet all the deadlines, learn how to manage tasks better and communicate with manager clearly.
 
@@ -173,7 +173,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - What to do: research CI/CD, including code integration, auto run unit testing, write Dockerfile, argo CD auto sync with K8S,... => After done, I conducted a training session with my team to demonstrate how to process with new pipeline in the future.
 
-- It reduced deployment time 50% than manual deployments => this was recongized by our manager, and widepread adoption of automation practices within the company => improving workplace efficiency.
+- It reduced deployment time 50% than manual deployments => this was recognized by our manager, and widepread adoption of automation practices within the company => improving workplace efficiency.
 
 ## 19. Describe a time when there was a conflict within your team. How did you help resolve the conflict? Did you do anything to prevent it in the future?
 
@@ -189,7 +189,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Backend => But need to do fullstack.
 
-- What to do: Learning course, research colleagues for guidance, spend extra hours to practice and gradually become more proficient, do POC project, maintain clear timeline and track progess.
+- What to do: Learning course, research colleagues for guidance, spend extra hours to practice and gradually become more proficient, do POC project, maintain clear timeline and track progress.
 
 - Result: I had successfully implemented several key front-end feature, change to work end to end product.
 
@@ -199,7 +199,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - My task: Lead the team => Complete the tasks on time.
 
-- What to do: Kick-off meeting, split projects into smaller and managable tasks, prioritize the tasks based on importance and dependencies. Implement agile-development progress, with daily stand-up meetings to track progress and identify any blockers early => track progress closely to make sure the feature met all neccessary regulations
+- What to do: Kick-off meeting, split projects into smaller and manageable tasks, prioritize the tasks based on importance and dependencies. Implement agile-development progress, with daily stand-up meetings to track progress and identify any blockers early => track progress closely to make sure the feature met all necessary regulations
 
 - Through diligent work and effective team coordination, we completed the development ahead of schedule, which gave us extra time for thorough testing and quality assurance => This experience reinforced the importance of strategic planning, agile methodologies, and clear communication in successfully managing and delivering projects under tight deadlines.
 
@@ -221,7 +221,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
   - **User Research:** Conduct extensive of user research => understand the needs and preferences of diverse user group => surveys, interviews and focus groups.
 
-  - **Inclusive Design Principles:** Implement the design, considering factors such as color constrast for visuallly impaired users, text size options, and culturally sensitive content.
+  - **Inclusive Design Principles:** Implement the design, considering factors such as color contrast for visually impaired users, text size options, and culturally sensitive content.
 
   - **Diverse Testing Team:** Assembled a diverse group of beta testers who could provide feedback from different perspectives => This group included people with disabilities, non-native English speakers, and users from various age groups and cultural backgrounds.
 
@@ -243,7 +243,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ## 25. Tell me about a time you disagreed with a colleague. How did you handle the situation?
 
-- Context: I had a disagreement with a colleague, whom we'll call Jake, about the best approach to database design for this feature => I want to use SQL for strong consistency and established relationships between data entities, but he want to use NoSQL Database for greater flexibilty.
+- Context: I had a disagreement with a colleague, whom we'll call Jake, about the best approach to database design for this feature => I want to use SQL for strong consistency and established relationships between data entities, but he want to use NoSQL Database for greater flexibility.
 
 - Task: Make the best technical decision and maintain positive working relationship with Jake.
 
@@ -342,13 +342,13 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Context: I have had a very rewarding experience at my current company, where I've grown both professionally and technically.
 
-- Over the years, I've had the opportunity to work on a variety of challenging projects, which have allowed me to develop a strong skill set in software development: distributed system, mini app system, microservices, frontend, backend, leadership, ownership, communcation skills.
+- Over the years, I've had the opportunity to work on a variety of challenging projects, which have allowed me to develop a strong skill set in software development: distributed system, mini app system, microservices, frontend, backend, leadership, ownership, communication skills.
 
 - However, I am now seeking a new challenge and an opportunity to further expand my skills and experiences in an English-speaking culture. I believe change is essential for personal and professional growth, and I feel that now is the right time for me to explore a new environment.
 
 - Your company, with its focus on sth => it align with my career goals and collaborating with a team that is known for its expertise and innovation.
 
-- I am eager to bring my experience in Golang, monitoring, design high large scale service to your team and looking forward to learning opportunites with this role.
+- I am eager to bring my experience in Golang, monitoring, design high large scale service to your team and looking forward to learning opportunities with this role.
 
 => The things now I need is an English-speaking environment culture.
 
@@ -358,13 +358,13 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Task: Reasoning => Rewrite is risky and unnecessary => Propose to refactor the specific inefficient code segment would be more efficient and less resource-intensive.
 
-- What to do: Voice my opinion during team meeting => Prepare detailed presentation => Performance analysis of the current system, identifiying the bottlenecks => showcasing how targeted refactoring could resolve the issues => Highlight risks associated with complete rewrite, potential new bug, longer development time, edge cases, resource allocation changes => Took initiative to refactor small portion of the code as proof of concept (POC) => Share before and after metrics with team => show a significant improvement with minimal changes.
+- What to do: Voice my opinion during team meeting => Prepare detailed presentation => Performance analysis of the current system, identifying the bottlenecks => showcasing how targeted refactoring could resolve the issues => Highlight risks associated with complete rewrite, potential new bug, longer development time, edge cases, resource allocation changes => Took initiative to refactor small portion of the code as proof of concept (POC) => Share before and after metrics with team => show a significant improvement with minimal changes.
 
 - Result: After reviewing my analysis and the results of the proof of concept, the team agreed to try the refactoring approach => The project was completed ahead of schedule and under budget, and the improved performance metrics were well-received by stakeholders => The importance of effective communication in team settings, and how taking initiative can lead to better decision-making.
 
 ## 36. Tell me about a time when you were faced with a problem that had a number of possible solutions. What was the problem and how did you determine the course of action? What was the outcome of that choice? (Priority short-term solutions first, long-term solutions later)
 
-- Context: There are serveral solutions to improve performance of the application => horizontal scaling in server infrastructure, optimal code in server side, implementing a new content delivery network (CDN).
+- Context: There are several solutions to improve performance of the application => horizontal scaling in server infrastructure, optimal code in server side, implementing a new content delivery network (CDN).
 
 - Task: Choose the option that is better.
 
@@ -390,7 +390,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
   - **Feedback and Support:** Provide continuous feedback and support => acknowledge individuals and team efforts => continuously improve from feedback and tackling challenging tasks.
 
-- Result: This strategies led to high level of team engagement and collaboration => skill-sharing sessions help upskilling the team and foster the sense of camaraderie => We successfully completed the project two days ahead the deadline => increase 10% in user engagement in our software => understanding and leveraging individual team members' strengths, effective communcation and recoginization => fostering a collaborative team environment.
+- Result: This strategies led to high level of team engagement and collaboration => skill-sharing sessions help upskilling the team and foster the sense of camaraderie => We successfully completed the project two days ahead the deadline => increase 10% in user engagement in our software => understanding and leveraging individual team members' strengths, effective communication and recoginization => fostering a collaborative team environment.
 
 ## 38. What do you do to enhance your technical knowledge apart from your project work?
 
@@ -398,15 +398,15 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ## 39. How do you prioritize your workload? What do you do when your work feels like it's just too much to get done?
 
-- Effective workload management is crucial => Apply Eisehower Matrix and Agile methodlogy => categorize tasks based on urgency and importance => Critical and urgent tasks get highest priority, followed by important but not urgent tasks => focus on what needs immendiate attention while not losing sight of long-term goals => apply Agile methodlogy to break down larger projects into smaller, managable tasks => setting short-term achievable goals => clear roadmap and tracking progress.
+- Effective workload management is crucial => Apply Eisehower Matrix and Agile methodlogy => categorize tasks based on urgency and importance => Critical and urgent tasks get highest priority, followed by important but not urgent tasks => focus on what needs immendiate attention while not losing sight of long-term goals => apply Agile methodlogy to break down larger projects into smaller, manageable tasks => setting short-term achievable goals => clear roadmap and tracking progress.
 
 - When face with an overwhelming workload => my first step is to re-evaluate my priorities => review task lists to see if anything can be delegated or broken down further => Communicate is key in such situations => discuss workload challenges with my manager of team => seeking their input and assistance to reprioritize and redistributing tasks
 
-- Moreover, I beleive in taking proactive breaks to avoid burnout => regual intervals of rest or engaging in activities unrelated to work => help me recharge and maintain focus => leverage tools and automation to increase efficiency => automative repetitive tasks or using project managment tools to keep track deadlines and dependencies can significantly reduce the workload => continuously communicating with my team and efficiently managing my time to handle workload effectively, to ensure high-quality outputs and work-life balance.
+- Moreover, I believe in taking proactive breaks to avoid burnout => regual intervals of rest or engaging in activities unrelated to work => help me recharge and maintain focus => leverage tools and automation to increase efficiency => automative repetitive tasks or using project management tools to keep track deadlines and dependencies can significantly reduce the workload => continuously communicating with my team and efficiently managing my time to handle workload effectively, to ensure high-quality outputs and work-life balance.
 
 ## 40. What's the Number One Accomplishment You're Most Proud Of?
 
-- The accomplishment I am most proud of in my career => leading the development team and successful launch of comprehensive inventory management system => this project stands out for me because challeges we faced, the technical skills I had to employ, the imact on the company's operations => We decide to to modern technology stacks => the most challenging of the project is that required various external APIS for real-time data syncing => after months of hard work, including coding, testing, several interations based on user feedback => we successfully deploy the system => it enabled real-time inventory tracking, automated reordering and provided valuable insights through data analytics => recuding overstock or stockouts => reduce 20% in operation costs and noticable imporvement in customer satis faction due to better stock managament => solving real business problem and make good relationship with operation team.
+- The accomplishment I am most proud of in my career => leading the development team and successful launch of comprehensive inventory management system => this project stands out for me because challenges we faced, the technical skills I had to employ, the imact on the company's operations => We decide to to modern technology stacks => the most challenging of the project is that required various external APIS for real-time data syncing => after months of hard work, including coding, testing, several interations based on user feedback => we successfully deploy the system => it enabled real-time inventory tracking, automated reordering and provided valuable insights through data analytics => recuding overstock or stockouts => reduce 20% in operation costs and noticeable improvement in customer satis faction due to better stock management => solving real business problem and make good relationship with operation team.
 
 ## 41. Tell me about a time when you had an excessive amount of work and you knew you could not meet the deadline. How did you manage then?
 
@@ -446,9 +446,9 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Task: Handle both things.
 
-- What to do: Assesed the scope and the urgency of the tasks of immediate project and long-term project => using Gantt chart for long-term project and Kanban board for the urgent issue => Delegate some less critical tasks of the long-term project to trusted team member, ensuring that they had neccessary resource => Establish a daily quick stand-up meeting => keep track progress and address blockers immediately => set specific hours in my day dedicated to the long-term project to ensure continuous progress.
+- What to do: Assesed the scope and the urgency of the tasks of immediate project and long-term project => using Gantt chart for long-term project and Kanban board for the urgent issue => Delegate some less critical tasks of the long-term project to trusted team member, ensuring that they had necessary resource => Establish a daily quick stand-up meeting => keep track progress and address blockers immediately => set specific hours in my day dedicated to the long-term project to ensure continuous progress.
 
-- Result: Resolving the client issue in a week => enhance our relationship and trust in our services => the long-term project stayed on track due to effective delegation and time management => balancing these projects taught me valuable lessons in prioritization, delegation, agile response in project managment => highlight the clear communcation with both my team and stakeholders => manange expectations effectively.
+- Result: Resolving the client issue in a week => enhance our relationship and trust in our services => the long-term project stayed on track due to effective delegation and time management => balancing these projects taught me valuable lessons in prioritization, delegation, agile response in project management => highlight the clear communication with both my team and stakeholders => manage expectations effectively.
 
 ## 45. Tell me about a time when you had a hard time working with someone in your team. How did you handle it?
 
@@ -456,13 +456,13 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Task: Ensure the project's success but also foster a collaborative and cohensive team environment.
 
-- What to do: Initiated one-on-one meeting to understand his perspective and work habits => emphasized the team's goals and how each member's contributions were critical => share feedback about how his working style impacting the team dyanmics and project progress => to bridge the gap, I proposed more frequent check-ins and collaborative sessions => ensuring they were structured and respect his work preferences as much as possible => arrange team-building activities to enhance mutual understanding and camaraderie among team members.
+- What to do: Initiated one-on-one meeting to understand his perspective and work habits => emphasized the team's goals and how each member's contributions were critical => share feedback about how his working style impacting the team dynamics and project progress => to bridge the gap, I proposed more frequent check-ins and collaborative sessions => ensuring they were structured and respect his work preferences as much as possible => arrange team-building activities to enhance mutual understanding and camaraderie among team members.
 
-- Result: John appreciated the open communcation and willing to adapt his working style for the benefit of the team => increase interaction and understanding among team members led to synchronized workflow => the project was completed successfull with the client satisfaction and our team dynamics => valuable lessons about the importance of empathy and clear communcation in team managament.
+- Result: John appreciated the open communication and willing to adapt his working style for the benefit of the team => increase interaction and understanding among team members led to synchronized workflow => the project was completed successful with the client satisfaction and our team dynamics => valuable lessons about the importance of empathy and clear communication in team management.
 
 ## 46. Tell me about a project that didn't go according to plan.
 
-- Context: Develop new customer relationship managament (CRM) => Streamline sales process and improve customer interaction.
+- Context: Develop new customer relationship management (CRM) => Streamline sales process and improve customer interaction.
 
 - Task: Lead backend development team, integrated seamlessly with frontend system and the database.
 
@@ -592,7 +592,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 7. Plan in the next 5 years
 
-- Propose the ojective is suitable match with the job.
+- Propose the objective is suitable match with the job.
 
 - Show that you want to long-time commitment with the company.
 
@@ -664,7 +664,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 19. How you adapt with new environment ?
 
-- Give an example how you adapt with new environent.
+- Give an example how you adapt with new environment.
 
 - Emphasize about active attitude, eager to learn and ability to quickly catch up with the job.
 
@@ -714,7 +714,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Emphasize how to solve the problem: listen with them, emphathy, clear communication, propose suitable solution.
 
-### 28. If you have multile work at the same time, what do you do ?
+### 28. If you have multiple work at the same time, what do you do ?
 
 - Prioritize tasks by importance and urgency.
 
@@ -908,7 +908,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Emphasize the skill of simplifying the information.
 
-## 3.6. Mangement & Communication
+## 3.6. Management & Communication
 
 ### 61. What is your typical working day ?
 
@@ -960,7 +960,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Flexible to adjust plan, learn quickly and active attitude to learn new information.
 
-- Changes brings opportunites to grow and improve workflow.
+- Changes brings opportunities to grow and improve workflow.
 
 ### 70. How do you make sure you will not miss the important tasks ?
 
@@ -984,7 +984,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 73. If colleague ask for your help, but you are busy, how do you solve ?
 
-- Priority the imporance and urgency of the tasks that they need to support.
+- Priority the importance and urgency of the tasks that they need to support.
 
 - If I can, I can manage my time to help them or recommending an alternative solution to help them and do not affect to my work.
 
@@ -1010,7 +1010,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 - Emphasize how to solve the problem
 
-- Give an example: Take responsibilty => Research root cause => Report to relevant members => Propose solutions => Lesson learnt for new project in the future.
+- Give an example: Take responsibility => Research root cause => Report to relevant members => Propose solutions => Lesson learnt for new project in the future.
 
 ### 77. What will you do if you have a tasks outside your expertise ?
 
@@ -1030,7 +1030,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ## 3.8. Mindset, Leadership and Personal Development
 
-### 81. Do you have experience to mange a team ? If yes, how many members in your group ?
+### 81. Do you have experience to manage a team ? If yes, how many members in your group ?
 
 - If you have not manage a group => give example that you have support colleagues in work.
 
@@ -1038,7 +1038,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 82. When you lead a team, what do you prior to make sure the efficient of the tasks ?
 
-- There are 3 important things: communcation clearly, planning effectively and motivate team.
+- There are 3 important things: communication clearly, planning effectively and motivate team.
 
 - Encourage clarify requirements => creative and support other members => track progress => short meeting and handle issues.
 
@@ -1074,7 +1074,7 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 88. If you are assigned to manage an important project, what will you plan ?
 
-- Clarify objective of project, scope and timeline => Assign tasks based on strength of each members => Establish milestones and track progess to make sure project is completed on time.
+- Clarify objective of project, scope and timeline => Assign tasks based on strength of each members => Establish milestones and track progress to make sure project is completed on time.
 
 ### 89. Do you have experience to work with different department, what will you do to collaboration ?
 
@@ -1134,4 +1134,4 @@ Here is some behavioral interview questions to learn about: Leadership, Ownershi
 
 ### 100. If you have a skill to improve immediately, what skill do you choose ?
 
-- I would improve the communication skills -> it applys to my work -> I am practicing it through learning in e-learning platform.
+- I would improve the communication skills -> it applies to my work -> I am practicing it through learning in e-learning platform.

@@ -23,7 +23,7 @@ Here is some techniques when implementing services in AWS
 - **Step 2:** Choosing an architecture pattern
 
   - Web application.
-  - Data proccessing pipeline.
+  - Data processing pipeline.
   - Serverless architecture.
   - Microservice.
   - Event-driven architecture.
@@ -140,7 +140,7 @@ resource "aws_instance" "ec2" {
 
 # 3. Building a Recipe-Sharing (Server Application)
 
-## 3.1. Architeture
+## 3.1. Architecture
 
 ![](/images/AWS/recipe_sharing.png)
 
@@ -198,7 +198,7 @@ Deployment Layer
 
 # 4. Building a Recipe-Sharing (Serverless)
 
-## 4.1. Archiecture
+## 4.1. Architecture
 
 ![](/images/AWS/recipe_sharing_serverless.png)
 
@@ -405,7 +405,7 @@ terraform apply
 
 - AWS Bedrock: Use in Generative AI.
 
-## 8.4. Asynchronus API
+## 8.4. Asynchronous API
 
 ![](/images/AWS/aws_asynchronus.png)
 

@@ -59,7 +59,7 @@ Here is plan for software architect template
 
 # 3. Programming Language
 
-- Consier: strong static typing, explicitly defined data structures, interfaces, isomorphism, third-party libraries, ease of refactoring, functional and object-oriented, ease and cost of hiring, learning curve for new hires, general readability.
+- Consider: strong static typing, explicitly defined data structures, interfaces, isomorphism, third-party libraries, ease of refactoring, functional and object-oriented, ease and cost of hiring, learning curve for new hires, general readability.
 
 1. Strong static typing:
 
@@ -150,4 +150,4 @@ Server latency:
 
 - Database latency.
 
-- Sychronization latency.
+- Synchronization latency.

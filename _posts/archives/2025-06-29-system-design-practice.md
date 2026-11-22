@@ -23,7 +23,7 @@ Here is some designs of system design concepts
 
 ![](/images/System-Design/Domain/serverless_register.png)
 
-## 2.2. Inventory Traking
+## 2.2. Inventory Tracking
 
 ![](/images/System-Design/Domain/inventory_tracking.png)
 

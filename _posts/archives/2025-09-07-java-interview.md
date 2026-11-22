@@ -230,7 +230,7 @@ public class OverridingExample {
 
 ```
 
-## 1.2. Access Modifers
+## 1.2. Access Modifiers
 
 - Default: access in the same package.
 
@@ -298,7 +298,7 @@ Notes: volatile → thread-safe for visibility-only problems (flags, single writ
 
 ## 1.10. Java Cloning
 
-- Shalow Cloning: Creates a copy of an object, but does not copy the nested objects deeply => asign pointer.
+- Shalow Cloning: Creates a copy of an object, but does not copy the nested objects deeply => assign pointer.
 
 - Deep Cloning: Different object
 
@@ -393,7 +393,7 @@ public class SyncExample {
 
 - Modular System: since Java 9
 
-## 1.15. What is annotaions
+## 1.15. What is annotations
 
 Annotations in Java are metadata (extra information) added to code.
 
@@ -425,7 +425,7 @@ Notes: When the garbage collector thread is running, other threads are stopped.
 
 ## 2.2. What Are Stack and Heap? What Is Stored in Each of These Memory Structures, and How Are They Interrelated?
 
-- Stack: local varibales, references to the object to heap to execute method. Every thread hs its own stack.
+- Stack: local variables, references to the object to heap to execute method. Every thread hs its own stack.
 
 - Heap: Address of an object.
 
@@ -872,7 +872,7 @@ There are different inheritance mapping strategies available:
 
 1. Load core Java file.
 
-2. Load libaries: JRE, EXT, Lib.
+2. Load libraries: JRE, EXT, Lib.
 
 3. Load classpath: .jar, .war
 
@@ -1699,4 +1699,4 @@ Transaction starts before method executes.
 
 2. Java 17
 
-- New garbarge collector
+- New garbage collector

@@ -40,7 +40,7 @@ categories: private
 1. Không có cấu trúc S V because of N, S V => chỉ có S V because of N
 
 2. We are unable to accommodate more than 10 guests due to staff shortages
-   => Staff storages -> unable to accomodate 10 guests.
+   => Staff storages -> unable to accommodate 10 guests.
 
 3. so as to = in order to
 

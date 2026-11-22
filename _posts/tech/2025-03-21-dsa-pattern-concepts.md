@@ -53,7 +53,7 @@ Below is a mind map that provides a high-level overview of the different DSA pat
 
 ## 1.4. Fast & Slow Pointer
 
-## 1.5. Data Strutures
+## 1.5. Data Structures
 
 ### 1.5.1. Two Pointers on Sorted Arrays
 

@@ -306,7 +306,7 @@ Không hiểu A thì đọc B
 
 Nhớ cái tổng quát nhất.
 
-- First, second, third, in addtion, besides, What's more,...
+- First, second, third, in addition, besides, What's more,...
 
 #### Process
 
@@ -344,7 +344,7 @@ Notes: **Không có các từ nối như: This/These, However, Example, In fact,
 
 1. Read/Understand the question.
 
-2. Locate relevant infomation
+2. Locate relevant information
 
 3. Read and understand relevant information
 
@@ -967,7 +967,7 @@ Thereafter,
 
 - **[Linking word]** B registered an upward/downward trend, with ... in [năm cuối].
 
-- **[Linking word]** An ascending/descending trend was recored in C, with ... in [năm cuối].
+- **[Linking word]** An ascending/descending trend was recorded in C, with ... in [năm cuối].
 
 - Finally, regarding D, there was an increase/decrease, with ... in [năm cuối].
 
@@ -1128,7 +1128,7 @@ Z + W + V
 
 #### Câu hỏi có mức độ
 
-Rất thích: Yes, definately / Without a doubt
+Rất thích: Yes, definitely / Without a doubt
 
 Thích vừa: Probably / A little bit
 
@@ -1136,7 +1136,7 @@ Phân vân: I'm not sure / I'm on the fence about it
 
 Không thích vừa: Probably not / Not really
 
-Không thích: Definately not / The answer is definite no
+Không thích: Definitely not / The answer is definite no
 
 ### 3.1.2. What/Which/Whom/Who (Cái gì)
 
@@ -1224,7 +1224,7 @@ Trả lời theo 2 kiểu:
 
 **Sample:**
 
-- **How**: I usally get online by + V-ing.
+- **How**: I usually get online by + V-ing.
 
 - **How**: A good idea woule be + Noun
 
@@ -1542,7 +1542,7 @@ Quay lại trả lời theo bài 1
 - Mở rộng theo chiều ngang bổ nghĩa cho Yes.
 - Mở rộng theo chiều rộng để bổ sung nghĩa cho D, C hoặc E.
 
-![Horizonal Idea IELTS](/images/horizonal_ielts_idea.jpeg)
+![Horizontal Idea IELTS](/images/horizonal_ielts_idea.jpeg)
 
 
 ## 3.4. Template

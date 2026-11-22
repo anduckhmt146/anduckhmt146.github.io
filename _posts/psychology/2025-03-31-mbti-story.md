@@ -5,11 +5,11 @@ date: 2025-03-31
 categories: psychology
 ---
 
-Here is the story of an ENFP Ne-Te loop that I think it is a quite similar about my story and the valuable advices of the author about our relationships with ex girlfriend.
+Here is the story of an ENFP Ne-Te loop that I think it is a quite similar about my story and the valuable advice of the author about our relationships with ex girlfriend.
 
 ![Ảnh](/images/enfp-ne-te-loop.webp){:width="600" height="400"}
 
-How can I, an INFP, help an ENFP in a loop? He's been looping for months, it happened after his gf ended the relationship. He's very judgmental, hates humanity, has violent fantasies towards his ex. He often talks about winning/losing, dependence/domination in his relationships, projects his feelings of dependency and weakness into his friends and is sometimes very disrespectful to them. (1/3)
+How can I, an INFO, help an ENFP in a loop? He's been looping for months, it happened after his gf ended the relationship. He's very judgmental, hates humanity, has violent fantasies towards his ex. He often talks about winning/losing, dependence/domination in his relationships, projects his feelings of dependency and weakness into his friends and is sometimes very disrespectful to them. (1/3)
 
 ---
 

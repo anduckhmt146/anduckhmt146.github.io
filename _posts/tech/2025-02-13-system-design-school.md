@@ -103,7 +103,7 @@ Here is something I will note for the course in System Design School, but I have
 
 ### 5. Auto Scaling
 
-## 2. Read Write Seperation
+## 2. Read Write Separation
 
 ### 1. Introduction
 
@@ -141,7 +141,7 @@ Here is something I will note for the course in System Design School, but I have
 
 # 4. Data Storage
 
-## 1. Data Strutures Behind Database
+## 1. Data Structures Behind Database
 
 ### 1. Data Structures Behind Database
 

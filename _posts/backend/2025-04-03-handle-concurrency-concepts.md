@@ -5,7 +5,7 @@ date: 2025-04-02
 categories: backend
 ---
 
-A breif about advanced skills in backend programming.
+A brief about advanced skills in backend programming.
 
 # 1. Context
 
@@ -24,7 +24,7 @@ In this blog, we will diccuss about concurrency programming in Backend Programmi
 When you need to handle multiple **background tasks** that can run independently, such as:
 
 - Pushing log to analytics dashboard: Google Analytics, Kibana,...
-- Cache warming and maintenance jobs: reconcilation, alerting,...
+- Cache warming and maintenance jobs: reconciliation, alerting,...
 - Create multiple workers (worker pool) to split jobs independently for a long-running jobs.
 
 **Notes:** All of the tasks is not depend to the main business process => if you call this functions synchoronously, it will cause the high latency for your service but do not necessary.

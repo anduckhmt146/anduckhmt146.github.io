@@ -35,7 +35,7 @@ Here is some plan to build myself in the future.
 
   - Big Archieve 2024: [https://drive.google.com/file/d/1vV5-td17sGNstytRaPoOwDOCNXHvOntL/view?usp=sharing](https://drive.google.com/file/d/1vV5-td17sGNstytRaPoOwDOCNXHvOntL/view?usp=sharing)
 
-- Breif System Design: [https://github.com/karanpratapsingh/system-design](https://github.com/karanpratapsingh/system-design)
+- Brief System Design: [https://github.com/karanpratapsingh/system-design](https://github.com/karanpratapsingh/system-design)
 
 - System Design Sample:
 

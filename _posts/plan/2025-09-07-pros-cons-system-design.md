@@ -232,7 +232,7 @@ Legacy systems simulating real-time chat.
 
 2. **Cons:**
 
-- Hard to scale speficic parts.
+- Hard to scale specific parts.
 
 - Need to vertical scaling but have limit (Amdahl’s Law)
 
@@ -2354,7 +2354,7 @@ Longer latency vs single DB transaction.
 
 - Eventual consistency issues.
 
-# 12. Caching Strategy and Memcache comparation
+# 12. Caching Strategy and Memcache comparison
 
 ## 12.1. Distributed Cache:
 
@@ -2414,7 +2414,7 @@ Longer latency vs single DB transaction.
 
 - Fault tolerant: Message are persisted to disk.
 
-- Scale horizontally: Paritioned topic.
+- Scale horizontally: Partitioned topic.
 
 - Support stream processing.
 
@@ -2494,7 +2494,7 @@ Longer latency vs single DB transaction.
 
 3. **Pros:**
 
-- Fast aggregrations.
+- Fast aggregations.
 
 - Same-type data in row.
 
@@ -2685,7 +2685,7 @@ Notes: Real-time database using NoSQL => Because it can scale horizontally.
 
 - Serving Layer: Combines both outputs for queries.
 
-=> Split to pipeline to handle batch vs stream processing seperately.
+=> Split to pipeline to handle batch vs stream processing separately.
 
 ![](/images/System-Design/Concepts/Lambda_Architecture.png)
 
@@ -2721,7 +2721,7 @@ Notes: Real-time database using NoSQL => Because it can scale horizontally.
 
 2. **Use case:**
 
-- Small scale appication.
+- Small scale application.
 
 3. **Pros:**
 

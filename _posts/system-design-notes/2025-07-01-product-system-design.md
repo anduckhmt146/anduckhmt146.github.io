@@ -9,9 +9,9 @@ Here is some note for product system design.
 
 # 1. Bit-ly
 
-- Applying CQRS seperate read-write pattern.
+- Applying CQRS separate read-write pattern.
 
-- Using auto increment Redis + base62 [A-Z] [a-z] [0-9] hasing pattern.
+- Using auto increment Redis + base62 [A-Z] [a-z] [0-9] hashing pattern.
 
 - Centralize the distributed Redis Counter -> Make sure the url-id is unique across multiple instances.
 
@@ -132,15 +132,15 @@ When SELECT 1 billions records => What is lock db ?
 
   - Dirty Read: Read without commit.
 
-  - Non-repeatable Read: In the same trasaction, read the same row 2 times => Return 2 different value because other transaction has commited it.
+  - Non-repeatable Read: In the same transaction, read the same row 2 times => Return 2 different value because other transaction has committed it.
 
   - Phanrom Read: Read same time with different numbers of row.
 
 - 4 Isolation of Level:
 
-  - Read Uncommited
+  - Read Uncommitted
 
-  - Read Commited.
+  - Read Committed.
 
   - Repeatable Read.
 
@@ -286,7 +286,7 @@ Idea: The location only store data for it, do not scan all table.
 
 - Step 1: Pre-computed radius filtering
 
-## 5.13. Paritition strategy
+## 5.13. Partition strategy
 
 - Round-robin distribution
 
@@ -436,7 +436,7 @@ Idea: The location only store data for it, do not scan all table.
 
 - In read-heavy systems, the database or cache layer typically becomes the bottleneck first -> Data retrieval operations.
 
-- About server: it is basic routing, and load balacers can usually be scaled easily than data layer.
+- About server: it is basic routing, and load balancers can usually be scaled easily than data layer.
 
 ## 6.24. Eventual consistency is acceptable for news feeds where availability matters more than perfect synchronization.
 
@@ -676,7 +676,7 @@ Full-text search engines
 
 ## 8.10. Secondary indexes in databases are primarily used to improve write performance rather than enable different query patterns.
 
-- Secodary Index: Support read, but longer write.
+- Secondary Index: Support read, but longer write.
 
 ## 8.11. What is the most effective approach to handle hot keys in a distributed cache system?
 
@@ -781,7 +781,7 @@ Full-text search engines
 
 - Bloom Filters: If the users have swiped on => must be never show => pass requirements, but maybe filter out some users have not swiped on.
 
-=> If the Bloom filter says the element is NOT in the set, then it's definitely not => print(bf.might_contain("grape")) == False, it is definately not have in the set.
+=> If the Bloom filter says the element is NOT in the set, then it's definitely not => print(bf.might_contain("grape")) == False, it is definitely not have in the set.
 => If the bloom filter says yes, maybe yes or no.
 
 ![](/images/System-Design/Product/Tinder/bloom-filter.png)
@@ -1261,7 +1261,7 @@ UPDATE accounts SET balance = balance + 100 WHERE user_id = 'bob';
 
 - Database columns: Add status, expiration column.
 
-- ZooKeeper/etcd: Use coordination service to distribued lock. Both systems use consensus algorithms (Raft for etcd, ZAB for ZooKeeper) to maintain consistency across multiple nodes.
+- ZooKeeper/etcd: Use coordination service to distributed lock. Both systems use consensus algorithms (Raft for etcd, ZAB for ZooKeeper) to maintain consistency across multiple nodes.
 
 #### Saga Pattern
 
@@ -1720,7 +1720,7 @@ TABLE post_analytics (
 
 - Balancing is good.
 
-- Do not any sharding exceed the average performace.
+- Do not any sharding exceed the average performance.
 
 ### 10.5.12. What is the main difference between horizontal and vertical partitioning?
 
@@ -2680,7 +2680,7 @@ Challenges:
 
 ## 16.23. How do we ensure our cache is performant?
 
-- But as we grow our system into a large, distributed cache spanning dozens or even hundreds of nodes => It’s about how quickly clients can find the right node and aggreated data better.
+- But as we grow our system into a large, distributed cache spanning dozens or even hundreds of nodes => It’s about how quickly clients can find the right node and aggregated data better.
 
 Solution:
 
@@ -3066,7 +3066,7 @@ Feel Free to Ask: Questions about roles and responsibilities, scope and influenc
 
 ## 22.6. Results
 
-- Performance Imrpovement.
+- Performance Improvement.
 
 - You get kudos from your managers and peers.
 
@@ -3782,7 +3782,7 @@ Two-phase: periodic querying plus priority queue
 
 ## 32.12. How would you evolve your system to allow advertisers to query for click data in near real-time (<5s)?
 
-- Integrate with Kinesis and Flink for process faster, due to paralel computing.
+- Integrate with Kinesis and Flink for process faster, due to parallel computing.
 
 ![](/images/System-Design/Product/Ad-Click-Aggregator/flink.png)
 
@@ -4101,7 +4101,7 @@ Notes: Features have value, data is only raw.
 
 ## 39.19. In an auction system using Server-Sent Events (SSE) to broadcast real-time bid updates, what happens when a new bid is processed by Server A but users watching the same auction are connected to Server B?
 
-- Subscriber receive broadcast message in only channel that they subcribed.
+- Subscriber receive broadcast message in only channel that they subscribed.
 
 - Users connected to Server B will not receive the update unless additional coordination infrastructure is implemented
 
@@ -4526,7 +4526,7 @@ Example: Search for 8
 
 - CPU Bottleneck: The process can't fully use all 16 cores (e.g., due to lock contention, or language limitations like Node.js’s single-threaded nature) => Scale max but the CPU only have 16 threads and single-threaded processing.
 
-- Network bandwith
+- Network bandwidth
 
 - Amdahl’s Law: Upgrading from 16 to 32 cores gives only 10–20% improvement => Scale too much and it peak to the limit of hardware => declare max speed-up, because the heat of the CPU, trade-off the engineering and physical hardware.
 

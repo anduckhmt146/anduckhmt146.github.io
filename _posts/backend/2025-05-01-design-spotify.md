@@ -147,8 +147,8 @@ The architecture of Search Service can be broken down into the following key com
 
 # 4. Notes
 
-- Partitions is split a big table to managable tables.
+- Partitions is split a big table to manageable tables.
 
-- Sharding is **one of** parition technique: horizontal partition.
+- Sharding is **one of** partition technique: horizontal partition.
 
 ![](/images/System-Design/partition_sharding.jpeg)

@@ -328,7 +328,7 @@ Here is some concepts prepare for software enginneer interview
 - [The infrastructure behind AI search in Figma](https://www.figma.com/blog/the-infrastructure-behind-ai-search-in-figma/)
 - [Speeding up file load times at Figma](https://www.figma.com/blog/speeding-up-file-load-times-one-page-at-a-time/)
 - [Figma's LiveGraph: a real-time data system at scale](https://www.figma.com/blog/livegraph-real-time-data-at-scale/)
-- [How Figma horizontally scaled Postgres to unlock nearly infinit scalability](https://www.figma.com/blog/how-figmas-databases-team-lived-to-tell-the-scale/)
+- [How Figma horizontally scaled Postgres to unlock nearly infinite scalability](https://www.figma.com/blog/how-figmas-databases-team-lived-to-tell-the-scale/)
 - [How Figma improved performance and load time with incremental frame loading](https://www.figma.com/blog/incremental-frame-loading/)
 - [How Figma reduced potential instability by scaling to multiple databases](https://www.figma.com/blog/how-figma-scaled-to-multiple-databases/)
 - [The hidden challenges of autosave](https://www.figma.com/blog/behind-the-feature-autosave/)
@@ -408,7 +408,7 @@ Here is some concepts prepare for software enginneer interview
 - [Building an Event-Driven Architecture at Hashnode](https://engineering.hashnode.com/building-an-event-driven-architecture-at-hashnode)
 - [How Hashnode Sends Mass Personalised Emails using AWS Serverless Technologies](https://engineering.hashnode.com/mass-personalised-emails-using-aws-serverless)
 - [How Hashnode Leverages Serverless for Backing up Posts](https://engineering.hashnode.com/serverless-github-backups)
-- [How Hashnode Built Serverless Audio Blogs wiht AWS](https://engineering.hashnode.com/how-we-build-serverless-audio-blogs-with-aws-on-a-scale)
+- [How Hashnode Built Serverless Audio Blogs with AWS](https://engineering.hashnode.com/how-we-build-serverless-audio-blogs-with-aws-on-a-scale)
 
 ## 2.23 Hostinger
 
@@ -622,7 +622,7 @@ Here is some concepts prepare for software enginneer interview
 - [How Slack built enterprise search to be secure and private](https://slack.engineering/how-we-built-enterprise-search-to-be-secure-and-private/)
 - [Advancing Our Chef Infrastructure](https://slack.engineering/advancing-our-chef-infrastructure/)
 - [How We Re-Architected Slack for Our Largest Customers](https://slack.engineering/unified-grid-how-we-re-architected-slack-for-our-largest-customers/)
-- [How Slack autmatically detects stolen session cookies](https://slack.engineering/catching-compromised-cookies/)
+- [How Slack automatically detects stolen session cookies](https://slack.engineering/catching-compromised-cookies/)
 - [How a request flows — from a Slack's user perspective](https://slack.engineering/traffic-101-packets-mostly-flow/)
 - [Slack's Migration to a Cellular Architecture](https://slack.engineering/slacks-migration-to-a-cellular-architecture/)
 - [Real-time Messaging at Slack](https://slack.engineering/real-time-messaging/)

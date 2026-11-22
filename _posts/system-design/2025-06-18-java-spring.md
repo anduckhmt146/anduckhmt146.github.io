@@ -11,7 +11,7 @@ Here is a some notes to deep dive in Java Spring
 
 - Spring is a framework, including: Spring Data, Spring Microservices, Spring Cloud, Spring Security,...
 
-- The most important ideas of Spring auto **Manage Object** by creating, deleling,... instead of developer => Developer only declare Beans and do not need to New, Constructure, Destructure Object.
+- The most important ideas of Spring auto **Manage Object** by creating, deleling,... instead of developer => Developer only declare Beans and do not need to New, Constructor, Destructure Object.
 
 - Spring Boot is an annotation-based components to auto configure (configure xml file for Beans,...) of Spring Framework => It can collaborate each Spring Components together.
 
@@ -23,7 +23,7 @@ Here is a some notes to deep dive in Java Spring
 
   - Good documentation.
 
-- IOC (Invertion of Control): Instead of developer control all the objects, delegate the control object for Spring.
+- IOC (Inversion of Control): Instead of developer control all the objects, delegate the control object for Spring.
 
 - DI (Dependency Injection): When you need to inject an object to another object => use @Autowired to init the object from bean.
 
@@ -39,7 +39,7 @@ Here is a some notes to deep dive in Java Spring
 
 - You can use the <property></property> to set value to private variable of the class, value (initial value), ref (@Autowired)
 
-- You also can use <constructure-arg value=""></constructure-arg> => Init constructure Student(int age)
+- You also can use <constructure-arg value=""></constructure-arg> => Init constructor Student(int age)
 
 ---
 
@@ -117,7 +117,7 @@ Here is a some notes to deep dive in Java Spring
 
 - Spring Boot can support both Sevelets (Spring Web) and Reactive (Spring Reactive Web).
 
-- Tomcat server to run Servlets HTTP, there are: External Tomcat (can use @WebServlets), Embeded Tomcat (add Serlets to Tomcat Server) => addServlets and Servlets Mapping.
+- Tomcat server to run Servlets HTTP, there are: External Tomcat (can use @WebServlets), Embedded Tomcat (add Serlets to Tomcat Server) => addServlets and Servlets Mapping.
 
 - JSP (Java Server Pages): file .jsp => can use to send HTML to the client - View layer. Serlets is a Controller, Object as Model => Model can come from database or object class (POJO - Plain Old Java Object).
 
@@ -428,20 +428,20 @@ public class UserPrincipal implements UserDetails {
 
 **Encoding Token (JWT and OAuth2)**
 
-- When data send from A to B -> We need symetric key and asymetric key (private and public key) -> to encrypt and decrypt the sensitive data to protect from man of the middle attack.
+- When data send from A to B -> We need symmetric key and asymmetric key (private and public key) -> to encrypt and decrypt the sensitive data to protect from man of the middle attack.
 
 - Man of the middle attack can happen every where in the Internet -> Modify payload in the middle when server A send to server B.
 
-- Symetric key:
+- Symmetric key:
 
   - Faster
   - But A -> B using K1, A -> C using K2, A -> D using K3,...is very difficult to manage all the keys for A.
 
-- **Notes:** Algorithm to encrypt and decrypt symetric key, AES: Advanced Encryption Standard, DES: Data Encryption Standard.
+- **Notes:** Algorithm to encrypt and decrypt symmetric key, AES: Advanced Encryption Standard, DES: Data Encryption Standard.
 
 ---
 
-- Asymetric Key (Public key and private key)
+- Asymmetric Key (Public key and private key)
 
   - Encrypt data with Private Key -> Decrypt data with Public Key.
   - Encrypt data with Public Key -> Decrypt data with Private Key.
@@ -454,7 +454,7 @@ public class UserPrincipal implements UserDetails {
 
   - B use private key of B to decrypt data.
 
-- **Notes:** Algorithm to encrypt and decrypt asymetric key -> RSA (Rivest, Shamir, Adleman), ECC.
+- **Notes:** Algorithm to encrypt and decrypt asymmetric key -> RSA (Rivest, Shamir, Adleman), ECC.
 
 - **Notes:** But the problem is C can catch the message of A -> using B public key to send data to B => We need to prove the data is come from the sender (A)
 
@@ -464,9 +464,9 @@ public class UserPrincipal implements UserDetails {
 
 - **Question 2:** How B to know data send from A:
 
-  - A use private key of A to encrypt the data and send the digital sigature to B.
+  - A use private key of A to encrypt the data and send the digital signature to B.
 
-  - B use A public key -> to decrypt the payload of digital sigature from A -> Make sure the payload is send from A
+  - B use A public key -> to decrypt the payload of digital signature from A -> Make sure the payload is send from A
 
   - Problem: But C can use A public key to decrypt the data.
 
@@ -632,7 +632,7 @@ spring.datasource.password=
 
 - You can use ECS to run serverless
 
-- Pull posgresql in Dockerhub and run the task: Create cluster (run in EC2, or Fargate Serverless) -> Create task (task is create a job to pull image docker + export port -> build docker and docker-compose file) -> Task can use to run any docker image.
+- Pull postgresql in Dockerhub and run the task: Create cluster (run in EC2, or Fargate Serverless) -> Create task (task is create a job to pull image docker + export port -> build docker and docker-compose file) -> Task can use to run any docker image.
 
 **Process:**
 
@@ -739,7 +739,7 @@ public class QuizServiceApplication {
 
 - In addition, you can use HTTPClient, OkHttpClient to make requests as an HTTP client in Java.
 
-- **Load balacing:** 1 service have multiple instances -> point of view is about only 1 service.
+- **Load balancing:** 1 service have multiple instances -> point of view is about only 1 service.
 
 - **API Gateway**: Routing multiple services -> point of view is about multiple services => You can deploy service for API Gateway from **@Gateway package** of Spring.
 
@@ -811,7 +811,7 @@ public OpenAIController (ChatClient.Builder builder){
 
 ---
 
-- Run model with Ollama, by addding Ollama controller
+- Run model with Ollama, by adding Ollama controller
 
 ```java
 @RestController

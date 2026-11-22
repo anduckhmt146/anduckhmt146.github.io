@@ -81,7 +81,7 @@ Used in monthly billing products or subscription.
 
 - Auto payment for monthly bill by credit card.
 
-### 2.7.3. Subcription
+### 2.7.3. Subscription
 
 - Use to pay for subscription in credit cards.
 
@@ -153,9 +153,9 @@ Here is some main fields
 
 2. Query token: /v2/tokenization/query
 
-3. Bind aggrement: /v2/agreement/bind
+3. Bind agreement: /v2/agreement/bind
 
-4. Unbind aggrement: /v2/agreement/unbind
+4. Unbind agreement: /v2/agreement/unbind
 
 5. Request for agreement pay (merchant call): /v2/agreement/pay
 
@@ -173,4 +173,4 @@ Notes:
 
 - Generate authorization first to prevent man of the middle attack.
 
-- The tranfer token flow should only be by 2 servers.
+- The transfer token flow should only be by 2 servers.

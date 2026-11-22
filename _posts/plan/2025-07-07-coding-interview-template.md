@@ -441,7 +441,7 @@ def deleteNode(head, target):
 
 ![](/images/Coding-Interview/stack-pattern.png)
 
-## 4.1. Calculate expresion with "()"
+## 4.1. Calculate expression with "()"
 
 - Step 1: Idea to calculate all the sum of stack.
 
@@ -871,7 +871,7 @@ for pid, start, end in srtf(tasks):
 
 - Step 6: Remember to push tasks come from the time while the current tasks is executed => while i < n and tasks[i]['arrival_time'] <= time => ready.append(tasks[i])
 
-- Step 7: Count completed += 1 when the tasks in compleeted.
+- Step 7: Count completed += 1 when the tasks in completed.
 
 - Step 8: If not is queue => time = tasks[i]['arrival_time'].
 
@@ -940,7 +940,7 @@ for pid, start, end in result:
 
 ### 5.2.3. Cooldown
 
-- Step 1: Count the frequence of the jobs, do longer jobs first.
+- Step 1: Count the frequency of the jobs, do longer jobs first.
 
 - Step 2: Init time, schedule
 
@@ -2041,7 +2041,7 @@ class Solution:
 
 ## 9.2. Level order in graph
 
-### 9.2.1. Adjancency List By Level
+### 9.2.1. Adjacency List By Level
 
 - Step 1: Base case
 
