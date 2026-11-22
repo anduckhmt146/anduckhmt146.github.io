@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Behavioural Interview Story - Amazon
+title: Behavioral Interview Story - Amazon
 date: 2025-10-13
 categories: archives
 ---

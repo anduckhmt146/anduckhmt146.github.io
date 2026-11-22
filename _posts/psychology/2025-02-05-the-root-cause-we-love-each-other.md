@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Why we love each other? - The Franklin Synonym'
+title: 'Why Do We Love Each Other? - The Franklin Effect'
 date: 2025-02-05
 categories: psychology
 ---

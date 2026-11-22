@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '42 Coding Interview Pattern'
+title: '42 Coding Interview Patterns'
 date: 2025-05-25
 categories: archives
 ---

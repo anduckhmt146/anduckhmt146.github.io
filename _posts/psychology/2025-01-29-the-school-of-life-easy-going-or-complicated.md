@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[The School Of Life] You are straightforward or complicated ? 🤔"
+title: "[The School Of Life] Are You Straightforward or Complicated? 🤔"
 date: 2025-01-29
 categories: psychology
 

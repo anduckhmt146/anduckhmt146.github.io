@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'System Design: Rail-hailing - Uber'
+title: 'System Design: Ride-hailing - Uber'
 date: 2025-05-03
 categories: tech
 ---

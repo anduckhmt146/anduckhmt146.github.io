@@ -18,7 +18,7 @@ migrate:
 	  echo "categories: $(folder)"; \
 	  echo "---"; \
 	  echo ""; \
-	  echo "Here is solutions for $$TITLE."; \
+	  echo "Here are solutions for $$TITLE."; \
 	  echo ""; \
 	  echo "# 1. Understand the problem"; \
 	  echo ""; \
@@ -50,7 +50,7 @@ blog:
 	  echo "categories: $(folder)"; \
 	  echo "---"; \
 	  echo ""; \
-	  echo "Here is solutions for $$TITLE."; \
+	  echo "Here are solutions for $$TITLE."; \
 	} >> "$$FILENAME" && \
 	echo "✔ Created file: _posts/$(folder)/$$FILENAME"
 

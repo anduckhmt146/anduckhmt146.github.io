@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'System Design: Url Shorterner Link - Bitly'
+title: 'System Design: URL Shortener Link - Bitly'
 date: 2025-05-01
 categories: tech
 ---

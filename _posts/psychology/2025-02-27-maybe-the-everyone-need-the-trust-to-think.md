@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Maybe everything is not right or wrong, everyone just need a belief to think
+title: Maybe everything is not right or wrong, everyone just needs a belief to think
 date: 2025-02-27
 categories: private
 ---

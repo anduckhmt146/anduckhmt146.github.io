@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 4 Isolation Level MySQL
+title: 4 Isolation Levels in MySQL
 date: 2025-04-15
 categories: system-design
 ---

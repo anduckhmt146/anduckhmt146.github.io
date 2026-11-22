@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[The Laws of Human Nature] - The Law of Irrationality - We are all irrational human 🤔'
+title: '[The Laws of Human Nature] - The Law of Irrationality - We Are All Irrational Humans 🤔'
 date: 2025-02-01
 categories: book
 ---

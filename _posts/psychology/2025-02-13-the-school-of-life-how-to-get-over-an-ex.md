@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[The School Of Life] How to get over an ex ?'
+title: '[The School Of Life] How to Get Over an Ex?'
 date: 2025-02-13
 categories: psychology
 ---

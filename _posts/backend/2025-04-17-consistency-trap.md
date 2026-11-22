@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Consistent Trap
+title: Consistency Trap
 date: 2025-04-17
 categories: backend
 ---

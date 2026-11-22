@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Principle Software Architect
+title: Principal Software Architect
 date: 2025-08-20
 categories: system-design-notes
 ---

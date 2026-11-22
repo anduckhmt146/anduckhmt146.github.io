@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[Psychology Today] Are you fall in love by enthusiastic or connected ?'
+title: '[Psychology Today] Do You Fall in Love Through Enthusiasm or Connection?'
 date: 2025-02-05
 categories: psychology
 ---
