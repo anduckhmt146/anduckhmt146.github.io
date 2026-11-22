@@ -16,12 +16,18 @@ permalink: /
 </section>
 
 <h2 class="section-title">Explore topics</h2>
+{% for group in site.data.topics %}
+<h3 class="group-title"><i class="{{ group.icon }}"></i> {{ group.name }}</h3>
 <div class="hero-cards">
-  <a class="hero-card" href="{{ site.baseurl }}/categories/system-design-notes"><i class="fa-solid fa-diagram-project"></i><strong>System Design</strong><small>{{ site.posts | where: "categories", "system-design-notes" | size }} notes</small></a>
-  <a class="hero-card" href="{{ site.baseurl }}/categories/coding-practice"><i class="fa-solid fa-code"></i><strong>Coding Practice</strong><small>{{ site.posts | where: "categories", "coding-practice" | size }} problems</small></a>
-  <a class="hero-card" href="{{ site.baseurl }}/categories/opinion"><i class="fa-solid fa-lightbulb"></i><strong>Opinion</strong><small>{{ site.posts | where: "categories", "opinion" | size }} posts</small></a>
-  <a class="hero-card" href="{{ site.baseurl }}/categories/archives"><i class="fa-solid fa-archive"></i><strong>Archives</strong><small>{{ site.posts | where: "categories", "archives" | size }} posts</small></a>
+  {% for item in group.items %}
+    {% if item.category %}
+    <a class="hero-card" href="{{ site.baseurl }}/categories/{{ item.category }}/"><i class="{{ item.icon }}"></i><strong>{{ item.title }}</strong><small>{{ item.desc }}</small><span class="count">{{ site.posts | where: "categories", item.category | size }} {{ item.unit }}</span></a>
+    {% else %}
+    <a class="hero-card" href="{{ item.url }}" target="_blank" rel="noopener"><i class="{{ item.icon }}"></i><strong>{{ item.title }} <span class="ext-arrow">↗</span></strong><small>{{ item.desc }}</small></a>
+    {% endif %}
+  {% endfor %}
 </div>
+{% endfor %}
 
 <h2 class="section-title">Latest posts</h2>
 <div class="posts">

@@ -1,0 +1,55 @@
+# Single source of truth for the header menu and the home "Explore topics" section.
+# `category` = a folder under _posts/ (published as /categories/<category>/).
+# `url` = external link.
+- name: Engineering
+  icon: fa-solid fa-laptop-code
+  items:
+    - title: System Design
+      icon: fa-solid fa-diagram-project
+      category: system-design-notes
+      desc: Architectures, trade-offs and deep dives
+      unit: notes
+    - title: Engineering Blogs
+      icon: fa-solid fa-newspaper
+      category: engineering-blog-notes
+      desc: Notes from Grab and other engineering teams
+      unit: notes
+    - title: Coding Practice
+      icon: fa-solid fa-code
+      category: coding-practice
+      desc: Neetcode and LeetCode with a thinking framework
+      unit: problems
+
+- name: Writing
+  icon: fa-solid fa-pen-nib
+  items:
+    - title: Opinion
+      icon: fa-solid fa-lightbulb
+      category: opinion
+      desc: Thoughts on career, mindset and life
+      unit: posts
+    - title: Archives
+      icon: fa-solid fa-archive
+      category: archives
+      desc: Older notes and interview prep
+      unit: posts
+
+- name: Resources
+  icon: fa-solid fa-book-open
+  items:
+    - title: Articulate Engineer
+      icon: fa-solid fa-comments
+      url: https://glitter-quart-14e.notion.site/Get-Along-3f7de13133de80b1b5abf03ada910226?pvs=73
+      desc: Communicate ideas clearly
+    - title: Think before you code
+      icon: fa-solid fa-brain
+      url: https://glitter-quart-14e.notion.site/Problems-403de13133de8039bf75cfe52cecd04f?pvs=73
+      desc: Problem-solving frameworks
+    - title: Road to Senior SE
+      icon: fa-solid fa-cloud
+      url: https://glitter-quart-14e.notion.site/Senior-Backend-Engineer-3e8de13133de80c88757ead0b930a792
+      desc: Growth path for backend engineers
+    - title: My Owner System
+      icon: fa-solid fa-gear
+      url: https://glitter-quart-14e.notion.site/My-Owner-System-3fede13133de8071bd37cc202ac3900b?pvs=73
+      desc: How I organize learning and life

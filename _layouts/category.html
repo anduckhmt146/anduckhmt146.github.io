@@ -4,9 +4,12 @@ layout: default
 
 {% assign cat = page.category %}
 {% assign cat_posts = site.posts | where: "categories", cat %}
+{% assign cat_title = cat %}{% assign cat_desc = "" %}
+{% for g in site.data.topics %}{% for it in g.items %}{% if it.category == cat %}{% assign cat_title = it.title %}{% assign cat_desc = it.desc %}{% endif %}{% endfor %}{% endfor %}
 
 <div class="list-head">
-  <h1>{{ page.title | default: cat }}</h1>
+  <h1>{{ cat_title }}</h1>
+  {% if cat_desc != "" %}<p>{{ cat_desc }}</p>{% endif %}
 </div>
 
 <div class="search-container">

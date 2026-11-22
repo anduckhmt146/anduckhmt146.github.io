@@ -6,12 +6,31 @@
 
   document.body.classList.add('dark-mode');
 
-  // ---- Active nav link + mobile menu ----
+  // ---- Active nav link, dropdown groups + mobile menu ----
   var path = location.pathname.replace(/\/$/, '') || '/';
   $$('.main-nav a[data-match]').forEach(function (a) {
     var m = a.getAttribute('data-match');
-    if ((m === '/' && path === '/') || (m !== '/' && path.indexOf(m) === 0)) a.classList.add('active');
+    if ((m === '/' && path === '/') || (m !== '/' && path.indexOf(m) === 0)) {
+      a.classList.add('active');
+      var g = a.closest('.nav-group'); if (g) $('.nav-group__btn', g).classList.add('active');
+    }
   });
+  var groups = $$('.nav-group');
+  function closeGroups(except) {
+    groups.forEach(function (g) {
+      if (g === except) return;
+      g.classList.remove('is-open'); $('.nav-group__btn', g).setAttribute('aria-expanded', 'false');
+    });
+  }
+  groups.forEach(function (g) {
+    var btn = $('.nav-group__btn', g);
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation(); var open = !g.classList.contains('is-open');
+      closeGroups(g); g.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', open);
+    });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.nav-group')) closeGroups(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeGroups(); });
   var toggle = $('#nav-toggle'), nav = $('#main-nav');
   if (toggle && nav) toggle.addEventListener('click', function () {
     var open = nav.classList.toggle('is-open');
@@ -19,15 +38,43 @@
   });
 
   // ---- CV modal ----
-  var overlay = $('#pdf-modal-overlay'), iframe = $('#pdf-viewer-iframe');
+  // Desktop: native PDF viewer in an iframe. Phones: render pages with PDF.js
+  // scaled to the screen width (mobile browsers don't fit PDFs inside iframes).
+  var overlay = $('#pdf-modal-overlay'), iframe = $('#pdf-viewer-iframe'), pages = $('#pdf-pages');
+  var useCanvas = function () { return window.matchMedia('(max-width: 760px)').matches || /iPhone|iPad|Android/i.test(navigator.userAgent); };
+  var rendered = false;
+  function renderPdf() {
+    if (rendered) return; rendered = true;
+    var lib = window.pdfjsLib;
+    if (!lib) { rendered = false; window.open(cfg.pdf, '_blank'); return; }
+    lib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    pages.innerHTML = '<p class="pdf-loading">Loading…</p>';
+    lib.getDocument(cfg.pdf).promise.then(function (pdf) {
+      pages.innerHTML = '';
+      var width = pages.clientWidth - 16, ratio = Math.min(window.devicePixelRatio || 1, 2);
+      var chain = Promise.resolve();
+      for (var n = 1; n <= pdf.numPages; n++) (function (n) {
+        chain = chain.then(function () { return pdf.getPage(n); }).then(function (page) {
+          var base = page.getViewport({ scale: 1 }), scale = (width / base.width) * ratio;
+          var vp = page.getViewport({ scale: scale });
+          var cv = document.createElement('canvas'); cv.width = vp.width; cv.height = vp.height;
+          cv.style.width = width + 'px'; cv.style.height = (vp.height / ratio) + 'px';
+          pages.appendChild(cv);
+          return page.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
+        });
+      })(n);
+      return chain;
+    }).catch(function () { rendered = false; pages.innerHTML = '<p class="pdf-loading">Could not load the CV. Use "Open" above.</p>'; });
+  }
   function closePdf() {
     overlay.classList.remove('is-open'); overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = ''; iframe.src = '';
+    document.body.style.overflow = ''; iframe.src = ''; pages.innerHTML = ''; rendered = false;
   }
   if (overlay) {
     $('#pdf-review-btn').addEventListener('click', function () {
-      iframe.src = cfg.pdf; overlay.classList.add('is-open');
-      overlay.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+      overlay.classList.add('is-open'); overlay.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+      if (useCanvas()) { iframe.hidden = true; pages.hidden = false; renderPdf(); }
+      else { pages.hidden = true; iframe.hidden = false; iframe.src = cfg.pdf; }
     });
     $('#pdf-modal-close').addEventListener('click', closePdf);
     overlay.addEventListener('click', function (e) { if (e.target === overlay) closePdf(); });
@@ -147,7 +194,7 @@
       return b;
     }
     function render() {
-      var term = q.trim().toLowerCase();
+      var term = q.replace(/^\s*\/+/, '').trim().toLowerCase(); // ignore stray '/' from the focus shortcut
       var hits = cards.filter(function (c) { return !term || c.dataset.search.indexOf(term) !== -1; });
       var pages = Math.max(1, Math.ceil(hits.length / PER));
       page = Math.min(Math.max(page, 1), pages);
@@ -170,7 +217,8 @@
     }
     input.addEventListener('input', function () { q = input.value; page = 1; render(); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === '/' && document.activeElement !== input) { e.preventDefault(); input.focus(); }
+      var t = e.target, typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+      if (e.key === '/' && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) { e.preventDefault(); input.focus(); input.select(); }
     });
     render();
   }

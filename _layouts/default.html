@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }}</title>
+    <title>{% if page.category %}{{ page.category | replace: "-", " " | capitalize }} – {% elsif page.title %}{{ page.title }} – {% endif %}{{ site.name }}</title>
     {% include meta.html %}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,9 +23,13 @@
       <div class="pdf-modal" role="dialog" aria-label="CV">
         <div class="pdf-modal-header">
           <h3>CV / Resume</h3>
+          <span class="pdf-actions">
+            <a class="btn btn--sm" id="pdf-open" href="{{ site.baseurl }}/images/Backend_Software_Engineer_Nguyen_Duc_An.pdf" target="_blank" rel="noopener">Open ↗</a>
+            <a class="btn btn--sm" href="{{ site.baseurl }}/images/Backend_Software_Engineer_Nguyen_Duc_An.pdf" download>Download</a>
+          </span>
           <button type="button" class="pdf-modal-close" id="pdf-modal-close" aria-label="Close">×</button>
         </div>
-        <div class="pdf-modal-body"><iframe id="pdf-viewer-iframe" src="" title="CV PDF"></iframe></div>
+        <div class="pdf-modal-body"><iframe id="pdf-viewer-iframe" src="" title="CV PDF"></iframe><div id="pdf-pages" class="pdf-pages" hidden></div></div>
       </div>
     </div>
 
@@ -59,6 +63,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
     <script src="{{ site.baseurl }}/assets/js/site.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.2/dist/svg-pan-zoom.min.js"></script>
     <script type="module" src="{{ site.baseurl }}/assets/js/mermaid-init.mjs"></script>

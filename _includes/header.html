@@ -10,16 +10,22 @@
     <button id="nav-toggle" class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">☰</button>
   </div>
   <nav id="main-nav" class="main-nav" aria-label="Main">
-    <a href="{{ site.baseurl }}/" data-match="/"><i class="fa-solid fa-user"></i>About</a>
-    <a href="{{ site.baseurl }}/categories/opinion" data-match="/categories/opinion"><i class="fa-solid fa-lightbulb"></i>Opinion</a>
-    <a href="{{ site.baseurl }}/categories/system-design-notes" data-match="/categories/system-design-notes"><i class="fa-solid fa-diagram-project"></i>System Design</a>
-    <a href="{{ site.baseurl }}/categories/coding-practice" data-match="/categories/coding-practice"><i class="fa-solid fa-code"></i>Coding Practice</a>
-    <a href="{{ site.baseurl }}/categories/archives" data-match="/categories/archives"><i class="fa-solid fa-archive"></i>Archives</a>
-    <span class="nav-sep" aria-hidden="true"></span>
-    <a class="ext" href="https://glitter-quart-14e.notion.site/Get-Along-3f7de13133de80b1b5abf03ada910226?pvs=73"><i class="fa-solid fa-laptop-code"></i>Articulate Engineer</a>
-    <a class="ext" href="https://glitter-quart-14e.notion.site/Problems-403de13133de8039bf75cfe52cecd04f?pvs=73"><i class="fa-solid fa-brain"></i>Think before you code</a>
-    <a class="ext" href="https://glitter-quart-14e.notion.site/Senior-Backend-Engineer-3e8de13133de80c88757ead0b930a792"><i class="fa-solid fa-cloud"></i>Road to Senior SE</a>
-    <a class="ext" href="https://glitter-quart-14e.notion.site/My-Owner-System-3fede13133de8071bd37cc202ac3900b?pvs=73"><i class="fa-solid fa-gear"></i>My Owner System</a>
+    <a class="nav-top" href="{{ site.baseurl }}/" data-match="/"><i class="fa-solid fa-user"></i>About</a>
+    {% for group in site.data.topics %}
+    <div class="nav-group">
+      <button class="nav-top nav-group__btn" type="button" aria-expanded="false" aria-haspopup="true"><i class="{{ group.icon }}"></i>{{ group.name }}<i class="fa-solid fa-chevron-down caret"></i></button>
+      <div class="nav-menu" role="menu">
+        <span class="nav-menu__title">{{ group.name }}</span>
+        {% for item in group.items %}
+          {% if item.category %}
+          <a role="menuitem" href="{{ site.baseurl }}/categories/{{ item.category }}/" data-match="/categories/{{ item.category }}"><i class="{{ item.icon }}"></i><span>{{ item.title }}<small>{{ item.desc }}</small></span></a>
+          {% else %}
+          <a role="menuitem" class="ext" href="{{ item.url }}" target="_blank" rel="noopener"><i class="{{ item.icon }}"></i><span>{{ item.title }} <em class="ext-arrow">↗</em><small>{{ item.desc }}</small></span></a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
   </nav>
   <p class="connect-note">Since Jan 2025, with motivation and courage to break my ego, be challenged and grow myself.</p>
 </header>
