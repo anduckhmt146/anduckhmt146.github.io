@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+{% assign cat = page.category %}
+{% assign cat_posts = site.posts | where: "categories", cat %}
+
+<div class="list-head">
+  <h1>{{ page.title | default: cat }}</h1>
+</div>
+
+<div class="search-container">
+  <input type="search" id="search-input" placeholder="Search {{ cat_posts.size }} posts…  (press / to focus)" aria-label="Search posts" autocomplete="off" />
+</div>
+<p class="result-count" id="result-count"></p>
+
+<div class="posts" id="post-list">
+  {% for post in cat_posts %}
+  <a class="post-card" href="{{ site.baseurl }}{{ post.url }}" data-search="{{ post.title | append: ' ' | append: post.excerpt | strip_html | strip_newlines | downcase | escape }}">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.excerpt | strip_html | strip_newlines | truncate: 220 }}</p>
+    <div class="meta"><time>{{ post.date | date: "%b %-d, %Y" }}</time><span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span></div>
+  </a>
+  {% endfor %}
+</div>
+
+<div id="no-results" class="no-results" hidden><span>😕</span>No posts found.</div>
+<div class="pagination" id="pagination"></div>

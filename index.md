@@ -4,6 +4,39 @@ title: About me
 permalink: /
 ---
 
+<section class="hero">
+  <img class="hero__avatar" src="{{ site.avatar }}" alt="{{ site.name }}" />
+  <p class="hero__eyebrow">Software Engineer · Distributed Systems</p>
+  <h1 class="hero__title">Hi, I'm <span class="grad">An</span>.</h1>
+  <p class="hero__sub">Notes on system design, coding patterns, and thinking clearly, to become an articulate engineer.</p>
+  <div class="hero__cta">
+    <a class="btn btn--primary" href="{{ site.baseurl }}/categories/system-design-notes">Read system design notes</a>
+    <a class="btn" href="#about">About me ↓</a>
+  </div>
+</section>
+
+<h2 class="section-title">Explore topics</h2>
+<div class="hero-cards">
+  <a class="hero-card" href="{{ site.baseurl }}/categories/system-design-notes"><i class="fa-solid fa-diagram-project"></i><strong>System Design</strong><small>{{ site.posts | where: "categories", "system-design-notes" | size }} notes</small></a>
+  <a class="hero-card" href="{{ site.baseurl }}/categories/coding-practice"><i class="fa-solid fa-code"></i><strong>Coding Practice</strong><small>{{ site.posts | where: "categories", "coding-practice" | size }} problems</small></a>
+  <a class="hero-card" href="{{ site.baseurl }}/categories/opinion"><i class="fa-solid fa-lightbulb"></i><strong>Opinion</strong><small>{{ site.posts | where: "categories", "opinion" | size }} posts</small></a>
+  <a class="hero-card" href="{{ site.baseurl }}/categories/archives"><i class="fa-solid fa-archive"></i><strong>Archives</strong><small>{{ site.posts | where: "categories", "archives" | size }} posts</small></a>
+</div>
+
+<h2 class="section-title">Latest posts</h2>
+<div class="posts">
+{% assign latest = site.posts | where_exp: "p", "p.categories != 'private'" | sort: "date" | reverse %}
+{% for post in latest limit: 5 %}
+  <a class="post-card" href="{{ site.baseurl }}{{ post.url }}">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.excerpt | strip_html | strip_newlines | truncate: 160 }}</p>
+    <div class="meta"><span class="chip">{{ post.categories | first }}</span><time>{{ post.date | date: "%b %-d, %Y" }}</time></div>
+  </a>
+{% endfor %}
+</div>
+
+<div id="about"></div>
+
 Hello, reader. Here is the blog to share some knowledge about my career and my dream as a Software Engineer.
 
 # 1. Persona me

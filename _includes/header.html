@@ -1,0 +1,25 @@
+<div class="progress" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="site-header__bar">
+    <a class="brand" href="{{ site.baseurl }}/">
+      <img src="{{ site.avatar }}" class="avatar" alt="{{ site.name }}" />
+      <span><strong>{{ site.name }}</strong><small>{{ site.description }}</small></span>
+    </a>
+    <button id="pdf-review-btn" class="icon-btn" type="button" title="View my CV" aria-label="View my CV">📄<span class="lbl"> CV</span></button>
+    <button id="social-btn" class="icon-btn" type="button" aria-label="Connect with me">🔗<span class="lbl"> Connect</span></button>
+    <button id="nav-toggle" class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">☰</button>
+  </div>
+  <nav id="main-nav" class="main-nav" aria-label="Main">
+    <a href="{{ site.baseurl }}/" data-match="/"><i class="fa-solid fa-user"></i>About</a>
+    <a href="{{ site.baseurl }}/categories/opinion" data-match="/categories/opinion"><i class="fa-solid fa-lightbulb"></i>Opinion</a>
+    <a href="{{ site.baseurl }}/categories/system-design-notes" data-match="/categories/system-design-notes"><i class="fa-solid fa-diagram-project"></i>System Design</a>
+    <a href="{{ site.baseurl }}/categories/coding-practice" data-match="/categories/coding-practice"><i class="fa-solid fa-code"></i>Coding Practice</a>
+    <a href="{{ site.baseurl }}/categories/archives" data-match="/categories/archives"><i class="fa-solid fa-archive"></i>Archives</a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a class="ext" href="https://glitter-quart-14e.notion.site/Get-Along-3f7de13133de80b1b5abf03ada910226?pvs=73"><i class="fa-solid fa-laptop-code"></i>Articulate Engineer</a>
+    <a class="ext" href="https://glitter-quart-14e.notion.site/Problems-403de13133de8039bf75cfe52cecd04f?pvs=73"><i class="fa-solid fa-brain"></i>Think before you code</a>
+    <a class="ext" href="https://glitter-quart-14e.notion.site/Senior-Backend-Engineer-3e8de13133de80c88757ead0b930a792"><i class="fa-solid fa-cloud"></i>Road to Senior SE</a>
+    <a class="ext" href="https://glitter-quart-14e.notion.site/My-Owner-System-3fede13133de8071bd37cc202ac3900b?pvs=73"><i class="fa-solid fa-gear"></i>My Owner System</a>
+  </nav>
+  <p class="connect-note">Since Jan 2025, with motivation and courage to break my ego, be challenged and grow myself.</p>
+</header>
